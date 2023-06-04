@@ -21,6 +21,7 @@ include(
 
     ":core:designsystem",
     ":core:data",
+    ":core:domain",
 
     ":feature:session",
     ":feature:setting",

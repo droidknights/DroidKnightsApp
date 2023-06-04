@@ -42,6 +42,7 @@ hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-comp
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
+inject = "javax.inject:javax.inject:1"
 
 [bundles]
 
