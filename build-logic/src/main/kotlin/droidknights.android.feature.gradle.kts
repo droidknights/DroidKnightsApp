@@ -7,3 +7,7 @@ plugins {
 
 configureHiltAndroid()
 configureComposeAndroid()
+
+dependencies {
+    implementation(project(":core:designsystem"))
+}
