@@ -4,6 +4,9 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalog
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.kotlin.dsl.getByType
 
 internal val Project.applicationExtension: CommonExtension<*, *, *, *>
@@ -17,3 +20,6 @@ internal val Project.androidExtension: CommonExtension<*, *, *, *>
         .recover { applicationExtension }
         .onFailure { println("Could not find Library or Application extension from this project") }
         .getOrThrow()
+
+internal val ExtensionContainer.libs: VersionCatalog
+    get() = getByType<VersionCatalogsExtension>().named("libs")
