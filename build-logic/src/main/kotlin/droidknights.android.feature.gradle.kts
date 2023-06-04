@@ -1,4 +1,4 @@
-import com.droidknights.app2023.configureCompose
+import com.droidknights.app2023.configureComposeAndroid
 import com.droidknights.app2023.configureHiltAndroid
 
 plugins {
@@ -6,4 +6,4 @@ plugins {
 }
 
 configureHiltAndroid()
-configureCompose()
+configureComposeAndroid()

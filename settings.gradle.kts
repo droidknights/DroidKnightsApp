@@ -18,6 +18,9 @@ dependencyResolutionManagement {
 rootProject.name = "DroidKnights 2023"
 include(
     ":app",
+
+    ":core:designsystem",
+
     ":feature:session",
     ":feature:setting",
 )
