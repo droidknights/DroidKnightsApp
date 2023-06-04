@@ -20,6 +20,7 @@ include(
     ":app",
 
     ":core:designsystem",
+    ":core:data",
 
     ":feature:session",
     ":feature:setting",

@@ -50,7 +50,7 @@ internal fun Project.configureKotlinAndroid() {
     }
 }
 
-private fun Project.configureKotlin() {
+internal fun Project.configureKotlin() {
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_17.toString()

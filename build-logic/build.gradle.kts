@@ -18,5 +18,9 @@ gradlePlugin {
             id = "droidknights.android.hilt"
             implementationClass = "com.droidknights.app2023.plugin.AndroidHiltPlugin"
         }
+        register("kotlinHilt") {
+            id = "droidknights.kotlin.hilt"
+            implementationClass = "com.droidknights.app2023.plugin.KotlinHiltPlugin"
+        }
     }
 }
