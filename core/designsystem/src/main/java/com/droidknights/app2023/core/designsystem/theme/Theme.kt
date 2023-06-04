@@ -1,4 +1,4 @@
-package com.droidknights.app2023.ui.theme
+package com.droidknights.app2023.core.designsystem.theme
 
 import android.app.Activity
 import android.os.Build
