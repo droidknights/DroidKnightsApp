@@ -1,8 +1,7 @@
 import com.droidknights.app2023.configureCompose
 
 plugins {
-    id("android.application")
-    id("droidknights.android.hilt")
+    id("droidknights.android.application")
 }
 
 android {
