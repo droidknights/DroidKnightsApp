@@ -2,9 +2,7 @@ package com.droidknights.app2023
 
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -30,6 +28,10 @@ internal fun Project.configureKotlinAndroid() {
             isCoreLibraryDesugaringEnabled = true
         }
 
+        testOptions {
+            unitTests.all { it.useJUnitPlatform() }
+        }
+
         buildTypes {
             getByName("release") {
                 isMinifyEnabled = false
@@ -42,6 +44,7 @@ internal fun Project.configureKotlinAndroid() {
     }
 
     configureKotlin()
+    configureKotest()
 
     val libs = extensions.libs
 
