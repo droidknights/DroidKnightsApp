@@ -28,10 +28,6 @@ internal fun Project.configureKotlinAndroid() {
             isCoreLibraryDesugaringEnabled = true
         }
 
-        testOptions {
-            unitTests.all { it.useJUnitPlatform() }
-        }
-
         buildTypes {
             getByName("release") {
                 isMinifyEnabled = false
@@ -44,7 +40,6 @@ internal fun Project.configureKotlinAndroid() {
     }
 
     configureKotlin()
-    configureKotest()
 
     val libs = extensions.libs
 
