@@ -4,7 +4,7 @@ configureVerifyDetekt()
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     // Target version of the generated JVM bytecode. It is used for type resolution.
-    jvmTarget = "17"
+    jvmTarget = JavaVersion.VERSION_17.majorVersion
 
     buildUponDefaultConfig = true // preconfigure defaults
     allRules = false // activate all available (even unstable) rules.
