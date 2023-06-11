@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 package com.droidknights.app2023
 
 import org.gradle.api.JavaVersion
