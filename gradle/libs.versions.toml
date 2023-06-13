@@ -13,6 +13,7 @@ junit4 = "4.13.2"
 kotlin = "1.8.21"
 androidxTestExt = "1.1.4"
 androidxEspresso = "3.5.0"
+kotest = "5.6.2"
 # https://github.com/detekt/detekt
 detekt = "1.23.0"
 
@@ -45,6 +46,8 @@ junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 inject = "javax.inject:javax.inject:1"
+kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 
 # verify
 verify-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }

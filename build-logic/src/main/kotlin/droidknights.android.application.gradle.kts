@@ -1,4 +1,5 @@
 import com.droidknights.app2023.configureHiltAndroid
+import com.droidknights.app2023.configureKotestAndroid
 import com.droidknights.app2023.configureKotlinAndroid
 
 plugins {
@@ -7,3 +8,4 @@ plugins {
 
 configureKotlinAndroid()
 configureHiltAndroid()
+configureKotestAndroid()

@@ -1,3 +1,4 @@
+import com.droidknights.app2023.configureKotest
 import com.droidknights.app2023.configureKotlin
 
 plugins {
@@ -6,3 +7,4 @@ plugins {
 }
 
 configureKotlin()
+configureKotest()
