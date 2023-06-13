@@ -14,6 +14,8 @@ kotlin = "1.8.21"
 androidxTestExt = "1.1.4"
 androidxEspresso = "3.5.0"
 kotest = "5.6.2"
+# https://github.com/detekt/detekt
+detekt = "1.23.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -47,6 +49,12 @@ inject = "javax.inject:javax.inject:1"
 kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 
+# verify
+verify-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+
+# plugin
+verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+
 [bundles]
 
 [plugins]
@@ -55,3 +63,4 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+verify-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
