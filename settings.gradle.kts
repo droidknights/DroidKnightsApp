@@ -25,4 +25,5 @@ include(
 
     ":feature:session",
     ":feature:setting",
+    ":feature:home",
 )
