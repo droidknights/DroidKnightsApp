@@ -1,6 +1,10 @@
 plugins {
-    id("droidknights.kotlin.library")
-    id("droidknights.kotlin.hilt")
+    id("droidknights.android.library")
+    id("droidknights.android.hilt")
+}
+
+android {
+    namespace = "com.droidknights.app2023.core.data"
 }
 
 dependencies {
