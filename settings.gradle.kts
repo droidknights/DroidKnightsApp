@@ -23,7 +23,8 @@ include(
     ":core:data",
     ":core:domain",
 
+    ":feature:main",
+    ":feature:home",
     ":feature:session",
     ":feature:setting",
-    ":feature:home",
 )
