@@ -1,12 +1,11 @@
-import com.droidknights.app2023.configureComposeAndroid
 import com.droidknights.app2023.configureHiltAndroid
 
 plugins {
     id("droidknights.android.library")
+    id("droidknights.android.compose")
 }
 
 configureHiltAndroid()
-configureComposeAndroid()
 
 dependencies {
     implementation(project(":core:designsystem"))
