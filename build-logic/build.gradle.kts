@@ -11,10 +11,6 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("androidCompose") {
-            id = "droidknights.android.compose"
-            implementationClass = "com.droidknights.app2023.ComposeAndroidPlugin"
-        }
         register("androidHilt") {
             id = "droidknights.android.hilt"
             implementationClass = "com.droidknights.app2023.HiltAndroidPlugin"
