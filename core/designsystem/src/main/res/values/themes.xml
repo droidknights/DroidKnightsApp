@@ -5,6 +5,7 @@
 
     <style name="Theme.DroidKnights2023.NoStatusBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
 </resources>

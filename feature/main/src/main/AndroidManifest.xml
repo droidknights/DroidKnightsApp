@@ -5,7 +5,9 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.DroidKnights2023.NoStatusBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
