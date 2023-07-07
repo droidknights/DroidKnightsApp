@@ -72,7 +72,6 @@ private fun MainBottomBar(
             )
             .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(28.dp))
             .padding(horizontal = 28.dp),
-        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         tabs.forEach { tab ->
