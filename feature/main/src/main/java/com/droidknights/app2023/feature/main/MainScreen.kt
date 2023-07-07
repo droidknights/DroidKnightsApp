@@ -58,10 +58,9 @@ private fun MainBottomBar(
     tabs: List<MainTab>,
     currentTab: MainTab,
     onTabSelected: (MainTab) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier
+        modifier = Modifier
             .navigationBarsPadding()
             .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
             .fillMaxWidth()
@@ -90,10 +89,9 @@ private fun RowScope.MainBottomBarItem(
     selected: Boolean,
     onClick: () -> Unit,
     resId: Int,
-    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier
+        modifier = Modifier
             .weight(1f)
             .fillMaxHeight()
             .selectable(
