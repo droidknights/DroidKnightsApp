@@ -61,10 +61,10 @@ private fun MainBottomBar(
 ) {
     Row(
         modifier = Modifier
-            .navigationBarsPadding()
-            .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
             .fillMaxWidth()
             .height(56.dp)
+            .navigationBarsPadding()
+            .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
             .border(
                 width = 1.dp,
                 color = Color(0xFFDCDCDC), // lightgray
