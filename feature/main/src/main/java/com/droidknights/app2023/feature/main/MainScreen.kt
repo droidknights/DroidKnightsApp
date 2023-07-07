@@ -30,7 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun MainScreen() {
+internal fun MainScreen() {
     var currentTab by remember { mutableStateOf(MainTab.HOME) }
     Scaffold(
         content = { padding ->
