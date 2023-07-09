@@ -28,10 +28,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.droidknights.app2023.core.navigation.HomeNavigation
 
 @Composable
-internal fun MainScreen() {
+internal fun MainScreen(
+    homeNavigation: HomeNavigation,
+) {
     var currentTab by remember { mutableStateOf(MainTab.HOME) }
+    val navController = rememberNavController()
     Scaffold(
         content = { padding ->
             Box(
@@ -40,7 +47,10 @@ internal fun MainScreen() {
                     .background(Color(0xFFF9F9F9))
                     .padding(padding)
             ) {
-                // TODO: 컨텐츠 추가
+                MainNavGraph(
+                    navController = navController,
+                    homeNavigation = homeNavigation
+                )
             }
         },
         bottomBar = {
@@ -51,6 +61,22 @@ internal fun MainScreen() {
             )
         },
     )
+}
+
+@Composable
+private fun MainNavGraph(
+    navController: NavHostController,
+    homeNavigation: HomeNavigation,
+) {
+    val startDestination = homeNavigation.route
+    NavHost(
+        navController = navController,
+        startDestination = startDestination,
+    ) {
+        homeNavigation.content(this)
+        
+        // TODO: 다른 탭 Navigation 추가 (session, ...)
+    }
 }
 
 @Composable

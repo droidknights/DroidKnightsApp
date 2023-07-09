@@ -4,8 +4,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.droidknights.app2023.core.navigation.HomeNavigation
 import com.droidknights.app2023.feature.home.HomeScreen
+import javax.inject.Inject
 
-internal class HomeNavigationImpl : HomeNavigation {
+internal class HomeNavigationImpl @Inject constructor() : HomeNavigation {
     
     override val route: String = ROUTE
     

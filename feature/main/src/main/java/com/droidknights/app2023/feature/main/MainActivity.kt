@@ -5,8 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.core.view.WindowCompat
+import com.droidknights.app2023.core.navigation.HomeNavigation
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    
+    @Inject
+    lateinit var homeNavigation: HomeNavigation
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +22,7 @@ class MainActivity : ComponentActivity() {
         
         setContent {
             MaterialTheme {
-                MainScreen()
+                MainScreen(homeNavigation)
             }
         }
     }
