@@ -1,3 +1,4 @@
+import com.droidknights.app2023.configureCoroutineAndroid
 import com.droidknights.app2023.configureKotest
 import com.droidknights.app2023.configureKotlinAndroid
 
@@ -8,3 +9,4 @@ plugins {
 
 configureKotlinAndroid()
 configureKotest()
+configureCoroutineAndroid()
