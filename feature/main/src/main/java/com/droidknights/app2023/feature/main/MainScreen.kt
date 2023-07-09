@@ -19,19 +19,24 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.droidknights.app2023.core.navigation.HomeNavigation
 
 @Composable
-internal fun MainScreen() {
-    var currentTab by remember { mutableStateOf(MainTab.HOME) }
+internal fun MainScreen(
+    homeNavigation: HomeNavigation,
+) {
+    val navigator = rememberMainNavigator(homeNavigation)
+    MainScreen(navigator)
+}
+
+@Composable
+internal fun MainScreen(navigator: MainNavigator) {
     Scaffold(
         content = { padding ->
             Box(
@@ -40,14 +45,16 @@ internal fun MainScreen() {
                     .background(Color(0xFFF9F9F9))
                     .padding(padding)
             ) {
-                // TODO: 컨텐츠 추가
+                with(navigator) {
+                    Content()
+                }
             }
         },
         bottomBar = {
             MainBottomBar(
                 tabs = MainTab.values().toList(),
-                currentTab = currentTab,
-                onTabSelected = { currentTab = it }
+                currentTab = navigator.currentTab,
+                onTabSelected = { navigator.navigate(it) }
             )
         },
     )
@@ -61,10 +68,10 @@ private fun MainBottomBar(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp)
             .navigationBarsPadding()
             .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
+            .fillMaxWidth()
+            .height(56.dp)
             .border(
                 width = 1.dp,
                 color = Color(0xFFDCDCDC), // lightgray
@@ -76,9 +83,9 @@ private fun MainBottomBar(
     ) {
         tabs.forEach { tab ->
             MainBottomBarItem(
+                tab = tab,
                 selected = tab == currentTab,
                 onClick = { onTabSelected(tab) },
-                resId = tab.iconResId,
             )
         }
     }
@@ -86,9 +93,9 @@ private fun MainBottomBar(
 
 @Composable
 private fun RowScope.MainBottomBarItem(
+    tab: MainTab,
     selected: Boolean,
     onClick: () -> Unit,
-    resId: Int,
 ) {
     Box(
         modifier = Modifier
@@ -104,8 +111,8 @@ private fun RowScope.MainBottomBarItem(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            painter = painterResource(id = resId),
-            contentDescription = null,
+            painter = painterResource(tab.iconResId),
+            contentDescription = tab.contentDescription,
             tint = if (selected) Color(0xFF49F300) else Color(0xFFDCDCDC),
             modifier = Modifier.size(34.dp),
         )

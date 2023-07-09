@@ -5,6 +5,7 @@ androidxCore = "1.9.0"
 androidxLifecycle = "2.6.1"
 androidxComposeBom = "2023.05.01"
 androidxComposeCompiler = "1.4.7"
+androidxComposeNavigation = "2.6.0"
 androidxComposeMaterial3 = "1.1.0"
 androidxActivity = "1.7.2"
 hilt = "2.46.1"
@@ -40,6 +41,8 @@ androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-juni
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-navigation =  { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
+androidx-compose-navigation-test = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxComposeNavigation" }
 
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }

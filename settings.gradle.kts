@@ -22,6 +22,7 @@ include(
     ":core:designsystem",
     ":core:data",
     ":core:domain",
+    ":core:navigation",
 
     ":feature:main",
     ":feature:home",
