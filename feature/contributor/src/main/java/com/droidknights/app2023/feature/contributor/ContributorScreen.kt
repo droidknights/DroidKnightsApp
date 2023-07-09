@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.domain.contributor.Contributor
 
@@ -106,5 +107,18 @@ fun ContributorItem(contributor: Contributor) {
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.Bold,
         color = Color(0xFF5E5E5E),
+    )
+}
+
+@Preview
+@Composable
+fun ContributorScreenPreview() {
+    ContributorScreen(
+        uiState = ContributorsUiState.Contributors(
+            listOf(
+                Contributor("Contributor1", "https://avatars.githubusercontent.com/u/25101514"),
+                Contributor("Contributor2", "https://avatars.githubusercontent.com/u/25101514"),
+            )
+        )
     )
 }
