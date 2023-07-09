@@ -9,6 +9,7 @@ androidxComposeNavigation = "2.6.0"
 androidxComposeMaterial3 = "1.1.0"
 androidxActivity = "1.7.2"
 hilt = "2.46.1"
+hiltNavigationCompose = "1.0.0"
 
 okhttp = "4.11.0"
 retrofit = "2.9.0"
@@ -52,6 +53,8 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
