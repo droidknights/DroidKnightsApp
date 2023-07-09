@@ -45,7 +45,9 @@ internal fun MainScreen(navigator: MainNavigator) {
                     .background(Color(0xFFF9F9F9))
                     .padding(padding)
             ) {
-                navigator.content()
+                with(navigator) {
+                    Content()
+                }
             }
         },
         bottomBar = {

@@ -15,24 +15,33 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.droidknights.app2023.core.navigation.HomeNavigation
+import com.droidknights.app2023.core.navigation.MainDestination
 
 internal class MainNavigator(
     private val navController: NavHostController,
     private val homeNavigation: HomeNavigation,
 ) {
-    private val startTab = MainTab.HOME
+    private val startDestination: MainDestination = MainDestination.Home
+    private var currentDestination: MainDestination by mutableStateOf(startDestination)
     
-    val startDestination = startTab.route
-    var currentTab by mutableStateOf(startTab)
-        private set
+    val currentTab: MainTab
+        get() = when (currentDestination) {
+            MainDestination.Home -> MainTab.HOME
+            MainDestination.Setting -> MainTab.SETTING
+            MainDestination.Temp -> MainTab.TEMP
+        }
     
     @Composable
-    fun content() {
+    fun Content() {
         NavHost(
             navController = navController,
-            startDestination = startDestination,
+            startDestination = startDestination.route,
         ) {
-            homeNavigation.content(this)
+            composable(MainDestination.Home.route) {
+                with(homeNavigation) {
+                    Content()
+                }
+            }
             
             // TODO: 각 모듈로 이동
             val content: @Composable (String) -> Unit = {
@@ -48,19 +57,21 @@ internal class MainNavigator(
     }
     
     fun navigate(tab: MainTab) {
-        if (tab == currentTab) {
-            return
+        val destination = when (tab) {
+            MainTab.SETTING -> MainDestination.Setting
+            MainTab.HOME -> MainDestination.Home
+            MainTab.TEMP -> MainDestination.Temp
         }
-        currentTab = tab
-        navController.navigate(tab.route)
+        navigate(destination)
     }
     
-    private val MainTab.route: String
-        get() = when (this) {
-            MainTab.SETTING -> "setting"
-            MainTab.HOME -> homeNavigation.route
-            MainTab.TEMP -> "temp"
+    private fun navigate(destination: MainDestination) {
+        if (destination == currentDestination) {
+            return
         }
+        currentDestination = destination
+        navController.navigate(destination.route)
+    }
 }
 
 @Composable

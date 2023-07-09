@@ -1,13 +1,12 @@
 package com.droidknights.app2023.feature.main
 
 import androidx.activity.ComponentActivity
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.ComposeNavigator
-import androidx.navigation.compose.composable
 import androidx.navigation.testing.TestNavHostController
 import com.droidknights.app2023.core.navigation.HomeNavigation
 import org.junit.Assert.assertEquals
@@ -50,9 +49,8 @@ class MainScreenTest {
 }
 
 private class FakeHomeNavigation : HomeNavigation {
-    override val route: String = "home"
-    
-    override fun content(builder: NavGraphBuilder) {
-        builder.composable(route = this@FakeHomeNavigation.route, content = { })
+    @Composable
+    override fun Content() {
+        // no-op
     }
 }

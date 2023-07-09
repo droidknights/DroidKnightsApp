@@ -1,9 +1,9 @@
 package com.droidknights.app2023.core.navigation
 
-import androidx.navigation.NavGraphBuilder
+import androidx.compose.runtime.Composable
 
 interface HomeNavigation {
-    val route: String
     
-    fun content(builder: NavGraphBuilder)
+    @Composable
+    fun Content()
 }
