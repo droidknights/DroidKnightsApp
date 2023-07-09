@@ -19,26 +19,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import com.droidknights.app2023.core.navigation.HomeNavigation
 
 @Composable
 internal fun MainScreen(
     homeNavigation: HomeNavigation,
 ) {
-    var currentTab by remember { mutableStateOf(MainTab.HOME) }
-    val navController = rememberNavController()
+    val navigator = rememberMainNavigator(homeNavigation = homeNavigation)
     Scaffold(
         content = { padding ->
             Box(
@@ -47,36 +40,17 @@ internal fun MainScreen(
                     .background(Color(0xFFF9F9F9))
                     .padding(padding)
             ) {
-                MainNavGraph(
-                    navController = navController,
-                    homeNavigation = homeNavigation
-                )
+                navigator.content()
             }
         },
         bottomBar = {
             MainBottomBar(
                 tabs = MainTab.values().toList(),
-                currentTab = currentTab,
-                onTabSelected = { currentTab = it }
+                currentTab = navigator.currentTab,
+                onTabSelected = { navigator.navigate(it) }
             )
         },
     )
-}
-
-@Composable
-private fun MainNavGraph(
-    navController: NavHostController,
-    homeNavigation: HomeNavigation,
-) {
-    val startDestination = homeNavigation.route
-    NavHost(
-        navController = navController,
-        startDestination = startDestination,
-    ) {
-        homeNavigation.content(this)
-        
-        // TODO: 다른 탭 Navigation 추가 (session, ...)
-    }
 }
 
 @Composable
