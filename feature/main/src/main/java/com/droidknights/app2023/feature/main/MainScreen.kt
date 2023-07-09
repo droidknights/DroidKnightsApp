@@ -31,7 +31,12 @@ import com.droidknights.app2023.core.navigation.HomeNavigation
 internal fun MainScreen(
     homeNavigation: HomeNavigation,
 ) {
-    val navigator = rememberMainNavigator(homeNavigation = homeNavigation)
+    val navigator = rememberMainNavigator(homeNavigation)
+    MainScreen(navigator)
+}
+
+@Composable
+internal fun MainScreen(navigator: MainNavigator) {
     Scaffold(
         content = { padding ->
             Box(
@@ -76,9 +81,9 @@ private fun MainBottomBar(
     ) {
         tabs.forEach { tab ->
             MainBottomBarItem(
+                tab = tab,
                 selected = tab == currentTab,
                 onClick = { onTabSelected(tab) },
-                resId = tab.iconResId,
             )
         }
     }
@@ -86,9 +91,9 @@ private fun MainBottomBar(
 
 @Composable
 private fun RowScope.MainBottomBarItem(
+    tab: MainTab,
     selected: Boolean,
     onClick: () -> Unit,
-    resId: Int,
 ) {
     Box(
         modifier = Modifier
@@ -104,8 +109,8 @@ private fun RowScope.MainBottomBarItem(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            painter = painterResource(id = resId),
-            contentDescription = null,
+            painter = painterResource(tab.iconResId),
+            contentDescription = tab.contentDescription,
             tint = if (selected) Color(0xFF49F300) else Color(0xFFDCDCDC),
             modifier = Modifier.size(34.dp),
         )
