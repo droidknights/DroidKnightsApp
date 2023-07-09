@@ -11,7 +11,7 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
     private lateinit var repository: DefaultContributorRepository
 
     init {
-        beforeTest {
+        beforeEach {
             repository = DefaultContributorRepository(
                 githubApi = FakeGithubApi(contributors)
             )
