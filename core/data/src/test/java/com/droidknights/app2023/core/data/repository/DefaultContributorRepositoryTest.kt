@@ -16,15 +16,15 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
                 githubApi = FakeGithubApi(contributors)
             )
         }
-        given("기여자가 존재한다") {
+        Given("기여자가 존재한다") {
             val expected = contributors
 
-            `when`("기여자를 조회한다") {
+            When("기여자를 조회한다") {
                 val contributors: List<ContributorEntity> = repository.getContributors(
                     owner = "droidknights",
                     name = "app2023"
                 )
-                then("기여자를 반환한다") {
+                Then("기여자를 반환한다") {
                     contributors.size shouldBe 1
                     contributors.all {
                         it.name == expected[0].name
