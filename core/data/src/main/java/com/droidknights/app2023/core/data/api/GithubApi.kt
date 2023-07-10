@@ -1,5 +1,6 @@
 package com.droidknights.app2023.core.data.api
 
+import com.droidknights.app2023.core.data.api.model.ContributorResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

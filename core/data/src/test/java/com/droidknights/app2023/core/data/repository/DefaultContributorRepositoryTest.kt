@@ -1,6 +1,6 @@
 package com.droidknights.app2023.core.data.repository
 
-import com.droidknights.app2023.core.data.api.ContributorResponse
+import com.droidknights.app2023.core.data.api.model.ContributorResponse
 import com.droidknights.app2023.core.data.model.ContributorEntity
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe

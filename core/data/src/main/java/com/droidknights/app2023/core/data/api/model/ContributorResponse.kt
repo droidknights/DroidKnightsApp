@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.data.api
+package com.droidknights.app2023.core.data.api.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
