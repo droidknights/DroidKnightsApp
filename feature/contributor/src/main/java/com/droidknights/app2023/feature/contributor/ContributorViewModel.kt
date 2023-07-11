@@ -2,7 +2,7 @@ package com.droidknights.app2023.feature.contributor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.domain.contributor.GetContributorsUseCase
+import com.droidknights.app2023.core.domain.usecase.GetContributorsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

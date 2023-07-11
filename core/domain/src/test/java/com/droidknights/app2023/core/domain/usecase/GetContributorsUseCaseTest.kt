@@ -1,6 +1,7 @@
-package com.droidknights.app2023.core.domain.contributor
+package com.droidknights.app2023.core.domain.usecase
 
 import com.droidknights.app2023.core.data.model.ContributorEntity
+import com.droidknights.app2023.core.domain.model.Contributor
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
