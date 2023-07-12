@@ -48,17 +48,17 @@ internal fun ContributorScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ActionBarContent()
-        Column(
-            modifier = Modifier.padding(horizontal = 32.dp)
-        ) {
-            ContributorTitle()
-            when (uiState) {
-                ContributorsUiState.Loading -> Unit
-                is ContributorsUiState.Contributors ->
+        when (uiState) {
+            ContributorsUiState.Loading -> Unit
+            is ContributorsUiState.Contributors ->
+                Column(
+                    modifier = Modifier.padding(horizontal = 32.dp)
+                ) {
+                    ContributorTitle()
                     ContributorList(
                         contributors = uiState.contributors,
                     )
-            }
+                }
         }
     }
 }
