@@ -8,14 +8,11 @@ import io.kotest.matchers.shouldBe
 
 internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
-    private lateinit var repository: DefaultContributorRepository
+    private val repository: DefaultContributorRepository = DefaultContributorRepository(
+        githubApi = FakeGithubApi(contributors)
+    )
 
     init {
-        beforeEach {
-            repository = DefaultContributorRepository(
-                githubApi = FakeGithubApi(contributors)
-            )
-        }
         Given("기여자가 존재한다") {
             val expected = contributors
 
