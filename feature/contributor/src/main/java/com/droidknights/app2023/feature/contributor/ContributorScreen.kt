@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app2023.core.domain.contributor.Contributor
+import com.droidknights.app2023.core.domain.model.Contributor
 
 @Composable
 fun ContributorRoute(
@@ -51,11 +51,11 @@ internal fun ContributorScreen(
         Column(
             modifier = Modifier.padding(horizontal = 32.dp)
         ) {
-            Title()
+            ContributorTitle()
             when (uiState) {
                 ContributorsUiState.Loading -> Unit
                 is ContributorsUiState.Contributors ->
-                    ContributorsTabContent(
+                    ContributorList(
                         contributors = uiState.contributors,
                     )
             }
@@ -64,7 +64,7 @@ internal fun ContributorScreen(
 }
 
 @Composable
-fun ActionBarContent() {
+internal fun ActionBarContent() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -89,7 +89,7 @@ fun ActionBarContent() {
 }
 
 @Composable
-fun Title() {
+internal fun ContributorTitle() {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier
@@ -105,7 +105,7 @@ fun Title() {
 }
 
 @Composable
-fun ContributorsTabContent(contributors: List<Contributor>) {
+internal fun ContributorList(contributors: List<Contributor>) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
@@ -116,7 +116,7 @@ fun ContributorsTabContent(contributors: List<Contributor>) {
 }
 
 @Composable
-fun ContributorItem(contributor: Contributor) {
+internal fun ContributorItem(contributor: Contributor) {
     Text(
         text = contributor.name,
         style = MaterialTheme.typography.titleMedium,
@@ -127,7 +127,7 @@ fun ContributorItem(contributor: Contributor) {
 
 @Preview
 @Composable
-fun ContributorScreenPreview() {
+private fun ContributorScreenPreview() {
     ContributorScreen(
         uiState = ContributorsUiState.Contributors(
             listOf(
