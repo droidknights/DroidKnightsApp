@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -106,10 +107,11 @@ internal fun ContributorTitle() {
 
 @Composable
 internal fun ContributorList(contributors: List<Contributor>) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        contributors.forEach { contributor ->
+        items(contributors.size) { index ->
+            val contributor = contributors[index]
             ContributorItem(contributor = contributor)
         }
     }
