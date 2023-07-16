@@ -17,11 +17,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object ApiModule {
-    
+
     @Provides
     @Singleton
     fun provideOkhttpClient(): OkHttpClient = OkHttpClient.Builder().build()
-    
+
     @Provides
     @Singleton
     fun provideConverterFactory(
@@ -29,7 +29,7 @@ internal object ApiModule {
     ): Converter.Factory {
         return json.asConverterFactory("application/json".toMediaType())
     }
-    
+
     @Provides
     @Singleton
     fun provideGithubApi(
