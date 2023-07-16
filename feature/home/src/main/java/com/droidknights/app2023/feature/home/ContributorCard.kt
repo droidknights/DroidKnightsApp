@@ -32,6 +32,7 @@ internal fun ContributorCard(
             .height(164.dp),
         shape = RoundedCornerShape(32.dp),
         color = Color(0xFFEEFFE7),
+        shadowElevation = 2.dp,
     ) {
         Box(modifier = Modifier.padding(horizontal = 24.dp)) {
             Image(
