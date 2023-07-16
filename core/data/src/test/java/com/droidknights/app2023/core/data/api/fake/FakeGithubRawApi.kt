@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.data.fake
+package com.droidknights.app2023.core.data.api.fake
 
 import com.droidknights.app2023.core.data.api.GithubRawApi
 import com.droidknights.app2023.core.data.api.model.SponsorResponse
