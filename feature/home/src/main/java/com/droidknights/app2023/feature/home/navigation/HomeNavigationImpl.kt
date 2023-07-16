@@ -9,6 +9,8 @@ internal class HomeNavigationImpl @Inject constructor() : HomeNavigation {
     
     @Composable
     override fun Content() {
-        HomeScreen()
+        HomeScreen(
+            onContributorClick = { /* TODO: 컨트리뷰터 화면 이동 */ },
+        )
     }
 }
