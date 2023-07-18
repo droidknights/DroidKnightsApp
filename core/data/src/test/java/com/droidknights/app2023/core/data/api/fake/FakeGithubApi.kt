@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.data.repository
+package com.droidknights.app2023.core.data.api.fake
 
 import com.droidknights.app2023.core.data.api.model.ContributorResponse
 import com.droidknights.app2023.core.data.api.GithubApi

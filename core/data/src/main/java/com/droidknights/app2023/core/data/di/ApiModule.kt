@@ -1,6 +1,7 @@
 package com.droidknights.app2023.core.data.di
 
 import com.droidknights.app2023.core.data.api.GithubApi
+import com.droidknights.app2023.core.data.api.GithubRawApi
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -41,7 +42,18 @@ internal object ApiModule {
             .client(okHttpClient).build()
             .create(GithubApi::class.java)
     }
-
+    
+    @Provides
+    @Singleton
+    fun provideGitRawApi(
+        okHttpClient: OkHttpClient,
+        converterFactory: Converter.Factory,
+    ): GithubRawApi = Retrofit.Builder()
+        .baseUrl("https://raw.githubusercontent.com/")
+        .addConverterFactory(converterFactory)
+        .client(okHttpClient).build()
+        .create(GithubRawApi::class.java)
+    
     @Provides
     @Singleton
     fun provideJson(): Json = Json {
