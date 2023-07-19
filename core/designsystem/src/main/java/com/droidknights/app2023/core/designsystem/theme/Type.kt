@@ -40,6 +40,7 @@ private val HeadlineMedium = SansSerifStyle.copy(
 private val HeadlineSmall = SansSerifStyle.copy(
     fontSize = 24.sp,
     lineHeight = 32.sp,
+    fontWeight = FontWeight.W900,
 )
 
 private val TitleLarge = SansSerifStyle.copy(
