@@ -18,6 +18,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,18 +26,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.droidknights.app2023.core.navigation.HomeNavigation
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.droidknights.app2023.feature.home.navigation.homeNavGraph
 
 @Composable
-internal fun MainScreen(
-    homeNavigation: HomeNavigation,
-) {
-    val navigator = rememberMainNavigator(homeNavigation)
-    MainScreen(navigator)
-}
-
-@Composable
-internal fun MainScreen(navigator: MainNavigator) {
+internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
     Scaffold(
         content = { padding ->
             Box(
@@ -45,8 +40,22 @@ internal fun MainScreen(navigator: MainNavigator) {
                     .background(Color(0xFFF9F9F9))
                     .padding(padding)
             ) {
-                with(navigator) {
-                    Content()
+                NavHost(
+                    navController = navigator.navController,
+                    startDestination = navigator.startDestination,
+                ) {
+                    homeNavGraph()
+
+                    // TODO: 각 모듈로 이동
+                    val content: @Composable (String) -> Unit = {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center,
+                            content = { Text(text = it) }
+                        )
+                    }
+                    composable("setting") { content("setting") }
+                    composable("temp") { content("temp") }
                 }
             }
         },
