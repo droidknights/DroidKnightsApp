@@ -25,7 +25,7 @@ kotest = "5.6.2"
 # https://github.com/detekt/detekt
 detekt = "1.23.0"
 
-coroutine = "1.7.0"
+coroutine = "1.7.2"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
