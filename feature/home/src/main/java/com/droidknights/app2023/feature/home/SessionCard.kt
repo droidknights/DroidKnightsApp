@@ -35,7 +35,7 @@ internal fun SessionCard(
         shadowElevation = 2.dp,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_card_session),
+            painter = painterResource(id = R.drawable.bg_card_session),
             contentScale = ContentScale.FillBounds,
             contentDescription = null
         )
