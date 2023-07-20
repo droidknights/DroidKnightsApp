@@ -43,12 +43,12 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
             ) {
                 NavHost(
                     navController = navigator.navController,
-                    startDestination = navigator.startDestination,
+                    startDestination = navigator.startDestination
                 ) {
                     homeNavGraph()
 
                     settingNavGraph()
-                    
+
                     // TODO: 각 모듈로 이동
                     val content: @Composable (String) -> Unit = {
                         Box(
@@ -74,7 +74,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
 @Composable
 private fun MainBottomBar(
     tabs: List<MainTab>,
-    currentTab: MainTab,
+    currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
 ) {
     Row(
