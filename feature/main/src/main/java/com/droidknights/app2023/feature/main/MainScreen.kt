@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
+import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
 
 @Composable
 internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
@@ -46,6 +47,8 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                 ) {
                     homeNavGraph()
 
+                    settingNavGraph()
+                    
                     // TODO: 각 모듈로 이동
                     val content: @Composable (String) -> Unit = {
                         Box(
@@ -54,7 +57,6 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                             content = { Text(text = it) }
                         )
                     }
-                    composable("setting") { content("setting") }
                     composable("temp") { content("temp") }
                 }
             }
