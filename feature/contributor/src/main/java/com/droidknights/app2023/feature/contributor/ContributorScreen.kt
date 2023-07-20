@@ -1,6 +1,7 @@
 package com.droidknights.app2023.feature.contributor
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import com.droidknights.app2023.core.domain.model.Contributor
 
 @Composable
 fun ContributorRoute(
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ContributorViewModel = hiltViewModel(),
 ) {
@@ -35,6 +37,7 @@ fun ContributorRoute(
 
     ContributorScreen(
         uiState = uiState,
+        onBackClick = onBackClick,
         modifier = modifier,
     )
 }
@@ -42,13 +45,14 @@ fun ContributorRoute(
 @Composable
 internal fun ContributorScreen(
     uiState: ContributorsUiState,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        ActionBarContent()
+        ActionBarContent(onBackClick)
         when (uiState) {
             ContributorsUiState.Loading -> Unit
             is ContributorsUiState.Contributors ->
@@ -64,8 +68,11 @@ internal fun ContributorScreen(
     }
 }
 
+// TODO: KnightsTopAppBar 사용
 @Composable
-internal fun ActionBarContent() {
+internal fun ActionBarContent(
+    onBackClick: () -> Unit,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -84,7 +91,8 @@ internal fun ActionBarContent() {
             contentDescription = null,
             modifier = Modifier
                 .padding(12.dp)
-                .align(Alignment.CenterEnd),
+                .align(Alignment.CenterEnd)
+                .clickable { onBackClick() },
         )
     }
 }
@@ -136,6 +144,7 @@ private fun ContributorScreenPreview() {
                 Contributor("Contributor1", "https://avatars.githubusercontent.com/u/25101514"),
                 Contributor("Contributor2", "https://avatars.githubusercontent.com/u/25101514"),
             )
-        )
+        ),
+        onBackClick = {},
     )
 }

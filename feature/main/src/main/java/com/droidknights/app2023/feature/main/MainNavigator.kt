@@ -6,7 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.droidknights.app2023.feature.contributor.navigation.ContributorRoute
 import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.navigateHome
 import com.droidknights.app2023.feature.setting.navigation.SettingRoute
@@ -33,6 +35,23 @@ internal class MainNavigator(
             MainTab.TEMP -> navController.navigate("temp") // TODO: ???
         }
         currentTab = tab
+    }
+
+    fun navigateContributor() {
+        navController.navigate(ContributorRoute.route)
+    }
+
+    fun popBackStack() {
+        navController.popBackStack()
+    }
+
+    @Composable
+    fun shouldShowBottomBar(): Boolean {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        return when (navBackStackEntry?.destination?.route) {
+            ContributorRoute.route -> false
+            else -> true
+        }
     }
 }
 
