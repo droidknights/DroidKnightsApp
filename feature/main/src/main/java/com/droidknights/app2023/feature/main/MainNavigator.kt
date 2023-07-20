@@ -9,6 +9,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.navigateHome
+import com.droidknights.app2023.feature.setting.navigation.SettingRoute
+import com.droidknights.app2023.feature.setting.navigation.navigateSetting
 
 internal class MainNavigator(
     startTab: MainTab = MainTab.HOME,
@@ -16,17 +18,17 @@ internal class MainNavigator(
 ) {
     val startDestination: String = when (startTab) {
         MainTab.HOME -> HomeRoute.route
-        MainTab.SETTING -> "setting"
+        MainTab.SETTING -> SettingRoute.route
         MainTab.TEMP -> "temp"
     }
-    
+
     var currentTab: MainTab by mutableStateOf(startTab)
         private set
 
     fun navigate(tab: MainTab) {
         if (tab == currentTab) return
         when (tab) {
-            MainTab.SETTING -> navController.navigate("setting") // TODO: navigate settings
+            MainTab.SETTING -> navController.navigateSetting()
             MainTab.HOME -> navController.navigateHome()
             MainTab.TEMP -> navController.navigate("temp") // TODO: ???
         }

@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "com.droidknights.app2023.feature.setting"
 }
+
+dependencies {
+    implementation(libs.androidx.compose.navigation)
+}

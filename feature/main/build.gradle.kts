@@ -12,6 +12,7 @@ android {
 
 dependencies {
     implementation(project(":feature:home"))
+    implementation(project(":feature:setting"))
     
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
