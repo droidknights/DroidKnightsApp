@@ -28,6 +28,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
+import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
 import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
 
@@ -39,16 +41,16 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color(0xFFF9F9F9))
-                    .padding(padding)
             ) {
                 NavHost(
                     navController = navigator.navController,
                     startDestination = navigator.startDestination,
                 ) {
-                    homeNavGraph()
-
                     settingNavGraph()
-                    
+                    homeNavGraph(
+                        padding = padding,
+                        onContributorClick = { navigator.navController.navigateContributor() },
+                    )
                     // TODO: 각 모듈로 이동
                     val content: @Composable (String) -> Unit = {
                         Box(
@@ -57,6 +59,9 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                             content = { Text(text = it) }
                         )
                     }
+                    contributorNavGraph(
+                        onBackClick = { navigator.navController.popBackStack() }
+                    )
                     composable("temp") { content("temp") }
                 }
             }
