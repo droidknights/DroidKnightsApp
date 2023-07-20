@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting">설정</string>
+    <string name="light_mode">라이트 모드</string>
+    <string name="dark_mode">다크 모드</string>
+</resources>
