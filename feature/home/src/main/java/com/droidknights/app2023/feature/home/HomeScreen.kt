@@ -10,9 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun HomeScreen(
-    onContributorClick: () -> Unit = { },
-) {
+internal fun HomeScreen(onContributorClick: () -> Unit) {
     Column(
         Modifier
             .background(color = Color(0xFFF9F9F9))
