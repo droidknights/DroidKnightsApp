@@ -5,7 +5,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.droidknights.app2023.core.domain.model.Contributor
+import com.droidknights.app2023.core.model.Contributor
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

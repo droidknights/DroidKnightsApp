@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.domain.model
+package com.droidknights.app2023.core.model
 
 data class Sponsor(
     val name: String,

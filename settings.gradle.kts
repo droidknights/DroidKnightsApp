@@ -30,3 +30,4 @@ include(
     ":feature:setting",
     ":feature:contributor",
 )
+include(":core:model")

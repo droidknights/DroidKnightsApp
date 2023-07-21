@@ -2,7 +2,7 @@ package com.droidknights.app2023.core.domain.usecase
 
 import com.droidknights.app2023.core.data.repository.SponsorRepository
 import com.droidknights.app2023.core.domain.mapper.toDomain
-import com.droidknights.app2023.core.domain.model.Sponsor
+import com.droidknights.app2023.core.model.Sponsor
 import javax.inject.Inject
 
 class GetSponsorsUseCase @Inject constructor(
