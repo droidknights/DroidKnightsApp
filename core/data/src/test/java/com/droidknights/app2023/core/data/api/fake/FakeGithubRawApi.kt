@@ -1,17 +1,28 @@
 package com.droidknights.app2023.core.data.api.fake
 
 import com.droidknights.app2023.core.data.api.GithubRawApi
+import com.droidknights.app2023.core.data.api.model.SessionResponse
 import com.droidknights.app2023.core.data.api.model.SponsorResponse
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
 import java.io.File
 
+@OptIn(ExperimentalSerializationApi::class)
 internal class FakeGithubRawApi(
-    private val json: Json = Json { ignoreUnknownKeys = true },
+    private val json: Json = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues = true
+    },
 ) : GithubRawApi {
-    private val assets = File("src/main/assets/sponsors.json")
-    
+    private val sponsors = File("src/main/assets/sponsors.json")
+    private val sessions = File("src/main/assets/sessions.json")
+
     override suspend fun getSponsors(): List<SponsorResponse> {
-        return json.decodeFromStream(assets.inputStream())
+        return json.decodeFromStream(sponsors.inputStream())
+    }
+
+    override suspend fun getSessions(): List<SessionResponse> {
+        return json.decodeFromStream(sessions.inputStream())
     }
 }
