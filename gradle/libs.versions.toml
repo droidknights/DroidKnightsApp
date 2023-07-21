@@ -15,6 +15,7 @@ okhttp = "4.11.0"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 kotlinxSerializationJson = "1.5.1"
+kotlinxDatetime = "0.2.1"
 
 junit4 = "4.13.2"
 kotlin = "1.8.21"
@@ -60,6 +61,7 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
 
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
