@@ -14,7 +14,7 @@ internal data class SessionResponse(
     val speakers: List<Speaker>,
     val level: Level,
     val tags: List<Tag> = emptyList(),
-    val room: Room = Room.TRACK1,
+    val room: Room = Room.ETC,
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
 )

@@ -26,6 +26,7 @@ value class Tag(val name: String)
 
 @Serializable
 enum class Room {
+    ETC,
 
     @SerialName("Track1")
     TRACK1,
