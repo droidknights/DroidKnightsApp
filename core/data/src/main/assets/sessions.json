@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Keynote",
+    "content": [],
+    "speakers": [],
+    "level": "기타",
+    "tags": [
+      "키노트"
+    ],
+    "room": null,
+    "startTime": "2023-09-12T13:00:00.000",
+    "endTime": "2023-09-12T13:20:00.000"
+  },
+  {
+    "title": "Jetpack Compose로 Android UI 개발하기",
+    "content": [
+      "Jetpack Compose는 네이티브 UI를 빌드하기 위한 Android의 최신 권장 도구 키트입니다."
+    ],
+    "speakers": [
+      {
+        "name": "김컴포즈",
+        "imageUrl": "https://developer.android.com/static/courses/android-basics-compose/images/hero-assets/unit-logo.svg"
+      }
+    ],
+    "level": "기타",
+    "tags": [
+      "Jetpack",
+      "UI"
+    ],
+    "room": "Track1",
+    "startTime": "2023-09-12T13:25:00.000",
+    "endTime": "2023-09-12T13:55:00.000"
+  }
+]
