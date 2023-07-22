@@ -19,8 +19,7 @@ fun KnightsCard(
     Surface(
         onClick = onClick,
         modifier = modifier
-            .fillMaxWidth()
-            .height(164.dp),
+            .fillMaxWidth(),
         color = color,
         shape = RoundedCornerShape(32.dp),
         shadowElevation = 2.dp,
