@@ -9,6 +9,6 @@ internal interface GithubRawApi {
     @GET("/droidknights/DroidKnights2023_App/main/data/src/main/assets/sponsors.json")
     suspend fun getSponsors(): List<SponsorResponse>
 
-    @GET("/droidknights/DroidKnights2023_App/main/data/src/main/assets/sponsors.json")
+    @GET("/droidknights/DroidKnights2023_App/main/data/src/main/assets/sessions.json")
     suspend fun getSessions(): List<SessionResponse>
 }
