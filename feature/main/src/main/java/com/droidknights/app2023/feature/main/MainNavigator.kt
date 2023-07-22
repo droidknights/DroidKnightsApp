@@ -21,8 +21,8 @@ internal class MainNavigator(
     private val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
-    val startDestination: String
-        @Composable get() = currentDestination?.route ?: HomeRoute.route
+    
+    val startDestination = HomeRoute.route
 
     val currentTab: MainTab?
         @Composable get() = when (currentDestination?.route) {
