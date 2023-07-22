@@ -14,7 +14,7 @@ internal fun SessionResponse.toData(): Session = Session(
     speakers = this.speakers,
     level = this.level.toData(),
     tags = this.tags.map { Tag(it) },
-    room = this.room.toData(),
+    room = this.room?.toData() ?: Room.ETC,
     startTime = this.startTime,
     endTime = this.endTime
 )
