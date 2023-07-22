@@ -10,11 +10,11 @@ internal data class SponsorResponse(
     @SerialName("homepage") val homepage: String,
     @SerialName("grade") val grade: Grade,
 ) {
-    
+
     enum class Grade {
         @SerialName("platinum")
         PLATINUM,
-        
+
         @SerialName("gold")
         GOLD,
     }
