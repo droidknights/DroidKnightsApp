@@ -1,5 +1,10 @@
 package com.droidknights.app2023.feature.main
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -25,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -66,44 +72,50 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
             }
         },
         bottomBar = {
-            if (navigator.shouldShowBottomBar()) {
-                MainBottomBar(
-                    tabs = MainTab.values().toList(),
-                    currentTab = navigator.currentTab,
-                    onTabSelected = { navigator.navigate(it) }
-                )
-            }
+            MainBottomBar(
+                visible = navigator.shouldShowBottomBar(),
+                tabs = MainTab.values().toList(),
+                currentTab = navigator.currentTab,
+                onTabSelected = { navigator.navigate(it) }
+            )
         },
     )
 }
 
 @Composable
 private fun MainBottomBar(
+    visible: Boolean,
     tabs: List<MainTab>,
     currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
 ) {
-    Row(
-        modifier = Modifier
-            .navigationBarsPadding()
-            .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
-            .fillMaxWidth()
-            .height(56.dp)
-            .border(
-                width = 1.dp,
-                color = Color(0xFFDCDCDC), // lightgray
-                shape = RoundedCornerShape(size = 28.dp)
-            )
-            .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(28.dp))
-            .padding(horizontal = 28.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn() + slideIn { IntOffset(0, it.height) },
+        exit = fadeOut() + slideOut { IntOffset(0, it.height) }
     ) {
-        tabs.forEach { tab ->
-            MainBottomBarItem(
-                tab = tab,
-                selected = tab == currentTab,
-                onClick = { onTabSelected(tab) },
-            )
+        Row(
+            modifier = Modifier
+                .navigationBarsPadding()
+                .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
+                .fillMaxWidth()
+                .height(56.dp)
+                .border(
+                    width = 1.dp,
+                    color = Color(0xFFDCDCDC), // lightgray
+                    shape = RoundedCornerShape(size = 28.dp)
+                )
+                .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(28.dp))
+                .padding(horizontal = 28.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            tabs.forEach { tab ->
+                MainBottomBarItem(
+                    tab = tab,
+                    selected = tab == currentTab,
+                    onClick = { onTabSelected(tab) },
+                )
+            }
         }
     }
 }
