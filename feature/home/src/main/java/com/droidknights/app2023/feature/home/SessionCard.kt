@@ -26,13 +26,10 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 internal fun SessionCard(
     onClick: () -> Unit,
 ) {
-    Surface(
+    KnightsCard(
         onClick = onClick,
         modifier = Modifier
-            .fillMaxWidth()
             .height(164.dp),
-        shape = RoundedCornerShape(32.dp),
-        shadowElevation = 2.dp,
     ) {
         Image(
             painter = painterResource(id = R.drawable.bg_card_session),

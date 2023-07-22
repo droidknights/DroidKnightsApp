@@ -25,5 +25,6 @@ internal fun HomeScreen(
     ) {
         SessionCard(onClick = onSessionClick)
         ContributorCard(onClick = onContributorClick)
+        SponsorCard()
     }
 }
