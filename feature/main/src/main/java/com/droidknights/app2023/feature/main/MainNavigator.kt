@@ -10,6 +10,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.droidknights.app2023.feature.contributor.navigation.ContributorRoute
+import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
 import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.navigateHome
 import com.droidknights.app2023.feature.setting.navigation.SettingRoute
@@ -21,7 +22,7 @@ internal class MainNavigator(
     private val currentDestination: NavDestination?
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination
-    
+
     val startDestination = HomeRoute.route
 
     val currentTab: MainTab?
@@ -50,7 +51,7 @@ internal class MainNavigator(
     }
 
     fun navigateContributor() {
-        navController.navigate(ContributorRoute.route)
+        navController.navigateContributor()
     }
 
     fun popBackStack() {
