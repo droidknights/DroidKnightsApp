@@ -43,7 +43,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
             ) {
                 NavHost(
                     navController = navigator.navController,
-                    startDestination = navigator.startDestination,
+                    startDestination = navigator.startDestination
                 ) {
                     settingNavGraph()
                     homeNavGraph(
@@ -80,7 +80,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
 @Composable
 private fun MainBottomBar(
     tabs: List<MainTab>,
-    currentTab: MainTab,
+    currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
 ) {
     Row(

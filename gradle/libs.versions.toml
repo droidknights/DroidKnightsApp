@@ -2,6 +2,7 @@
 androidGradlePlugin = "8.0.2"
 androidDesugarJdkLibs = "1.2.2"
 androidxCore = "1.9.0"
+androidxAppCompat = "1.6.1"
 androidxLifecycle = "2.6.1"
 androidxComposeBom = "2023.05.01"
 androidxComposeCompiler = "1.4.7"
@@ -33,6 +34,7 @@ android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
