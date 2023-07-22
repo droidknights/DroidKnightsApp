@@ -121,7 +121,7 @@ private fun ThemeCard(
 
         Text(
             text = stringResource(id = titleRes),
-            modifier = Modifier.padding(top = 16.dp),
+            modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
             style = MaterialTheme.typography.titleSmall,
         )
 
