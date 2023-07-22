@@ -53,7 +53,7 @@ internal fun ContributorCard(
                 text = stringResource(id = R.string.contributor_card_description),
                 style = MaterialTheme.typography.titleSmall,
                 color = Color(0xFF52C520),
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier.padding(top = 6.dp),
             )
         }
     }
