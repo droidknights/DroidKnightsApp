@@ -22,7 +22,7 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                     title = "Keynote",
                     content = listOf(),
                     speakers = listOf(),
-                    level = Level("기타"),
+                    level = Level.ETC,
                     tags = listOf(Tag("키노트")),
                     room = Room.ETC,
                     startTime = LocalDateTime(2023, 9, 12, 13, 0),
@@ -37,7 +37,7 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                             imageUrl = "https://developer.android.com/static/courses/android-basics-compose/images/hero-assets/unit-logo.svg",
                         )
                     ),
-                    level = Level("기타"),
+                    level = Level.ADVANCED,
                     tags = listOf(
                         Tag("Jetpack"),
                         Tag("UI"),

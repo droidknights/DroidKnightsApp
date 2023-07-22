@@ -12,7 +12,7 @@ internal data class SessionResponse(
     val title: String,
     val content: List<String>,
     val speakers: List<Speaker>,
-    val level: Level,
+    val level: Level = Level.ETC,
     val tags: List<Tag> = emptyList(),
     val room: Room = Room.ETC,
     val startTime: LocalDateTime,
