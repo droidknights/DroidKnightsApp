@@ -43,7 +43,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
             ) {
                 NavHost(
                     navController = navigator.navController,
-                    startDestination = navigator.startDestination
+                    startDestination = navigator.startDestination,
                 ) {
                     settingNavGraph()
                     homeNavGraph(
