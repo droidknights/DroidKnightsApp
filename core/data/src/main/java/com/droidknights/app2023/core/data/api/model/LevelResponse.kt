@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * TODO : SerialName 영어로 변경
  */
 @Serializable
-enum class LevelResponse {
+internal enum class LevelResponse {
     @SerialName("기타")
     ETC,
 
