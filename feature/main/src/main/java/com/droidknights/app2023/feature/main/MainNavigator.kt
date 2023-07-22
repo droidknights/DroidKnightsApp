@@ -46,7 +46,7 @@ internal class MainNavigator(
         when (tab) {
             MainTab.SETTING -> navController.navigateSetting(navOptions)
             MainTab.HOME -> navController.navigateHome(navOptions)
-            MainTab.TEMP -> navController.navigate("temp") // TODO: ???
+            MainTab.TEMP -> navController.navigate("temp", navOptions) // TODO: ???
         }
     }
 
