@@ -2,7 +2,6 @@ package com.droidknights.app2023.core.data.api.model
 
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Speaker
-import com.droidknights.app2023.core.model.Tag
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
 
@@ -12,7 +11,7 @@ internal data class SessionResponse(
     val content: List<String>,
     val speakers: List<Speaker>,
     val level: LevelResponse,
-    val tags: List<Tag> = emptyList(),
+    val tags: List<String>,
     val room: Room = Room.ETC,
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,

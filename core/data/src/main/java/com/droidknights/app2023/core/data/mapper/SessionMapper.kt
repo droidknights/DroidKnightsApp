@@ -4,13 +4,14 @@ import com.droidknights.app2023.core.data.api.model.LevelResponse
 import com.droidknights.app2023.core.data.api.model.SessionResponse
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.model.Tag
 
 internal fun SessionResponse.toData(): Session = Session(
     title = this.title,
     content = this.content,
     speakers = this.speakers,
     level = this.level.toData(),
-    tags = this.tags,
+    tags = this.tags.map { Tag(it) },
     room = this.room,
     startTime = this.startTime,
     endTime = this.endTime

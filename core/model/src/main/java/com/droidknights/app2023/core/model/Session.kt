@@ -16,9 +16,7 @@ data class Session(
     val endTime: LocalDateTime,
 )
 
-@Serializable
-@JvmInline
-value class Tag(val name: String)
+
 
 @Serializable
 enum class Room {
