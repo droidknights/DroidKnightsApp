@@ -1,6 +1,5 @@
 package com.droidknights.app2023.core.data.api.model
 
-import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
@@ -12,7 +11,7 @@ internal data class SessionResponse(
     val title: String,
     val content: List<String>,
     val speakers: List<Speaker>,
-    val level: Level = Level.ETC,
+    val level: LevelResponse,
     val tags: List<Tag> = emptyList(),
     val room: Room = Room.ETC,
     val startTime: LocalDateTime,
