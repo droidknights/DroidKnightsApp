@@ -13,7 +13,8 @@ android {
 dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:setting"))
-    
+    implementation(project(":feature:contributor"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
