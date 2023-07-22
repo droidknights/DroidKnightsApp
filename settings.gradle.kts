@@ -23,6 +23,7 @@ include(
     ":core:data",
     ":core:domain",
     ":core:navigation",
+    ":core:model",
 
     ":feature:main",
     ":feature:home",

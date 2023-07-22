@@ -1,6 +1,6 @@
-package com.droidknights.app2023.core.data.model
+package com.droidknights.app2023.core.model
 
-data class SponsorEntity(
+data class Sponsor(
     val name: String,
     val imageUrl: String,
     val homepage: String,

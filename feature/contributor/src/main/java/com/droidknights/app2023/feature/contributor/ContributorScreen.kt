@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app2023.core.domain.model.Contributor
+import com.droidknights.app2023.core.model.Contributor
 
 @Composable
 fun ContributorRoute(
@@ -141,8 +141,14 @@ private fun ContributorScreenPreview() {
     ContributorScreen(
         uiState = ContributorsUiState.Contributors(
             listOf(
-                Contributor("Contributor1", "https://avatars.githubusercontent.com/u/25101514"),
-                Contributor("Contributor2", "https://avatars.githubusercontent.com/u/25101514"),
+                Contributor(
+                    "Contributor1",
+                    "https://avatars.githubusercontent.com/u/25101514"
+                ),
+                Contributor(
+                    "Contributor2",
+                    "https://avatars.githubusercontent.com/u/25101514"
+                ),
             )
         ),
         onBackClick = {},
