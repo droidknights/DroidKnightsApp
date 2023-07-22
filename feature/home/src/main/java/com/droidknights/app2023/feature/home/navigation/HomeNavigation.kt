@@ -13,10 +13,11 @@ fun NavController.navigateHome(navOptions: NavOptions) {
 
 fun NavGraphBuilder.homeNavGraph(
     padding: PaddingValues,
+    onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
 ) {
     composable(route = HomeRoute.route) {
-        HomeScreen(padding, onContributorClick)
+        HomeScreen(padding, onSessionClick, onContributorClick)
     }
 }
 

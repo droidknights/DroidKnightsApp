@@ -11,7 +11,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun HomeScreen(padding: PaddingValues, onContributorClick: () -> Unit) {
+internal fun HomeScreen(
+    padding: PaddingValues,
+    onSessionClick: () -> Unit,
+    onContributorClick: () -> Unit,
+) {
     Column(
         Modifier
             .background(color = Color(0xFFF9F9F9))
@@ -19,6 +23,7 @@ internal fun HomeScreen(padding: PaddingValues, onContributorClick: () -> Unit) 
             .padding(horizontal = 8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
+        SessionCard(onClick = onSessionClick)
         ContributorCard(onClick = onContributorClick)
     }
 }
