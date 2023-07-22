@@ -22,10 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Sponsor
-import com.droidknights.app2023.core.model.Sponsors
 
 @Composable
-internal fun SponsorCard(
+fun SponsorCard(
     // TODO: 실제 데이터와 연결
     uiState: SponsorsUiState.Sponsors = SponsorsUiState.Sponsors(emptyList()),
 ) {
