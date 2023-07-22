@@ -20,7 +20,7 @@ class ContributorScreenTest {
     @Before
     fun setup() {
         composeTestRule.setContent {
-            ContributorScreen(uiState.value)
+            ContributorScreen(uiState.value, {})
         }
     }
 
