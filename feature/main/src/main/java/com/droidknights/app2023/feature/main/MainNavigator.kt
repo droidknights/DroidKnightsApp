@@ -13,6 +13,7 @@ import com.droidknights.app2023.feature.contributor.navigation.ContributorRoute
 import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
 import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.navigateHome
+import com.droidknights.app2023.feature.session.navigation.navigateSession
 import com.droidknights.app2023.feature.setting.navigation.SettingRoute
 import com.droidknights.app2023.feature.setting.navigation.navigateSetting
 
@@ -52,6 +53,10 @@ internal class MainNavigator(
 
     fun navigateContributor() {
         navController.navigateContributor()
+    }
+
+    fun navigateSession() {
+        navController.navigateSession()
     }
 
     fun popBackStack() {
