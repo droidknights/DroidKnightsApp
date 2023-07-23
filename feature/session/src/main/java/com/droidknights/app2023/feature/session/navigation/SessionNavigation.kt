@@ -9,9 +9,13 @@ fun NavController.navigateSession() {
     navigate(SessionRoute.route)
 }
 
-fun NavGraphBuilder.sessionNavGraph() {
+fun NavGraphBuilder.sessionNavGraph(
+    onBackClick: () -> Unit,
+) {
     composable(SessionRoute.route) {
-        SessionScreen()
+        SessionScreen(
+            onBackClick = onBackClick
+        )
     }
 }
 
