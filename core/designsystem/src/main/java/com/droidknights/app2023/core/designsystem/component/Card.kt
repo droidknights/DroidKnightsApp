@@ -11,14 +11,28 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun KnightsCard(
     modifier: Modifier = Modifier,
+    color: Color = Color(0xFFFFFFFF),
+    content: @Composable () -> Unit,
+) {
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        color = color,
+        shape = RoundedCornerShape(32.dp),
+        shadowElevation = 2.dp,
+        content = content,
+    )
+}
+
+@Composable
+fun KnightsCard(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     color: Color = Color(0xFFFFFFFF),
     content: @Composable () -> Unit,
 ) {
     Surface(
         onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         color = color,
         shape = RoundedCornerShape(32.dp),
         shadowElevation = 2.dp,
