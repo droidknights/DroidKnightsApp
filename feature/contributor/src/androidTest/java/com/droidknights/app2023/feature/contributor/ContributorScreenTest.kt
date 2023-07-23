@@ -1,9 +1,8 @@
 package com.droidknights.app2023.feature.contributor
 
-import androidx.activity.ComponentActivity
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.droidknights.app2023.core.model.Contributor
 import org.junit.Before
@@ -13,21 +12,21 @@ import org.junit.Test
 class ContributorScreenTest {
 
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
-    private val uiState: MutableState<ContributorsUiState> =
+    val composeTestRule = createComposeRule()
+    private val fakeUiState: MutableState<ContributorsUiState> =
         mutableStateOf(ContributorsUiState.Loading)
 
     @Before
     fun setup() {
         composeTestRule.setContent {
-            ContributorScreen(uiState.value)
+            ContributorScreen(fakeUiState.value, {})
         }
     }
 
     @Test
     fun 로딩_상태일때는_리스트가_노출되지_않는다() {
         // when
-        uiState.value = ContributorsUiState.Loading
+        fakeUiState.value = ContributorsUiState.Loading
 
         // then
         composeTestRule
@@ -38,7 +37,7 @@ class ContributorScreenTest {
     @Test
     fun 컨트리뷰터_리스트가_주어지면_화면에_노출한다() {
         // when
-        uiState.value = ContributorsUiState.Contributors(
+        fakeUiState.value = ContributorsUiState.Contributors(
             listOf(
                 Contributor(
                     name = "test name",

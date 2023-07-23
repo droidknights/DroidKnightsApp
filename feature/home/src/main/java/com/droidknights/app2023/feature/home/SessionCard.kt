@@ -4,12 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,19 +18,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 
 @Composable
 internal fun SessionCard(
     onClick: () -> Unit,
 ) {
-    Surface(
+    KnightsCard(
         onClick = onClick,
         modifier = Modifier
-            .fillMaxWidth()
             .height(164.dp),
-        shape = RoundedCornerShape(32.dp),
-        shadowElevation = 2.dp,
     ) {
         Image(
             painter = painterResource(id = R.drawable.bg_card_session),

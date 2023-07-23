@@ -54,6 +54,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                     settingNavGraph()
                     homeNavGraph(
                         padding = padding,
+                        onSessionClick = { /* TODO: 세션 화면 연결 */ },
                         onContributorClick = { navigator.navigateContributor() },
                     )
                     // TODO: 각 모듈로 이동
