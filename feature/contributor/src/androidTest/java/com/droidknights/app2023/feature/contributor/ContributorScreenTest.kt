@@ -1,9 +1,8 @@
 package com.droidknights.app2023.feature.contributor
 
-import androidx.activity.ComponentActivity
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.droidknights.app2023.core.model.Contributor
 import org.junit.Before
@@ -13,7 +12,7 @@ import org.junit.Test
 class ContributorScreenTest {
 
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+    val composeTestRule = createComposeRule()
     private val fakeUiState: MutableState<ContributorsUiState> =
         mutableStateOf(ContributorsUiState.Loading)
 
