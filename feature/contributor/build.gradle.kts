@@ -4,10 +4,6 @@ plugins {
 
 android {
     namespace = "com.droidknights.app2023.feature.contributor"
-
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 }
 
 dependencies {

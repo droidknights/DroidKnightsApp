@@ -6,6 +6,12 @@ plugins {
     id("droidknights.android.compose")
 }
 
+android {
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
 configureHiltAndroid()
 
 dependencies {
