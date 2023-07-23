@@ -16,8 +16,8 @@ class SponsorScreenTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
-    private val uiState: MutableState<SponsorsUiState.Sponsors> =
-        mutableStateOf(SponsorsUiState.Sponsors(sponsors))
+    private val uiState: MutableState<SponsorsUiState> =
+        mutableStateOf(SponsorsUiState(sponsors))
 
     @Before
     fun setup() {

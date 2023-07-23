@@ -27,7 +27,7 @@ import com.droidknights.app2023.core.model.Sponsor
 @Composable
 fun SponsorCard(
     // TODO: 실제 데이터와 연결
-    uiState: SponsorsUiState.Sponsors = SponsorsUiState.Sponsors(emptyList()),
+    uiState: SponsorsUiState = SponsorsUiState(emptyList()),
 ) {
     KnightsCard {
         Column(
@@ -118,7 +118,7 @@ private fun SponsorCardPreview() {
                     grade = Sponsor.Grade.PLATINUM,
                     imageUrl = "https://avatars.githubusercontent.com/u/25101514",
                 ),
-            ).let(SponsorsUiState::Sponsors)
+            ).let(::SponsorsUiState)
         )
     }
 }
