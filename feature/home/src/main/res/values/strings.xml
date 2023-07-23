@@ -5,5 +5,5 @@
     <string name="session_card_title">자리를 빛내주신 스피커와\n올해 세션을 소개합니다</string>
     <string name="session_card_caption">스피커 라인업 &amp; 세션 목록</string>
     <string name="sponsor_card_title">이 기업들이 후원해요</string>
-    <string name="sponsor_card_description">플래티넘 %d곳, 다이아 %d곳, 골드 %d곳이\n후원해주셨습니다.</string>
+    <string name="sponsor_card_description">플래티넘 %d곳, 골드 %d곳이\n후원해주셨습니다.</string>
 </resources>

@@ -30,7 +30,7 @@ class SponsorScreenTest {
     fun 등급별_스폰서_수가_노출된다() {
         // then
         composeTestRule
-            .onNodeWithText("플래티넘 1곳, 다이아 1곳, 골드 1곳이\n후원해주셨습니다.")
+            .onNodeWithText("플래티넘 1곳, 골드 1곳이\n후원해주셨습니다.")
             .assertExists()
     }
 
@@ -47,12 +47,6 @@ class SponsorScreenTest {
                     name = "Sponsor2",
                     homepage = "https://www.instagram.com/droid_knights",
                     grade = Sponsor.Grade.PLATINUM,
-                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
-                ),
-                Sponsor(
-                    name = "Sponsor3",
-                    homepage = "https://www.instagram.com/droid_knights",
-                    grade = Sponsor.Grade.DIA,
                     imageUrl = "https://avatars.githubusercontent.com/u/25101514",
                 ),
             )

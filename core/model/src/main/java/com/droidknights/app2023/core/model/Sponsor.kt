@@ -6,5 +6,5 @@ data class Sponsor(
     val homepage: String,
     val grade: Grade,
 ) {
-    enum class Grade { PLATINUM, DIA, GOLD, }
+    enum class Grade { PLATINUM, GOLD, }
 }

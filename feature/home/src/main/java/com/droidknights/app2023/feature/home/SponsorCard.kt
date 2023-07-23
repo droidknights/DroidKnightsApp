@@ -44,7 +44,6 @@ fun SponsorCard(
                 text = stringResource(
                     id = R.string.sponsor_card_description,
                     uiState.platinumCount,
-                    uiState.diaCount,
                     uiState.goldCount
                 ),
                 style = MaterialTheme.typography.titleSmall,
@@ -84,7 +83,6 @@ private fun SponsorLogo(
     val gradeIcon = when (sponsor.grade) {
         Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
         Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
-        Sponsor.Grade.DIA -> R.drawable.ic_crown_dia
     }
     Box(
         modifier = Modifier
@@ -117,12 +115,6 @@ private fun SponsorCardPreview() {
                     name = "Sponsor2",
                     homepage = "https://www.instagram.com/droid_knights",
                     grade = Sponsor.Grade.PLATINUM,
-                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
-                ),
-                Sponsor(
-                    name = "Sponsor3",
-                    homepage = "https://www.instagram.com/droid_knights",
-                    grade = Sponsor.Grade.DIA,
                     imageUrl = "https://avatars.githubusercontent.com/u/25101514",
                 ),
             ).let(SponsorsUiState::Sponsors)
