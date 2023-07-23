@@ -1,7 +1,6 @@
 package com.droidknights.app2023.feature.main
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -9,11 +8,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.droidknights.app2023.feature.contributor.navigation.ContributorRoute
 import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
 import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.navigateHome
-import com.droidknights.app2023.feature.session.navigation.SessionRoute
 import com.droidknights.app2023.feature.session.navigation.navigateSession
 import com.droidknights.app2023.feature.setting.navigation.SettingRoute
 import com.droidknights.app2023.feature.setting.navigation.navigateSetting
@@ -26,6 +23,13 @@ internal class MainNavigator(
             .currentBackStackEntryAsState().value?.destination
 
     val startDestination = HomeRoute.route
+
+    private val MainTab.route: String
+        get() = when (this) {
+            MainTab.SETTING -> SettingRoute.route
+            MainTab.HOME -> HomeRoute.route
+            MainTab.TEMP -> "temp"
+        }
 
     val currentTab: MainTab?
         @Composable get() = when (currentDestination?.route) {
@@ -66,12 +70,12 @@ internal class MainNavigator(
 
     @Composable
     fun shouldShowBottomBar(): Boolean {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        return when (navBackStackEntry?.destination?.route) {
-            ContributorRoute.route -> false
-            SessionRoute.route -> false
-            else -> true
-        }
+        val currentRoute = currentDestination?.route ?: return false
+        return isMainTabRoute(currentRoute)
+    }
+
+    private fun isMainTabRoute(route: String): Boolean {
+        return route in MainTab.values().map { it.route }
     }
 }
 
