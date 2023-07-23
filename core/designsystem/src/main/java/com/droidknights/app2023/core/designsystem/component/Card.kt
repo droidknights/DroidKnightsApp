@@ -1,7 +1,6 @@
-package com.droidknights.app2023.feature.home
+package com.droidknights.app2023.core.designsystem.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable

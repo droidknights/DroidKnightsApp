@@ -29,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 
@@ -56,11 +57,7 @@ private fun LightDarkThemeCard(darkTheme: Boolean = LocalDarkTheme.current) {
     }
 
     CompositionLocalProvider(LocalContentColor provides Color(0xFF000000)) {
-        Surface(
-            shape = RoundedCornerShape(32.dp),
-            color = Color(0xFFFFFFFF),
-            shadowElevation = 2.dp,
-        ) {
+        KnightsCard {
             Column {
                 Text(
                     text = stringResource(id = R.string.setting),
