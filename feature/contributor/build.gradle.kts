@@ -4,10 +4,6 @@ plugins {
 
 android {
     namespace = "com.droidknights.app2023.feature.contributor"
-
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 }
 
 dependencies {
@@ -15,5 +11,4 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
-    implementation(libs.hilt.navigation.compose)
 }

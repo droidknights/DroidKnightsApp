@@ -36,6 +36,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
+import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
 import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
 
 @Composable
@@ -54,7 +55,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                     settingNavGraph()
                     homeNavGraph(
                         padding = padding,
-                        onSessionClick = { /* TODO: 세션 화면 연결 */ },
+                        onSessionClick = { navigator.navigateSession() },
                         onContributorClick = { navigator.navigateContributor() },
                     )
                     // TODO: 각 모듈로 이동
@@ -68,6 +69,11 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                     contributorNavGraph(
                         onBackClick = { navigator.popBackStack() }
                     )
+
+                    sessionNavGraph(
+                        onBackClick = { navigator.popBackStack() }
+                    )
+
                     composable("temp") { content("temp") }
                 }
             }
