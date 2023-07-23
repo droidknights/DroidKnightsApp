@@ -14,20 +14,20 @@ class ContributorScreenTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
-    private val uiState: MutableState<ContributorsUiState> =
+    private val fakeUiState: MutableState<ContributorsUiState> =
         mutableStateOf(ContributorsUiState.Loading)
 
     @Before
     fun setup() {
         composeTestRule.setContent {
-            ContributorScreen(uiState.value, {})
+            ContributorScreen(fakeUiState.value, {})
         }
     }
 
     @Test
     fun 로딩_상태일때는_리스트가_노출되지_않는다() {
         // when
-        uiState.value = ContributorsUiState.Loading
+        fakeUiState.value = ContributorsUiState.Loading
 
         // then
         composeTestRule
@@ -38,7 +38,7 @@ class ContributorScreenTest {
     @Test
     fun 컨트리뷰터_리스트가_주어지면_화면에_노출한다() {
         // when
-        uiState.value = ContributorsUiState.Contributors(
+        fakeUiState.value = ContributorsUiState.Contributors(
             listOf(
                 Contributor(
                     name = "test name",

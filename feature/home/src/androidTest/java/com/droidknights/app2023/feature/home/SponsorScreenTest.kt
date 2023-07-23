@@ -14,13 +14,13 @@ class SponsorScreenTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
-    private val uiState: MutableState<SponsorsUiState> =
+    private val fakeUiState: MutableState<SponsorsUiState> =
         mutableStateOf(SponsorsUiState(sponsors))
 
     @Before
     fun setup() {
         composeTestRule.setContent {
-            SponsorCard(uiState.value)
+            SponsorCard(fakeUiState.value)
         }
     }
 
