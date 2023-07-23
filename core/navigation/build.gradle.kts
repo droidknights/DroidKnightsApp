@@ -6,7 +6,3 @@ plugins {
 android {
     namespace = "com.droidknights.app2023.core.navigation"
 }
-
-dependencies {
-    implementation(libs.androidx.compose.navigation)
-}

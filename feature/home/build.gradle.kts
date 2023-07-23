@@ -9,7 +9,3 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 }
-
-dependencies {
-    implementation(libs.androidx.compose.navigation)
-}
