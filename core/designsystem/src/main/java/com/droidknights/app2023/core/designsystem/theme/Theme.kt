@@ -1,6 +1,7 @@
 package com.droidknights.app2023.core.designsystem.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -63,6 +64,21 @@ private val LightColorScheme = lightColorScheme(
 )
 
 val LocalDarkTheme = compositionLocalOf { true }
+
+val ColorScheme.primaryFixed get() = Neon05
+val ColorScheme.primaryFixedDim get() = Neon01
+val ColorScheme.onPrimaryFixed get() = Black
+val ColorScheme.onPrimaryFixedVariable get() = Graphite
+
+val ColorScheme.secondaryFixed get() = DarkGray
+val ColorScheme.secondaryFixedDim get() = Graphite
+val ColorScheme.onSecondaryFixed get() = LightGray
+val ColorScheme.onSecondaryFixedVariant get() = Gray
+
+val ColorScheme.tertiaryFixed get() = Graphite
+val ColorScheme.tertiaryFixedDim get() = DuskGray
+val ColorScheme.onTertiaryFixed get() = Yellow01
+val ColorScheme.onTertiaryFixedVariant get() = LightGray
 
 @Composable
 fun KnightsTheme(
