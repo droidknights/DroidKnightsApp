@@ -82,6 +82,9 @@ internal fun SessionScreen(
     }
 }
 
+/**
+ * TODO: TopAppBar 및 탭 UI 구현
+ */
 @Composable
 private fun SessionTopAppBar(
     lazyListState: LazyListState,
@@ -151,6 +154,9 @@ private fun SessionTopAppBar(
     }
 }
 
+/**
+ * TODO: Session 목록 리스트 및 카드 UI 구현
+ */
 @Composable
 private fun SessionContent(
     state: LazyListState,
