@@ -69,10 +69,12 @@ fun KnightsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
     CompositionLocalProvider(LocalDarkTheme provides darkTheme) {
         MaterialTheme(
             typography = Typography,
-            content = content
+            colorScheme = colorScheme,
+            content = content,
         )
     }
 }
