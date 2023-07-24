@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 internal val White = Color(0xFFFFFFFF)
 internal val PaleGray = Color(0xFFF9F9F9)
+internal val PaperGray = Color(0xFFFDFDFD)
 internal val LightGray = Color(0xFFDCDCDC)
 internal val Gray = Color(0xFFC2C2C2)
 internal val DuskGray = Color(0xFF868686)
@@ -32,3 +33,14 @@ internal val Yellow01 = Color(0xFFF2E800)
 internal val Yellow02 = Color(0xFFE8ED00)
 internal val Yellow03 = Color(0xFFBEED00)
 internal val Yellow03A40 = Color(0x66BEED00)
+internal val Yellow04 = Color(0xFF465703)
+internal val Yellow05 = Color(0xFF222B00)
+
+internal val Red01 = Color(0xFFF9DEDC)
+internal val Red02 = Color(0xFFF2B8B5)
+internal val Red03 = Color(0xFFB3261E)
+internal val Red04 = Color(0xFF8C1D18)
+internal val Red05 = Color(0xFF601410)
+internal val Red06 = Color(0xFF410E0B)
+
+internal val Cosmos = Color(0xFF151515)
