@@ -1,5 +1,6 @@
 package com.droidknights.app2023.feature.contributor
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -95,6 +97,32 @@ private fun ActionBarContent(
                 .align(Alignment.CenterEnd)
                 .clickable { onBackClick() },
         )
+    }
+}
+
+@Composable
+fun TopBanner() {
+    Box {
+        Image(
+            painter = painterResource(id = R.drawable.bg_contributors_lightmode),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Column(modifier = Modifier.padding(horizontal = 32.dp)) {
+            Text(
+                text = stringResource(id = R.string.contributor_banner_title),
+                style = MaterialTheme.typography.headlineSmall,
+                color = Color(0xFF000000),
+                modifier = Modifier.padding(top = 24.dp),
+            )
+            Text(
+                text = stringResource(id = R.string.contributor_banner_description),
+                style = MaterialTheme.typography.titleSmall,
+                color = Color(0xFF52C520),
+                modifier = Modifier.padding(top = 6.dp),
+            )
+        }
     }
 }
 
