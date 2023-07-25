@@ -5,10 +5,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -112,26 +115,39 @@ internal fun ContributorList(contributors: List<Contributor>) {
 @Composable
 internal fun ContributorItem(contributor: Contributor) {
     KnightsCard {
-        Column(
-            modifier = Modifier
-                .padding(
-                    top = 16.dp,
-                    bottom = 16.dp,
-                    start = 24.dp,
-                    end = 16.dp
+        Row {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(
+                        top = 16.dp,
+                        bottom = 16.dp,
+                        start = 24.dp,
+                        end = 16.dp
+                    )
+            ) {
+                TextChip(
+                    stringResource(id = R.string.contributor_chip),
+                    containerColor = Color(0x66A1ED00),
+                    labelColor = Color(0xFF465703),
                 )
-        ) {
-            TextChip(
-                stringResource(id = R.string.contributor_chip),
-                containerColor = Color(0x66A1ED00),
-                labelColor = Color(0xFF465703),
-            )
-            Text(
-                text = contributor.name,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF000000),
-                modifier = Modifier.padding(top = 12.dp)
+                Text(
+                    text = contributor.name,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF000000),
+                    modifier = Modifier.padding(top = 12.dp)
+                )
+            }
+            // TODO: NetworkImage 연결
+            Box(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(100.dp)
+                    .background(
+                        color = Color(0xFF88F21D),
+                        shape = RoundedCornerShape(50.dp),
+                    )
             )
         }
     }
