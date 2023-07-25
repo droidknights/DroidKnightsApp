@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -101,7 +100,7 @@ private fun ActionBarContent(
 }
 
 @Composable
-fun TopBanner() {
+private fun TopBanner() {
     Box {
         Image(
             painter = painterResource(id = R.drawable.bg_contributors_lightmode),
@@ -130,11 +129,16 @@ fun TopBanner() {
 private fun ContributorList(contributors: List<Contributor>) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 16.dp),
     ) {
+        item {
+            TopBanner()
+        }
         items(contributors.size) { index ->
             val contributor = contributors[index]
-            ContributorItem(contributor = contributor)
+            ContributorItem(
+                contributor = contributor,
+                modifier = Modifier.padding(horizontal = 8.dp),
+            )
         }
         item {
             Footer()
@@ -143,8 +147,11 @@ private fun ContributorList(contributors: List<Contributor>) {
 }
 
 @Composable
-private fun ContributorItem(contributor: Contributor) {
-    KnightsCard {
+private fun ContributorItem(
+    contributor: Contributor,
+    modifier: Modifier = Modifier,
+) {
+    KnightsCard(modifier = modifier) {
         Row {
             Column(
                 modifier = Modifier
