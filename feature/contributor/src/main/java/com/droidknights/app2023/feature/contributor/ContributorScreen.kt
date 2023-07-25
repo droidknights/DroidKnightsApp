@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign.Companion.Center
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -107,6 +108,9 @@ private fun ContributorList(contributors: List<Contributor>) {
             val contributor = contributors[index]
             ContributorItem(contributor = contributor)
         }
+        item {
+            Footer()
+        }
     }
 }
 
@@ -149,6 +153,19 @@ private fun ContributorItem(contributor: Contributor) {
             )
         }
     }
+}
+
+@Composable
+private fun Footer() {
+    Text(
+        text = stringResource(id = R.string.contributor_footer),
+        style = MaterialTheme.typography.labelMedium,
+        color = Color(0xFFDCDCDC),
+        textAlign = Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 336.dp, bottom = 96.dp)
+    )
 }
 
 @Preview

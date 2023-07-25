@@ -1,4 +1,5 @@
 <resources>
     <string name="contributor_top_title">컨트리뷰터</string>
     <string name="contributor_chip">Contributor</string>
+    <string name="contributor_footer">Droid Knights 2023</string>
 </resources>
