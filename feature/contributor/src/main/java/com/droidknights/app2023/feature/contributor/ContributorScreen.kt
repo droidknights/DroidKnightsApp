@@ -126,6 +126,13 @@ internal fun ContributorItem(contributor: Contributor) {
                 containerColor = Color(0x66A1ED00),
                 labelColor = Color(0xFF465703),
             )
+            Text(
+                text = contributor.name,
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF000000),
+                modifier = Modifier.padding(top = 12.dp)
+            )
         }
     }
 }
