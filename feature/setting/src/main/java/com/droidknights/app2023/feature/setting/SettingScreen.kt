@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -34,10 +35,11 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 
 @Composable
-internal fun SettingScreen() {
+internal fun SettingScreen(padding: PaddingValues) {
     Column(
         Modifier
             .background(color = Color(0xFFF9F9F9))
+            .padding(padding)
             .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
@@ -138,6 +140,6 @@ private fun ThemeCard(
 @Composable
 private fun SettingScreenPreview() {
     KnightsTheme {
-        SettingScreen()
+        SettingScreen(PaddingValues(0.dp))
     }
 }
