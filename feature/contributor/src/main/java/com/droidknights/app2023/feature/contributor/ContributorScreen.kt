@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign.Companion.Center
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -60,20 +62,16 @@ internal fun ContributorScreen(
         when (uiState) {
             ContributorsUiState.Loading -> Unit
             is ContributorsUiState.Contributors ->
-                Column(
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 16.dp)
-                ) {
-                    ContributorList(
-                        contributors = uiState.contributors,
-                    )
-                }
+                ContributorList(
+                    contributors = uiState.contributors,
+                )
         }
     }
 }
 
 // TODO: KnightsTopAppBar 사용
 @Composable
-internal fun ActionBarContent(
+private fun ActionBarContent(
     onBackClick: () -> Unit,
 ) {
     Box(
@@ -101,19 +99,23 @@ internal fun ActionBarContent(
 }
 
 @Composable
-internal fun ContributorList(contributors: List<Contributor>) {
+private fun ContributorList(contributors: List<Contributor>) {
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 16.dp),
     ) {
         items(contributors.size) { index ->
             val contributor = contributors[index]
             ContributorItem(contributor = contributor)
         }
+        item {
+            Footer()
+        }
     }
 }
 
 @Composable
-internal fun ContributorItem(contributor: Contributor) {
+private fun ContributorItem(contributor: Contributor) {
     KnightsCard {
         Row {
             Column(
@@ -151,6 +153,19 @@ internal fun ContributorItem(contributor: Contributor) {
             )
         }
     }
+}
+
+@Composable
+private fun Footer() {
+    Text(
+        text = stringResource(id = R.string.contributor_footer),
+        style = MaterialTheme.typography.labelMedium,
+        color = Color(0xFFDCDCDC),
+        textAlign = Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 336.dp, bottom = 96.dp)
+    )
 }
 
 @Preview
