@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -60,13 +61,9 @@ internal fun ContributorScreen(
         when (uiState) {
             ContributorsUiState.Loading -> Unit
             is ContributorsUiState.Contributors ->
-                Column(
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 16.dp)
-                ) {
-                    ContributorList(
-                        contributors = uiState.contributors,
-                    )
-                }
+                ContributorList(
+                    contributors = uiState.contributors,
+                )
         }
     }
 }
@@ -103,7 +100,8 @@ private fun ActionBarContent(
 @Composable
 private fun ContributorList(contributors: List<Contributor>) {
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 16.dp),
     ) {
         items(contributors.size) { index ->
             val contributor = contributors[index]
