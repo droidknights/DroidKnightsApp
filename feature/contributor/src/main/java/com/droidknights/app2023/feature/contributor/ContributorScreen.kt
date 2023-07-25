@@ -73,7 +73,7 @@ internal fun ContributorScreen(
 
 // TODO: KnightsTopAppBar 사용
 @Composable
-internal fun ActionBarContent(
+private fun ActionBarContent(
     onBackClick: () -> Unit,
 ) {
     Box(
@@ -101,7 +101,7 @@ internal fun ActionBarContent(
 }
 
 @Composable
-internal fun ContributorList(contributors: List<Contributor>) {
+private fun ContributorList(contributors: List<Contributor>) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -113,7 +113,7 @@ internal fun ContributorList(contributors: List<Contributor>) {
 }
 
 @Composable
-internal fun ContributorItem(contributor: Contributor) {
+private fun ContributorItem(contributor: Contributor) {
     KnightsCard {
         Row {
             Column(
