@@ -33,6 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Contributor
 
 @Composable
@@ -84,7 +85,7 @@ private fun ActionBarContent(
     ) {
         Text(
             text = stringResource(id = R.string.contributor_top_title),
-            style = MaterialTheme.typography.titleSmall,
+            style = KnightsTheme.typography.titleSmallM,
             modifier = Modifier
                 .padding(14.dp)
                 .align(Alignment.Center)
@@ -205,7 +206,7 @@ private fun ContributorItem(
 private fun Footer() {
     Text(
         text = stringResource(id = R.string.contributor_footer),
-        style = MaterialTheme.typography.labelMedium,
+        style = KnightsTheme.typography.titleMediumR,
         color = Color(0xFFDCDCDC),
         textAlign = Center,
         modifier = Modifier

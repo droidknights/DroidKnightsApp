@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,7 +36,7 @@ fun SponsorCard(
         ) {
             Text(
                 text = stringResource(id = R.string.sponsor_card_title),
-                style = MaterialTheme.typography.headlineSmall,
+                style = KnightsTheme.typography.headlineSmallBL,
                 color = Color(0xFF000000),
                 modifier = Modifier.padding(top = 24.dp),
             )
@@ -47,7 +46,7 @@ fun SponsorCard(
                     uiState.platinumCount,
                     uiState.goldCount
                 ),
-                style = MaterialTheme.typography.titleSmall,
+                style = KnightsTheme.typography.titleSmallR,
                 color = Color(0xFF868686),
                 modifier = Modifier.padding(top = 8.dp),
             )
