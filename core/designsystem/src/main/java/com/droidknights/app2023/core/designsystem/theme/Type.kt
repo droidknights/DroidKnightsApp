@@ -32,35 +32,81 @@ private val HeadlineLarge = SansSerifStyle.copy(
     lineHeight = 40.sp,
 )
 
+val Typography.headlineLargeEB: TextStyle
+    get() = HeadlineLarge.copy(fontWeight = FontWeight.ExtraBold)
+
+val Typography.headlineLargeSB: TextStyle
+    get() = HeadlineLarge.copy(fontWeight = FontWeight.SemiBold)
+
 private val HeadlineMedium = SansSerifStyle.copy(
     fontSize = 28.sp,
     lineHeight = 36.sp,
 )
 
+val Typography.headlineMediumB: TextStyle
+    get() = HeadlineMedium.copy(fontWeight = FontWeight.Bold)
+
+val Typography.headlineMediumM: TextStyle
+    get() = HeadlineMedium.copy(fontWeight = FontWeight.Medium)
+
+
 private val HeadlineSmall = SansSerifStyle.copy(
     fontSize = 24.sp,
     lineHeight = 32.sp,
-    fontWeight = FontWeight.W900,
 )
+
+val Typography.headlineSmallBL: TextStyle
+    get() = HeadlineSmall.copy(fontWeight = FontWeight.Black, letterSpacing = -(0.2.sp))
+
+val Typography.headlineSmallM: TextStyle
+    get() = HeadlineSmall.copy(fontWeight = FontWeight.Medium)
 
 private val TitleLarge = SansSerifStyle.copy(
     fontSize = 22.sp,
     lineHeight = 28.sp,
 )
 
+val Typography.titleLargeBL: TextStyle
+    get() = TitleLarge.copy(fontWeight = FontWeight.Black)
+
+val Typography.titleLargeB: TextStyle
+    get() = TitleLarge.copy(fontWeight = FontWeight.Bold)
+
+val Typography.titleLargeM: TextStyle
+    get() = TitleLarge.copy(fontWeight = FontWeight.Medium)
+
 private val TitleMedium = SansSerifStyle.copy(
     fontSize = 16.sp,
     lineHeight = 24.sp,
 )
+
+val Typography.titleMediumBL: TextStyle
+    get() = TitleMedium.copy(fontWeight = FontWeight.Black)
+
+val Typography.titleMediumB: TextStyle
+    get() = TitleMedium.copy(fontWeight = FontWeight.Bold)
 
 private val TitleSmall = SansSerifStyle.copy(
     fontSize = 14.sp,
     lineHeight = 20.sp,
 )
 
+val Typography.titleSmallB: TextStyle
+    get() = TitleSmall.copy(fontWeight = FontWeight.Bold)
+
+val Typography.titleSmallM: TextStyle
+    get() = TitleSmall.copy(fontWeight = FontWeight.Medium)
+
+val Typography.titleSmallM140: TextStyle
+    get() = TitleSmall.copy(fontWeight = FontWeight.Medium, lineHeight = 140.sp)
+
+val Typography.titleSmallR140: TextStyle
+    get() = TitleSmall.copy(lineHeight = 140.sp)
+
 private val LabelLarge = SansSerifStyle.copy(
     fontSize = 12.sp,
     lineHeight = 16.sp,
+    fontWeight = FontWeight.Medium,
 )
 
 private val LabelMedium = SansSerifStyle.copy(
@@ -71,6 +117,7 @@ private val LabelMedium = SansSerifStyle.copy(
 private val LabelSmall = SansSerifStyle.copy(
     fontSize = 11.sp,
     lineHeight = 16.sp,
+    fontWeight = FontWeight.Medium,
 )
 
 private val BodyLarge = SansSerifStyle.copy(
