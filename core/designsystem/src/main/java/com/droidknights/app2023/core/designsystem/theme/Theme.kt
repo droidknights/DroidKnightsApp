@@ -7,12 +7,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 
 private val DarkColorScheme = darkColorScheme(
     primary = White,
@@ -91,48 +86,19 @@ fun KnightsTheme(
     content: @Composable () -> Unit,
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-    CompositionLocalProvider(LocalDarkTheme provides darkTheme) {
+    CompositionLocalProvider(
+        LocalDarkTheme provides darkTheme,
+        LocalTypography provides Typography
+    ) {
         MaterialTheme(
-            typography = Typography,
             colorScheme = colorScheme,
             content = content,
         )
     }
 }
 
-@Immutable
-data class ExtendedTypes(
-    val test: TextStyle,
-)
-
-val LocalExtendedType = staticCompositionLocalOf {
-    ExtendedTypes(
-        test = TextStyle()
-    )
-}
-
-@Composable
-fun ExtendedTheme(
-    /* ... */
-    content: @Composable () -> Unit,
-) {
-    val extendedTypes = ExtendedTypes(
-        test = TextStyle(
-            fontFamily = FontFamily.SansSerif,
-            fontWeight = FontWeight.Normal,
-        )
-    )
-    CompositionLocalProvider(LocalExtendedType provides extendedTypes) {
-        MaterialTheme(
-            /* colors = ..., typography = ..., shapes = ... */
-            content = content
-        )
-    }
-}
-
-// Use with eg. ExtendedTheme.colors.tertiary
-object ExtendedTheme {
-    val typography: ExtendedTypes
+object KnightsTheme {
+    val typography: KnightsTypography
         @Composable
-        get() = LocalExtendedType.current
+        get() = LocalTypography.current
 }
