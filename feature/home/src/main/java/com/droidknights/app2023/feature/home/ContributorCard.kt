@@ -45,7 +45,7 @@ internal fun ContributorCard(
         Column(modifier = Modifier.padding(horizontal = 24.dp)) {
             Text(
                 text = stringResource(id = R.string.contributor_card_title),
-                style = KnightsTheme.typography.headlineSmallR,
+                style = KnightsTheme.typography.headlineSmallBL,
                 color = Color(0xFF000000),
                 modifier = Modifier.padding(top = 24.dp),
             )
