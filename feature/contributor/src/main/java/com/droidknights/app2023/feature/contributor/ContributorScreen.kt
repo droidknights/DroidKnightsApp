@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,6 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.droidknights.app2023.core.designsystem.component.KnightsCard
+import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.model.Contributor
 
 @Composable
@@ -57,9 +58,8 @@ internal fun ContributorScreen(
             ContributorsUiState.Loading -> Unit
             is ContributorsUiState.Contributors ->
                 Column(
-                    modifier = Modifier.padding(horizontal = 32.dp)
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 16.dp)
                 ) {
-                    ContributorTitle()
                     ContributorList(
                         contributors = uiState.contributors,
                     )
@@ -98,22 +98,6 @@ internal fun ActionBarContent(
 }
 
 @Composable
-internal fun ContributorTitle() {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier
-            .padding(vertical = 37.dp)
-    ) {
-        Text(
-            text = stringResource(id = R.string.contributor_title),
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
-        )
-        Divider(color = Color(0xFF000000), thickness = 2.dp)
-    }
-}
-
-@Composable
 internal fun ContributorList(contributors: List<Contributor>) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -127,12 +111,23 @@ internal fun ContributorList(contributors: List<Contributor>) {
 
 @Composable
 internal fun ContributorItem(contributor: Contributor) {
-    Text(
-        text = contributor.name,
-        style = MaterialTheme.typography.titleMedium,
-        fontWeight = FontWeight.Bold,
-        color = Color(0xFF5E5E5E),
-    )
+    KnightsCard {
+        Column(
+            modifier = Modifier
+                .padding(
+                    top = 16.dp,
+                    bottom = 16.dp,
+                    start = 24.dp,
+                    end = 16.dp
+                )
+        ) {
+            TextChip(
+                stringResource(id = R.string.contributor_chip),
+                containerColor = Color(0x66A1ED00),
+                labelColor = Color(0xFF465703),
+            )
+        }
+    }
 }
 
 @Preview
