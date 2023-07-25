@@ -18,6 +18,8 @@ retrofitKotlinxSerializationJson = "1.0.0"
 kotlinxSerializationJson = "1.5.1"
 kotlinxDatetime = "0.2.1"
 
+landscapist = "2.2.1"
+
 junit4 = "4.13.2"
 kotlin = "1.8.21"
 
@@ -47,7 +49,7 @@ androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-juni
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-compose-navigation =  { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
 androidx-compose-navigation-test = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxComposeNavigation" }
 
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
@@ -64,6 +66,11 @@ retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.r
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
+
+landscapist-bom = { group = "com.github.skydoves", name = "landscapist-bom", version.ref = "landscapist" }
+landscapist-coil = { group = "com.github.skydoves", name = "landscapist-coil" }
+landscapist-placeholder = { group = "com.github.skydoves", name = "landscapist-placeholder" }
+landscapist-animation = { group = "com.github.skydoves", name = "landscapist-animation" }
 
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
