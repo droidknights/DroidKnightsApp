@@ -9,17 +9,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
+import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Sponsor
 
@@ -86,9 +89,14 @@ private fun SponsorLogo(
     }
     Box(
         modifier = Modifier
-            .size(84.dp)
             .background(color = Color(0xFFF9F9F9), shape = RoundedCornerShape(42.dp))
     ) {
+        NetworkImage(
+            imageUrl = sponsor.imageUrl,
+            modifier = Modifier
+                .size(84.dp)
+                .clip(CircleShape)
+        )
         Image(
             painter = painterResource(id = gradeIcon),
             contentDescription = null,
