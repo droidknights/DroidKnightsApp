@@ -26,5 +26,6 @@ dependencies {
     androidTestImplementation(libs.findLibrary("androidx.compose.navigation.test").get())
 
     testImplementation(libs.findLibrary("junit4").get())
+    testImplementation(libs.findLibrary("kotlin-test").get())
     testImplementation(libs.findLibrary("mockk").get())
 }
