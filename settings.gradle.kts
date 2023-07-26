@@ -24,6 +24,7 @@ include(
     ":core:domain",
     ":core:navigation",
     ":core:model",
+    ":core:ui",
 
     ":feature:main",
     ":feature:home",
