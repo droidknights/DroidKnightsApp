@@ -123,13 +123,13 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
         Column(modifier = Modifier.padding(horizontal = 32.dp)) {
             Text(
                 text = stringResource(id = R.string.contributor_banner_title),
-                style = MaterialTheme.typography.headlineSmall,
+                style = KnightsTheme.typography.headlineSmallBL,
                 color = Color(0xFF000000),
                 modifier = Modifier.padding(top = 24.dp),
             )
             Text(
                 text = stringResource(id = R.string.contributor_banner_description),
-                style = MaterialTheme.typography.titleSmall,
+                style = KnightsTheme.typography.titleSmallM140,
                 color = Color(0xFF52C520),
                 modifier = Modifier.padding(top = 6.dp, start = 3.dp),
             )
