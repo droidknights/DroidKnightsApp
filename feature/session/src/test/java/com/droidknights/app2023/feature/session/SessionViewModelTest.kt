@@ -1,5 +1,6 @@
 package com.droidknights.app2023.feature.session
 
+import app.cash.turbine.test
 import com.droidknights.app2023.core.domain.usecase.GetSessionsUseCase
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
@@ -37,8 +38,10 @@ internal class SessionViewModelTest {
         viewModel = SessionViewModel(getSessionsUseCase)
 
         // when & then
-        val actual = viewModel.uiState.value.sessions.first()
-        assertEquals(fakeSession, actual)
+        viewModel.uiState.test {
+            val actual = awaitItem().sessions.first()
+            assertEquals(fakeSession, actual)
+        }
     }
 
     @Test
@@ -54,10 +57,12 @@ internal class SessionViewModelTest {
         viewModel = SessionViewModel(getSessionsUseCase)
 
         // when & then
-        val actual = viewModel.uiState.value
-        assertEquals(actual.getSessionsBy(Room.TRACK1).size, 3)
-        assertEquals(actual.getSessionsBy(Room.TRACK2).size, 2)
-        assertEquals(actual.getSessionsBy(Room.TRACK3).size, 1)
+        viewModel.uiState.test {
+            val actual = awaitItem()
+            assertEquals(3, actual.getSessionsBy(Room.TRACK1).size)
+            assertEquals(2, actual.getSessionsBy(Room.TRACK2).size)
+            assertEquals(1, actual.getSessionsBy(Room.TRACK3).size)
+        }
     }
 
     private fun fakeSession(room: Room): Session = fakeSession.copy(room = room)
