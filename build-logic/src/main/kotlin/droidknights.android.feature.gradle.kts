@@ -30,4 +30,5 @@ dependencies {
     
     testImplementation(libs.findLibrary("kotlin-test").get())
     testImplementation(libs.findLibrary("mockk").get())
+    testImplementation(libs.findLibrary("turbin").get())
 }
