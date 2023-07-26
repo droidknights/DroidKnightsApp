@@ -47,7 +47,7 @@ internal fun SessionCard(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "효율적인 코드 베이스",
-                    style = MaterialTheme.typography.labelLarge,
+                    style = KnightsTheme.typography.labelLargeM,
                     color = MaterialTheme.colorScheme.secondaryFixed,
                 )
             }
@@ -56,7 +56,7 @@ internal fun SessionCard(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "Jetpack Compose에 있는 것, 없는 것",
-                style = MaterialTheme.typography.titleLarge,
+                style = KnightsTheme.typography.titleLargeB,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                 modifier = Modifier.padding(end = 50.dp)
             )
@@ -74,7 +74,7 @@ internal fun SessionCard(
             Row {
                 Text(
                     text = "안성용",
-                    style = MaterialTheme.typography.titleLarge,
+                    style = KnightsTheme.typography.titleLargeB,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                     modifier = Modifier
                         .align(Alignment.Bottom)

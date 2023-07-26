@@ -182,8 +182,7 @@ private fun ContributorItem(
                 )
                 Text(
                     text = contributor.name,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
+                    style = KnightsTheme.typography.headlineSmallBL,
                     color = Color(0xFF000000),
                     modifier = Modifier.padding(top = 12.dp)
                 )
