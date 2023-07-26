@@ -32,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.TextChip
+import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 import com.droidknights.app2023.core.model.Contributor
 
 @Composable
@@ -100,10 +101,16 @@ private fun ActionBarContent(
 }
 
 @Composable
-private fun TopBanner() {
+private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
     Box {
         Image(
-            painter = painterResource(id = R.drawable.bg_contributors_lightmode),
+            painter = painterResource(
+                id = if (darkTheme) {
+                    R.drawable.bg_contributors_darkmode
+                } else {
+                    R.drawable.bg_contributors_lightmode
+                }
+            ),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxWidth(),
