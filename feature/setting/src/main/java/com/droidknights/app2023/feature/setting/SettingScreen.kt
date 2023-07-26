@@ -63,7 +63,7 @@ private fun LightDarkThemeCard(darkTheme: Boolean = LocalDarkTheme.current) {
             Column {
                 Text(
                     text = stringResource(id = R.string.setting),
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = KnightsTheme.typography.headlineSmallBL,
                     modifier = Modifier.padding(top = 24.dp, start = 24.dp)
                 )
                 Spacer(modifier = Modifier.height(40.dp))
@@ -121,7 +121,7 @@ private fun ThemeCard(
         Text(
             text = stringResource(id = titleRes),
             modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
-            style = MaterialTheme.typography.titleSmall,
+            style = KnightsTheme.typography.titleSmallM140,
         )
 
         RadioButton(

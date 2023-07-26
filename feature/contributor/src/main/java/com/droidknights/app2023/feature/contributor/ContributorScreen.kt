@@ -33,6 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Contributor
 
 @Composable
@@ -84,7 +85,7 @@ private fun ActionBarContent(
     ) {
         Text(
             text = stringResource(id = R.string.contributor_top_title),
-            style = MaterialTheme.typography.titleSmall,
+            style = KnightsTheme.typography.titleSmallM,
             modifier = Modifier
                 .padding(14.dp)
                 .align(Alignment.Center)
@@ -122,13 +123,13 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
         Column(modifier = Modifier.padding(horizontal = 32.dp)) {
             Text(
                 text = stringResource(id = R.string.contributor_banner_title),
-                style = MaterialTheme.typography.headlineSmall,
+                style = KnightsTheme.typography.headlineSmallBL,
                 color = Color(0xFF000000),
                 modifier = Modifier.padding(top = 24.dp),
             )
             Text(
                 text = stringResource(id = R.string.contributor_banner_description),
-                style = MaterialTheme.typography.titleSmall,
+                style = KnightsTheme.typography.titleSmallM140,
                 color = Color(0xFF52C520),
                 modifier = Modifier.padding(top = 6.dp, start = 3.dp),
             )
@@ -181,8 +182,7 @@ private fun ContributorItem(
                 )
                 Text(
                     text = contributor.name,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
+                    style = KnightsTheme.typography.headlineSmallBL,
                     color = Color(0xFF000000),
                     modifier = Modifier.padding(top = 12.dp)
                 )
@@ -205,7 +205,7 @@ private fun ContributorItem(
 private fun Footer() {
     Text(
         text = stringResource(id = R.string.contributor_footer),
-        style = MaterialTheme.typography.labelMedium,
+        style = KnightsTheme.typography.titleMediumR,
         color = Color(0xFFDCDCDC),
         textAlign = Center,
         modifier = Modifier

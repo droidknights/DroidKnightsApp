@@ -86,11 +86,19 @@ fun KnightsTheme(
     content: @Composable () -> Unit,
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-    CompositionLocalProvider(LocalDarkTheme provides darkTheme) {
+    CompositionLocalProvider(
+        LocalDarkTheme provides darkTheme,
+        LocalTypography provides Typography
+    ) {
         MaterialTheme(
-            typography = Typography,
             colorScheme = colorScheme,
             content = content,
         )
     }
+}
+
+object KnightsTheme {
+    val typography: KnightsTypography
+        @Composable
+        get() = LocalTypography.current
 }

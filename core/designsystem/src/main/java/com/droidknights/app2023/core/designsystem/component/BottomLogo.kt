@@ -24,7 +24,7 @@ fun BottomLogo(color: Color = MaterialTheme.colorScheme.onSecondaryFixed) {
     ) {
         Text(
             text = "Droid Knights 2023",
-            style = MaterialTheme.typography.labelMedium,
+            style = KnightsTheme.typography.labelMediumR,
             color = color,
         )
     }

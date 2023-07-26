@@ -42,8 +42,7 @@ internal fun SessionCard(
             SessionCardCaption()
             Text(
                 text = stringResource(id = R.string.session_card_title),
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Black,
+                style = KnightsTheme.typography.headlineSmallBL,
                 color = Color(0xFF000000),
                 modifier = Modifier.padding(top = 12.dp),
             )
@@ -60,8 +59,7 @@ private fun SessionCardCaption() {
     ) {
         Text(
             text = stringResource(id = R.string.session_card_caption),
-            style = MaterialTheme.typography.labelSmall,
-            fontWeight = FontWeight.Medium,
+            style = KnightsTheme.typography.labelSmallM,
             color = Color(0xFFFFFFFF),
         )
     }
