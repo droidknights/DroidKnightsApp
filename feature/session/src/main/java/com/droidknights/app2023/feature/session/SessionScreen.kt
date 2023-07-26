@@ -27,7 +27,6 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app2023.core.designsystem.component.TopAppBarNavigationType
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -136,7 +135,7 @@ private fun SessionTopAppBar(
             exit = exit,
         ) {
             KnightsTopAppBar(
-                titleRes = R.string.title,
+                titleRes = R.string.session_title,
                 navigationType = TopAppBarNavigationType.Close,
                 navigationIconContentDescription = null,
                 containerColor = Color.Transparent,
@@ -163,7 +162,7 @@ private fun SessionContent(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
-        modifier = modifier,
+        modifier = modifier.padding(horizontal = 8.dp),
         state = state
     ) {
         item {
@@ -172,12 +171,12 @@ private fun SessionContent(
         }
 
         item {
-            KnightsCard(modifier = Modifier.height(248.dp), content = { })
+            SessionCard()
             Spacer(modifier = Modifier.height(16.dp))
         }
 
         item {
-            KnightsCard(modifier = Modifier.height(248.dp), content = { })
+            SessionCard()
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -188,12 +187,12 @@ private fun SessionContent(
         }
 
         item {
-            KnightsCard(modifier = Modifier.height(248.dp), content = { })
+            SessionCard()
             Spacer(modifier = Modifier.height(16.dp))
         }
 
         item {
-            KnightsCard(modifier = Modifier.height(248.dp), content = { })
+            SessionCard()
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -204,17 +203,17 @@ private fun SessionContent(
         }
 
         item {
-            KnightsCard(modifier = Modifier.height(248.dp), content = { })
+            SessionCard()
             Spacer(modifier = Modifier.height(16.dp))
         }
 
         item {
-            KnightsCard(modifier = Modifier.height(248.dp), content = { })
+            SessionCard()
             Spacer(modifier = Modifier.height(16.dp))
         }
 
         item {
-            KnightsCard(modifier = Modifier.height(248.dp), content = { })
+            SessionCard()
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
