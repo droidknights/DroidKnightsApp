@@ -7,5 +7,10 @@ android {
 }
 
 dependencies {
-    
+    api(libs.junit4)
+    api(libs.junit.vintage.engine)
+    api(libs.kotlin.test)
+    api(libs.mockk)
+    api(libs.turbin)
+    api(libs.coroutines.test)
 }

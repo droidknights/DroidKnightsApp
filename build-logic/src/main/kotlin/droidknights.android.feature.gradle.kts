@@ -21,16 +21,10 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:ui"))
     
+    testImplementation(project(":core:testing"))
 
     val libs = project.extensions.libs
     implementation(libs.findLibrary("hilt.navigation.compose").get())
     implementation(libs.findLibrary("androidx.compose.navigation").get())
     androidTestImplementation(libs.findLibrary("androidx.compose.navigation.test").get())
-
-    testImplementation(libs.findLibrary("junit4").get())
-    testImplementation(libs.findLibrary("junit-vintage-engine").get())
-    
-    testImplementation(libs.findLibrary("kotlin-test").get())
-    testImplementation(libs.findLibrary("mockk").get())
-    testImplementation(libs.findLibrary("turbin").get())
 }

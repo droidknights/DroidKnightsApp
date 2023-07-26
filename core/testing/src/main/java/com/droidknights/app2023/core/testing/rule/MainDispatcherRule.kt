@@ -1,4 +1,4 @@
-package com.droidknights.app2023.feature.session
+package com.droidknights.app2023.core.testing.rule
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher

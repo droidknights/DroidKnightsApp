@@ -5,6 +5,7 @@ import com.droidknights.app2023.core.domain.usecase.GetSessionsUseCase
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.testing.rule.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
