@@ -1,5 +1,6 @@
 package com.droidknights.app2023.feature.setting.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -10,9 +11,11 @@ fun NavController.navigateSetting(navOptions: NavOptions) {
     navigate(SettingRoute.route, navOptions)
 }
 
-fun NavGraphBuilder.settingNavGraph() {
+fun NavGraphBuilder.settingNavGraph(
+    padding: PaddingValues,
+) {
     composable(route = SettingRoute.route) {
-        SettingScreen()
+        SettingScreen(padding)
     }
 }
 
