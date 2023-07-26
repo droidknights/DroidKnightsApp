@@ -4,7 +4,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
@@ -38,7 +36,6 @@ import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 internal fun SettingScreen(padding: PaddingValues) {
     Column(
         Modifier
-            .background(color = Color(0xFFF9F9F9))
             .padding(padding)
             .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
