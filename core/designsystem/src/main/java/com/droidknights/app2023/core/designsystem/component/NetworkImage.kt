@@ -15,7 +15,7 @@ import com.skydoves.landscapist.placeholder.placeholder.PlaceholderPlugin
 
 @Composable
 fun NetworkImage(
-    imageUrl: String,
+    imageUrl: String?,
     modifier: Modifier = Modifier,
     placeholder: Painter? = null,
     contentScale: ContentScale = ContentScale.Crop,
