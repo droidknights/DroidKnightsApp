@@ -10,8 +10,4 @@ import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 fun rememberPainterResource(
     @DrawableRes lightId: Int,
     @DrawableRes darkId: Int = lightId,
-): Painter = if (LocalDarkTheme.current) {
-    painterResource(id = darkId)
-} else {
-    painterResource(id = lightId)
-}
+): Painter = painterResource(id = if (LocalDarkTheme.current) darkId else lightId)
