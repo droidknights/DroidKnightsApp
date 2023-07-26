@@ -1,11 +1,11 @@
 package com.droidknights.app2023.feature.contributor
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,6 +21,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +32,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.TextChip
+import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Contributor
 
 @Composable
@@ -82,7 +85,7 @@ private fun ActionBarContent(
     ) {
         Text(
             text = stringResource(id = R.string.contributor_top_title),
-            style = MaterialTheme.typography.titleSmall,
+            style = KnightsTheme.typography.titleSmallM,
             modifier = Modifier
                 .padding(14.dp)
                 .align(Alignment.Center)
@@ -99,14 +102,55 @@ private fun ActionBarContent(
 }
 
 @Composable
+private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
+    Box(
+        modifier = Modifier.background(Color(0xFFEEFFE7))
+    ) {
+        Image(
+            painter = painterResource(
+                id = if (darkTheme) {
+                    R.drawable.bg_contributors_darkmode
+                } else {
+                    R.drawable.bg_contributors_lightmode
+                }
+            ),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+        )
+        Column(modifier = Modifier.padding(horizontal = 32.dp)) {
+            Text(
+                text = stringResource(id = R.string.contributor_banner_title),
+                style = KnightsTheme.typography.headlineSmallBL,
+                color = Color(0xFF000000),
+                modifier = Modifier.padding(top = 24.dp),
+            )
+            Text(
+                text = stringResource(id = R.string.contributor_banner_description),
+                style = KnightsTheme.typography.titleSmallM140,
+                color = Color(0xFF52C520),
+                modifier = Modifier.padding(top = 6.dp, start = 3.dp),
+            )
+        }
+    }
+}
+
+@Composable
 private fun ContributorList(contributors: List<Contributor>) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 16.dp),
     ) {
+        item {
+            TopBanner()
+        }
         items(contributors.size) { index ->
             val contributor = contributors[index]
-            ContributorItem(contributor = contributor)
+            ContributorItem(
+                contributor = contributor,
+                modifier = Modifier.padding(horizontal = 8.dp),
+            )
         }
         item {
             Footer()
@@ -115,8 +159,11 @@ private fun ContributorList(contributors: List<Contributor>) {
 }
 
 @Composable
-private fun ContributorItem(contributor: Contributor) {
-    KnightsCard {
+private fun ContributorItem(
+    contributor: Contributor,
+    modifier: Modifier = Modifier,
+) {
+    KnightsCard(modifier = modifier) {
         Row {
             Column(
                 modifier = Modifier
@@ -135,8 +182,7 @@ private fun ContributorItem(contributor: Contributor) {
                 )
                 Text(
                     text = contributor.name,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
+                    style = KnightsTheme.typography.headlineSmallBL,
                     color = Color(0xFF000000),
                     modifier = Modifier.padding(top = 12.dp)
                 )
@@ -159,7 +205,7 @@ private fun ContributorItem(contributor: Contributor) {
 private fun Footer() {
     Text(
         text = stringResource(id = R.string.contributor_footer),
-        style = MaterialTheme.typography.labelMedium,
+        style = KnightsTheme.typography.titleMediumR,
         color = Color(0xFFDCDCDC),
         textAlign = Center,
         modifier = Modifier

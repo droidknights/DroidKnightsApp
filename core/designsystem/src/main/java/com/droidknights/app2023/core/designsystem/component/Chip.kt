@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 
 @Composable
 fun TextChip(
@@ -27,7 +28,7 @@ fun TextChip(
         shape = RoundedCornerShape(10.dp),
         color = containerColor,
     ) {
-        ProvideTextStyle(MaterialTheme.typography.labelMedium) {
+        ProvideTextStyle(KnightsTheme.typography.labelMediumR) {
             Text(text = text, color = labelColor, modifier = Modifier.padding(TextChipPadding))
         }
     }

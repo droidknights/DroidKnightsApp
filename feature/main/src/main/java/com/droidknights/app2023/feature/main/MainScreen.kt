@@ -52,11 +52,13 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                     navController = navigator.navController,
                     startDestination = navigator.startDestination,
                 ) {
-                    settingNavGraph()
                     homeNavGraph(
                         padding = padding,
                         onSessionClick = { navigator.navigateSession() },
                         onContributorClick = { navigator.navigateContributor() },
+                    )
+                    settingNavGraph(
+                        padding = padding,
                     )
                     // TODO: 각 모듈로 이동
                     val content: @Composable (String) -> Unit = {

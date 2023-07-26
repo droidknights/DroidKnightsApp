@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app2023.core.designsystem.component.TopAppBarNavigationType
+import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -166,7 +167,7 @@ private fun SessionContent(
         state = state
     ) {
         item {
-            Text(text = "Track 01", style = MaterialTheme.typography.titleLarge)
+            Text(text = "Track 01", style = KnightsTheme.typography.titleLargeB)
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -182,7 +183,7 @@ private fun SessionContent(
 
         item {
             Spacer(modifier = Modifier.height(72.dp))
-            Text(text = "Track 02", style = MaterialTheme.typography.titleLarge)
+            Text(text = "Track 02", style = KnightsTheme.typography.titleLargeB)
             Spacer(modifier = Modifier.height(16.dp))
         }
 
@@ -198,7 +199,7 @@ private fun SessionContent(
 
         item {
             Spacer(modifier = Modifier.height(72.dp))
-            Text(text = "Track 03", style = MaterialTheme.typography.titleLarge)
+            Text(text = "Track 03", style = KnightsTheme.typography.titleLargeB)
             Spacer(modifier = Modifier.height(16.dp))
         }
 
