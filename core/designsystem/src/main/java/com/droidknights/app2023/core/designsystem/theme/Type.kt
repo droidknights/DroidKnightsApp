@@ -114,12 +114,14 @@ internal val Typography = KnightsTypography(
     ),
     titleSmallM140 = SansSerifStyle.copy(
         fontSize = 14.sp,
-        lineHeight = 140.sp,
-        fontWeight = FontWeight.Medium
+        lineHeight = (19.6).sp,
+        fontWeight = FontWeight.Medium,
+        letterSpacing = (-2).sp
     ),
     titleSmallR140 = SansSerifStyle.copy(
         fontSize = 14.sp,
-        lineHeight = 140.sp,
+        lineHeight = (19.6).sp,
+        letterSpacing = (-2).sp
     ),
     titleSmallR = SansSerifStyle.copy(
         fontSize = 14.sp,
