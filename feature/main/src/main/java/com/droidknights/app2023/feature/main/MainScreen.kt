@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.droidknights.app2023.core.designsystem.theme.primaryFixedDim
 import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
 import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
@@ -111,10 +113,13 @@ private fun MainBottomBar(
                 .height(56.dp)
                 .border(
                     width = 1.dp,
-                    color = Color(0xFFDCDCDC), // lightgray
+                    color = MaterialTheme.colorScheme.outline,
                     shape = RoundedCornerShape(size = 28.dp)
                 )
-                .background(color = Color(0xFFFFFFFF), shape = RoundedCornerShape(28.dp))
+                .background(
+                    color = MaterialTheme.colorScheme.surface,
+                    shape = RoundedCornerShape(28.dp)
+                )
                 .padding(horizontal = 28.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
@@ -151,7 +156,11 @@ private fun RowScope.MainBottomBarItem(
         Icon(
             painter = painterResource(tab.iconResId),
             contentDescription = tab.contentDescription,
-            tint = if (selected) Color(0xFF49F300) else Color(0xFFDCDCDC),
+            tint = if (selected) {
+                MaterialTheme.colorScheme.primaryFixedDim
+            } else {
+                MaterialTheme.colorScheme.outline
+            },
             modifier = Modifier.size(34.dp),
         )
     }
