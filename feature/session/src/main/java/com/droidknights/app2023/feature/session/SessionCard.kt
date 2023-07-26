@@ -37,10 +37,7 @@ import java.time.format.DateTimeFormatter
 internal fun SessionCard(
     modifier: Modifier = Modifier,
 ) {
-    KnightsCard(
-        modifier = modifier,
-        color = MaterialTheme.colorScheme.surface,
-    ) {
+    KnightsCard(modifier = modifier) {
         Column(
             modifier = Modifier.padding(CardContentPadding)
         ) {
