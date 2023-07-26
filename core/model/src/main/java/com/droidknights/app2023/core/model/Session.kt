@@ -1,8 +1,6 @@
 package com.droidknights.app2023.core.model
 
 import kotlinx.datetime.LocalDateTime
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
 data class Session(
     val title: String,
