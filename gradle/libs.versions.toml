@@ -21,6 +21,7 @@ kotlinxDatetime = "0.2.1"
 landscapist = "2.2.1"
 
 junit4 = "4.13.2"
+junitVintageEngine = "5.10.0"
 kotlin = "1.8.21"
 
 androidxTestExt = "1.1.4"
@@ -74,6 +75,7 @@ landscapist-placeholder = { group = "com.github.skydoves", name = "landscapist-p
 landscapist-animation = { group = "com.github.skydoves", name = "landscapist-animation" }
 
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junitVintageEngine" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 inject = "javax.inject:javax.inject:1"
