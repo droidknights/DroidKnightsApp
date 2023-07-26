@@ -102,7 +102,9 @@ private fun ActionBarContent(
 
 @Composable
 private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
-    Box {
+    Box(
+        modifier = Modifier.background(Color(0xFFEEFFE7))
+    ) {
         Image(
             painter = painterResource(
                 id = if (darkTheme) {
@@ -113,7 +115,9 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
             ),
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
         )
         Column(modifier = Modifier.padding(horizontal = 32.dp)) {
             Text(
@@ -126,7 +130,7 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
                 text = stringResource(id = R.string.contributor_banner_description),
                 style = MaterialTheme.typography.titleSmall,
                 color = Color(0xFF52C520),
-                modifier = Modifier.padding(top = 6.dp),
+                modifier = Modifier.padding(top = 6.dp, start = 3.dp),
             )
         }
     }
