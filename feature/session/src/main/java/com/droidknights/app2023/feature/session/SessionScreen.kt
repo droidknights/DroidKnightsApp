@@ -139,7 +139,6 @@ private fun SessionTopAppBar(
                 titleRes = R.string.session_title,
                 navigationType = TopAppBarNavigationType.Close,
                 navigationIconContentDescription = null,
-                containerColor = Color.Transparent,
                 modifier = Modifier.statusBarsPadding(),
                 onNavigationClick = onBackClick,
             )

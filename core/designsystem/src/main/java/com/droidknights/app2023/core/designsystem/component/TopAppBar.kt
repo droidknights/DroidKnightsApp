@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 
 @Composable
 fun KnightsTopAppBar(
@@ -30,8 +31,8 @@ fun KnightsTopAppBar(
     navigationIconContentDescription: String?,
     modifier: Modifier = Modifier,
     navigationType: TopAppBarNavigationType = TopAppBarNavigationType.Back,
-    contentColor: Color = Color(0xFF868686),
-    containerColor: Color = Color(0xFFFFFFFF),
+    contentColor: Color = MaterialTheme.colorScheme.onSurface,
+    containerColor: Color = MaterialTheme.colorScheme.surfaceDim,
     onNavigationClick: () -> Unit = {},
 ) {
     CompositionLocalProvider(LocalContentColor provides contentColor) {
