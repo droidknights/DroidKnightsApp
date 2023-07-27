@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,6 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TextChip
+import com.droidknights.app2023.core.designsystem.res.rememberPainterResource
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 import com.droidknights.app2023.core.model.Contributor
@@ -163,6 +165,10 @@ private fun ContributorItem(
     contributor: Contributor,
     modifier: Modifier = Modifier,
 ) {
+    val placeholder = rememberPainterResource(
+        lightId = R.drawable.ic_contributor_placeholder_lightmode,
+        darkId = R.drawable.ic_contributor_placeholder_darkmode,
+    )
     KnightsCard(modifier = modifier) {
         Row {
             Column(
@@ -189,6 +195,7 @@ private fun ContributorItem(
             }
             NetworkImage(
                 imageUrl = contributor.imageUrl,
+                placeholder = placeholder,
                 modifier = Modifier
                     .padding(16.dp)
                     .size(100.dp)
