@@ -33,6 +33,10 @@ import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Sponsor
+import kotlinx.coroutines.delay
+
+private const val SCROLL_DELAY_MILLIS = 20L
+private const val SCROLL_PIXEL_UNIT = 4f
 
 @Composable
 fun SponsorCard(
@@ -72,9 +76,11 @@ fun SponsorCard(
 private fun SponsorGroup(
     sponsors: List<Sponsor>,
 ) {
-    val itemsListState = remember { sponsors.toMutableStateList() }
+    val itemsState = remember { sponsors.toMutableStateList() }
+    val scrollState = rememberLazyListState()
 
     LazyRow(
+        state = scrollState,
         horizontalArrangement = Arrangement
             .spacedBy(
                 space = 14.dp,
@@ -84,9 +90,16 @@ private fun SponsorGroup(
             .padding(vertical = 24.dp)
             .fillMaxWidth(),
     ) {
-        items(itemsListState, key = { it.name }) {
+        items(itemsState, key = { it.name }) {
             SponsorLogo(it)
         }
+    }
+    LaunchedEffect(scrollState.canScrollForward) {
+        if (scrollState.canScrollForward) return@LaunchedEffect
+        itemsState.addAll(sponsors)
+    }
+    LaunchedEffect(Unit) {
+        autoScroll(scrollState)
     }
 }
 
@@ -117,6 +130,15 @@ private fun SponsorLogo(
                 .align(Alignment.TopStart),
         )
     }
+}
+
+private tailrec suspend fun autoScroll(lazyListState: LazyListState) {
+    lazyListState.scroll(MutatePriority.PreventUserInput) {
+        scrollBy(SCROLL_PIXEL_UNIT)
+    }
+    delay(SCROLL_DELAY_MILLIS)
+
+    autoScroll(lazyListState)
 }
 
 @Preview
