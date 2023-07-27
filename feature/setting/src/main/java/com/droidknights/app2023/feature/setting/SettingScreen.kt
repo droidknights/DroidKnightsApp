@@ -25,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -58,13 +57,13 @@ private fun LightDarkThemeCard(darkTheme: Boolean = LocalDarkTheme.current) {
         AppCompatDelegate.setDefaultNightMode(mode)
     }
 
-    CompositionLocalProvider(LocalContentColor provides Color(0xFF000000)) {
+    CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onPrimaryContainer) {
         KnightsCard {
             Column {
                 Text(
                     text = stringResource(id = R.string.setting),
                     style = KnightsTheme.typography.headlineSmallBL,
-                    modifier = Modifier.padding(top = 24.dp, start = 24.dp)
+                    modifier = Modifier.padding(top = 24.dp, start = 24.dp),
                 )
                 Spacer(modifier = Modifier.height(40.dp))
 
@@ -129,8 +128,8 @@ private fun ThemeCard(
             selected = selected,
             onClick = onClick,
             colors = RadioButtonDefaults.colors(
-                selectedColor = Color(0xFF000000),
-                unselectedColor = Color(0xFF5E5E5E)
+                selectedColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                unselectedColor = MaterialTheme.colorScheme.onSurface,
             )
         )
     }
