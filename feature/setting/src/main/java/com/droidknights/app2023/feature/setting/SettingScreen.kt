@@ -3,6 +3,7 @@ package com.droidknights.app2023.feature.setting
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
@@ -23,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.core.designsystem.theme.onSecondaryFixed
 
 @Composable
 internal fun SettingScreen(padding: PaddingValues) {
@@ -55,13 +57,13 @@ private fun LightDarkThemeCard(darkTheme: Boolean = LocalDarkTheme.current) {
         AppCompatDelegate.setDefaultNightMode(mode)
     }
 
-    CompositionLocalProvider(LocalContentColor provides Color(0xFF000000)) {
+    CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onPrimaryContainer) {
         KnightsCard {
             Column {
                 Text(
                     text = stringResource(id = R.string.setting),
                     style = KnightsTheme.typography.headlineSmallBL,
-                    modifier = Modifier.padding(top = 24.dp, start = 24.dp)
+                    modifier = Modifier.padding(top = 24.dp, start = 24.dp),
                 )
                 Spacer(modifier = Modifier.height(40.dp))
 
@@ -106,6 +108,7 @@ private fun ThemeCard(
     ) {
         Surface(
             shape = RoundedCornerShape(16.dp),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSecondaryFixed),
             onClick = onClick,
         ) {
             Image(
@@ -125,8 +128,8 @@ private fun ThemeCard(
             selected = selected,
             onClick = onClick,
             colors = RadioButtonDefaults.colors(
-                selectedColor = Color(0xFF000000),
-                unselectedColor = Color(0xFF5E5E5E)
+                selectedColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                unselectedColor = MaterialTheme.colorScheme.onSurface,
             )
         )
     }
