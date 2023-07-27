@@ -12,28 +12,30 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign.Companion.Center
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
+import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TextChip
-import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.core.designsystem.res.rememberPainterResource
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 import com.droidknights.app2023.core.model.Contributor
 
 @Composable
@@ -163,6 +165,10 @@ private fun ContributorItem(
     contributor: Contributor,
     modifier: Modifier = Modifier,
 ) {
+    val placeholder = rememberPainterResource(
+        lightId = R.drawable.ic_contributor_placeholder_lightmode,
+        darkId = R.drawable.ic_contributor_placeholder_darkmode,
+    )
     KnightsCard(modifier = modifier) {
         Row {
             Column(
@@ -187,15 +193,13 @@ private fun ContributorItem(
                     modifier = Modifier.padding(top = 12.dp)
                 )
             }
-            // TODO: NetworkImage 연결
-            Box(
+            NetworkImage(
+                imageUrl = contributor.imageUrl,
+                placeholder = placeholder,
                 modifier = Modifier
                     .padding(16.dp)
                     .size(100.dp)
-                    .background(
-                        color = Color(0xFF88F21D),
-                        shape = RoundedCornerShape(50.dp),
-                    )
+                    .clip(CircleShape)
             )
         }
     }
