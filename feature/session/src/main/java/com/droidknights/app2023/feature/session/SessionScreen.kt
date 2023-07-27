@@ -12,9 +12,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -39,7 +36,7 @@ internal fun SessionScreen(
     onBackClick: () -> Unit,
 ) {
     val lazyListState = rememberLazyListState()
-    var selectedTabIndex: Int by remember { mutableStateOf(0) }
+    var selectedTrack: Track by remember { mutableStateOf(Track.Track1) }
     val coroutineScope = rememberCoroutineScope()
 
     Box(
@@ -47,13 +44,13 @@ internal fun SessionScreen(
     ) {
         SessionTopAppBar(
             lazyListState = lazyListState,
-            selectedTabIndex = selectedTabIndex,
-            onTabSelect = { tabIndex ->
+            selectedTrack = selectedTrack,
+            onTrackSelect = { track ->
                 coroutineScope.launch {
-                    val scrollPosition = when (tabIndex) {
-                        0 -> 0
-                        1 -> 3
-                        else -> 6
+                    val scrollPosition = when (track) {
+                        Track.Track1 -> 0
+                        Track.Track2 -> 3
+                        Track.Track3 -> 6
                     }
                     lazyListState.animateScrollToItem(scrollPosition)
                 }
@@ -78,7 +75,9 @@ internal fun SessionScreen(
                     else -> 2
                 }
             }
-            .collect { selectedTabIndex = it }
+            .collect { index ->
+                selectedTrack = Track.values().find { it.ordinal == index }!!
+            }
     }
 }
 
@@ -88,8 +87,8 @@ internal fun SessionScreen(
 @Composable
 private fun SessionTopAppBar(
     lazyListState: LazyListState,
-    selectedTabIndex: Int,
-    onTabSelect: (Int) -> Unit,
+    selectedTrack: Track,
+    onTrackSelect: (Track) -> Unit,
     onBackClick: () -> Unit,
 ) {
     var attachToTop: Boolean by remember { mutableStateOf(false) }
@@ -102,33 +101,12 @@ private fun SessionTopAppBar(
             enter = enter,
             exit = exit,
         ) {
-            TabRow(
-                selectedTabIndex = selectedTabIndex,
-                modifier = Modifier.statusBarsPadding()
-            ) {
-                Tab(
-                    selected = selectedTabIndex == 0,
-                    onClick = { onTabSelect(0) },
-                    modifier = Modifier.height(48.dp),
-                ) {
-                    Text(text = "Track 01")
-                }
-                Tab(
-                    selected = selectedTabIndex == 1,
-                    onClick = { onTabSelect(1) },
-                    modifier = Modifier.height(48.dp),
-                ) {
-                    Text(text = "Track 02")
-                }
-
-                Tab(
-                    selected = selectedTabIndex == 2,
-                    onClick = { onTabSelect(2) },
-                    modifier = Modifier.height(48.dp),
-                ) {
-                    Text(text = "Track 03")
-                }
-            }
+            SessionTabRow(
+                selectedTrack = selectedTrack,
+                tracks = Track.values().toList(),
+                onTrackSelect = onTrackSelect,
+                modifier = Modifier.statusBarsPadding(),
+            )
         }
         AnimatedVisibility(
             visible = attachToTop,
@@ -153,6 +131,7 @@ private fun SessionTopAppBar(
             .collect { attachToTop = it }
     }
 }
+
 
 /**
  * TODO: Session 목록 리스트 및 카드 UI 구현
