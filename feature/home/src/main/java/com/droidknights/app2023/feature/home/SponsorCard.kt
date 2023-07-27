@@ -25,15 +25,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Sponsor
+import com.droidknights.app2023.core.ui.observeAsState
 import kotlinx.coroutines.delay
+
+//import androidx.lifecycle.compose.LifecycleResumeEffect
+//import androidx.lifecycle.compose.currentStateAsState
 
 private const val SCROLL_DELAY_MILLIS = 20L
 private const val SCROLL_PIXEL_UNIT = 4f
@@ -45,8 +51,7 @@ fun SponsorCard(
 ) {
     KnightsCard {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Column(modifier = Modifier.padding(horizontal = 24.dp)) {
                 Text(
@@ -78,14 +83,14 @@ private fun SponsorGroup(
 ) {
     val itemsState = remember { sponsors.toMutableStateList() }
     val scrollState = rememberLazyListState()
+    val lifecycleState = LocalLifecycleOwner.current.lifecycle.observeAsState()
 
     LazyRow(
         state = scrollState,
-        horizontalArrangement = Arrangement
-            .spacedBy(
-                space = 14.dp,
-                alignment = Alignment.CenterHorizontally,
-            ),
+        horizontalArrangement = Arrangement.spacedBy(
+            space = 14.dp,
+            alignment = Alignment.CenterHorizontally,
+        ),
         modifier = Modifier
             .padding(vertical = 24.dp)
             .fillMaxWidth(),
@@ -98,8 +103,15 @@ private fun SponsorGroup(
         if (scrollState.canScrollForward) return@LaunchedEffect
         itemsState.addAll(sponsors)
     }
-    LaunchedEffect(Unit) {
-        autoScroll(scrollState)
+    LaunchedEffect(lifecycleState.value) {
+        when (lifecycleState.value) {
+            Lifecycle.Event.ON_RESUME -> {
+                while (true) {
+                    autoScroll(scrollState)
+                }
+            }
+            else -> {}
+        }
     }
 }
 
@@ -132,13 +144,11 @@ private fun SponsorLogo(
     }
 }
 
-private tailrec suspend fun autoScroll(lazyListState: LazyListState) {
+private suspend fun autoScroll(lazyListState: LazyListState) {
     lazyListState.scroll(MutatePriority.PreventUserInput) {
         scrollBy(SCROLL_PIXEL_UNIT)
     }
     delay(SCROLL_DELAY_MILLIS)
-
-    autoScroll(lazyListState)
 }
 
 @Preview
