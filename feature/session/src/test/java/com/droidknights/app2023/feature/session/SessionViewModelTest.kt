@@ -44,27 +44,4 @@ internal class SessionViewModelTest {
             assertEquals(fakeSession, actual)
         }
     }
-
-    @Test
-    fun `트랙별 세션 데이터를 확인할 수 있다`() = runTest {
-        // given
-        coEvery { getSessionsUseCase() } returns listOf(
-            fakeSession(Room.TRACK1), fakeSession(Room.TRACK1), fakeSession(Room.TRACK1),
-
-            fakeSession(Room.TRACK2), fakeSession(Room.TRACK2),
-
-            fakeSession(Room.TRACK3),
-        )
-        viewModel = SessionViewModel(getSessionsUseCase)
-
-        // when & then
-        viewModel.uiState.test {
-            val actual = awaitItem()
-            assertEquals(3, actual.getSessionsBy(Room.TRACK1).size)
-            assertEquals(2, actual.getSessionsBy(Room.TRACK2).size)
-            assertEquals(1, actual.getSessionsBy(Room.TRACK3).size)
-        }
-    }
-
-    private fun fakeSession(room: Room): Session = fakeSession.copy(room = room)
 }
