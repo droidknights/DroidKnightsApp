@@ -32,7 +32,7 @@ fun KnightsCard(
 fun KnightsCard(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
-    color: Color = Color(0xFFFFFFFF),
+    color: Color = MaterialTheme.colorScheme.surface,
     content: @Composable () -> Unit,
 ) {
     Surface(
