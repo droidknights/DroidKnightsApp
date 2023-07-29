@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class SessionResponse(
+    val id: String,
     val title: String,
     val content: List<String>,
     val speakers: List<SpeakerResponse>,

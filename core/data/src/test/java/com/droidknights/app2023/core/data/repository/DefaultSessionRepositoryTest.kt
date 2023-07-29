@@ -19,6 +19,7 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
         "역직렬화 테스트" {
             val expected = listOf(
                 Session(
+                    id = "1",
                     title = "Keynote",
                     content = listOf(),
                     speakers = listOf(),
@@ -29,6 +30,7 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                     endTime = LocalDateTime(2023, 9, 12, 13, 20),
                 ),
                 Session(
+                    id = "2",
                     title = "Jetpack Compose로 Android UI 개발하기",
                     content = listOf("Jetpack Compose는 네이티브 UI를 빌드하기 위한 Android의 최신 권장 도구 키트입니다."),
                     speakers = listOf(

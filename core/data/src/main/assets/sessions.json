@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "title": "Keynote",
     "content": [],
     "speakers": [],
@@ -12,6 +13,7 @@
     "endTime": "2023-09-12T13:20:00.000"
   },
   {
+    "id": "2",
     "title": "Jetpack Compose로 Android UI 개발하기",
     "content": [
       "Jetpack Compose는 네이티브 UI를 빌드하기 위한 Android의 최신 권장 도구 키트입니다."
