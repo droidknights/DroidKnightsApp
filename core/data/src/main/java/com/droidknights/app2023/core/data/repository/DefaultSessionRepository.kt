@@ -8,8 +8,20 @@ import javax.inject.Inject
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
 ) : SessionRepository {
+    private var cachedSessions: List<Session> = emptyList()
 
     override suspend fun getSessions(): List<Session> {
-        return githubRawApi.getSessions().map { it.toData() }
+        return githubRawApi.getSessions()
+            .map { it.toData() }
+            .also { cachedSessions = it }
+    }
+
+    override suspend fun getSession(sessionId: String): Session {
+        val cachedSession = cachedSessions.find { it.id == sessionId }
+        if (cachedSession != null) {
+            return cachedSession
+        }
+        return getSessions().find { it.id == sessionId }
+            ?: throw IllegalStateException("Session not found with id: $sessionId")
     }
 }

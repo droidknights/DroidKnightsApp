@@ -76,7 +76,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
 
                     sessionNavGraph(
                         onBackClick = { navigator.popBackStack() },
-                        onSessionClick = { navigator.navigateSessionDetail("TODO") }
+                        onSessionClick = { navigator.navigateSessionDetail(it.id) }
                     )
 
                     composable("temp") { content("temp") }

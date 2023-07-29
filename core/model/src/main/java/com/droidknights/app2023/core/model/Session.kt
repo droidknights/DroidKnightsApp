@@ -3,6 +3,7 @@ package com.droidknights.app2023.core.model
 import kotlinx.datetime.LocalDateTime
 
 data class Session(
+    val id: String,
     val title: String,
     val content: List<String>,
     val speakers: List<Speaker>,

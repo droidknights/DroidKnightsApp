@@ -30,7 +30,7 @@ data class SessionState(
         .groupBy { it.room }
         .map { (room, sessions) -> SessionGroup(room, sessions) }
 
-    val rooms: List<Room> = sessions.map { it.room }
+    val rooms: List<Room> = sessions.map { it.room }.distinct()
 
     private val roomPositions: Map<Room, Int> = buildMap {
         var position = 0

@@ -11,6 +11,7 @@ import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
 
 internal fun SessionResponse.toData(): Session = Session(
+    id  = this.id,
     title = this.title,
     content = this.content,
     speakers = this.speakers.map { it.toData() },
