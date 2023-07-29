@@ -11,6 +11,7 @@ import androidx.navigation.navOptions
 import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
 import com.droidknights.app2023.feature.home.navigation.navigateHome
 import com.droidknights.app2023.feature.session.navigation.navigateSession
+import com.droidknights.app2023.feature.session.navigation.navigateSessionDetail
 import com.droidknights.app2023.feature.setting.navigation.navigateSetting
 
 internal class MainNavigator(
@@ -50,6 +51,10 @@ internal class MainNavigator(
 
     fun navigateSession() {
         navController.navigateSession()
+    }
+    
+    fun navigateSessionDetail(sessionId: String) {
+        navController.navigateSessionDetail(sessionId)
     }
 
     fun popBackStack() {

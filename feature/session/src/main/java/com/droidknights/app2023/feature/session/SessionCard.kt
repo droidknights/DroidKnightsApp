@@ -41,8 +41,9 @@ import java.time.format.DateTimeFormatter
 internal fun SessionCard(
     session: Session,
     modifier: Modifier = Modifier,
+    onSessionClick: (Session) -> Unit = { },
 ) {
-    KnightsCard(modifier = modifier) {
+    KnightsCard(modifier = modifier, onClick = { onSessionClick(session) }) {
         Column(
             modifier = Modifier.padding(CardContentPadding)
         ) {
