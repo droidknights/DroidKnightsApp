@@ -1,9 +1,11 @@
 package com.droidknights.app2023.feature.session
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,15 +28,18 @@ import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.onSecondaryFixed
 import com.droidknights.app2023.core.designsystem.theme.secondaryFixed
+import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
+import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.model.Speaker
+import com.droidknights.app2023.core.model.Tag
+import kotlinx.datetime.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-/**
- * TODO: 데이터 연결
- */
 @Composable
 internal fun SessionCard(
+    session: Session,
     modifier: Modifier = Modifier,
 ) {
     KnightsCard(modifier = modifier) {
@@ -44,49 +49,58 @@ internal fun SessionCard(
             // 카테고리
             Row(verticalAlignment = Alignment.CenterVertically) {
                 CategoryChip()
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = "효율적인 코드 베이스",
-                    style = KnightsTheme.typography.labelLargeM,
-                    color = MaterialTheme.colorScheme.secondaryFixed,
-                )
+                session.tags.forEach { tag ->
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = tag.name,
+                        style = KnightsTheme.typography.labelLargeM,
+                        color = MaterialTheme.colorScheme.secondaryFixed,
+                    )
+                }
             }
 
             // 제목
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Jetpack Compose에 있는 것, 없는 것",
+                text = session.title,
                 style = KnightsTheme.typography.titleLargeB,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                 modifier = Modifier.padding(end = 50.dp)
             )
 
-            // 태그
+            // 트랙
             Spacer(modifier = Modifier.height(12.dp))
             Row {
-                TrackChip(room = Room.TRACK1)
+                TrackChip(room = session.room)
                 Spacer(modifier = Modifier.width(8.dp))
                 TimeChip(LocalTime.of(16, 45))
             }
 
             // 발표자
             Spacer(modifier = Modifier.height(12.dp))
-            Row {
-                Text(
-                    text = "안성용",
-                    style = KnightsTheme.typography.titleLargeB,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    modifier = Modifier
-                        .align(Alignment.Bottom)
-                        .weight(1f),
-                )
-                NetworkImage(
-                    imageUrl = "https://picsum.photos/200",
-                    modifier = Modifier
-                        .size(80.dp)
-                        .clip(CircleShape),
-                    placeholder = painterResource(id = com.droidknights.app2023.core.designsystem.R.drawable.placeholder_speaker),
-                )
+            Box(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.align(Alignment.BottomStart)) {
+                    session.speakers.forEach { speaker ->
+                        Text(
+                            text = speaker.name,
+                            style = KnightsTheme.typography.titleLargeB,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier.align(Alignment.BottomEnd)
+                ) {
+                    session.speakers.forEach { speaker ->
+                        NetworkImage(
+                            imageUrl = speaker.imageUrl,
+                            modifier = Modifier
+                                .size(80.dp)
+                                .clip(CircleShape),
+                            placeholder = painterResource(id = com.droidknights.app2023.core.designsystem.R.drawable.placeholder_speaker),
+                        )
+                    }
+                }
             }
         }
     }
@@ -103,15 +117,8 @@ private fun CategoryChip() {
 
 @Composable
 private fun TrackChip(room: Room) {
-    val text = when (room) {
-        Room.ETC -> stringResource(id = R.string.session_keynote)
-        Room.TRACK1 -> stringResource(id = R.string.session_track_01)
-        Room.TRACK2 -> stringResource(id = R.string.session_track_02)
-        Room.TRACK3 -> stringResource(id = R.string.session_track_03)
-    }
-
     TextChip(
-        text = text,
+        text = stringResource(id = room.textRes),
         containerColor = MaterialTheme.colorScheme.secondaryContainer,
         labelColor = MaterialTheme.colorScheme.onSecondaryContainer,
     )
@@ -134,7 +141,25 @@ private val CardContentPadding =
 @Preview
 @Composable
 private fun SessionCardPreview() {
+    val fakeSession = Session(
+        title = "Jetpack Compose에 있는 것, 없는 것",
+        content = emptyList(),
+        speakers = listOf(
+            Speaker(
+                name = "안성용",
+                imageUrl = "https://picsum.photos/200",
+            ),
+        ),
+        level = Level.BASIC,
+        tags = listOf(
+            Tag("효율적인 코드베이스")
+        ),
+        startTime = LocalDateTime(2023, 9, 12, 16, 10, 0),
+        endTime = LocalDateTime(2023, 9, 12, 16, 45, 0),
+        room = Room.TRACK1,
+    )
+
     KnightsTheme {
-        SessionCard()
+        SessionCard(fakeSession)
     }
 }

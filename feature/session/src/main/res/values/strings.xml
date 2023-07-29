@@ -2,10 +2,10 @@
 <resources>
     <string name="session_title">세션 목록</string>
 
-    <string name="session_track_01">Track 01</string>
-    <string name="session_track_02">Track 02</string>
-    <string name="session_track_03">Track 03</string>
-    <string name="session_keynote">키노트</string>
+    <string name="session_room_keynote">키노트</string>
+    <string name="session_room_track_01">Track 01</string>
+    <string name="session_room_track_02">Track 02</string>
+    <string name="session_room_track_03">Track 03</string>
 
     <string name="session_category">카테고리</string>
     <string name="session_time_fmt">HH:mm 발표</string>
