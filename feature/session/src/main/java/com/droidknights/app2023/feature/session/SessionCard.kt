@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TextChip
+import com.droidknights.app2023.core.designsystem.theme.DarkGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
-import com.droidknights.app2023.core.designsystem.theme.onSecondaryFixed
-import com.droidknights.app2023.core.designsystem.theme.secondaryFixed
+import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.model.Room
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -48,7 +48,7 @@ internal fun SessionCard(
                 Text(
                     text = "효율적인 코드 베이스",
                     style = KnightsTheme.typography.labelLargeM,
-                    color = MaterialTheme.colorScheme.secondaryFixed,
+                    color = DarkGray,
                 )
             }
 
@@ -96,8 +96,8 @@ internal fun SessionCard(
 private fun CategoryChip() {
     TextChip(
         text = stringResource(id = R.string.session_category),
-        containerColor = MaterialTheme.colorScheme.secondaryFixed,
-        labelColor = MaterialTheme.colorScheme.onSecondaryFixed,
+        containerColor = DarkGray,
+        labelColor = LightGray,
     )
 }
 
