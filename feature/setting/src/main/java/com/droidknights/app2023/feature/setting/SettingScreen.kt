@@ -31,8 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
-import com.droidknights.app2023.core.designsystem.theme.onSecondaryFixed
 
 @Composable
 internal fun SettingScreen(padding: PaddingValues) {
@@ -108,7 +108,7 @@ private fun ThemeCard(
     ) {
         Surface(
             shape = RoundedCornerShape(16.dp),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSecondaryFixed),
+            border = BorderStroke(1.dp, LightGray),
             onClick = onClick,
         ) {
             Image(

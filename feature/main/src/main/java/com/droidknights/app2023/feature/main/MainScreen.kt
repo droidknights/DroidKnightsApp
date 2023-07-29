@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.droidknights.app2023.core.designsystem.theme.primaryFixedDim
+import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
@@ -157,7 +157,7 @@ private fun RowScope.MainBottomBarItem(
             painter = painterResource(tab.iconResId),
             contentDescription = tab.contentDescription,
             tint = if (selected) {
-                MaterialTheme.colorScheme.primaryFixedDim
+                Neon01
             } else {
                 MaterialTheme.colorScheme.outline
             },
