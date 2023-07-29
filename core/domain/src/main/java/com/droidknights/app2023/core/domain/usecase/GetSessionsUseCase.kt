@@ -24,7 +24,7 @@ class GetSessionsUseCase @Inject constructor(
                 speakers = listOf(
                     Speaker(
                         name = "안성용",
-                        imageUrl = "https://picsum.photos/200",
+                        imageUrl = "https://picsum.photos/260",
                     ),
                 ),
                 level = Level.BASIC,
@@ -40,8 +40,12 @@ class GetSessionsUseCase @Inject constructor(
                 content = emptyList(),
                 speakers = listOf(
                     Speaker(
+                        name = "안성용",
+                        imageUrl = "https://picsum.photos/253",
+                    ),
+                    Speaker(
                         name = "권혁신",
-                        imageUrl = "https://picsum.photos/201",
+                        imageUrl = "https://picsum.photos/219",
                     ),
                 ),
                 level = Level.BASIC,
@@ -58,7 +62,7 @@ class GetSessionsUseCase @Inject constructor(
                 speakers = listOf(
                     Speaker(
                         name = "이기정",
-                        imageUrl = "https://picsum.photos/201",
+                        imageUrl = "https://picsum.photos/203",
                     ),
                 ),
                 level = Level.BASIC,
@@ -75,7 +79,7 @@ class GetSessionsUseCase @Inject constructor(
                 speakers = listOf(
                     Speaker(
                         name = "권혁신",
-                        imageUrl = "https://picsum.photos/201",
+                        imageUrl = "https://picsum.photos/205",
                     ),
                 ),
                 level = Level.BASIC,
@@ -92,7 +96,7 @@ class GetSessionsUseCase @Inject constructor(
                 speakers = listOf(
                     Speaker(
                         name = "이기정",
-                        imageUrl = "https://picsum.photos/201",
+                        imageUrl = "https://picsum.photos/208",
                     ),
                 ),
                 level = Level.BASIC,
@@ -109,7 +113,24 @@ class GetSessionsUseCase @Inject constructor(
                 speakers = listOf(
                     Speaker(
                         name = "권혁신",
-                        imageUrl = "https://picsum.photos/201",
+                        imageUrl = "https://picsum.photos/210",
+                    ),
+                ),
+                level = Level.BASIC,
+                tags = listOf(
+                    Tag("Android honey tips")
+                ),
+                startTime = LocalDateTime(2023, 9, 12, 16, 45, 0),
+                endTime = LocalDateTime(2023, 9, 12, 17, 15, 0),
+                room = Room.TRACK3,
+            ),
+            Session(
+                title = "Asynchronous Programming for Android",
+                content = emptyList(),
+                speakers = listOf(
+                    Speaker(
+                        name = "권혁신",
+                        imageUrl = "https://picsum.photos/210",
                     ),
                 ),
                 level = Level.BASIC,
