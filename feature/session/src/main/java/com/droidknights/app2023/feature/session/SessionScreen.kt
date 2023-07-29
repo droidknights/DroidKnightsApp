@@ -28,6 +28,7 @@ import com.droidknights.app2023.core.model.Session
 @Composable
 internal fun SessionScreen(
     onBackClick: () -> Unit,
+    onSessionClick: (Session) -> Unit,
     sessionViewModel: SessionViewModel = hiltViewModel(),
 ) {
     val sessionUiState by sessionViewModel.uiState.collectAsStateWithLifecycle()
@@ -43,7 +44,8 @@ internal fun SessionScreen(
             modifier = Modifier
                 .systemBarsPadding()
                 .padding(top = 48.dp)
-                .fillMaxSize()
+                .fillMaxSize(),
+            onSessionClick = onSessionClick,
         )
     }
 }
@@ -51,6 +53,7 @@ internal fun SessionScreen(
 @Composable
 private fun SessionContent(
     sessionState: SessionState,
+    onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -65,7 +68,12 @@ private fun SessionContent(
             } else {
                 SessionGroupSpace
             }
-            sessionItems(room = group.room, items = group.sessions, topPadding = topPadding)
+            sessionItems(
+                room = group.room,
+                items = group.sessions,
+                topPadding = topPadding,
+                onItemClick = onSessionClick,
+            )
         }
     }
 }
@@ -73,9 +81,20 @@ private fun SessionContent(
 private val SessionTopSpace = 4.dp
 private val SessionGroupSpace = 16.dp
 
-private fun LazyListScope.sessionItems(room: Room, items: List<Session>, topPadding: Dp) {
+private fun LazyListScope.sessionItems(
+    room: Room,
+    items: List<Session>,
+    topPadding: Dp,
+    onItemClick: (Session) -> Unit,
+) {
     itemsIndexed(items) { index, item ->
-        SessionItem(index = index, item = item, room = room, topPadding = topPadding)
+        SessionItem(
+            index = index,
+            item = item,
+            room = room,
+            topPadding = topPadding,
+            onItemClick = onItemClick
+        )
     }
 }
 
@@ -85,12 +104,13 @@ private fun SessionItem(
     item: Session,
     room: Room,
     topPadding: Dp,
+    onItemClick: (Session) -> Unit,
 ) {
     Column {
         if (index == 0) {
             RoomTitle(room = room, topPadding = topPadding)
         }
-        SessionCard(item)
+        SessionCard(session = item, onSessionClick = onItemClick)
     }
 }
 
