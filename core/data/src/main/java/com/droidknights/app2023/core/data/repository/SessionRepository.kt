@@ -5,4 +5,6 @@ import com.droidknights.app2023.core.model.Session
 interface SessionRepository {
 
     suspend fun getSessions(): List<Session>
+    
+    suspend fun getSession(sessionId: String): Session
 }
