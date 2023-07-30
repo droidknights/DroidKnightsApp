@@ -25,7 +25,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,6 +41,7 @@ import com.droidknights.app2023.core.designsystem.res.rememberPainterResource
 import com.droidknights.app2023.core.designsystem.theme.Black
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.Neon05
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Contributor
@@ -138,13 +138,13 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
             Text(
                 text = stringResource(id = R.string.contributor_banner_title),
                 style = KnightsTheme.typography.headlineSmallBL,
-                color = Color(0xFF000000),
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.padding(top = 24.dp),
             )
             Text(
                 text = stringResource(id = R.string.contributor_banner_description),
                 style = KnightsTheme.typography.titleSmallM140,
-                color = Color(0xFF52C520),
+                color = Neon01,
                 modifier = Modifier.padding(top = 6.dp, start = 3.dp),
             )
         }
@@ -201,13 +201,13 @@ private fun ContributorItem(
             ) {
                 TextChip(
                     stringResource(id = R.string.contributor_chip),
-                    containerColor = Color(0x66A1ED00),
-                    labelColor = Color(0xFF465703),
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
                 )
                 Text(
                     text = contributor.name,
                     style = KnightsTheme.typography.headlineSmallBL,
-                    color = Color(0xFF000000),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier.padding(top = 12.dp)
                 )
             }
