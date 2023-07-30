@@ -8,7 +8,8 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import com.droidknights.app2023.core.model.Room
@@ -22,9 +23,10 @@ data class SessionGroup(
 )
 
 @Stable
-data class SessionState(
+class SessionState(
     private val sessions: List<Session>,
     val listState: LazyListState,
+    selectedRoom: Room? = sessions.map { it.room }.firstOrNull(),
 ) {
     val groups: List<SessionGroup> = sessions
         .groupBy { it.room }
@@ -40,7 +42,7 @@ data class SessionState(
         }
     }
 
-    var selectedRoom: Room? by mutableStateOf(rooms.firstOrNull())
+    var selectedRoom: Room? by mutableStateOf(selectedRoom)
         private set
 
     val isAtTop by derivedStateOf {
@@ -64,6 +66,22 @@ data class SessionState(
         val index = roomPositions[room] ?: return
         listState.animateScrollToItem(index)
     }
+
+    companion object {
+        fun Saver(
+            sessions: List<Session>,
+            listState: LazyListState,
+        ): Saver<SessionState, *> = Saver(
+            save = { it.selectedRoom },
+            restore = { selectedRoom ->
+                SessionState(
+                    sessions = sessions,
+                    listState = listState,
+                    selectedRoom = selectedRoom,
+                )
+            }
+        )
+    }
 }
 
 @Composable
@@ -71,7 +89,11 @@ internal fun rememberSessionState(
     sessions: List<Session>,
     listState: LazyListState = rememberLazyListState(),
 ): SessionState {
-    val state = remember(sessions) {
+    val state = rememberSaveable(
+        sessions,
+        listState,
+        saver = SessionState.Saver(sessions, listState),
+    ) {
         SessionState(sessions, listState)
     }
     LaunchedEffect(sessions, listState) {
