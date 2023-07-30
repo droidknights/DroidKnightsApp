@@ -9,4 +9,7 @@
 
     <string name="session_category">카테고리</string>
     <string name="session_time_fmt">HH:mm 발표</string>
+    
+    <string name="session_detail_title">세션 상세 정보</string>
+    <string name="session_detail_speaker">발표자</string>
 </resources>

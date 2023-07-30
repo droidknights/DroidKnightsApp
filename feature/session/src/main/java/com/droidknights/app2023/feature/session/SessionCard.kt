@@ -14,7 +14,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,8 +33,6 @@ import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
 import kotlinx.datetime.LocalDateTime
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 
 @Composable
 internal fun SessionCard(
@@ -71,11 +68,7 @@ internal fun SessionCard(
 
             // 트랙
             Spacer(modifier = Modifier.height(12.dp))
-            Row {
-                TrackChip(room = session.room)
-                Spacer(modifier = Modifier.width(8.dp))
-                TimeChip(LocalTime.of(16, 45))
-            }
+            SessionChips(session = session)
 
             // 발표자
             Spacer(modifier = Modifier.height(12.dp))
@@ -113,26 +106,6 @@ private fun CategoryChip() {
         text = stringResource(id = R.string.session_category),
         containerColor = DarkGray,
         labelColor = LightGray,
-    )
-}
-
-@Composable
-private fun TrackChip(room: Room) {
-    TextChip(
-        text = stringResource(id = room.textRes),
-        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-        labelColor = MaterialTheme.colorScheme.onSecondaryContainer,
-    )
-}
-
-@Composable
-private fun TimeChip(time: LocalTime) {
-    val pattern = stringResource(id = R.string.session_time_fmt)
-    val formatter = remember { DateTimeFormatter.ofPattern(pattern) }
-    TextChip(
-        text = formatter.format(time),
-        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-        labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
     )
 }
 

@@ -1,7 +1,7 @@
 package com.droidknights.app2023.feature.session
 
 import app.cash.turbine.test
-import com.droidknights.app2023.core.domain.usecase.GetSessionsUseCase
+import com.droidknights.app2023.core.domain.usecase.GetSessionUseCase
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
@@ -12,14 +12,14 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
 import org.junit.Rule
 import org.junit.Test
-import kotlin.test.assertEquals
+import kotlin.test.assertIs
 
-internal class SessionViewModelTest {
+class SessionDetailViewModelTest {
     @get:Rule
     val dispatcherRule = MainDispatcherRule()
 
-    private val getSessionsUseCase: GetSessionsUseCase = mockk()
-    private lateinit var viewModel: SessionViewModel
+    private val getSessionUseCase: GetSessionUseCase = mockk()
+    private lateinit var viewModel: SessionDetailViewModel
 
     private val fakeSession = Session(
         id = "1",
@@ -36,13 +36,17 @@ internal class SessionViewModelTest {
     @Test
     fun `세션 데이터를 확인할 수 있다`() = runTest {
         // given
-        coEvery { getSessionsUseCase() } returns listOf(fakeSession)
-        viewModel = SessionViewModel(getSessionsUseCase)
+        val sessionId = "1"
+        coEvery { getSessionUseCase(sessionId) } returns fakeSession
+        viewModel = SessionDetailViewModel(getSessionUseCase)
 
-        // when & then
-        viewModel.uiState.test {
-            val actual = awaitItem().sessions.first()
-            assertEquals(fakeSession, actual)
+        // when
+        viewModel.fetchSession(sessionId)
+
+        // then
+        viewModel.sessionUiState.test {
+            val actual = awaitItem()
+            assertIs<SessionDetailUiState.Success>(actual)
         }
     }
 }
