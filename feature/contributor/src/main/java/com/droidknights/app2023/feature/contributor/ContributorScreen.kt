@@ -1,7 +1,6 @@
 package com.droidknights.app2023.feature.contributor
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -94,17 +93,11 @@ private fun ContributorTopAppBar(
     val isAtTop by remember {
         derivedStateOf { lazyListState.firstVisibleItemIndex == 0 }
     }
-    val defaultContainerColor = MaterialTheme.colorScheme.surfaceDim
-    val containerColor by animateColorAsState(
-        animationSpec = tween(250),
-        targetValue = if (isAtTop) {
-            defaultContainerColor.copy(alpha = 0f)
-        } else {
-            defaultContainerColor.copy(alpha = 0.8f)
-        },
-        label = "topAppBarContainerColor"
+    val alpha by animateFloatAsState(
+        targetValue = if (isAtTop) 0f else 0.8f,
+        label = "topAppBarContainerColor",
     )
-
+    val containerColor = MaterialTheme.colorScheme.surfaceDim.copy(alpha)
     KnightsTopAppBar(
         titleRes = R.string.contributor_top_title,
         navigationIconContentDescription = null,
