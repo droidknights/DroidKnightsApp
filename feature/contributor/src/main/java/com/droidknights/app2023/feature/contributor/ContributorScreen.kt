@@ -1,41 +1,48 @@
 package com.droidknights.app2023.feature.contributor
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign.Companion.Center
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.droidknights.app2023.core.designsystem.component.BottomLogo
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
+import com.droidknights.app2023.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.designsystem.res.rememberPainterResource
+import com.droidknights.app2023.core.designsystem.theme.Black
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.core.designsystem.theme.Neon01
+import com.droidknights.app2023.core.designsystem.theme.Neon05
+import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Contributor
 
 @Composable
@@ -59,54 +66,54 @@ internal fun ContributorScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
+    val lazyListState = rememberLazyListState()
+    Box(
+        modifier = modifier.navigationBarsPadding(),
     ) {
-        ActionBarContent(onBackClick)
         when (uiState) {
-            ContributorsUiState.Loading -> Unit
+            ContributorsUiState.Loading -> ContributorList(
+                lazyListState = lazyListState,
+                contributors = emptyList(),
+            )
             is ContributorsUiState.Contributors ->
                 ContributorList(
+                    lazyListState = lazyListState,
                     contributors = uiState.contributors,
                 )
         }
+        ContributorTopAppBar(lazyListState, onBackClick)
     }
 }
 
-// TODO: KnightsTopAppBar 사용
 @Composable
-private fun ActionBarContent(
+private fun ContributorTopAppBar(
+    lazyListState: LazyListState,
     onBackClick: () -> Unit,
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = Color(0xFFEEFFE7))
-            .statusBarsPadding()
-    ) {
-        Text(
-            text = stringResource(id = R.string.contributor_top_title),
-            style = KnightsTheme.typography.titleSmallM,
-            modifier = Modifier
-                .padding(14.dp)
-                .align(Alignment.Center)
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.close_24px),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(12.dp)
-                .align(Alignment.CenterEnd)
-                .clickable { onBackClick() },
-        )
+    val isAtTop by remember {
+        derivedStateOf { lazyListState.firstVisibleItemIndex == 0 }
     }
+    val alpha by animateFloatAsState(
+        targetValue = if (isAtTop) 0f else 0.8f,
+        label = "topAppBarContainerColor",
+    )
+    val containerColor = MaterialTheme.colorScheme.surfaceDim.copy(alpha)
+    KnightsTopAppBar(
+        titleRes = R.string.contributor_top_title,
+        navigationIconContentDescription = null,
+        modifier = Modifier.statusBarsPadding(),
+        onNavigationClick = onBackClick,
+        containerColor = containerColor,
+    )
 }
 
 @Composable
 private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
     Box(
-        modifier = Modifier.background(Color(0xFFEEFFE7))
+        modifier = Modifier
+            .background(if (darkTheme) Black else Neon05)
+            .statusBarsPadding()
+            .padding(top = 48.dp)
     ) {
         Image(
             painter = painterResource(
@@ -118,21 +125,19 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
             ),
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+            modifier = Modifier.fillMaxWidth()
         )
         Column(modifier = Modifier.padding(horizontal = 32.dp)) {
             Text(
                 text = stringResource(id = R.string.contributor_banner_title),
                 style = KnightsTheme.typography.headlineSmallBL,
-                color = Color(0xFF000000),
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.padding(top = 24.dp),
             )
             Text(
                 text = stringResource(id = R.string.contributor_banner_description),
                 style = KnightsTheme.typography.titleSmallM140,
-                color = Color(0xFF52C520),
+                color = Neon01,
                 modifier = Modifier.padding(top = 6.dp, start = 3.dp),
             )
         }
@@ -140,8 +145,14 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
 }
 
 @Composable
-private fun ContributorList(contributors: List<Contributor>) {
+private fun ContributorList(
+    lazyListState: LazyListState,
+    contributors: List<Contributor>,
+    modifier: Modifier = Modifier,
+) {
     LazyColumn(
+        modifier = modifier,
+        state = lazyListState,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item {
@@ -155,7 +166,7 @@ private fun ContributorList(contributors: List<Contributor>) {
             )
         }
         item {
-            Footer()
+            Footer(modifier = Modifier.padding(bottom = 16.dp))
         }
     }
 }
@@ -183,13 +194,13 @@ private fun ContributorItem(
             ) {
                 TextChip(
                     stringResource(id = R.string.contributor_chip),
-                    containerColor = Color(0x66A1ED00),
-                    labelColor = Color(0xFF465703),
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
                 )
                 Text(
                     text = contributor.name,
                     style = KnightsTheme.typography.headlineSmallBL,
-                    color = Color(0xFF000000),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier.padding(top = 12.dp)
                 )
             }
@@ -206,16 +217,10 @@ private fun ContributorItem(
 }
 
 @Composable
-private fun Footer() {
-    Text(
-        text = stringResource(id = R.string.contributor_footer),
-        style = KnightsTheme.typography.titleMediumR,
-        color = Color(0xFFDCDCDC),
-        textAlign = Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 336.dp, bottom = 96.dp)
-    )
+private fun Footer(modifier: Modifier = Modifier) {
+    Box(modifier = modifier) {
+        BottomLogo()
+    }
 }
 
 @Preview
