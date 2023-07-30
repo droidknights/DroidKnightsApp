@@ -2,7 +2,6 @@ package com.droidknights.app2023.feature.contributor
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,10 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
+import com.droidknights.app2023.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.designsystem.res.rememberPainterResource
@@ -63,7 +60,7 @@ internal fun ContributorScreen(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        ActionBarContent(onBackClick)
+        ContributorTopAppBar(onBackClick)
         when (uiState) {
             ContributorsUiState.Loading -> Unit
             is ContributorsUiState.Contributors ->
@@ -74,33 +71,15 @@ internal fun ContributorScreen(
     }
 }
 
-// TODO: KnightsTopAppBar 사용
 @Composable
-private fun ActionBarContent(
+private fun ContributorTopAppBar(
     onBackClick: () -> Unit,
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = Color(0xFFEEFFE7))
-            .statusBarsPadding()
-    ) {
-        Text(
-            text = stringResource(id = R.string.contributor_top_title),
-            style = KnightsTheme.typography.titleSmallM,
-            modifier = Modifier
-                .padding(14.dp)
-                .align(Alignment.Center)
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.close_24px),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(12.dp)
-                .align(Alignment.CenterEnd)
-                .clickable { onBackClick() },
-        )
-    }
+    KnightsTopAppBar(
+        titleRes = R.string.contributor_top_title,
+        navigationIconContentDescription = null,
+        onNavigationClick = onBackClick,
+    )
 }
 
 @Composable
