@@ -105,23 +105,25 @@ internal val Typography = KnightsTypography(
     titleSmallB = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 0.25.sp
     ),
     titleSmallM = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Medium,
+        letterSpacing = 0.25.sp
     ),
     titleSmallM140 = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = (19.6).sp,
         fontWeight = FontWeight.Medium,
-        letterSpacing = (-2).sp
+        letterSpacing = (-0.2).sp
     ),
     titleSmallR140 = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = (19.6).sp,
-        letterSpacing = (-2).sp
+        letterSpacing = (-0.2).sp
     ),
     titleSmallR = SansSerifStyle.copy(
         fontSize = 14.sp,
@@ -140,6 +142,7 @@ internal val Typography = KnightsTypography(
         fontSize = 11.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight.Medium,
+        letterSpacing = (-0.2).sp,
     ),
     bodyLargeR = SansSerifStyle.copy(
         fontSize = 16.sp,
@@ -154,7 +157,6 @@ internal val Typography = KnightsTypography(
     bodySmallR = SansSerifStyle.copy(
         fontSize = 12.sp,
         lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
     ),
 )
 
