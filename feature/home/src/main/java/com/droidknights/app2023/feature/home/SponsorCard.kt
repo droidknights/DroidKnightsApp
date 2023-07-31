@@ -39,7 +39,7 @@ private const val SCROLL_DELAY_MILLIS = 20L
 private const val SCROLL_PIXEL_UNIT = 4f
 
 @Composable
-fun SponsorCard(uiState: SponsorsUiState) {
+internal fun SponsorCard(uiState: SponsorsUiState) {
     KnightsCard {
         Column(
             modifier = Modifier.fillMaxWidth()
