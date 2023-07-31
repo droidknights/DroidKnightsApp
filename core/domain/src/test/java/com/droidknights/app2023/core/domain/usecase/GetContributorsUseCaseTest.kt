@@ -1,6 +1,5 @@
 package com.droidknights.app2023.core.domain.usecase
 
-import com.droidknights.app2023.core.data.model.ContributorEntity
 import com.droidknights.app2023.core.model.Contributor
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -30,7 +29,7 @@ internal class GetContributorsUseCaseTest : BehaviorSpec() {
 
     companion object {
         private val contributors = listOf(
-            ContributorEntity(
+            Contributor(
                 name = "test name",
                 imageUrl = "test image url"
             )

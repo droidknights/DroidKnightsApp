@@ -1,12 +1,12 @@
 package com.droidknights.app2023.core.domain.usecase
 
-import com.droidknights.app2023.core.data.model.ContributorEntity
 import com.droidknights.app2023.core.data.repository.ContributorRepository
+import com.droidknights.app2023.core.model.Contributor
 
 internal class FakeContributorRepository(
-    private val contributors: List<ContributorEntity>,
+    private val contributors: List<Contributor>,
 ) : ContributorRepository {
-    override suspend fun getContributors(owner: String, name: String): List<ContributorEntity> {
+    override suspend fun getContributors(owner: String, name: String): List<Contributor> {
         return contributors
     }
 }
