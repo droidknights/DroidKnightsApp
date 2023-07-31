@@ -14,7 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app2023.core.designsystem.theme.DarkGray
+import com.droidknights.app2023.core.designsystem.theme.Green01
+import com.droidknights.app2023.core.designsystem.theme.Green04
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import com.droidknights.app2023.core.designsystem.theme.LightGray
+import com.droidknights.app2023.core.designsystem.theme.Yellow03A40
+import com.droidknights.app2023.core.designsystem.theme.Yellow04
 
 @Composable
 fun TextChip(
@@ -43,18 +49,18 @@ private fun TextChipPreview() {
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             TextChip(
                 "카테고리",
-                containerColor = Color(0xFF5D5D5D),
-                labelColor = Color(0xFFDCDCDC),
+                containerColor = DarkGray,
+                labelColor = LightGray,
             )
             TextChip(
                 "Track 02",
-                containerColor = Color(0xFFA1ED00),
-                labelColor = Color(0xFF386524),
+                containerColor = Green01,
+                labelColor = Green04,
             )
             TextChip(
                 "16:45 발표",
-                containerColor = Color(0xFFD9F899),
-                labelColor = Color(0xFF386524),
+                containerColor = Yellow03A40,
+                labelColor = Yellow04,
             )
         }
     }
