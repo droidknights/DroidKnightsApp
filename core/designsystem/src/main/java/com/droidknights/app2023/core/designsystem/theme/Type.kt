@@ -16,7 +16,7 @@ internal val Typography = KnightsTypography(
     displayLargeR = SansSerifStyle.copy(
         fontSize = 57.sp,
         lineHeight = 64.sp,
-        letterSpacing = (-0.25).sp
+        letterSpacing = (-0.25).sp,
     ),
     displayMediumR = SansSerifStyle.copy(
         fontSize = 45.sp,
@@ -29,12 +29,12 @@ internal val Typography = KnightsTypography(
     headlineLargeEB = SansSerifStyle.copy(
         fontSize = 32.sp,
         lineHeight = 40.sp,
-        fontWeight = FontWeight.ExtraBold
+        fontWeight = FontWeight.ExtraBold,
     ),
     headlineLargeSB = SansSerifStyle.copy(
         fontSize = 32.sp,
         lineHeight = 40.sp,
-        fontWeight = FontWeight.SemiBold
+        fontWeight = FontWeight.SemiBold,
     ),
     headlineLargeR = SansSerifStyle.copy(
         fontSize = 32.sp,
@@ -43,12 +43,12 @@ internal val Typography = KnightsTypography(
     headlineMediumB = SansSerifStyle.copy(
         fontSize = 28.sp,
         lineHeight = 36.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
     ),
     headlineMediumM = SansSerifStyle.copy(
         fontSize = 28.sp,
         lineHeight = 36.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Medium,
     ),
     headlineMediumR = SansSerifStyle.copy(
         fontSize = 28.sp,
@@ -58,12 +58,12 @@ internal val Typography = KnightsTypography(
         fontSize = 24.sp,
         lineHeight = 32.sp,
         fontWeight = FontWeight.Black,
-        letterSpacing = (-0.2).sp
+        letterSpacing = (-0.2).sp,
     ),
     headlineSmallM = SansSerifStyle.copy(
         fontSize = 24.sp,
         lineHeight = 32.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Medium,
     ),
     headlineSmallR = SansSerifStyle.copy(
         fontSize = 24.sp,
@@ -72,17 +72,17 @@ internal val Typography = KnightsTypography(
     titleLargeBL = SansSerifStyle.copy(
         fontSize = 22.sp,
         lineHeight = 28.sp,
-        fontWeight = FontWeight.Black
+        fontWeight = FontWeight.Black,
     ),
     titleLargeB = SansSerifStyle.copy(
         fontSize = 22.sp,
         lineHeight = 28.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
     ),
     titleLargeM = SansSerifStyle.copy(
         fontSize = 22.sp,
         lineHeight = 28.sp,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Medium,
     ),
     titleLargeR = SansSerifStyle.copy(
         fontSize = 22.sp,
@@ -91,12 +91,12 @@ internal val Typography = KnightsTypography(
     titleMediumBL = SansSerifStyle.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        fontWeight = FontWeight.Black
+        fontWeight = FontWeight.Black,
     ),
     titleMediumB = SansSerifStyle.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
     ),
     titleMediumR = SansSerifStyle.copy(
         fontSize = 16.sp,
@@ -106,24 +106,24 @@ internal val Typography = KnightsTypography(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         fontWeight = FontWeight.Bold,
-        letterSpacing = 0.25.sp
+        letterSpacing = 0.25.sp,
     ),
     titleSmallM = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         fontWeight = FontWeight.Medium,
-        letterSpacing = 0.25.sp
+        letterSpacing = 0.25.sp,
     ),
     titleSmallM140 = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = (19.6).sp,
         fontWeight = FontWeight.Medium,
-        letterSpacing = (-0.2).sp
+        letterSpacing = (-0.2).sp,
     ),
     titleSmallR140 = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = (19.6).sp,
-        letterSpacing = (-0.2).sp
+        letterSpacing = (-0.2).sp,
     ),
     titleSmallR = SansSerifStyle.copy(
         fontSize = 14.sp,
@@ -147,12 +147,12 @@ internal val Typography = KnightsTypography(
     bodyLargeR = SansSerifStyle.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
     ),
     bodyMediumR = SansSerifStyle.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
-        letterSpacing = 0.25.sp
+        letterSpacing = 0.25.sp,
     ),
     bodySmallR = SansSerifStyle.copy(
         fontSize = 12.sp,
