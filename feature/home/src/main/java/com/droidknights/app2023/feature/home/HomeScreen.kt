@@ -5,12 +5,33 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
-internal fun HomeScreen(
+internal fun HomeRoute(
     padding: PaddingValues,
+    onSessionClick: () -> Unit,
+    onContributorClick: () -> Unit,
+    viewModel: HomeViewModel = hiltViewModel(),
+) {
+    val sponsorsUiState by viewModel.sponsorsUiState.collectAsStateWithLifecycle()
+
+    HomeScreen(
+        padding = padding,
+        sponsorsUiState = sponsorsUiState,
+        onSessionClick = onSessionClick,
+        onContributorClick = onContributorClick,
+    )
+}
+
+@Composable
+private fun HomeScreen(
+    padding: PaddingValues,
+    sponsorsUiState: SponsorsUiState,
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
 ) {
@@ -22,6 +43,6 @@ internal fun HomeScreen(
     ) {
         SessionCard(onClick = onSessionClick)
         ContributorCard(onClick = onContributorClick)
-        SponsorCard()
+        SponsorCard(uiState = sponsorsUiState)
     }
 }
