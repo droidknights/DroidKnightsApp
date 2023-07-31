@@ -1,7 +1,6 @@
 package com.droidknights.app2023.feature.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.MutatePriority
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,15 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -106,7 +102,9 @@ fun SponsorCard(
                     modifier = Modifier.padding(top = 8.dp),
                 )
             }
-            SponsorGroup(uiState.sponsors)
+            if (uiState.isNotEmpty()) {
+                SponsorGroup(uiState.sponsors)
+            }
         }
     }
 }
@@ -116,7 +114,6 @@ fun SponsorCard(
 private fun SponsorGroup(
     sponsors: List<Sponsor>,
 ) {
-    val itemsState = remember { sponsors.toMutableStateList() }
     val scrollState = rememberLazyListState()
     val lifecycleState = LocalLifecycleOwner.current.lifecycle.observeAsState()
 
@@ -131,13 +128,9 @@ private fun SponsorGroup(
             .padding(vertical = 24.dp)
             .fillMaxWidth(),
     ) {
-        items(itemsState, key = { it.name }) {
-            SponsorLogo(it)
+        items(count = Int.MAX_VALUE) { index ->
+            SponsorLogo(sponsor = sponsors[index % sponsors.size])
         }
-    }
-    LaunchedEffect(scrollState.canScrollForward) {
-        if (scrollState.canScrollForward) return@LaunchedEffect
-        itemsState.addAll(sponsors)
     }
     LaunchedEffect(lifecycleState.value) {
         when (lifecycleState.value) {
