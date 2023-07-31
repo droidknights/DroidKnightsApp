@@ -62,9 +62,7 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
                     modifier = Modifier.padding(top = 8.dp),
                 )
             }
-            if (uiState.isNotEmpty()) {
-                SponsorGroup(uiState.sponsors)
-            }
+            SponsorGroup(uiState.sponsors)
         }
     }
 }

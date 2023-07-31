@@ -43,6 +43,8 @@ private fun HomeScreen(
     ) {
         SessionCard(onClick = onSessionClick)
         ContributorCard(onClick = onContributorClick)
-        SponsorCard(uiState = sponsorsUiState)
+        if (sponsorsUiState.isNotEmpty()) {
+            SponsorCard(uiState = sponsorsUiState)
+        }
     }
 }
