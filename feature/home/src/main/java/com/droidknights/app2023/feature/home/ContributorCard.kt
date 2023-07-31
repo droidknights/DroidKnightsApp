@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,13 +18,14 @@ import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.Black
 import com.droidknights.app2023.core.designsystem.theme.Green03
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import com.droidknights.app2023.core.designsystem.theme.Neon05
 
 @Composable
 internal fun ContributorCard(
     onClick: () -> Unit,
 ) {
     KnightsCard(
-        color = CardBackgroundColor,
+        color = Neon05,
         onClick = onClick,
         modifier = Modifier.height(164.dp),
     ) {
@@ -59,8 +59,6 @@ internal fun ContributorCard(
         }
     }
 }
-
-private val CardBackgroundColor = Color(0xFFEEFFE7)
 
 @Preview
 @Composable
