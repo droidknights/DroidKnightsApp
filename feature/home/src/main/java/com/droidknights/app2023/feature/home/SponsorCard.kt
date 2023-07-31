@@ -1,7 +1,6 @@
 package com.droidknights.app2023.feature.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,14 +11,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
@@ -30,7 +28,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
+import com.droidknights.app2023.core.designsystem.theme.DuskGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.model.Sponsor
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -48,7 +48,7 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
                 Text(
                     text = stringResource(id = R.string.sponsor_card_title),
                     style = KnightsTheme.typography.headlineSmallBL,
-                    color = Color(0xFF000000),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier.padding(top = 24.dp),
                 )
                 Text(
@@ -58,7 +58,7 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
                         uiState.goldCount
                     ),
                     style = KnightsTheme.typography.titleSmallR,
-                    color = Color(0xFF868686),
+                    color = DuskGray,
                     modifier = Modifier.padding(top = 8.dp),
                 )
             }
@@ -108,13 +108,10 @@ private fun SponsorLogo(
         Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
         Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
     }
-    Box(
-        modifier = Modifier
-            .background(color = Color(0xFFF9F9F9), shape = RoundedCornerShape(42.dp))
-    ) {
+    Box {
         NetworkImage(
             imageUrl = sponsor.imageUrl,
-            placeholder = ColorPainter(Color(0xFFF9F9F9)),
+            placeholder = ColorPainter(PaleGray),
             modifier = Modifier
                 .size(84.dp)
                 .clip(CircleShape)
