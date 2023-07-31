@@ -14,15 +14,15 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
     )
 
     init {
-        Given("기여자가 존재한다") {
+        Given("컨트리뷰터가 존재한다") {
             val expected = contributors
 
-            When("기여자를 조회한다") {
+            When("컨트리뷰터를 조회한다") {
                 val contributors: List<Contributor> = repository.getContributors(
                     owner = "droidknights",
                     name = "app2023"
                 )
-                Then("기여자를 반환한다") {
+                Then("컨트리뷰터를 반환한다") {
                     contributors.size shouldBe 1
                     contributors.all {
                         it.name == expected[0].name
