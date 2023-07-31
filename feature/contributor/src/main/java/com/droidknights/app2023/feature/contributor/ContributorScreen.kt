@@ -75,6 +75,7 @@ internal fun ContributorScreen(
                 lazyListState = lazyListState,
                 contributors = emptyList(),
             )
+
             is ContributorsUiState.Contributors ->
                 ContributorList(
                     lazyListState = lazyListState,
@@ -204,14 +205,15 @@ private fun ContributorItem(
                     modifier = Modifier.padding(top = 12.dp)
                 )
             }
-            NetworkImage(
-                imageUrl = contributor.imageUrl,
-                placeholder = placeholder,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .size(100.dp)
-                    .clip(CircleShape)
-            )
+            Box(modifier = Modifier.padding(16.dp)) {
+                NetworkImage(
+                    imageUrl = contributor.imageUrl,
+                    placeholder = placeholder,
+                    modifier = Modifier
+                        .size(100.dp)
+                        .clip(CircleShape)
+                )
+            }
         }
     }
 }
