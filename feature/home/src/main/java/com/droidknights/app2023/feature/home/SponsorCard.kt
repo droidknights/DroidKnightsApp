@@ -104,7 +104,7 @@ fun SponsorCard(
                 )
             }
             if (uiState.isNotEmpty()) {
-                SponsorGroup(uiState.sponsors)
+                SponsorGroup(uiState.sortedByGrade())
             }
         }
     }

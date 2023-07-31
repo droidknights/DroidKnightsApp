@@ -10,4 +10,8 @@ data class SponsorsUiState(val sponsors: List<Sponsor>) {
         get() = sponsors.count { it.grade == Sponsor.Grade.GOLD }
 
     fun isNotEmpty() = sponsors.isNotEmpty()
+
+    fun sortedByGrade(): List<Sponsor> {
+        return sponsors.sortedBy { it.grade.priority }
+    }
 }
