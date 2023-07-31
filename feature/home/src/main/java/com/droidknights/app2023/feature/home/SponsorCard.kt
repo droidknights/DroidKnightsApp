@@ -126,6 +126,7 @@ private fun SponsorGroup(
             space = 14.dp,
             alignment = Alignment.CenterHorizontally,
         ),
+        userScrollEnabled = false,
         modifier = Modifier
             .padding(vertical = 24.dp)
             .fillMaxWidth(),
@@ -145,6 +146,7 @@ private fun SponsorGroup(
                     autoScroll(scrollState)
                 }
             }
+
             else -> {}
         }
     }
@@ -180,7 +182,7 @@ private fun SponsorLogo(
 }
 
 private suspend fun autoScroll(lazyListState: LazyListState) {
-    lazyListState.scroll(MutatePriority.PreventUserInput) {
+    lazyListState.scroll {
         scrollBy(SCROLL_PIXEL_UNIT)
     }
     delay(SCROLL_DELAY_MILLIS)
