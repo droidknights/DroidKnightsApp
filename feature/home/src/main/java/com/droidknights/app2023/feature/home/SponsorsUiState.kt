@@ -8,4 +8,6 @@ data class SponsorsUiState(val sponsors: List<Sponsor>) {
 
     val goldCount: Int
         get() = sponsors.count { it.grade == Sponsor.Grade.GOLD }
+
+    fun isNotEmpty() = sponsors.isNotEmpty()
 }
