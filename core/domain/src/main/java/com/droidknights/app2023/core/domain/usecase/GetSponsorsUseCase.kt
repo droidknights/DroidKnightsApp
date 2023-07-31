@@ -8,8 +8,6 @@ class GetSponsorsUseCase @Inject constructor(
     private val sponsorRepository: SponsorRepository,
 ) {
 
-    // TODO: Sponsor 데이터 연결
-
     suspend operator fun invoke(): List<Sponsor> {
         return listOf(
             Sponsor(
@@ -48,6 +46,11 @@ class GetSponsorsUseCase @Inject constructor(
                 grade = Sponsor.Grade.PLATINUM,
                 imageUrl = "https://picsum.photos/id/200/200/200",
             ),
-        )
+        ).sortedBy { it.grade.priority }
+
+        // TODO: Sponsor 데이터 연결된 이후에 아래 코드로 변경
+        return sponsorRepository
+            .getSponsors()
+            .sortedBy { it.grade.priority }
     }
 }

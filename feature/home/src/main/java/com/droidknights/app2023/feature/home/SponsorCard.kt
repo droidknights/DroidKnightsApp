@@ -63,7 +63,7 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
                 )
             }
             if (uiState.isNotEmpty()) {
-                SponsorGroup(uiState.sortedByGrade())
+                SponsorGroup(uiState.sponsors)
             }
         }
     }

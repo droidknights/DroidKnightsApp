@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getSponsorsUseCase: GetSponsorsUseCase,
+    getSponsorsUseCase: GetSponsorsUseCase,
 ) : ViewModel() {
 
     val sponsorsUiState: StateFlow<SponsorsUiState> = flow { emit(getSponsorsUseCase()) }
