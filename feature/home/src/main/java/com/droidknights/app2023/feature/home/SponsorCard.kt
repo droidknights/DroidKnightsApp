@@ -2,13 +2,13 @@ package com.droidknights.app2023.feature.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -27,12 +27,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Sponsor
-import com.droidknights.app2023.core.ui.observeAsState
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 
 private const val SCROLL_DELAY_MILLIS = 20L
 private const val SCROLL_PIXEL_UNIT = 4f
@@ -115,7 +116,7 @@ private fun SponsorGroup(
     sponsors: List<Sponsor>,
 ) {
     val scrollState = rememberLazyListState()
-    val lifecycleState = LocalLifecycleOwner.current.lifecycle.observeAsState()
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     LazyRow(
         state = scrollState,
@@ -132,15 +133,12 @@ private fun SponsorGroup(
             SponsorLogo(sponsor = sponsors[index % sponsors.size])
         }
     }
-    LaunchedEffect(lifecycleState.value) {
-        when (lifecycleState.value) {
-            Lifecycle.Event.ON_RESUME -> {
-                while (true) {
-                    autoScroll(scrollState)
-                }
+    LaunchedEffect(Unit) {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            while (isActive) {
+                scrollState.scrollBy(SCROLL_PIXEL_UNIT)
+                delay(SCROLL_DELAY_MILLIS)
             }
-
-            else -> {}
         }
     }
 }
@@ -172,13 +170,6 @@ private fun SponsorLogo(
                 .align(Alignment.TopStart),
         )
     }
-}
-
-private suspend fun autoScroll(lazyListState: LazyListState) {
-    lazyListState.scroll {
-        scrollBy(SCROLL_PIXEL_UNIT)
-    }
-    delay(SCROLL_DELAY_MILLIS)
 }
 
 @Preview
