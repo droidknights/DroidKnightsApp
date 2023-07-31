@@ -38,16 +38,51 @@ import com.droidknights.app2023.core.model.Sponsor
 import com.droidknights.app2023.core.ui.observeAsState
 import kotlinx.coroutines.delay
 
-//import androidx.lifecycle.compose.LifecycleResumeEffect
-//import androidx.lifecycle.compose.currentStateAsState
-
 private const val SCROLL_DELAY_MILLIS = 20L
 private const val SCROLL_PIXEL_UNIT = 4f
 
 @Composable
 fun SponsorCard(
     // TODO: 실제 데이터와 연결
-    uiState: SponsorsUiState = SponsorsUiState(emptyList()),
+    uiState: SponsorsUiState =
+        listOf(
+            Sponsor(
+                name = "Sponsor1",
+                homepage = "https://www.instagram.com/droid_knights",
+                grade = Sponsor.Grade.GOLD,
+                imageUrl = "https://picsum.photos/id/237/200/200",
+            ),
+            Sponsor(
+                name = "Sponsor2",
+                homepage = "https://www.instagram.com/droid_knights",
+                grade = Sponsor.Grade.PLATINUM,
+                imageUrl = "https://picsum.photos/id/204/200/200",
+            ),
+            Sponsor(
+                name = "Sponsor3",
+                homepage = "https://www.instagram.com/droid_knights",
+                grade = Sponsor.Grade.PLATINUM,
+                imageUrl = "https://picsum.photos/id/203/200/200",
+            ),
+            Sponsor(
+                name = "Sponsor4",
+                homepage = "https://www.instagram.com/droid_knights",
+                grade = Sponsor.Grade.PLATINUM,
+                imageUrl = "https://picsum.photos/id/202/200/200",
+            ),
+            Sponsor(
+                name = "Sponsor5",
+                homepage = "https://www.instagram.com/droid_knights",
+                grade = Sponsor.Grade.PLATINUM,
+                imageUrl = "https://picsum.photos/id/201/200/200",
+            ),
+            Sponsor(
+                name = "Sponsor6",
+                homepage = "https://www.instagram.com/droid_knights",
+                grade = Sponsor.Grade.PLATINUM,
+                imageUrl = "https://picsum.photos/id/200/200/200",
+            ),
+        ).let(::SponsorsUiState),
 ) {
     KnightsCard {
         Column(
