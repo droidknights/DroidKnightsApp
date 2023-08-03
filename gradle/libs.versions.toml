@@ -18,7 +18,7 @@ retrofitKotlinxSerializationJson = "1.0.0"
 kotlinxSerializationJson = "1.5.1"
 kotlinxDatetime = "0.2.1"
 
-landscapist = "2.2.1"
+landscapist = "2.2.5"
 
 junit4 = "4.13.2"
 junitVintageEngine = "5.10.0"
