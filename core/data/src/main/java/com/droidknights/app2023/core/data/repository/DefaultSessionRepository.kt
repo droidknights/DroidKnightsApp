@@ -38,7 +38,13 @@ internal class DefaultSessionRepository @Inject constructor(
         return bookmarkIds.filterNotNull()
     }
 
-    override suspend fun bookmarkSession(sessionId: String) {
-        bookmarkIds.update { ids -> ids + sessionId }
+    override suspend fun bookmarkSession(sessionId: String, bookmark: Boolean) {
+        bookmarkIds.update { ids ->
+            if (bookmark) {
+                ids + sessionId
+            } else {
+                ids - sessionId
+            }
+        }
     }
 }

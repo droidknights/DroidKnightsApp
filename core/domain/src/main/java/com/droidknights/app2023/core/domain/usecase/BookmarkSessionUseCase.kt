@@ -7,7 +7,7 @@ class BookmarkSessionUseCase @Inject constructor(
     private val sessionRepository: SessionRepository,
 ) {
     
-    suspend operator fun invoke(sessionId: String) {
-        return sessionRepository.bookmarkSession(sessionId)
+    suspend operator fun invoke(sessionId: String, bookmark: Boolean) {
+        return sessionRepository.bookmarkSession(sessionId, bookmark)
     }
 }

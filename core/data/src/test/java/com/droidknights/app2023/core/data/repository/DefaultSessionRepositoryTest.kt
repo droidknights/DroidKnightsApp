@@ -54,15 +54,32 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
             actual shouldBe expected
         }
 
-        "북마크 기능 테스트" {
+        "북마크 추가 테스트" {
             repository.getBookmarkedSessionIds().test {
                 awaitItem() shouldBe emptySet()
 
-                repository.bookmarkSession("1")
+                repository.bookmarkSession("1", true)
                 awaitItem() shouldBe setOf("1")
 
-                repository.bookmarkSession("2")
+                repository.bookmarkSession("2", true)
                 awaitItem() shouldBe setOf("1", "2")
+            }
+        }
+
+        "북마크 제거 테스트" {
+            // given : [1, 2, 3]
+            List(3) { repository.bookmarkSession("${it + 1}", true) }
+
+            repository.getBookmarkedSessionIds().test {
+                awaitItem() shouldBe setOf("1", "2", "3")
+
+                // [1, 2, 3] -> [1, 3]
+                repository.bookmarkSession("2", false)
+                awaitItem() shouldBe setOf("1", "3")
+
+                // [1, 3] -> [1]
+                repository.bookmarkSession("3", false)
+                awaitItem() shouldBe setOf("1")
             }
         }
     }

@@ -11,5 +11,5 @@ interface SessionRepository {
 
     suspend fun getBookmarkedSessionIds(): Flow<Set<String>>
 
-    suspend fun bookmarkSession(sessionId: String)
+    suspend fun bookmarkSession(sessionId: String, bookmark: Boolean)
 }
