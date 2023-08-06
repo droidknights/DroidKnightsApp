@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":feature:setting"))
     implementation(project(":feature:contributor"))
     implementation(project(":feature:session"))
+    implementation(project(":feature:bookmark"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

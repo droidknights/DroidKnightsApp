@@ -24,7 +24,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -33,9 +32,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
+import com.droidknights.app2023.feature.bookmark.navigation.bookmarkNavGraph
 import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
 import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
@@ -62,14 +61,11 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                     settingNavGraph(
                         padding = padding,
                     )
-                    // TODO: 각 모듈로 이동
-                    val content: @Composable (String) -> Unit = {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center,
-                            content = { Text(text = it) }
-                        )
-                    }
+
+                    bookmarkNavGraph(
+                        onBackClick = { navigator.popBackStack() }
+                    )
+
                     contributorNavGraph(
                         onBackClick = { navigator.popBackStack() }
                     )
@@ -78,8 +74,6 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                         onBackClick = { navigator.popBackStack() },
                         onSessionClick = { navigator.navigateSessionDetail(it.id) }
                     )
-
-                    composable("temp") { content("temp") }
                 }
             }
         },
