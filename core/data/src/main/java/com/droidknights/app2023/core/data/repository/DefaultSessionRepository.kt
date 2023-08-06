@@ -10,6 +10,11 @@ internal class DefaultSessionRepository @Inject constructor(
 ) : SessionRepository {
     private var cachedSessions: List<Session> = emptyList()
 
+    /**
+     * TODO : 북마크 아이디가 앱이 종료된 이후에도 유지되도록 한다
+     */
+    private var bookmarkIds: Set<String> = emptySet()
+
     override suspend fun getSessions(): List<Session> {
         return githubRawApi.getSessions()
             .map { it.toData() }
@@ -23,5 +28,9 @@ internal class DefaultSessionRepository @Inject constructor(
         }
         return getSessions().find { it.id == sessionId }
             ?: throw IllegalStateException("Session not found with id: $sessionId")
+    }
+
+    override suspend fun getBookmarkedSessionIds(): List<String> {
+        return bookmarkIds.toList()
     }
 }

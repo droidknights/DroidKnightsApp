@@ -7,4 +7,6 @@ interface SessionRepository {
     suspend fun getSessions(): List<Session>
     
     suspend fun getSession(sessionId: String): Session
+    
+    suspend fun getBookmarkedSessionIds(): List<String>
 }
