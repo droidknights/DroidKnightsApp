@@ -108,7 +108,6 @@ private fun ThemeCard(
     ) {
         Surface(
             shape = RoundedCornerShape(16.dp),
-            border = BorderStroke(1.dp, LightGray),
             onClick = onClick,
         ) {
             Image(
