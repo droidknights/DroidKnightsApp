@@ -6,5 +6,5 @@ sealed interface SessionDetailUiState {
 
     object Loading : SessionDetailUiState
 
-    data class Success(val session: Session) : SessionDetailUiState
+    data class Success(val session: Session, val isBookmark: Boolean = false) : SessionDetailUiState
 }
