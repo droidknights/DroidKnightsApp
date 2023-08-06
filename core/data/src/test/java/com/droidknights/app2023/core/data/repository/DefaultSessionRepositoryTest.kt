@@ -1,5 +1,6 @@
 package com.droidknights.app2023.core.data.repository
 
+import app.cash.turbine.test
 import com.droidknights.app2023.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
@@ -51,6 +52,18 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
             )
             val actual = repository.getSessions()
             actual shouldBe expected
+        }
+
+        "북마크 기능 테스트" {
+            repository.getBookmarkedSessionIds().test {
+                awaitItem() shouldBe emptySet()
+
+                repository.bookmarkSession("1")
+                awaitItem() shouldBe setOf("1")
+
+                repository.bookmarkSession("2")
+                awaitItem() shouldBe setOf("1", "2")
+            }
         }
     }
 }

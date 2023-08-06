@@ -3,6 +3,10 @@ package com.droidknights.app2023.core.data.repository
 import com.droidknights.app2023.core.data.api.GithubRawApi
 import com.droidknights.app2023.core.data.mapper.toData
 import com.droidknights.app2023.core.model.Session
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 internal class DefaultSessionRepository @Inject constructor(
@@ -13,7 +17,7 @@ internal class DefaultSessionRepository @Inject constructor(
     /**
      * TODO : 북마크 아이디가 앱이 종료된 이후에도 유지되도록 한다
      */
-    private var bookmarkIds: Set<String> = emptySet()
+    private val bookmarkIds: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
 
     override suspend fun getSessions(): List<Session> {
         return githubRawApi.getSessions()
@@ -30,14 +34,11 @@ internal class DefaultSessionRepository @Inject constructor(
             ?: throw IllegalStateException("Session not found with id: $sessionId")
     }
 
-    override suspend fun getBookmarkedSessionIds(): List<String> {
-        return bookmarkIds.toList()
+    override suspend fun getBookmarkedSessionIds(): Flow<Set<String>> {
+        return bookmarkIds.filterNotNull()
     }
 
     override suspend fun bookmarkSession(sessionId: String) {
-        if (bookmarkIds.contains(sessionId)) {
-            return
-        }
-        bookmarkIds = bookmarkIds.toMutableSet() + sessionId
+        bookmarkIds.update { ids -> ids + sessionId }
     }
 }
