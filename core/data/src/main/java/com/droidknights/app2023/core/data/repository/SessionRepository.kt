@@ -9,4 +9,6 @@ interface SessionRepository {
     suspend fun getSession(sessionId: String): Session
     
     suspend fun getBookmarkedSessionIds(): List<String>
+    
+    suspend fun bookmarkSession(sessionId: String)
 }

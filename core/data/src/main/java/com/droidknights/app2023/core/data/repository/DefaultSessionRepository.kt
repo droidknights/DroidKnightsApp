@@ -33,4 +33,11 @@ internal class DefaultSessionRepository @Inject constructor(
     override suspend fun getBookmarkedSessionIds(): List<String> {
         return bookmarkIds.toList()
     }
+
+    override suspend fun bookmarkSession(sessionId: String) {
+        if (bookmarkIds.contains(sessionId)) {
+            return
+        }
+        bookmarkIds = bookmarkIds.toMutableSet() + sessionId
+    }
 }
