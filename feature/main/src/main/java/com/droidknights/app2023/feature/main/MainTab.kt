@@ -1,5 +1,6 @@
 package com.droidknights.app2023.feature.main
 
+import com.droidknights.app2023.feature.bookmark.navigation.BookmarkRoute
 import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.setting.navigation.SettingRoute
 
@@ -18,10 +19,10 @@ internal enum class MainTab(
         contentDescription = "홈",
         HomeRoute.route,
     ),
-    TEMP(
-        iconResId = R.drawable.ic_temp,
-        contentDescription = "임시",
-        "temp",
+    BOOKMARK(
+        iconResId = R.drawable.ic_bookmark,
+        contentDescription = "북마크",
+        BookmarkRoute.route,
     );
 
     companion object {

@@ -32,4 +32,5 @@ include(
     ":feature:session",
     ":feature:setting",
     ":feature:contributor",
+    ":feature:bookmark",
 )

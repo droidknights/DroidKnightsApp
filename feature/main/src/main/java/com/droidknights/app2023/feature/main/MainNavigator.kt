@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.droidknights.app2023.feature.bookmark.navigation.navigateBookmark
 import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
 import com.droidknights.app2023.feature.home.navigation.navigateHome
 import com.droidknights.app2023.feature.session.navigation.navigateSession
@@ -41,7 +42,7 @@ internal class MainNavigator(
         when (tab) {
             MainTab.SETTING -> navController.navigateSetting(navOptions)
             MainTab.HOME -> navController.navigateHome(navOptions)
-            MainTab.TEMP -> navController.navigate("temp", navOptions) // TODO: ???
+            MainTab.BOOKMARK -> navController.navigateBookmark(navOptions)
         }
     }
 
@@ -52,7 +53,7 @@ internal class MainNavigator(
     fun navigateSession() {
         navController.navigateSession()
     }
-    
+
     fun navigateSessionDetail(sessionId: String) {
         navController.navigateSessionDetail(sessionId)
     }
