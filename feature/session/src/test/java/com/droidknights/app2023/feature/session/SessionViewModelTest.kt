@@ -24,7 +24,7 @@ internal class SessionViewModelTest {
     private val fakeSession = Session(
         id = "1",
         title = "title",
-        content = emptyList(),
+        content = "content",
         speakers = emptyList(),
         level = Level.BASIC,
         tags = emptyList(),

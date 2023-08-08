@@ -1,5 +1,6 @@
 package com.droidknights.app2023.core.data.repository
 
+import app.cash.turbine.test
 import com.droidknights.app2023.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
@@ -21,7 +22,7 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 Session(
                     id = "1",
                     title = "Keynote",
-                    content = listOf(),
+                    content = "",
                     speakers = listOf(),
                     level = Level.ETC,
                     tags = listOf(Tag("키노트")),
@@ -32,7 +33,7 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 Session(
                     id = "2",
                     title = "Jetpack Compose로 Android UI 개발하기",
-                    content = listOf("Jetpack Compose는 네이티브 UI를 빌드하기 위한 Android의 최신 권장 도구 키트입니다."),
+                    content = "Jetpack Compose는 네이티브 UI를 빌드하기 위한 Android의 최신 권장 도구 키트입니다.",
                     speakers = listOf(
                         Speaker(
                             name = "김컴포즈",
