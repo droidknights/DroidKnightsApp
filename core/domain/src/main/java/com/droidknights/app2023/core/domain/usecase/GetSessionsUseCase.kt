@@ -21,7 +21,7 @@ class GetSessionsUseCase @Inject constructor(
             Session(
                 id = "1",
                 title = "Jetpack Compose에 있는 것, 없는 것",
-                content = emptyList(),
+                content = "",
                 speakers = listOf(
                     Speaker(
                         name = "안성용",
@@ -39,7 +39,7 @@ class GetSessionsUseCase @Inject constructor(
             Session(
                 id = "2",
                 title = "Asynchronous Programming for Android",
-                content = emptyList(),
+                content = "",
                 speakers = listOf(
                     Speaker(
                         name = "안성용",
@@ -61,7 +61,7 @@ class GetSessionsUseCase @Inject constructor(
             Session(
                 id = "3",
                 title = "안드로이드 앱에서 Koin걷어내고 Hilt로 마이그레이션하기",
-                content = emptyList(),
+                content = "",
                 speakers = listOf(
                     Speaker(
                         name = "이기정",
@@ -79,7 +79,7 @@ class GetSessionsUseCase @Inject constructor(
             Session(
                 id = "4",
                 title = "Asynchronous Programming for Android",
-                content = emptyList(),
+                content = "",
                 speakers = listOf(
                     Speaker(
                         name = "권혁신",
@@ -97,7 +97,7 @@ class GetSessionsUseCase @Inject constructor(
             Session(
                 id = "5",
                 title = "안드로이드 앱에서 Koin걷어내고 Hilt로 마이그레이션하기",
-                content = emptyList(),
+                content = "",
                 speakers = listOf(
                     Speaker(
                         name = "이기정",
@@ -115,7 +115,7 @@ class GetSessionsUseCase @Inject constructor(
             Session(
                 id = "6",
                 title = "Asynchronous Programming for Android",
-                content = emptyList(),
+                content = "",
                 speakers = listOf(
                     Speaker(
                         name = "권혁신",
@@ -133,7 +133,7 @@ class GetSessionsUseCase @Inject constructor(
             Session(
                 id = "7",
                 title = "Asynchronous Programming for Android",
-                content = emptyList(),
+                content = "",
                 speakers = listOf(
                     Speaker(
                         name = "권혁신",

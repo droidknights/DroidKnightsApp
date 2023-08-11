@@ -118,7 +118,7 @@ private fun SessionCardPreview() {
     val fakeSession = Session(
         id = "1",
         title = "Jetpack Compose에 있는 것, 없는 것",
-        content = emptyList(),
+        content = "",
         speakers = listOf(
             Speaker(
                 name = "안성용",
