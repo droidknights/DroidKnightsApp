@@ -86,7 +86,7 @@ class SessionDetailViewModelTest {
         // then
         viewModel.sessionUiState.test {
             val actual = awaitItem() as SessionDetailUiState.Success
-            assertTrue(actual.isBookmark)
+            assertTrue(actual.bookmarked)
         }
     }
 
@@ -115,7 +115,7 @@ class SessionDetailViewModelTest {
         // then
         viewModel.sessionUiState.test {
             val actual = awaitItem() as SessionDetailUiState.Success
-            assertTrue(actual.isBookmark)
+            assertTrue(actual.bookmarked)
         }
     }
 }

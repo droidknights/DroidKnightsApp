@@ -32,7 +32,7 @@ class SessionDetailViewModel @Inject constructor(
                 when (sessionUiState) {
                     is SessionDetailUiState.Loading -> sessionUiState
                     is SessionDetailUiState.Success -> {
-                        sessionUiState.copy(isBookmark = bookmarkIds.contains(sessionUiState.session.id))
+                        sessionUiState.copy(bookmarked = bookmarkIds.contains(sessionUiState.session.id))
                     }
                 }
             }.collect { _sessionUiState.value = it }
@@ -52,7 +52,7 @@ class SessionDetailViewModel @Inject constructor(
             return
         }
         viewModelScope.launch {
-            val bookmark = uiState.isBookmark
+            val bookmark = uiState.bookmarked
             bookmarkSessionUseCase(uiState.session.id, !bookmark)
         }
     }
