@@ -58,10 +58,10 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
             repository.getBookmarkedSessionIds().test {
                 awaitItem() shouldBe emptySet()
 
-                repository.bookmarkSession("1", true)
+                repository.bookmarkSession(sessionId = "1", bookmark = true)
                 awaitItem() shouldBe setOf("1")
 
-                repository.bookmarkSession("2", true)
+                repository.bookmarkSession(sessionId = "2", bookmark = true)
                 awaitItem() shouldBe setOf("1", "2")
             }
         }
@@ -74,11 +74,11 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 awaitItem() shouldBe setOf("1", "2", "3")
 
                 // [1, 2, 3] -> [1, 3]
-                repository.bookmarkSession("2", false)
+                repository.bookmarkSession(sessionId = "2", bookmark = false)
                 awaitItem() shouldBe setOf("1", "3")
 
                 // [1, 3] -> [1]
-                repository.bookmarkSession("3", false)
+                repository.bookmarkSession(sessionId = "3", bookmark = false)
                 awaitItem() shouldBe setOf("1")
             }
         }
