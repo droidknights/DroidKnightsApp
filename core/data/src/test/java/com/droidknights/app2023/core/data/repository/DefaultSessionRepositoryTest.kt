@@ -68,7 +68,10 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
 
         "북마크 제거 테스트" {
             // given : [1, 2, 3]
-            List(3) { repository.bookmarkSession("${it + 1}", true) }
+            val bookmarkedSessionIds = listOf("1", "2", "3")
+            bookmarkedSessionIds.forEach {
+                repository.bookmarkSession(it, true)
+            }
 
             repository.getBookmarkedSessionIds().test {
                 awaitItem() shouldBe setOf("1", "2", "3")
