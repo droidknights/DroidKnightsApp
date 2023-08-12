@@ -30,7 +30,7 @@ kotest = "5.6.2"
 # https://github.com/detekt/detekt
 detekt = "1.23.0"
 mockk = "1.13.5"
-turbin = "1.0.0"
+turbine = "1.0.0"
 
 coroutine = "1.7.2"
 
@@ -84,7 +84,7 @@ kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.re
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
-turbin = { group = "app.cash.turbine", name = "turbine", version.ref = "turbin" }
+turbin = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
