@@ -1,5 +1,6 @@
 package com.droidknights.app2023.core.data.repository
 
+import app.cash.turbine.test
 import com.droidknights.app2023.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
@@ -28,6 +29,38 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
             )
             val actual = repository.getSessions()
             actual.first() shouldBe expected
+        }
+
+        "북마크 추가 테스트" {
+            repository.getBookmarkedSessionIds().test {
+                awaitItem() shouldBe emptySet()
+
+                repository.bookmarkSession(sessionId = "1", bookmark = true)
+                awaitItem() shouldBe setOf("1")
+
+                repository.bookmarkSession(sessionId = "2", bookmark = true)
+                awaitItem() shouldBe setOf("1", "2")
+            }
+        }
+
+        "북마크 제거 테스트" {
+            // given : [1, 2, 3]
+            val bookmarkedSessionIds = listOf("1", "2", "3")
+            bookmarkedSessionIds.forEach {
+                repository.bookmarkSession(it, true)
+            }
+
+            repository.getBookmarkedSessionIds().test {
+                awaitItem() shouldBe setOf("1", "2", "3")
+
+                // [1, 2, 3] -> [1, 3]
+                repository.bookmarkSession(sessionId = "2", bookmark = false)
+                awaitItem() shouldBe setOf("1", "3")
+
+                // [1, 3] -> [1]
+                repository.bookmarkSession(sessionId = "3", bookmark = false)
+                awaitItem() shouldBe setOf("1")
+            }
         }
     }
 }
