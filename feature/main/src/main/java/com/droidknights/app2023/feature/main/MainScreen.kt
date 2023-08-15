@@ -62,9 +62,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                         padding = padding,
                     )
 
-                    bookmarkNavGraph(
-                        onBackClick = { navigator.popBackStack() }
-                    )
+                    bookmarkNavGraph()
 
                     contributorNavGraph(
                         onBackClick = { navigator.popBackStack() }

@@ -3,7 +3,6 @@ package com.droidknights.app2023.feature.setting
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,7 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
-import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 
 @Composable
@@ -133,7 +131,6 @@ private fun ThemeCard(
         )
     }
 }
-
 
 @Preview
 @Composable

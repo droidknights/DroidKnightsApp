@@ -64,7 +64,7 @@ private fun SessionDetailTopAppBar(
         navigationType = TopAppBarNavigationType.Back,
         onNavigationClick = onBackClick,
     )
-    
+
     // TODO: 북마크 확인 및 변경 기능 추가
 }
 
@@ -75,7 +75,6 @@ private fun SessionDetailContent(uiState: SessionDetailUiState) {
         is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
     }
 }
-
 
 @Composable
 private fun SessionDetailLoading() {

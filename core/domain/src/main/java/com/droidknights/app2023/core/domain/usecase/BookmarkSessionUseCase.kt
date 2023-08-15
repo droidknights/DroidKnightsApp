@@ -6,7 +6,7 @@ import javax.inject.Inject
 class BookmarkSessionUseCase @Inject constructor(
     private val sessionRepository: SessionRepository,
 ) {
-    
+
     suspend operator fun invoke(sessionId: String, bookmark: Boolean) {
         return sessionRepository.bookmarkSession(sessionId, bookmark)
     }

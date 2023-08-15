@@ -45,7 +45,7 @@ fun NavGraphBuilder.sessionNavGraph(
 }
 
 object SessionRoute {
-    val route: String = "session"
+    const val route: String = "session"
 
-    fun detailRoute(sessionId: String): String = "${route}/$sessionId"
+    fun detailRoute(sessionId: String): String = "$route/$sessionId"
 }

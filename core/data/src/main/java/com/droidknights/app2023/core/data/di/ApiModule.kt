@@ -42,7 +42,7 @@ internal object ApiModule {
             .client(okHttpClient).build()
             .create(GithubApi::class.java)
     }
-    
+
     @Provides
     @Singleton
     fun provideGitRawApi(
@@ -53,7 +53,7 @@ internal object ApiModule {
         .addConverterFactory(converterFactory)
         .client(okHttpClient).build()
         .create(GithubRawApi::class.java)
-    
+
     @Provides
     @Singleton
     fun provideJson(): Json = Json {

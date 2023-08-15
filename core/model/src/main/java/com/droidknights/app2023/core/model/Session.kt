@@ -13,4 +13,3 @@ data class Session(
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
 )
-

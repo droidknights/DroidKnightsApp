@@ -30,8 +30,9 @@ internal class DefaultSessionRepository @Inject constructor(
         if (cachedSession != null) {
             return cachedSession
         }
+
         return getSessions().find { it.id == sessionId }
-            ?: throw IllegalStateException("Session not found with id: $sessionId")
+            ?: error("Session not found with id: $sessionId")
     }
 
     override suspend fun getBookmarkedSessionIds(): Flow<Set<String>> {

@@ -29,7 +29,6 @@ internal class MainNavigator(
             ?.route
             ?.let(MainTab::find)
 
-
     fun navigate(tab: MainTab) {
         val navOptions = navOptions {
             popUpTo(navController.graph.findStartDestination().id) {

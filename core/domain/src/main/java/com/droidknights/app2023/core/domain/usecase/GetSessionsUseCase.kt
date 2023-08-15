@@ -149,5 +149,6 @@ class GetSessionsUseCase @Inject constructor(
                 room = Room.TRACK3,
             ),
         )
+        return sessionRepository.getSessions()
     }
 }
