@@ -82,9 +82,19 @@
 
 본 프로젝트는 Multi-module 구조이며 각 Feature마다 모듈 형태로 구성되어 있습니다.
 
-(DI Graph 첨부)
+<img src="arts/architecture-module-graph.png" />
 
-# Thanks
+**Module Graph 생성 방법**
+
+```
+1. 그래프를 시각화하는 오픈소스 설치
+- brew install graphviz (예시 Homebrew)
+
+2 그래프 생성 Gradle Task 실행
+./gradlew projectDependencyGraph
+```
+
+## Thanks
 
 참여해주신 모든 분들 감사합니다!
 
