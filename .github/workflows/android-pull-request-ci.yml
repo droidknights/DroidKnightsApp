@@ -39,8 +39,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run detekt
-        run: ./gradlew detekt
+      - name: detekt
+        uses: alaegin/Detekt-Action@v1.23.1.1
+        with:
+          github_token: ${{ secrets.DETEKT_TOKEN }}
+          detekt_config: config/detekt/detekt.yml
 
       - name: Upload Event File
         uses: actions/upload-artifact@v3
