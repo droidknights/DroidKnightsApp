@@ -16,8 +16,6 @@ class GetContributorsUseCase @Inject constructor(
 
     companion object {
         private const val OWNER = "droidknights"
-
-        // TODO: DroidKnights2023_App로 변경 필요
-        private const val NAME = "DroidKnights2021_App"
+        private const val NAME = "DroidKnights2023_App"
     }
 }

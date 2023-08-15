@@ -9,8 +9,6 @@ class GetSessionUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(sessionId: String): Session {
-        // TODO: Session 데이터 연결 후 제거
-        return GetSessionsUseCase(sessionRepository).invoke().first { it.id == sessionId }
         return sessionRepository.getSession(sessionId)
     }
 }
