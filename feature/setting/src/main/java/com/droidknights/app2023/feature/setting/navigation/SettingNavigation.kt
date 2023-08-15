@@ -21,4 +21,4 @@ fun NavGraphBuilder.settingNavGraph(
 
 object SettingRoute {
     const val route = "setting"
-} 
+}

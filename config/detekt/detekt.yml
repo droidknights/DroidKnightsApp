@@ -765,7 +765,7 @@ style:
 #  UnusedPrivateClass:
 #    active: true
   UnusedPrivateMember:
-    active: true
+    active: false
 #    allowedNames: '(_|ignored|expected|serialVersionUID)'
 #  UseArrayLiteralsInAnnotations:
 #    active: false

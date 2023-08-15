@@ -7,34 +7,6 @@ on:
     branches: [ main ]
 
 jobs:
-#  test:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout the code
-#        uses: actions/checkout@v3
-#
-#      - name: set up JDK 17
-#        uses: actions/setup-java@v3
-#        with:
-#          distribution: 'corretto'
-#          java-version: '17'
-#
-#      - name: set up Android SDK
-#        uses: android-actions/setup-android@v2
-#
-#      - name: Grant execute permission for gradlew
-#        run: chmod +x gradlew
-#
-#      - name: Unit test
-#        run: ./gradlew testAll
-
-  #     - name: Extract JacocoReport
-  #        run: ./gradlew jacocoReport
-
-  #     - name: log coverage on console
-  #       run: ./gradlew jacocoTotalCoverage
-
   verify:
     runs-on: ubuntu-latest
 
@@ -56,6 +28,9 @@ jobs:
 
       - name: Run detekt
         run: ./gradlew detekt
+
+      - name: Run unit test
+        run: ./gradlew test
 
 #  app-build:
 #    runs-on: ubuntu-latest

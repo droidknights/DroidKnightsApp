@@ -9,9 +9,9 @@ fun NavController.navigateBookmark(navOptions: NavOptions) {
     navigate(BookmarkRoute.route, navOptions)
 }
 
-fun NavGraphBuilder.bookmarkNavGraph(onBackClick: () -> Unit) {
+fun NavGraphBuilder.bookmarkNavGraph() {
     composable(route = BookmarkRoute.route) {
-
+        // TODO: BookmarkRoute 연결 필요
     }
 }
 

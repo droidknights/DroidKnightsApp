@@ -49,7 +49,6 @@ fun KnightsTopAppBar(
                 }
             }
 
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()

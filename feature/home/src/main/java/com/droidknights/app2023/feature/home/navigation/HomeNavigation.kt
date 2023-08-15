@@ -23,4 +23,4 @@ fun NavGraphBuilder.homeNavGraph(
 
 object HomeRoute {
     const val route = "home"
-} 
+}

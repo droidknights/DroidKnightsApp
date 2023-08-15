@@ -6,7 +6,6 @@ import com.droidknights.app2023.core.model.Contributor
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
-
 internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
     private val repository: DefaultContributorRepository = DefaultContributorRepository(
@@ -19,8 +18,7 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
             When("컨트리뷰터를 조회한다") {
                 val contributors: List<Contributor> = repository.getContributors(
-                    owner = "droidknights",
-                    name = "app2023"
+                    owner = "droidknights", name = "app2023"
                 )
                 Then("컨트리뷰터를 반환한다") {
                     contributors.size shouldBe 1
@@ -35,8 +33,7 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
     companion object {
         private val contributors = listOf(
             ContributorResponse(
-                name = "test name",
-                imageUrl = "test image url"
+                name = "test name", imageUrl = "test image url"
             )
         )
     }
