@@ -16,10 +16,10 @@ internal class DefaultSponsorRepositoryTest : StringSpec() {
         )
         "역직렬화 테스트" {
             val expected = Sponsor(
-                name = "헤이딜러",
-                imageUrl = "https://raw.githubusercontent.com/droidknights/DroidKnights2020_App/master/androidapp/app/src/main/res/drawable-xxxhdpi/ic_sponsor_heydealer.png",
-                homepage = "https://heydealer.co.kr/",
-                grade = Sponsor.Grade.GOLD,
+                name = "당근마켓",
+                imageUrl = "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/feature/home/src/main/res/drawable/img_sponsor_daangn.png",
+                homepage = "https://about.daangn.com/",
+                grade = Sponsor.Grade.PLATINUM,
             )
             val actual = repository.getSponsors().first()
             actual shouldBe expected
