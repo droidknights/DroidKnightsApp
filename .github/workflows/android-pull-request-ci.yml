@@ -40,7 +40,9 @@ jobs:
         run: chmod +x gradlew
 
       - name: detekt
-        uses: alaegin/Detekt-Action@v1.23.1.1
+        uses: alaegin/Detekt-Action@v1.23.0
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.DETEKT_TOKEN }}
         with:
           github_token: ${{ secrets.DETEKT_TOKEN }}
           detekt_config: config/detekt/detekt.yml

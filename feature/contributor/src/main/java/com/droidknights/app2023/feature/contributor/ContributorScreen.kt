@@ -51,7 +51,7 @@ fun ContributorRoute(
     modifier: Modifier = Modifier,
     viewModel: ContributorViewModel = hiltViewModel(),
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     ContributorScreen(
         uiState = uiState,
