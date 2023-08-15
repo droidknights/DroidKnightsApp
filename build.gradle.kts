@@ -15,3 +15,7 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.verify.detekt) apply false
 }
+
+apply {
+    from("gradle/dependencyGraph.gradle")
+}
