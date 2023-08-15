@@ -14,7 +14,7 @@
 
 ## Design
 
-Figma에서 디자인을 확인하실 수 있습니다.
+[Figma](https://www.figma.com/file/FL7CdEyPjvhkJrtYEHAbXn/2023-Droid-Knights-App-_-KEB?type=design&node-id=1%3A381&mode=design&t=rj6Nic9cJGOSccCH-1)에서 디자인을 확인하실 수 있습니다.
 
 ## Development
 
