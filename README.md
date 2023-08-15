@@ -90,7 +90,7 @@
 1. 그래프를 시각화하는 오픈소스 설치
 - brew install graphviz (예시 Homebrew)
 
-2 그래프 생성 Gradle Task 실행
+2. 그래프 생성 Gradle Task 실행
 ./gradlew projectDependencyGraph
 ```
 
