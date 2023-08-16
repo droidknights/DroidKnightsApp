@@ -24,8 +24,8 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 level = Level.ETC,
                 tags = emptyList(),
                 room = Room.ETC,
-                startTime = LocalDateTime(2023, 9, 12, 11, 0),
-                endTime = LocalDateTime(2023, 9, 12, 11, 15),
+                startTime = LocalDateTime(2023, 9, 12, 10, 45),
+                endTime = LocalDateTime(2023, 9, 12, 11, 0),
             )
             val actual = repository.getSessions()
             actual.first() shouldBe expected
