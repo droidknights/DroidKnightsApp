@@ -1,4 +1,4 @@
-![banner](https://github.com/droidknights/DroidKnights2023_App/assets/32327475/cc7820b4-7c9d-447d-967a-abfe33b63612)
+<img width="1512" alt="banner" src="https://github.com/droidknights/DroidKnights2023_App/assets/32327475/af43b370-3d00-43ab-b389-fa1ad364f5df">
 
 # DroidKnights2023 App
 
