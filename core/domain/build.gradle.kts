@@ -7,8 +7,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:data"))
-    implementation(project(":core:model"))
+    implementation(projects.core.data)
+    implementation(projects.core.model)
 
     implementation(libs.inject)
 }
