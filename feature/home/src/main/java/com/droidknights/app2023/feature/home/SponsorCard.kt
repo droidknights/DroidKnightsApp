@@ -1,6 +1,7 @@
 package com.droidknights.app2023.feature.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -74,6 +77,7 @@ private fun SponsorGroup(
 ) {
     val scrollState = rememberLazyListState()
     val lifecycleOwner = LocalLifecycleOwner.current
+    val uriHandler = LocalUriHandler.current
 
     LazyRow(
         state = scrollState,
@@ -87,7 +91,11 @@ private fun SponsorGroup(
             .fillMaxWidth(),
     ) {
         items(count = Int.MAX_VALUE) { index ->
-            SponsorLogo(sponsor = sponsors[index % sponsors.size])
+            val sponsor = sponsors[index % sponsors.size]
+            SponsorLogo(
+                sponsor = sponsor,
+                onClick = { uriHandler.openUri(sponsor.homepage) }
+            )
         }
     }
     LaunchedEffect(Unit) {
@@ -103,6 +111,7 @@ private fun SponsorGroup(
 @Composable
 private fun SponsorLogo(
     sponsor: Sponsor,
+    onClick: () -> Unit
 ) {
     val gradeIcon = when (sponsor.grade) {
         Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
@@ -115,6 +124,7 @@ private fun SponsorLogo(
             modifier = Modifier
                 .size(84.dp)
                 .clip(CircleShape)
+                .clickable { onClick() }
         )
         Image(
             painter = painterResource(id = gradeIcon),
