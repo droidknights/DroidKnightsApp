@@ -7,11 +7,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:home"))
-    implementation(project(":feature:setting"))
-    implementation(project(":feature:contributor"))
-    implementation(project(":feature:session"))
-    implementation(project(":feature:bookmark"))
+    implementation(projects.feature.home)
+    implementation(projects.feature.setting)
+    implementation(projects.feature.contributor)
+    implementation(projects.feature.session)
+    implementation(projects.feature.bookmark)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
