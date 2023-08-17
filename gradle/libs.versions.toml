@@ -34,6 +34,8 @@ turbine = "1.0.0"
 
 coroutine = "1.7.2"
 
+androidxDatastore = "1.0.0"
+
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -95,6 +97,8 @@ verify-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatt
 
 # plugin
 verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+
+androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 
 [bundles]
 
