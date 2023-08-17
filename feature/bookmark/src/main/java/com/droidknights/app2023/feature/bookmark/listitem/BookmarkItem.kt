@@ -24,7 +24,6 @@ import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.model.Room
 import java.time.LocalTime
 
-
 @Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
 @Composable
 private fun BookmarkItemPreview() {
