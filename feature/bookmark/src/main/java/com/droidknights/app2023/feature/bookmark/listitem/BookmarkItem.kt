@@ -2,6 +2,8 @@ package com.droidknights.app2023.feature.bookmark.listitem
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -122,7 +124,11 @@ internal fun BookmarkItem(
                 midContent()
             }
 
-            AnimatedVisibility(visible = isShowTrailingContent) {
+            AnimatedVisibility(
+                visible = isShowTrailingContent,
+                enter = slideInHorizontally { it },
+                exit = slideOutHorizontally { it }
+            ) {
                 trailingContent()
             }
         }
