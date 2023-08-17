@@ -62,7 +62,7 @@
 
 [Gradle Version Catalog](https://docs.gradle.org/current/userguide/platforms.html) 를 활용하여 종속성과 플러그인을 관리하고 있습니다.
 
-자세한 내용은 [libs.versions.toml](libs.versions.toml) 를 참고해 주세요.
+자세한 내용은 [libs.versions.toml](https://github.com/droidknights/DroidKnights2023_App/blob/main/gradle/libs.versions.toml) 를 참고해 주세요.
 
 ## Architecture
 
