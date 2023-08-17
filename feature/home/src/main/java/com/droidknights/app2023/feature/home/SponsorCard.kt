@@ -1,7 +1,6 @@
 package com.droidknights.app2023.feature.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,34 +8,26 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.repeatOnLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.theme.DuskGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.model.Sponsor
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-
-private const val SCROLL_DELAY_MILLIS = 20L
-private const val SCROLL_PIXEL_UNIT = 4f
 
 @Composable
 internal fun SponsorCard(uiState: SponsorsUiState) {
@@ -67,35 +58,56 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
     }
 }
 
-// TODO: 세로 두 줄 고정 필요
 @Composable
 private fun SponsorGroup(
     sponsors: List<Sponsor>,
 ) {
-    val scrollState = rememberLazyListState()
-    val lifecycleOwner = LocalLifecycleOwner.current
+    val platinumSponsors = sponsors.filter { it.grade == Sponsor.Grade.PLATINUM }
+    val goldSponsors = sponsors.filter { it.grade == Sponsor.Grade.GOLD }
 
-    LazyRow(
-        state = scrollState,
-        horizontalArrangement = Arrangement.spacedBy(
-            space = 14.dp,
-            alignment = Alignment.CenterHorizontally,
-        ),
-        userScrollEnabled = false,
+    Column(
         modifier = Modifier
+            .fillMaxWidth()
             .padding(vertical = 24.dp)
-            .fillMaxWidth(),
     ) {
-        items(count = Int.MAX_VALUE) { index ->
-            SponsorLogo(sponsor = sponsors[index % sponsors.size])
-        }
+        SponsorGroupRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 21.dp,
+                    end = 24.dp
+                ),
+            sponsors = platinumSponsors
+        )
+
+        SponsorGroupRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 69.dp,
+                    end = 24.dp
+                ),
+            sponsors = goldSponsors
+        )
     }
-    LaunchedEffect(Unit) {
-        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-            while (isActive) {
-                scrollState.scrollBy(SCROLL_PIXEL_UNIT)
-                delay(SCROLL_DELAY_MILLIS)
+}
+
+@Composable
+private fun SponsorGroupRow(
+    modifier: Modifier = Modifier,
+    sponsors: List<Sponsor>
+) {
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(space = 11.dp),
+    ) {
+        items(
+            items = sponsors,
+            key = { sponsor ->
+                sponsor.name
             }
+        ) { sponsor ->
+            SponsorLogo(sponsor = sponsor)
         }
     }
 }
@@ -108,11 +120,15 @@ private fun SponsorLogo(
         Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
         Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
     }
-    Box {
+    Box(modifier = Modifier.padding(start = 3.dp)) {
         NetworkImage(
             imageUrl = sponsor.imageUrl,
             placeholder = ColorPainter(PaleGray),
             modifier = Modifier
+                .shadow(
+                    elevation = 3.dp,
+                    shape = CircleShape
+                )
                 .size(84.dp)
                 .clip(CircleShape)
         )
