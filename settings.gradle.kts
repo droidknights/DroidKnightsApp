@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DroidKnights_2023"
+rootProject.name = "DroidKnights2023"
 include(
     ":app",
 
