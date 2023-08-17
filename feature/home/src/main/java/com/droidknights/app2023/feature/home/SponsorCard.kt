@@ -123,7 +123,7 @@ private fun SponsorLogo(
             modifier = Modifier
                 .size(84.dp)
                 .clip(CircleShape)
-                .clickable { onClick() }
+                .clickable(onClick = onClick)
         )
         Image(
             painter = painterResource(id = gradeIcon),
