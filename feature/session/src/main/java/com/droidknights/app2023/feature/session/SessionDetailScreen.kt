@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -29,8 +30,12 @@ import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
+import com.droidknights.app2023.core.model.Level
+import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
+import com.droidknights.app2023.core.model.Tag
+import kotlinx.datetime.LocalDateTime
 
 @Composable
 internal fun SessionDetailScreen(
@@ -66,6 +71,14 @@ private fun SessionDetailTopAppBar(
     )
 
     // TODO: 북마크 확인 및 변경 기능 추가
+}
+
+@Preview
+@Composable
+private fun SessionDetailTopAppBarPreview() {
+    KnightsTheme {
+        SessionDetailTopAppBar { }
+    }
 }
 
 @Composable
@@ -104,6 +117,14 @@ private fun SessionDetailContent(session: Session) {
     }
 }
 
+@Preview
+@Composable
+private fun SessionDetailContentPreview() {
+    KnightsTheme {
+        SessionDetailContent(session = SampleSession)
+    }
+}
+
 @Composable
 private fun SessionDetailTitle(
     title: String,
@@ -115,6 +136,14 @@ private fun SessionDetailTitle(
         style = KnightsTheme.typography.headlineMediumB,
         color = MaterialTheme.colorScheme.onSurface,
     )
+}
+
+@Preview
+@Composable
+private fun SessionDetailTitlePreview() {
+    KnightsTheme {
+        SessionDetailTitle(title = SampleSession.title)
+    }
 }
 
 @Composable
@@ -146,6 +175,14 @@ private fun SessionDetailSpeaker(
     }
 }
 
+@Preview
+@Composable
+private fun SessionDetailSpeakerPreview() {
+    KnightsTheme {
+        SessionDetailSpeaker(SampleSession.speakers)
+    }
+}
+
 @Composable
 private fun SessionOverview(content: String) {
     Text(
@@ -154,3 +191,26 @@ private fun SessionOverview(content: String) {
         color = MaterialTheme.colorScheme.onSurface
     )
 }
+
+@Preview
+@Composable
+private fun SessionOverviewPreview() {
+    KnightsTheme {
+        SessionOverview(SampleSession.content)
+    }
+}
+
+private val SampleSession = Session(
+    id = "2",
+    title = "세션 제목은 세션 제목",
+    content = "세션에 대한 소개와 세션에서의 장단점과 세션을 실제로 사용한 사례와 세션 내용에 대한 QnA 진행",
+    speakers = listOf(
+        Speaker(name = "스피커1", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
+        Speaker(name = "스피커2", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
+    ),
+    level = Level.ADVANCED,
+    tags = listOf(Tag("Dev Environment")),
+    room = Room.TRACK1,
+    startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
+    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
+)
