@@ -93,7 +93,13 @@ private fun SessionDetailContent(session: Session) {
         SessionDetailTitle(title = session.title, modifier = Modifier.padding(top = 8.dp))
         Spacer(modifier = Modifier.height(8.dp))
         SessionChips(session = session)
-        Spacer(modifier = Modifier.height(40.dp))
+        if (session.content.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(16.dp))
+            SessionOverview(content = session.content)
+            Spacer(modifier = Modifier.height(56.dp))
+        } else {
+            Spacer(modifier = Modifier.height(40.dp))
+        }
         SessionDetailSpeaker(session.speakers)
     }
 }
@@ -138,4 +144,13 @@ private fun SessionDetailSpeaker(
             placeholder = painterResource(id = com.droidknights.app2023.core.designsystem.R.drawable.placeholder_speaker)
         )
     }
+}
+
+@Composable
+private fun SessionOverview(content: String) {
+    Text(
+        text = content,
+        style = KnightsTheme.typography.titleSmallR140,
+        color = MaterialTheme.colorScheme.onSurface
+    )
 }
