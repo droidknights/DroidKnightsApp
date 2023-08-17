@@ -9,7 +9,6 @@ import androidx.compose.ui.text.TextStyle
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.feature.bookmark.R
 
-
 internal val Room.textRes: Int
     get() = when (this) {
         Room.ETC -> R.string.session_room_keynote

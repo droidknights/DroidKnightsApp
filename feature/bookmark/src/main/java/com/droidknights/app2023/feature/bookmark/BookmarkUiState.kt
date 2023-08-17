@@ -3,7 +3,6 @@ package com.droidknights.app2023.feature.bookmark
 import com.droidknights.app2023.core.model.Room
 import java.time.LocalTime
 
-
 sealed interface BookmarkUiState {
     object Loading : BookmarkUiState
 

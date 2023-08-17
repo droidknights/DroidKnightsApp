@@ -134,4 +134,3 @@ internal fun BookmarkItem(
         }
     }
 }
-

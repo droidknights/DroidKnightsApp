@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.toJavaLocalDateTime
 import javax.inject.Inject
 
-
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase,
@@ -59,7 +58,6 @@ class BookmarkViewModel @Inject constructor(
             )
         }
     }
-
 }
 
 private fun toBookmarkItemState(index: Int, session: Session, isEditMode: Boolean): BookmarkItemState {

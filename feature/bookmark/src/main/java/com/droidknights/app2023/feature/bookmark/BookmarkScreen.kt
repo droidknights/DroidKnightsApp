@@ -35,7 +35,6 @@ import com.droidknights.app2023.feature.bookmark.listitem.BookmarkCardItem
 import com.droidknights.app2023.feature.bookmark.listitem.BookmarkItem
 import com.droidknights.app2023.feature.bookmark.listitem.BookmarkTimelineItem
 
-
 @Composable
 internal fun BookmarkRoute(viewModel: BookmarkViewModel = hiltViewModel()) {
     val bookmarkUiState by viewModel.bookmarkUiState.collectAsStateWithLifecycle()

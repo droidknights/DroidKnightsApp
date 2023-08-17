@@ -25,7 +25,6 @@ import com.droidknights.app2023.core.designsystem.theme.White
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.feature.bookmark.text.RoomText
 
-
 @Preview
 @Composable
 private fun BookmarkCardPreview() {
@@ -90,7 +89,6 @@ internal fun BookmarkCardItem(
             )
         }
     )
-
 }
 
 @Composable
