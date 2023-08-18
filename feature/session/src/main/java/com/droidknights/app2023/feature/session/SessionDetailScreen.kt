@@ -73,14 +73,6 @@ private fun SessionDetailTopAppBar(
     // TODO: 북마크 확인 및 변경 기능 추가
 }
 
-@Preview
-@Composable
-private fun SessionDetailTopAppBarPreview() {
-    KnightsTheme {
-        SessionDetailTopAppBar { }
-    }
-}
-
 @Composable
 private fun SessionDetailContent(uiState: SessionDetailUiState) {
     when (uiState) {
@@ -117,14 +109,6 @@ private fun SessionDetailContent(session: Session) {
     }
 }
 
-@Preview
-@Composable
-private fun SessionDetailContentPreview() {
-    KnightsTheme {
-        SessionDetailContent(session = SampleSession)
-    }
-}
-
 @Composable
 private fun SessionDetailTitle(
     title: String,
@@ -136,14 +120,6 @@ private fun SessionDetailTitle(
         style = KnightsTheme.typography.headlineMediumB,
         color = MaterialTheme.colorScheme.onSurface,
     )
-}
-
-@Preview
-@Composable
-private fun SessionDetailTitlePreview() {
-    KnightsTheme {
-        SessionDetailTitle(title = SampleSession.title)
-    }
 }
 
 @Composable
@@ -175,14 +151,6 @@ private fun SessionDetailSpeaker(
     }
 }
 
-@Preview
-@Composable
-private fun SessionDetailSpeakerPreview() {
-    KnightsTheme {
-        SessionDetailSpeaker(SampleSession.speakers)
-    }
-}
-
 @Composable
 private fun SessionOverview(content: String) {
     Text(
@@ -190,14 +158,6 @@ private fun SessionOverview(content: String) {
         style = KnightsTheme.typography.titleSmallR140,
         color = MaterialTheme.colorScheme.onSurface
     )
-}
-
-@Preview
-@Composable
-private fun SessionOverviewPreview() {
-    KnightsTheme {
-        SessionOverview(SampleSession.content)
-    }
 }
 
 private val SampleSession = Session(
@@ -214,3 +174,43 @@ private val SampleSession = Session(
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
     endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
 )
+
+@Preview
+@Composable
+private fun SessionDetailTopAppBarPreview() {
+    KnightsTheme {
+        SessionDetailTopAppBar { }
+    }
+}
+
+@Preview
+@Composable
+private fun SessionDetailContentPreview() {
+    KnightsTheme {
+        SessionDetailContent(session = SampleSession)
+    }
+}
+
+@Preview
+@Composable
+private fun SessionDetailTitlePreview() {
+    KnightsTheme {
+        SessionDetailTitle(title = SampleSession.title)
+    }
+}
+
+@Preview
+@Composable
+private fun SessionDetailSpeakerPreview() {
+    KnightsTheme {
+        SessionDetailSpeaker(SampleSession.speakers)
+    }
+}
+
+@Preview
+@Composable
+private fun SessionOverviewPreview() {
+    KnightsTheme {
+        SessionOverview(SampleSession.content)
+    }
+}
