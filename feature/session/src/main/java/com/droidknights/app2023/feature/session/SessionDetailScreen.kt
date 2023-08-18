@@ -179,7 +179,7 @@ private val SampleSessionHasContent = Session(
 
 private val SampleSessionNoContent = Session(
     id = "2",
-    title = "세션 제목은 세션 제목 - 개요 있음",
+    title = "세션 제목은 세션 제목 - 개요 없음",
     content = "",
     speakers = listOf(
         Speaker(name = "스피커1", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
