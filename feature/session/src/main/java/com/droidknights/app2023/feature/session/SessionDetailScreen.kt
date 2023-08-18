@@ -22,6 +22,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -160,9 +162,9 @@ private fun SessionOverview(content: String) {
     )
 }
 
-private val SampleSession = Session(
+private val SampleSessionHasContent = Session(
     id = "2",
-    title = "세션 제목은 세션 제목",
+    title = "세션 제목은 세션 제목 - 개요 있음",
     content = "세션에 대한 소개와 세션에서의 장단점과 세션을 실제로 사용한 사례와 세션 내용에 대한 QnA 진행",
     speakers = listOf(
         Speaker(name = "스피커1", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
@@ -175,6 +177,28 @@ private val SampleSession = Session(
     endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
 )
 
+private val SampleSessionNoContent = Session(
+    id = "2",
+    title = "세션 제목은 세션 제목 - 개요 있음",
+    content = "",
+    speakers = listOf(
+        Speaker(name = "스피커1", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
+        Speaker(name = "스피커2", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
+    ),
+    level = Level.ADVANCED,
+    tags = listOf(Tag("Dev Environment")),
+    room = Room.TRACK1,
+    startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
+    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
+)
+
+class SessionDetailContentProvider: PreviewParameterProvider<Session> {
+    override val values: Sequence<Session> = sequenceOf(
+        SampleSessionNoContent,
+        SampleSessionHasContent
+    )
+}
+
 @Preview
 @Composable
 private fun SessionDetailTopAppBarPreview() {
@@ -185,9 +209,11 @@ private fun SessionDetailTopAppBarPreview() {
 
 @Preview
 @Composable
-private fun SessionDetailContentPreview() {
+private fun SessionDetailContentPreview(
+    @PreviewParameter(SessionDetailContentProvider::class) session: Session
+) {
     KnightsTheme {
-        SessionDetailContent(session = SampleSession)
+        SessionDetailContent(session = session)
     }
 }
 
@@ -195,7 +221,7 @@ private fun SessionDetailContentPreview() {
 @Composable
 private fun SessionDetailTitlePreview() {
     KnightsTheme {
-        SessionDetailTitle(title = SampleSession.title)
+        SessionDetailTitle(title = SampleSessionHasContent.title)
     }
 }
 
@@ -203,7 +229,7 @@ private fun SessionDetailTitlePreview() {
 @Composable
 private fun SessionDetailSpeakerPreview() {
     KnightsTheme {
-        SessionDetailSpeaker(SampleSession.speakers)
+        SessionDetailSpeaker(SampleSessionHasContent.speakers)
     }
 }
 
@@ -211,6 +237,6 @@ private fun SessionDetailSpeakerPreview() {
 @Composable
 private fun SessionOverviewPreview() {
     KnightsTheme {
-        SessionOverview(SampleSession.content)
+        SessionOverview(SampleSessionHasContent.content)
     }
 }
