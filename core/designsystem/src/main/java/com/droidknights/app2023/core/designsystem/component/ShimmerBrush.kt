@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun shimmerBrush(
     enabled: Boolean = true,
-    targetValue: Float = 2000f,
+    targetValue: Float = 2_000f,
     animationDuration: Int = 500,
     color: Color = MaterialTheme.colorScheme.outline
 ): Brush {

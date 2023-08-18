@@ -243,7 +243,7 @@ private fun ContributorShimmerItem(
         Row(
             modifier = Modifier.background(
                 shimmerBrush(
-                    targetValue = 2000f,
+                    targetValue = 2_000f,
                     animationDuration = 500,
                 )
             )
