@@ -1,6 +1,8 @@
 package com.droidknights.app2023.feature.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -97,6 +101,8 @@ private fun SponsorGroupRow(
     modifier: Modifier = Modifier,
     sponsors: List<Sponsor>
 ) {
+    val uriHandler = LocalUriHandler.current
+
     LazyRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(space = 11.dp),
@@ -107,7 +113,10 @@ private fun SponsorGroupRow(
                 sponsor.name
             }
         ) { sponsor ->
-            SponsorLogo(sponsor = sponsor)
+            SponsorLogo(
+                sponsor = sponsor,
+                onClick = { uriHandler.openUri(sponsor.homepage) }
+            )
         }
     }
 }
@@ -115,6 +124,7 @@ private fun SponsorGroupRow(
 @Composable
 private fun SponsorLogo(
     sponsor: Sponsor,
+    onClick: () -> Unit
 ) {
     val gradeIcon = when (sponsor.grade) {
         Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
@@ -131,6 +141,7 @@ private fun SponsorLogo(
                 )
                 .size(84.dp)
                 .clip(CircleShape)
+                .clickable(onClick = onClick)
         )
         Image(
             painter = painterResource(id = gradeIcon),
