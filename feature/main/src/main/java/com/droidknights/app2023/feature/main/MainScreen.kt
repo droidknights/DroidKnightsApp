@@ -41,7 +41,10 @@ import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
 import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
 
 @Composable
-internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
+internal fun MainScreen(
+    navigator: MainNavigator = rememberMainNavigator(),
+    onChangeDarkTheme: (Boolean) -> Unit
+) {
     Scaffold(
         content = { padding ->
             Box(
@@ -60,6 +63,7 @@ internal fun MainScreen(navigator: MainNavigator = rememberMainNavigator()) {
                     )
                     settingNavGraph(
                         padding = padding,
+                        onChangeDarkTheme = onChangeDarkTheme
                     )
 
                     bookmarkNavGraph()
