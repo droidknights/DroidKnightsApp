@@ -311,3 +311,12 @@ private fun ContributorScreenPreview() {
         onBackClick = {},
     )
 }
+
+@Preview
+@Composable
+private fun ContributorScreenLoadingPreview() {
+    ContributorScreen(
+        uiState = ContributorsUiState.Loading,
+        onBackClick = {},
+    )
+}
