@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -16,7 +17,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -212,6 +215,66 @@ private fun ContributorItem(
                     .size(100.dp)
                     .clip(CircleShape)
             )
+        }
+    }
+}
+
+@Composable
+private fun ContributorShimmer(
+    itemCount: Int = 4,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        repeat(itemCount) {
+            ContributorShimmerItem(
+                modifier = Modifier.padding(horizontal = 8.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun ContributorShimmerItem(
+    modifier: Modifier = Modifier
+) {
+    KnightsCard(modifier = modifier) {
+        Row {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(
+                        top = 16.dp,
+                        bottom = 16.dp,
+                        start = 24.dp,
+                        end = 16.dp
+                    )
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(10.dp),
+                    color = MaterialTheme.colorScheme.outline,
+                    modifier = Modifier
+                        .height(20.dp)
+                        .fillMaxWidth()
+                ) {}
+                Surface(
+                    shape = RoundedCornerShape(4.dp),
+                    color = MaterialTheme.colorScheme.outline,
+                    modifier = Modifier
+                        .padding(top = 12.dp)
+                        .height(32.dp)
+                        .fillMaxWidth()
+                ) {}
+            }
+            Surface(
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.outline,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(100.dp)
+            ) {}
         }
     }
 }
