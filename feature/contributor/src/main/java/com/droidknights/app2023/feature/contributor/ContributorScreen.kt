@@ -73,19 +73,12 @@ internal fun ContributorScreen(
     Box(
         modifier = modifier.navigationBarsPadding(),
     ) {
-        when (uiState) {
-            ContributorsUiState.Loading -> ContributorList(
-                lazyListState = lazyListState,
-                contributors = emptyList(),
-            )
-            is ContributorsUiState.Contributors ->
-                ContributorList(
-                    lazyListState = lazyListState,
-                    contributors = uiState.contributors,
-                )
-        }
-        ContributorTopAppBar(lazyListState, onBackClick)
+        ContributorList(
+            uiState = uiState,
+            lazyListState = lazyListState
+        )
     }
+    ContributorTopAppBar(lazyListState, onBackClick)
 }
 
 @Composable
@@ -149,8 +142,8 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
 
 @Composable
 private fun ContributorList(
+    uiState: ContributorsUiState,
     lazyListState: LazyListState,
-    contributors: List<Contributor>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -161,12 +154,17 @@ private fun ContributorList(
         item {
             TopBanner()
         }
-        items(contributors.size) { index ->
-            val contributor = contributors[index]
-            ContributorItem(
-                contributor = contributor,
-                modifier = Modifier.padding(horizontal = 8.dp),
-            )
+        when (uiState) {
+            ContributorsUiState.Loading -> item { ContributorShimmer() }
+            is ContributorsUiState.Contributors -> {
+                val contributors = uiState.contributors
+                items(contributors.size) { index ->
+                    ContributorItem(
+                        contributor = contributors[index],
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                    )
+                }
+            }
         }
         item {
             Footer(modifier = Modifier.padding(bottom = 16.dp))
