@@ -7,5 +7,7 @@ android {
 }
 
 dependencies {
+    api(libs.junit4)
+    api(libs.kotlin.test)
     implementation(libs.androidx.datastore)
 }
