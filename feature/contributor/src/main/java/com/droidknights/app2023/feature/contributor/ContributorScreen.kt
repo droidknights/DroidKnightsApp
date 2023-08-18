@@ -39,6 +39,7 @@ import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TextChip
+import com.droidknights.app2023.core.designsystem.component.shimmerBrush
 import com.droidknights.app2023.core.designsystem.res.rememberPainterResource
 import com.droidknights.app2023.core.designsystem.theme.Black
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
@@ -239,7 +240,14 @@ private fun ContributorShimmerItem(
     modifier: Modifier = Modifier
 ) {
     KnightsCard(modifier = modifier) {
-        Row {
+        Row(
+            modifier = Modifier.background(
+                shimmerBrush(
+                    targetValue = 2000f,
+                    animationDuration = 500,
+                )
+            )
+        ) {
             Column(
                 modifier = Modifier
                     .weight(1f)
