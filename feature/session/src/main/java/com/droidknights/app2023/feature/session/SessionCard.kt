@@ -44,20 +44,20 @@ internal fun SessionCard(
         KnightsCard(
             modifier = modifier
         ) {
-            KnightsCardContent(session = session)
+            SessionCardContent(session = session)
         }
     } else {
         KnightsCard(
             modifier = modifier,
             onClick = { onSessionClick(session) }
         ) {
-            KnightsCardContent(session = session)
+            SessionCardContent(session = session)
         }
     }
 }
 
 @Composable
-private fun KnightsCardContent(
+private fun SessionCardContent(
     session: Session,
 ) {
     Column(
