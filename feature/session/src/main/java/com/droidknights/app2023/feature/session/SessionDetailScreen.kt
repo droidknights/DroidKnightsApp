@@ -131,7 +131,7 @@ private fun SessionDetailSpeaker(
         }
         Spacer(Modifier.height(8.dp))
         NetworkImage(
-            imageUrl = speakers.first().imageUrl,
+            imageUrl = speakers.firstOrNull()?.imageUrl ?: "",
             modifier = Modifier
                 .size(108.dp)
                 .clip(CircleShape),
