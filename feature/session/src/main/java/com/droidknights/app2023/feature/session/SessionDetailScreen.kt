@@ -192,7 +192,7 @@ private val SampleSessionNoContent = Session(
     endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
 )
 
-class SessionDetailContentProvider: PreviewParameterProvider<Session> {
+class SessionDetailContentProvider : PreviewParameterProvider<Session> {
     override val values: Sequence<Session> = sequenceOf(
         SampleSessionNoContent,
         SampleSessionHasContent
