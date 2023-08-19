@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -45,12 +47,14 @@ internal fun SessionDetailScreen(
     onBackClick: () -> Unit,
     viewModel: SessionDetailViewModel = hiltViewModel(),
 ) {
+    val scrollState = rememberScrollState()
     val sessionUiState by viewModel.sessionUiState.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surfaceDim)
-            .systemBarsPadding(),
+            .systemBarsPadding()
+            .verticalScroll(scrollState),
     ) {
         SessionDetailTopAppBar(onBackClick = onBackClick)
         SessionDetailContent(uiState = sessionUiState)
