@@ -46,6 +46,9 @@ import com.droidknights.app2023.core.designsystem.theme.Neon05
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Contributor
 import com.valentinilk.shimmer.shimmer
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun ContributorRoute(
