@@ -27,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -101,7 +102,7 @@ private fun SessionTabRow(
     modifier: Modifier = Modifier,
 ) {
     val density = LocalDensity.current
-    val tabWidths = remember {
+    val tabWidths = remember<SnapshotStateList<Dp>> {
         mutableStateListOf<Dp>().apply { addAll(rooms.map { 0.dp }) }
     }
     val selectedTabIndex = rooms.indexOf(selectedRoom)
