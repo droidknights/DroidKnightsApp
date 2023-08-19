@@ -43,6 +43,8 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.ui.RoomText
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 
 @Composable
@@ -65,7 +67,7 @@ internal fun SessionTopAppBar(
             ) {
                 SessionTabRow(
                     selectedRoom = sessionState.selectedRoom,
-                    rooms = rooms,
+                    rooms = rooms.toPersistentList(),
                     onRoomSelect = { room ->
                         coroutineScope.launch {
                             sessionState.scrollTo(room)
@@ -94,7 +96,7 @@ internal fun SessionTopAppBar(
 @Composable
 private fun SessionTabRow(
     selectedRoom: Room?,
-    rooms: List<Room>,
+    rooms: PersistentList<Room>,
     onRoomSelect: (Room) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -188,7 +190,7 @@ private fun SessionTabIndicatorPreview() {
     KnightsTheme {
         SessionTabRow(
             selectedRoom = Room.TRACK2,
-            rooms = Room.values().toList(),
+            rooms = Room.values().toList().toPersistentList(),
             onRoomSelect = { },
             modifier = Modifier.size(320.dp, 48.dp),
         )

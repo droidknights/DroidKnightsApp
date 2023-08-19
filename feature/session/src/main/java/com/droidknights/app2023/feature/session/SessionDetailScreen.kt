@@ -39,6 +39,8 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -104,6 +106,7 @@ private fun SessionDetailContent(session: Session) {
         SessionDetailTitle(title = session.title, modifier = Modifier.padding(top = 8.dp))
         Spacer(modifier = Modifier.height(8.dp))
         SessionChips(session = session)
+            SessionOverview(content = session.content)
         if (session.content.isNotEmpty()) {
             Spacer(modifier = Modifier.height(16.dp))
             SessionOverview(content = session.content)
@@ -111,7 +114,7 @@ private fun SessionDetailContent(session: Session) {
         } else {
             Spacer(modifier = Modifier.height(40.dp))
         }
-        SessionDetailSpeaker(session.speakers)
+        SessionDetailSpeaker(session.speakers.toPersistentList())
     }
 }
 
@@ -130,7 +133,7 @@ private fun SessionDetailTitle(
 
 @Composable
 private fun SessionDetailSpeaker(
-    speakers: List<Speaker>,
+    speakers: PersistentList<Speaker>,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
