@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,7 +18,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -39,7 +37,6 @@ import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
 import com.droidknights.app2023.core.designsystem.component.TextChip
-import com.droidknights.app2023.core.designsystem.component.shimmerBrush
 import com.droidknights.app2023.core.designsystem.res.rememberPainterResource
 import com.droidknights.app2023.core.designsystem.theme.Black
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
@@ -48,6 +45,7 @@ import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.Neon05
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Contributor
+import com.valentinilk.shimmer.shimmer
 
 @Composable
 fun ContributorRoute(
@@ -156,7 +154,15 @@ private fun ContributorList(
             TopBanner()
         }
         when (uiState) {
-            ContributorsUiState.Loading -> item { ContributorShimmer() }
+            ContributorsUiState.Loading -> {
+                items(SHIMMERING_ITEM_COUNT) {
+                    ContributorItem(
+                        contributor = null,
+                        Modifier.padding(horizontal = 8.dp)
+                    )
+                }
+            }
+
             is ContributorsUiState.Contributors -> {
                 val contributors = uiState.contributors
                 items(contributors.size) { index ->
@@ -175,9 +181,18 @@ private fun ContributorList(
 
 @Composable
 private fun ContributorItem(
-    contributor: Contributor,
+    contributor: Contributor?,
     modifier: Modifier = Modifier,
 ) {
+    val shimmerModifier =
+        if (contributor == null) {
+            Modifier
+                .clip(RoundedCornerShape(10.dp))
+                .shimmer()
+                .background(color = MaterialTheme.colorScheme.outline)
+        } else {
+            Modifier
+        }
     val placeholder = rememberPainterResource(
         lightId = R.drawable.ic_contributor_placeholder_lightmode,
         darkId = R.drawable.ic_contributor_placeholder_darkmode,
@@ -198,89 +213,26 @@ private fun ContributorItem(
                     stringResource(id = R.string.contributor_chip),
                     containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                     labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                    modifier = shimmerModifier
                 )
                 Text(
-                    text = contributor.name,
+                    text = contributor?.name ?: " ".repeat(20),
                     style = KnightsTheme.typography.headlineSmallBL,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.padding(top = 12.dp)
+                    modifier = Modifier
+                        .padding(top = 12.dp)
+                        .then(shimmerModifier)
                 )
             }
             NetworkImage(
-                imageUrl = contributor.imageUrl,
+                imageUrl = contributor?.imageUrl,
                 placeholder = placeholder,
                 modifier = Modifier
                     .padding(16.dp)
                     .size(100.dp)
                     .clip(CircleShape)
+                    .then(shimmerModifier)
             )
-        }
-    }
-}
-
-@Composable
-private fun ContributorShimmer(
-    itemCount: Int = 4,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        repeat(itemCount) {
-            ContributorShimmerItem(
-                modifier = Modifier.padding(horizontal = 8.dp),
-            )
-        }
-    }
-}
-
-@Composable
-private fun ContributorShimmerItem(
-    modifier: Modifier = Modifier
-) {
-    KnightsCard(modifier = modifier) {
-        Row(
-            modifier = Modifier.background(
-                shimmerBrush(
-                    targetValue = 2_000f,
-                    animationDuration = 500,
-                )
-            )
-        ) {
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(
-                        top = 16.dp,
-                        bottom = 16.dp,
-                        start = 24.dp,
-                        end = 16.dp
-                    )
-            ) {
-                Surface(
-                    shape = RoundedCornerShape(10.dp),
-                    color = MaterialTheme.colorScheme.outline,
-                    modifier = Modifier
-                        .height(20.dp)
-                        .fillMaxWidth()
-                ) {}
-                Surface(
-                    shape = RoundedCornerShape(4.dp),
-                    color = MaterialTheme.colorScheme.outline,
-                    modifier = Modifier
-                        .padding(top = 12.dp)
-                        .height(32.dp)
-                        .fillMaxWidth()
-                ) {}
-            }
-            Surface(
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.outline,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .size(100.dp)
-            ) {}
         }
     }
 }
@@ -291,6 +243,8 @@ private fun Footer(modifier: Modifier = Modifier) {
         BottomLogo()
     }
 }
+
+private const val SHIMMERING_ITEM_COUNT = 4
 
 @Preview
 @Composable
