@@ -106,7 +106,7 @@ private fun SessionDetailContent(session: Session) {
         SessionDetailTitle(title = session.title, modifier = Modifier.padding(top = 8.dp))
         Spacer(modifier = Modifier.height(8.dp))
         SessionChips(session = session)
-            SessionOverview(content = session.content)
+        SessionOverview(content = session.content)
         if (session.content.isNotEmpty()) {
             Spacer(modifier = Modifier.height(16.dp))
             SessionOverview(content = session.content)
@@ -236,7 +236,7 @@ private fun SessionDetailTitlePreview() {
 @Composable
 private fun SessionDetailSpeakerPreview() {
     KnightsTheme {
-        SessionDetailSpeaker(SampleSessionHasContent.speakers)
+        SessionDetailSpeaker(SampleSessionHasContent.speakers.toPersistentList())
     }
 }
 
