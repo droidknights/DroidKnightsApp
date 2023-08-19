@@ -11,15 +11,25 @@ import org.junit.rules.TemporaryFolder
 
 internal class SettingsPreferencesDataSourceTest : StringSpec() {
 
+    private lateinit var testDispatcher: TestDispatcher
+    private lateinit var tempFolder: TemporaryFolder
+    private lateinit var dataSource: SettingsPreferencesDataSource
+
     init {
-        val testDispatcher = StandardTestDispatcher()
-        val tempFolder = TemporaryFolder.builder().assureDeletion().build()
-        val dataSource = SettingsPreferencesDataSource(
-            PreferenceDataStoreFactory.create(
-                scope = CoroutineScope(testDispatcher),
-                produceFile = { tempFolder.newFile("SETTINGS_PREFERENCES_TEST") }
+        beforeSpec {
+            testDispatcher = StandardTestDispatcher()
+            tempFolder = TemporaryFolder.builder().assureDeletion().build()
+            dataSource = SettingsPreferencesDataSource(
+                PreferenceDataStoreFactory.create(
+                    scope = CoroutineScope(testDispatcher),
+                    produceFile = { tempFolder.newFile("SETTINGS_PREFERENCES_TEST") }
+                )
             )
-        )
+        }
+
+        afterSpec {
+            tempFolder.delete()
+        }
 
         "isDarkTheme 초기상태 테스트".config(true) {
             CoroutineScope(testDispatcher).launch {
