@@ -52,7 +52,7 @@ internal fun SettingScreen(
     ) {
         OpenSourceCard(
             context = LocalContext.current,
-            navigationProvider = viewModel.navigationProvider
+            settingViewModel = viewModel,
         )
         LightDarkThemeCard(
             onChangeDarkTheme = onChangeDarkTheme

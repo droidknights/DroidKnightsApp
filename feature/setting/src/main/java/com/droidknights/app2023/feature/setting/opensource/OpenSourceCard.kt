@@ -20,13 +20,14 @@ import com.droidknights.app2023.core.designsystem.theme.Graphite
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.navigation.NavigationProvider
 import com.droidknights.app2023.feature.setting.R
+import com.droidknights.app2023.feature.setting.SettingViewModel
 
 
 @Composable
 internal fun OpenSourceCard(
     modifier: Modifier = Modifier,
     context: Context,
-    navigationProvider: NavigationProvider
+    settingViewModel: SettingViewModel
 ) {
     val titleText = stringResource(id = R.string.oss_license_title)
     val descriptionText = stringResource(id = R.string.oss_license_description)
@@ -38,7 +39,7 @@ internal fun OpenSourceCard(
             .padding(top = 8.dp)
             .padding(horizontal = 8.dp)
             .clickable {
-                context.startActivity(navigationProvider.toLicense())
+                context.startActivity(settingViewModel.moveToLicense())
             },
     ) {
         Column {

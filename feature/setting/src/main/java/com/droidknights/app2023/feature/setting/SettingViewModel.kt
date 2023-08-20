@@ -7,5 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    val navigationProvider: NavigationProvider
-) : ViewModel() {}
+    private val navigationProvider: NavigationProvider
+) : ViewModel() {
+    fun moveToLicense() = navigationProvider.toLicense()
+}
