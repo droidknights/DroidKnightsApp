@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -75,25 +76,20 @@ private fun SponsorGroup(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 24.dp)
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         SponsorGroupRow(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    start = 21.dp,
-                    end = 24.dp
-                ),
+                .wrapContentWidth()
+                .padding(end = 36.dp),
             sponsors = platinumSponsorsState
         )
 
         SponsorGroupRow(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    start = 69.dp,
-                    end = 24.dp
-                ),
+                .wrapContentWidth()
+                .padding(start = 36.dp),
             sponsors = goldSponsorsState
         )
     }
@@ -108,7 +104,8 @@ private fun SponsorGroupRow(
 
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(space = 11.dp),
+        horizontalArrangement = Arrangement.spacedBy(space = 8.dp),
+        userScrollEnabled = false
     ) {
         items(
             items = sponsors,
@@ -133,7 +130,7 @@ private fun SponsorLogo(
         Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
         Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
     }
-    Box(modifier = Modifier.padding(start = 3.dp)) {
+    Box(modifier = Modifier.padding(3.dp)) {
         NetworkImage(
             imageUrl = sponsor.imageUrl,
             placeholder = ColorPainter(PaleGray),
@@ -171,9 +168,21 @@ private fun SponsorCardPreview() {
                 Sponsor(
                     name = "Sponsor2",
                     homepage = "https://www.instagram.com/droid_knights",
+                    grade = Sponsor.Grade.GOLD,
+                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
+                ),
+                Sponsor(
+                    name = "Sponsor3",
+                    homepage = "https://www.instagram.com/droid_knights",
                     grade = Sponsor.Grade.PLATINUM,
                     imageUrl = "https://avatars.githubusercontent.com/u/25101514",
                 ),
+                Sponsor(
+                    name = "Sponsor4",
+                    homepage = "https://www.instagram.com/droid_knights",
+                    grade = Sponsor.Grade.PLATINUM,
+                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
+                )
             ).let(::SponsorsUiState)
         )
     }
