@@ -31,7 +31,7 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.designsystem.theme.Purple01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
-import com.droidknights.app2023.feature.bookmark.listitem.BookmarkCardItem
+import com.droidknights.app2023.feature.bookmark.listitem.BookmarkCard
 import com.droidknights.app2023.feature.bookmark.listitem.BookmarkItem
 import com.droidknights.app2023.feature.bookmark.listitem.BookmarkTimelineItem
 
@@ -110,7 +110,7 @@ private fun BookmarkScreen(
                         )
                     },
                     midContent = @Composable {
-                        BookmarkCardItem(
+                        BookmarkCard(
                             tagLabel = itemState.tagLabel,
                             room = itemState.room,
                             title = itemState.title,

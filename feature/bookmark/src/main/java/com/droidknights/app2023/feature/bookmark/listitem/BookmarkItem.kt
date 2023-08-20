@@ -101,7 +101,7 @@ private fun BookmarkItemPreview() {
                     )
                 },
                 midContent = @Composable {
-                    BookmarkCardItem(
+                    BookmarkCard(
                         tagLabel = "효율적인 코드 베이스",
                         room = Room.TRACK2,
                         title = "Jetpack Compose에 있는 것, 없는것",
@@ -120,7 +120,7 @@ private fun BookmarkItemPreview() {
                     )
                 },
                 midContent = @Composable {
-                    BookmarkCardItem(
+                    BookmarkCard(
                         tagLabel = "효율적인 코드 베이스",
                         room = Room.TRACK2,
                         title = "Jetpack Compose에 있는 것, 없는것",
