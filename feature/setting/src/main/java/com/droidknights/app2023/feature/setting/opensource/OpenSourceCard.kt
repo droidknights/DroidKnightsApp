@@ -18,7 +18,6 @@ import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.DuskGray
 import com.droidknights.app2023.core.designsystem.theme.Graphite
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
-import com.droidknights.app2023.core.navigation.NavigationProvider
 import com.droidknights.app2023.feature.setting.R
 import com.droidknights.app2023.feature.setting.SettingViewModel
 
