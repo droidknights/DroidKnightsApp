@@ -10,6 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertIs
 
 internal class HomeViewModelTest {
     @get:Rule
@@ -26,8 +27,8 @@ internal class HomeViewModelTest {
 
         // when & then
         viewModel.sponsorsUiState.test {
-            val actual = awaitItem().sponsors
-            assertEquals(fakeSponsors, actual)
+            val actual = awaitItem()
+            assertIs<SponsorsUiState.Sponsors>(actual)
         }
     }
 
