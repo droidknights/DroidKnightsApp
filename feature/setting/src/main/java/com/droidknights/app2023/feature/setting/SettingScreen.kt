@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -36,10 +38,12 @@ internal fun SettingScreen(
     padding: PaddingValues,
     onChangeDarkTheme: (Boolean) -> Unit
 ) {
+    val scrollState = rememberScrollState()
     Column(
         Modifier
             .padding(padding)
-            .padding(8.dp),
+            .padding(8.dp)
+            .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         LightDarkThemeCard(

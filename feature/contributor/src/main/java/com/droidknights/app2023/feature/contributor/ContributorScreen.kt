@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,6 +45,7 @@ import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.Neon05
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Contributor
+import com.valentinilk.shimmer.shimmer
 
 @Composable
 fun ContributorRoute(
@@ -70,19 +72,12 @@ internal fun ContributorScreen(
     Box(
         modifier = modifier.navigationBarsPadding(),
     ) {
-        when (uiState) {
-            ContributorsUiState.Loading -> ContributorList(
-                lazyListState = lazyListState,
-                contributors = emptyList(),
-            )
-            is ContributorsUiState.Contributors ->
-                ContributorList(
-                    lazyListState = lazyListState,
-                    contributors = uiState.contributors,
-                )
-        }
-        ContributorTopAppBar(lazyListState, onBackClick)
+        ContributorList(
+            uiState = uiState,
+            lazyListState = lazyListState
+        )
     }
+    ContributorTopAppBar(lazyListState, onBackClick)
 }
 
 @Composable
@@ -146,8 +141,8 @@ private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
 
 @Composable
 private fun ContributorList(
+    uiState: ContributorsUiState,
     lazyListState: LazyListState,
-    contributors: List<Contributor>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -158,12 +153,25 @@ private fun ContributorList(
         item {
             TopBanner()
         }
-        items(contributors.size) { index ->
-            val contributor = contributors[index]
-            ContributorItem(
-                contributor = contributor,
-                modifier = Modifier.padding(horizontal = 8.dp),
-            )
+        when (uiState) {
+            ContributorsUiState.Loading -> {
+                items(SHIMMERING_ITEM_COUNT) {
+                    ContributorItem(
+                        contributor = null,
+                        Modifier.padding(horizontal = 8.dp)
+                    )
+                }
+            }
+
+            is ContributorsUiState.Contributors -> {
+                val contributors = uiState.contributors
+                items(contributors.size) { index ->
+                    ContributorItem(
+                        contributor = contributors[index],
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                    )
+                }
+            }
         }
         item {
             Footer(modifier = Modifier.padding(bottom = 16.dp))
@@ -173,9 +181,18 @@ private fun ContributorList(
 
 @Composable
 private fun ContributorItem(
-    contributor: Contributor,
+    contributor: Contributor?,
     modifier: Modifier = Modifier,
 ) {
+    val shimmerModifier =
+        if (contributor == null) {
+            Modifier
+                .clip(RoundedCornerShape(10.dp))
+                .shimmer()
+                .background(color = MaterialTheme.colorScheme.outline)
+        } else {
+            Modifier
+        }
     val placeholder = rememberPainterResource(
         lightId = R.drawable.ic_contributor_placeholder_lightmode,
         darkId = R.drawable.ic_contributor_placeholder_darkmode,
@@ -196,21 +213,25 @@ private fun ContributorItem(
                     stringResource(id = R.string.contributor_chip),
                     containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                     labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                    modifier = shimmerModifier
                 )
                 Text(
-                    text = contributor.name,
+                    text = contributor?.name ?: " ".repeat(20),
                     style = KnightsTheme.typography.headlineSmallBL,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.padding(top = 12.dp)
+                    modifier = Modifier
+                        .padding(top = 12.dp)
+                        .then(shimmerModifier)
                 )
             }
             NetworkImage(
-                imageUrl = contributor.imageUrl,
+                imageUrl = contributor?.imageUrl,
                 placeholder = placeholder,
                 modifier = Modifier
                     .padding(16.dp)
                     .size(100.dp)
                     .clip(CircleShape)
+                    .then(shimmerModifier)
             )
         }
     }
@@ -222,6 +243,8 @@ private fun Footer(modifier: Modifier = Modifier) {
         BottomLogo()
     }
 }
+
+private const val SHIMMERING_ITEM_COUNT = 4
 
 @Preview
 @Composable
@@ -239,6 +262,15 @@ private fun ContributorScreenPreview() {
                 ),
             )
         ),
+        onBackClick = {},
+    )
+}
+
+@Preview
+@Composable
+private fun ContributorScreenLoadingPreview() {
+    ContributorScreen(
+        uiState = ContributorsUiState.Loading,
         onBackClick = {},
     )
 }
