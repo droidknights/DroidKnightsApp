@@ -2,7 +2,6 @@ package com.droidknights.app2023.feature.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,12 +14,13 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -69,6 +69,9 @@ private fun SponsorGroup(
     val platinumSponsors = sponsors.filter { it.grade == Sponsor.Grade.PLATINUM }
     val goldSponsors = sponsors.filter { it.grade == Sponsor.Grade.GOLD }
 
+    val platinumSponsorsState by rememberUpdatedState(platinumSponsors)
+    val goldSponsorsState by rememberUpdatedState(goldSponsors)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -81,7 +84,7 @@ private fun SponsorGroup(
                     start = 21.dp,
                     end = 24.dp
                 ),
-            sponsors = platinumSponsors
+            sponsors = platinumSponsorsState
         )
 
         SponsorGroupRow(
@@ -91,7 +94,7 @@ private fun SponsorGroup(
                     start = 69.dp,
                     end = 24.dp
                 ),
-            sponsors = goldSponsors
+            sponsors = goldSponsorsState
         )
     }
 }
