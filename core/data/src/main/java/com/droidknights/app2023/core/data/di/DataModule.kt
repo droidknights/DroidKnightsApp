@@ -6,8 +6,10 @@ import com.droidknights.app2023.core.data.api.fake.AssetsGithubRawApi
 import com.droidknights.app2023.core.data.repository.ContributorRepository
 import com.droidknights.app2023.core.data.repository.DefaultContributorRepository
 import com.droidknights.app2023.core.data.repository.DefaultSessionRepository
+import com.droidknights.app2023.core.data.repository.DefaultSettingsRepository
 import com.droidknights.app2023.core.data.repository.DefaultSponsorRepository
 import com.droidknights.app2023.core.data.repository.SessionRepository
+import com.droidknights.app2023.core.data.repository.SettingsRepository
 import com.droidknights.app2023.core.data.repository.SponsorRepository
 import dagger.Binds
 import dagger.Module
@@ -25,6 +27,11 @@ internal abstract class DataModule {
     abstract fun bindsContributorRepository(
         repository: DefaultContributorRepository,
     ): ContributorRepository
+
+    @Binds
+    abstract fun bindsSettingsRepository(
+        repository: DefaultSettingsRepository,
+    ): SettingsRepository
 
     @InstallIn(SingletonComponent::class)
     @Module

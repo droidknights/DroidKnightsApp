@@ -13,9 +13,10 @@ fun NavController.navigateSetting(navOptions: NavOptions) {
 
 fun NavGraphBuilder.settingNavGraph(
     padding: PaddingValues,
+    onChangeDarkTheme: (Boolean) -> Unit
 ) {
     composable(route = SettingRoute.route) {
-        SettingScreen(padding)
+        SettingScreen(padding, onChangeDarkTheme)
     }
 }
 

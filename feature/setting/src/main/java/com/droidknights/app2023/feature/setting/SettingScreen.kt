@@ -2,7 +2,6 @@ package com.droidknights.app2023.feature.setting
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,7 +34,10 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
 
 @Composable
-internal fun SettingScreen(padding: PaddingValues) {
+internal fun SettingScreen(
+    padding: PaddingValues,
+    onChangeDarkTheme: (Boolean) -> Unit
+) {
     val scrollState = rememberScrollState()
     Column(
         Modifier
@@ -44,21 +46,17 @@ internal fun SettingScreen(padding: PaddingValues) {
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        LightDarkThemeCard()
+        LightDarkThemeCard(
+            onChangeDarkTheme = onChangeDarkTheme
+        )
     }
 }
 
 @Composable
-private fun LightDarkThemeCard(darkTheme: Boolean = LocalDarkTheme.current) {
-    val changeDarkTheme: (Boolean) -> Unit = {
-        val mode = if (it) {
-            AppCompatDelegate.MODE_NIGHT_YES
-        } else {
-            AppCompatDelegate.MODE_NIGHT_NO
-        }
-        AppCompatDelegate.setDefaultNightMode(mode)
-    }
-
+private fun LightDarkThemeCard(
+    onChangeDarkTheme: (Boolean) -> Unit,
+    darkTheme: Boolean = LocalDarkTheme.current
+) {
     CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onPrimaryContainer) {
         KnightsCard {
             Column {
@@ -80,14 +78,14 @@ private fun LightDarkThemeCard(darkTheme: Boolean = LocalDarkTheme.current) {
                         selected = !darkTheme,
                         titleRes = R.string.light_mode,
                         imageRes = R.drawable.img_light_mode,
-                        onClick = { changeDarkTheme(false) },
+                        onClick = { onChangeDarkTheme(false) },
                         modifier = cardModifier,
                     )
                     ThemeCard(
                         selected = darkTheme,
                         titleRes = R.string.dark_mode,
                         imageRes = R.drawable.img_dark_mode,
-                        onClick = { changeDarkTheme(true) },
+                        onClick = { onChangeDarkTheme(true) },
                         modifier = cardModifier,
                     )
                 }
@@ -140,6 +138,6 @@ private fun ThemeCard(
 @Composable
 private fun SettingScreenPreview() {
     KnightsTheme {
-        SettingScreen(PaddingValues(0.dp))
+        SettingScreen(PaddingValues(0.dp)) { }
     }
 }
