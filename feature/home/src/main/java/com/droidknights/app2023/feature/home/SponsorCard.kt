@@ -30,6 +30,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
@@ -268,33 +269,13 @@ private fun SponsorLogoSkeleton(
 
 @Preview
 @Composable
-private fun SponsorCardPreview() {
+private fun SponsorCardPreview(
+    @PreviewParameter(SponsorsUiStatePreviewParameterProvider::class)
+    sponsorsUiState: SponsorsUiState,
+) {
     KnightsTheme {
         SponsorCard(
-            uiState = SponsorsUiState.Sponsors(
-                sponsors = listOf(
-                    Sponsor(
-                        name = "Sponsor1",
-                        homepage = "https://www.instagram.com/droid_knights",
-                        grade = Sponsor.Grade.GOLD,
-                        imageUrl = "https://avatars.githubusercontent.com/u/25101514",
-                    ),
-                    Sponsor(
-                        name = "Sponsor2",
-                        homepage = "https://www.instagram.com/droid_knights",
-                        grade = Sponsor.Grade.PLATINUM,
-                        imageUrl = "https://avatars.githubusercontent.com/u/25101514",
-                    ),
-                )
-            )
+            uiState = sponsorsUiState,
         )
-    }
-}
-
-@Preview
-@Composable
-private fun SponsorCardSkeletonPreview() {
-    KnightsTheme {
-        SponsorCardSkeleton()
     }
 }
