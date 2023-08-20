@@ -39,7 +39,7 @@ fun OpenSourceCard(
     ) {
         Column {
             Text(
-                text = stringResource(id = R.string.oss_license),
+                text = stringResource(id = R.string.oss_license_title),
                 style = KnightsTheme.typography.headlineSmallBL,
                 modifier = Modifier.padding(top = 24.dp, start = 24.dp),
                 color = Color.White
