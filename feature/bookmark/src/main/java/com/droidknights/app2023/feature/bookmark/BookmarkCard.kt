@@ -1,4 +1,4 @@
-package com.droidknights.app2023.feature.bookmark.listitem
+package com.droidknights.app2023.feature.bookmark
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

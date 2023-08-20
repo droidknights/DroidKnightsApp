@@ -31,9 +31,6 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.designsystem.theme.Purple01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
-import com.droidknights.app2023.feature.bookmark.listitem.BookmarkCard
-import com.droidknights.app2023.feature.bookmark.listitem.BookmarkItem
-import com.droidknights.app2023.feature.bookmark.listitem.BookmarkTimelineItem
 
 @Composable
 internal fun BookmarkRoute(viewModel: BookmarkViewModel = hiltViewModel()) {
