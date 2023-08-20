@@ -5,6 +5,9 @@ buildscript {
         google()
         mavenCentral()
     }
+    dependencies {
+        classpath(libs.oss.licenses.plugin)
+    }
 }
 
 plugins {

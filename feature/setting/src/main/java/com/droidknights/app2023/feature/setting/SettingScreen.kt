@@ -25,19 +25,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
+import com.droidknights.app2023.feature.setting.opensource.OpenSourceCard
 
 @Composable
 internal fun SettingScreen(
     padding: PaddingValues,
-    onChangeDarkTheme: (Boolean) -> Unit
+    onChangeDarkTheme: (Boolean) -> Unit,
 ) {
+    val viewModel: SettingViewModel = hiltViewModel()
     val scrollState = rememberScrollState()
     Column(
         Modifier
@@ -46,6 +50,10 @@ internal fun SettingScreen(
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
+        OpenSourceCard(
+            context = LocalContext.current,
+            navigationProvider = viewModel.navigationProvider
+        )
         LightDarkThemeCard(
             onChangeDarkTheme = onChangeDarkTheme
         )

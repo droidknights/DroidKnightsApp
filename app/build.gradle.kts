@@ -1,5 +1,6 @@
 plugins {
     id("droidknights.android.application")
+    id("com.google.android.gms.oss-licenses-plugin")
 }
 
 android {
@@ -16,6 +17,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
 }
 
 dependencies {
@@ -24,4 +30,8 @@ dependencies {
     implementation(projects.feature.home)
 
     implementation(projects.core.designsystem)
+    implementation(projects.core.navigation)
+
+    //oss-licenses
+    implementation(libs.oss.licenses)
 }
