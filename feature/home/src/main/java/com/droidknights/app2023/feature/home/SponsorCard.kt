@@ -178,9 +178,11 @@ private fun SponsorLogo(
 private fun SponsorCardSkeleton(
     modifier: Modifier = Modifier,
 ) {
-    KnightsCard {
+    KnightsCard(
+        modifier = modifier,
+    ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(24.dp),
         ) {
