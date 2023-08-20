@@ -21,7 +21,6 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.feature.setting.R
 import com.droidknights.app2023.feature.setting.SettingViewModel
 
-
 @Composable
 internal fun OpenSourceCard(
     modifier: Modifier = Modifier,
