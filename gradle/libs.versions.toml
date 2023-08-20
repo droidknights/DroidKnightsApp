@@ -19,6 +19,7 @@ kotlinxSerializationJson = "1.5.1"
 kotlinxDatetime = "0.2.1"
 
 landscapist = "2.2.5"
+composeShimmer = "1.0.5"
 
 junit4 = "4.13.2"
 junitVintageEngine = "5.10.0"
@@ -74,6 +75,8 @@ landscapist-bom = { group = "com.github.skydoves", name = "landscapist-bom", ver
 landscapist-coil = { group = "com.github.skydoves", name = "landscapist-coil" }
 landscapist-placeholder = { group = "com.github.skydoves", name = "landscapist-placeholder" }
 landscapist-animation = { group = "com.github.skydoves", name = "landscapist-animation" }
+
+compose-shimmer = { group = "com.valentinilk.shimmer", name = "compose-shimmer", version.ref = "composeShimmer"}
 
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junitVintageEngine" }
