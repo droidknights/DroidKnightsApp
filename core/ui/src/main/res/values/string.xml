@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="session_room_keynote">키노트</string>
+    <string name="session_room_track_01">Track 01</string>
+    <string name="session_room_track_02">Track 02</string>
+    <string name="session_room_track_03">Track 03</string>
+</resources>

@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.ui.textRes
 import kotlinx.datetime.toJavaLocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter

@@ -22,7 +22,7 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.Purple01
 import com.droidknights.app2023.core.designsystem.theme.White
 import com.droidknights.app2023.core.model.Room
-import com.droidknights.app2023.feature.bookmark.text.RoomText
+import com.droidknights.app2023.core.ui.RoomText
 
 @Composable
 internal fun BookmarkCard(

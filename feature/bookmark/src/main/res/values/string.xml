@@ -5,10 +5,5 @@
     <string name="edit_button_confirm_label">완료</string>
     <string name="empty_bookmark_item_description">북마크된 아이템이 없습니다</string>
 
-    <string name="session_room_keynote">키노트</string>
-    <string name="session_room_track_01">Track 01</string>
-    <string name="session_room_track_02">Track 02</string>
-    <string name="session_room_track_03">Track 03</string>
-
     <string name="session_time_format">HH:mm</string>
 </resources>
