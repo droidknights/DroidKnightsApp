@@ -56,7 +56,7 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
 }
 
 @Composable
-internal fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
+private fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
     KnightsCard {
         Column(
             modifier = Modifier.fillMaxWidth()
