@@ -2,9 +2,7 @@ package com.droidknights.app2023.feature.bookmark
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.domain.usecase.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app2023.core.domain.usecase.GetSessionsUseCase
-import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.domain.usecase.GetBookmarkedSessionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,31 +12,35 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
-    private val getSessionsUseCase: GetSessionsUseCase,
-    private val getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase
+    private val getBookmarkedSessionsUseCase: GetBookmarkedSessionsUseCase
 ) : ViewModel() {
-
-    private val sessions = MutableStateFlow<List<Session>>(emptyList())
 
     private val _bookmarkUiState = MutableStateFlow<BookmarkUiState>(BookmarkUiState.Loading)
     val bookmarkUiState: StateFlow<BookmarkUiState> = _bookmarkUiState
 
     init {
         viewModelScope.launch {
-            sessions.value = getSessionsUseCase()
-            _bookmarkUiState.value = BookmarkUiState.Success()
-
             combine(
                 bookmarkUiState,
-                getBookmarkedSessionIdsUseCase()
-            ) { bookmarkUiState, bookmarkIds ->
+                getBookmarkedSessionsUseCase(),
+            ) { bookmarkUiState, bookmarkSessions ->
                 when (bookmarkUiState) {
-                    is BookmarkUiState.Loading -> bookmarkUiState
+                    is BookmarkUiState.Loading -> {
+                        BookmarkUiState.Success(
+                            isEditButtonSelected = false,
+                            bookmarks = bookmarkSessions
+                                .mapIndexed { index, session ->
+                                    BookmarkItemUiState(
+                                        index = index,
+                                        session = session,
+                                        isEditMode = false
+                                    )
+                                }
+                        )
+                    }
                     is BookmarkUiState.Success -> {
                         bookmarkUiState.copy(
-                            bookmarks = sessions.value
-                                .filter { bookmarkIds.contains(it.id) }
-                                .sortedBy { it.startTime }
+                            bookmarks = bookmarkSessions
                                 .mapIndexed { index, session ->
                                     BookmarkItemUiState(
                                         index = index,
