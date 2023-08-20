@@ -28,6 +28,10 @@ fun OpenSourceCard(
     context: Context,
     navigationProvider: NavigationProvider
 ) {
+    val titleText = stringResource(id = R.string.oss_license_title)
+    val descriptionText = stringResource(id = R.string.oss_license_description)
+    val arrowPainter = painterResource(id = R.drawable.icon_arrow_right_yellow01)
+
     KnightsCard(
         color = Graphite,
         modifier = modifier
@@ -39,21 +43,21 @@ fun OpenSourceCard(
     ) {
         Column {
             Text(
-                text = stringResource(id = R.string.oss_license_title),
+                text = titleText,
                 style = KnightsTheme.typography.headlineSmallBL,
                 modifier = Modifier.padding(top = 24.dp, start = 24.dp),
                 color = Color.White
             )
             Spacer(modifier = Modifier.padding(top = 21.dp))
             Text(
-                text = stringResource(id = R.string.oss_license_description),
+                text = descriptionText,
                 style = KnightsTheme.typography.titleSmallM140,
                 modifier = Modifier.padding(start = 24.dp, end = 45.dp, bottom = 24.dp),
                 color = DuskGray
             )
             Spacer(modifier = Modifier.padding(top = 39.dp))
             Image(
-                painter = painterResource(id = R.drawable.icon_arrow_right_yellow01),
+                painter = arrowPainter,
                 contentDescription = null,
                 modifier = Modifier
                     .align(alignment = Alignment.End)
