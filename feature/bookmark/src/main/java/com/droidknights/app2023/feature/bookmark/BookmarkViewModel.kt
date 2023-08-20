@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
-import kotlinx.datetime.toJavaLocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -41,7 +40,11 @@ class BookmarkViewModel @Inject constructor(
                                 .filter { bookmarkIds.contains(it.id) }
                                 .sortedBy { it.startTime }
                                 .mapIndexed { index, session ->
-                                    toBookmarkItemState(index, session, bookmarkUiState.isEditMode)
+                                    BookmarkItemUiState(
+                                        index = index,
+                                        session = session,
+                                        isEditMode = bookmarkUiState.isEditButtonSelected
+                                    )
                                 }
                         )
                     }
@@ -51,24 +54,14 @@ class BookmarkViewModel @Inject constructor(
     }
 
     fun clickEditButton() {
-        bookmarkUiState.value.ifStateIsSuccess { state ->
-            _bookmarkUiState.value = state.copy(
-                isEditMode = state.isEditMode.not(),
-                bookmarks = state.bookmarks.map { it.copy(isEditMode = state.isEditMode.not()) }
-            )
+        val state = _bookmarkUiState.value
+        if (state !is BookmarkUiState.Success) {
+            return
         }
-    }
-}
 
-private fun toBookmarkItemState(index: Int, session: Session, isEditMode: Boolean): BookmarkItemUiState {
-    return BookmarkItemUiState(
-        sessionId = session.id,
-        sequence = index + 1,
-        title = session.title,
-        tagLabel = session.tags.joinToString { it.name },
-        room = session.room,
-        speakerLabel = session.speakers.joinToString { it.name },
-        time = session.startTime.toJavaLocalDateTime().toLocalTime(),
-        isEditMode = isEditMode
-    )
+        _bookmarkUiState.value = state.copy(
+            isEditButtonSelected = state.isEditButtonSelected.not(),
+            bookmarks = state.bookmarks.map { it.copy(isEditMode = !it.isEditMode.not()) }
+        )
+    }
 }

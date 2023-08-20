@@ -60,7 +60,7 @@ private fun BookmarkContent(
     when (uiState) {
         BookmarkUiState.Loading -> BookmarkLoading()
         is BookmarkUiState.Success -> BookmarkScreen(
-            isEditMode = uiState.isEditMode,
+            isEditMode = uiState.isEditButtonSelected,
             bookmarkItems = uiState.bookmarks,
             onClickEditButton = onClickEditButton
         )
@@ -100,7 +100,7 @@ private fun BookmarkScreen(
         ) {
             items(
                 items = bookmarkItems,
-                key = { it.sessionId }
+                key = { item -> item.session.id }
             ) { itemState ->
                 BookmarkItem(
                     leadingContent = @Composable {
@@ -112,8 +112,8 @@ private fun BookmarkScreen(
                     midContent = @Composable {
                         BookmarkCard(
                             tagLabel = itemState.tagLabel,
-                            room = itemState.room,
-                            title = itemState.title,
+                            room = itemState.session.room,
+                            title = itemState.session.title,
                             speaker = itemState.speakerLabel
                         )
                     },
