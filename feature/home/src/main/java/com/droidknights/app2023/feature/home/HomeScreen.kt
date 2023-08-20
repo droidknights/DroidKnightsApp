@@ -42,7 +42,8 @@ private fun HomeScreen(
         Modifier
             .padding(padding)
             .padding(horizontal = 8.dp)
-            .verticalScroll(scrollState),
+            .verticalScroll(scrollState)
+            .padding(bottom = 4.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         SessionCard(onClick = onSessionClick)
