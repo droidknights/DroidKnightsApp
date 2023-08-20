@@ -40,7 +40,7 @@ internal fun SessionCard(
     modifier: Modifier = Modifier,
     onSessionClick: (Session) -> Unit = { },
 ) {
-    if (session.id == "1") {
+    if (session.content.isBlank()) {
         KnightsCard(
             modifier = modifier
         ) {
