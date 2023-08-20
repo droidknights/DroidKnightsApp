@@ -77,7 +77,7 @@ private fun BookmarkLoading() {
 @Composable
 private fun BookmarkScreen(
     isEditMode: Boolean,
-    bookmarkItems: List<BookmarkItemState>,
+    bookmarkItems: List<BookmarkItemUiState>,
     onClickEditButton: () -> Unit,
     listContentBottomPadding: Dp = 72.dp
 ) {

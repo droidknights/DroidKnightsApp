@@ -60,8 +60,8 @@ class BookmarkViewModel @Inject constructor(
     }
 }
 
-private fun toBookmarkItemState(index: Int, session: Session, isEditMode: Boolean): BookmarkItemState {
-    return BookmarkItemState(
+private fun toBookmarkItemState(index: Int, session: Session, isEditMode: Boolean): BookmarkItemUiState {
+    return BookmarkItemUiState(
         sessionId = session.id,
         sequence = index + 1,
         title = session.title,

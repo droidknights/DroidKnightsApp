@@ -6,7 +6,7 @@ import java.time.LocalTime
 sealed interface BookmarkUiState {
     object Loading : BookmarkUiState
 
-    data class Success(val isEditMode: Boolean = false, val bookmarks: List<BookmarkItemState> = listOf()) : BookmarkUiState
+    data class Success(val isEditMode: Boolean = false, val bookmarks: List<BookmarkItemUiState> = listOf()) : BookmarkUiState
 
     fun ifStateIsSuccess(func: (Success) -> Unit) {
         if (this is Success) {
@@ -17,7 +17,7 @@ sealed interface BookmarkUiState {
     }
 }
 
-data class BookmarkItemState(
+data class BookmarkItemUiState(
     val sessionId: String,
     val sequence: Int,
     val title: String,
