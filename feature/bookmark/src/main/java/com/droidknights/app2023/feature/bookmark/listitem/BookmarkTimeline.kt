@@ -25,19 +25,6 @@ import com.droidknights.app2023.feature.bookmark.R
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-@Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
-@Composable
-private fun BookmarkTimelineItemPreview() {
-    KnightsTheme {
-        Box {
-            BookmarkTimelineItem(
-                sequence = 1,
-                time = LocalTime.of(23, 40)
-            )
-        }
-    }
-}
-
 @Composable
 internal fun BookmarkTimelineItem(
     modifier: Modifier = Modifier,
@@ -94,5 +81,18 @@ private fun SessionTimeBadge(
             color = White,
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
+@Composable
+private fun BookmarkTimelineItemPreview() {
+    KnightsTheme {
+        Box {
+            BookmarkTimelineItem(
+                sequence = 1,
+                time = LocalTime.of(23, 40)
+            )
+        }
     }
 }

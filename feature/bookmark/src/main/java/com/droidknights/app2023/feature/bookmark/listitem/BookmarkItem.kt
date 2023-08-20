@@ -24,52 +24,6 @@ import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.model.Room
 import java.time.LocalTime
 
-@Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
-@Composable
-private fun BookmarkItemPreview() {
-    KnightsTheme {
-        Column {
-            BookmarkItem(
-                leadingContent = @Composable {
-                    BookmarkTimelineItem(
-                        sequence = 1,
-                        time = LocalTime.of(1, 20)
-                    )
-                },
-                midContent = @Composable {
-                    BookmarkCardItem(
-                        tagLabel = "효율적인 코드 베이스",
-                        room = Room.TRACK2,
-                        title = "Jetpack Compose에 있는 것, 없는것",
-                        speaker = "홍길동"
-                    )
-                },
-                isShowTrailingContent = false,
-                trailingContent = {}
-            )
-
-            BookmarkItem(
-                leadingContent = @Composable {
-                    BookmarkTimelineItem(
-                        sequence = 2,
-                        time = LocalTime.of(1, 20)
-                    )
-                },
-                midContent = @Composable {
-                    BookmarkCardItem(
-                        tagLabel = "효율적인 코드 베이스",
-                        room = Room.TRACK2,
-                        title = "Jetpack Compose에 있는 것, 없는것",
-                        speaker = "홍길동"
-                    )
-                },
-                isShowTrailingContent = false,
-                trailingContent = {}
-            )
-        }
-    }
-}
-
 /**
  * @param leadingContent 시작지점인 왼쪽에 표현될 컨텐츠
  * @param midContent 가운테 표현될 컨텐츠
@@ -130,6 +84,52 @@ internal fun BookmarkItem(
             ) {
                 trailingContent()
             }
+        }
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
+@Composable
+private fun BookmarkItemPreview() {
+    KnightsTheme {
+        Column {
+            BookmarkItem(
+                leadingContent = @Composable {
+                    BookmarkTimelineItem(
+                        sequence = 1,
+                        time = LocalTime.of(1, 20)
+                    )
+                },
+                midContent = @Composable {
+                    BookmarkCardItem(
+                        tagLabel = "효율적인 코드 베이스",
+                        room = Room.TRACK2,
+                        title = "Jetpack Compose에 있는 것, 없는것",
+                        speaker = "홍길동"
+                    )
+                },
+                isShowTrailingContent = false,
+                trailingContent = {}
+            )
+
+            BookmarkItem(
+                leadingContent = @Composable {
+                    BookmarkTimelineItem(
+                        sequence = 2,
+                        time = LocalTime.of(1, 20)
+                    )
+                },
+                midContent = @Composable {
+                    BookmarkCardItem(
+                        tagLabel = "효율적인 코드 베이스",
+                        room = Room.TRACK2,
+                        title = "Jetpack Compose에 있는 것, 없는것",
+                        speaker = "홍길동"
+                    )
+                },
+                isShowTrailingContent = false,
+                trailingContent = {}
+            )
         }
     }
 }
