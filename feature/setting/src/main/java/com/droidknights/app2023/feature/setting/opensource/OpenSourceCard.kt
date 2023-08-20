@@ -23,7 +23,7 @@ import com.droidknights.app2023.feature.setting.R
 
 
 @Composable
-fun OpenSourceCard(
+internal fun OpenSourceCard(
     modifier: Modifier = Modifier,
     context: Context,
     navigationProvider: NavigationProvider
