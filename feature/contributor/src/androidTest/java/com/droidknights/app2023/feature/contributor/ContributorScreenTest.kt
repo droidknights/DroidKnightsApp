@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.droidknights.app2023.core.model.Contributor
+import kotlinx.collections.immutable.persistentListOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -38,7 +39,7 @@ class ContributorScreenTest {
     fun 컨트리뷰터_리스트가_주어지면_화면에_노출한다() {
         // when
         fakeUiState.value = ContributorsUiState.Contributors(
-            listOf(
+            persistentListOf(
                 Contributor(
                     name = "test name",
                     imageUrl = "test image url"
