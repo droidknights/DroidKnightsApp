@@ -92,7 +92,6 @@ private fun BookmarkScreen(
 
         if (bookmarkItems.isEmpty()) {
             BookmarkEmptyScreen()
-            return
         }
 
         LazyColumn(
