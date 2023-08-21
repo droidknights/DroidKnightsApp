@@ -42,6 +42,7 @@ import com.droidknights.app2023.core.designsystem.component.TopAppBarNavigationT
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Room
+import com.droidknights.app2023.core.ui.RoomText
 import kotlinx.coroutines.launch
 
 @Composable
