@@ -6,5 +6,6 @@ import com.droidknights.app2023.core.model.Contributor
 internal fun ContributorResponse.toData(): Contributor =
     Contributor(
         name = this.name,
-        imageUrl = this.imageUrl
+        imageUrl = this.imageUrl,
+        githubUrl = this.githubUrl,
     )

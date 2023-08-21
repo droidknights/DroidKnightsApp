@@ -255,11 +255,13 @@ private fun ContributorScreenPreview() {
             persistentListOf(
                 Contributor(
                     "Contributor1",
-                    "https://avatars.githubusercontent.com/u/25101514"
+                    "https://avatars.githubusercontent.com/u/25101514",
+                    "https://github.com/droidknights",
                 ),
                 Contributor(
                     "Contributor2",
-                    "https://avatars.githubusercontent.com/u/25101514"
+                    "https://avatars.githubusercontent.com/u/25101514",
+                    "https://github.com/droidknights",
                 ),
             )
         ),
