@@ -56,6 +56,7 @@ internal fun SessionDetailScreen(
     val scrollState = rememberScrollState()
     val sessionUiState by viewModel.sessionUiState.collectAsStateWithLifecycle()
     var bookmarkState by remember { mutableStateOf(false) }
+    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle(SessionDetailEffect.Idle)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -68,14 +69,16 @@ internal fun SessionDetailScreen(
             onClickBookmark = { viewModel.toggleBookmark() },
             onBackClick = onBackClick
         )
-        SessionDetailContent(uiState = sessionUiState) { bookmarked ->
-            bookmarkState = bookmarked
+        Box{
+            SessionDetailContent(uiState = sessionUiState) { bookmarked ->
+                bookmarkState = bookmarked
+            }
+            if(effect is SessionDetailEffect.ShowToastForBookmarkState){
+                BookmarkStatePopup(
+                    bookmark = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
+                )
+            }
         }
-    }
-
-    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle(SessionDetailEffect.Idle)
-    if(effect is SessionDetailEffect.ShowToastForBookmarkState){
-        BookmarkStatePopup(bookmark = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked)
     }
 
     LaunchedEffect(sessionId) {
