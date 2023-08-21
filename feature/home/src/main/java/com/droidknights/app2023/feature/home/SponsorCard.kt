@@ -157,7 +157,7 @@ private fun SponsorLogo(
                     elevation = 3.dp,
                     shape = CircleShape
                 )
-                .size(84.dp)
+                .size(100.dp)
                 .clip(CircleShape)
                 .clickable(onClick = onClick)
         )
