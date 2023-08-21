@@ -46,12 +46,9 @@ import kotlinx.collections.immutable.toPersistentList
 @Composable
 internal fun SponsorCard(uiState: SponsorsUiState) {
     when (uiState) {
+        SponsorsUiState.Empty -> Unit
         SponsorsUiState.Loading -> SponsorCardSkeleton()
-        is SponsorsUiState.Sponsors -> {
-            if (uiState.isNotEmpty()) {
-                SponsorCardContents(uiState = uiState)
-            }
-        }
+        is SponsorsUiState.Sponsors -> SponsorCardContents(uiState = uiState)
     }
 }
 

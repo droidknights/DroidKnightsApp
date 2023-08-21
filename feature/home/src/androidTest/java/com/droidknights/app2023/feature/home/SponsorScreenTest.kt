@@ -35,6 +35,17 @@ class SponsorScreenTest {
     }
 
     @Test
+    fun 스폰서가_없는_상태일때는_스폰서_리스트가_노출되지_않는다() {
+        // when
+        fakeUiState.value = SponsorsUiState.Empty
+
+        // then
+        composeTestRule
+            .onNodeWithText("이 기업들이 후원해요")
+            .assertDoesNotExist()
+    }
+
+    @Test
     fun 스폰서_리스트가_주어지면_화면에_노출된다() {
         // when
         fakeUiState.value = SponsorsUiState.Sponsors(

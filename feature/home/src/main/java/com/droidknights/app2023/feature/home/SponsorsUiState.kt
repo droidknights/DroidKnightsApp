@@ -6,6 +6,8 @@ import com.droidknights.app2023.core.model.Sponsor
 sealed interface SponsorsUiState {
     object Loading : SponsorsUiState
 
+    object Empty: SponsorsUiState
+
     data class Sponsors(
         val sponsors: List<Sponsor>,
     ) : SponsorsUiState {
@@ -14,8 +16,6 @@ sealed interface SponsorsUiState {
 
         val goldCount: Int
             get() = sponsors.count { it.grade == Sponsor.Grade.GOLD }
-
-        fun isNotEmpty() = sponsors.isNotEmpty()
     }
 }
 

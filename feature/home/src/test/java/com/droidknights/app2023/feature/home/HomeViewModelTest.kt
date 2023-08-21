@@ -19,7 +19,20 @@ internal class HomeViewModelTest {
     private lateinit var viewModel: HomeViewModel
 
     @Test
-    fun `후원사 데이터를 확인할 수 있다`() = runTest {
+    fun `후원사 리스트가 비어있다면 후원사 데이터를 확인할 수 없다`() = runTest {
+        // given
+        coEvery { getSponsorsUseCase() } returns emptyList()
+        viewModel = HomeViewModel(getSponsorsUseCase)
+
+        // when & then
+        viewModel.sponsorsUiState.test {
+            val actual = awaitItem()
+            assertIs<SponsorsUiState.Empty>(actual)
+        }
+    }
+
+    @Test
+    fun `후원사 리스트가 존재한다면 후원사 데이터를 확인할 수 있다`() = runTest {
         // given
         coEvery { getSponsorsUseCase() } returns fakeSponsors
         viewModel = HomeViewModel(getSponsorsUseCase)
