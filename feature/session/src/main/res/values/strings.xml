@@ -12,4 +12,7 @@
     
     <string name="session_detail_title">세션 상세 정보</string>
     <string name="session_detail_speaker">발표자</string>
+    
+    <string name="session_detail_bookmark_popup_message">북마크에 저장했습니다. 시간표를 만들어보세요!</string>
+    <string name="session_detail_unbookmark_popup_message">북마크가 해제되었습니다.</string>
 </resources>

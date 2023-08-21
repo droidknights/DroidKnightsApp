@@ -44,6 +44,7 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
+import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -64,9 +65,7 @@ internal fun SessionDetailScreen(
     ) {
         SessionDetailTopAppBar(
             bookmarked = bookmarkState,
-            onClickBookmark = { changedBookmarkState ->
-                bookmarkState = changedBookmarkState
-            },
+            onClickBookmark = { viewModel.toggleBookmark() },
             onBackClick = onBackClick
         )
         SessionDetailContent(uiState = sessionUiState) { bookmarked ->
@@ -74,8 +73,20 @@ internal fun SessionDetailScreen(
         }
     }
 
+    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle(SessionDetailEffect.Idle)
+    if(effect is SessionDetailEffect.ShowToastForBookmarkState){
+        BookmarkStatePopup(bookmark = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked)
+    }
+
     LaunchedEffect(sessionId) {
         viewModel.fetchSession(sessionId)
+    }
+
+    LaunchedEffect(effect){
+        if(effect is SessionDetailEffect.ShowToastForBookmarkState){
+            delay(1000L)
+            viewModel.hidePopup()
+        }
     }
 }
 
