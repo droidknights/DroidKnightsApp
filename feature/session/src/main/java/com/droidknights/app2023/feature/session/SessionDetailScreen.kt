@@ -85,7 +85,7 @@ internal fun SessionDetailScreen(
         viewModel.fetchSession(sessionId)
     }
 
-    LaunchedEffect(effect){
+    LaunchedEffect(effect) {
         if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
             delay(1000L)
             viewModel.hidePopup()
