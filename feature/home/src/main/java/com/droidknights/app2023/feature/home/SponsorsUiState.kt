@@ -18,25 +18,3 @@ sealed interface SponsorsUiState {
             get() = sponsors.count { it.grade == Sponsor.Grade.GOLD }
     }
 }
-
-internal class SponsorsUiStatePreviewParameterProvider : PreviewParameterProvider<SponsorsUiState> {
-    override val values: Sequence<SponsorsUiState> = sequenceOf(
-        SponsorsUiState.Sponsors(
-            sponsors = listOf(
-                Sponsor(
-                    name = "Sponsor1",
-                    homepage = "https://www.instagram.com/droid_knights",
-                    grade = Sponsor.Grade.GOLD,
-                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
-                ),
-                Sponsor(
-                    name = "Sponsor2",
-                    homepage = "https://www.instagram.com/droid_knights",
-                    grade = Sponsor.Grade.PLATINUM,
-                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
-                ),
-            )
-        ),
-        SponsorsUiState.Loading,
-    )
-}
