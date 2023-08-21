@@ -3,6 +3,7 @@ package com.droidknights.app2023.core.designsystem.component
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -33,6 +34,7 @@ fun KnightsTopAppBar(
     navigationType: TopAppBarNavigationType = TopAppBarNavigationType.Back,
     contentColor: Color = MaterialTheme.colorScheme.onSurface,
     containerColor: Color = MaterialTheme.colorScheme.surfaceDim,
+    actionButtons: @Composable () -> Unit = {},
     onNavigationClick: () -> Unit = {},
 ) {
     CompositionLocalProvider(LocalContentColor provides contentColor) {
@@ -61,11 +63,14 @@ fun KnightsTopAppBar(
                     Icons.Filled.ArrowBack
                 )
             }
-            if (navigationType == TopAppBarNavigationType.Close) {
-                icon(
-                    Modifier.align(Alignment.CenterEnd),
-                    Icons.Filled.Close
-                )
+            Row(Modifier.align(Alignment.CenterEnd)) {
+                actionButtons()
+                if (navigationType == TopAppBarNavigationType.Close) {
+                    icon(
+                        Modifier,
+                        Icons.Filled.Close
+                    )
+                }
             }
             Text(
                 text = stringResource(id = titleRes),
