@@ -63,7 +63,7 @@ class SessionDetailViewModel @Inject constructor(
         }
     }
 
-    fun hidePopup(){
+    fun hidePopup() {
         viewModelScope.launch {
             _sessionUiEffect.send(SessionDetailEffect.Idle)
         }

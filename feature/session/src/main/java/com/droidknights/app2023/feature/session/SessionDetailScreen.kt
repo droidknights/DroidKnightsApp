@@ -69,11 +69,11 @@ internal fun SessionDetailScreen(
             onClickBookmark = { viewModel.toggleBookmark() },
             onBackClick = onBackClick
         )
-        Box{
+        Box {
             SessionDetailContent(uiState = sessionUiState) { bookmarked ->
                 bookmarkState = bookmarked
             }
-            if(effect is SessionDetailEffect.ShowToastForBookmarkState){
+            if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
                 BookmarkStatePopup(
                     bookmark = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
                 )
@@ -86,7 +86,7 @@ internal fun SessionDetailScreen(
     }
 
     LaunchedEffect(effect){
-        if(effect is SessionDetailEffect.ShowToastForBookmarkState){
+        if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
             delay(1000L)
             viewModel.hidePopup()
         }
@@ -208,9 +208,13 @@ private fun SessionOverview(content: String) {
 
 @Composable
 private fun BookmarkToggleButton(
-    bookmarked: Boolean, onClickBookmark: (Boolean) -> Unit
+    bookmarked: Boolean,
+    onClickBookmark: (Boolean) -> Unit
 ) {
-    IconToggleButton(checked = bookmarked, onCheckedChange = onClickBookmark) {
+    IconToggleButton(
+        checked = bookmarked,
+        onCheckedChange = onClickBookmark
+    ) {
         Icon(
             painter =
             if (bookmarked) {
