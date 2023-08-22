@@ -1,12 +1,11 @@
 package com.droidknights.app2023.feature.home
 
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.droidknights.app2023.core.model.Sponsor
 
 sealed interface SponsorsUiState {
     object Loading : SponsorsUiState
 
-    object Empty: SponsorsUiState
+    object Empty : SponsorsUiState
 
     data class Sponsors(
         val sponsors: List<Sponsor>,
