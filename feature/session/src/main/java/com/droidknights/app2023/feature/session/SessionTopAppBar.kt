@@ -27,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -42,6 +43,9 @@ import com.droidknights.app2023.core.designsystem.component.TopAppBarNavigationT
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Room
+import com.droidknights.app2023.core.ui.RoomText
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 
 @Composable
@@ -64,7 +68,7 @@ internal fun SessionTopAppBar(
             ) {
                 SessionTabRow(
                     selectedRoom = sessionState.selectedRoom,
-                    rooms = rooms,
+                    rooms = rooms.toPersistentList(),
                     onRoomSelect = { room ->
                         coroutineScope.launch {
                             sessionState.scrollTo(room)
@@ -93,12 +97,12 @@ internal fun SessionTopAppBar(
 @Composable
 private fun SessionTabRow(
     selectedRoom: Room?,
-    rooms: List<Room>,
+    rooms: PersistentList<Room>,
     onRoomSelect: (Room) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val density = LocalDensity.current
-    val tabWidths = remember {
+    val tabWidths = remember<SnapshotStateList<Dp>> {
         mutableStateListOf<Dp>().apply { addAll(rooms.map { 0.dp }) }
     }
     val selectedTabIndex = rooms.indexOf(selectedRoom)
@@ -187,7 +191,7 @@ private fun SessionTabIndicatorPreview() {
     KnightsTheme {
         SessionTabRow(
             selectedRoom = Room.TRACK2,
-            rooms = Room.values().toList(),
+            rooms = Room.values().toList().toPersistentList(),
             onRoomSelect = { },
             modifier = Modifier.size(320.dp, 48.dp),
         )

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app2023.core.domain.usecase.GetSessionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
@@ -17,6 +18,6 @@ class SessionViewModel @Inject constructor(
 ) : ViewModel() {
 
     val uiState: StateFlow<SessionUiState> = flow { emit(getSessionsUseCase()) }
-        .map { SessionUiState(it) }
+        .map { SessionUiState(it.toPersistentList()) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), SessionUiState())
 }

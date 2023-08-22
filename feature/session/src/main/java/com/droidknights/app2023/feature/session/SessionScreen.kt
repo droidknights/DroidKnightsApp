@@ -24,6 +24,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.ui.RoomText
+import kotlinx.collections.immutable.PersistentList
 
 @Composable
 internal fun SessionScreen(
@@ -83,7 +85,7 @@ private val SessionGroupSpace = 16.dp
 
 private fun LazyListScope.sessionItems(
     room: Room,
-    items: List<Session>,
+    items: PersistentList<Session>,
     topPadding: Dp,
     onItemClick: (Session) -> Unit,
 ) {

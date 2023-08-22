@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="book_mark_top_bar_title">나의 시간표</string>
+    <string name="edit_button_edit_label">편집</string>
+    <string name="edit_button_confirm_label">완료</string>
+    <string name="empty_bookmark_item_description">북마크된 아이템이 없습니다</string>
+
+    <string name="session_time_format">HH:mm</string>
+</resources>

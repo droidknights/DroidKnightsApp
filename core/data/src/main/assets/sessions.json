@@ -17,6 +17,7 @@
     "speakers": [
       {
         "name": "차영호",
+        "introduction": "안드로이드 플랫폼 관련 개발하다가, 현재는 LINE Plus에서 개발환경 개선과 관련된 일을 하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"
       }
     ],
@@ -35,6 +36,7 @@
     "speakers": [
       {
         "name": "안성용",
+        "introduction": "네이버웹툰에서 글로벌 웹툰 앱을 개발하고 있구요.\nAndroid GDE로 여러 행사에서 발표도 하고 다양한 활동을 하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/안성용.jpg"
       }
     ],
@@ -53,6 +55,7 @@
     "speakers": [
       {
         "name": "장세훈",
+        "introduction": "",
         "imageUrl": ""
       }
     ],
@@ -71,6 +74,7 @@
     "speakers": [
       {
         "name": "권태환",
+        "introduction": "퍼핀에서 안드로이드 개발하고있는 권태환입니다. GDG Korea Android 운영진을 함께 하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/권태환.jpg"
       }
     ],
@@ -89,6 +93,7 @@
     "speakers": [
       {
         "name": "정정환",
+        "introduction": "안녕하세요! QA 6년, 안드로이드 개발자는 5개월! 주니어 개발자 정정환 입니다.\nQA를 하며 쌓아온 테스트 지식들이 안드로이드를 개발하며 어떤 도움을 주고 있고, 어떻게 하면 더욱 효과적으로 테스트를 할 수 있는지 전해드리려고 합니다! 재밌게 들어주세요!",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/정정환.jpg"
       }
     ],
@@ -107,6 +112,7 @@
     "speakers": [
       {
         "name": "류기민",
+        "introduction": "Jetpack Compose 정식 출시 이전 실제 서비스에 적용한 경험을 토대로 Android 개발자 커뮤니티에 Jetpack Compose 관련 최신 소식과 팁을 나누고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/류기민.jpeg"
       }
     ],
@@ -125,6 +131,7 @@
     "speakers": [
       {
         "name": "Márton Braun",
+        "introduction": "Kotlin and Android fan, university educator, ex-Google",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/Marton_Braun.png"
       }
     ],
@@ -143,6 +150,7 @@
     "speakers": [
       {
         "name": "박재성",
+        "introduction": "",
         "imageUrl": ""
       }
     ],
@@ -161,6 +169,7 @@
     "speakers": [
       {
         "name": "김용욱",
+        "introduction": "모바일 기술과 인공지능에 관심이 많은 커피 중독자입니다. 최근에는 Rust, Elixir, Compose, Flutter에 관심이 있어요.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/김용욱.jpg"
       }
     ],
@@ -179,6 +188,7 @@
     "speakers": [
       {
         "name": "박상권",
+        "introduction": "- 헤이딜러 안드로이드 개발팀 리더\n- 안드로이드 개발 12년 / 개인앱 개발 9년\n- 박상권의 삽질블로그 운영 \n- 각종 행사 기획, 오픈채팅방 운영\n- 더 자세한 소개는 https://github.com/ParkSangGwon/Introduce",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/박상권.png"
       }
     ],
@@ -197,6 +207,7 @@
     "speakers": [
       {
         "name": "Ayushi Gupta",
+        "introduction": "With my coding skills, I specialize in crafting diverse application solutions for Android mobile and TV platforms. My goal is to innovate and overcome any obstacles in our fast-paced, ever-evolving world.\nDriven by a passion for problem-solving, I eagerly accept challenges and strive to deliver impactful solutions. Let's connect and collaborate to find innovative solutions together.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/Ayushi_Gupta.jpeg"
       }
     ],
@@ -215,6 +226,7 @@
     "speakers": [
       {
         "name": "정태훈",
+        "introduction": "",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/정태훈.jpeg"
       }
     ],
@@ -233,6 +245,7 @@
     "speakers": [
       {
         "name": "박주형",
+        "introduction": "",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/박주형.jpeg"
       }
     ],
@@ -251,6 +264,7 @@
     "speakers": [
       {
         "name": "윤영직",
+        "introduction": "피알앤디컴퍼니에서 헤이딜러 서비스를 개발하는 안드로이드 개발 5년차입니다.\n여러 프로젝트를 동시에 개발하기 위한 아키텍처와 모듈화에 관심을 가지고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/윤영직.png"
       }
     ],
@@ -269,6 +283,7 @@
     "speakers": [
       {
         "name": "Enrique López-Mañas",
+        "introduction": "Enrique is a Software Consultant and Developer in Munich, Germany. He's an Android Google Developer Expert, reviews books, writes technical manuscripts, maintains Open Source repositories, and publishes articles on Software Engineering.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/Enrique_Lopez_Manas.jpeg"
       }
     ],
@@ -287,6 +302,7 @@
     "speakers": [
       {
         "name": "정동진",
+        "introduction": "Naver에서 Cafe를 개발하고있습니다.\n2009년 부터 안드로이드를 시작했고\nNaver에는 2021년 부터 합류 했습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/정동진.jpeg"
       }
     ],
@@ -305,6 +321,7 @@
     "speakers": [
       {
         "name": "노현석",
+        "introduction": "Android GDE를 활동하는 프루입니다. Android Studio Canary/Beta를 좋아합니다. 현재 카카오뱅크에서 Android 앱 개발을 담당하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/노현석.jpg"
       }
     ],
@@ -323,6 +340,7 @@
     "speakers": [
       {
         "name": "이상훈",
+        "introduction": "안녕하세요! 모드하우스 엔터테인먼트에서 안드로이드 앱을 개발하고 있는 이상훈이라고 합니다. 안드로이드 시스템 코드와 Compose 시스템, 성능 쪽에 관심이 많습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/이상훈.jpeg"
       }
     ],
@@ -341,6 +359,7 @@
     "speakers": [
       {
         "name": "김준비",
+        "introduction": "안녕하세요.\n당근마켓에서 안드로이드 개발하고 있는 김준비입니다.\n아키텍처와 생산성을 높여주는 방법들에 대해 관심이 많고, 지식을 공유하길 좋아합니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/김준비.jpg"
       }
     ],
@@ -359,6 +378,7 @@
     "speakers": [
       {
         "name": "박종혁",
+        "introduction": "더 좋은 어플리케이션 설계가 무엇일지에 대해서 고민하는 일을 하고 있는 개발자입니다. 최근에는 지그재그 앱에서 다양한 콘텐츠를 더 잘 편집하고 보여주기 위해서 어떤 구조를 가지면 좋을지에 대해서 고민하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/박종혁.JPG"
       }
     ],
@@ -377,6 +397,7 @@
     "speakers": [
       {
         "name": "문예지",
+        "introduction": "안드로이드 개발은 5년 차, 사회생활은 3년 차인 안드로이드 개발자입니다. 학부생 시절부터 레이시오라는 스타트업에서 안드로이드 앱 개발을 시작했고, 지금은 버즈빌에서 안드로이드 SDK 개발을 하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/문예지.png"
       }
     ],

@@ -140,6 +140,7 @@ private fun SessionCardPreview() {
         speakers = listOf(
             Speaker(
                 name = "안성용",
+                introduction = "안드로이드 개발자",
                 imageUrl = "https://picsum.photos/200",
             ),
         ),

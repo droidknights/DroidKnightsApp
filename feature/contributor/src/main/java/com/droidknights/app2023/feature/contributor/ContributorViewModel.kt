@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app2023.core.domain.usecase.GetContributorsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
@@ -17,7 +18,7 @@ class ContributorViewModel @Inject constructor(
 ) : ViewModel() {
 
     val uiState: StateFlow<ContributorsUiState> =
-        flow { emit(getContributorsUseCase()) }.map(
+        flow { emit(getContributorsUseCase().toPersistentList()) }.map(
             ContributorsUiState::Contributors,
         ).stateIn(
             scope = viewModelScope,

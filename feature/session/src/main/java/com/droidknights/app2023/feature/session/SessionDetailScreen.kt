@@ -45,6 +45,8 @@ import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
 import kotlinx.coroutines.delay
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -151,7 +153,7 @@ private fun SessionDetailContent(session: Session) {
         } else {
             Spacer(modifier = Modifier.height(40.dp))
         }
-        SessionDetailSpeaker(session.speakers)
+        SessionDetailSpeaker(session.speakers.toPersistentList())
     }
 }
 
@@ -170,7 +172,7 @@ private fun SessionDetailTitle(
 
 @Composable
 private fun SessionDetailSpeaker(
-    speakers: List<Speaker>,
+    speakers: PersistentList<Speaker>,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
@@ -232,8 +234,8 @@ private val SampleSessionHasContent = Session(
     title = "세션 제목은 세션 제목 - 개요 있음",
     content = "세션에 대한 소개와 세션에서의 장단점과 세션을 실제로 사용한 사례와 세션 내용에 대한 QnA 진행",
     speakers = listOf(
-        Speaker(name = "스피커1", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
-        Speaker(name = "스피커2", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
+        Speaker(name = "스피커1", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
+        Speaker(name = "스피커2", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
     ),
     level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
@@ -247,8 +249,8 @@ private val SampleSessionNoContent = Session(
     title = "세션 제목은 세션 제목 - 개요 없음",
     content = "",
     speakers = listOf(
-        Speaker(name = "스피커1", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
-        Speaker(name = "스피커2", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
+        Speaker(name = "스피커1", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
+        Speaker(name = "스피커2", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
     ),
     level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
@@ -300,7 +302,7 @@ private fun SessionDetailTitlePreview() {
 @Composable
 private fun SessionDetailSpeakerPreview() {
     KnightsTheme {
-        SessionDetailSpeaker(SampleSessionHasContent.speakers)
+        SessionDetailSpeaker(SampleSessionHasContent.speakers.toPersistentList())
     }
 }
 
