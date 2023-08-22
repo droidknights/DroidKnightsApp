@@ -14,23 +14,25 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapNotNull
 
 data class SessionGroup(
     val room: Room,
-    val sessions: List<Session>,
+    val sessions: PersistentList<Session>,
 )
 
 @Stable
 class SessionState(
-    private val sessions: List<Session>,
+    private val sessions: PersistentList<Session>,
     val listState: LazyListState,
     selectedRoom: Room? = sessions.map { it.room }.firstOrNull(),
 ) {
     val groups: List<SessionGroup> = sessions
         .groupBy { it.room }
-        .map { (room, sessions) -> SessionGroup(room, sessions) }
+        .map { (room, sessions) -> SessionGroup(room, sessions.toPersistentList()) }
 
     val rooms: List<Room> = sessions.map { it.room }.distinct()
 
@@ -69,7 +71,7 @@ class SessionState(
 
     companion object {
         fun Saver(
-            sessions: List<Session>,
+            sessions: PersistentList<Session>,
             listState: LazyListState,
         ): Saver<SessionState, *> = Saver(
             save = { it.selectedRoom },
@@ -86,7 +88,7 @@ class SessionState(
 
 @Composable
 internal fun rememberSessionState(
-    sessions: List<Session>,
+    sessions: PersistentList<Session>,
     listState: LazyListState = rememberLazyListState(),
 ): SessionState {
     val state = rememberSaveable(

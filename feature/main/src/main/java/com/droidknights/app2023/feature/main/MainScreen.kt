@@ -39,6 +39,8 @@ import com.droidknights.app2023.feature.contributor.navigation.contributorNavGra
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
 import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
 import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 internal fun MainScreen(
@@ -82,7 +84,7 @@ internal fun MainScreen(
         bottomBar = {
             MainBottomBar(
                 visible = navigator.shouldShowBottomBar(),
-                tabs = MainTab.values().toList(),
+                tabs = MainTab.values().toList().toPersistentList(),
                 currentTab = navigator.currentTab,
                 onTabSelected = { navigator.navigate(it) }
             )
@@ -93,7 +95,7 @@ internal fun MainScreen(
 @Composable
 private fun MainBottomBar(
     visible: Boolean,
-    tabs: List<MainTab>,
+    tabs: PersistentList<MainTab>,
     currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
 ) {

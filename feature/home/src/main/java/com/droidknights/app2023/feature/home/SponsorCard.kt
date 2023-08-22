@@ -33,6 +33,8 @@ import com.droidknights.app2023.core.designsystem.theme.DuskGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.model.Sponsor
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 internal fun SponsorCard(uiState: SponsorsUiState) {
@@ -58,14 +60,14 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
                     modifier = Modifier.padding(top = 8.dp),
                 )
             }
-            SponsorGroup(uiState.sponsors)
+            SponsorGroup(uiState.sponsors.toPersistentList())
         }
     }
 }
 
 @Composable
 private fun SponsorGroup(
-    sponsors: List<Sponsor>,
+    sponsors: PersistentList<Sponsor>,
 ) {
     val platinumSponsors = sponsors.filter { it.grade == Sponsor.Grade.PLATINUM }
     val goldSponsors = sponsors.filter { it.grade == Sponsor.Grade.GOLD }

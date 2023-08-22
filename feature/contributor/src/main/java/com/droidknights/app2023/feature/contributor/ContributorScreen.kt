@@ -46,6 +46,7 @@ import com.droidknights.app2023.core.designsystem.theme.Neon05
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Contributor
 import com.valentinilk.shimmer.shimmer
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun ContributorRoute(
@@ -251,7 +252,7 @@ private const val SHIMMERING_ITEM_COUNT = 4
 private fun ContributorScreenPreview() {
     ContributorScreen(
         uiState = ContributorsUiState.Contributors(
-            listOf(
+            persistentListOf(
                 Contributor(
                     "Contributor1",
                     "https://avatars.githubusercontent.com/u/25101514"
