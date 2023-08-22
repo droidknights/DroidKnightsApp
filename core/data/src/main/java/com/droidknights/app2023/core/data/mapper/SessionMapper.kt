@@ -38,5 +38,6 @@ internal fun RoomResponse.toData(): Room = when (this) {
 
 internal fun SpeakerResponse.toData(): Speaker = Speaker(
     name = this.name,
+    introduction = this.introduction,
     imageUrl = this.imageUrl
 )

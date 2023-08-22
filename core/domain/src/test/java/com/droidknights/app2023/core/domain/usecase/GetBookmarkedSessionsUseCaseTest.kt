@@ -37,7 +37,11 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 }
 
                 Then("북마크된 세션들을 시작시간이 빠른 순으로 정렬하여 반환한다") {
-                    bookmarkedSessions shouldBeSortedWith { left, right -> left.startTime.compareTo(right.startTime) }
+                    bookmarkedSessions shouldBeSortedWith { left, right ->
+                        left.startTime.compareTo(
+                            right.startTime
+                        )
+                    }
                 }
             }
         }
@@ -50,7 +54,7 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 id = "3",
                 title = "Item3 Title",
                 content = "Item3 Content",
-                speakers = listOf(Speaker(name = "철수", imageUrl = "")),
+                speakers = listOf(Speaker(name = "철수", introduction = "", imageUrl = "")),
                 level = Level.BASIC,
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
@@ -61,7 +65,7 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 id = "1",
                 title = "Item1 Title",
                 content = "Item1 Content",
-                speakers = listOf(Speaker(name = "영희", imageUrl = "")),
+                speakers = listOf(Speaker(name = "영희", introduction = "", imageUrl = "")),
                 level = Level.BASIC,
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
@@ -72,7 +76,7 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 id = "2",
                 title = "Item2 Title",
                 content = "Item2 Content",
-                speakers = listOf(Speaker(name = "민수", imageUrl = "")),
+                speakers = listOf(Speaker(name = "민수", introduction = "", imageUrl = "")),
                 level = Level.BASIC,
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
