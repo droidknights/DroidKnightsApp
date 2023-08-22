@@ -9,5 +9,5 @@ android {
 dependencies {
     implementation(libs.androidx.appcompat)
 
-    implementation(projects.core.navigation)
+    implementation(libs.oss.licenses)
 }

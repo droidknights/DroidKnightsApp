@@ -30,8 +30,4 @@ dependencies {
     implementation(projects.feature.home)
 
     implementation(projects.core.designsystem)
-    implementation(projects.core.navigation)
-
-    //oss-licenses
-    implementation(libs.oss.licenses)
 }

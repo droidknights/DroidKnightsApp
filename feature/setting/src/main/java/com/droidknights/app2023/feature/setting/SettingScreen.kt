@@ -30,7 +30,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.droidknights.app2023.core.designsystem.component.KnightsCard
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LocalDarkTheme
@@ -41,7 +40,6 @@ internal fun SettingScreen(
     padding: PaddingValues,
     onChangeDarkTheme: (Boolean) -> Unit,
 ) {
-    val viewModel: SettingViewModel = hiltViewModel()
     val scrollState = rememberScrollState()
     Column(
         Modifier
@@ -52,7 +50,6 @@ internal fun SettingScreen(
     ) {
         OpenSourceCard(
             context = LocalContext.current,
-            settingViewModel = viewModel,
         )
         LightDarkThemeCard(
             onChangeDarkTheme = onChangeDarkTheme
