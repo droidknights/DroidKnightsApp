@@ -17,10 +17,16 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val sponsorsUiState: StateFlow<SponsorsUiState> = flow { emit(getSponsorsUseCase()) }
-        .map { SponsorsUiState(it) }
+        .map { sponsors ->
+            if (sponsors.isNotEmpty()) {
+                SponsorsUiState.Sponsors(sponsors)
+            } else {
+                SponsorsUiState.Empty
+            }
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = SponsorsUiState(emptyList())
+            initialValue = SponsorsUiState.Loading,
         )
 }

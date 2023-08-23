@@ -2,12 +2,18 @@ package com.droidknights.app2023.feature.home
 
 import com.droidknights.app2023.core.model.Sponsor
 
-data class SponsorsUiState(val sponsors: List<Sponsor>) {
-    val platinumCount: Int
-        get() = sponsors.count { it.grade == Sponsor.Grade.PLATINUM }
+sealed interface SponsorsUiState {
+    object Loading : SponsorsUiState
 
-    val goldCount: Int
-        get() = sponsors.count { it.grade == Sponsor.Grade.GOLD }
+    object Empty : SponsorsUiState
 
-    fun isNotEmpty() = sponsors.isNotEmpty()
+    data class Sponsors(
+        val sponsors: List<Sponsor>,
+    ) : SponsorsUiState {
+        val platinumCount: Int
+            get() = sponsors.count { it.grade == Sponsor.Grade.PLATINUM }
+
+        val goldCount: Int
+            get() = sponsors.count { it.grade == Sponsor.Grade.GOLD }
+    }
 }

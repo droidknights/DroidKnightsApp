@@ -14,7 +14,7 @@ class SponsorScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
     private val fakeUiState: MutableState<SponsorsUiState> =
-        mutableStateOf(SponsorsUiState(sponsors))
+        mutableStateOf(SponsorsUiState.Loading)
 
     @Before
     fun setup() {
@@ -24,7 +24,34 @@ class SponsorScreenTest {
     }
 
     @Test
-    fun 등급별_스폰서_수가_노출된다() {
+    fun 로딩_상태일때는_스폰서_리스트가_노출되지_않는다() {
+        // when
+        fakeUiState.value = SponsorsUiState.Loading
+
+        // then
+        composeTestRule
+            .onNodeWithText("이 기업들이 후원해요")
+            .assertDoesNotExist()
+    }
+
+    @Test
+    fun 스폰서가_없는_상태일때는_스폰서_리스트가_노출되지_않는다() {
+        // when
+        fakeUiState.value = SponsorsUiState.Empty
+
+        // then
+        composeTestRule
+            .onNodeWithText("이 기업들이 후원해요")
+            .assertDoesNotExist()
+    }
+
+    @Test
+    fun 스폰서_리스트가_주어지면_화면에_노출된다() {
+        // when
+        fakeUiState.value = SponsorsUiState.Sponsors(
+            sponsors = sponsors,
+        )
+
         // then
         composeTestRule
             .onNodeWithText("플래티넘 1곳, 골드 1곳이\n후원해주셨습니다.")
