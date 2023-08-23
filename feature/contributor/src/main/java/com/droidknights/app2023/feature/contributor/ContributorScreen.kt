@@ -200,8 +200,10 @@ private fun ContributorItem(
         lightId = R.drawable.ic_contributor_placeholder_lightmode,
         darkId = R.drawable.ic_contributor_placeholder_darkmode,
     )
+
     KnightsCard(
-        onClick = { uriHandler.openUri(contributor?.githubUrl.orEmpty()) },
+        enabled = contributor?.githubUrl?.isNotEmpty() ?: false,
+        onClick = { uriHandler.openUri(contributor?.githubUrl ?: return@KnightsCard) },
         modifier = modifier,
     ) {
         Row {
