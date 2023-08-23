@@ -31,12 +31,14 @@ fun KnightsCard(
 @Composable
 fun KnightsCard(
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     onClick: () -> Unit = {},
     color: Color = MaterialTheme.colorScheme.surface,
     content: @Composable () -> Unit,
 ) {
     Surface(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier.fillMaxWidth(),
         color = color,
         shape = RoundedCornerShape(32.dp),

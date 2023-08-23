@@ -33,7 +33,7 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
     companion object {
         private val contributors = listOf(
             ContributorResponse(
-                name = "test name", imageUrl = "test image url"
+                name = "test name", imageUrl = "test image url", githubUrl = "test github url"
             )
         )
     }

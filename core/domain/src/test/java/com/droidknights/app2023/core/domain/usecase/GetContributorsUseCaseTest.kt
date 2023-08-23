@@ -31,7 +31,8 @@ internal class GetContributorsUseCaseTest : BehaviorSpec() {
         private val contributors = listOf(
             Contributor(
                 name = "test name",
-                imageUrl = "test image url"
+                imageUrl = "test image url",
+                githubUrl = "test github url"
             )
         )
     }

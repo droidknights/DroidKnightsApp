@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -185,6 +186,7 @@ private fun ContributorItem(
     contributor: Contributor?,
     modifier: Modifier = Modifier,
 ) {
+    val uriHandler = LocalUriHandler.current
     val shimmerModifier =
         if (contributor == null) {
             Modifier
@@ -198,7 +200,12 @@ private fun ContributorItem(
         lightId = R.drawable.ic_contributor_placeholder_lightmode,
         darkId = R.drawable.ic_contributor_placeholder_darkmode,
     )
-    KnightsCard(modifier = modifier) {
+
+    KnightsCard(
+        enabled = contributor?.githubUrl?.isNotEmpty() ?: false,
+        onClick = { uriHandler.openUri(contributor?.githubUrl ?: return@KnightsCard) },
+        modifier = modifier,
+    ) {
         Row {
             Column(
                 modifier = Modifier
@@ -255,11 +262,13 @@ private fun ContributorScreenPreview() {
             persistentListOf(
                 Contributor(
                     "Contributor1",
-                    "https://avatars.githubusercontent.com/u/25101514"
+                    "https://avatars.githubusercontent.com/u/25101514",
+                    "https://github.com/droidknights",
                 ),
                 Contributor(
                     "Contributor2",
-                    "https://avatars.githubusercontent.com/u/25101514"
+                    "https://avatars.githubusercontent.com/u/25101514",
+                    "https://github.com/droidknights",
                 ),
             )
         ),
