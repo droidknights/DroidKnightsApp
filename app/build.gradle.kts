@@ -1,5 +1,6 @@
 plugins {
     id("droidknights.android.application")
+    id("com.google.android.gms.oss-licenses-plugin")
 }
 
 android {
@@ -14,6 +15,11 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 }
