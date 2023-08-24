@@ -1,6 +1,7 @@
 package com.droidknights.app2023.feature.home.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -15,9 +16,10 @@ fun NavGraphBuilder.homeNavGraph(
     padding: PaddingValues,
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
+    snackBarHostState: SnackbarHostState
 ) {
     composable(route = HomeRoute.route) {
-        HomeRoute(padding, onSessionClick, onContributorClick)
+        HomeRoute(padding, onSessionClick, onContributorClick, snackBarHostState)
     }
 }
 

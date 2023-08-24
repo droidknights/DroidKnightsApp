@@ -48,6 +48,7 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
     when (uiState) {
         SponsorsUiState.Empty -> Unit
         SponsorsUiState.Loading -> SponsorCardSkeleton()
+        is SponsorsUiState.Error -> SponsorCardSkeleton()
         is SponsorsUiState.Sponsors -> SponsorCardContents(uiState = uiState)
     }
 }

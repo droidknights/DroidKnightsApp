@@ -24,8 +24,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -47,6 +50,8 @@ internal fun MainScreen(
     navigator: MainNavigator = rememberMainNavigator(),
     onChangeDarkTheme: (Boolean) -> Unit
 ) {
+    val snackBarHostState = remember { SnackbarHostState() }
+
     Scaffold(
         content = { padding ->
             Box(
@@ -62,6 +67,7 @@ internal fun MainScreen(
                         padding = padding,
                         onSessionClick = { navigator.navigateSession() },
                         onContributorClick = { navigator.navigateContributor() },
+                        snackBarHostState = snackBarHostState
                     )
                     settingNavGraph(
                         padding = padding,
@@ -89,6 +95,7 @@ internal fun MainScreen(
                 onTabSelected = { navigator.navigate(it) }
             )
         },
+        snackbarHost = { SnackbarHost(snackBarHostState) }
     )
 }
 
