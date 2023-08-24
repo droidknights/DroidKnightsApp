@@ -8,10 +8,12 @@ import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.testing.rule.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.mockk
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
 import org.junit.Rule
 import org.junit.Test
+import java.net.UnknownHostException
 import kotlin.test.assertEquals
 
 internal class SessionViewModelTest {
@@ -41,7 +43,7 @@ internal class SessionViewModelTest {
 
         // when & then
         viewModel.uiState.test {
-            val actual = awaitItem().sessions.first()
+            val actual = (awaitItem() as? SessionUiState.Sessions)?.sessions?.first()
             assertEquals(fakeSession, actual)
         }
     }
