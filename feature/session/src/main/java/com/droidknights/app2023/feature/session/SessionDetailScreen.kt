@@ -154,7 +154,7 @@ private fun SessionDetailSpeaker(
             modifier = Modifier
                 .size(108.dp)
                 .clip(CircleShape),
-            placeholder = painterResource(id = com.droidknights.app2023.core.designsystem.R.drawable.placeholder_speaker)
+            placeholder = painterResource(id = com.droidknights.app2023.core.ui.R.drawable.placeholder_speaker)
         )
     }
 }

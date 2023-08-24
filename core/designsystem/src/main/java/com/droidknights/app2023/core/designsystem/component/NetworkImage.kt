@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.droidknights.app2023.core.designsystem.R
+import com.droidknights.app2023.core.ui.R
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil.CoilImage
 import com.skydoves.landscapist.components.rememberImageComponent
@@ -33,7 +33,7 @@ fun NetworkImage(
             alignment = Alignment.Center,
             contentDescription = contentDescription,
         ),
-        previewPlaceholder = R.drawable.placeholder_speaker,
+        previewPlaceholder = R.drawable.placeholder_speaker
     )
 }
 
