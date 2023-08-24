@@ -1,5 +1,6 @@
 package com.droidknights.app2023.feature.bookmark.navigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -10,9 +11,11 @@ fun NavController.navigateBookmark(navOptions: NavOptions) {
     navigate(BookmarkRoute.route, navOptions)
 }
 
-fun NavGraphBuilder.bookmarkNavGraph() {
+fun NavGraphBuilder.bookmarkNavGraph(
+    snackBarHostState: SnackbarHostState
+) {
     composable(route = BookmarkRoute.route) {
-        BookmarkRoute()
+        BookmarkRoute(snackBarHostState)
     }
 }
 

@@ -74,7 +74,9 @@ internal fun MainScreen(
                         onChangeDarkTheme = onChangeDarkTheme
                     )
 
-                    bookmarkNavGraph()
+                    bookmarkNavGraph(
+                        snackBarHostState = snackBarHostState
+                    )
 
                     contributorNavGraph(
                         onBackClick = { navigator.popBackStack() }

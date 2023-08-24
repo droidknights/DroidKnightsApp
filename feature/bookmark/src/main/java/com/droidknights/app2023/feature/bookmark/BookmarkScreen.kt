@@ -16,11 +16,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -31,10 +34,27 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.designsystem.theme.Purple01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
+import kotlinx.coroutines.flow.collectLatest
+import java.net.UnknownHostException
 
 @Composable
-internal fun BookmarkRoute(viewModel: BookmarkViewModel = hiltViewModel()) {
+internal fun BookmarkRoute(
+    snackBarHostState: SnackbarHostState,
+    viewModel: BookmarkViewModel = hiltViewModel()
+) {
     val bookmarkUiState by viewModel.bookmarkUiState.collectAsStateWithLifecycle()
+    val localContextResource = LocalContext.current.resources
+
+    LaunchedEffect(true) {
+        viewModel.errorStateFlow.collectLatest {
+            snackBarHostState.showSnackbar(
+                when (it.throwable) {
+                    is UnknownHostException -> localContextResource.getString(R.string.error_message_network)
+                    else -> localContextResource.getString(R.string.error_message_unknown)
+                }
+            )
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -56,6 +76,7 @@ private fun BookmarkContent(
 ) {
     when (uiState) {
         BookmarkUiState.Loading -> BookmarkLoading()
+        is BookmarkUiState.Error -> BookmarkLoading()
         is BookmarkUiState.Success -> BookmarkScreen(
             isEditMode = uiState.isEditButtonSelected,
             bookmarkItems = uiState.bookmarks,
