@@ -85,7 +85,8 @@ internal fun MainScreen(
 
                     sessionNavGraph(
                         onBackClick = { navigator.popBackStack() },
-                        onSessionClick = { navigator.navigateSessionDetail(it.id) }
+                        onSessionClick = { navigator.navigateSessionDetail(it.id) },
+                        snackBarHostState = snackBarHostState
                     )
                 }
             }

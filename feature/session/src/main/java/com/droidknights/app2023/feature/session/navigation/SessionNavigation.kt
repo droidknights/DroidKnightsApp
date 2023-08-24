@@ -1,5 +1,6 @@
 package com.droidknights.app2023.feature.session.navigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -20,11 +21,13 @@ fun NavController.navigateSessionDetail(sessionId: String) {
 fun NavGraphBuilder.sessionNavGraph(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
+    snackBarHostState: SnackbarHostState
 ) {
     composable(SessionRoute.route) {
         SessionScreen(
             onBackClick = onBackClick,
             onSessionClick = onSessionClick,
+            snackBarHostState = snackBarHostState
         )
     }
 

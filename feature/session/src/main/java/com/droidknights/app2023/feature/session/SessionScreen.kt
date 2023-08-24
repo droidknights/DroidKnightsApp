@@ -14,9 +14,12 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,15 +29,33 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.ui.RoomText
 import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.flow.collectLatest
+import java.net.UnknownHostException
 
 @Composable
 internal fun SessionScreen(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
+    snackBarHostState: SnackbarHostState,
     sessionViewModel: SessionViewModel = hiltViewModel(),
 ) {
     val sessionUiState by sessionViewModel.uiState.collectAsStateWithLifecycle()
-    val sessionState = rememberSessionState(sessions = sessionUiState.sessions)
+    val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions?.let { sessions ->
+            rememberSessionState(sessions = sessions) // SessionUiState.Sessions
+        } ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
+    val localContextResource = LocalContext.current.resources
+
+    LaunchedEffect(true) {
+        sessionViewModel.errorStateFlow.collectLatest {
+            snackBarHostState.showSnackbar(
+                when (it.throwable) {
+                    is UnknownHostException -> localContextResource.getString(R.string.error_message_network)
+                    else -> localContextResource.getString(R.string.error_message_unknown)
+                }
+            )
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         SessionTopAppBar(

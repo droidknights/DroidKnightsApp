@@ -4,6 +4,11 @@ import com.droidknights.app2023.core.model.Session
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 
-data class SessionUiState(
-    val sessions: PersistentList<Session> = persistentListOf(),
-)
+sealed interface SessionUiState {
+    object Loading : SessionUiState
+    data class Error(val throwable: Throwable? = null) : SessionUiState
+    data class Sessions(
+        val sessions: PersistentList<Session> = persistentListOf(),
+    ) : SessionUiState
+
+}
