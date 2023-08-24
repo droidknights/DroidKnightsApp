@@ -57,7 +57,6 @@ internal fun SessionDetailScreen(
 ) {
     val scrollState = rememberScrollState()
     val sessionUiState by viewModel.sessionUiState.collectAsStateWithLifecycle()
-    var bookmarkState by remember { mutableStateOf(false) }
     val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle(SessionDetailEffect.Idle)
     Column(
         modifier = Modifier
@@ -67,14 +66,12 @@ internal fun SessionDetailScreen(
             .verticalScroll(scrollState),
     ) {
         SessionDetailTopAppBar(
-            bookmarked = bookmarkState,
+            bookmarked = (sessionUiState as? SessionDetailUiState.Success)?.bookmarked ?: false,
             onClickBookmark = { viewModel.toggleBookmark() },
             onBackClick = onBackClick
         )
         Box {
-            SessionDetailContent(uiState = sessionUiState) { bookmarked ->
-                bookmarkState = bookmarked
-            }
+            SessionDetailContent(uiState = sessionUiState)
             if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
                 SessionDetailBookmarkStatePopup(
                     bookmarked = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
@@ -116,16 +113,10 @@ private fun SessionDetailTopAppBar(
 }
 
 @Composable
-private fun SessionDetailContent(
-    uiState: SessionDetailUiState,
-    setBookmarkState: (Boolean) -> Unit
-) {
+private fun SessionDetailContent(uiState: SessionDetailUiState) {
     when (uiState) {
         is SessionDetailUiState.Loading -> SessionDetailLoading()
-        is SessionDetailUiState.Success -> {
-            SessionDetailContent(uiState.session)
-            setBookmarkState(uiState.bookmarked)
-        }
+        is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
     }
 }
 
