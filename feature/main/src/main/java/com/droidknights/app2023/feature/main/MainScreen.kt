@@ -79,7 +79,8 @@ internal fun MainScreen(
                     )
 
                     contributorNavGraph(
-                        onBackClick = { navigator.popBackStack() }
+                        onBackClick = { navigator.popBackStack() },
+                        snackBarHostState = snackBarHostState
                     )
 
                     sessionNavGraph(
