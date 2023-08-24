@@ -10,5 +10,4 @@ sealed interface SessionUiState {
     data class Sessions(
         val sessions: PersistentList<Session> = persistentListOf(),
     ) : SessionUiState
-
 }

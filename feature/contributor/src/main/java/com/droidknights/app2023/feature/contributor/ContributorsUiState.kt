@@ -7,6 +7,7 @@ import kotlinx.collections.immutable.PersistentList
 sealed interface ContributorsUiState {
     object Loading : ContributorsUiState
     data class Error(val throwable: Throwable? = null) : ContributorsUiState
+
     @Stable
     data class Contributors(
         val contributors: PersistentList<Contributor>,
