@@ -76,8 +76,8 @@ internal fun SessionDetailScreen(
                 bookmarkState = bookmarked
             }
             if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
-                BookmarkStatePopup(
-                    bookmark = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
+                SessionDetailBookmarkStatePopup(
+                    bookmarked = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
                 )
             }
         }

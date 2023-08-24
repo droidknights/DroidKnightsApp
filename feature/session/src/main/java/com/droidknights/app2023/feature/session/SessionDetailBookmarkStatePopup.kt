@@ -17,8 +17,8 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.Purple01
 
 @Composable
-internal fun BookmarkStatePopup(bookmark: Boolean) {
-    val messageStringRes = if (bookmark) {
+internal fun SessionDetailBookmarkStatePopup(bookmarked: Boolean) {
+    val messageStringRes = if (bookmarked) {
         R.string.session_detail_bookmark_popup_message
     } else {
         R.string.session_detail_unbookmark_popup_message
@@ -26,7 +26,6 @@ internal fun BookmarkStatePopup(bookmark: Boolean) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
             .padding(horizontal = 8.dp),
         shape = RoundedCornerShape(4.dp),
         color = Graphite
@@ -44,7 +43,7 @@ internal fun BookmarkStatePopup(bookmark: Boolean) {
 @Composable
 private fun BookmarkStatePopupPreview() {
     Column {
-        BookmarkStatePopup(bookmark = true)
-        BookmarkStatePopup(bookmark = false)
+        SessionDetailBookmarkStatePopup(bookmarked = true)
+        SessionDetailBookmarkStatePopup(bookmarked = false)
     }
 }
