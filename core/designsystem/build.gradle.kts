@@ -8,8 +8,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.ui)
-
     implementation(libs.androidx.appcompat)
     
     implementation(libs.landscapist.bom)
