@@ -61,7 +61,7 @@ fun ContributorRoute(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
-        viewModel.errorStateFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
+        viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
     }
 
     ContributorScreen(

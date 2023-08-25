@@ -26,7 +26,7 @@ internal fun HomeRoute(
     val sponsorsUiState by viewModel.sponsorsUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
-        viewModel.errorStateFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
+        viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
     }
 
     HomeScreen(

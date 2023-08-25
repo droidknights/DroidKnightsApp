@@ -5,13 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.droidknights.app2023.core.domain.usecase.GetContributorsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -20,14 +20,14 @@ class ContributorViewModel @Inject constructor(
     getContributorsUseCase: GetContributorsUseCase,
 ) : ViewModel() {
 
-    private val errorStateChannel = Channel<ContributorsUiState.Error>()
-    val errorStateFlow get() = errorStateChannel.receiveAsFlow()
+    private val _errorFlow = MutableSharedFlow<ContributorsUiState.Error>()
+    val errorFlow: SharedFlow<ContributorsUiState.Error> get() = _errorFlow
 
     val uiState: StateFlow<ContributorsUiState> =
         flow { emit(getContributorsUseCase().toPersistentList()) }
             .map(ContributorsUiState::Contributors)
             .catch { throwable ->
-                errorStateChannel.send(ContributorsUiState.Error(throwable))
+                _errorFlow.emit(ContributorsUiState.Error(throwable))
             }
             .stateIn(
                 scope = viewModelScope,

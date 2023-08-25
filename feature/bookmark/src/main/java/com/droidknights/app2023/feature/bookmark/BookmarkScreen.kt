@@ -42,7 +42,7 @@ internal fun BookmarkRoute(
     val bookmarkUiState by viewModel.bookmarkUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
-        viewModel.errorStateFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
+        viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
     }
 
     Box(
