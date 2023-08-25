@@ -6,7 +6,6 @@ sealed interface SponsorsUiState {
     object Loading : SponsorsUiState
 
     object Empty : SponsorsUiState
-    data class Error(val throwable: Throwable? = null) : SponsorsUiState
 
     data class Sponsors(
         val sponsors: List<Sponsor>,

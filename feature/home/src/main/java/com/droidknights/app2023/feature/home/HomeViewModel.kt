@@ -19,8 +19,8 @@ class HomeViewModel @Inject constructor(
     getSponsorsUseCase: GetSponsorsUseCase,
 ) : ViewModel() {
 
-    private val _errorFlow = MutableSharedFlow<SponsorsUiState.Error>()
-    val errorFlow: SharedFlow<SponsorsUiState.Error> get() = _errorFlow
+    private val _errorFlow = MutableSharedFlow<Throwable>()
+    val errorFlow: SharedFlow<Throwable> get() = _errorFlow
 
     val sponsorsUiState: StateFlow<SponsorsUiState> = flow { emit(getSponsorsUseCase()) }
         .map { sponsors ->
@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
             }
         }
         .catch { throwable ->
-            _errorFlow.emit(SponsorsUiState.Error(throwable))
+            _errorFlow.emit(throwable)
         }
         .stateIn(
             scope = viewModelScope,

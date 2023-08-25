@@ -20,14 +20,12 @@ class SessionViewModel @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase,
 ) : ViewModel() {
 
-    private val _errorFlow = MutableSharedFlow<SessionUiState.Error>()
-    val errorFlow: SharedFlow<SessionUiState.Error> get() = _errorFlow
+    private val _errorFlow = MutableSharedFlow<Throwable>()
+    val errorFlow: SharedFlow<Throwable> get() = _errorFlow
 
     val uiState: StateFlow<SessionUiState> = flow { emit(getSessionsUseCase().toPersistentList()) }
         .map(SessionUiState::Sessions)
-        .catch { throwable ->
-            _errorFlow.emit(SessionUiState.Error(throwable))
-        }
+        .catch { throwable -> _errorFlow.emit(throwable) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),

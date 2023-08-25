@@ -20,15 +20,13 @@ class ContributorViewModel @Inject constructor(
     getContributorsUseCase: GetContributorsUseCase,
 ) : ViewModel() {
 
-    private val _errorFlow = MutableSharedFlow<ContributorsUiState.Error>()
-    val errorFlow: SharedFlow<ContributorsUiState.Error> get() = _errorFlow
+    private val _errorFlow = MutableSharedFlow<Throwable>()
+    val errorFlow: SharedFlow<Throwable> get() = _errorFlow
 
     val uiState: StateFlow<ContributorsUiState> =
         flow { emit(getContributorsUseCase().toPersistentList()) }
             .map(ContributorsUiState::Contributors)
-            .catch { throwable ->
-                _errorFlow.emit(ContributorsUiState.Error(throwable))
-            }
+            .catch { throwable -> _errorFlow.emit(throwable) }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),

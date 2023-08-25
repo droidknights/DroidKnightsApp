@@ -43,7 +43,7 @@ internal fun SessionScreen(
         } ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
 
     LaunchedEffect(true) {
-        sessionViewModel.errorFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
+        sessionViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
 
     Box(modifier = Modifier.fillMaxSize()) {

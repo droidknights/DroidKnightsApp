@@ -42,7 +42,7 @@ internal fun BookmarkRoute(
     val bookmarkUiState by viewModel.bookmarkUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
-        viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
+        viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it) }
     }
 
     Box(
@@ -65,7 +65,6 @@ private fun BookmarkContent(
 ) {
     when (uiState) {
         BookmarkUiState.Loading -> BookmarkLoading()
-        is BookmarkUiState.Error -> BookmarkLoading()
         is BookmarkUiState.Success -> BookmarkScreen(
             isEditMode = uiState.isEditButtonSelected,
             bookmarkItems = uiState.bookmarks,

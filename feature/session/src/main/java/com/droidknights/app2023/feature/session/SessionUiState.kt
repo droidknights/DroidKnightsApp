@@ -6,7 +6,6 @@ import kotlinx.collections.immutable.persistentListOf
 
 sealed interface SessionUiState {
     object Loading : SessionUiState
-    data class Error(val throwable: Throwable? = null) : SessionUiState
     data class Sessions(
         val sessions: PersistentList<Session> = persistentListOf(),
     ) : SessionUiState

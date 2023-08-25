@@ -61,7 +61,7 @@ fun ContributorRoute(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
-        viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
+        viewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
 
     ContributorScreen(
@@ -163,8 +163,7 @@ private fun ContributorList(
             TopBanner()
         }
         when (uiState) {
-            ContributorsUiState.Loading,
-            is ContributorsUiState.Error -> {
+            ContributorsUiState.Loading -> {
                 items(SHIMMERING_ITEM_COUNT) {
                     ContributorItem(
                         contributor = null,
