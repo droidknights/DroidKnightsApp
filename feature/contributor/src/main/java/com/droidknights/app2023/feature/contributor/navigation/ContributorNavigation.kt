@@ -1,6 +1,5 @@
 package com.droidknights.app2023.feature.contributor.navigation
 
-import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -12,12 +11,12 @@ fun NavController.navigateContributor() {
 
 fun NavGraphBuilder.contributorNavGraph(
     onBackClick: () -> Unit,
-    snackBarHostState: SnackbarHostState
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
 ) {
     composable(route = ContributorRoute.route) {
         ContributorRoute(
             onBackClick = onBackClick,
-            snackBarHostState = snackBarHostState
+            onShowErrorSnackBar = onShowErrorSnackBar
         )
     }
 }

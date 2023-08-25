@@ -6,38 +6,27 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.collectLatest
-import java.net.UnknownHostException
 
 @Composable
 internal fun HomeRoute(
     padding: PaddingValues,
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
-    snackBarHostState: SnackbarHostState,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val sponsorsUiState by viewModel.sponsorsUiState.collectAsStateWithLifecycle()
-    val localContextResource = LocalContext.current.resources
 
     LaunchedEffect(true) {
-        viewModel.errorStateFlow.collectLatest {
-            snackBarHostState.showSnackbar(
-                when (it.throwable) {
-                    is UnknownHostException -> localContextResource.getString(R.string.error_message_network)
-                    else -> localContextResource.getString(R.string.error_message_unknown)
-                }
-            )
-        }
+        viewModel.errorStateFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
     }
 
     HomeScreen(

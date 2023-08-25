@@ -18,7 +18,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,28 +50,20 @@ import com.droidknights.app2023.core.model.Contributor
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
-import java.net.UnknownHostException
 
 @Composable
 fun ContributorRoute(
     onBackClick: () -> Unit,
-    snackBarHostState: SnackbarHostState,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ContributorViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val localContextResource = LocalContext.current.resources
 
     LaunchedEffect(true) {
-        viewModel.errorStateFlow.collectLatest {
-            snackBarHostState.showSnackbar(
-                when (it.throwable) {
-                    is UnknownHostException -> localContextResource.getString(R.string.error_message_network)
-                    else -> localContextResource.getString(R.string.error_message_unknown)
-                }
-            )
-        }
+        viewModel.errorStateFlow.collectLatest { onShowErrorSnackBar(it.throwable) }
     }
+
     ContributorScreen(
         uiState = uiState,
         onBackClick = onBackClick,
