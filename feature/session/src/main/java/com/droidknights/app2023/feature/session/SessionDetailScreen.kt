@@ -13,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -106,13 +107,15 @@ private fun SessionDetailContent(session: Session) {
         SessionDetailTitle(title = session.title, modifier = Modifier.padding(top = 8.dp))
         Spacer(modifier = Modifier.height(8.dp))
         SessionChips(session = session)
+
         if (session.content.isNotEmpty()) {
             Spacer(modifier = Modifier.height(16.dp))
             SessionOverview(content = session.content)
-            Spacer(modifier = Modifier.height(56.dp))
-        } else {
-            Spacer(modifier = Modifier.height(40.dp))
         }
+        Spacer(modifier = Modifier.height(40.dp))
+        Divider(thickness = 1.dp, color = MaterialTheme.colorScheme.outline)
+        Spacer(modifier = Modifier.height(40.dp))
+
         SessionDetailSpeaker(session.speakers.toPersistentList())
     }
 }
@@ -136,26 +139,36 @@ private fun SessionDetailSpeaker(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        Text(
-            text = stringResource(id = R.string.session_detail_speaker),
-            style = KnightsTheme.typography.labelSmallM,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
         speakers.forEach { speaker ->
+            NetworkImage(
+                imageUrl = speaker.imageUrl,
+                modifier = Modifier
+                    .size(108.dp)
+                    .clip(CircleShape),
+                placeholder = painterResource(id = com.droidknights.app2023.core.ui.R.drawable.placeholder_speaker)
+            )
+
+            Spacer(Modifier.height(16.dp))
+
+            Text(
+                text = stringResource(id = R.string.session_detail_speaker),
+                style = KnightsTheme.typography.labelSmallM,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
             Text(
                 text = speaker.name,
                 style = KnightsTheme.typography.titleMediumB,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+
+            Spacer(Modifier.height(16.dp))
+
+            Text(
+                text = speaker.introduction,
+                style = KnightsTheme.typography.titleSmallR140,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
             )
         }
-        Spacer(Modifier.height(8.dp))
-        NetworkImage(
-            imageUrl = speakers.firstOrNull()?.imageUrl ?: "",
-            modifier = Modifier
-                .size(108.dp)
-                .clip(CircleShape),
-            placeholder = painterResource(id = com.droidknights.app2023.core.ui.R.drawable.placeholder_speaker)
-        )
     }
 }
 
@@ -173,8 +186,16 @@ private val SampleSessionHasContent = Session(
     title = "세션 제목은 세션 제목 - 개요 있음",
     content = "세션에 대한 소개와 세션에서의 장단점과 세션을 실제로 사용한 사례와 세션 내용에 대한 QnA 진행",
     speakers = listOf(
-        Speaker(name = "스피커1", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
-        Speaker(name = "스피커2", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
+        Speaker(
+            name = "스피커1",
+            introduction = "스피커1 에 대한 소개",
+            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+        ),
+        Speaker(
+            name = "스피커2",
+            introduction = "스피커2 에 대한 소개",
+            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+        )
     ),
     level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
@@ -188,8 +209,16 @@ private val SampleSessionNoContent = Session(
     title = "세션 제목은 세션 제목 - 개요 없음",
     content = "",
     speakers = listOf(
-        Speaker(name = "스피커1", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
-        Speaker(name = "스피커2", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png")
+        Speaker(
+            name = "스피커1",
+            introduction = "스피커1 에 대한 소개",
+            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+        ),
+        Speaker(
+            name = "스피커2",
+            introduction = "스피커2 에 대한 소개",
+            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+        )
     ),
     level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
