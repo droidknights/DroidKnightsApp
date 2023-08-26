@@ -10,9 +10,11 @@ fun NavController.navigateBookmark(navOptions: NavOptions) {
     navigate(BookmarkRoute.route, navOptions)
 }
 
-fun NavGraphBuilder.bookmarkNavGraph() {
+fun NavGraphBuilder.bookmarkNavGraph(
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
+) {
     composable(route = BookmarkRoute.route) {
-        BookmarkRoute()
+        BookmarkRoute(onShowErrorSnackBar)
     }
 }
 

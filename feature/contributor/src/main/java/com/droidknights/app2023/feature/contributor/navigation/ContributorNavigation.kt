@@ -9,9 +9,15 @@ fun NavController.navigateContributor() {
     this.navigate(ContributorRoute.route)
 }
 
-fun NavGraphBuilder.contributorNavGraph(onBackClick: () -> Unit) {
+fun NavGraphBuilder.contributorNavGraph(
+    onBackClick: () -> Unit,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
+) {
     composable(route = ContributorRoute.route) {
-        ContributorRoute(onBackClick)
+        ContributorRoute(
+            onBackClick = onBackClick,
+            onShowErrorSnackBar = onShowErrorSnackBar
+        )
     }
 }
 

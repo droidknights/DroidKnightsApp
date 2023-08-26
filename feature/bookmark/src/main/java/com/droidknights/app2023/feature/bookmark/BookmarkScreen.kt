@@ -18,6 +18,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,10 +32,18 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.designsystem.theme.Purple01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-internal fun BookmarkRoute(viewModel: BookmarkViewModel = hiltViewModel()) {
+internal fun BookmarkRoute(
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
+    viewModel: BookmarkViewModel = hiltViewModel()
+) {
     val bookmarkUiState by viewModel.bookmarkUiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(true) {
+        viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it) }
+    }
 
     Box(
         modifier = Modifier

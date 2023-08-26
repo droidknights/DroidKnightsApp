@@ -20,11 +20,13 @@ fun NavController.navigateSessionDetail(sessionId: String) {
 fun NavGraphBuilder.sessionNavGraph(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
 ) {
     composable(SessionRoute.route) {
         SessionScreen(
             onBackClick = onBackClick,
             onSessionClick = onSessionClick,
+            onShowErrorSnackBar = onShowErrorSnackBar
         )
     }
 

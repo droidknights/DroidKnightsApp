@@ -24,10 +24,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -41,12 +45,29 @@ import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
 import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 
 @Composable
 internal fun MainScreen(
     navigator: MainNavigator = rememberMainNavigator(),
     onChangeDarkTheme: (Boolean) -> Unit
 ) {
+    val snackBarHostState = remember { SnackbarHostState() }
+
+    val coroutineScope = rememberCoroutineScope()
+    val localContextResource = LocalContext.current.resources
+    val onShowErrorSnackBar: (throwable: Throwable?) -> Unit = { throwable ->
+        coroutineScope.launch {
+            snackBarHostState.showSnackbar(
+                when (throwable) {
+                    is UnknownHostException -> localContextResource.getString(R.string.error_message_network)
+                    else -> localContextResource.getString(R.string.error_message_unknown)
+                }
+            )
+        }
+    }
+
     Scaffold(
         content = { padding ->
             Box(
@@ -62,21 +83,26 @@ internal fun MainScreen(
                         padding = padding,
                         onSessionClick = { navigator.navigateSession() },
                         onContributorClick = { navigator.navigateContributor() },
+                        onShowErrorSnackBar = onShowErrorSnackBar
                     )
                     settingNavGraph(
                         padding = padding,
                         onChangeDarkTheme = onChangeDarkTheme
                     )
 
-                    bookmarkNavGraph()
+                    bookmarkNavGraph(
+                        onShowErrorSnackBar = onShowErrorSnackBar
+                    )
 
                     contributorNavGraph(
-                        onBackClick = { navigator.popBackStack() }
+                        onBackClick = { navigator.popBackStack() },
+                        onShowErrorSnackBar = onShowErrorSnackBar
                     )
 
                     sessionNavGraph(
                         onBackClick = { navigator.popBackStack() },
-                        onSessionClick = { navigator.navigateSessionDetail(it.id) }
+                        onSessionClick = { navigator.navigateSessionDetail(it.id) },
+                        onShowErrorSnackBar = onShowErrorSnackBar
                     )
                 }
             }
@@ -89,6 +115,7 @@ internal fun MainScreen(
                 onTabSelected = { navigator.navigate(it) }
             )
         },
+        snackbarHost = { SnackbarHost(snackBarHostState) }
     )
 }
 

@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -48,14 +49,20 @@ import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Contributor
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun ContributorRoute(
     onBackClick: () -> Unit,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ContributorViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(true) {
+        viewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
+    }
 
     ContributorScreen(
         uiState = uiState,

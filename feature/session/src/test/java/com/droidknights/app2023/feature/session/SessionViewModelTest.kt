@@ -41,7 +41,7 @@ internal class SessionViewModelTest {
 
         // when & then
         viewModel.uiState.test {
-            val actual = awaitItem().sessions.first()
+            val actual = (awaitItem() as? SessionUiState.Sessions)?.sessions?.first()
             assertEquals(fakeSession, actual)
         }
     }

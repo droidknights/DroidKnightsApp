@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -26,15 +27,24 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.ui.RoomText
 import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 internal fun SessionScreen(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     sessionViewModel: SessionViewModel = hiltViewModel(),
 ) {
     val sessionUiState by sessionViewModel.uiState.collectAsStateWithLifecycle()
-    val sessionState = rememberSessionState(sessions = sessionUiState.sessions)
+    val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions?.let { sessions ->
+            rememberSessionState(sessions = sessions) // SessionUiState.Sessions
+        } ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
+
+    LaunchedEffect(true) {
+        sessionViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         SessionTopAppBar(

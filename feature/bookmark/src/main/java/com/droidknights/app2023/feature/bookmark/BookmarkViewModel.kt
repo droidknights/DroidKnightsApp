@@ -4,8 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app2023.core.domain.usecase.GetBookmarkedSessionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,6 +17,9 @@ import javax.inject.Inject
 class BookmarkViewModel @Inject constructor(
     private val getBookmarkedSessionsUseCase: GetBookmarkedSessionsUseCase
 ) : ViewModel() {
+
+    private val _errorFlow = MutableSharedFlow<Throwable>()
+    val errorFlow: SharedFlow<Throwable> get() = _errorFlow
 
     private val _bookmarkUiState = MutableStateFlow<BookmarkUiState>(BookmarkUiState.Loading)
     val bookmarkUiState: StateFlow<BookmarkUiState> = _bookmarkUiState
@@ -51,6 +57,8 @@ class BookmarkViewModel @Inject constructor(
                         )
                     }
                 }
+            }.catch { throwable ->
+                _errorFlow.emit(throwable)
             }.collect { _bookmarkUiState.value = it }
         }
     }

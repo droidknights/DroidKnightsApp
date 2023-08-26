@@ -15,9 +15,10 @@ fun NavGraphBuilder.homeNavGraph(
     padding: PaddingValues,
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
 ) {
     composable(route = HomeRoute.route) {
-        HomeRoute(padding, onSessionClick, onContributorClick)
+        HomeRoute(padding, onSessionClick, onContributorClick, onShowErrorSnackBar)
     }
 }
 
