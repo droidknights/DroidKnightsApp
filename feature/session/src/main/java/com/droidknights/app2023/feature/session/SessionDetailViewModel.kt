@@ -6,11 +6,9 @@ import com.droidknights.app2023.core.domain.usecase.BookmarkSessionUseCase
 import com.droidknights.app2023.core.domain.usecase.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app2023.core.domain.usecase.GetSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,8 +23,8 @@ class SessionDetailViewModel @Inject constructor(
         MutableStateFlow<SessionDetailUiState>(SessionDetailUiState.Loading)
     val sessionUiState: StateFlow<SessionDetailUiState> = _sessionUiState
 
-    private val _sessionUiEffect = Channel<SessionDetailEffect>()
-    val sessionUiEffect = _sessionUiEffect.receiveAsFlow()
+    private val _sessionUiEffect = MutableStateFlow<SessionDetailEffect>(SessionDetailEffect.Idle)
+    val sessionUiEffect: StateFlow<SessionDetailEffect> = _sessionUiEffect
 
     init {
         viewModelScope.launch {
@@ -59,13 +57,13 @@ class SessionDetailViewModel @Inject constructor(
         viewModelScope.launch {
             val bookmark = uiState.bookmarked
             bookmarkSessionUseCase(uiState.session.id, !bookmark)
-            _sessionUiEffect.send(SessionDetailEffect.ShowToastForBookmarkState(!bookmark))
+            _sessionUiEffect.value = SessionDetailEffect.ShowToastForBookmarkState(!bookmark)
         }
     }
 
     fun hidePopup() {
         viewModelScope.launch {
-            _sessionUiEffect.send(SessionDetailEffect.Idle)
+            _sessionUiEffect.value = SessionDetailEffect.Idle
         }
     }
 }

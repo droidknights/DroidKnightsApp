@@ -57,7 +57,7 @@ internal fun SessionDetailScreen(
 ) {
     val scrollState = rememberScrollState()
     val sessionUiState by viewModel.sessionUiState.collectAsStateWithLifecycle()
-    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle(SessionDetailEffect.Idle)
+    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier
             .fillMaxSize()
