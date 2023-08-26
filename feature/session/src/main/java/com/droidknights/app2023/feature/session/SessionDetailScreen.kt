@@ -129,7 +129,7 @@ private fun SessionDetailTitle(
         modifier = modifier.padding(end = 64.dp),
         text = title,
         style = KnightsTheme.typography.headlineMediumB,
-        color = MaterialTheme.colorScheme.onSurface,
+        color = MaterialTheme.colorScheme.onSecondaryContainer,
     )
 }
 
@@ -177,7 +177,7 @@ private fun SessionOverview(content: String) {
     Text(
         text = content,
         style = KnightsTheme.typography.titleSmallR140,
-        color = MaterialTheme.colorScheme.onSurface
+        color = MaterialTheme.colorScheme.onSecondaryContainer
     )
 }
 
