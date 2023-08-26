@@ -3,12 +3,14 @@ package com.droidknights.app2023.feature.session
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -32,8 +34,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app2023.core.designsystem.component.NetworkImage
+import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.designsystem.component.TopAppBarNavigationType
+import com.droidknights.app2023.core.designsystem.theme.DarkGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
@@ -43,6 +48,7 @@ import com.droidknights.app2023.core.model.Tag
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.toJavaLocalDateTime
 
 @Composable
 internal fun SessionDetailScreen(
@@ -118,6 +124,37 @@ private fun SessionDetailContent(session: Session) {
 
         SessionDetailSpeaker(session.speakers.toPersistentList())
     }
+}
+
+@Composable
+private fun SessionChips(session: Session) {
+    Row {
+        TrackChip(room = session.room)
+        Spacer(modifier = Modifier.width(8.dp))
+        TimeChip(time = session.startTime.toJavaLocalDateTime().toLocalTime())
+        Spacer(modifier = Modifier.width(8.dp))
+        TagChips(tags = session.tags.toPersistentList())
+    }
+}
+
+@Composable
+private fun TagChips(tags: List<Tag>) {
+    tags.forEachIndexed { index, tag ->
+        if (index != 0) {
+            Spacer(modifier = Modifier.width(8.dp))
+        }
+
+        TagChip(tag = tag)
+    }
+}
+
+@Composable
+private fun TagChip(tag: Tag) {
+    TextChip(
+        text = tag.name,
+        containerColor = DarkGray,
+        labelColor = LightGray,
+    )
 }
 
 @Composable
