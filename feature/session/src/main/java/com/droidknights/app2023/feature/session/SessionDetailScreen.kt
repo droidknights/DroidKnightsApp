@@ -138,7 +138,7 @@ private fun SessionChips(session: Session) {
 }
 
 @Composable
-private fun TagChips(tags: List<Tag>) {
+private fun TagChips(tags: PersistentList<Tag>) {
     tags.forEach { tag ->
         TagChip(tag = tag)
     }
