@@ -48,7 +48,6 @@ import com.droidknights.app2023.core.model.Tag
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.toJavaLocalDateTime
 
 @Composable
 internal fun SessionDetailScreen(
@@ -131,7 +130,7 @@ private fun SessionChips(session: Session) {
     Row {
         TrackChip(room = session.room)
         Spacer(modifier = Modifier.width(8.dp))
-        TimeChip(time = session.startTime.toJavaLocalDateTime().toLocalTime())
+        TimeChip(dateTime = session.startTime)
         Spacer(modifier = Modifier.width(8.dp))
         TagChips(tags = session.tags.toPersistentList())
     }

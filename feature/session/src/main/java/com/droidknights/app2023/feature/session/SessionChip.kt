@@ -7,7 +7,8 @@ import androidx.compose.ui.res.stringResource
 import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.ui.textRes
-import java.time.LocalTime
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.toJavaLocalDateTime
 import java.time.format.DateTimeFormatter
 
 @Composable
@@ -20,9 +21,11 @@ internal fun TrackChip(room: Room) {
 }
 
 @Composable
-internal fun TimeChip(time: LocalTime) {
+internal fun TimeChip(dateTime: LocalDateTime) {
     val pattern = stringResource(id = R.string.session_time_fmt)
     val formatter = remember { DateTimeFormatter.ofPattern(pattern) }
+    val time = remember { dateTime.toJavaLocalDateTime().toLocalTime() }
+
     TextChip(
         text = formatter.format(time),
         containerColor = MaterialTheme.colorScheme.tertiaryContainer,

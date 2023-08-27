@@ -33,7 +33,6 @@ import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.toJavaLocalDateTime
 
 @Composable
 internal fun SessionCard(
@@ -91,7 +90,7 @@ private fun SessionCardContent(
         Row {
             TrackChip(room = session.room)
             Spacer(modifier = Modifier.width(8.dp))
-            TimeChip(time = session.startTime.toJavaLocalDateTime().toLocalTime())
+            TimeChip(dateTime = session.startTime)
         }
 
         // 발표자
