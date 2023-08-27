@@ -1,6 +1,7 @@
 package com.droidknights.app2023.feature.session
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -127,22 +127,19 @@ private fun SessionDetailContent(session: Session) {
 
 @Composable
 private fun SessionChips(session: Session) {
-    Row {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         TrackChip(room = session.room)
-        Spacer(modifier = Modifier.width(8.dp))
         TimeChip(dateTime = session.startTime)
-        Spacer(modifier = Modifier.width(8.dp))
         TagChips(tags = session.tags.toPersistentList())
     }
 }
 
 @Composable
 private fun TagChips(tags: List<Tag>) {
-    tags.forEachIndexed { index, tag ->
-        if (index != 0) {
-            Spacer(modifier = Modifier.width(8.dp))
-        }
-
+    tags.forEach { tag ->
         TagChip(tag = tag)
     }
 }
