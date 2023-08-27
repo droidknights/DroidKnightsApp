@@ -121,7 +121,7 @@ private fun SessionDetailContent(session: Session) {
         Divider(thickness = 1.dp, color = MaterialTheme.colorScheme.outline)
         Spacer(modifier = Modifier.height(40.dp))
 
-        SessionDetailSpeaker(session.speakers.toPersistentList())
+        SessionDetailSpeaker(session.speakers.first())
     }
 }
 
@@ -168,40 +168,38 @@ private fun SessionDetailTitle(
 
 @Composable
 private fun SessionDetailSpeaker(
-    speakers: PersistentList<Speaker>,
+    speaker: Speaker,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        speakers.forEach { speaker ->
-            NetworkImage(
-                imageUrl = speaker.imageUrl,
-                modifier = Modifier
-                    .size(108.dp)
-                    .clip(CircleShape),
-                placeholder = painterResource(id = com.droidknights.app2023.core.ui.R.drawable.placeholder_speaker)
-            )
+        NetworkImage(
+            imageUrl = speaker.imageUrl,
+            modifier = Modifier
+                .size(108.dp)
+                .clip(CircleShape),
+            placeholder = painterResource(id = com.droidknights.app2023.core.ui.R.drawable.placeholder_speaker)
+        )
 
-            Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(16.dp))
 
-            Text(
-                text = stringResource(id = R.string.session_detail_speaker),
-                style = KnightsTheme.typography.labelSmallM,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-            )
-            Text(
-                text = speaker.name,
-                style = KnightsTheme.typography.titleMediumB,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-            )
+        Text(
+            text = stringResource(id = R.string.session_detail_speaker),
+            style = KnightsTheme.typography.labelSmallM,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
+        )
+        Text(
+            text = speaker.name,
+            style = KnightsTheme.typography.titleMediumB,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
+        )
 
-            Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(16.dp))
 
-            Text(
-                text = speaker.introduction,
-                style = KnightsTheme.typography.titleSmallR140,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-            )
-        }
+        Text(
+            text = speaker.introduction,
+            style = KnightsTheme.typography.titleSmallR140,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
+        )
     }
 }
 
@@ -224,11 +222,6 @@ private val SampleSessionHasContent = Session(
             introduction = "스피커1 에 대한 소개",
             imageUrl = "",
         ),
-        Speaker(
-            name = "스피커2",
-            introduction = "스피커2 에 대한 소개",
-            imageUrl = "",
-        )
     ),
     level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
@@ -247,11 +240,6 @@ private val SampleSessionNoContent = Session(
             introduction = "스피커1 에 대한 소개",
             imageUrl = "",
         ),
-        Speaker(
-            name = "스피커2",
-            introduction = "스피커2 에 대한 소개",
-            imageUrl = "",
-        )
     ),
     level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
@@ -297,7 +285,7 @@ private fun SessionDetailTitlePreview() {
 @Composable
 private fun SessionDetailSpeakerPreview() {
     KnightsTheme {
-        SessionDetailSpeaker(SampleSessionHasContent.speakers.toPersistentList())
+        SessionDetailSpeaker(SampleSessionHasContent.speakers.first())
     }
 }
 
