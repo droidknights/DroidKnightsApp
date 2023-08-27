@@ -226,12 +226,12 @@ private val SampleSessionHasContent = Session(
         Speaker(
             name = "스피커1",
             introduction = "스피커1 에 대한 소개",
-            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+            imageUrl = "",
         ),
         Speaker(
             name = "스피커2",
             introduction = "스피커2 에 대한 소개",
-            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+            imageUrl = "",
         )
     ),
     level = Level.ADVANCED,
@@ -249,12 +249,12 @@ private val SampleSessionNoContent = Session(
         Speaker(
             name = "스피커1",
             introduction = "스피커1 에 대한 소개",
-            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+            imageUrl = "",
         ),
         Speaker(
             name = "스피커2",
             introduction = "스피커2 에 대한 소개",
-            "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png",
+            imageUrl = "",
         )
     ),
     level = Level.ADVANCED,
