@@ -279,7 +279,8 @@ private val SampleSessionHasContent = Session(
     tags = listOf(Tag("Dev Environment")),
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
-    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
+    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000"),
+    isBookmarked = false
 )
 
 private val SampleSessionNoContent = Session(
@@ -297,7 +298,8 @@ private val SampleSessionNoContent = Session(
     tags = listOf(Tag("Dev Environment")),
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
-    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
+    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000"),
+    isBookmarked = true
 )
 
 class SessionDetailContentProvider : PreviewParameterProvider<Session> {

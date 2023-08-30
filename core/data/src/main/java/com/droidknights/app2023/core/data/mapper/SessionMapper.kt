@@ -19,7 +19,8 @@ internal fun SessionResponse.toData(): Session = Session(
     tags = this.tags.map { Tag(it) },
     room = this.room?.toData() ?: Room.ETC,
     startTime = this.startTime,
-    endTime = this.endTime
+    endTime = this.endTime,
+    isBookmarked = false
 )
 
 internal fun LevelResponse.toData(): Level = when (this) {

@@ -155,6 +155,7 @@ private fun SessionCardPreview() {
         startTime = LocalDateTime(2023, 9, 12, 16, 10, 0),
         endTime = LocalDateTime(2023, 9, 12, 16, 45, 0),
         room = Room.TRACK1,
+        isBookmarked = false,
     )
 
     KnightsTheme {
