@@ -1,6 +1,8 @@
 package com.droidknights.app2023.feature.session
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -60,62 +62,67 @@ internal fun SessionCard(
 private fun SessionCardContent(
     session: Session,
 ) {
-    Column(
-        modifier = Modifier.padding(CardContentPadding)
-    ) {
-        // 카테고리
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            CategoryChip()
-            session.tags.forEach { tag ->
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = tag.name,
-                    style = KnightsTheme.typography.labelLargeM,
-                    color = DarkGray,
-                )
-            }
+    Box {
+        if (session.isBookmarked) {
+            BookmarkImage()
         }
-
-        // 제목
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = session.title,
-            style = KnightsTheme.typography.titleLargeB,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
-            modifier = Modifier.padding(end = 50.dp)
-        )
-
-        // 트랙
-        Spacer(modifier = Modifier.height(12.dp))
-        Row {
-            TrackChip(room = session.room)
-            Spacer(modifier = Modifier.width(8.dp))
-            TimeChip(dateTime = session.startTime)
-        }
-
-        // 발표자
-        Spacer(modifier = Modifier.height(12.dp))
-        Box(modifier = Modifier.fillMaxWidth()) {
-            Column(modifier = Modifier.align(Alignment.BottomStart)) {
-                session.speakers.forEach { speaker ->
+        Column(
+            modifier = Modifier.padding(CardContentPadding)
+        ) {
+            // 카테고리
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CategoryChip()
+                session.tags.forEach { tag ->
+                    Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = speaker.name,
-                        style = KnightsTheme.typography.titleLargeB,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        text = tag.name,
+                        style = KnightsTheme.typography.labelLargeM,
+                        color = DarkGray,
                     )
                 }
             }
-            Row(
-                modifier = Modifier.align(Alignment.BottomEnd)
-            ) {
-                session.speakers.forEach { speaker ->
-                    NetworkImage(
-                        imageUrl = speaker.imageUrl,
-                        modifier = Modifier
-                            .size(80.dp)
-                            .clip(CircleShape),
-                        placeholder = painterResource(id = com.droidknights.app2023.core.ui.R.drawable.placeholder_speaker),
-                    )
+
+            // 제목
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = session.title,
+                style = KnightsTheme.typography.titleLargeB,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                modifier = Modifier.padding(end = 50.dp)
+            )
+
+            // 트랙
+            Spacer(modifier = Modifier.height(12.dp))
+            Row {
+                TrackChip(room = session.room)
+                Spacer(modifier = Modifier.width(8.dp))
+                TimeChip(dateTime = session.startTime)
+            }
+
+            // 발표자
+            Spacer(modifier = Modifier.height(12.dp))
+            Box(modifier = Modifier.fillMaxWidth()) {
+                Column(modifier = Modifier.align(Alignment.BottomStart)) {
+                    session.speakers.forEach { speaker ->
+                        Text(
+                            text = speaker.name,
+                            style = KnightsTheme.typography.titleLargeB,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier.align(Alignment.BottomEnd)
+                ) {
+                    session.speakers.forEach { speaker ->
+                        NetworkImage(
+                            imageUrl = speaker.imageUrl,
+                            modifier = Modifier
+                                .size(80.dp)
+                                .clip(CircleShape),
+                            placeholder = painterResource(id = com.droidknights.app2023.core.ui.R.drawable.placeholder_speaker),
+                        )
+                    }
                 }
             }
         }
@@ -128,6 +135,21 @@ private fun CategoryChip() {
         text = stringResource(id = R.string.session_category),
         containerColor = DarkGray,
         labelColor = LightGray,
+    )
+}
+
+@Composable
+private fun BoxScope.BookmarkImage() {
+    Image(
+        painter = painterResource(id = R.drawable.ic_flagbookmark),
+        contentDescription = null,
+        modifier = Modifier.Companion
+            .align(Alignment.TopEnd)
+            .padding(end = 30.dp)
+            .size(
+                width = 24.dp,
+                height = 36.dp
+            )
     )
 }
 
