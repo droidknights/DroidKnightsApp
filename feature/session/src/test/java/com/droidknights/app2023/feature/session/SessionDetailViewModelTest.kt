@@ -40,6 +40,7 @@ class SessionDetailViewModelTest {
         room = Room.TRACK1,
         startTime = LocalDateTime(2023, 9, 12, 13, 0, 0),
         endTime = LocalDateTime(2023, 9, 12, 13, 30, 0),
+        isBookmarked = false
     )
 
     @Before

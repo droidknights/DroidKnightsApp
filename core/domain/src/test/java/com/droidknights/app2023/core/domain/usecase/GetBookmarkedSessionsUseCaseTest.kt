@@ -59,7 +59,8 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 11, 0),
-                endTime = LocalDateTime(2023, 10, 5, 11, 50)
+                endTime = LocalDateTime(2023, 10, 5, 11, 50),
+                isBookmarked = false
             ),
             Session(
                 id = "1",
@@ -70,7 +71,8 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 9, 0),
-                endTime = LocalDateTime(2023, 10, 5, 9, 50)
+                endTime = LocalDateTime(2023, 10, 5, 9, 50),
+                isBookmarked = false
             ),
             Session(
                 id = "2",
@@ -81,7 +83,8 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 10, 0),
-                endTime = LocalDateTime(2023, 10, 5, 10, 50)
+                endTime = LocalDateTime(2023, 10, 5, 10, 50),
+                isBookmarked = false
             )
         )
     }
