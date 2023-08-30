@@ -23,6 +23,9 @@ class SessionDetailViewModel @Inject constructor(
         MutableStateFlow<SessionDetailUiState>(SessionDetailUiState.Loading)
     val sessionUiState: StateFlow<SessionDetailUiState> = _sessionUiState
 
+    private val _sessionUiEffect = MutableStateFlow<SessionDetailEffect>(SessionDetailEffect.Idle)
+    val sessionUiEffect: StateFlow<SessionDetailEffect> = _sessionUiEffect
+
     init {
         viewModelScope.launch {
             combine(
@@ -54,6 +57,13 @@ class SessionDetailViewModel @Inject constructor(
         viewModelScope.launch {
             val bookmark = uiState.bookmarked
             bookmarkSessionUseCase(uiState.session.id, !bookmark)
+            _sessionUiEffect.value = SessionDetailEffect.ShowToastForBookmarkState(!bookmark)
+        }
+    }
+
+    fun hidePopup() {
+        viewModelScope.launch {
+            _sessionUiEffect.value = SessionDetailEffect.Idle
         }
     }
 }

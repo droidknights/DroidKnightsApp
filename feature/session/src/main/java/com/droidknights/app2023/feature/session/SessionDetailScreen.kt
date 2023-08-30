@@ -16,11 +16,16 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -47,6 +52,7 @@ import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -57,6 +63,7 @@ internal fun SessionDetailScreen(
 ) {
     val scrollState = rememberScrollState()
     val sessionUiState by viewModel.sessionUiState.collectAsStateWithLifecycle()
+    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -64,33 +71,57 @@ internal fun SessionDetailScreen(
             .systemBarsPadding()
             .verticalScroll(scrollState),
     ) {
-        SessionDetailTopAppBar(onBackClick = onBackClick)
-        SessionDetailContent(uiState = sessionUiState)
+        SessionDetailTopAppBar(
+            bookmarked = (sessionUiState as? SessionDetailUiState.Success)?.bookmarked ?: false,
+            onClickBookmark = { viewModel.toggleBookmark() },
+            onBackClick = onBackClick
+        )
+        Box {
+            SessionDetailContent(uiState = sessionUiState)
+            if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
+                SessionDetailBookmarkStatePopup(
+                    bookmarked = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
+                )
+            }
+        }
     }
 
     LaunchedEffect(sessionId) {
         viewModel.fetchSession(sessionId)
     }
+
+    LaunchedEffect(effect) {
+        if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
+            delay(1000L)
+            viewModel.hidePopup()
+        }
+    }
 }
 
 @Composable
 private fun SessionDetailTopAppBar(
+    bookmarked: Boolean,
+    onClickBookmark: (Boolean) -> Unit,
     onBackClick: () -> Unit,
 ) {
     KnightsTopAppBar(
         titleRes = R.string.session_detail_title,
         navigationIconContentDescription = null,
         navigationType = TopAppBarNavigationType.Back,
+        actionButtons = {
+            BookmarkToggleButton(
+                bookmarked = bookmarked,
+                onClickBookmark = onClickBookmark
+            )
+        },
         onNavigationClick = onBackClick,
     )
-
-    // TODO: 북마크 확인 및 변경 기능 추가
 }
 
 @Composable
 private fun SessionDetailContent(uiState: SessionDetailUiState) {
     when (uiState) {
-        SessionDetailUiState.Loading -> SessionDetailLoading()
+        is SessionDetailUiState.Loading -> SessionDetailLoading()
         is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
     }
 }
@@ -212,6 +243,27 @@ private fun SessionOverview(content: String) {
     )
 }
 
+@Composable
+private fun BookmarkToggleButton(
+    bookmarked: Boolean,
+    onClickBookmark: (Boolean) -> Unit
+) {
+    IconToggleButton(
+        checked = bookmarked,
+        onCheckedChange = onClickBookmark
+    ) {
+        Icon(
+            painter =
+            if (bookmarked) {
+                painterResource(id = R.drawable.ic_session_bookmark_filled)
+            } else {
+                painterResource(id = R.drawable.ic_session_bookmark)
+            },
+            contentDescription = null
+        )
+    }
+}
+
 private val SampleSessionHasContent = Session(
     id = "2",
     title = "세션 제목은 세션 제목 - 개요 있음",
@@ -259,7 +311,13 @@ class SessionDetailContentProvider : PreviewParameterProvider<Session> {
 @Composable
 private fun SessionDetailTopAppBarPreview() {
     KnightsTheme {
-        SessionDetailTopAppBar { }
+        var state by remember { mutableStateOf(false) }
+        SessionDetailTopAppBar(
+            bookmarked = state,
+            onClickBookmark = {
+                state = it
+            }
+        ) { }
     }
 }
 
