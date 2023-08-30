@@ -12,5 +12,5 @@ data class Session(
     val room: Room,
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
-    val video: Video? = null,
+    val video: Video,
 )

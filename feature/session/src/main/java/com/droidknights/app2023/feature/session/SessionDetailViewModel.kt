@@ -61,6 +61,14 @@ class SessionDetailViewModel @Inject constructor(
         }
     }
 
+    fun playSession() {
+        val uiState = sessionUiState.value
+        if (uiState !is SessionDetailUiState.Success || !uiState.session.video.isReady) {
+            return
+        }
+        // TODO: play session video
+    }
+
     fun hidePopup() {
         viewModelScope.launch {
             _sessionUiEffect.value = SessionDetailEffect.Idle

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
@@ -44,9 +46,10 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
-import kotlinx.coroutines.delay
+import com.droidknights.app2023.core.model.Video
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -71,7 +74,10 @@ internal fun SessionDetailScreen(
             onBackClick = onBackClick
         )
         Box {
-            SessionDetailContent(uiState = sessionUiState)
+            SessionDetailContent(
+                uiState = sessionUiState,
+                onPlayButtonClick = { viewModel.playSession() }
+            )
             if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
                 SessionDetailBookmarkStatePopup(
                     bookmarked = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
@@ -113,10 +119,13 @@ private fun SessionDetailTopAppBar(
 }
 
 @Composable
-private fun SessionDetailContent(uiState: SessionDetailUiState) {
+private fun SessionDetailContent(
+    uiState: SessionDetailUiState,
+    onPlayButtonClick: () -> Unit,
+) {
     when (uiState) {
         is SessionDetailUiState.Loading -> SessionDetailLoading()
-        is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
+        is SessionDetailUiState.Success -> SessionDetailContent(uiState.session, onPlayButtonClick)
     }
 }
 
@@ -128,7 +137,10 @@ private fun SessionDetailLoading() {
 }
 
 @Composable
-private fun SessionDetailContent(session: Session) {
+private fun SessionDetailContent(
+    session: Session,
+    onPlayButtonClick: () -> Unit,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -145,6 +157,17 @@ private fun SessionDetailContent(session: Session) {
             Spacer(modifier = Modifier.height(40.dp))
         }
         SessionDetailSpeaker(session.speakers.toPersistentList())
+        Button(
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .fillMaxWidth(),
+            enabled = session.video.isReady,
+            onClick = onPlayButtonClick
+        ) {
+            Text(
+                if (session.video.isReady) "재생하기" else "영상 미제공 세션"
+            )
+        }
     }
 }
 
@@ -222,7 +245,7 @@ private fun BookmarkToggleButton(
 
 private val SampleSessionHasContent = Session(
     id = "2",
-    title = "세션 제목은 세션 제목 - 개요 있음",
+    title = "세션 제목은 세션 제목 - 개요, 영상 있음",
     content = "세션에 대한 소개와 세션에서의 장단점과 세션을 실제로 사용한 사례와 세션 내용에 대한 QnA 진행",
     speakers = listOf(
         Speaker(name = "스피커1", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
@@ -232,12 +255,13 @@ private val SampleSessionHasContent = Session(
     tags = listOf(Tag("Dev Environment")),
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
-    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
+    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000"),
+    video = Video("qwer", "asdf")
 )
 
 private val SampleSessionNoContent = Session(
     id = "2",
-    title = "세션 제목은 세션 제목 - 개요 없음",
+    title = "세션 제목은 세션 제목 - 개요, 영상 없음",
     content = "",
     speakers = listOf(
         Speaker(name = "스피커1", introduction = "", "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"),
@@ -247,7 +271,8 @@ private val SampleSessionNoContent = Session(
     tags = listOf(Tag("Dev Environment")),
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
-    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000")
+    endTime = LocalDateTime.parse("2023-09-12T11:30:00.000"),
+    video = Video.None
 )
 
 class SessionDetailContentProvider : PreviewParameterProvider<Session> {
@@ -277,7 +302,7 @@ private fun SessionDetailContentPreview(
     @PreviewParameter(SessionDetailContentProvider::class) session: Session
 ) {
     KnightsTheme {
-        SessionDetailContent(session = session)
+        SessionDetailContent(session = session, onPlayButtonClick = {})
     }
 }
 

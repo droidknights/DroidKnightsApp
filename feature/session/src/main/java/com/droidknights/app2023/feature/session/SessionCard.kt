@@ -32,6 +32,7 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
+import com.droidknights.app2023.core.model.Video
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -151,6 +152,7 @@ private fun SessionCardPreview() {
         startTime = LocalDateTime(2023, 9, 12, 16, 10, 0),
         endTime = LocalDateTime(2023, 9, 12, 16, 45, 0),
         room = Room.TRACK1,
+        video = Video.None
     )
 
     KnightsTheme {

@@ -22,7 +22,7 @@ internal fun SessionResponse.toData(): Session = Session(
     room = this.room?.toData() ?: Room.ETC,
     startTime = this.startTime,
     endTime = this.endTime,
-    video = this.video?.toData(),
+    video = this.video?.toData() ?: Video.None,
 )
 
 internal fun LevelResponse.toData(): Level = when (this) {
