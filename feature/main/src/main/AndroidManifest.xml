@@ -7,7 +7,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:configChanges="uiMode"
-            android:theme="@style/Theme.DroidKnights2023.NoStatusBar">
+            android:theme="@style/Theme.DroidKnights2023.TransparentSystemBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
