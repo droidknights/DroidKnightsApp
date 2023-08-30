@@ -87,7 +87,11 @@ private fun SessionCardContent(
 
         // 트랙
         Spacer(modifier = Modifier.height(12.dp))
-        SessionChips(session = session)
+        Row {
+            TrackChip(room = session.room)
+            Spacer(modifier = Modifier.width(8.dp))
+            TimeChip(dateTime = session.startTime)
+        }
 
         // 발표자
         Spacer(modifier = Modifier.height(12.dp))
