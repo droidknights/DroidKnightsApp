@@ -40,6 +40,7 @@ import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.feature.bookmark.navigation.bookmarkNavGraph
 import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
+import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
 import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
 import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
@@ -95,12 +96,12 @@ internal fun MainScreen(
                     )
 
                     contributorNavGraph(
-                        onBackClick = { navigator.popBackStack() },
+                        onBackClick = navigator::popBackStackIfNotHome,
                         onShowErrorSnackBar = onShowErrorSnackBar
                     )
 
                     sessionNavGraph(
-                        onBackClick = { navigator.popBackStack() },
+                        onBackClick = navigator::popBackStackIfNotHome,
                         onSessionClick = { navigator.navigateSessionDetail(it.id) },
                         onShowErrorSnackBar = onShowErrorSnackBar
                     )
