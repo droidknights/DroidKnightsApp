@@ -9,6 +9,7 @@ androidxComposeCompiler = "1.4.7"
 androidxComposeNavigation = "2.6.0"
 androidxComposeMaterial3 = "1.1.0"
 androidxActivity = "1.7.2"
+androidxMedia3 = "1.1.1"
 hilt = "2.46.1"
 hiltNavigationCompose = "1.0.0"
 
@@ -61,6 +62,10 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
 androidx-compose-navigation-test = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxComposeNavigation" }
+androidx-media3-player = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "androidxMedia3" }
+androidx-media3-player-dash = { group = "androidx.media3", name = "media3-exoplayer-dash", version.ref = "androidxMedia3" }
+androidx-media3-player-session = { group = "androidx.media3", name = "media3-session", version.ref = "androidxMedia3" }
+
 
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }

@@ -24,6 +24,7 @@ include(
     ":core:domain",
     ":core:navigation",
     ":core:model",
+    ":core:playback",
     ":core:ui",
     ":core:testing",
     ":core:datastore",
