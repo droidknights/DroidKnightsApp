@@ -35,4 +35,5 @@ include(
     ":feature:setting",
     ":feature:contributor",
     ":feature:bookmark",
+    ":feature:player",
 )
