@@ -43,9 +43,9 @@ internal fun SettingScreen(
     val scrollState = rememberScrollState()
     Column(
         Modifier
+            .verticalScroll(scrollState)
             .padding(padding)
-            .padding(8.dp)
-            .verticalScroll(scrollState),
+            .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         OpenSourceCard(
