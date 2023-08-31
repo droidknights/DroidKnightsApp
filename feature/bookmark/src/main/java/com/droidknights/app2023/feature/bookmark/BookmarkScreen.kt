@@ -32,6 +32,8 @@ import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
 import com.droidknights.app2023.core.designsystem.theme.Purple01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -67,7 +69,7 @@ private fun BookmarkContent(
         BookmarkUiState.Loading -> BookmarkLoading()
         is BookmarkUiState.Success -> BookmarkScreen(
             isEditMode = uiState.isEditButtonSelected,
-            bookmarkItems = uiState.bookmarks,
+            bookmarkItems = uiState.bookmarks.toImmutableList(),
             onClickEditButton = onClickEditButton
         )
     }
@@ -83,7 +85,7 @@ private fun BookmarkLoading() {
 @Composable
 private fun BookmarkScreen(
     isEditMode: Boolean,
-    bookmarkItems: List<BookmarkItemUiState>,
+    bookmarkItems: ImmutableList<BookmarkItemUiState>,
     onClickEditButton: () -> Unit,
     listContentBottomPadding: Dp = 72.dp
 ) {
