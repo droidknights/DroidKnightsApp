@@ -1,5 +1,7 @@
 package com.droidknights.app2023.core.data.repository
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.droidknights.app2023.core.data.api.GithubRawApi
 import com.droidknights.app2023.core.data.mapper.toData
 import com.droidknights.app2023.core.model.Session
@@ -8,9 +10,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
+import javax.inject.Named
 
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
+    @Named("session") private val sessionDataStore: DataStore<Preferences>
 ) : SessionRepository {
     private var cachedSessions: List<Session> = emptyList()
 

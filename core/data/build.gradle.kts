@@ -12,6 +12,7 @@ dependencies {
     implementation(projects.core.model)
     implementation(projects.core.datastore)
 
+    implementation(libs.androidx.datastore)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)
     implementation(libs.okhttp.logging)
