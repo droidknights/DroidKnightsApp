@@ -2,6 +2,7 @@ package com.droidknights.app2023.core.data.repository
 
 import app.cash.turbine.test
 import com.droidknights.app2023.core.data.api.fake.FakeGithubRawApi
+import com.droidknights.app2023.core.data.datastore.fake.FakeSessionPreferencesDataSource
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
@@ -13,7 +14,8 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
 
     init {
         val repository: SessionRepository = DefaultSessionRepository(
-            githubRawApi = FakeGithubRawApi()
+            githubRawApi = FakeGithubRawApi(),
+            sessionDataSource = FakeSessionPreferencesDataSource()
         )
         "역직렬화 테스트" {
             val expected = Session(

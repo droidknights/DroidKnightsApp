@@ -2,7 +2,8 @@ package com.droidknights.app2023.core.data.repository
 
 import com.droidknights.app2023.core.data.api.GithubRawApi
 import com.droidknights.app2023.core.data.mapper.toData
-import com.droidknights.app2023.core.datastore.SessionPreferencesDataSource
+import com.droidknights.app2023.core.data.datasource.DefaultSessionLocalDataSource
+import com.droidknights.app2023.core.data.datasource.SessionLocalDataSource
 import com.droidknights.app2023.core.model.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
-    private val sessionDataSource: SessionPreferencesDataSource
+    private val sessionDataSource: SessionLocalDataSource
 ) : SessionRepository {
     private var cachedSessions: List<Session> = emptyList()
 

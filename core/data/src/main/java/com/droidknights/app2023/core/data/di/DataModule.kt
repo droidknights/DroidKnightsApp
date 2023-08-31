@@ -11,7 +11,8 @@ import com.droidknights.app2023.core.data.repository.DefaultSponsorRepository
 import com.droidknights.app2023.core.data.repository.SessionRepository
 import com.droidknights.app2023.core.data.repository.SettingsRepository
 import com.droidknights.app2023.core.data.repository.SponsorRepository
-import com.droidknights.app2023.core.datastore.SessionPreferencesDataSource
+import com.droidknights.app2023.core.data.datasource.DefaultSessionLocalDataSource
+import com.droidknights.app2023.core.data.datasource.SessionLocalDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -34,6 +35,11 @@ internal abstract class DataModule {
         repository: DefaultSettingsRepository,
     ): SettingsRepository
 
+    @Binds
+    abstract fun bindSessionLocalDataSource(
+        dataSource: DefaultSessionLocalDataSource,
+    ): SessionLocalDataSource
+
     @InstallIn(SingletonComponent::class)
     @Module
     internal object FakeModule {
@@ -48,7 +54,7 @@ internal abstract class DataModule {
         @Singleton
         fun provideSessionRepository(
             githubRawApi: GithubRawApi,
-            sessionDataSource: SessionPreferencesDataSource,
+            sessionDataSource: SessionLocalDataSource,
         ): SessionRepository = DefaultSessionRepository(githubRawApi, sessionDataSource)
 
         @Provides
