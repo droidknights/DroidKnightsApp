@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.data.datasource
+package com.droidknights.app2023.core.datastore.datasource
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Named
 
-class DefaultSessionLocalDataSource @Inject constructor(
+class DefaultSessionPreferencesDataSource @Inject constructor(
     @Named("session") private val dataStore: DataStore<Preferences>
-) : SessionLocalDataSource {
+) : SessionPreferencesDataSource {
     object PreferencesKey {
         val BOOKMARKED_SESSION = stringSetPreferencesKey("BOOKMARKED_SESSION")
     }

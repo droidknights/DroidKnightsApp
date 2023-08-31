@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.datastore
+package com.droidknights.app2023.core.datastore.datasource
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

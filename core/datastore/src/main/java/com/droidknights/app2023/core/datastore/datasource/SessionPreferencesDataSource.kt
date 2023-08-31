@@ -1,8 +1,8 @@
-package com.droidknights.app2023.core.data.datasource
+package com.droidknights.app2023.core.datastore.datasource
 
 import kotlinx.coroutines.flow.Flow
 
-interface SessionLocalDataSource {
+interface SessionPreferencesDataSource {
     val bookmarkedSession: Flow<Set<String>>
     suspend fun updateBookmarkedSession(bookmarkedSession: Set<String>)
 }

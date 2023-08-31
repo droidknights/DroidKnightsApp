@@ -1,11 +1,11 @@
 package com.droidknights.app2023.core.data.datastore.fake
 
-import com.droidknights.app2023.core.data.datasource.SessionLocalDataSource
+import com.droidknights.app2023.core.datastore.datasource.SessionPreferencesDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 
-class FakeSessionPreferencesDataSource : SessionLocalDataSource {
+class FakeSessionPreferencesDataSource : SessionPreferencesDataSource {
     private val _bookmarkedSession = MutableStateFlow(emptySet<String>())
     override val bookmarkedSession: Flow<Set<String>> = _bookmarkedSession.filterNotNull()
 
