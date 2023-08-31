@@ -62,6 +62,7 @@ import kotlinx.datetime.LocalDateTime
 internal fun SessionDetailScreen(
     sessionId: String,
     onBackClick: () -> Unit,
+    onShowPlayer: () -> Unit,
     viewModel: SessionDetailViewModel = hiltViewModel(),
 ) {
     val scrollState = rememberScrollState()
@@ -82,7 +83,9 @@ internal fun SessionDetailScreen(
         Box {
             SessionDetailContent(
                 uiState = sessionUiState,
-                onPlayButtonClick = { viewModel.playSession() }
+                onPlayButtonClick = {
+                    onShowPlayer()
+                }
             )
             if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
                 SessionDetailBookmarkStatePopup(
