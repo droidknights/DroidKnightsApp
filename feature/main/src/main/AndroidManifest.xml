@@ -14,6 +14,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <data android:scheme="droidknights" android:host="player" />
+            </intent-filter>
         </activity>
 
     </application>

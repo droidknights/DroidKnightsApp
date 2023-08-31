@@ -26,6 +26,7 @@ android {
 
 dependencies {
     implementation(projects.core.navigation)
+    implementation(projects.core.playback)
     implementation(projects.feature.main)
     implementation(projects.feature.home)
 
