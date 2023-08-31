@@ -1,7 +1,9 @@
 package com.droidknights.app2023.feature.main
 
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -71,6 +73,14 @@ internal class MainNavigator(
     fun shouldShowBottomBar(): Boolean {
         val currentRoute = currentDestination?.route ?: return false
         return currentRoute in MainTab
+    }
+
+    @Composable
+    fun shouldShowSystemUI(): Boolean {
+        val orientation = LocalConfiguration.current.orientation
+        val currentRoute = currentDestination?.route ?: return true
+        return !currentRoute.startsWith(PlayerRoute.route) ||
+                orientation == ORIENTATION_PORTRAIT
     }
 }
 
