@@ -2,15 +2,18 @@ package com.droidknights.app2023.core.data.repository
 
 import com.droidknights.app2023.core.data.api.GithubRawApi
 import com.droidknights.app2023.core.data.mapper.toData
+import com.droidknights.app2023.core.datastore.PlaybackPreferencesDataSource
 import com.droidknights.app2023.core.model.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
+    private val preferencesDataSource: PlaybackPreferencesDataSource
 ) : SessionRepository {
     private var cachedSessions: List<Session> = emptyList()
 
@@ -47,5 +50,12 @@ internal class DefaultSessionRepository @Inject constructor(
                 ids - sessionId
             }
         }
+    }
+
+    override fun getCurrentPlayingSessionId(): Flow<String?> =
+        preferencesDataSource.playbackData.map { it?.currentSessionId }
+
+    override suspend fun updateCurrentPlayingSessionId(sessionId: String) {
+        preferencesDataSource.updateCurrentSessionId(sessionId)
     }
 }

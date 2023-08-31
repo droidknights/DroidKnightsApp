@@ -11,6 +11,7 @@ import com.droidknights.app2023.core.data.repository.DefaultSponsorRepository
 import com.droidknights.app2023.core.data.repository.SessionRepository
 import com.droidknights.app2023.core.data.repository.SettingsRepository
 import com.droidknights.app2023.core.data.repository.SponsorRepository
+import com.droidknights.app2023.core.datastore.PlaybackPreferencesDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -47,7 +48,8 @@ internal abstract class DataModule {
         @Singleton
         fun provideSessionRepository(
             githubRawApi: GithubRawApi,
-        ): SessionRepository = DefaultSessionRepository(githubRawApi)
+            playbackPreferencesDataSource: PlaybackPreferencesDataSource,
+        ): SessionRepository = DefaultSessionRepository(githubRawApi, playbackPreferencesDataSource)
 
         @Provides
         @Singleton
