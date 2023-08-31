@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.datastore
+package com.droidknights.app2023.core.datastore.datasource
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -7,9 +7,10 @@ import androidx.datastore.preferences.core.edit
 import com.droidknights.app2023.core.datastore.model.SettingsData
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Named
 
 class SettingsPreferencesDataSource @Inject constructor(
-    private val dataStore: DataStore<Preferences>
+    @Named("setting") private val dataStore: DataStore<Preferences>
 ) {
     object PreferencesKey {
         val IS_DARK_THEME = booleanPreferencesKey("IS_DARK_THEME")

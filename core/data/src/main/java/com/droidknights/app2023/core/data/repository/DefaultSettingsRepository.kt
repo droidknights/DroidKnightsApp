@@ -1,6 +1,6 @@
 package com.droidknights.app2023.core.data.repository
 
-import com.droidknights.app2023.core.datastore.SettingsPreferencesDataSource
+import com.droidknights.app2023.core.datastore.datasource.SettingsPreferencesDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
