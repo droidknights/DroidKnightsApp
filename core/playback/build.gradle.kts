@@ -9,7 +9,7 @@ android {
 
 dependencies {
     implementation(projects.core.model)
-    implementation(projects.core.domain)
+    implementation(projects.core.data)
     implementation(libs.coroutines.guava)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.media3.player)
