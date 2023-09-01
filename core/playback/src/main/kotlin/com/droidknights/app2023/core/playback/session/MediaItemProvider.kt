@@ -2,11 +2,14 @@ package com.droidknights.app2023.core.playback.session
 
 import android.app.Application
 import android.net.Uri
+import androidx.media3.common.C
 import androidx.media3.common.MediaItem
+import androidx.media3.session.MediaSession.MediaItemsWithStartPosition
 import com.droidknights.app2023.core.data.repository.SessionRepository
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.playback.R
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class MediaItemProvider @Inject constructor(
@@ -143,6 +146,17 @@ class MediaItemProvider @Inject constructor(
       ?: Uri.parse("https://raw.githubusercontent.com/workspace/media-samples/main/img/logo.jpg"),
     artist = session.speakers.joinToString(",") { it.name },
   )
+
+  suspend fun currentMediaItemsOrKeynote() : MediaItemsWithStartPosition {
+    val currentPlayingSessionId = sessionRepository.getCurrentPlayingSessionId().first() ?: "1"
+
+    val session = sessionRepository.getSession(currentPlayingSessionId)
+    return MediaItemsWithStartPosition(
+      listOf(mediaItem(session)),
+      C.INDEX_UNSET,
+      C.TIME_UNSET,
+    )
+  }
 
   private fun room(
     track: MediaId.Track

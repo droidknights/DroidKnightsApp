@@ -80,4 +80,13 @@ internal class LibrarySessionCallback @Inject constructor(
     session.notifyChildrenChanged(browser, parentId, children.size, params)
     LibraryResult.ofVoid()
   }
+
+  override fun onPlaybackResumption(
+    mediaSession: MediaSession,
+    controller: ControllerInfo
+  ): ListenableFuture<MediaSession.MediaItemsWithStartPosition> {
+    return scope.future {
+      mediaItemProvider.currentMediaItemsOrKeynote()
+    }
+  }
 }
