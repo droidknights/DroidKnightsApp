@@ -18,7 +18,8 @@ dependencyResolutionManagement {
 rootProject.name = "DroidKnights2023"
 include(
     ":app",
-    "app-automotive",
+    ":app-automotive",
+    ":app-tv",
 
     ":core:designsystem",
     ":core:data",
@@ -37,4 +38,6 @@ include(
     ":feature:contributor",
     ":feature:bookmark",
     ":feature:player",
+    ":feature:tv-main",
+    ":feature:tv-session"
 )
