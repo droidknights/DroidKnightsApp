@@ -1,4 +1,4 @@
-package com.droidknights.app2023.tv
+package com.droidknights.app2023.automotive
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

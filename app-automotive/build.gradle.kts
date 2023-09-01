@@ -3,10 +3,10 @@ plugins {
 }
 
 android {
-    namespace = "com.droidknights.app2023.tv"
+    namespace = "com.droidknights.app2023.automotive"
 
     defaultConfig {
-        applicationId = "com.droidknights.app2023.tv"
+        applicationId = "com.droidknights.app2023.automotive"
         versionCode = 1
         versionName = "1.0"
     }

@@ -1,4 +1,4 @@
-package com.droidknights.app2023.tv.di
+package com.droidknights.app2023.automotive.di
 
 import android.app.Application
 import android.app.PendingIntent
