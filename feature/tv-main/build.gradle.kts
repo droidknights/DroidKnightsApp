@@ -16,6 +16,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
 
-    implementation(libs.androidx.tv.foundation)
-    implementation(libs.androidx.tv.material)
+    implementation(libs.androidx.compose.tv.foundation)
+    implementation(libs.androidx.compose.tv.material)
 }

@@ -1,23 +1,26 @@
 [versions]
-androidGradlePlugin = "8.0.2"
-androidDesugarJdkLibs = "1.2.2"
-androidxCore = "1.9.0"
+androidGradlePlugin = "8.1.1"
+androidDesugarJdkLibs = "2.0.3"
+androidxCore = "1.10.1"
+androidxCoreSplashscreen = "1.0.1"
 androidxAppCompat = "1.6.1"
 androidxLifecycle = "2.6.1"
-androidxComposeBom = "2023.05.01"
-androidxComposeCompiler = "1.4.7"
-androidxComposeNavigation = "2.6.0"
-androidxComposeMaterial3 = "1.1.0"
+androidxComposeBom = "2023.08.00"
+androidxComposeCompiler = "1.5.3"
+androidxComposeNavigation = "2.7.1"
+androidxComposeMaterial3 = "1.1.1"
+androidxComposeTv = "1.0.0-alpha08"
+androidXComposeWear = "1.2.0"
 androidxActivity = "1.7.2"
 androidxMedia3 = "1.1.1"
-hilt = "2.46.1"
+hilt = "2.47"
 hiltNavigationCompose = "1.0.0"
 
 okhttp = "4.11.0"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 kotlinxSerializationJson = "1.5.1"
-kotlinxDatetime = "0.2.1"
+kotlinxDatetime = "0.4.0"
 kotlinxImmutable = "0.3.5"
 
 landscapist = "2.2.5"
@@ -25,7 +28,7 @@ composeShimmer = "1.0.5"
 
 junit4 = "4.13.2"
 junitVintageEngine = "5.10.0"
-kotlin = "1.8.21"
+kotlin = "1.9.10"
 
 androidxTestExt = "1.1.4"
 androidxEspresso = "3.5.0"
@@ -35,14 +38,13 @@ detekt = "1.23.0"
 mockk = "1.13.5"
 turbine = "1.0.0"
 
-coroutine = "1.7.2"
+coroutine = "1.7.3"
 
 androidxDatastore = "1.0.0"
 
 ossLicenses = "17.0.1"
 ossLicensesPlugin = "0.10.6"
-tv-foundation = "1.0.0-alpha08"
-tv-material = "1.0.0-alpha08"
+play-services-wearable = "18.0.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -50,6 +52,7 @@ android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
@@ -65,8 +68,12 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
 androidx-compose-navigation-test = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxComposeNavigation" }
-androidx-tv-foundation = { group = "androidx.tv", name = "tv-foundation", version.ref = "tv-foundation" }
-androidx-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "tv-material" }
+androidx-compose-tv-foundation = { group = "androidx.tv", name = "tv-foundation", version.ref = "androidxComposeTv" }
+androidx-compose-tv-material = { group = "androidx.tv", name = "tv-material", version.ref = "androidxComposeTv" }
+play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "play-services-wearable" }
+androidx-compose-wear-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "androidXComposeWear" }
+androidx-compose-wear-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "androidXComposeWear" }
+
 androidx-media3-player = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "androidxMedia3" }
 androidx-media3-player-dash = { group = "androidx.media3", name = "media3-exoplayer-dash", version.ref = "androidxMedia3" }
 androidx-media3-player-session = { group = "androidx.media3", name = "media3-session", version.ref = "androidxMedia3" }

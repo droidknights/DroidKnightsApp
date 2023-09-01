@@ -9,6 +9,6 @@ android {
 dependencies {
     implementation(libs.kotlinx.immutable)
 
-    implementation(libs.androidx.tv.foundation)
-    implementation(libs.androidx.tv.material)
+    implementation(libs.androidx.compose.tv.foundation)
+    implementation(libs.androidx.compose.tv.material)
 }
