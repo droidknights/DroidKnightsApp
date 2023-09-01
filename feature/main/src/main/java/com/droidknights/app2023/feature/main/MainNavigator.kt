@@ -68,7 +68,7 @@ internal class MainNavigator(
         }
     }
 
-    fun isSameCurrentDestination(route: String) =
+    private fun isSameCurrentDestination(route: String) =
         navController.currentDestination?.route == route
 
     @Composable
