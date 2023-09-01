@@ -18,6 +18,7 @@ dependencyResolutionManagement {
 rootProject.name = "DroidKnights2023"
 include(
     ":app",
+    "app-rv",
 
     ":core:designsystem",
     ":core:data",
