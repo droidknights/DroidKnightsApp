@@ -2,7 +2,6 @@ package com.droidknights.app2023.feature.session
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -67,7 +66,11 @@ private fun SessionCardContent(
         modifier = modifier
     ) {
         if (session.isBookmarked) {
-            BookmarkImage()
+            BookmarkImage(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(end = 30.dp)
+            )
         }
         Column(
             modifier = Modifier.padding(CardContentPadding)
@@ -170,13 +173,13 @@ private fun CategoryChip() {
 }
 
 @Composable
-private fun BoxScope.BookmarkImage() {
+private fun BookmarkImage(
+    modifier: Modifier = Modifier,
+) {
     Image(
         painter = painterResource(id = R.drawable.ic_flagbookmark),
         contentDescription = null,
-        modifier = Modifier.Companion
-            .align(Alignment.TopEnd)
-            .padding(end = 30.dp)
+        modifier = modifier
             .size(
                 width = 24.dp,
                 height = 36.dp
