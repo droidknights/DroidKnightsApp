@@ -100,7 +100,6 @@ private fun SessionCardContent(
                 }
         }
     }
-
 }
 
 @Preview

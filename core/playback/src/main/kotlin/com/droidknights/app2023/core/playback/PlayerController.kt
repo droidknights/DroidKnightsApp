@@ -96,8 +96,8 @@ class PlayerController @Inject constructor(
     return true
   }
 
-  private fun MediaController.currentSessionId(): String?
-    = (currentMediaItem?.mediaId?.toMediaIdOrNull() as? MediaId.Session)?.id
+  private fun MediaController.currentSessionId(): String? =
+    (currentMediaItem?.mediaId?.toMediaIdOrNull() as? MediaId.Session)?.id
 
   private inline fun executeAfterPrepare(crossinline action: suspend (MediaController) -> Unit) {
     scope.launch {

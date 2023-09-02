@@ -9,7 +9,7 @@ import com.droidknights.app2023.feature.wearsession.navigation.wearSessionNavGra
 
 @Composable
 internal fun WearMainScreen(
-    navigator: MainNavigator = rememberMainNavigator()
+    navigator: WearMainNavigator = rememberWearMainNavigator()
 ) {
     Surface(color = MaterialTheme.colorScheme.background) {
         // https://developer.android.com/training/wearables/compose/navigation

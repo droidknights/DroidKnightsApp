@@ -12,7 +12,7 @@ import com.droidknights.app2023.feature.tvsession.navigation.tvSessionNavGraph
 @OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 internal fun TvMainScreen(
-    navigator: MainNavigator = rememberMainNavigator()
+    navigator: TvMainNavigator = rememberTvMainNavigator()
 ) {
     Surface(
         colors = NonInteractiveSurfaceDefaults.colors(

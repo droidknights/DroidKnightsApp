@@ -34,7 +34,7 @@ internal object PlaybackModule {
     fun player(
         service: Service,
         playbackStateListener: PlaybackStateListener,
-    ) : Player {
+    ): Player {
         val dataSourceFactory = DefaultDataSource.Factory(service)
         val mediaSourceFactory = DashMediaSource.Factory(
             DefaultDashChunkSource.Factory(

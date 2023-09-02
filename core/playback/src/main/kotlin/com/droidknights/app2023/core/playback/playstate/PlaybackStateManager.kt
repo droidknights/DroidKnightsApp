@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @Singleton
 class PlaybackStateManager @Inject constructor() {
     private val _playbackState = MutableStateFlow(PlaybackState())

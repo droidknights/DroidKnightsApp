@@ -7,7 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.droidknights.app2023.feature.player.navigation.navigatePlayer
 import com.droidknights.app2023.feature.tvsession.navigation.TvSessionRoute
 
-internal class MainNavigator(
+internal class TvMainNavigator(
     val navController: NavHostController,
 ) {
     val startDestination = TvSessionRoute.route
@@ -22,8 +22,8 @@ internal class MainNavigator(
 }
 
 @Composable
-internal fun rememberMainNavigator(
+internal fun rememberTvMainNavigator(
     navController: NavHostController = rememberNavController(),
-): MainNavigator = remember(navController) {
-    MainNavigator(navController)
+): TvMainNavigator = remember(navController) {
+    TvMainNavigator(navController)
 }

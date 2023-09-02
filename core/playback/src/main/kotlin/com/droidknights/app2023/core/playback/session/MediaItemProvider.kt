@@ -132,7 +132,6 @@ class MediaItemProvider @Inject constructor(
     .filter { session -> session.tags.any { it.name == tag.name } }
     .map(::mediaItem)
 
-
   fun mediaItem(session: Session): MediaItem = MediaItem(
     title = session.title,
     description = session.content,
@@ -147,7 +146,7 @@ class MediaItemProvider @Inject constructor(
     artist = session.speakers.joinToString(",") { it.name },
   )
 
-  suspend fun currentMediaItemsOrKeynote() : MediaItemsWithStartPosition {
+  suspend fun currentMediaItemsOrKeynote(): MediaItemsWithStartPosition {
     val currentPlayingSessionId = sessionRepository.getCurrentPlayingSessionId().first() ?: "1"
 
     val session = sessionRepository.getSession(currentPlayingSessionId)

@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
+import java.util.Locale
 
 @Composable
 internal fun PlayerScreen(
@@ -209,10 +210,11 @@ private fun Long.formatAsDuration(): String {
     val seconds = (this / 1000) % 60
 
     return when {
-        hours > 0 -> String.format("%02d:%02d:%02d", hours, minutes, seconds)
-        else -> String.format("%02d:%02d", minutes, seconds)
+        hours > 0 -> String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
+        else -> String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
     }
 }
+
 @Composable
 internal fun PositionSeekBar(
     modifier: Modifier = Modifier,

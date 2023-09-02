@@ -7,7 +7,7 @@ import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import com.droidknights.app2023.feature.wearplayer.navigation.navigateWearPlayer
 import com.droidknights.app2023.feature.wearsession.navigation.WearSessionRoute
 
-internal class MainNavigator(
+internal class WearMainNavigator(
     val navController: NavHostController,
 ) {
     val startDestination = WearSessionRoute.route
@@ -18,8 +18,8 @@ internal class MainNavigator(
 }
 
 @Composable
-internal fun rememberMainNavigator(
+internal fun rememberWearMainNavigator(
     navController: NavHostController = rememberSwipeDismissableNavController(),
-): MainNavigator = remember(navController) {
-    MainNavigator(navController)
+): WearMainNavigator = remember(navController) {
+    WearMainNavigator(navController)
 }
