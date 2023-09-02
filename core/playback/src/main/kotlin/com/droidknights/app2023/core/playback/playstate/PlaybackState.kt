@@ -1,5 +1,6 @@
 package com.droidknights.app2023.core.playback.playstate
 
+import android.net.Uri
 import androidx.media3.common.C
 
 data class PlaybackState(
@@ -9,5 +10,8 @@ data class PlaybackState(
     val position: Long = C.TIME_UNSET,
     val duration: Long = C.TIME_UNSET,
     val speed: Float = 1F,
-    val aspectRatio: Float = 16F / 9F
+    val aspectRatio: Float = 16F / 9F,
+    val title: String ?= null,
+    val artist: String? = null,
+    val artworkUri: Uri? = null,
 )

@@ -20,6 +20,7 @@ include(
     ":app",
     ":app-automotive",
     ":app-tv",
+    ":app-wear-os",
 
     ":core:designsystem",
     ":core:data",
@@ -39,5 +40,8 @@ include(
     ":feature:bookmark",
     ":feature:player",
     ":feature:tv-main",
-    ":feature:tv-session"
+    ":feature:tv-session",
+    ":feature:wear-main",
+    ":feature:wear-player",
+    ":feature:wear-session",
 )

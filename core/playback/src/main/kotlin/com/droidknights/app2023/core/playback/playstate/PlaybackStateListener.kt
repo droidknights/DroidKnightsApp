@@ -79,7 +79,10 @@ internal class PlaybackStateListener @Inject constructor(
             speed = player.playbackParameters.speed,
             aspectRatio = with(player.videoSize) {
                 if (height == 0 || width == 0) 16F / 9F else width * pixelWidthHeightRatio / height
-            }
+            },
+            title = player.currentMediaItem?.mediaMetadata?.title?.toString(),
+            artist = player.currentMediaItem?.mediaMetadata?.artist?.toString(),
+            artworkUri = player.currentMediaItem?.mediaMetadata?.artworkUri
         )
     }
 }
