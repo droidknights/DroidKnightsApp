@@ -12,4 +12,5 @@ data class Session(
     val room: Room,
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
+    val isBookmarked: Boolean
 )

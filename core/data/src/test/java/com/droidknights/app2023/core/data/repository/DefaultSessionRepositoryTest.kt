@@ -28,6 +28,7 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 room = Room.ETC,
                 startTime = LocalDateTime(2023, 9, 12, 10, 45),
                 endTime = LocalDateTime(2023, 9, 12, 11, 0),
+                isBookmarked = false
             )
             val actual = repository.getSessions()
             actual.first() shouldBe expected
