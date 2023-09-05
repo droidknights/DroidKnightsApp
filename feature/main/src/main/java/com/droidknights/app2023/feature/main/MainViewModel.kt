@@ -2,7 +2,7 @@ package com.droidknights.app2023.feature.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.data.repository.SettingsRepository
+import com.droidknights.app2023.core.data.repository.api.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -10,7 +10,8 @@ android {
 
 dependencies {
     implementation(projects.core.model)
-    implementation(projects.core.datastore)
+    implementation(projects.core.dataApi)
+    implementation(projects.core.datastoreApi)
 
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)

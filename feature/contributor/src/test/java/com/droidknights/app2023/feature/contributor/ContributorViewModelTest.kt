@@ -1,7 +1,7 @@
 package com.droidknights.app2023.feature.contributor
 
 import app.cash.turbine.test
-import com.droidknights.app2023.core.domain.usecase.GetContributorsUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetContributorsUseCase
 import com.droidknights.app2023.core.model.Contributor
 import com.droidknights.app2023.core.testing.rule.MainDispatcherRule
 import io.mockk.coEvery

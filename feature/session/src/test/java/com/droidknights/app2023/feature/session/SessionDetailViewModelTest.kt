@@ -1,9 +1,9 @@
 package com.droidknights.app2023.feature.session
 
 import app.cash.turbine.test
-import com.droidknights.app2023.core.domain.usecase.BookmarkSessionUseCase
-import com.droidknights.app2023.core.domain.usecase.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app2023.core.domain.usecase.GetSessionUseCase
+import com.droidknights.app2023.core.domain.usecase.api.BookmarkSessionUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetBookmarkedSessionIdsUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetSessionUseCase
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session

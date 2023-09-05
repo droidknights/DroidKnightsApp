@@ -4,11 +4,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
+import com.droidknights.app2023.core.datastore.api.datasource.SessionPreferencesDataSource
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Named
 
-class DefaultSessionPreferencesDataSource @Inject constructor(
+internal class DefaultSessionPreferencesDataSource @Inject constructor(
     @Named("session") private val dataStore: DataStore<Preferences>
 ) : SessionPreferencesDataSource {
     object PreferencesKey {

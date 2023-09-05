@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.datastore.datasource
+package com.droidknights.app2023.core.datastore.api.datasource
 
 import kotlinx.coroutines.flow.Flow
 

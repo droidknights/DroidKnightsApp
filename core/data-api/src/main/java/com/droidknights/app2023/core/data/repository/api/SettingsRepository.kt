@@ -1,4 +1,4 @@
-package com.droidknights.app2023.core.data.repository
+package com.droidknights.app2023.core.data.repository.api
 
 import kotlinx.coroutines.flow.Flow
 
