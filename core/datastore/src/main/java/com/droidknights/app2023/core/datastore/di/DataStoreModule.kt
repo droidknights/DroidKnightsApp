@@ -4,6 +4,11 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.droidknights.app2023.core.datastore.datasource.DefaultSessionPreferencesDataSource
+import com.droidknights.app2023.core.datastore.datasource.DefaultSettingsPreferencesDataSource
+import com.droidknights.app2023.core.datastore.api.datasource.SessionPreferencesDataSource
+import com.droidknights.app2023.core.datastore.api.datasource.SettingsPreferencesDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +19,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataStoreModule {
+internal object DataStoreModule {
     private const val SETTING_DATASTORE_NAME = "SETTINGS_PREFERENCES"
     private const val SESSION_DATASTORE_NAME = "SESSION_PREFERENCES"
     private val Context.settingDataStore by preferencesDataStore(SETTING_DATASTORE_NAME)
@@ -33,4 +38,18 @@ object DataStoreModule {
     fun provideSessionDataStore(
         @ApplicationContext context: Context
     ): DataStore<Preferences> = context.sessionDataStore
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+internal abstract class DataSourceBindModule {
+    @Binds
+    abstract fun bindSessionLocalDataSource(
+        dataSource: DefaultSessionPreferencesDataSource,
+    ): SessionPreferencesDataSource
+
+    @Binds
+    abstract fun bindSettingsPreferencesDataSource(
+        dataSource: DefaultSettingsPreferencesDataSource,
+    ): SettingsPreferencesDataSource
 }

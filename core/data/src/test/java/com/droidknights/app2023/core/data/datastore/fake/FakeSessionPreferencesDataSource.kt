@@ -1,6 +1,6 @@
 package com.droidknights.app2023.core.data.datastore.fake
 
-import com.droidknights.app2023.core.datastore.datasource.SessionPreferencesDataSource
+import com.droidknights.app2023.core.datastore.api.datasource.SessionPreferencesDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull

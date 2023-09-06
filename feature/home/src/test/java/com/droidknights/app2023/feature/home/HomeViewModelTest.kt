@@ -1,7 +1,7 @@
 package com.droidknights.app2023.feature.home
 
 import app.cash.turbine.test
-import com.droidknights.app2023.core.domain.usecase.GetSponsorsUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetSponsorsUseCase
 import com.droidknights.app2023.core.model.Sponsor
 import com.droidknights.app2023.core.testing.rule.MainDispatcherRule
 import io.mockk.coEvery

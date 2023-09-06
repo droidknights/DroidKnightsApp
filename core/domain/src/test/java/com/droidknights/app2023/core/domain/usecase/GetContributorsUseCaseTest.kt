@@ -1,12 +1,13 @@
 package com.droidknights.app2023.core.domain.usecase
 
+import com.droidknights.app2023.core.domain.usecase.api.GetContributorsUseCase
 import com.droidknights.app2023.core.model.Contributor
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
 internal class GetContributorsUseCaseTest : BehaviorSpec() {
 
-    private val useCase: GetContributorsUseCase = GetContributorsUseCase(
+    private val useCase: GetContributorsUseCase = GetContributorsUseCaseImpl(
         repository = FakeContributorRepository(contributors)
     )
 

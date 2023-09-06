@@ -1,5 +1,6 @@
 plugins {
     id("droidknights.android.library")
+    id("droidknights.android.hilt")
 }
 
 android {
@@ -7,7 +8,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.data)
+    implementation(projects.core.dataApi)
+    implementation(projects.core.domainApi)
     implementation(projects.core.model)
 
     implementation(libs.inject)

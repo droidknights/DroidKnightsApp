@@ -1,7 +1,7 @@
 package com.droidknights.app2023.core.datastore
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import com.droidknights.app2023.core.datastore.datasource.SettingsPreferencesDataSource
+import com.droidknights.app2023.core.datastore.datasource.DefaultSettingsPreferencesDataSource
 import io.kotest.core.spec.style.StringSpec
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
@@ -14,13 +14,13 @@ internal class SettingsPreferencesDataSourceTest : StringSpec() {
 
     private lateinit var testDispatcher: TestDispatcher
     private lateinit var tempFolder: TemporaryFolder
-    private lateinit var dataSource: SettingsPreferencesDataSource
+    private lateinit var dataSource: DefaultSettingsPreferencesDataSource
 
     init {
         beforeSpec {
             testDispatcher = StandardTestDispatcher()
             tempFolder = TemporaryFolder.builder().assureDeletion().build()
-            dataSource = SettingsPreferencesDataSource(
+            dataSource = DefaultSettingsPreferencesDataSource(
                 PreferenceDataStoreFactory.create(
                     scope = CoroutineScope(testDispatcher),
                     produceFile = { tempFolder.newFile("SETTINGS_PREFERENCES_TEST") }

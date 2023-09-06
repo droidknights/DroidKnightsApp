@@ -26,6 +26,12 @@ android {
 
 dependencies {
     implementation(projects.core.navigation)
+    implementation(projects.core.data)
+    implementation(projects.core.dataApi)
+    implementation(projects.core.datastore)
+    implementation(projects.core.datastoreApi)
+    implementation(projects.core.domain)
+    implementation(projects.core.domainApi)
     implementation(projects.feature.main)
     implementation(projects.feature.home)
 

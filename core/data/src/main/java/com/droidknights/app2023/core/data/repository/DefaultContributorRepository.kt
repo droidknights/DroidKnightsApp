@@ -2,6 +2,7 @@ package com.droidknights.app2023.core.data.repository
 
 import com.droidknights.app2023.core.data.api.GithubApi
 import com.droidknights.app2023.core.data.mapper.toData
+import com.droidknights.app2023.core.data.repository.api.ContributorRepository
 import com.droidknights.app2023.core.model.Contributor
 import javax.inject.Inject
 

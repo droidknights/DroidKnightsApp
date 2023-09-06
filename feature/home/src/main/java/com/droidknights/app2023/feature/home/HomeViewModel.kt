@@ -2,7 +2,7 @@ package com.droidknights.app2023.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.domain.usecase.GetSponsorsUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetSponsorsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow

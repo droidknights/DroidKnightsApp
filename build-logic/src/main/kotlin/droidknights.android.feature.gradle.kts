@@ -16,9 +16,10 @@ configureHiltAndroid()
 
 dependencies {
     implementation(project(":core:model"))
-    implementation(project(":core:data"))
+    implementation(project(":core:data-api"))
+    implementation(project(":core:datastore-api"))
     implementation(project(":core:designsystem"))
-    implementation(project(":core:domain"))
+    implementation(project(":core:domain-api"))
     implementation(project(":core:navigation"))
     implementation(project(":core:ui"))
 

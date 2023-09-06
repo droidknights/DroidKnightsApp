@@ -21,12 +21,15 @@ include(
 
     ":core:designsystem",
     ":core:data",
+    ":core:data-api",
     ":core:domain",
+    ":core:domain-api",
     ":core:navigation",
     ":core:model",
     ":core:ui",
     ":core:testing",
     ":core:datastore",
+    ":core:datastore-api",
 
     ":feature:main",
     ":feature:home",

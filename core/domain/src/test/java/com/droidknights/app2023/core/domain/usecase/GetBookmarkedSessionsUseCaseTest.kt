@@ -1,5 +1,6 @@
 package com.droidknights.app2023.core.domain.usecase
 
+import com.droidknights.app2023.core.domain.usecase.api.GetBookmarkedSessionsUseCase
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
@@ -19,9 +20,9 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
         sessions = sessions
     )
 
-    private val useCase: GetBookmarkedSessionsUseCase = GetBookmarkedSessionsUseCase(
-        getSessionsUseCase = GetSessionsUseCase(sessionRepository = fakeSessionsRepository),
-        getBookmarkedSessionIdsUseCase = GetBookmarkedSessionIdsUseCase(sessionRepository = fakeSessionsRepository)
+    private val useCase: GetBookmarkedSessionsUseCase = GetBookmarkedSessionsUseCaseImpl(
+        getSessionsUseCase = GetSessionsUseCaseImpl(sessionRepository = fakeSessionsRepository),
+        getBookmarkedSessionIdsUseCase = GetBookmarkedSessionIdsUseCaseImpl(sessionRepository = fakeSessionsRepository)
     )
 
     init {

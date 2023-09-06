@@ -2,7 +2,7 @@ package com.droidknights.app2023.feature.contributor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.domain.usecase.GetContributorsUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetContributorsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableSharedFlow

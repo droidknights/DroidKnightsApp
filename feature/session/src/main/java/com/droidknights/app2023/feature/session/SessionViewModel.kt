@@ -2,8 +2,8 @@ package com.droidknights.app2023.feature.session
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.domain.usecase.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app2023.core.domain.usecase.GetSessionsUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetBookmarkedSessionIdsUseCase
+import com.droidknights.app2023.core.domain.usecase.api.GetSessionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableSharedFlow
