@@ -150,8 +150,8 @@
     "speakers": [
       {
         "name": "박재성",
-        "introduction": "",
-        "imageUrl": ""
+        "introduction": "주로 코틀린과 스프링 프레임워크를 사용하는 서버 개발자로, 현재 우아한형제들 우아한테크코스의 모바일 안드로이드 교육 분야의 캡틴으로 활동하고 있습니다. 좋은 코드에 관심이 많으며, 1년이 지나도 10년이 지나도 변화에 대응할 수 있는 코드를 추구합니다. 어떻게 하면 도메인을 깊이 이해하고 더 나은 소프트웨어를 개발할 수 있을지 여러분과 공유하고 싶고, 항상 고민하고 있습니다.",
+        "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/박재성.jpeg"
       }
     ],
     "level": "중급",
@@ -226,7 +226,7 @@
     "speakers": [
       {
         "name": "정태훈",
-        "introduction": "",
+        "introduction": "자동차 회사에서 5년째 일하고 있지만, 안드로이드 개발을 한 지 2년이 채 되지 않은 주니어 개발자입니다. 커넥티드 카 서비스 앱을 개발하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/정태훈.jpeg"
       }
     ],
@@ -245,7 +245,7 @@
     "speakers": [
       {
         "name": "박주형",
-        "introduction": "",
+        "introduction": "10년차 안드로이드 개발자.\n현재 NAVERZ에 근무하며 Zepeto 라이브 서비스를 개발하고 있습니다\n천천히 그러나 꾸준히 배우는 스타일이며, 최신기술에 관심이 많습니다. \n처음부터 잘하는 사람이야 있겠지만, 저는 처음부터 잘 알지 못하기에 일단 해보는걸 좋아합니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/박주형.jpeg"
       }
     ],
@@ -316,7 +316,7 @@
   },
   {
     "id": "18",
-    "title": "Re:Android Studio 설정으로 생산성 올리기",
+    "title": "Re:Android Studio 설정 살펴보기 및 생산성 올리기",
     "content": "Android Studio에 숨겨진 다양한 설정을 살펴볼 예정입니다.\n또한 개발 생산성 향상에 관련된 팁을 전달할 예정입니다.",
     "speakers": [
       {
