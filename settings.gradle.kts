@@ -34,4 +34,6 @@ include(
     ":feature:setting",
     ":feature:contributor",
     ":feature:bookmark",
+
+    ":widget"
 )
