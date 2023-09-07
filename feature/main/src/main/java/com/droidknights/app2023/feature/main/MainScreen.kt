@@ -38,11 +38,17 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
-import com.droidknights.app2023.feature.bookmark.navigation.bookmarkNavGraph
-import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
-import com.droidknights.app2023.feature.home.navigation.homeNavGraph
-import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
-import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
+import com.droidknights.app2023.feature.bookmark.api.BookmarkNavGraph
+import com.droidknights.app2023.feature.bookmark.api.BookmarkNavGraphInfo
+import com.droidknights.app2023.feature.contributor.api.ContributorNavGraph
+import com.droidknights.app2023.feature.contributor.api.ContributorNavGraphInfo
+import com.droidknights.app2023.feature.home.api.HomeNavGraph
+import com.droidknights.app2023.feature.home.api.HomeNavGraphInfo
+import com.droidknights.app2023.feature.nav.DroidKnightsTab
+import com.droidknights.app2023.feature.session.api.SessionNavGraph
+import com.droidknights.app2023.feature.session.api.SessionNavGraphInfo
+import com.droidknights.app2023.feature.setting.api.SettingNavGraph
+import com.droidknights.app2023.feature.setting.api.SettingNavGraphInfo
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
@@ -50,8 +56,14 @@ import java.net.UnknownHostException
 
 @Composable
 internal fun MainScreen(
-    navigator: MainNavigator = rememberMainNavigator(),
-    onChangeDarkTheme: (Boolean) -> Unit
+    navigator: MainNavigator,
+    onChangeDarkTheme: (Boolean) -> Unit,
+    homeNavGraph: HomeNavGraph,
+    bookmarkNavGraph: BookmarkNavGraph,
+    contributorNavGraph: ContributorNavGraph,
+    sessionNavGraph: SessionNavGraph,
+    settingNavGraph: SettingNavGraph,
+    mainTabs: MainTabs,
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
 
@@ -79,30 +91,43 @@ internal fun MainScreen(
                     navController = navigator.navController,
                     startDestination = navigator.startDestination,
                 ) {
-                    homeNavGraph(
-                        padding = padding,
-                        onSessionClick = { navigator.navigateSession() },
-                        onContributorClick = { navigator.navigateContributor() },
-                        onShowErrorSnackBar = onShowErrorSnackBar
+                    homeNavGraph.buildNavGraph(
+                        this,
+                        HomeNavGraphInfo(
+                            padding = padding,
+                            onSessionClick = { navigator.navigateSession() },
+                            onContributorClick = { navigator.navigateContributor() },
+                            onShowErrorSnackBar = onShowErrorSnackBar
+                        )
                     )
-                    settingNavGraph(
-                        padding = padding,
-                        onChangeDarkTheme = onChangeDarkTheme
-                    )
-
-                    bookmarkNavGraph(
-                        onShowErrorSnackBar = onShowErrorSnackBar
-                    )
-
-                    contributorNavGraph(
-                        onBackClick = navigator::popBackStackIfNotHome,
-                        onShowErrorSnackBar = onShowErrorSnackBar
+                    settingNavGraph.buildNavGraph(
+                        this,
+                        SettingNavGraphInfo(
+                            padding = padding,
+                            onChangeDarkTheme = onChangeDarkTheme
+                        )
                     )
 
-                    sessionNavGraph(
-                        onBackClick = navigator::popBackStackIfNotHome,
-                        onSessionClick = { navigator.navigateSessionDetail(it.id) },
-                        onShowErrorSnackBar = onShowErrorSnackBar
+                    bookmarkNavGraph.buildNavGraph(
+                        this,
+                        BookmarkNavGraphInfo(onShowErrorSnackBar = onShowErrorSnackBar)
+                    )
+
+                    contributorNavGraph.buildNavGraph(
+                        this,
+                        ContributorNavGraphInfo(
+                            onBackClick = navigator::popBackStackIfNotHome,
+                            onShowErrorSnackBar = onShowErrorSnackBar
+                        )
+                    )
+
+                    sessionNavGraph.buildNavGraph(
+                        this,
+                        SessionNavGraphInfo(
+                            onBackClick = navigator::popBackStackIfNotHome,
+                            onSessionClick = { navigator.navigateSessionDetail(it.id) },
+                            onShowErrorSnackBar = onShowErrorSnackBar
+                        )
                     )
                 }
             }
@@ -110,7 +135,7 @@ internal fun MainScreen(
         bottomBar = {
             MainBottomBar(
                 visible = navigator.shouldShowBottomBar(),
-                tabs = MainTab.values().toList().toPersistentList(),
+                tabs = mainTabs.tabList().toPersistentList(),
                 currentTab = navigator.currentTab,
                 onTabSelected = { navigator.navigate(it) }
             )
@@ -122,9 +147,9 @@ internal fun MainScreen(
 @Composable
 private fun MainBottomBar(
     visible: Boolean,
-    tabs: PersistentList<MainTab>,
-    currentTab: MainTab?,
-    onTabSelected: (MainTab) -> Unit,
+    tabs: PersistentList<DroidKnightsTab>,
+    currentTab: DroidKnightsTab?,
+    onTabSelected: (DroidKnightsTab) -> Unit,
 ) {
     AnimatedVisibility(
         visible = visible,
@@ -152,7 +177,7 @@ private fun MainBottomBar(
             tabs.forEach { tab ->
                 MainBottomBarItem(
                     tab = tab,
-                    selected = tab == currentTab,
+                    selected = tab.route == currentTab?.route,
                     onClick = { onTabSelected(tab) },
                 )
             }
@@ -162,7 +187,7 @@ private fun MainBottomBar(
 
 @Composable
 private fun RowScope.MainBottomBarItem(
-    tab: MainTab,
+    tab: DroidKnightsTab,
     selected: Boolean,
     onClick: () -> Unit,
 ) {

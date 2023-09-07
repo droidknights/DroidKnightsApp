@@ -7,21 +7,21 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.droidknights.app2023.feature.home.HomeRoute
 
-fun NavController.navigateHome(navOptions: NavOptions) {
+internal fun NavController.navigateHome(navOptions: NavOptions) {
     navigate(HomeRoute.route, navOptions)
 }
 
-fun NavGraphBuilder.homeNavGraph(
+internal fun NavGraphBuilder.homeNavGraph(
     padding: PaddingValues,
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
-    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable(route = HomeRoute.route) {
         HomeRoute(padding, onSessionClick, onContributorClick, onShowErrorSnackBar)
     }
 }
 
-object HomeRoute {
+internal object HomeRoute {
     const val route = "home"
 }

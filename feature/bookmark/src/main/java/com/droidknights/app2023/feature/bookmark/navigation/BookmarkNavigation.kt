@@ -6,18 +6,18 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.droidknights.app2023.feature.bookmark.BookmarkRoute
 
-fun NavController.navigateBookmark(navOptions: NavOptions) {
+internal fun NavController.navigateBookmark(navOptions: NavOptions) {
     navigate(BookmarkRoute.route, navOptions)
 }
 
-fun NavGraphBuilder.bookmarkNavGraph(
-    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
+internal fun NavGraphBuilder.bookmarkNavGraph(
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable(route = BookmarkRoute.route) {
         BookmarkRoute(onShowErrorSnackBar)
     }
 }
 
-object BookmarkRoute {
+internal object BookmarkRoute {
     const val route = "bookmark"
 }

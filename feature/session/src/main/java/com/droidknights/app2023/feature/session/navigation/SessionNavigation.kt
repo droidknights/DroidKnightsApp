@@ -9,18 +9,18 @@ import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.feature.session.SessionDetailScreen
 import com.droidknights.app2023.feature.session.SessionScreen
 
-fun NavController.navigateSession() {
+internal fun NavController.navigateSession() {
     navigate(SessionRoute.route)
 }
 
-fun NavController.navigateSessionDetail(sessionId: String) {
+internal fun NavController.navigateSessionDetail(sessionId: String) {
     navigate(SessionRoute.detailRoute(sessionId))
 }
 
-fun NavGraphBuilder.sessionNavGraph(
+internal fun NavGraphBuilder.sessionNavGraph(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
-    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable(SessionRoute.route) {
         SessionScreen(
@@ -46,7 +46,7 @@ fun NavGraphBuilder.sessionNavGraph(
     }
 }
 
-object SessionRoute {
+internal object SessionRoute {
     const val route: String = "session"
 
     fun detailRoute(sessionId: String): String = "$route/$sessionId"

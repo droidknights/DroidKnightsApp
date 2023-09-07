@@ -32,8 +32,13 @@ dependencies {
     implementation(projects.core.datastoreApi)
     implementation(projects.core.domain)
     implementation(projects.core.domainApi)
-    implementation(projects.feature.main)
+    implementation(projects.feature.bookmark)
+    implementation(projects.feature.contributor)
     implementation(projects.feature.home)
+    implementation(projects.feature.main)
+    implementation(projects.feature.mainNavGraph)
+    implementation(projects.feature.session)
+    implementation(projects.feature.setting)
 
     implementation(projects.core.designsystem)
 }

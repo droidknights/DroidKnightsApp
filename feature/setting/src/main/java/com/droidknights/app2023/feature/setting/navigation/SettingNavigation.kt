@@ -7,19 +7,19 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.droidknights.app2023.feature.setting.SettingScreen
 
-fun NavController.navigateSetting(navOptions: NavOptions) {
+internal fun NavController.navigateSetting(navOptions: NavOptions) {
     navigate(SettingRoute.route, navOptions)
 }
 
-fun NavGraphBuilder.settingNavGraph(
+internal fun NavGraphBuilder.settingNavGraph(
     padding: PaddingValues,
-    onChangeDarkTheme: (Boolean) -> Unit
+    onChangeDarkTheme: (Boolean) -> Unit,
 ) {
     composable(route = SettingRoute.route) {
         SettingScreen(padding, onChangeDarkTheme)
     }
 }
 
-object SettingRoute {
+internal object SettingRoute {
     const val route = "setting"
 }

@@ -7,11 +7,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.home)
-    implementation(projects.feature.setting)
-    implementation(projects.feature.contributor)
-    implementation(projects.feature.session)
-    implementation(projects.feature.bookmark)
+    implementation(projects.feature.mainNavGraph)
+    implementation(projects.feature.homeApi)
+    implementation(projects.feature.settingApi)
+    implementation(projects.feature.contributorApi)
+    implementation(projects.feature.sessionApi)
+    implementation(projects.feature.bookmarkApi)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
