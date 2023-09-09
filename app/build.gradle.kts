@@ -5,9 +5,12 @@ plugins {
 
 android {
     namespace = "com.droidknights.app2023"
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.droidknights.app2023"
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
