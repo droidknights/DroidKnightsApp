@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import com.droidknights.app2023.core.designsystem.component.TextChip
-import com.droidknights.app2023.core.model.Room
+import com.droidknights.app2023.core.repo.session.api.model.Room
 import com.droidknights.app2023.core.ui.textRes
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime

@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
-import com.droidknights.app2023.core.model.Room
+import com.droidknights.app2023.core.repo.session.api.model.Room
 
 val Room.textRes: Int
     get() = when (this) {

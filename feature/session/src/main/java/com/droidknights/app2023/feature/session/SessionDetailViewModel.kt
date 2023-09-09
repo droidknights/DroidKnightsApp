@@ -2,9 +2,9 @@ package com.droidknights.app2023.feature.session
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.domain.usecase.api.BookmarkSessionUseCase
-import com.droidknights.app2023.core.domain.usecase.api.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app2023.core.domain.usecase.api.GetSessionUseCase
+import com.droidknights.app2023.feature.session.usecase.BookmarkSessionUseCase
+import com.droidknights.app2023.feature.session.usecase.GetBookmarkedSessionIdsUseCase
+import com.droidknights.app2023.feature.session.usecase.GetSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionDetailViewModel @Inject constructor(
+internal class SessionDetailViewModel @Inject constructor(
     private val getSessionUseCase: GetSessionUseCase,
     private val getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase,
     private val bookmarkSessionUseCase: BookmarkSessionUseCase,

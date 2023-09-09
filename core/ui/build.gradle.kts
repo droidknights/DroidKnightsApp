@@ -8,6 +8,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
+    implementation(projects.core.repo.session.api)
     implementation(projects.core.designsystem)
 }

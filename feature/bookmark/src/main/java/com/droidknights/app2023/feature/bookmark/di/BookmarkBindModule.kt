@@ -5,11 +5,15 @@ import com.droidknights.app2023.feature.bookmark.api.BookmarkNavGraph
 import com.droidknights.app2023.feature.bookmark.navigation.BookmarkNavControllerImpl
 import com.droidknights.app2023.feature.bookmark.navigation.BookmarkNavGraphImpl
 import com.droidknights.app2023.feature.bookmark.navigation.BookmarkTab
+import com.droidknights.app2023.feature.bookmark.usecase.GetBookmarkedSessionsUseCase
+import com.droidknights.app2023.feature.bookmark.usecase.GetBookmarkedSessionsUseCaseImpl
 import com.droidknights.app2023.feature.nav.DroidKnightsTab
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.multibindings.IntoSet
 
 @Module
@@ -30,4 +34,14 @@ internal abstract class BookmarkBindModule {
     abstract fun bookmarkTab(
         dataSource: BookmarkTab,
     ): DroidKnightsTab
+}
+
+@Module
+@InstallIn(ViewModelComponent::class)
+internal abstract class UsecaseBindModule {
+    @Binds
+    @ViewModelScoped
+    abstract fun getBookmarkedSessionsUseCase(
+        dataSource: GetBookmarkedSessionsUseCaseImpl,
+    ): GetBookmarkedSessionsUseCase
 }

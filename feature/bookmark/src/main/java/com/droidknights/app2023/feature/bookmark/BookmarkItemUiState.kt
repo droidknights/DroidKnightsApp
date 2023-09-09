@@ -1,6 +1,6 @@
 package com.droidknights.app2023.feature.bookmark
 
-import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.repo.session.api.model.Session
 import kotlinx.datetime.toJavaLocalDateTime
 import java.time.LocalTime
 

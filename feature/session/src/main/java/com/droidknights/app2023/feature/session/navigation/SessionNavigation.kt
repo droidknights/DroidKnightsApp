@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.repo.session.api.model.Session
 import com.droidknights.app2023.feature.session.SessionDetailScreen
 import com.droidknights.app2023.feature.session.SessionScreen
 

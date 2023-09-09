@@ -1,7 +1,7 @@
 package com.droidknights.app2023.feature.home
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.droidknights.app2023.core.model.Sponsor
+import com.droidknights.app2023.core.sponsor.repo.api.model.Sponsor
 
 internal class SponsorsUiStatePreviewParameterProvider : PreviewParameterProvider<SponsorsUiState> {
     override val values: Sequence<SponsorsUiState> = sequenceOf(

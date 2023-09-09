@@ -2,7 +2,7 @@ package com.droidknights.app2023.feature.contributor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app2023.core.domain.usecase.api.GetContributorsUseCase
+import com.droidknights.app2023.feature.contributor.usecase.GetContributorsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class ContributorViewModel @Inject constructor(
+internal class ContributorViewModel @Inject constructor(
     getContributorsUseCase: GetContributorsUseCase,
 ) : ViewModel() {
 

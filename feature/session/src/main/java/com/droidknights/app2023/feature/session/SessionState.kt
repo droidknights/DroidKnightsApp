@@ -12,8 +12,8 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
-import com.droidknights.app2023.core.model.Room
-import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.repo.session.api.model.Room
+import com.droidknights.app2023.core.repo.session.api.model.Session
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.distinctUntilChanged
