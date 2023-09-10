@@ -30,4 +30,6 @@ dependencies {
     implementation(projects.feature.home)
 
     implementation(projects.core.designsystem)
+
+    implementation(projects.widget)
 }

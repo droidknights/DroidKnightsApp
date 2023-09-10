@@ -13,6 +13,8 @@ dependencies {
     implementation(projects.feature.session)
     implementation(projects.feature.bookmark)
 
+    implementation(projects.widget)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
