@@ -7,6 +7,10 @@ android {
 }
 
 dependencies {
+
+    implementation(projects.feature.contributorApi)
+    implementation(projects.feature.mainNavGraph)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.shimmer)

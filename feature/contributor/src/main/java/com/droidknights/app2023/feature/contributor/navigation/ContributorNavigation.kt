@@ -5,13 +5,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.droidknights.app2023.feature.contributor.ContributorRoute
 
-fun NavController.navigateContributor() {
+internal fun NavController.navigateContributor() {
     this.navigate(ContributorRoute.route)
 }
 
-fun NavGraphBuilder.contributorNavGraph(
+internal fun NavGraphBuilder.contributorNavGraph(
     onBackClick: () -> Unit,
-    onShowErrorSnackBar: (throwable: Throwable?) -> Unit
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable(route = ContributorRoute.route) {
         ContributorRoute(
@@ -21,6 +21,6 @@ fun NavGraphBuilder.contributorNavGraph(
     }
 }
 
-object ContributorRoute {
+internal object ContributorRoute {
     const val route = "contributor"
 }

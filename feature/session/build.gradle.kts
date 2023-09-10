@@ -7,5 +7,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.sessionApi)
+    implementation(projects.feature.mainNavGraph)
+
     implementation(libs.kotlinx.immutable)
 }

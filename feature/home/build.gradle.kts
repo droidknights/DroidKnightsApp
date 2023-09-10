@@ -7,6 +7,10 @@ android {
 }
 
 dependencies {
+
+    implementation(projects.feature.homeApi)
+    implementation(projects.feature.mainNavGraph)
+
     implementation(libs.kotlinx.immutable)
     implementation(libs.compose.shimmer)
 }
