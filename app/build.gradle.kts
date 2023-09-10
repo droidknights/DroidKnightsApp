@@ -5,11 +5,9 @@ plugins {
 
 android {
     namespace = "com.droidknights.app2023"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.droidknights.app2023"
-        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -18,11 +16,6 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-    buildTypes {
-        getByName("release") {
-            signingConfig = signingConfigs.getByName("debug")
         }
     }
 }
