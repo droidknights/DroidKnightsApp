@@ -1,4 +1,4 @@
-package com.droidknights.app2023.di
+package com.droidknights.app2023.widget.di
 
 import com.droidknights.app2023.core.domain.usecase.GetBookmarkedSessionsUseCase
 import com.droidknights.app2023.core.domain.usecase.GetSessionUseCase

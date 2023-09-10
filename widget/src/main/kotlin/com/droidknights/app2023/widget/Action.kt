@@ -1,4 +1,4 @@
-package com.droidknights.app2023
+package com.droidknights.app2023.widget
 
 import android.content.Context
 import android.content.Intent

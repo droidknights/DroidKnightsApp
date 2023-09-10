@@ -1,4 +1,4 @@
-package com.droidknights.app2023
+package com.droidknights.app2023.widget
 
 import android.content.Context
 import androidx.compose.runtime.LaunchedEffect
@@ -23,10 +23,10 @@ import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.height
 import androidx.glance.layout.padding
-import com.droidknights.app2023.DroidKnightsWidgetReceiver.Companion.KEY_SESSION_IDS
+import com.droidknights.app2023.widget.DroidKnightsWidgetReceiver.Companion.KEY_SESSION_IDS
 import com.droidknights.app2023.core.designsystem.theme.KnightsGlanceTheme
 import com.droidknights.app2023.core.model.Session
-import com.droidknights.app2023.di.WidgetModule
+import com.droidknights.app2023.widget.di.WidgetModule
 import dagger.hilt.EntryPoints
 
 class DroidKnightsWidget : GlanceAppWidget() {

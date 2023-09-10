@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(libs.androidx.glance)
     implementation(libs.androidx.glance.appwidget)
+    implementation(libs.glance.tools.appwidget.host)
 
     implementation(projects.core.designsystem)
 

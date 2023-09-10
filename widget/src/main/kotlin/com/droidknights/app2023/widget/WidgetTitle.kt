@@ -1,4 +1,4 @@
-package com.droidknights.app2023
+package com.droidknights.app2023.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
@@ -8,7 +8,6 @@ import androidx.glance.LocalContext
 import androidx.glance.action.clickable
 import androidx.glance.text.Text
 import androidx.glance.text.TextDefaults
-import com.droidknights.app2023.widget.R
 
 @Composable
 fun WidgetTitle() {

@@ -51,7 +51,7 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
-import com.droidknights.app2023.sendWidgetUpdateCommand
+import com.droidknights.app2023.widget.sendWidgetUpdateCommand
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay

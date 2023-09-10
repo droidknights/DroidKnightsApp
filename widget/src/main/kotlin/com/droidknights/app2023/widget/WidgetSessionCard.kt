@@ -1,4 +1,4 @@
-package com.droidknights.app2023
+package com.droidknights.app2023.widget
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp

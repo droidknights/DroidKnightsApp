@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app2023.core.data.repository.SettingsRepository
-import com.droidknights.app2023.sendWidgetUpdateCommand
+import com.droidknights.app2023.widget.sendWidgetUpdateCommand
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

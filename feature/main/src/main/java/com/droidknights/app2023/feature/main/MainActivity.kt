@@ -8,7 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app2023.DroidKnightsWidget.Companion.KEY_SESSION_ID
+import com.droidknights.app2023.widget.DroidKnightsWidget.Companion.KEY_SESSION_ID
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -42,6 +42,7 @@ ossLicenses = "17.0.1"
 ossLicensesPlugin = "0.10.6"
 
 androidxGlance = "1.0.0-beta01"
+glanceExperimentalTools = "0.2.2"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -114,6 +115,7 @@ oss-licenses-plugin = { group = "com.google.android.gms", name = "oss-licenses-p
 
 androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidxGlance" }
 androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "androidxGlance" }
+glance-tools-appwidget-host = { group = "com.google.android.glance.tools", name = "appwidget-host", version.ref = "glanceExperimentalTools"}
 
 [bundles]
 

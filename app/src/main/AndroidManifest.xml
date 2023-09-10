@@ -17,7 +17,7 @@
         tools:targetApi="31">
 
         <receiver
-            android:name=".DroidKnightsWidgetReceiver"
+            android:name=".widget.DroidKnightsWidgetReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

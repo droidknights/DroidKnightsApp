@@ -1,4 +1,4 @@
-package com.droidknights.app2023
+package com.droidknights.app2023.widget
 
 import android.appwidget.AppWidgetManager
 import android.content.Context
@@ -10,7 +10,7 @@ import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.appwidget.updateAll
 import androidx.glance.state.PreferencesGlanceStateDefinition
-import com.droidknights.app2023.di.WidgetModule
+import com.droidknights.app2023.widget.di.WidgetModule
 import dagger.hilt.EntryPoints
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -19,10 +19,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DroidKnightsWidgetReceiver : GlanceAppWidgetReceiver() {
-
-    companion object {
-        const val KEY_SESSION_IDS = "SESSION_IDS"
-    }
 
     override val glanceAppWidget: GlanceAppWidget = DroidKnightsWidget()
 
@@ -38,6 +34,10 @@ class DroidKnightsWidgetReceiver : GlanceAppWidgetReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         getBookmarkedSessionAndUpdateWidget(context, glanceAppWidget)
         super.onReceive(context, intent)
+    }
+
+    companion object {
+        const val KEY_SESSION_IDS = "SESSION_IDS"
     }
 }
 
