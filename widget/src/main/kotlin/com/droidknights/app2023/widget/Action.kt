@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.glance.action.Action
 import androidx.glance.appwidget.action.actionStartActivity
 
-fun actionStartActivityWithSessionId(context: Context, sessionId: String): Action =
+internal fun actionStartActivityWithSessionId(context: Context, sessionId: String): Action =
     actionStartActivity(
         Intent(
             context.packageManager.getLaunchIntentForPackage(
@@ -15,7 +15,7 @@ fun actionStartActivityWithSessionId(context: Context, sessionId: String): Actio
             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
     )
 
-fun actionLaunchIntentForPackage(context: Context): Action = actionStartActivity(
+internal fun actionLaunchIntentForPackage(context: Context): Action = actionStartActivity(
     Intent(
         context.packageManager.getLaunchIntentForPackage(
             context.packageName

@@ -22,7 +22,7 @@ import com.droidknights.app2023.core.model.Session
 import kotlinx.datetime.toJavaLocalDateTime
 
 @Composable
-fun WidgetSessionCard(session: Session) {
+internal fun WidgetSessionCard(session: Session) {
     val context = LocalContext.current
 
     Box(modifier = GlanceModifier.padding(bottom = 16.dp, end = 16.dp)) {

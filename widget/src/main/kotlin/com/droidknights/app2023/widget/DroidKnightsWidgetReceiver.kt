@@ -18,7 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DroidKnightsWidgetReceiver : GlanceAppWidgetReceiver() {
+internal class DroidKnightsWidgetReceiver : GlanceAppWidgetReceiver() {
 
     override val glanceAppWidget: GlanceAppWidget = DroidKnightsWidget()
 

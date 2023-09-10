@@ -10,7 +10,7 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextDefaults
 
 @Composable
-fun WidgetTitle() {
+internal fun WidgetTitle() {
     val context = LocalContext.current
 
     Text(
