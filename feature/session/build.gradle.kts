@@ -8,4 +8,5 @@ android {
 
 dependencies {
     implementation(libs.kotlinx.immutable)
+    implementation(projects.widget)
 }

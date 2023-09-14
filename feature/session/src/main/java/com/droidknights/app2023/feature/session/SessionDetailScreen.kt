@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,6 +51,7 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
+import com.droidknights.app2023.widget.sendWidgetUpdateCommand
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay
@@ -64,6 +66,14 @@ internal fun SessionDetailScreen(
     val scrollState = rememberScrollState()
     val sessionUiState by viewModel.sessionUiState.collectAsStateWithLifecycle()
     val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle()
+
+    val context = LocalContext.current
+
+    LaunchedEffect(effect) {
+        if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
+            sendWidgetUpdateCommand(context)
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
