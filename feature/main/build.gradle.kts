@@ -14,6 +14,8 @@ dependencies {
     implementation(projects.feature.bookmark)
     implementation(projects.feature.player)
 
+    implementation(projects.widget)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)

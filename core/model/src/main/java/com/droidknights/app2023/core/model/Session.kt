@@ -13,4 +13,5 @@ data class Session(
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
     val video: Video,
+    val isBookmarked: Boolean,
 )

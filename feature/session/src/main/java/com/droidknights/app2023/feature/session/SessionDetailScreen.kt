@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,6 +54,7 @@ import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
 import com.droidknights.app2023.core.model.Video
+import com.droidknights.app2023.widget.sendWidgetUpdateCommand
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay
@@ -68,6 +70,14 @@ internal fun SessionDetailScreen(
     val scrollState = rememberScrollState()
     val sessionUiState by viewModel.sessionUiState.collectAsStateWithLifecycle()
     val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle()
+
+    val context = LocalContext.current
+
+    LaunchedEffect(effect) {
+        if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
+            sendWidgetUpdateCommand(context)
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -306,7 +316,8 @@ private val SampleSessionHasContent = Session(
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
     endTime = LocalDateTime.parse("2023-09-12T11:30:00.000"),
-    video = Video("qwer", "asdf")
+    video = Video("qwer", "asdf"),
+    isBookmarked = false
 )
 
 private val SampleSessionNoContent = Session(
@@ -325,7 +336,8 @@ private val SampleSessionNoContent = Session(
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
     endTime = LocalDateTime.parse("2023-09-12T11:30:00.000"),
-    video = Video.None
+    video = Video.None,
+    isBookmarked = true,
 )
 
 class SessionDetailContentProvider : PreviewParameterProvider<Session> {

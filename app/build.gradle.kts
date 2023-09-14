@@ -32,4 +32,6 @@ dependencies {
     implementation(projects.feature.player)
 
     implementation(projects.core.designsystem)
+
+    implementation(projects.widget)
 }

@@ -1,26 +1,24 @@
 package com.droidknights.app2023.core.data.repository
 
 import com.droidknights.app2023.core.data.api.GithubRawApi
+import com.droidknights.app2023.core.datastore.datasource.SessionPreferencesDataSource
 import com.droidknights.app2023.core.data.mapper.toData
-import com.droidknights.app2023.core.datastore.PlaybackPreferencesDataSource
+import com.droidknights.app2023.core.datastore.datasource.PlaybackPreferencesDataSource
 import com.droidknights.app2023.core.model.Session
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
-    private val preferencesDataSource: PlaybackPreferencesDataSource
+    private val preferencesDataSource: PlaybackPreferencesDataSource,
+    private val sessionDataSource: SessionPreferencesDataSource,
 ) : SessionRepository {
     private var cachedSessions: List<Session> = emptyList()
 
-    /**
-     * TODO : 북마크 아이디가 앱이 종료된 이후에도 유지되도록 한다
-     */
-    private val bookmarkIds: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
+    private val bookmarkIds: Flow<Set<String>> = sessionDataSource.bookmarkedSession
 
     override suspend fun getSessions(): List<Session> {
         return githubRawApi.getSessions()
@@ -43,13 +41,14 @@ internal class DefaultSessionRepository @Inject constructor(
     }
 
     override suspend fun bookmarkSession(sessionId: String, bookmark: Boolean) {
-        bookmarkIds.update { ids ->
+        val currentBookmarkedSessionIds = bookmarkIds.first()
+        sessionDataSource.updateBookmarkedSession(
             if (bookmark) {
-                ids + sessionId
+                currentBookmarkedSessionIds + sessionId
             } else {
-                ids - sessionId
+                currentBookmarkedSessionIds - sessionId
             }
-        }
+        )
     }
 
     override fun getCurrentPlayingSessionId(): Flow<String?> =

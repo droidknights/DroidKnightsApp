@@ -44,4 +44,6 @@ include(
     ":feature:wear-main",
     ":feature:wear-player",
     ":feature:wear-session",
+
+    ":widget"
 )

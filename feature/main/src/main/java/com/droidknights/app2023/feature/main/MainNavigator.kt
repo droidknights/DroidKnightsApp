@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.droidknights.app2023.feature.bookmark.navigation.navigateBookmark
 import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
+import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.navigateHome
 import com.droidknights.app2023.feature.player.navigation.PlayerRoute
 import com.droidknights.app2023.feature.player.navigation.navigatePlayer
@@ -68,6 +69,15 @@ internal class MainNavigator(
     fun popBackStack() {
         navController.popBackStack()
     }
+
+    fun popBackStackIfNotHome() {
+        if (!isSameCurrentDestination(HomeRoute.route)) {
+            popBackStack()
+        }
+    }
+
+    private fun isSameCurrentDestination(route: String) =
+        navController.currentDestination?.route == route
 
     @Composable
     fun shouldShowBottomBar(): Boolean {

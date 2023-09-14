@@ -3,7 +3,6 @@ package com.droidknights.app2023.feature.setting.opensource
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -31,10 +30,10 @@ internal fun OpenSourceCard(
 
     KnightsCard(
         color = Graphite,
-        modifier = modifier
-            .clickable {
-                context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
-            },
+        modifier = modifier,
+        onClick = {
+            context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
+        }
     ) {
         Column {
             Text(

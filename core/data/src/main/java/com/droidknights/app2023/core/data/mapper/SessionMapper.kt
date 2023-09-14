@@ -23,6 +23,7 @@ internal fun SessionResponse.toData(): Session = Session(
     startTime = this.startTime,
     endTime = this.endTime,
     video = this.video?.toData() ?: Video.None,
+    isBookmarked = false,
 )
 
 internal fun LevelResponse.toData(): Level = when (this) {

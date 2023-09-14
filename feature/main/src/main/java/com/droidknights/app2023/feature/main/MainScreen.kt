@@ -117,12 +117,12 @@ internal fun MainScreen(
                     )
 
                     contributorNavGraph(
-                        onBackClick = { navigator.popBackStack() },
+                        onBackClick = navigator::popBackStackIfNotHome,
                         onShowErrorSnackBar = onShowErrorSnackBar
                     )
 
                     sessionNavGraph(
-                        onBackClick = { navigator.popBackStack() },
+                        onBackClick = navigator::popBackStackIfNotHome,
                         onSessionClick = { navigator.navigateSessionDetail(it.id) },
                         onShowPlayer = { sessionId ->
                             navigator.navigatePlayer(sessionId)

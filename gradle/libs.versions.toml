@@ -46,6 +46,9 @@ ossLicenses = "17.0.1"
 ossLicensesPlugin = "0.10.6"
 play-services-wearable = "18.0.0"
 
+androidxGlance = "1.0.0-beta01"
+glanceExperimentalTools = "0.2.2"
+
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
@@ -101,7 +104,7 @@ landscapist-coil = { group = "com.github.skydoves", name = "landscapist-coil" }
 landscapist-placeholder = { group = "com.github.skydoves", name = "landscapist-placeholder" }
 landscapist-animation = { group = "com.github.skydoves", name = "landscapist-animation" }
 
-compose-shimmer = { group = "com.valentinilk.shimmer", name = "compose-shimmer", version.ref = "composeShimmer"}
+compose-shimmer = { group = "com.valentinilk.shimmer", name = "compose-shimmer", version.ref = "composeShimmer" }
 
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junitVintageEngine" }
@@ -128,6 +131,10 @@ verify-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatt
 verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 oss-licenses-plugin = { group = "com.google.android.gms", name = "oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
+
+androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidxGlance" }
+androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "androidxGlance" }
+glance-tools-appwidget-host = { group = "com.google.android.glance.tools", name = "appwidget-host", version.ref = "glanceExperimentalTools"}
 
 [bundles]
 
