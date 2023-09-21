@@ -1,6 +1,6 @@
 package com.droidknights.app2023.feature.session.api
 
-import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.repo.session.api.model.Session
 import com.droidknights.app2023.feature.nav.DroidKnightsNavGraph
 
 interface SessionNavGraph : DroidKnightsNavGraph<SessionNavGraphInfo>

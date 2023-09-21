@@ -28,11 +28,11 @@ import com.droidknights.app2023.core.designsystem.component.TextChip
 import com.droidknights.app2023.core.designsystem.theme.DarkGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LightGray
-import com.droidknights.app2023.core.model.Level
-import com.droidknights.app2023.core.model.Room
-import com.droidknights.app2023.core.model.Session
-import com.droidknights.app2023.core.model.Speaker
-import com.droidknights.app2023.core.model.Tag
+import com.droidknights.app2023.core.repo.session.api.model.Level
+import com.droidknights.app2023.core.repo.session.api.model.Room
+import com.droidknights.app2023.core.repo.session.api.model.Session
+import com.droidknights.app2023.core.repo.session.api.model.Speaker
+import com.droidknights.app2023.core.repo.session.api.model.Tag
 import kotlinx.datetime.LocalDateTime
 
 @Composable

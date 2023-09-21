@@ -7,6 +7,9 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.repo.setting.api)
+    implementation(projects.core.repo.session.api)
+
     implementation(projects.feature.mainNavGraph)
     implementation(projects.feature.homeApi)
     implementation(projects.feature.settingApi)

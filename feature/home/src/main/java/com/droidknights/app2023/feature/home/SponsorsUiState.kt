@@ -1,6 +1,6 @@
 package com.droidknights.app2023.feature.home
 
-import com.droidknights.app2023.core.model.Sponsor
+import com.droidknights.app2023.core.sponsor.repo.api.model.Sponsor
 
 sealed interface SponsorsUiState {
     object Loading : SponsorsUiState

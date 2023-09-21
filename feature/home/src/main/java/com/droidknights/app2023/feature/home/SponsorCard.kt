@@ -38,7 +38,7 @@ import com.droidknights.app2023.core.designsystem.theme.DuskGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.designsystem.theme.PaleGray
-import com.droidknights.app2023.core.model.Sponsor
+import com.droidknights.app2023.core.sponsor.repo.api.model.Sponsor
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList

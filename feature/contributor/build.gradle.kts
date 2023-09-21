@@ -7,6 +7,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.repo.contributor.api)
 
     implementation(projects.feature.contributorApi)
     implementation(projects.feature.mainNavGraph)

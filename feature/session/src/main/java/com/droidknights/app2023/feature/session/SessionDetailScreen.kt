@@ -45,11 +45,11 @@ import com.droidknights.app2023.core.designsystem.theme.DarkGray
 import com.droidknights.app2023.core.designsystem.theme.KnightsTheme
 import com.droidknights.app2023.core.designsystem.theme.LightGray
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
-import com.droidknights.app2023.core.model.Level
-import com.droidknights.app2023.core.model.Room
-import com.droidknights.app2023.core.model.Session
-import com.droidknights.app2023.core.model.Speaker
-import com.droidknights.app2023.core.model.Tag
+import com.droidknights.app2023.core.repo.session.api.model.Level
+import com.droidknights.app2023.core.repo.session.api.model.Room
+import com.droidknights.app2023.core.repo.session.api.model.Session
+import com.droidknights.app2023.core.repo.session.api.model.Speaker
+import com.droidknights.app2023.core.repo.session.api.model.Tag
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay
@@ -122,7 +122,7 @@ private fun SessionDetailTopAppBar(
 private fun SessionDetailContent(uiState: SessionDetailUiState) {
     when (uiState) {
         is SessionDetailUiState.Loading -> SessionDetailLoading()
-        is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
+        is SessionDetailUiState.Success -> SessionDetailContent(session = uiState.session)
     }
 }
 

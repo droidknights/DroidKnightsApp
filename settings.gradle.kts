@@ -19,17 +19,20 @@ rootProject.name = "DroidKnights2023"
 include(
     ":app",
 
+    ":core:repo:contributor:api",
+    ":core:repo:contributor:impl",
+    ":core:repo:setting:api",
+    ":core:repo:setting:impl",
+    ":core:repo:sponsor:api",
+    ":core:repo:sponsor:impl",
+    ":core:repo:session:api",
+    ":core:repo:session:impl",
+    ":core:http",
+
     ":core:designsystem",
-    ":core:data",
-    ":core:data-api",
-    ":core:domain",
-    ":core:domain-api",
     ":core:navigation",
-    ":core:model",
     ":core:ui",
     ":core:testing",
-    ":core:datastore",
-    ":core:datastore-api",
 
     ":feature:main",
     ":feature:main-nav-graph",

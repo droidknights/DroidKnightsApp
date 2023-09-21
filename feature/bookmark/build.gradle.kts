@@ -7,6 +7,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.repo.session.api)
 
     implementation(projects.feature.bookmarkApi)
     implementation(projects.feature.mainNavGraph)

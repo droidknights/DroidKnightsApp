@@ -9,7 +9,7 @@ android {
 
 dependencies {
     implementation(projects.feature.mainNavGraph)
-    implementation(projects.core.model)
+    implementation(projects.core.repo.session.api)
 
     implementation(libs.androidx.compose.navigation)
 }
