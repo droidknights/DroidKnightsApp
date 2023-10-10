@@ -5,6 +5,7 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
+import com.droidknights.app2023.core.model.Video
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldBeSortedWith
 import io.kotest.matchers.collections.shouldContainAll
@@ -60,6 +61,7 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 11, 0),
                 endTime = LocalDateTime(2023, 10, 5, 11, 50),
+                video = Video.None,
                 isBookmarked = false
             ),
             Session(
@@ -72,6 +74,7 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 9, 0),
                 endTime = LocalDateTime(2023, 10, 5, 9, 50),
+                video = Video.None,
                 isBookmarked = false
             ),
             Session(
@@ -84,6 +87,7 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 10, 0),
                 endTime = LocalDateTime(2023, 10, 5, 10, 50),
+                video = Video.None,
                 isBookmarked = false
             )
         )
