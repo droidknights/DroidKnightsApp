@@ -4,6 +4,7 @@ import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
 import androidx.media3.common.VideoSize
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
@@ -17,12 +18,14 @@ internal class PlaybackStateListener @Inject constructor(
 ) : Player.Listener {
 
     private lateinit var player: Player
+    private var job: Job? = null
 
     fun attachTo(player: Player) {
         this.player = player
         player.addListener(this)
 
-        scope.launch {
+        job?.cancel()
+        job = scope.launch {
             playbackStateManager.flow
                 .map { it.isPlaying }
                 .collectLatest { isPlaying ->
