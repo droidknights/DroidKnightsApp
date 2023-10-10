@@ -13,7 +13,7 @@ interface SessionRepository {
 
     suspend fun bookmarkSession(sessionId: String, bookmark: Boolean)
 
-    fun getCurrentPlayingSessionId(): Flow<String?>
+    suspend fun getCurrentPlayingSession(): Session?
 
-    suspend fun updateCurrentPlayingSessionId(sessionId: String)
+    suspend fun updateCurrentPlayingSession(sessionId: String)
 }

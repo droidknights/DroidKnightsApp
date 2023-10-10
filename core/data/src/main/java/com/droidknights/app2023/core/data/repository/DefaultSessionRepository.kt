@@ -1,23 +1,24 @@
 package com.droidknights.app2023.core.data.repository
 
 import com.droidknights.app2023.core.data.api.GithubRawApi
-import com.droidknights.app2023.core.datastore.datasource.SessionPreferencesDataSource
 import com.droidknights.app2023.core.data.mapper.toData
 import com.droidknights.app2023.core.datastore.datasource.PlaybackPreferencesDataSource
+import com.droidknights.app2023.core.datastore.datasource.SessionPreferencesDataSource
 import com.droidknights.app2023.core.model.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
-    private val preferencesDataSource: PlaybackPreferencesDataSource,
+    private val playbackDataSource: PlaybackPreferencesDataSource,
     private val sessionDataSource: SessionPreferencesDataSource,
 ) : SessionRepository {
     private var cachedSessions: List<Session> = emptyList()
 
+    private val currentPlayingSessionId: Flow<String?> = playbackDataSource.currentPlayingSessionId
     private val bookmarkIds: Flow<Set<String>> = sessionDataSource.bookmarkedSession
 
     override suspend fun getSessions(): List<Session> {
@@ -51,10 +52,11 @@ internal class DefaultSessionRepository @Inject constructor(
         )
     }
 
-    override fun getCurrentPlayingSessionId(): Flow<String?> =
-        preferencesDataSource.playbackData.map { it?.currentSessionId }
+    override suspend fun getCurrentPlayingSession(): Session? {
+        return currentPlayingSessionId.firstOrNull()?.let { getSession(it) }
+    }
 
-    override suspend fun updateCurrentPlayingSessionId(sessionId: String) {
-        preferencesDataSource.updateCurrentSessionId(sessionId)
+    override suspend fun updateCurrentPlayingSession(sessionId: String) {
+        playbackDataSource.updateCurrentPlayingSession(sessionId)
     }
 }

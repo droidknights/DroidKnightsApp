@@ -8,6 +8,6 @@ class UpdateCurrentPlayingSessionUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(sessionId: String) {
-        return sessionRepository.updateCurrentPlayingSessionId(sessionId)
+        return sessionRepository.updateCurrentPlayingSession(sessionId)
     }
 }

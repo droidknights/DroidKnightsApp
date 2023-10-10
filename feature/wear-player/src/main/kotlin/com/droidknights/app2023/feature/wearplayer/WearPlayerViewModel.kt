@@ -30,7 +30,7 @@ class WearPlayerViewModel @Inject constructor(
         viewModelScope.launch {
             val sessionId = savedStateHandle.get<String?>(WearPlayerRoute.argumentName)
                 .takeIf { !it.isNullOrBlank() }
-                ?: getCurrentPlayingSessionUseCase()
+                ?: getCurrentPlayingSessionUseCase()?.id
                 ?: "1" // 처음부터 재생
             updateCurrentPlayingSessionUseCase(sessionId)
             playerController.play()

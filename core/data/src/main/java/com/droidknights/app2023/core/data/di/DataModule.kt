@@ -11,6 +11,7 @@ import com.droidknights.app2023.core.data.repository.DefaultSponsorRepository
 import com.droidknights.app2023.core.data.repository.SessionRepository
 import com.droidknights.app2023.core.data.repository.SettingsRepository
 import com.droidknights.app2023.core.data.repository.SponsorRepository
+import com.droidknights.app2023.core.datastore.datasource.DefaultPlaybackPreferencesDataSource
 import com.droidknights.app2023.core.datastore.datasource.DefaultSessionPreferencesDataSource
 import com.droidknights.app2023.core.datastore.datasource.PlaybackPreferencesDataSource
 import com.droidknights.app2023.core.datastore.datasource.SessionPreferencesDataSource
@@ -35,6 +36,11 @@ internal abstract class DataModule {
     abstract fun bindsSettingsRepository(
         repository: DefaultSettingsRepository,
     ): SettingsRepository
+
+    @Binds
+    abstract fun bindPlaybackLocalDataSource(
+        dataSource: DefaultPlaybackPreferencesDataSource,
+    ): PlaybackPreferencesDataSource
 
     @Binds
     abstract fun bindSessionLocalDataSource(

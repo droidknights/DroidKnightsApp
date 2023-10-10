@@ -9,7 +9,6 @@ import com.droidknights.app2023.core.data.repository.SessionRepository
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.playback.R
-import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class MediaItemProvider @Inject constructor(
@@ -147,7 +146,7 @@ class MediaItemProvider @Inject constructor(
   )
 
   suspend fun currentMediaItemsOrKeynote(): MediaItemsWithStartPosition {
-    val currentPlayingSessionId = sessionRepository.getCurrentPlayingSessionId().first() ?: "1"
+    val currentPlayingSessionId = sessionRepository.getCurrentPlayingSession()?.id ?: "1"
 
     val session = sessionRepository.getSession(currentPlayingSessionId)
     return MediaItemsWithStartPosition(
