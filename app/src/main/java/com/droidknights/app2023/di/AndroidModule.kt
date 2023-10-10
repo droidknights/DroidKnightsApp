@@ -7,13 +7,14 @@ import com.droidknights.app2023.misc.SessionActivityIntentProviderImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal object AndroidModule {
     @Provides
-    fun provideContext(app: Application): Context = app
+    fun provideContext(@ApplicationContext context: Context): Context = context
 
     @Provides
     fun toPlayerIntentProvider(
