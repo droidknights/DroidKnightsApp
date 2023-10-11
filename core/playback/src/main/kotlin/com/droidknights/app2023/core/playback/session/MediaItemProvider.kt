@@ -137,7 +137,7 @@ class MediaItemProvider @Inject constructor(
     mediaId = MediaId.Session(session.id),
     browsable = false,
     isPlayable = true,
-    sourceUri = session.video.manifestUrl.takeIf { it.isNotBlank() }?.let(Uri::parse),
+    sourceUri = session.video?.manifestUrl?.let(Uri::parse),
     imageUri = session.speakers.firstOrNull()
       ?.imageUrl.takeIf { !it.isNullOrBlank() }
       ?.let(Uri::parse)

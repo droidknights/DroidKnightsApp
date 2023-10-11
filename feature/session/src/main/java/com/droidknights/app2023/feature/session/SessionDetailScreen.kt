@@ -182,11 +182,11 @@ private fun SessionDetailContent(
             modifier = Modifier
                 .padding(top = 16.dp)
                 .fillMaxWidth(),
-            enabled = session.video.isReady,
+            enabled = session.video != null,
             onClick = onPlayButtonClick
         ) {
             Text(
-                if (session.video.isReady) "재생하기" else "영상 미제공 세션"
+                if (session.video != null) "재생하기" else "영상 미제공 세션"
             )
         }
     }
@@ -336,7 +336,7 @@ private val SampleSessionNoContent = Session(
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
     endTime = LocalDateTime.parse("2023-09-12T11:30:00.000"),
-    video = Video.None,
+    video = null,
     isBookmarked = true,
 )
 

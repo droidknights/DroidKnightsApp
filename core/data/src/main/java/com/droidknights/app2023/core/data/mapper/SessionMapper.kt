@@ -22,7 +22,7 @@ internal fun SessionResponse.toData(): Session = Session(
     room = this.room?.toData() ?: Room.ETC,
     startTime = this.startTime,
     endTime = this.endTime,
-    video = this.video?.toData() ?: Video.None,
+    video = this.video?.toData(),
     isBookmarked = false,
 )
 
@@ -46,7 +46,15 @@ internal fun SpeakerResponse.toData(): Speaker = Speaker(
     imageUrl = this.imageUrl
 )
 
-internal fun VideoResponse.toData(): Video = Video(
-    manifestUrl = this.manifestUrl,
-    thumbnailUrl = this.thumbnailUrl
-)
+internal fun VideoResponse.toData(): Video? =
+    if (
+        manifestUrl.isNotBlank() &&
+        thumbnailUrl.isNotBlank()
+    ) {
+        Video(
+            manifestUrl = this.manifestUrl,
+            thumbnailUrl = this.thumbnailUrl
+        )
+    } else {
+        null
+    }
