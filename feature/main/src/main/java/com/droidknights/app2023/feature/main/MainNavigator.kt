@@ -1,7 +1,9 @@
 package com.droidknights.app2023.feature.main
 
+import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -12,6 +14,8 @@ import com.droidknights.app2023.feature.bookmark.navigation.navigateBookmark
 import com.droidknights.app2023.feature.contributor.navigation.navigateContributor
 import com.droidknights.app2023.feature.home.navigation.HomeRoute
 import com.droidknights.app2023.feature.home.navigation.navigateHome
+import com.droidknights.app2023.feature.player.navigation.PlayerRoute
+import com.droidknights.app2023.feature.player.navigation.navigatePlayer
 import com.droidknights.app2023.feature.session.navigation.navigateSession
 import com.droidknights.app2023.feature.session.navigation.navigateSessionDetail
 import com.droidknights.app2023.feature.setting.navigation.navigateSetting
@@ -58,6 +62,10 @@ internal class MainNavigator(
         navController.navigateSessionDetail(sessionId)
     }
 
+    fun navigatePlayer(sessionId: String) {
+        navController.navigatePlayer(sessionId)
+    }
+
     fun popBackStack() {
         navController.popBackStack()
     }
@@ -75,6 +83,14 @@ internal class MainNavigator(
     fun shouldShowBottomBar(): Boolean {
         val currentRoute = currentDestination?.route ?: return false
         return currentRoute in MainTab
+    }
+
+    @Composable
+    fun shouldShowSystemUI(): Boolean {
+        val orientation = LocalConfiguration.current.orientation
+        val currentRoute = currentDestination?.route ?: return true
+        return !currentRoute.startsWith(PlayerRoute.route) ||
+                orientation == ORIENTATION_PORTRAIT
     }
 }
 

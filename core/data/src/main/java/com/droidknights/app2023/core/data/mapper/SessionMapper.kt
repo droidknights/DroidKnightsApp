@@ -4,11 +4,13 @@ import com.droidknights.app2023.core.data.api.model.LevelResponse
 import com.droidknights.app2023.core.data.api.model.RoomResponse
 import com.droidknights.app2023.core.data.api.model.SessionResponse
 import com.droidknights.app2023.core.data.api.model.SpeakerResponse
+import com.droidknights.app2023.core.data.api.model.VideoResponse
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
+import com.droidknights.app2023.core.model.Video
 
 internal fun SessionResponse.toData(): Session = Session(
     id = this.id,
@@ -20,7 +22,8 @@ internal fun SessionResponse.toData(): Session = Session(
     room = this.room?.toData() ?: Room.ETC,
     startTime = this.startTime,
     endTime = this.endTime,
-    isBookmarked = false
+    video = this.video?.toData(),
+    isBookmarked = false,
 )
 
 internal fun LevelResponse.toData(): Level = when (this) {
@@ -42,3 +45,16 @@ internal fun SpeakerResponse.toData(): Speaker = Speaker(
     introduction = this.introduction,
     imageUrl = this.imageUrl
 )
+
+internal fun VideoResponse.toData(): Video? =
+    if (
+        manifestUrl.isNotBlank() &&
+        thumbnailUrl.isNotBlank()
+    ) {
+        Video(
+            manifestUrl = this.manifestUrl,
+            thumbnailUrl = this.thumbnailUrl
+        )
+    } else {
+        null
+    }

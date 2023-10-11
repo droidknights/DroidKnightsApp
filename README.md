@@ -1,3 +1,54 @@
+<img width="1512" alt="banner" src="https://github.com/workspace/DroidKnights2023-app-with-media3/assets/7759511/1a3c1ef9-7d8d-4782-a307-05255310592b">
+
+# DroidKnights2023 App with media3
+
+2023년 9월 12일 드로이드나이츠에서 발표한 <Jetpack Media3로 좋은 콘텐츠 소비 경험 구현하기>에서 소개한 데모 앱을 공개합니다.
+
+## 발표 자료
+https://speakerdeck.com/workspace93/jetpack-media3ro-joheun-kontenceu-sobi-gyeongheom-guhyeonhagi
+
+## Guide
+
+### Emulator 만들기
+
+각 Configuration에 맞는 Emulator를 Android Studio Device Manager에서 생성.
+
+<img width="603" alt="image" src="https://github.com/workspace/DroidKnights2023-app-with-media3/assets/7759511/1fa330c2-807f-482e-85fb-3677662f3138">
+
+### Desktop Head Unit Emulator 만들기 (Android Auto)
+
+공식 [가이드](https://developer.android.com/training/cars/testing/dhu)를 따라 `Desktop Head Unit Emulator(DHU)`를 설치. 모바일 에뮬레이터 또는 실기기가 연결된 상태에서 DHU 실행하면 Android Auto 활성화
+
+<img width="546" alt="image" src="https://github.com/workspace/DroidKnights2023-app-with-media3/assets/7759511/09e4a8bd-8a02-4115-a812-fb25d9c55751">
+
+### Run Configurations
+
+실행 해보고 싶은 것과 Emulator를 고른 뒤 `Run`
+
+<img width="313" alt="image" src="https://github.com/workspace/DroidKnights2023-app-with-media3/assets/7759511/814bfdb4-0fa6-4c95-b9d7-5171433d1894">
+
+- app (통상적인 모바일 앱, Android Auto)
+- app-wear-os (워치 앱)
+- app-tv (Android TV 앱)
+- app-automotive (Android Automotive 앱)
+
+## Resources
+### Youtube
+- [Google I/O 2014 - Building great multi-media experiences on Android (18:29 ~)](https://www.youtube.com/watch?v=92fgcUNCHic&t=1108s)
+- [Android Dev Summit 2021 - What’s next for AndroidX Media and ExoPlayer](https://www.youtube.com/watch?v=sTIBDcyCmCg)
+### Android Developers - Media3
+- [Introducing Jetpack Media3](https://android-developers.googleblog.com/2021/10/jetpack-media3.html)
+- [Media3 is ready to play!](https://android-developers.googleblog.com/2023/03/media3-is-ready-to-play.html)
+- [Introduction to Jetpack Media3](https://developer.android.com/guide/topics/media/media3)
+### Android Developers - Wear OS, TV, Auto
+- [Using Jetpack Compose on Wear OS](https://developer.android.com/training/wearables/compose)
+- [Use Jetpack Compose on Android TV](https://developer.android.com/training/tv/playback/compose)
+- [Build media apps for cars](https://developer.android.com/training/cars/media)
+### Github
+- [Media3 Github](https://github.com/androidx/media)
+
+<details>
+  <summary>DroidKnights2023 App ReadMe 원문</summary>
 <img width="1512" alt="banner" src="https://github.com/droidknights/DroidKnights2023_App/assets/32327475/af43b370-3d00-43ab-b389-fa1ad364f5df">
 
 # DroidKnights2023 App
@@ -101,3 +152,5 @@
 - GitHub : [Contributors](https://github.com/droidknights/DroidKnights2023_App/graphs/contributors)
 - Designer : Eunbi Ko
 - Maintainer : [laco-dev](https://github.com/laco-dev), [wisemuji](https://github.com/wisemuji)
+
+</details>

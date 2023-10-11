@@ -8,7 +8,11 @@
     "tags": [],
     "room": null,
     "startTime": "2023-09-12T10:45:00.000",
-    "endTime": "2023-09-12T11:00:00.000"
+    "endTime": "2023-09-12T11:00:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "2",
@@ -27,7 +31,11 @@
     ],
     "room": "Track1",
     "startTime": "2023-09-12T11:00:00.000",
-    "endTime": "2023-09-12T11:30:00.000"
+    "endTime": "2023-09-12T11:30:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "3",
@@ -46,7 +54,11 @@
     ],
     "room": "Track2",
     "startTime": "2023-09-12T11:00:00.000",
-    "endTime": "2023-09-12T11:30:00.000"
+    "endTime": "2023-09-12T11:30:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "4",
@@ -65,7 +77,11 @@
     ],
     "room": "Track3",
     "startTime": "2023-09-12T11:00:00.000",
-    "endTime": "2023-09-12T11:30:00.000"
+    "endTime": "2023-09-12T11:30:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "5",
@@ -84,7 +100,11 @@
     ],
     "room": "Track1",
     "startTime": "2023-09-12T11:45:00.000",
-    "endTime": "2023-09-12T12:15:00.000"
+    "endTime": "2023-09-12T12:15:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "6",
@@ -103,7 +123,11 @@
     ],
     "room": "Track2",
     "startTime": "2023-09-12T11:45:00.000",
-    "endTime": "2023-09-12T12:15:00.000"
+    "endTime": "2023-09-12T12:15:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "7",
@@ -122,7 +146,11 @@
     ],
     "room": "Track3",
     "startTime": "2023-09-12T11:45:00.000",
-    "endTime": "2023-09-12T12:15:00.000"
+    "endTime": "2023-09-12T12:15:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "8",
@@ -141,7 +169,11 @@
     ],
     "room": "Track1",
     "startTime": "2023-09-12T13:25:00.000",
-    "endTime": "2023-09-12T14:10:00.000"
+    "endTime": "2023-09-12T14:10:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "9",
@@ -160,7 +192,11 @@
     ],
     "room": "Track2",
     "startTime": "2023-09-12T13:25:00.000",
-    "endTime": "2023-09-12T14:10:00.000"
+    "endTime": "2023-09-12T14:10:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "10",
@@ -179,7 +215,11 @@
     ],
     "room": "Track3",
     "startTime": "2023-09-12T13:25:00.000",
-    "endTime": "2023-09-12T14:10:00.000"
+    "endTime": "2023-09-12T14:10:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "11",
@@ -198,7 +238,11 @@
     ],
     "room": "Track1",
     "startTime": "2023-09-12T14:25:00.000",
-    "endTime": "2023-09-12T14:55:00.000"
+    "endTime": "2023-09-12T14:55:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "12",
@@ -217,7 +261,11 @@
     ],
     "room": "Track2",
     "startTime": "2023-09-12T14:25:00.000",
-    "endTime": "2023-09-12T14:55:00.000"
+    "endTime": "2023-09-12T14:55:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "13",
@@ -236,7 +284,11 @@
     ],
     "room": "Track3",
     "startTime": "2023-09-12T14:25:00.000",
-    "endTime": "2023-09-12T14:55:00.000"
+    "endTime": "2023-09-12T14:55:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "14",
@@ -255,7 +307,11 @@
     ],
     "room": "Track1",
     "startTime": "2023-09-12T15:10:00.000",
-    "endTime": "2023-09-12T15:40:00.000"
+    "endTime": "2023-09-12T15:40:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "15",
@@ -274,7 +330,11 @@
     ],
     "room": "Track2",
     "startTime": "2023-09-12T15:10:00.000",
-    "endTime": "2023-09-12T15:40:00.000"
+    "endTime": "2023-09-12T15:40:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "16",
@@ -293,7 +353,11 @@
     ],
     "room": "Track3",
     "startTime": "2023-09-12T15:10:00.000",
-    "endTime": "2023-09-12T15:40:00.000"
+    "endTime": "2023-09-12T15:40:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "17",
@@ -312,7 +376,11 @@
     ],
     "room": "Track1",
     "startTime": "2023-09-12T16:00:00.000",
-    "endTime": "2023-09-12T16:45:00.000"
+    "endTime": "2023-09-12T16:45:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "18",
@@ -331,7 +399,11 @@
     ],
     "room": "Track2",
     "startTime": "2023-09-12T16:00:00.000",
-    "endTime": "2023-09-12T16:45:00.000"
+    "endTime": "2023-09-12T16:45:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "19",
@@ -350,7 +422,11 @@
     ],
     "room": "Track3",
     "startTime": "2023-09-12T16:00:00.000",
-    "endTime": "2023-09-12T16:45:00.000"
+    "endTime": "2023-09-12T16:45:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "20",
@@ -369,7 +445,11 @@
     ],
     "room": "Track1",
     "startTime": "2023-09-12T17:00:00.000",
-    "endTime": "2023-09-12T17:30:00.000"
+    "endTime": "2023-09-12T17:30:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "21",
@@ -388,7 +468,11 @@
     ],
     "room": "Track2",
     "startTime": "2023-09-12T17:00:00.000",
-    "endTime": "2023-09-12T17:30:00.000"
+    "endTime": "2023-09-12T17:30:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   },
   {
     "id": "22",
@@ -407,6 +491,10 @@
     ],
     "room": "Track3",
     "startTime": "2023-09-12T17:00:00.000",
-    "endTime": "2023-09-12T17:30:00.000"
+    "endTime": "2023-09-12T17:30:00.000",
+    "video": {
+      "manifestUrl": "https://workspace.github.io/media-samples/sample/output.mpd",
+      "thumbnailUrl": "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+    }
   }
 ]

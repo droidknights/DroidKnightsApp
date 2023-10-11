@@ -25,4 +25,12 @@ internal class FakeSessionRepository(
     override suspend fun bookmarkSession(sessionId: String, bookmark: Boolean) {
         return
     }
+
+    override suspend fun getCurrentPlayingSession(): Session? {
+        return null
+    }
+
+    override suspend fun updateCurrentPlayingSession(sessionId: String) {
+        return
+    }
 }

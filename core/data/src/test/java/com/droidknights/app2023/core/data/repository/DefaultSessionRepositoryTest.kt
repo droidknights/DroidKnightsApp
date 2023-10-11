@@ -2,10 +2,12 @@ package com.droidknights.app2023.core.data.repository
 
 import app.cash.turbine.test
 import com.droidknights.app2023.core.data.api.fake.FakeGithubRawApi
+import com.droidknights.app2023.core.data.datastore.fake.FakePlaybackPreferencesDataSource
 import com.droidknights.app2023.core.data.datastore.fake.FakeSessionPreferencesDataSource
 import com.droidknights.app2023.core.model.Level
 import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
+import com.droidknights.app2023.core.model.Video
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.datetime.LocalDateTime
@@ -15,7 +17,8 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
     init {
         val repository: SessionRepository = DefaultSessionRepository(
             githubRawApi = FakeGithubRawApi(),
-            sessionDataSource = FakeSessionPreferencesDataSource()
+            sessionDataSource = FakeSessionPreferencesDataSource(),
+            playbackDataSource = FakePlaybackPreferencesDataSource()
         )
         "역직렬화 테스트" {
             val expected = Session(
@@ -28,7 +31,11 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 room = Room.ETC,
                 startTime = LocalDateTime(2023, 9, 12, 10, 45),
                 endTime = LocalDateTime(2023, 9, 12, 11, 0),
-                isBookmarked = false
+                video = Video(
+                    manifestUrl = "https://workspace.github.io/media-samples/sample/output.mpd",
+                    thumbnailUrl = "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+                ),
+                isBookmarked = false,
             )
             val actual = repository.getSessions()
             actual.first() shouldBe expected
@@ -64,6 +71,27 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 repository.bookmarkSession(sessionId = "3", bookmark = false)
                 awaitItem() shouldBe setOf("1")
             }
+        }
+
+        "현재 재생 중인 세션 업데이트 테스트" {
+            repository.getCurrentPlayingSession() shouldBe null
+            repository.updateCurrentPlayingSession("1")
+            repository.getCurrentPlayingSession() shouldBe Session(
+                id = "1",
+                title = "Keynote",
+                content = "",
+                speakers = emptyList(),
+                level = Level.ETC,
+                tags = emptyList(),
+                room = Room.ETC,
+                startTime = LocalDateTime(2023, 9, 12, 10, 45),
+                endTime = LocalDateTime(2023, 9, 12, 11, 0),
+                video = Video(
+                    manifestUrl = "https://workspace.github.io/media-samples/sample/output.mpd",
+                    thumbnailUrl = "https://workspace.github.io/media-samples/sample/thumbnail.jpg"
+                ),
+                isBookmarked = false,
+            )
         }
     }
 }

@@ -14,4 +14,5 @@ internal data class SessionResponse(
     val room: RoomResponse?,
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
+    val video: VideoResponse? = null,
 )

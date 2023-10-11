@@ -20,6 +20,7 @@ fun NavController.navigateSessionDetail(sessionId: String) {
 fun NavGraphBuilder.sessionNavGraph(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
+    onShowPlayer: (String) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit
 ) {
     composable(SessionRoute.route) {
@@ -41,7 +42,10 @@ fun NavGraphBuilder.sessionNavGraph(
         val sessionId = navBackStackEntry.arguments?.getString("id") ?: ""
         SessionDetailScreen(
             sessionId = sessionId,
-            onBackClick = onBackClick
+            onBackClick = onBackClick,
+            onShowPlayer = {
+                onShowPlayer(sessionId)
+            },
         )
     }
 }

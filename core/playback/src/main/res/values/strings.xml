@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="media_session_root_title">모든 세션</string>
+    <string name="media_session_root_description">DroidKnights 2023 전체 발표 목록 입니다.</string>
+    <string name="media_session_keynote_title">Keynote</string>
+    <string name="media_session_keynote_description">DroidKnights 2023 Keynote</string>
+    <string name="media_session_track_1_title">Track 01</string>
+    <string name="media_session_track_1_description">DroidKnights 2023 Track 01 발표 목록 입니다.</string>
+    <string name="media_session_track_2_title">Track 02</string>
+    <string name="media_session_track_2_description">DroidKnights 2023 Track 02 목록 입니다.</string>
+    <string name="media_session_track_3_title">Track 03</string>
+    <string name="media_session_track_3_description">DroidKnights 2023 Track 03 목록 입니다.</string>
+</resources>
