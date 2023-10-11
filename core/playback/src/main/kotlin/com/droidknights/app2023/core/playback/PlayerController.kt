@@ -112,9 +112,9 @@ class PlayerController @Inject constructor(
   }
 
   private suspend fun awaitConnect(): MediaController? {
-    return try {
+    return runCatching {
       activeControllerDeferred.await()
-    } catch (e: Exception) {
+    }.getOrElse { e ->
       if (e is CancellationException) throw e
       null
     }
