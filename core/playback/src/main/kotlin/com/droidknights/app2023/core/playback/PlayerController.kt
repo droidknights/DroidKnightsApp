@@ -25,7 +25,7 @@ class PlayerController @Inject constructor(
   private val mediaItemProvider: MediaItemProvider,
 ) {
 
-  private var _controller: Deferred<MediaController> = newControllerAsync()
+  private var controllerDeferred: Deferred<MediaController> = newControllerAsync()
 
   private fun newControllerAsync() = MediaController
     .Builder(context, SessionToken(context, ComponentName(context, PlaybackService::class.java)))
@@ -33,16 +33,16 @@ class PlayerController @Inject constructor(
     .asDeferred()
 
   @OptIn(ExperimentalCoroutinesApi::class)
-  private val controller: Deferred<MediaController>
+  private val activeControllerDeferred: Deferred<MediaController>
     get() {
-      if (_controller.isCompleted) {
-        val completedController = _controller.getCompleted()
+      if (controllerDeferred.isCompleted) {
+        val completedController = controllerDeferred.getCompleted()
         if (!completedController.isConnected) {
           completedController.release()
-          _controller = newControllerAsync()
+          controllerDeferred = newControllerAsync()
         }
       }
-      return _controller
+      return controllerDeferred
     }
   private val scope = CoroutineScope(Dispatchers.Main.immediate)
 
@@ -111,9 +111,9 @@ class PlayerController @Inject constructor(
     }
   }
 
-  suspend fun awaitConnect(): MediaController? {
+  private suspend fun awaitConnect(): MediaController? {
     return try {
-      controller.await()
+      activeControllerDeferred.await()
     } catch (e: Exception) {
       if (e is CancellationException) throw e
       null
