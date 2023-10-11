@@ -31,7 +31,6 @@ import com.droidknights.app2023.core.model.Room
 import com.droidknights.app2023.core.model.Session
 import com.droidknights.app2023.core.model.Speaker
 import com.droidknights.app2023.core.model.Tag
-import com.droidknights.app2023.core.model.Video
 import com.droidknights.app2023.feature.tvsession.component.KnightsCard
 import kotlinx.datetime.LocalDateTime
 
