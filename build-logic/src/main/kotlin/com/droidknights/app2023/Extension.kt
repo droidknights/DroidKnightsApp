@@ -9,13 +9,13 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.kotlin.dsl.getByType
 
-internal val Project.applicationExtension: CommonExtension<*, *, *, *>
+internal val Project.applicationExtension: CommonExtension<*, *, *, *, *, *>
     get() = extensions.getByType<ApplicationExtension>()
 
-internal val Project.libraryExtension: CommonExtension<*, *, *, *>
+internal val Project.libraryExtension: CommonExtension<*, *, *, *, *, *>
     get() = extensions.getByType<LibraryExtension>()
 
-internal val Project.androidExtension: CommonExtension<*, *, *, *>
+internal val Project.androidExtension: CommonExtension<*, *, *, *, *, *>
     get() = runCatching { libraryExtension }
         .recoverCatching { applicationExtension }
         .onFailure { println("Could not find Library or Application extension from this project") }

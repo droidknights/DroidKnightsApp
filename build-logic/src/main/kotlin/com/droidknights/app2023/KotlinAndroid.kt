@@ -18,10 +18,10 @@ internal fun Project.configureKotlinAndroid() {
 
     // Android settings
     androidExtension.apply {
-        compileSdk = 33
+        compileSdk = 34
 
         defaultConfig {
-            minSdk = 24
+            minSdk = 28
         }
 
         compileOptions {
