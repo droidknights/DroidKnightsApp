@@ -1,3 +1,5 @@
+import com.droidknights.app.setNamespace
+
 plugins {
     id("droidknights.android.library")
     id("droidknights.android.hilt")
@@ -5,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.droidknights.app2023.core.data"
+    setNamespace("core.data")
 }
 
 dependencies {

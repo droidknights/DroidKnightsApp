@@ -1,7 +1,7 @@
-import com.droidknights.app2023.configureCoroutineAndroid
-import com.droidknights.app2023.configureHiltAndroid
-import com.droidknights.app2023.configureKotest
-import com.droidknights.app2023.configureKotlinAndroid
+import com.droidknights.app.configureCoroutineAndroid
+import com.droidknights.app.configureHiltAndroid
+import com.droidknights.app.configureKotest
+import com.droidknights.app.configureKotlinAndroid
 
 plugins {
     id("com.android.library")

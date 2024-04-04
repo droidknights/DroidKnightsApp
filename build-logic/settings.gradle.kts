@@ -1,4 +1,5 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositories {
         google()

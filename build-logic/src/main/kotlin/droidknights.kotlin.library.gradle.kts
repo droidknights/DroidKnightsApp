@@ -1,5 +1,5 @@
-import com.droidknights.app2023.configureKotest
-import com.droidknights.app2023.configureKotlin
+import com.droidknights.app.configureKotest
+import com.droidknights.app.configureKotlin
 
 plugins {
     kotlin("jvm")

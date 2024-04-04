@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.droidknights.app2023"
+    namespace = "com.droidknights.app"
 
     defaultConfig {
-        applicationId = "com.droidknights.app2023"
+        applicationId = "com.droidknights.app"
         versionCode = 1
         versionName = "1.0"
     }

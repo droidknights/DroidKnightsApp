@@ -1,4 +1,4 @@
-import com.droidknights.app2023.configureVerifyDetekt
+import com.droidknights.app.configureVerifyDetekt
 
 configureVerifyDetekt()
 
