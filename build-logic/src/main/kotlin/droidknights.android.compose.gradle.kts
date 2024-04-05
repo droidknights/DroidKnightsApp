@@ -1,3 +1,3 @@
-import com.droidknights.app2023.configureComposeAndroid
+import com.droidknights.app.configureComposeAndroid
 
 configureComposeAndroid()

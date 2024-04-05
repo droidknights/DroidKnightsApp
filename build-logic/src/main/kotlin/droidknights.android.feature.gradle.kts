@@ -1,5 +1,5 @@
-import com.droidknights.app2023.configureHiltAndroid
-import com.droidknights.app2023.libs
+import com.droidknights.app.configureHiltAndroid
+import com.droidknights.app.libs
 
 plugins {
     id("droidknights.android.library")

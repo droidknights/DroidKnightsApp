@@ -1,10 +1,12 @@
+import com.droidknights.app.setNamespace
+
 plugins {
     id("droidknights.android.library")
     id("droidknights.android.compose")
 }
 
 android {
-    namespace = "com.droidknights.app2023.widget"
+    setNamespace("widget")
 }
 
 dependencies {
@@ -15,5 +17,5 @@ dependencies {
     implementation(projects.core.designsystem)
 
     implementation(projects.core.domain)
-    implementation(project(mapOf("path" to ":core:model")))
+    implementation(projects.core.model)
 }

@@ -7,6 +7,7 @@ pluginManagement {
     }
 }
 
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -15,10 +16,11 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DroidKnights2023"
-include(
-    ":app",
+rootProject.name = "DroidKnights"
+include(":app")
 
+// core
+include(
     ":core:designsystem",
     ":core:data",
     ":core:domain",
@@ -27,13 +29,18 @@ include(
     ":core:ui",
     ":core:testing",
     ":core:datastore",
+)
 
+// Feature
+include(
     ":feature:main",
     ":feature:home",
     ":feature:session",
     ":feature:setting",
     ":feature:contributor",
     ":feature:bookmark",
+)
 
+include(
     ":widget"
 )

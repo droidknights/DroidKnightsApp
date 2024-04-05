@@ -13,11 +13,11 @@ gradlePlugin {
     plugins {
         register("androidHilt") {
             id = "droidknights.android.hilt"
-            implementationClass = "com.droidknights.app2023.HiltAndroidPlugin"
+            implementationClass = "com.droidknights.app.HiltAndroidPlugin"
         }
         register("kotlinHilt") {
             id = "droidknights.kotlin.hilt"
-            implementationClass = "com.droidknights.app2023.HiltKotlinPlugin"
+            implementationClass = "com.droidknights.app.HiltKotlinPlugin"
         }
     }
 }
