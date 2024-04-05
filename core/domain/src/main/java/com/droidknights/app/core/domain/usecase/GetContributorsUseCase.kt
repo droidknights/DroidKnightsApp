@@ -18,6 +18,6 @@ class GetContributorsUseCase @Inject constructor(
 
         private const val OWNER = "droidknights"
 
-        private const val NAME = "DroidKnights2023_App"
+        private const val NAME = "DroidKnightsApp"
     }
 }
