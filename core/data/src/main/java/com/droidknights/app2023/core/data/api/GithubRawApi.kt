@@ -6,9 +6,9 @@ import retrofit2.http.GET
 
 internal interface GithubRawApi {
 
-    @GET("/droidknights/DroidKnights2023_App/main/core/data/src/main/assets/sponsors.json")
+    @GET("/workspace/DroidKnights2023-app-with-media3/media3-main/core/data/src/main/assets/sponsors.json")
     suspend fun getSponsors(): List<SponsorResponse>
 
-    @GET("/droidknights/DroidKnights2023_App/main/core/data/src/main/assets/sessions.json")
+    @GET("/workspace/DroidKnights2023-app-with-media3/media3-main/core/data/src/main/assets/sessions.json")
     suspend fun getSessions(): List<SessionResponse>
 }

@@ -1,5 +1,6 @@
 package com.droidknights.app2023.feature.main
 
+import android.app.Activity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -27,20 +28,26 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.NavHost
 import com.droidknights.app2023.core.designsystem.theme.Neon01
 import com.droidknights.app2023.core.designsystem.theme.surfaceDim
 import com.droidknights.app2023.feature.bookmark.navigation.bookmarkNavGraph
 import com.droidknights.app2023.feature.contributor.navigation.contributorNavGraph
 import com.droidknights.app2023.feature.home.navigation.homeNavGraph
+import com.droidknights.app2023.feature.player.navigation.playerNavGraph
 import com.droidknights.app2023.feature.session.navigation.sessionNavGraph
 import com.droidknights.app2023.feature.setting.navigation.settingNavGraph
 import kotlinx.collections.immutable.PersistentList
@@ -65,6 +72,21 @@ internal fun MainScreen(
                     else -> localContextResource.getString(R.string.error_message_unknown)
                 }
             )
+        }
+    }
+
+    val view = LocalView.current
+    val shouldShowSystemUI = navigator.shouldShowSystemUI()
+    LaunchedEffect(shouldShowSystemUI) {
+        val window = (view.context as Activity).window
+        WindowCompat.getInsetsController(window, view).apply {
+            systemBarsBehavior = if (shouldShowSystemUI) {
+                show(WindowInsetsCompat.Type.systemBars())
+                WindowInsetsControllerCompat.BEHAVIOR_DEFAULT
+            } else {
+                hide(WindowInsetsCompat.Type.systemBars())
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
         }
     }
 
@@ -102,7 +124,14 @@ internal fun MainScreen(
                     sessionNavGraph(
                         onBackClick = navigator::popBackStackIfNotHome,
                         onSessionClick = { navigator.navigateSessionDetail(it.id) },
+                        onShowPlayer = { sessionId ->
+                            navigator.navigatePlayer(sessionId)
+                        },
                         onShowErrorSnackBar = onShowErrorSnackBar
+                    )
+
+                    playerNavGraph(
+                        onBackClick = { navigator.popBackStack() },
                     )
                 }
             }

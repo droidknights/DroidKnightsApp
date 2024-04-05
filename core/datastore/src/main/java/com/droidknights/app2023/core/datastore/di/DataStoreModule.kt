@@ -15,10 +15,19 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DataStoreModule {
+    private const val PLAYBACK_DATASTORE_NAME = "PLAYBACK_PREFERENCES"
     private const val SETTING_DATASTORE_NAME = "SETTINGS_PREFERENCES"
     private const val SESSION_DATASTORE_NAME = "SESSION_PREFERENCES"
+    private val Context.playbackDataStore by preferencesDataStore(PLAYBACK_DATASTORE_NAME)
     private val Context.settingDataStore by preferencesDataStore(SETTING_DATASTORE_NAME)
     private val Context.sessionDataStore by preferencesDataStore(SESSION_DATASTORE_NAME)
+
+    @Provides
+    @Singleton
+    @Named("playback")
+    fun providePlaybackDataStore(
+        @ApplicationContext context: Context,
+    ): DataStore<Preferences> = context.playbackDataStore
 
     @Provides
     @Singleton

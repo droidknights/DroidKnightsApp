@@ -12,6 +12,7 @@ dependencies {
     implementation(projects.feature.contributor)
     implementation(projects.feature.session)
     implementation(projects.feature.bookmark)
+    implementation(projects.feature.player)
 
     implementation(projects.widget)
 
