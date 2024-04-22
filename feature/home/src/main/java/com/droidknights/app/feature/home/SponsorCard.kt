@@ -19,8 +19,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -86,40 +84,27 @@ private fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
 private fun SponsorGroup(
     sponsors: PersistentList<Sponsor>,
 ) {
-    val platinumSponsors = sponsors.filter { it.grade == Sponsor.Grade.PLATINUM }
-    val goldSponsors = sponsors.filter { it.grade == Sponsor.Grade.GOLD }
-    val silverSponsors = sponsors.filter { it.grade == Sponsor.Grade.SILVER }
-
-    val platinumSponsorsState by rememberUpdatedState(platinumSponsors)
-    val goldSponsorsState by rememberUpdatedState(goldSponsors)
-    val silverSponsorsState by rememberUpdatedState(silverSponsors)
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        SponsorGroupRow(
-            modifier = Modifier
-                .wrapContentWidth()
-                .padding(end = 36.dp),
-            sponsors = platinumSponsorsState
-        )
-
-        SponsorGroupRow(
-            modifier = Modifier
-                .wrapContentWidth()
-                .padding(start = 36.dp),
-            sponsors = goldSponsorsState
-        )
-
-        SponsorGroupRow(
-            modifier = Modifier
-                .wrapContentWidth()
-                .padding(end = 36.dp),
-            sponsors = silverSponsorsState
-        )
+        sponsors
+            .groupBy { it.grade }
+            .toSortedMap(compareBy { it.priority })
+            .values
+            .forEachIndexed { index, groupedSponsorsByGrade ->
+                SponsorGroupRow(
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .padding(
+                            start = if (index % 2 == 0) 0.dp else 36.dp,
+                            end = if (index % 2 == 0) 36.dp else 0.dp,
+                        ),
+                    sponsors = groupedSponsorsByGrade
+                )
+            }
     }
 }
 
