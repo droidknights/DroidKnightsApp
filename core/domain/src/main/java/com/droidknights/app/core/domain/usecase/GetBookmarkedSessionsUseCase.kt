@@ -10,7 +10,7 @@ class GetBookmarkedSessionsUseCase @Inject constructor(
     private val getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase,
 ) {
 
-    suspend operator fun invoke(): Flow<List<Session>> =
+    operator fun invoke(): Flow<List<Session>> =
         combine(
             getSessionsUseCase(),
             getBookmarkedSessionIdsUseCase()

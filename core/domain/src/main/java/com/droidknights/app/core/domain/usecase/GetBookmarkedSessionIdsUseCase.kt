@@ -8,7 +8,7 @@ class GetBookmarkedSessionIdsUseCase @Inject constructor(
     private val sessionRepository: SessionRepository,
 ) {
 
-    suspend operator fun invoke(): Flow<Set<String>> {
+    operator fun invoke(): Flow<Set<String>> {
         return sessionRepository.getBookmarkedSessionIds()
     }
 }

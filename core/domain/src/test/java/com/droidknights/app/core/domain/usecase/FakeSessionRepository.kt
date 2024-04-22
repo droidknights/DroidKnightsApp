@@ -18,7 +18,7 @@ internal class FakeSessionRepository(
         return sessions.first { it.id == sessionId }
     }
 
-    override suspend fun getBookmarkedSessionIds(): Flow<Set<String>> {
+    override fun getBookmarkedSessionIds(): Flow<Set<String>> {
         return flow { emit(bookmarkedSessionIds) }
     }
 
