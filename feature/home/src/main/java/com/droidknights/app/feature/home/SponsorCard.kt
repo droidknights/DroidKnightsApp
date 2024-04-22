@@ -69,7 +69,8 @@ private fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
                     text = stringResource(
                         id = R.string.sponsor_card_description,
                         uiState.platinumCount,
-                        uiState.goldCount
+                        uiState.goldCount,
+                        uiState.silverCount
                     ),
                     style = KnightsTheme.typography.titleSmallR,
                     color = DuskGray,
@@ -87,9 +88,11 @@ private fun SponsorGroup(
 ) {
     val platinumSponsors = sponsors.filter { it.grade == Sponsor.Grade.PLATINUM }
     val goldSponsors = sponsors.filter { it.grade == Sponsor.Grade.GOLD }
+    val silverSponsors = sponsors.filter { it.grade == Sponsor.Grade.SILVER }
 
     val platinumSponsorsState by rememberUpdatedState(platinumSponsors)
     val goldSponsorsState by rememberUpdatedState(goldSponsors)
+    val silverSponsorsState by rememberUpdatedState(silverSponsors)
 
     Column(
         modifier = Modifier
@@ -109,6 +112,13 @@ private fun SponsorGroup(
                 .wrapContentWidth()
                 .padding(start = 36.dp),
             sponsors = goldSponsorsState
+        )
+
+        SponsorGroupRow(
+            modifier = Modifier
+                .wrapContentWidth()
+                .padding(end = 36.dp),
+            sponsors = silverSponsorsState
         )
     }
 }
@@ -147,6 +157,7 @@ private fun SponsorLogo(
     val gradeIcon = when (sponsor.grade) {
         Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
         Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
+        Sponsor.Grade.SILVER -> R.drawable.ic_crown_silver
     }
     Box(modifier = Modifier.padding(3.dp)) {
         NetworkImage(

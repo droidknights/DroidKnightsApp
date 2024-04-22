@@ -23,5 +23,8 @@ sealed interface SponsorsUiState {
 
         val goldCount: Int
             get() = sponsors.count { it.grade == Sponsor.Grade.GOLD }
+
+        val silverCount: Int
+            get() = sponsors.count { it.grade == Sponsor.Grade.SILVER }
     }
 }
