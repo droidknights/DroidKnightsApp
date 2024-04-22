@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 class GetSessionsUseCase @Inject constructor(
     private val sessionRepository: SessionRepository,
 ) {
-    suspend operator fun invoke(): Flow<List<Session>> {
+    operator fun invoke(): Flow<List<Session>> {
         return flow {
             emit(sessionRepository.getSessions())
         }

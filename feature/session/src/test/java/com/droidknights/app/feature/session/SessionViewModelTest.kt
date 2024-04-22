@@ -41,7 +41,7 @@ internal class SessionViewModelTest {
     @Test
     fun `세션 데이터를 확인할 수 있다`() = runTest {
         // given
-        coEvery { getSessionsUseCase() } returns listOf(fakeSession)
+        coEvery { getSessionsUseCase() } returns flowOf(listOf(fakeSession))
         coEvery { getBookmarkedSessionIdsUseCase() } returns flowOf(emptySet())
         viewModel = SessionViewModel(getSessionsUseCase, getBookmarkedSessionIdsUseCase)
 
