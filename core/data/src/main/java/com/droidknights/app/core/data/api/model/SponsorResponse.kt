@@ -17,5 +17,8 @@ internal data class SponsorResponse(
 
         @SerialName("gold")
         GOLD,
+
+        @SerialName("silver")
+        SILVER,
     }
 }
