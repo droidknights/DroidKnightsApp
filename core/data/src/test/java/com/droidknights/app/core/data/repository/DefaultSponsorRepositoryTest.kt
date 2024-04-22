@@ -17,7 +17,7 @@ internal class DefaultSponsorRepositoryTest : StringSpec() {
         "역직렬화 테스트" {
             val expected = Sponsor(
                 name = "당근마켓",
-                imageUrl = "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/feature/home/src/main/res/drawable/img_sponsor_daangn.png",
+                imageUrl = "https://raw.githubusercontent.com/droidknights/DroidKnightsApp/main/feature/home/src/main/res/drawable/img_sponsor_daangn.png",
                 homepage = "https://about.daangn.com/",
                 grade = Sponsor.Grade.PLATINUM,
             )
