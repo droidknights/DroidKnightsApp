@@ -33,7 +33,7 @@ internal class DefaultSessionRepository @Inject constructor(
             ?: error("Session not found with id: $sessionId")
     }
 
-    override suspend fun getBookmarkedSessionIds(): Flow<Set<String>> {
+    override fun getBookmarkedSessionIds(): Flow<Set<String>> {
         return bookmarkIds.filterNotNull()
     }
 
