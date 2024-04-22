@@ -90,9 +90,9 @@ private fun BookmarkScreen(
 ) {
     Column(
         Modifier
-            .padding(horizontal = 8.dp)
             .fillMaxSize()
-            .background(color = PaleGray),
+            .background(color = PaleGray)
+            .padding(horizontal = 8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         BookmarkTopAppBar(isEditMode = isEditMode, onClickEditButton = onClickEditButton)
