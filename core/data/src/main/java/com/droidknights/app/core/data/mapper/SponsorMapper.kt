@@ -10,5 +10,6 @@ internal fun SponsorResponse.toData(): Sponsor = Sponsor(
     grade = when (grade) {
         SponsorResponse.Grade.PLATINUM -> Sponsor.Grade.PLATINUM
         SponsorResponse.Grade.GOLD -> Sponsor.Grade.GOLD
+        SponsorResponse.Grade.SILVER -> Sponsor.Grade.SILVER
     }
 )
