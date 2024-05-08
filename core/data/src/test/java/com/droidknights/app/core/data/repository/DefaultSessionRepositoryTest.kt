@@ -3,7 +3,6 @@ package com.droidknights.app.core.data.repository
 import app.cash.turbine.test
 import com.droidknights.app.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app.core.data.datastore.fake.FakeSessionPreferencesDataSource
-import com.droidknights.app.core.model.Level
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import io.kotest.core.spec.style.StringSpec
@@ -23,7 +22,6 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 title = "키노트",
                 content = "",
                 speakers = emptyList(),
-                level = Level.ETC,
                 tags = emptyList(),
                 room = Room.ETC,
                 startTime = LocalDateTime(2024, 6, 11, 10, 40),

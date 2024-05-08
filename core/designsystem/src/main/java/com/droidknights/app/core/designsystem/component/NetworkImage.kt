@@ -4,10 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.coil.CoilImage
@@ -42,6 +41,6 @@ fun NetworkImage(
 private fun NetworkImagePreview() {
     NetworkImage(
         imageUrl = "",
-        placeholder = painterResource(id = Color(0xFFFFFFFF).toArgb()),
+        placeholder = ColorPainter(Color(0xFF000000)),
     )
 }

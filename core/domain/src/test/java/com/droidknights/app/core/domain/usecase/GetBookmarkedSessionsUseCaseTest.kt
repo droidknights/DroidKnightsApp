@@ -1,6 +1,5 @@
 package com.droidknights.app.core.domain.usecase
 
-import com.droidknights.app.core.model.Level
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
@@ -55,7 +54,6 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 title = "Item3 Title",
                 content = "Item3 Content",
                 speakers = listOf(Speaker(name = "철수", introduction = "", imageUrl = "")),
-                level = Level.BASIC,
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 11, 0),
@@ -67,7 +65,6 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 title = "Item1 Title",
                 content = "Item1 Content",
                 speakers = listOf(Speaker(name = "영희", introduction = "", imageUrl = "")),
-                level = Level.BASIC,
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 9, 0),
@@ -79,7 +76,6 @@ internal class GetBookmarkedSessionsUseCaseTest : BehaviorSpec() {
                 title = "Item2 Title",
                 content = "Item2 Content",
                 speakers = listOf(Speaker(name = "민수", introduction = "", imageUrl = "")),
-                level = Level.BASIC,
                 tags = listOf(Tag(name = "Architecture")),
                 room = Room.TRACK1,
                 startTime = LocalDateTime(2023, 10, 5, 10, 0),
