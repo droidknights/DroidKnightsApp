@@ -20,14 +20,14 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
         "역직렬화 테스트" {
             val expected = Session(
                 id = "1",
-                title = "Keynote",
+                title = "키노트",
                 content = "",
                 speakers = emptyList(),
                 level = Level.ETC,
                 tags = emptyList(),
                 room = Room.ETC,
-                startTime = LocalDateTime(2023, 9, 12, 10, 45),
-                endTime = LocalDateTime(2023, 9, 12, 11, 0),
+                startTime = LocalDateTime(2024, 6, 11, 10, 40),
+                endTime = LocalDateTime(2024, 6, 11, 11, 0),
                 isBookmarked = false
             )
             val actual = repository.getSessions()

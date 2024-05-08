@@ -9,7 +9,6 @@ internal data class SessionResponse(
     val title: String,
     val content: String,
     val speakers: List<SpeakerResponse>,
-    val level: LevelResponse,
     val tags: List<String>,
     val room: RoomResponse?,
     val startTime: LocalDateTime,

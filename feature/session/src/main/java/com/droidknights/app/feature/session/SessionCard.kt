@@ -28,7 +28,6 @@ import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.model.Level
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
@@ -204,7 +203,6 @@ private fun SessionCardPreview() {
                 imageUrl = "https://picsum.photos/200",
             ),
         ),
-        level = Level.BASIC,
         tags = listOf(
             Tag("효율적인 코드베이스")
         ),
