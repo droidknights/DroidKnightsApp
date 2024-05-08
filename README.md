@@ -1,6 +1,7 @@
-<img width="1512" alt="banner" src="https://github.com/droidknights/DroidKnights2023_App/assets/32327475/af43b370-3d00-43ab-b389-fa1ad364f5df">
+<img width="1512" alt="banner" src="https://github.com/droidknights/DroidKnightsApp/assets/2144231/c43c3ac9-b10b-46a2-8f8c-a870d146f10f">
 
-# DroidKnights2023 App
+
+# DroidKnights App
 
 드로이드나이츠는 기술 세션으로 개발자들의 경험을 공유하는 안드로이드 컨퍼런스입니다.
 
@@ -25,7 +26,7 @@
   - (권장) Android Studio 설치 시 Embeded 된 JDK (Open JDK)
   - Java 17을 사용하는 JDK (Open JDK, AdoptOpenJDK, GraalVM)
 
-- Kotlin Language : 1.8.21
+- Kotlin Language : 1.9.21
 
 ### Language
 
@@ -98,6 +99,6 @@
 
 참여해주신 모든 분들 감사합니다!
 
-- GitHub : [Contributors](https://github.com/droidknights/DroidKnights2023_App/graphs/contributors)
+- GitHub : [Contributors](https://github.com/droidknights/DroidKnightsApp/graphs/contributors)
 - Designer : Eunbi Ko
 - Maintainer : [laco-dev](https://github.com/laco-dev), [wisemuji](https://github.com/wisemuji)
