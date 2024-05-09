@@ -49,8 +49,7 @@ internal fun WidgetSessionCard(session: Session) {
                 )
                 Spacer(modifier = GlanceModifier.width(4.dp))
                 Text(
-                    // FIXME : 2명 이상 발표자 있는 case에 대해 정상 동작하도록 수정 필요
-                    session.speakers.first().name,
+                    session.speakers.joinToString { it.name },
                     style = TextDefaults.defaultTextStyle.copy(
                         fontSize = 14.sp,
                         color = GlanceTheme.colors.onTertiaryContainer
