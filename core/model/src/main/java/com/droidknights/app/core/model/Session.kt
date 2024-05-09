@@ -7,7 +7,6 @@ data class Session(
     val title: String,
     val content: String,
     val speakers: List<Speaker>,
-    val level: Level,
     val tags: List<Tag>,
     val room: Room,
     val startTime: LocalDateTime,

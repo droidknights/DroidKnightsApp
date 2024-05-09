@@ -2,7 +2,6 @@ package com.droidknights.app.core.designsystem.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -72,10 +71,6 @@ private val LightColorScheme = lightColorScheme(
 )
 
 val LocalDarkTheme = compositionLocalOf { true }
-
-val ColorScheme.surfaceDim
-    @Composable
-    get() = if (LocalDarkTheme.current) Black else PaleGray
 
 @Composable
 fun KnightsTheme(

@@ -4,7 +4,6 @@ import app.cash.turbine.test
 import com.droidknights.app.core.domain.usecase.BookmarkSessionUseCase
 import com.droidknights.app.core.domain.usecase.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.usecase.GetSessionUseCase
-import com.droidknights.app.core.model.Level
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
@@ -35,7 +34,6 @@ class SessionDetailViewModelTest {
         title = "title",
         content = "content",
         speakers = emptyList(),
-        level = Level.BASIC,
         tags = emptyList(),
         room = Room.TRACK1,
         startTime = LocalDateTime(2023, 9, 12, 13, 0, 0),

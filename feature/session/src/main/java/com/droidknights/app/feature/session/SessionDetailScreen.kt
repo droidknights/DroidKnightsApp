@@ -45,7 +45,6 @@ import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.model.Level
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
@@ -284,7 +283,6 @@ private val SampleSessionHasContent = Session(
             imageUrl = "",
         ),
     ),
-    level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
@@ -303,7 +301,6 @@ private val SampleSessionNoContent = Session(
             imageUrl = "",
         ),
     ),
-    level = Level.ADVANCED,
     tags = listOf(Tag("Dev Environment")),
     room = Room.TRACK1,
     startTime = LocalDateTime.parse("2023-09-12T11:00:00.000"),
