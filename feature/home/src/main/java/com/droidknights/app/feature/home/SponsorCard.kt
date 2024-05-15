@@ -8,15 +8,18 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.ColorPainter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -75,14 +79,14 @@ private fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
                     modifier = Modifier.padding(top = 8.dp),
                 )
             }
-            SponsorGroup(uiState.sponsors.toPersistentList())
+            SponsorGroup(uiState.groupedSponsorsByGrade)
         }
     }
 }
 
 @Composable
 private fun SponsorGroup(
-    sponsors: PersistentList<Sponsor>,
+    groupedSponsorsByGrade: PersistentList<List<Sponsor>>,
 ) {
     Column(
         modifier = Modifier
@@ -90,10 +94,7 @@ private fun SponsorGroup(
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        sponsors
-            .groupBy { it.grade }
-            .toSortedMap(compareBy { it.priority })
-            .values
+        groupedSponsorsByGrade
             .forEachIndexed { index, groupedSponsorsByGrade ->
                 SponsorGroupRow(
                     modifier = Modifier
@@ -117,7 +118,7 @@ private fun SponsorGroupRow(
 
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(space = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(space = 22.dp),
         userScrollEnabled = false
     ) {
         items(
@@ -144,24 +145,34 @@ private fun SponsorLogo(
         Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
         Sponsor.Grade.SILVER -> R.drawable.ic_crown_silver
     }
-    Box(modifier = Modifier.padding(3.dp)) {
-        NetworkImage(
-            imageUrl = sponsor.imageUrl,
-            placeholder = ColorPainter(PaleGray),
+    Box(
+        modifier = Modifier
+            .padding(horizontal = 1.dp)
+    ) {
+        Surface(
             modifier = Modifier
-                .shadow(
-                    elevation = 3.dp,
-                    shape = CircleShape
-                )
                 .size(100.dp)
-                .clip(CircleShape)
-                .clickable(onClick = onClick)
-        )
+                .clickable(onClick = onClick),
+            shape = CircleShape,
+            shadowElevation = 3.dp
+        ) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                NetworkImage(
+                    imageUrl = sponsor.imageUrl,
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier
+                        .size(80.dp)
+                )
+            }
+        }
         Image(
             painter = painterResource(id = gradeIcon),
             contentDescription = null,
             modifier = Modifier
-                .size(32.dp)
+                .size(28.dp)
                 .align(Alignment.TopStart),
         )
     }
