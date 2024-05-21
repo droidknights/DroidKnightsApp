@@ -204,7 +204,7 @@ private fun ContributorItem(
     } else {
         Modifier
     }
-    
+
     val placeholder = rememberPainterResource(
         lightId = R.drawable.ic_contributor_placeholder_lightmode,
         darkId = R.drawable.ic_contributor_placeholder_darkmode,
