@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.droidknights.app.core.domain.usecase.GetContributorsUseCase
 import com.droidknights.app.core.model.Contributor
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
+import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.assertIs

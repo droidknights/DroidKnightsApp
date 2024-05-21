@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.component
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -7,9 +7,10 @@ import androidx.compose.ui.res.stringResource
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.ui.textRes
-import java.time.format.DateTimeFormatter
+import com.droidknights.app.feature.session.R
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Composable
 internal fun TrackChip(room: Room) {

@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.home
+package com.droidknights.app.feature.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -22,11 +21,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
@@ -39,11 +37,12 @@ import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.theme.DuskGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.designsystem.theme.PaleGray
 import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.feature.home.R
+import com.droidknights.app.feature.home.model.SponsorsUiState
+import com.droidknights.app.feature.home.model.SponsorsUiStatePreviewParameterProvider
 import com.valentinilk.shimmer.shimmer
-import kotlinx.collections.immutable.PersistentList
-import kotlinx.collections.immutable.toPersistentList
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 internal fun SponsorCard(uiState: SponsorsUiState) {
@@ -86,7 +85,7 @@ private fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
 
 @Composable
 private fun SponsorGroup(
-    groupedSponsorsByGrade: PersistentList<List<Sponsor>>,
+    groupedSponsorsByGrade: ImmutableList<List<Sponsor>>,
 ) {
     Column(
         modifier = Modifier
@@ -140,11 +139,14 @@ private fun SponsorLogo(
     sponsor: Sponsor,
     onClick: () -> Unit,
 ) {
-    val gradeIcon = when (sponsor.grade) {
-        Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
-        Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
-        Sponsor.Grade.SILVER -> R.drawable.ic_crown_silver
-    }
+    val gradeIcon by rememberUpdatedState(
+        when (sponsor.grade) {
+            Sponsor.Grade.GOLD -> R.drawable.ic_crown_gold
+            Sponsor.Grade.PLATINUM -> R.drawable.ic_crown_platinum
+            Sponsor.Grade.SILVER -> R.drawable.ic_crown_silver
+        }
+    )
+
     Box(
         modifier = Modifier
             .padding(horizontal = 1.dp)

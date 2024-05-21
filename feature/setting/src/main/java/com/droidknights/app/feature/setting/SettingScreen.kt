@@ -25,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LocalDarkTheme
-import com.droidknights.app.feature.setting.opensource.OpenSourceCard
+import com.droidknights.app.feature.setting.component.OpenSourceCard
 
 @Composable
 internal fun SettingScreen(
@@ -48,9 +47,7 @@ internal fun SettingScreen(
             .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        OpenSourceCard(
-            context = LocalContext.current,
-        )
+        OpenSourceCard()
         LightDarkThemeCard(
             onChangeDarkTheme = onChangeDarkTheme
         )
@@ -80,7 +77,7 @@ private fun LightDarkThemeCard(
                 ) {
                     val cardModifier = Modifier.weight(1f)
                     ThemeCard(
-                        selected = !darkTheme,
+                        selected = darkTheme.not(),
                         titleRes = R.string.light_mode,
                         imageRes = R.drawable.img_light_mode,
                         onClick = { onChangeDarkTheme(false) },

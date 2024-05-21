@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.bookmark
+package com.droidknights.app.feature.bookmark.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

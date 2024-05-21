@@ -7,6 +7,7 @@ import com.droidknights.app.core.domain.usecase.GetSessionUseCase
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
+import com.droidknights.app.feature.session.model.SessionDetailUiState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlin.test.assertIs

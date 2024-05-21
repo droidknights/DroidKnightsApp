@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.Graphite
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Purple01
+import com.droidknights.app.feature.session.R
 
 @Composable
 internal fun SessionDetailBookmarkStatePopup(bookmarked: Boolean) {

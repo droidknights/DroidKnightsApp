@@ -1,8 +1,9 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.model
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
@@ -14,11 +15,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapNotNull
 
+@Immutable
 data class SessionGroup(
     val room: Room,
     val sessions: PersistentList<Session>,
@@ -26,10 +29,11 @@ data class SessionGroup(
 
 @Stable
 class SessionState(
-    private val sessions: PersistentList<Session>,
+    private val sessions: ImmutableList<Session>,
     val listState: LazyListState,
     selectedRoom: Room? = sessions.map { it.room }.firstOrNull(),
 ) {
+
     val groups: List<SessionGroup> = sessions
         .groupBy { it.room }
         .map { (room, sessions) -> SessionGroup(room, sessions.toPersistentList()) }
@@ -70,8 +74,9 @@ class SessionState(
     }
 
     companion object {
+
         fun Saver(
-            sessions: PersistentList<Session>,
+            sessions: ImmutableList<Session>,
             listState: LazyListState,
         ): Saver<SessionState, *> = Saver(
             save = { it.selectedRoom },
@@ -88,7 +93,7 @@ class SessionState(
 
 @Composable
 internal fun rememberSessionState(
-    sessions: PersistentList<Session>,
+    sessions: ImmutableList<Session>,
     listState: LazyListState = rememberLazyListState(),
 ): SessionState {
     val state = rememberSaveable(

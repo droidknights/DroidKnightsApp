@@ -4,12 +4,13 @@ import app.cash.turbine.test
 import com.droidknights.app.core.domain.usecase.GetSponsorsUseCase
 import com.droidknights.app.core.model.Sponsor
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
+import com.droidknights.app.feature.home.model.SponsorsUiState
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlin.test.assertIs
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertIs
 
 internal class HomeViewModelTest {
     @get:Rule

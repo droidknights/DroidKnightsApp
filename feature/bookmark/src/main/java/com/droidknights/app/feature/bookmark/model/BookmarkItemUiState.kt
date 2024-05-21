@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.bookmark
+package com.droidknights.app.feature.bookmark.model
 
 import com.droidknights.app.core.model.Session
 import java.time.LocalTime
@@ -11,6 +11,7 @@ data class BookmarkItemUiState(
     val session: Session,
     val isEditMode: Boolean,
 ) {
+
     val sequence: Int
         get() = index + 1
 

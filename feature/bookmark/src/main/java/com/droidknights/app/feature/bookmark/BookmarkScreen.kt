@@ -31,6 +31,11 @@ import com.droidknights.app.core.designsystem.theme.DuskGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.PaleGray
 import com.droidknights.app.core.designsystem.theme.Purple01
+import com.droidknights.app.feature.bookmark.component.BookmarkCard
+import com.droidknights.app.feature.bookmark.component.BookmarkItem
+import com.droidknights.app.feature.bookmark.component.BookmarkTimelineItem
+import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
+import com.droidknights.app.feature.bookmark.model.BookmarkUiState
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.collectLatest
@@ -109,6 +114,7 @@ private fun BookmarkScreen(
                 items = bookmarkItems,
                 key = { item -> item.session.id }
             ) { itemState ->
+                /** 편집모드 나타내는 Trailing 컨텐츠를 이곳에 구현하세요 */
                 BookmarkItem(
                     leadingContent = @Composable {
                         BookmarkTimelineItem(

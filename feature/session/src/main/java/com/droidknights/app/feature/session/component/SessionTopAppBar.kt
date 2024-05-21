@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.component
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
@@ -42,6 +42,8 @@ import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.ui.RoomText
+import com.droidknights.app.feature.session.R
+import com.droidknights.app.feature.session.model.SessionState
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
