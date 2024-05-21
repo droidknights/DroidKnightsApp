@@ -3,14 +3,14 @@ package com.droidknights.app.core.data.di
 import android.content.Context
 import com.droidknights.app.core.data.api.GithubRawApi
 import com.droidknights.app.core.data.api.fake.AssetsGithubRawApi
-import com.droidknights.app.core.data.repository.ContributorRepository
 import com.droidknights.app.core.data.repository.DefaultContributorRepository
 import com.droidknights.app.core.data.repository.DefaultSessionRepository
 import com.droidknights.app.core.data.repository.DefaultSettingsRepository
 import com.droidknights.app.core.data.repository.DefaultSponsorRepository
-import com.droidknights.app.core.data.repository.SessionRepository
-import com.droidknights.app.core.data.repository.SettingsRepository
-import com.droidknights.app.core.data.repository.SponsorRepository
+import com.droidknights.app.core.data.repository.api.ContributorRepository
+import com.droidknights.app.core.data.repository.api.SessionRepository
+import com.droidknights.app.core.data.repository.api.SettingsRepository
+import com.droidknights.app.core.data.repository.api.SponsorRepository
 import com.droidknights.app.core.datastore.datasource.DefaultSessionPreferencesDataSource
 import com.droidknights.app.core.datastore.datasource.SessionPreferencesDataSource
 import dagger.Binds
@@ -19,6 +19,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -63,7 +64,8 @@ internal abstract class DataModule {
         @Singleton
         fun provideGithubRawApi(
             @ApplicationContext context: Context,
+            json: Json,
         ): AssetsGithubRawApi =
-            AssetsGithubRawApi(context)
+            AssetsGithubRawApi(context, json)
     }
 }

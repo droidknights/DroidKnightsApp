@@ -1,10 +1,10 @@
-package com.droidknights.app.core.data.repository
+package com.droidknights.app.core.data.repository.api
 
 import kotlinx.coroutines.flow.Flow
 
 interface SettingsRepository {
 
-    fun getIsDarkTheme(): Flow<Boolean>
+    fun flowIsDarkTheme(): Flow<Boolean>
 
     suspend fun updateIsDarkTheme(isDarkTheme: Boolean)
 }

@@ -1,6 +1,7 @@
 package com.droidknights.app.core.data.repository
 
 import com.droidknights.app.core.data.api.fake.FakeGithubRawApi
+import com.droidknights.app.core.data.repository.api.SponsorRepository
 import com.droidknights.app.core.model.Sponsor
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe

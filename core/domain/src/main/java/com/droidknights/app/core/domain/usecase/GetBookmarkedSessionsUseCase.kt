@@ -1,9 +1,9 @@
 package com.droidknights.app.core.domain.usecase
 
 import com.droidknights.app.core.model.Session
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import javax.inject.Inject
 
 class GetBookmarkedSessionsUseCase @Inject constructor(
     private val getSessionsUseCase: GetSessionsUseCase,

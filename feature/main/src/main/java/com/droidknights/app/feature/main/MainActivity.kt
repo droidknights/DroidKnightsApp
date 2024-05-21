@@ -10,6 +10,7 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.widget.DroidKnightsWidget.Companion.KEY_SESSION_ID
+import com.droidknights.app.widget.sendWidgetUpdateCommand
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -20,6 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // widget 처리를 위함
+        sendWidgetUpdateCommand(application)
 
         intent.getStringExtra(KEY_SESSION_ID)?.let {
             sessionIdFromWidget.value = it
