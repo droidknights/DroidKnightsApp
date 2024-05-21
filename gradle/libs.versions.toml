@@ -1,37 +1,37 @@
 [versions]
 ## Android gradle plugin
-androidGradlePlugin = "8.3.1"
+androidGradlePlugin = "8.3.2"
 
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
 androidDesugarJdkLibs = "2.0.4"
 
 ## AndroidX
 # https://developer.android.com/jetpack/androidx/releases/core
-androidxCore = "1.12.0"
+androidxCore = "1.13.1"
 # https://developer.android.com/jetpack/androidx/releases/appcompat
 androidxAppCompat = "1.6.1"
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
 androidxLifecycle = "2.7.0"
 # https://developer.android.com/jetpack/androidx/releases/activity
-androidxActivity = "1.8.2"
+androidxActivity = "1.9.0"
 # https://developer.android.com/jetpack/androidx/releases/datastore
-androidxDatastore = "1.1.0-beta02"
+androidxDatastore = "1.1.1"
 # https://developer.android.com/jetpack/androidx/releases/glance
 androidxGlance = "1.0.0"
 glanceExperimentalTools = "0.2.2"
 
 ## Compose
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-androidxComposeBom = "2024.03.00"
+androidxComposeBom = "2024.05.00"
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-androidxComposeCompiler = "1.5.11"
+androidxComposeCompiler = "1.5.14"
 # https://developer.android.com/jetpack/androidx/releases/navigation
 androidxComposeNavigation = "2.7.7"
 # https://developer.android.com/jetpack/androidx/releases/compose-material3
 androidxComposeMaterial3 = "1.2.1"
 
 # https://github.com/skydoves/landscapist
-landscapist = "2.3.2"
+landscapist = "2.3.3"
 # https://github.com/valentinilk/compose-shimmer
 composeShimmer = "1.3.0"
 
@@ -43,17 +43,19 @@ hiltNavigationCompose = "1.2.0"
 
 ## Network
 # okhttp
+# # https://square.github.io/okhttp/
 okhttp = "4.12.0"
 # Retrofit
+# # https://github.com/square/retrofit
 retrofit = "2.11.0"
 
 ## Kotlin
 # https://github.com/JetBrains/kotlin
-kotlin = "1.9.23"
+kotlin = "1.9.24"
 # https://github.com/Kotlin/kotlinx.serialization
 kotlinxSerializationJson = "1.6.3"
 # https://github.com/Kotlin/kotlinx-datetime/releases
-kotlinxDatetime = "0.5.0"
+kotlinxDatetime = "0.6.0"
 # https://github.com/Kotlin/kotlinx.collections.immutable
 kotlinxImmutable = "0.3.7"
 
@@ -61,7 +63,7 @@ kotlinxImmutable = "0.3.7"
 # https://github.com/cashapp/turbine
 turbine = "1.1.0"
 # https://github.com/Kotlin/kotlinx.coroutines
-coroutine = "1.8.0"
+coroutine = "1.8.1"
 
 ## license
 # https://developers.google.com/android/guides/opensource
@@ -78,11 +80,11 @@ junitVintageEngine = "5.10.2"
 androidxTestExt = "1.1.5"
 androidxEspresso = "3.5.1"
 # https://kotest.io/
-kotest = "5.8.1"
+kotest = "5.9.0"
 # https://github.com/detekt/detekt
 detekt = "1.23.6"
 # https://mockk.io/
-mockk = "1.13.10"
+mockk = "1.13.11"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
