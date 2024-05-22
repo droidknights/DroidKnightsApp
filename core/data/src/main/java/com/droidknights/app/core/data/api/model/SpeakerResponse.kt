@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SpeakerResponse(
+internal data class SpeakerResponse(
     @SerialName("name")
     val name: String,
     @SerialName("introduction")

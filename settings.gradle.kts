@@ -23,6 +23,7 @@ include(":app")
 include(
     ":core:designsystem",
     ":core:data",
+    ":core:data-api",
     ":core:domain",
     ":core:navigation",
     ":core:model",

@@ -1,6 +1,6 @@
 package com.droidknights.app.core.domain.usecase
 
-import com.droidknights.app.core.data.repository.ContributorRepository
+import com.droidknights.app.core.data.repository.api.ContributorRepository
 import com.droidknights.app.core.model.Contributor
 import javax.inject.Inject
 

@@ -2,17 +2,19 @@ package com.droidknights.app.core.data.repository
 
 import com.droidknights.app.core.data.api.GithubRawApi
 import com.droidknights.app.core.data.mapper.toData
+import com.droidknights.app.core.data.repository.api.SessionRepository
 import com.droidknights.app.core.datastore.datasource.SessionPreferencesDataSource
 import com.droidknights.app.core.model.Session
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
+import javax.inject.Inject
 
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
     private val sessionDataSource: SessionPreferencesDataSource
 ) : SessionRepository {
+
     private var cachedSessions: List<Session> = emptyList()
 
     private val bookmarkIds: Flow<Set<String>> = sessionDataSource.bookmarkedSession

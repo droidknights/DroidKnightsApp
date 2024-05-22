@@ -11,10 +11,7 @@ import kotlinx.serialization.json.decodeFromStream
 @OptIn(ExperimentalSerializationApi::class)
 internal class AssetsGithubRawApi(
     context: Context,
-    private val json: Json = Json {
-        ignoreUnknownKeys = true
-        coerceInputValues = true
-    },
+    private val json: Json,
 ) : GithubRawApi {
     private val sponsors = context.assets.open("sponsors.json")
     private val sessions = context.assets.open("sessions.json")

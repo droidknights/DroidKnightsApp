@@ -1,6 +1,6 @@
 package com.droidknights.app.core.domain.usecase
 
-import com.droidknights.app.core.data.repository.SessionRepository
+import com.droidknights.app.core.data.repository.api.SessionRepository
 import com.droidknights.app.core.model.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

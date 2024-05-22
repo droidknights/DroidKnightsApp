@@ -16,6 +16,7 @@ dependencies {
     implementation(projects.feature.bookmark)
 
     implementation(projects.widget)
+    implementation(projects.core.dataApi)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
