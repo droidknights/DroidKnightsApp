@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.bookmark
+package com.droidknights.app.feature.bookmark.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.designsystem.theme.White
+import com.droidknights.app.feature.bookmark.R
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 

@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.home
+package com.droidknights.app.feature.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -18,6 +18,7 @@ import com.droidknights.app.core.designsystem.theme.Black
 import com.droidknights.app.core.designsystem.theme.Green03
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Neon05
+import com.droidknights.app.feature.home.R
 
 @Composable
 internal fun ContributorCard(

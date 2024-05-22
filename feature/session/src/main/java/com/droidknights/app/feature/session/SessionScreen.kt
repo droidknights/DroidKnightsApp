@@ -26,6 +26,11 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.ui.RoomText
+import com.droidknights.app.feature.session.component.SessionCard
+import com.droidknights.app.feature.session.component.SessionTopAppBar
+import com.droidknights.app.feature.session.model.SessionState
+import com.droidknights.app.feature.session.model.SessionUiState
+import com.droidknights.app.feature.session.model.rememberSessionState
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
@@ -38,11 +43,13 @@ internal fun SessionScreen(
     sessionViewModel: SessionViewModel = hiltViewModel(),
 ) {
     val sessionUiState by sessionViewModel.uiState.collectAsStateWithLifecycle()
-    val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions?.let { sessions ->
-        rememberSessionState(sessions = sessions) // SessionUiState.Sessions
-    } ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
+    val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions
+        ?.let { sessions ->
+            rememberSessionState(sessions = sessions) // SessionUiState.Sessions
+        }
+        ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
 
-    LaunchedEffect(true) {
+    LaunchedEffect(Unit) {
         sessionViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
 

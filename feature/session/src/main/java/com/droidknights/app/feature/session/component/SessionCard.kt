@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -32,6 +32,7 @@ import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
 import com.droidknights.app.core.model.Tag
+import com.droidknights.app.feature.session.R
 import kotlinx.datetime.LocalDateTime
 
 @Composable

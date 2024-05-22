@@ -42,10 +42,10 @@ import com.droidknights.app.feature.contributor.navigation.contributorNavGraph
 import com.droidknights.app.feature.home.navigation.homeNavGraph
 import com.droidknights.app.feature.session.navigation.sessionNavGraph
 import com.droidknights.app.feature.setting.navigation.settingNavGraph
-import java.net.UnknownHostException
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 
 @Composable
 internal fun MainScreen(

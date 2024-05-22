@@ -49,6 +49,11 @@ import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
 import com.droidknights.app.core.model.Tag
+import com.droidknights.app.feature.session.component.SessionDetailBookmarkStatePopup
+import com.droidknights.app.feature.session.component.TimeChip
+import com.droidknights.app.feature.session.component.TrackChip
+import com.droidknights.app.feature.session.model.SessionDetailEffect
+import com.droidknights.app.feature.session.model.SessionDetailUiState
 import com.droidknights.app.widget.sendWidgetUpdateCommand
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList

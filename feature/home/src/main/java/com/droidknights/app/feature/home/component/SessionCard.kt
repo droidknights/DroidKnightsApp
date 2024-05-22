@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.home
+package com.droidknights.app.feature.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,6 +20,7 @@ import com.droidknights.app.core.designsystem.theme.Black
 import com.droidknights.app.core.designsystem.theme.Graphite
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.White
+import com.droidknights.app.feature.home.R
 
 @Composable
 internal fun SessionCard(

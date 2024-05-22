@@ -46,6 +46,7 @@ import com.droidknights.app.core.designsystem.theme.LocalDarkTheme
 import com.droidknights.app.core.designsystem.theme.Neon01
 import com.droidknights.app.core.designsystem.theme.Neon05
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
@@ -161,6 +162,7 @@ private fun ContributorList(
         item {
             TopBanner()
         }
+
         when (uiState) {
             ContributorsUiState.Loading -> {
                 items(SHIMMERING_ITEM_COUNT) {
@@ -181,6 +183,7 @@ private fun ContributorList(
                 }
             }
         }
+
         item {
             Footer(modifier = Modifier.padding(bottom = 16.dp))
         }
@@ -193,15 +196,15 @@ private fun ContributorItem(
     modifier: Modifier = Modifier,
 ) {
     val uriHandler = LocalUriHandler.current
-    val shimmerModifier =
-        if (contributor == null) {
-            Modifier
-                .clip(RoundedCornerShape(10.dp))
-                .shimmer()
-                .background(color = MaterialTheme.colorScheme.outline)
-        } else {
-            Modifier
-        }
+    val shimmerModifier = if (contributor == null) {
+        Modifier
+            .clip(RoundedCornerShape(10.dp))
+            .shimmer()
+            .background(color = MaterialTheme.colorScheme.outline)
+    } else {
+        Modifier
+    }
+
     val placeholder = rememberPainterResource(
         lightId = R.drawable.ic_contributor_placeholder_lightmode,
         darkId = R.drawable.ic_contributor_placeholder_darkmode,

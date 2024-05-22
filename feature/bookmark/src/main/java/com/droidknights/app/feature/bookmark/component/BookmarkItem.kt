@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.bookmark
+package com.droidknights.app.feature.bookmark.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
@@ -47,13 +47,19 @@ internal fun BookmarkItem(
                 drawLine(
                     color = LightGray,
                     start = Offset(x = leadingContentWidth.toPx() / 2, y = 0F),
-                    end = Offset(x = leadingContentWidth.toPx() / 2, y = (this.size.height / 2) - (leadingContentHeight.toPx() / 2)),
+                    end = Offset(
+                        x = leadingContentWidth.toPx() / 2,
+                        y = (this.size.height / 2) - (leadingContentHeight.toPx() / 2)
+                    ),
                     strokeWidth = 1.dp.toPx()
                 )
 
                 drawLine(
                     color = LightGray,
-                    start = Offset(x = leadingContentWidth.toPx() / 2, y = (this.size.height / 2) + (leadingContentHeight.toPx() / 2)),
+                    start = Offset(
+                        x = leadingContentWidth.toPx() / 2,
+                        y = (this.size.height / 2) + (leadingContentHeight.toPx() / 2)
+                    ),
                     end = Offset(x = leadingContentWidth.toPx() / 2, y = this.size.height),
                     strokeWidth = 1.dp.toPx()
                 )

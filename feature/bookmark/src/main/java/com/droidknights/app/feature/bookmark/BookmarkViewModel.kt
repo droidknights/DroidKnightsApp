@@ -3,15 +3,18 @@ package com.droidknights.app.feature.bookmark
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.usecase.GetBookmarkedSessionsUseCase
+import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
+import com.droidknights.app.feature.bookmark.model.BookmarkUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
@@ -19,10 +22,10 @@ class BookmarkViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _errorFlow = MutableSharedFlow<Throwable>()
-    val errorFlow: SharedFlow<Throwable> get() = _errorFlow
+    val errorFlow = _errorFlow.asSharedFlow()
 
     private val _bookmarkUiState = MutableStateFlow<BookmarkUiState>(BookmarkUiState.Loading)
-    val bookmarkUiState: StateFlow<BookmarkUiState> = _bookmarkUiState
+    val bookmarkUiState = _bookmarkUiState.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -42,6 +45,7 @@ class BookmarkViewModel @Inject constructor(
                                         isEditMode = false
                                     )
                                 }
+                                .toPersistentList()
                         )
                     }
 
@@ -55,6 +59,7 @@ class BookmarkViewModel @Inject constructor(
                                         isEditMode = bookmarkUiState.isEditButtonSelected
                                     )
                                 }
+                                .toPersistentList()
                         )
                     }
                 }
@@ -72,7 +77,11 @@ class BookmarkViewModel @Inject constructor(
 
         _bookmarkUiState.value = state.copy(
             isEditButtonSelected = state.isEditButtonSelected.not(),
-            bookmarks = state.bookmarks.map { it.copy(isEditMode = !it.isEditMode.not()) }
+            bookmarks = state.bookmarks
+                .map {
+                    it.copy(isEditMode = !it.isEditMode.not())
+                }
+                .toPersistentList()
         )
     }
 }

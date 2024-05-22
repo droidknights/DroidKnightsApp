@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import kotlinx.collections.immutable.persistentListOf
 import org.junit.Before
 import org.junit.Rule

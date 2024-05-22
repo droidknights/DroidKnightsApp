@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.model
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable

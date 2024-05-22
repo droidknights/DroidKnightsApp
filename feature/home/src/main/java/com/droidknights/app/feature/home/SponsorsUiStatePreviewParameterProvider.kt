@@ -2,12 +2,15 @@ package com.droidknights.app.feature.home
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.feature.home.model.SponsorsUiState
+import kotlinx.collections.immutable.persistentListOf
 
 internal class SponsorsUiStatePreviewParameterProvider : PreviewParameterProvider<SponsorsUiState> {
+
     override val values: Sequence<SponsorsUiState> = sequenceOf(
         SponsorsUiState.Loading,
         SponsorsUiState.Sponsors(
-            sponsors = listOf(
+            sponsors = persistentListOf(
                 Sponsor(
                     name = "Sponsor1",
                     homepage = "https://www.instagram.com/droid_knights",
