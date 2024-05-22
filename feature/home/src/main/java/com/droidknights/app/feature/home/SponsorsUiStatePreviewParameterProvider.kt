@@ -1,7 +1,8 @@
-package com.droidknights.app.feature.home.model
+package com.droidknights.app.feature.home
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.feature.home.model.SponsorsUiState
 import kotlinx.collections.immutable.persistentListOf
 
 internal class SponsorsUiStatePreviewParameterProvider : PreviewParameterProvider<SponsorsUiState> {

@@ -19,7 +19,6 @@ import com.droidknights.app.feature.home.component.ContributorCard
 import com.droidknights.app.feature.home.component.SessionCard
 import com.droidknights.app.feature.home.component.SponsorCard
 import com.droidknights.app.feature.home.model.SponsorsUiState
-import com.droidknights.app.feature.home.model.SponsorsUiStatePreviewParameterProvider
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
