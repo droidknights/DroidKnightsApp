@@ -64,6 +64,7 @@ private fun LightDarkThemeCard(
             Column {
                 Text(
                     text = stringResource(id = R.string.setting),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     style = KnightsTheme.typography.headlineSmallBL,
                     modifier = Modifier.padding(top = 24.dp, start = 24.dp),
                 )
@@ -71,7 +72,7 @@ private fun LightDarkThemeCard(
 
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = 8.dp)
+                        .padding(start = 16.dp, end = 16.dp, bottom = 24.dp)
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
@@ -122,6 +123,7 @@ private fun ThemeCard(
         Text(
             text = stringResource(id = titleRes),
             modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
             style = KnightsTheme.typography.titleSmallM140,
         )
 
