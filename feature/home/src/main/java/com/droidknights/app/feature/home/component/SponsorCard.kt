@@ -73,7 +73,7 @@ private fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
                         uiState.goldCount,
                         uiState.silverCount
                     ),
-                    style = KnightsTheme.typography.titleSmallR,
+                    style = KnightsTheme.typography.titleSmallM140,
                     color = DuskGray,
                     modifier = Modifier.padding(top = 8.dp),
                 )
@@ -117,7 +117,7 @@ private fun SponsorGroupRow(
 
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(space = 22.dp),
+        horizontalArrangement = Arrangement.spacedBy(space = 24.dp),
         userScrollEnabled = false
     ) {
         items(

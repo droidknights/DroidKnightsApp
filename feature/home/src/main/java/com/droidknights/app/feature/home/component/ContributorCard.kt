@@ -52,9 +52,9 @@ internal fun ContributorCard(
 
             Text(
                 text = stringResource(id = R.string.contributor_card_description),
-                style = KnightsTheme.typography.titleSmallR,
+                style = KnightsTheme.typography.titleSmallM140,
                 color = Green03,
-                modifier = Modifier.padding(top = 6.dp),
+                modifier = Modifier.padding(top = 6.dp, start = 3.dp),
             )
         }
     }
