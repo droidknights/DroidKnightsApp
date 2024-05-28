@@ -1,6 +1,10 @@
 package com.droidknights.app.core.data.repository
 
 import com.droidknights.app.core.data.api.fake.FakeGithubApi
+import com.droidknights.app.core.data.api.model.Author
+import com.droidknights.app.core.data.api.model.AuthorInfo
+import com.droidknights.app.core.data.api.model.Commit
+import com.droidknights.app.core.data.api.model.CommitResponse
 import com.droidknights.app.core.data.api.model.ContributorResponse
 import com.droidknights.app.core.model.Contributor
 import io.kotest.core.spec.style.BehaviorSpec
@@ -9,7 +13,7 @@ import io.kotest.matchers.shouldBe
 internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
     private val repository: DefaultContributorRepository = DefaultContributorRepository(
-        githubApi = FakeGithubApi(contributors)
+        githubApi = FakeGithubApi(contributors, commits)
     )
 
     init {
@@ -34,6 +38,24 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
         private val contributors = listOf(
             ContributorResponse(
                 name = "test name", imageUrl = "test image url", githubUrl = "test github url"
+            )
+        )
+
+        private val commits = listOf(
+            CommitResponse(
+                commit = Commit(
+                    author = Author(
+                        name = "Helena Suarez",
+                        email = "britney.mathis@example.com",
+                        date = "2024/05/31"
+                    )
+
+                ),
+                author = AuthorInfo(
+                    name = "Clair Pollard",
+                    imageUrl = "https://search.yahoo.com/search?p=sed",
+                    githubUrl = "http://www.bing.com/search?q=regione"
+                )
             )
         )
     }
