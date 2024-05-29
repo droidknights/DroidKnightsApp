@@ -1,15 +1,20 @@
 package com.droidknights.app.core.data.repository
 
 import com.droidknights.app.core.data.api.fake.FakeGithubApi
+import com.droidknights.app.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app.core.data.api.model.ContributorResponse
 import com.droidknights.app.core.model.Contributor
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import kotlinx.serialization.json.Json
 
 internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
     private val repository: DefaultContributorRepository = DefaultContributorRepository(
-        githubApi = FakeGithubApi(contributors)
+        githubApi = FakeGithubApi(contributors),
+        githubRawApi = FakeGithubRawApi(
+            json = Json { ignoreUnknownKeys = true },
+        )
     )
 
     init {
@@ -33,7 +38,10 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
     companion object {
         private val contributors = listOf(
             ContributorResponse(
-                name = "test name", imageUrl = "test image url", githubUrl = "test github url"
+                name = "test name",
+                imageUrl = "test image url",
+                githubUrl = "test github url",
+                id = 0
             )
         )
     }

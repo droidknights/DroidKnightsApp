@@ -273,11 +273,13 @@ private fun ContributorScreenPreview() {
                     "Contributor1",
                     "https://avatars.githubusercontent.com/u/25101514",
                     "https://github.com/droidknights",
+                    listOf(2024)
                 ),
                 Contributor(
                     "Contributor2",
                     "https://avatars.githubusercontent.com/u/25101514",
                     "https://github.com/droidknights",
+                    listOf(2024)
                 ),
             )
         ),

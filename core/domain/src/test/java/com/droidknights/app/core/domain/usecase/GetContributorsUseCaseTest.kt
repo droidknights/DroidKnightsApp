@@ -32,7 +32,8 @@ internal class GetContributorsUseCaseTest : BehaviorSpec() {
             Contributor(
                 name = "test name",
                 imageUrl = "test image url",
-                githubUrl = "test github url"
+                githubUrl = "test github url",
+                contributionYears = listOf(2024)
             )
         )
     }

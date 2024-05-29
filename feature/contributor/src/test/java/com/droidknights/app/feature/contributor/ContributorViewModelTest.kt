@@ -37,7 +37,8 @@ internal class ContributorViewModelTest {
             Contributor(
                 name = "test name",
                 imageUrl = "test image url",
-                githubUrl = "test github url"
+                githubUrl = "test github url",
+                contributionYears = listOf()
             )
         )
     }
