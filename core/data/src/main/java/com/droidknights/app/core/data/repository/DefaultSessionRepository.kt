@@ -9,11 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
-import javax.inject.Named
 
 internal class DefaultSessionRepository @Inject constructor(
     private val githubRawApi: GithubRawApi,
-    @Named("GithubRawApi") private val sessionDataSource: SessionPreferencesDataSource,
+    private val sessionDataSource: SessionPreferencesDataSource
 ) : SessionRepository {
 
     private var cachedSessions: List<Session> = emptyList()
