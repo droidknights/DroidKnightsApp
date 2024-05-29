@@ -1,6 +1,7 @@
 package com.droidknights.app.core.data.api.fake
 
 import com.droidknights.app.core.data.api.GithubRawApi
+import com.droidknights.app.core.data.api.model.ContributionYearResponse
 import com.droidknights.app.core.data.api.model.SessionResponse
 import com.droidknights.app.core.data.api.model.SponsorResponse
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -17,6 +18,7 @@ internal class FakeGithubRawApi(
 ) : GithubRawApi {
     private val sponsors = File("src/main/assets/sponsors.json")
     private val sessions = File("src/main/assets/sessions.json")
+    private val contributors = File("src/main/assets/contributors.json")
 
     override suspend fun getSponsors(): List<SponsorResponse> {
         return json.decodeFromStream(sponsors.inputStream())
@@ -24,5 +26,9 @@ internal class FakeGithubRawApi(
 
     override suspend fun getSessions(): List<SessionResponse> {
         return json.decodeFromStream(sessions.inputStream())
+    }
+
+    override suspend fun getContributors(): List<ContributionYearResponse> {
+        return json.decodeFromStream(contributors.inputStream())
     }
 }
