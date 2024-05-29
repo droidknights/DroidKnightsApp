@@ -23,12 +23,8 @@ internal class DefaultContributorRepository @Inject constructor(
             contributors.map { contributor ->
                 async {
                     val commits =
-                        githubApi.getCommits(owner, name, contributor.name, RECENT_COMMIT_COUNT)
-                    if (commits.any { commit ->
-                            commit.commit.author.date.startsWith(
-                                CURRENT_YEAR_PREFIX
-                            )
-                        }) {
+                        githubApi.getCommits(owner, name, contributor.name, COUNT_FOR_LAST_COMMIT)
+                    if (commits.any { commit -> commit.commit.author.date.startsWith("2024") }) {
                         contributor.toData()
                     } else {
                         null
@@ -39,8 +35,7 @@ internal class DefaultContributorRepository @Inject constructor(
     }
 
     companion object {
-        private const val RECENT_COMMIT_COUNT = 1
-        private const val CURRENT_YEAR_PREFIX = "2024"
+        private const val COUNT_FOR_LAST_COMMIT = 1
     }
 }
 
