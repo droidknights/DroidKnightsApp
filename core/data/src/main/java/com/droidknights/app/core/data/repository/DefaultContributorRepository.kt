@@ -2,11 +2,9 @@ package com.droidknights.app.core.data.repository
 
 import com.droidknights.app.core.data.api.GithubApi
 import com.droidknights.app.core.data.api.GithubRawApi
-import com.droidknights.app.core.data.api.fake.AssetsGithubRawApi
 import com.droidknights.app.core.data.mapper.toData
 import com.droidknights.app.core.data.repository.api.ContributorRepository
 import com.droidknights.app.core.model.Contributor
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 internal class DefaultContributorRepository @Inject constructor(
