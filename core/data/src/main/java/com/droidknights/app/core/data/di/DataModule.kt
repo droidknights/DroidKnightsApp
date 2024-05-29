@@ -20,6 +20,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import javax.inject.Named
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -48,24 +49,25 @@ internal abstract class DataModule {
         @Provides
         @Singleton
         fun provideSponsorRepository(
-            githubRawApi: GithubRawApi,
+            @Named("AssetsGithubRawApi") githubRawApi: GithubRawApi,
         ): SponsorRepository =
             DefaultSponsorRepository(githubRawApi)
 
         @Provides
         @Singleton
         fun provideSessionRepository(
-            githubRawApi: GithubRawApi,
+            @Named("AssetsGithubRawApi") githubRawApi: GithubRawApi,
             sessionDataSource: SessionPreferencesDataSource,
         ): SessionRepository =
             DefaultSessionRepository(githubRawApi, sessionDataSource)
 
         @Provides
         @Singleton
+        @Named("AssetsGithubRawApi")
         fun provideGithubRawApi(
             @ApplicationContext context: Context,
             json: Json,
-        ): AssetsGithubRawApi =
+        ): GithubRawApi =
             AssetsGithubRawApi(context, json)
     }
 }

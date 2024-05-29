@@ -5,9 +5,10 @@ import com.droidknights.app.core.data.mapper.toData
 import com.droidknights.app.core.data.repository.api.SponsorRepository
 import com.droidknights.app.core.model.Sponsor
 import javax.inject.Inject
+import javax.inject.Named
 
 internal class DefaultSponsorRepository @Inject constructor(
-    private val githubRawApi: GithubRawApi,
+    @Named("GithubRawApi") private val githubRawApi: GithubRawApi,
 ) : SponsorRepository {
 
     override suspend fun getSponsors(): List<Sponsor> {

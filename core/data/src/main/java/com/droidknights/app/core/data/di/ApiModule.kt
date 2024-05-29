@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -43,6 +44,7 @@ internal object ApiModule {
             .create(GithubApi::class.java)
     }
 
+    @Named("GithubRawApi")
     @Provides
     @Singleton
     fun provideGitRawApi(
