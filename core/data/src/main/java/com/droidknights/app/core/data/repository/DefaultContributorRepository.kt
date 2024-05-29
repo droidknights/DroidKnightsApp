@@ -28,8 +28,7 @@ internal class DefaultContributorRepository @Inject constructor(
                             commit.commit.author.date.startsWith(
                                 CURRENT_YEAR_PREFIX
                             )
-                        }
-                    ) {
+                        }) {
                         contributor.toData()
                     } else {
                         null
@@ -44,3 +43,4 @@ internal class DefaultContributorRepository @Inject constructor(
         private const val CURRENT_YEAR_PREFIX = "2024"
     }
 }
+
