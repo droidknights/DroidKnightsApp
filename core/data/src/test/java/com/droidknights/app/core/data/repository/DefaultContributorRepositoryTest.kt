@@ -1,14 +1,11 @@
 package com.droidknights.app.core.data.repository
 
-import com.droidknights.app.core.data.api.GithubRawApi
-import com.droidknights.app.core.data.api.fake.AssetsGithubRawApi
 import com.droidknights.app.core.data.api.fake.FakeGithubApi
 import com.droidknights.app.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app.core.data.api.model.ContributorResponse
 import com.droidknights.app.core.model.Contributor
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import kotlinx.serialization.json.Json
 
 internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
