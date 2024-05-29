@@ -22,18 +22,18 @@ import com.droidknights.app.core.model.Session
 import kotlinx.datetime.toJavaLocalDateTime
 
 @Composable
-internal fun WidgetSessionCard(session: Session) {
+internal fun WidgetSessionCard(uiState: WidgetSessionCardUiState) {
     val context = LocalContext.current
 
     Box(modifier = GlanceModifier.padding(bottom = 16.dp, end = 16.dp)) {
         Column(
             modifier = GlanceModifier.padding(16.dp).fillMaxWidth()
                 .cornerRadius(12.dp).background(GlanceTheme.colors.tertiaryContainer).clickable(
-                    actionStartActivityWithSessionId(context, session.id)
+                    actionStartActivityWithSessionId(context, uiState.session.id)
                 )
         ) {
             Text(
-                session.title,
+                uiState.session.title,
                 style = TextDefaults.defaultTextStyle.copy(
                     fontSize = 16.sp,
                     color = GlanceTheme.colors.onTertiaryContainer
@@ -41,7 +41,7 @@ internal fun WidgetSessionCard(session: Session) {
             )
             Row {
                 Text(
-                    session.toTimeString(),
+                    uiState.session.toTimeString(),
                     style = TextDefaults.defaultTextStyle.copy(
                         fontSize = 14.sp,
                         color = GlanceTheme.colors.onTertiaryContainer
@@ -49,7 +49,7 @@ internal fun WidgetSessionCard(session: Session) {
                 )
                 Spacer(modifier = GlanceModifier.width(4.dp))
                 Text(
-                    session.speakers.joinToString { it.name },
+                    uiState.speakerLabel,
                     style = TextDefaults.defaultTextStyle.copy(
                         fontSize = 14.sp,
                         color = GlanceTheme.colors.onTertiaryContainer
