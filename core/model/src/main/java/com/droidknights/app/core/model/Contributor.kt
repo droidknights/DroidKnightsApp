@@ -4,4 +4,5 @@ data class Contributor(
     val name: String,
     val imageUrl: String,
     val githubUrl: String,
+    val contributionYears: List<Int>
 )

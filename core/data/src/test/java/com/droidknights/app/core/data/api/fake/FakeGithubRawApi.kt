@@ -28,7 +28,7 @@ internal class FakeGithubRawApi(
         return json.decodeFromStream(sessions.inputStream())
     }
 
-    override suspend fun getContributors(): List<ContributionYearResponse> {
+    override suspend fun getContributorWithYears(): List<ContributionYearResponse> {
         return json.decodeFromStream(contributors.inputStream())
     }
 }

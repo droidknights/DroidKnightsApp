@@ -14,5 +14,5 @@ internal interface GithubRawApi {
     suspend fun getSessions(): List<SessionResponse>
 
     @GET("/droidknights/DroidKnightsApp/main/core/data/src/main/assets/contributors.json")
-    suspend fun getContributors(): List<ContributionYearResponse>
+    suspend fun getContributorWithYears(): List<ContributionYearResponse>
 }

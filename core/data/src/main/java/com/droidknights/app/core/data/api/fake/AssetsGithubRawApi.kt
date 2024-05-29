@@ -26,7 +26,7 @@ internal class AssetsGithubRawApi(
         return json.decodeFromStream(sessions)
     }
 
-    override suspend fun getContributors(): List<ContributionYearResponse> {
+    override suspend fun getContributorWithYears(): List<ContributionYearResponse> {
         return json.decodeFromStream(contributors)
     }
 }
