@@ -14,13 +14,26 @@ internal class GetContributorsUseCaseTest : BehaviorSpec() {
         Given("드로이드나이츠 컨트리뷰터가 존재한다") {
             val expected = contributors
 
-            When("드로이드나이츠 컨트리뷰터를 조회한다") {
+            When("올해 드로이드나이츠 컨트리뷰터를 조회한다") {
                 val contributors: List<Contributor> = useCase.invoke()
 
                 Then("드로이드나이츠 컨트리뷰터를 반환한다") {
+                    contributors.size shouldBe 3
+                    contributors.forEachIndexed { index, contributor ->
+                        contributor.name shouldBe expected[index].name
+                    }
+                }
+            }
+            When("2023년도 컨트리뷰터를 조회한다.") {
+                val contributors: List<Contributor> = useCase.invoke(2023)
+
+                Then("드로이드나이츠 컨트리뷰터를 반환한다") {
+
                     contributors.size shouldBe 1
                     contributors.all {
-                        it.name == expected[0].name
+                        println(it.name)
+                        println(expected[1].name)
+                        it.name == expected[1].name
                     }
                 }
             }
@@ -34,6 +47,18 @@ internal class GetContributorsUseCaseTest : BehaviorSpec() {
                 imageUrl = "test image url",
                 githubUrl = "test github url",
                 contributionYears = listOf(2024)
+            ),
+            Contributor(
+                name = "test name2",
+                imageUrl = "test image url2",
+                githubUrl = "test github url2",
+                contributionYears = listOf(2023, 2024)
+            ),
+            Contributor(
+                name = "test name2",
+                imageUrl = "test image url3",
+                githubUrl = "test github url3",
+                contributionYears = listOf()
             )
         )
     }
