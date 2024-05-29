@@ -1,5 +1,7 @@
 package com.droidknights.app.core.data.repository
 
+import com.droidknights.app.core.data.api.GithubRawApi
+import com.droidknights.app.core.data.api.fake.AssetsGithubRawApi
 import com.droidknights.app.core.data.api.fake.FakeGithubApi
 import com.droidknights.app.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app.core.data.api.model.ContributorResponse
@@ -12,9 +14,7 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
     private val repository: DefaultContributorRepository = DefaultContributorRepository(
         githubApi = FakeGithubApi(contributors),
-        githubRawApi = FakeGithubRawApi(
-            json = Json { ignoreUnknownKeys = true },
-        )
+        githubRawApi = FakeGithubRawApi()
     )
 
     init {
