@@ -12,4 +12,5 @@
     <string name="session_detail_unbookmark_popup_message">북마크가 해제되었습니다.</string>
 
     <string name="bookmark">북마크</string>
+    <string name="session_overview_title">세션 소개</string>
 </resources>

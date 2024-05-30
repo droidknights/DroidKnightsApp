@@ -252,11 +252,19 @@ private fun SessionDetailSpeaker(
 
 @Composable
 private fun SessionOverview(content: String) {
-    Text(
-        text = content,
-        style = KnightsTheme.typography.titleSmallR140,
-        color = MaterialTheme.colorScheme.onSecondaryContainer
-    )
+    Column {
+        Text(
+            text = stringResource(id = R.string.session_overview_title),
+            style = KnightsTheme.typography.titleSmallB,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
+        )
+        Spacer(Modifier.height(4.dp))
+        Text(
+            text = content,
+            style = KnightsTheme.typography.titleSmallR140,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
+        )
+    }
 }
 
 @Composable
