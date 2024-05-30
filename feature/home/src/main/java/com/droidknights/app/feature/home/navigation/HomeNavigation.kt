@@ -5,10 +5,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.droidknights.app.core.navigation.Home
 import com.droidknights.app.feature.home.HomeRoute
 
 fun NavController.navigateHome(navOptions: NavOptions) {
-    navigate(HomeRoute.ROUTE, navOptions)
+    navigate(Home, navOptions)
 }
 
 fun NavGraphBuilder.homeNavGraph(
@@ -17,7 +18,7 @@ fun NavGraphBuilder.homeNavGraph(
     onContributorClick: () -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
-    composable(route = HomeRoute.ROUTE) {
+    composable<Home> {
         HomeRoute(padding, onSessionClick, onContributorClick, onShowErrorSnackBar)
     }
 }
