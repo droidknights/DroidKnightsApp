@@ -44,7 +44,6 @@ class BookmarkViewModel @Inject constructor(
                                     BookmarkItemUiState(
                                         index = index,
                                         session = session,
-                                        isEditMode = false
                                     )
                                 }
                                 .toPersistentList()
@@ -58,7 +57,6 @@ class BookmarkViewModel @Inject constructor(
                                     BookmarkItemUiState(
                                         index = index,
                                         session = session,
-                                        isEditMode = bookmarkUiState.isEditMode
                                     )
                                 }
                                 .toPersistentList()
@@ -79,11 +77,7 @@ class BookmarkViewModel @Inject constructor(
 
         _bookmarkUiState.value = state.copy(
             isEditMode = state.isEditMode.not(),
-            bookmarks = state.bookmarks
-                .map {
-                    it.copy(isEditMode = !it.isEditMode.not())
-                }
-                .toPersistentList(),
+            bookmarks = state.bookmarks,
             selectedSessionIds = persistentListOf()
         )
     }

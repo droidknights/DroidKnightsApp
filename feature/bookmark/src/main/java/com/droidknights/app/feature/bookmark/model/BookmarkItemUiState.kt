@@ -9,7 +9,6 @@ import kotlinx.datetime.toJavaLocalDateTime
 data class BookmarkItemUiState(
     val index: Int,
     val session: Session,
-    val isEditMode: Boolean,
 ) {
 
     val sequence: Int
