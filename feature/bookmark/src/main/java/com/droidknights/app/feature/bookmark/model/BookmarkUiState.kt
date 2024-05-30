@@ -13,7 +13,7 @@ sealed interface BookmarkUiState {
 
     @Immutable
     data class Success(
-        val isEditButtonSelected: Boolean = false,
+        val isEditMode: Boolean = false,
         val bookmarks: ImmutableList<BookmarkItemUiState> = persistentListOf(),
         val selectedSessionIds: ImmutableList<String> = persistentListOf(),
     ) : BookmarkUiState

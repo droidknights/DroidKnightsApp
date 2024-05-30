@@ -1,11 +1,10 @@
 package com.droidknights.app.feature.bookmark
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideIn
-import androidx.compose.animation.slideOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -36,7 +35,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -77,7 +75,7 @@ internal fun BookmarkRoute(
     ) {
         BookmarkContent(
             uiState = bookmarkUiState,
-            onClickEditButton = { viewModel.clickEditButton() },
+            toggleEditMode = viewModel::toggleEditMode,
             onSelectedItem = viewModel::selectSession,
         )
     }
@@ -86,15 +84,15 @@ internal fun BookmarkRoute(
 @Composable
 private fun BookmarkContent(
     uiState: BookmarkUiState,
-    onClickEditButton: () -> Unit,
+    toggleEditMode: () -> Unit,
     onSelectedItem: (Session) -> Unit,
 ) {
     when (uiState) {
         BookmarkUiState.Loading -> BookmarkLoading()
         is BookmarkUiState.Success -> BookmarkScreen(
-            isEditMode = uiState.isEditButtonSelected,
+            isEditMode = uiState.isEditMode,
             bookmarkItems = uiState.bookmarks.toImmutableList(),
-            onClickEditButton = onClickEditButton,
+            toggleEditMode = toggleEditMode,
             selectedSessionIds = uiState.selectedSessionIds,
             onSelectedItem = onSelectedItem
         )
@@ -112,11 +110,15 @@ private fun BookmarkLoading() {
 private fun BookmarkScreen(
     isEditMode: Boolean,
     bookmarkItems: ImmutableList<BookmarkItemUiState>,
-    onClickEditButton: () -> Unit,
+    toggleEditMode: () -> Unit,
     selectedSessionIds: ImmutableList<String>,
     onSelectedItem: (Session) -> Unit,
     listContentBottomPadding: Dp = 72.dp,
 ) {
+    BackHandler(isEditMode) {
+        toggleEditMode()
+    }
+
     Box(
         contentAlignment = Alignment.BottomCenter
     ) {
@@ -126,7 +128,7 @@ private fun BookmarkScreen(
                 .background(color = PaleGray),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            BookmarkTopAppBar(isEditMode = isEditMode, onClickEditButton = onClickEditButton)
+            BookmarkTopAppBar(isEditMode = isEditMode, onClickEditButton = toggleEditMode)
 
             if (bookmarkItems.isEmpty()) {
                 BookmarkEmptyScreen()

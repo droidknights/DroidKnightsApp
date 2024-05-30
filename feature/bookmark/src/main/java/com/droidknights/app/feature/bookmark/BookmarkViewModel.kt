@@ -38,7 +38,7 @@ class BookmarkViewModel @Inject constructor(
                 when (bookmarkUiState) {
                     is BookmarkUiState.Loading -> {
                         BookmarkUiState.Success(
-                            isEditButtonSelected = false,
+                            isEditMode = false,
                             bookmarks = bookmarkSessions
                                 .mapIndexed { index, session ->
                                     BookmarkItemUiState(
@@ -58,7 +58,7 @@ class BookmarkViewModel @Inject constructor(
                                     BookmarkItemUiState(
                                         index = index,
                                         session = session,
-                                        isEditMode = bookmarkUiState.isEditButtonSelected
+                                        isEditMode = bookmarkUiState.isEditMode
                                     )
                                 }
                                 .toPersistentList()
@@ -71,14 +71,14 @@ class BookmarkViewModel @Inject constructor(
         }
     }
 
-    fun clickEditButton() {
+    fun toggleEditMode() {
         val state = _bookmarkUiState.value
         if (state !is BookmarkUiState.Success) {
             return
         }
 
         _bookmarkUiState.value = state.copy(
-            isEditButtonSelected = state.isEditButtonSelected.not(),
+            isEditMode = state.isEditMode.not(),
             bookmarks = state.bookmarks
                 .map {
                     it.copy(isEditMode = !it.isEditMode.not())
