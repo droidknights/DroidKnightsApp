@@ -32,7 +32,7 @@ val Green04 = Color(0xFF386524)
 val Yellow01 = Color(0xFFF2E800)
 val Yellow02 = Color(0xFFE8ED00)
 val Yellow03 = Color(0xFFBEED00)
-val Yellow03A40 = Color(0x66BEED00)
+val Yellow03A40 = Color(0x66A1ED00)
 val Yellow04 = Color(0xFF465703)
 val Yellow05 = Color(0xFF222B00)
 

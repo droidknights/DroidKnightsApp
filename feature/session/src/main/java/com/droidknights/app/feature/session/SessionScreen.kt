@@ -78,7 +78,7 @@ private fun SessionContent(
     LazyColumn(
         modifier = modifier,
         state = sessionState.listState,
-        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 12.dp),
+        contentPadding = PaddingValues(horizontal = 8.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         sessionState.groups.forEachIndexed { index, group ->
@@ -97,8 +97,8 @@ private fun SessionContent(
     }
 }
 
-private val SessionTopSpace = 4.dp
-private val SessionGroupSpace = 16.dp
+private val SessionTopSpace = 16.dp
+private val SessionGroupSpace = 84.dp
 
 private fun LazyListScope.sessionItems(
     room: Room,
