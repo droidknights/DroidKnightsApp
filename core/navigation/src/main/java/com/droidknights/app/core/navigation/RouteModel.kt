@@ -2,20 +2,24 @@ package com.droidknights.app.core.navigation
 
 import kotlinx.serialization.Serializable
 
-@Serializable
-data object Contributor
+interface Route
+
+interface MainTabRoute : Route
 
 @Serializable
-data object Home
+data object Contributor : Route
 
 @Serializable
-data object Setting
+data object Home : MainTabRoute
 
 @Serializable
-data object Bookmark
+data object Setting : MainTabRoute
 
 @Serializable
-data object Session
+data object Bookmark : MainTabRoute
 
 @Serializable
-data class SessionDetail(val sessionId: String)
+data object Session : Route
+
+@Serializable
+data class SessionDetail(val sessionId: String) : Route
