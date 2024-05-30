@@ -13,6 +13,7 @@ val Black = Color(0xFF000000)
 val Graphite = Color(0xFF292929)
 
 val Purple01 = Color(0xFFB469FF)
+val Purple01A30 = Color(0x4DB469FF)
 val Mint01 = Color(0xFF7BFAF2)
 
 val Neon01 = Color(0xFF49F300)
