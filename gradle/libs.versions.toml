@@ -110,6 +110,7 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
 androidx-compose-navigation-test = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxComposeNavigation" }
+compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
