@@ -11,7 +11,6 @@ sealed interface Route {
 
     @Serializable
     data class SessionDetail(val sessionId: String) : Route
-
 }
 
 sealed interface MainTabRoute : Route {
