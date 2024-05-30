@@ -8,14 +8,19 @@ import com.droidknights.app.core.model.Session
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import com.droidknights.app.feature.bookmark.model.BookmarkUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toPersistentList
+import kotlinx.collections.immutable.toPersistentSet
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -80,7 +85,7 @@ class BookmarkViewModel @Inject constructor(
         _bookmarkUiState.value = state.copy(
             isEditMode = state.isEditMode.not(),
             bookmarks = state.bookmarks,
-            selectedSessionIds = persistentListOf()
+            selectedSessionIds = persistentSetOf()
         )
     }
 
@@ -98,7 +103,24 @@ class BookmarkViewModel @Inject constructor(
         }
 
         _bookmarkUiState.value = state.copy(
-            selectedSessionIds = newSelectedIds.toPersistentList()
+            selectedSessionIds = newSelectedIds.toPersistentSet()
         )
+    }
+
+    fun deleteSessions() {
+        val state = _bookmarkUiState.value
+        if (state !is BookmarkUiState.Success) {
+            return
+        }
+
+        flow {
+            emit(deleteBookmarkedSessionUseCase(state.selectedSessionIds))
+        }.onEach {
+            _bookmarkUiState.update {
+                state.copy(selectedSessionIds = persistentSetOf())
+            }
+        }.catch { throwable ->
+            _errorFlow.emit(throwable)
+        }.launchIn(viewModelScope)
     }
 }

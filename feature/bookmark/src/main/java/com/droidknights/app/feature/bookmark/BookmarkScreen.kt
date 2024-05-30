@@ -53,6 +53,7 @@ import com.droidknights.app.feature.bookmark.component.RemoveBookmarkSnackBar
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import com.droidknights.app.feature.bookmark.model.BookmarkUiState
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.collectLatest
 
@@ -77,6 +78,7 @@ internal fun BookmarkRoute(
             uiState = bookmarkUiState,
             toggleEditMode = viewModel::toggleEditMode,
             onSelectedItem = viewModel::selectSession,
+            onDeletedSessions = viewModel::deleteSessions
         )
     }
 }
@@ -86,6 +88,7 @@ private fun BookmarkContent(
     uiState: BookmarkUiState,
     toggleEditMode: () -> Unit,
     onSelectedItem: (Session) -> Unit,
+    onDeletedSessions: () -> Unit,
 ) {
     when (uiState) {
         BookmarkUiState.Loading -> BookmarkLoading()
@@ -94,7 +97,8 @@ private fun BookmarkContent(
             bookmarkItems = uiState.bookmarks.toImmutableList(),
             toggleEditMode = toggleEditMode,
             selectedSessionIds = uiState.selectedSessionIds,
-            onSelectedItem = onSelectedItem
+            onSelectedItem = onSelectedItem,
+            onDeletedSessions = onDeletedSessions,
         )
     }
 }
@@ -111,8 +115,9 @@ private fun BookmarkScreen(
     isEditMode: Boolean,
     bookmarkItems: ImmutableList<BookmarkItemUiState>,
     toggleEditMode: () -> Unit,
-    selectedSessionIds: ImmutableList<String>,
+    selectedSessionIds: ImmutableSet<String>,
     onSelectedItem: (Session) -> Unit,
+    onDeletedSessions: () -> Unit,
     listContentBottomPadding: Dp = 72.dp,
 ) {
     BackHandler(isEditMode) {
@@ -197,7 +202,8 @@ private fun BookmarkScreen(
             RemoveBookmarkSnackBar(
                 modifier = Modifier
                     .padding(bottom = 92.dp)
-                    .padding(horizontal = 8.dp)
+                    .padding(horizontal = 8.dp),
+                onClick = onDeletedSessions,
             )
         }
     }
@@ -260,7 +266,7 @@ private fun BookmarkTopAppBar(
 @Composable
 private fun EditModeLeadingItem(
     itemState: BookmarkItemUiState,
-    selectedSessionIds: ImmutableList<String>,
+    selectedSessionIds: ImmutableSet<String>,
     onSelectedItem: (Session) -> Unit,
 ) {
     val isSelectedItem = selectedSessionIds.contains(itemState.session.id)
@@ -273,7 +279,6 @@ private fun EditModeLeadingItem(
         Box(
             modifier = baseModifier.background(Purple01),
             contentAlignment = Alignment.Center
-
         ) {
             Icon(
                 modifier = Modifier.size(16.dp),

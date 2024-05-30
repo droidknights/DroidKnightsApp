@@ -1,6 +1,7 @@
 package com.droidknights.app.feature.bookmark.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +27,7 @@ import com.droidknights.app.feature.bookmark.R
 
 @Composable
 internal fun RemoveBookmarkSnackBar(
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -33,6 +35,7 @@ internal fun RemoveBookmarkSnackBar(
             .height(50.dp)
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(4.dp))
+            .clickable(onClick = onClick)
             .background(Graphite),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -54,5 +57,5 @@ internal fun RemoveBookmarkSnackBar(
 @Preview(backgroundColor = 0xFFFFFF)
 @Composable
 private fun BookmarkStatePopupPreview() {
-    RemoveBookmarkSnackBar()
+    RemoveBookmarkSnackBar(onClick = {})
 }
