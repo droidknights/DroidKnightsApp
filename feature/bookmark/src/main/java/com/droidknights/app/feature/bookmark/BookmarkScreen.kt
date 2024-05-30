@@ -38,11 +38,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app.core.designsystem.theme.DarkGray
-import com.droidknights.app.core.designsystem.theme.DuskGray
+import com.droidknights.app.core.designsystem.theme.Gray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.designsystem.theme.PaleGray
 import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.core.model.Session
@@ -130,7 +127,7 @@ private fun BookmarkScreen(
         Column(
             Modifier
                 .fillMaxSize()
-                .background(color = PaleGray),
+                .background(color = MaterialTheme.colorScheme.surfaceDim),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             BookmarkTopAppBar(isEditMode = isEditMode, onClickEditButton = toggleEditMode)
@@ -151,7 +148,11 @@ private fun BookmarkScreen(
                     BookmarkItem(
                         modifier = Modifier
                             .background(
-                                color = if (isSelected) LightGray else PaleGray
+                                color = if (isSelected) {
+                                    MaterialTheme.colorScheme.surfaceContainerHigh
+                                } else {
+                                    MaterialTheme.colorScheme.surfaceDim
+                                }
                             )
                             .padding(
                                 end = if (isEditMode) 0.dp else 16.dp
@@ -186,7 +187,8 @@ private fun BookmarkScreen(
                                     .padding(horizontal = 18.dp)
                                     .size(24.dp),
                                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_menu),
-                                contentDescription = stringResource(id = R.string.drag_and_drop)
+                                contentDescription = stringResource(id = R.string.drag_and_drop),
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     )
@@ -216,7 +218,7 @@ private fun BookmarkEmptyScreen() {
             modifier = Modifier.align(Alignment.Center),
             text = stringResource(id = R.string.empty_bookmark_item_description),
             style = KnightsTheme.typography.titleSmallM,
-            color = DuskGray
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
@@ -231,7 +233,7 @@ private fun BookmarkTopAppBar(
         targetValue = if (isEditMode) {
             Purple01
         } else {
-            DuskGray
+            Gray
         }
     )
 
@@ -244,7 +246,7 @@ private fun BookmarkTopAppBar(
             modifier = Modifier.align(Alignment.Center),
             text = stringResource(id = R.string.book_mark_top_bar_title),
             style = KnightsTheme.typography.titleSmallM,
-            color = DuskGray
+            color = MaterialTheme.colorScheme.onSurface
         )
 
         Text(
@@ -292,7 +294,7 @@ private fun EditModeLeadingItem(
             modifier = baseModifier
                 .border(
                     width = 1.dp,
-                    color = DarkGray,
+                    color = MaterialTheme.colorScheme.surfaceContainerHigh,
                     shape = CircleShape
                 )
         )

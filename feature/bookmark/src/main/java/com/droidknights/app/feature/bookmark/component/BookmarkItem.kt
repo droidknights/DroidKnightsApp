@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,9 +26,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LightGray
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.feature.bookmark.R
 import java.time.LocalTime
@@ -49,6 +48,8 @@ internal fun BookmarkItem(
     leadingContentWidth: Dp = 60.dp,
     leadingContentHeight: Dp = 58.dp,
 ) {
+    val lineColor = MaterialTheme.colorScheme.outline
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -56,7 +57,7 @@ internal fun BookmarkItem(
                 if (isEditMode) return@drawBehind
 
                 drawLine(
-                    color = LightGray,
+                    color = lineColor,
                     start = Offset(x = leadingContentWidth.toPx() / 2, y = 0F),
                     end = Offset(
                         x = leadingContentWidth.toPx() / 2,
@@ -66,7 +67,7 @@ internal fun BookmarkItem(
                 )
 
                 drawLine(
-                    color = LightGray,
+                    color = lineColor,
                     start = Offset(
                         x = leadingContentWidth.toPx() / 2,
                         y = (this.size.height / 2) + (leadingContentHeight.toPx() / 2)
@@ -119,7 +120,7 @@ private fun BookMarkItemForPreview(isEditMode: Boolean) {
                         .size(24.dp)
                         .border(
                             width = 1.dp,
-                            color = DarkGray,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             shape = CircleShape
                         )
                 )
