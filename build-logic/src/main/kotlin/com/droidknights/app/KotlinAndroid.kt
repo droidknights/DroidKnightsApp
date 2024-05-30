@@ -67,5 +67,8 @@ internal fun Project.configureKotlin() {
                 )
             )
         }
+        sourceSets.all {
+            languageSettings.enableLanguageFeature("ExplicitBackingFields")
+        }
     }
 }
