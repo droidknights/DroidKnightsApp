@@ -18,8 +18,3 @@ fun NavGraphBuilder.bookmarkNavGraph(
         BookmarkRoute(onShowErrorSnackBar)
     }
 }
-
-object BookmarkRoute {
-
-    const val ROUTE = "bookmark"
-}

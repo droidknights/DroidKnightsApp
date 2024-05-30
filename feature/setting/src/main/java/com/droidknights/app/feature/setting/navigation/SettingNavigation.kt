@@ -20,8 +20,3 @@ fun NavGraphBuilder.settingNavGraph(
         SettingScreen(padding, onChangeDarkTheme)
     }
 }
-
-object SettingRoute {
-
-    const val ROUTE_SETTING = "setting"
-}

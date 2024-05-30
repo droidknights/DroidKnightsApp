@@ -22,8 +22,3 @@ fun NavGraphBuilder.homeNavGraph(
         HomeRoute(padding, onSessionClick, onContributorClick, onShowErrorSnackBar)
     }
 }
-
-object HomeRoute {
-
-    const val ROUTE = "home"
-}
