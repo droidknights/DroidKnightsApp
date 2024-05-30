@@ -2,6 +2,7 @@ package com.droidknights.app.feature.bookmark
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.droidknights.app.core.domain.usecase.DeleteBookmarkedSessionUseCase
 import com.droidknights.app.core.domain.usecase.GetBookmarkedSessionsUseCase
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
@@ -21,6 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BookmarkViewModel @Inject constructor(
     private val getBookmarkedSessionsUseCase: GetBookmarkedSessionsUseCase,
+    private val deleteBookmarkedSessionUseCase: DeleteBookmarkedSessionUseCase,
 ) : ViewModel() {
 
     private val _errorFlow = MutableSharedFlow<Throwable>()

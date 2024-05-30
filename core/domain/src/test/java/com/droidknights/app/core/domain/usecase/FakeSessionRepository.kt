@@ -25,4 +25,8 @@ internal class FakeSessionRepository(
     override suspend fun bookmarkSession(sessionId: String, bookmark: Boolean) {
         return
     }
+
+    override suspend fun deleteBookmarkedSessions(sessionIds: Set<String>) {
+        TODO("Not yet implemented")
+    }
 }
