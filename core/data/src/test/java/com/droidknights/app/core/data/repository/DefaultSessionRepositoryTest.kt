@@ -64,5 +64,25 @@ internal class DefaultSessionRepositoryTest : StringSpec() {
                 awaitItem() shouldBe setOf("1")
             }
         }
+
+        "북마크 일괄 제거 테스트" {
+            // given : [1, 2, 3, 4]
+            val bookmarkedSessionIds = listOf("1", "2", "3", "4")
+            bookmarkedSessionIds.forEach {
+                repository.bookmarkSession(it, true)
+            }
+
+            repository.getBookmarkedSessionIds().test {
+                awaitItem() shouldBe setOf("1", "2", "3", "4")
+
+                // [1, 2, 3, 4] -> [1, 3, 4]
+                repository.deleteBookmarkedSessions(setOf("2"))
+                awaitItem() shouldBe setOf("1", "3", "4")
+
+                // [1, 3, 4] -> [1]
+                repository.deleteBookmarkedSessions(setOf("3", "4"))
+                awaitItem() shouldBe setOf("1")
+            }
+        }
     }
 }
