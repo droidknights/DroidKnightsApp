@@ -35,10 +35,10 @@ internal class ContributorViewModelTest {
     companion object {
         private val fakeContributors = listOf(
             Contributor(
+                id = 0L,
                 name = "test name",
                 imageUrl = "test image url",
                 githubUrl = "test github url",
-                contributionYears = listOf()
             )
         )
     }

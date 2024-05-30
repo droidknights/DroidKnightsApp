@@ -5,6 +5,7 @@ import com.droidknights.app.core.data.api.GithubRawApi
 import com.droidknights.app.core.data.mapper.toData
 import com.droidknights.app.core.data.repository.api.ContributorRepository
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.core.model.ContributorWithYears
 import javax.inject.Inject
 
 internal class DefaultContributorRepository @Inject constructor(
@@ -16,15 +17,10 @@ internal class DefaultContributorRepository @Inject constructor(
         owner: String,
         name: String,
     ): List<Contributor> {
-        val contributorResponse = githubApi.getContributors(owner, name)
-        val contributorWithYearResponse = githubRawApi.getContributorWithYears()
+        return githubApi.getContributors(owner, name).map { it.toData() }
+    }
 
-        return contributorResponse.map { contributor ->
-            val contributionYears =
-                contributorWithYearResponse.firstOrNull { it.id == contributor.id }?.years
-                    ?: emptyList()
-
-            contributor.toData(contributionYears)
-        }
+    override suspend fun getContributorsWithYears(): List<ContributorWithYears> {
+        return githubRawApi.getContributorWithYears().map { it.toData() }
     }
 }

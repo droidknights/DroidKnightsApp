@@ -7,16 +7,22 @@ import javax.inject.Inject
 class GetContributorsUseCase @Inject constructor(
     private val repository: ContributorRepository,
 ) {
-    suspend operator fun invoke(year: Int = 2024): List<Contributor> {
-        return repository.getContributors(
+    suspend operator fun invoke(): List<Contributor> {
+        val contributors = repository.getContributors(
             owner = OWNER,
             name = NAME,
-        ).filter { contributor ->
-            when (year) {
-                2023 -> contributor.contributionYears.contains(year)
-                else -> contributor.contributionYears.contains(year)
-                        || contributor.contributionYears.isEmpty()
-            }
+        )
+        val contributorsWithYears = repository.getContributorsWithYears()
+
+        val contributionYears = contributorsWithYears.flatMap { it.years }.toSet().sorted()
+        val latestYear = contributionYears.last()
+
+        return contributors.filter { contributor ->
+            val years = contributorsWithYears
+                .find { it.id == contributor.id }
+                ?.years ?: listOf(latestYear)
+
+            years.contains(latestYear)
         }
     }
 
