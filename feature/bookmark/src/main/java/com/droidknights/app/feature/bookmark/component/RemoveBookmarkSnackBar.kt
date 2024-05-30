@@ -25,9 +25,11 @@ import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.feature.bookmark.R
 
 @Composable
-internal fun RemoveBookmarkSnackBar() {
+internal fun RemoveBookmarkSnackBar(
+    modifier: Modifier = Modifier,
+) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(50.dp)
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(4.dp))
