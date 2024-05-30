@@ -5,18 +5,18 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.droidknights.app.core.navigation.Setting
+import com.droidknights.app.core.navigation.MainTabRoute
 import com.droidknights.app.feature.setting.SettingScreen
 
 fun NavController.navigateSetting(navOptions: NavOptions) {
-    navigate(Setting, navOptions)
+    navigate(MainTabRoute.Setting, navOptions)
 }
 
 fun NavGraphBuilder.settingNavGraph(
     padding: PaddingValues,
     onChangeDarkTheme: (Boolean) -> Unit
 ) {
-    composable<Setting> {
+    composable<MainTabRoute.Setting> {
         SettingScreen(padding, onChangeDarkTheme)
     }
 }

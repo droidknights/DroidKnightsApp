@@ -1,11 +1,8 @@
 package com.droidknights.app.feature.main
 
 import androidx.compose.runtime.Composable
-import com.droidknights.app.core.navigation.Bookmark
-import com.droidknights.app.core.navigation.Home
 import com.droidknights.app.core.navigation.MainTabRoute
 import com.droidknights.app.core.navigation.Route
-import com.droidknights.app.core.navigation.Setting
 
 internal enum class MainTab(
     val iconResId: Int,
@@ -15,17 +12,17 @@ internal enum class MainTab(
     SETTING(
         iconResId = R.drawable.ic_setting,
         contentDescription = "설정",
-        Setting,
+        MainTabRoute.Setting,
     ),
     HOME(
         iconResId = R.drawable.ic_home,
         contentDescription = "홈",
-        Home
+        MainTabRoute.Home
     ),
     BOOKMARK(
         iconResId = R.drawable.ic_bookmark,
         contentDescription = "북마크",
-        Bookmark,
+        MainTabRoute.Bookmark,
     );
 
     companion object {

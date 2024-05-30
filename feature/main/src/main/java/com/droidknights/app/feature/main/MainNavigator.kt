@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.droidknights.app.core.navigation.Home
+import com.droidknights.app.core.navigation.MainTabRoute
 import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.bookmark.navigation.navigateBookmark
 import com.droidknights.app.feature.contributor.navigation.navigateContributor
@@ -65,7 +65,7 @@ internal class MainNavigator(
     }
 
     fun popBackStackIfNotHome() {
-        if (!isSameCurrentDestination<Home>()) {
+        if (!isSameCurrentDestination<MainTabRoute.Home>()) {
             popBackStack()
         }
     }
