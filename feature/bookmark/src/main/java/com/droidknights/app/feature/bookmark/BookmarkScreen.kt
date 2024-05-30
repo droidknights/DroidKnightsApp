@@ -2,6 +2,7 @@ package com.droidknights.app.feature.bookmark
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,10 +12,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,11 +26,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.DuskGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.PaleGray
@@ -96,8 +103,7 @@ private fun BookmarkScreen(
     Column(
         Modifier
             .fillMaxSize()
-            .background(color = PaleGray)
-            .padding(horizontal = 8.dp),
+            .background(color = PaleGray),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         BookmarkTopAppBar(isEditMode = isEditMode, onClickEditButton = onClickEditButton)
@@ -114,13 +120,29 @@ private fun BookmarkScreen(
                 items = bookmarkItems,
                 key = { item -> item.session.id }
             ) { itemState ->
-                /** 편집모드 나타내는 Trailing 컨텐츠를 이곳에 구현하세요 */
                 BookmarkItem(
+                    modifier = Modifier.padding(
+                        end = if (isEditMode) 0.dp else 16.dp
+                    ),
                     leadingContent = @Composable {
-                        BookmarkTimelineItem(
-                            sequence = itemState.sequence,
-                            time = itemState.time
-                        )
+                        if (isEditMode) {
+                            Box(
+                                modifier = Modifier
+                                    .padding(horizontal = 18.dp)
+                                    .size(24.dp)
+                                    .border(
+                                        width = 1.dp,
+                                        color = DarkGray,
+                                        shape = CircleShape
+                                    )
+                            )
+                        } else {
+                            BookmarkTimelineItem(
+                                modifier = Modifier.padding(horizontal = 8.dp),
+                                sequence = itemState.sequence,
+                                time = itemState.time
+                            )
+                        }
                     },
                     midContent = @Composable {
                         BookmarkCard(
@@ -130,9 +152,15 @@ private fun BookmarkScreen(
                             speaker = itemState.speakerLabel
                         )
                     },
-                    isShowTrailingContent = itemState.isEditMode,
+                    isEditMode = itemState.isEditMode,
                     trailingContent = @Composable {
-                        /** 편집모드 나타내는 Trailing 컨텐츠를 이곳에 구현하세요 */
+                        Icon(
+                            modifier = Modifier
+                                .padding(horizontal = 18.dp)
+                                .size(24.dp),
+                            imageVector = ImageVector.vectorResource(id = R.drawable.ic_menu),
+                            contentDescription = stringResource(id = R.string.drag_and_drop)
+                        )
                     }
                 )
             }
@@ -182,7 +210,7 @@ private fun BookmarkTopAppBar(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .clickable(onClick = onClickEditButton)
-                .padding(8.dp),
+                .padding(horizontal = 12.dp),
             text = if (isEditMode) {
                 stringResource(id = R.string.edit_button_confirm_label)
             } else {

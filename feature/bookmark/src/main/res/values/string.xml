@@ -4,6 +4,7 @@
     <string name="edit_button_edit_label">편집</string>
     <string name="edit_button_confirm_label">완료</string>
     <string name="empty_bookmark_item_description">북마크된 아이템이 없습니다</string>
+    <string name="drag_and_drop">드래그 앤 드롭</string>
 
     <string name="session_time_format">HH:mm</string>
 </resources>
