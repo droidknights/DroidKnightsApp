@@ -19,6 +19,9 @@ dependencyResolutionManagement {
 rootProject.name = "DroidKnights"
 include(":app")
 
+// Baseline Profile
+include(":baselineprofile")
+
 // core
 include(
     ":core:designsystem",
