@@ -3,14 +3,16 @@ package com.droidknights.app.feature.main
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.droidknights.app.core.navigation.MainTabRoute
+import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.bookmark.navigation.navigateBookmark
 import com.droidknights.app.feature.contributor.navigation.navigateContributor
-import com.droidknights.app.feature.home.navigation.HomeRoute
 import com.droidknights.app.feature.home.navigation.navigateHome
 import com.droidknights.app.feature.session.navigation.navigateSession
 import com.droidknights.app.feature.session.navigation.navigateSessionDetail
@@ -26,9 +28,9 @@ internal class MainNavigator(
     val startDestination = MainTab.HOME.route
 
     val currentTab: MainTab?
-        @Composable get() = currentDestination
-            ?.route
-            ?.let(MainTab::find)
+        @Composable get() = MainTab.find { tab ->
+            currentDestination?.hasRoute(tab::class) == true
+        }
 
     fun navigate(tab: MainTab) {
         val navOptions = navOptions {
@@ -63,18 +65,18 @@ internal class MainNavigator(
     }
 
     fun popBackStackIfNotHome() {
-        if (!isSameCurrentDestination(HomeRoute.ROUTE)) {
+        if (!isSameCurrentDestination<MainTabRoute.Home>()) {
             popBackStack()
         }
     }
 
-    private fun isSameCurrentDestination(route: String) =
-        navController.currentDestination?.route == route
+    private inline fun <reified T : Route> isSameCurrentDestination(): Boolean {
+        return navController.currentDestination?.hasRoute<T>() == true
+    }
 
     @Composable
-    fun shouldShowBottomBar(): Boolean {
-        val currentRoute = currentDestination?.route ?: return false
-        return currentRoute in MainTab
+    fun shouldShowBottomBar() = MainTab.contains {
+        currentDestination?.hasRoute(it::class) == true
     }
 }
 

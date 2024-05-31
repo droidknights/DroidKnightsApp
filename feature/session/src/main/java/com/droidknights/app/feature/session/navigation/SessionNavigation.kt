@@ -2,19 +2,20 @@ package com.droidknights.app.feature.session.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.session.SessionDetailScreen
 import com.droidknights.app.feature.session.SessionScreen
+import com.droidknights.app.core.navigation.Route.Session as SessionRoute
 
 fun NavController.navigateSession() {
-    navigate(SessionRoute.ROUTE)
+    navigate(SessionRoute)
 }
 
 fun NavController.navigateSessionDetail(sessionId: String) {
-    navigate(SessionRoute.detailRoute(sessionId))
+    navigate(Route.SessionDetail(sessionId))
 }
 
 fun NavGraphBuilder.sessionNavGraph(
@@ -22,7 +23,7 @@ fun NavGraphBuilder.sessionNavGraph(
     onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
-    composable(SessionRoute.ROUTE) {
+    composable<SessionRoute> {
         SessionScreen(
             onBackClick = onBackClick,
             onSessionClick = onSessionClick,
@@ -30,25 +31,11 @@ fun NavGraphBuilder.sessionNavGraph(
         )
     }
 
-    composable(
-        route = SessionRoute.detailRoute("{id}"),
-        arguments = listOf(
-            navArgument("id") {
-                type = NavType.StringType
-            }
-        )
-    ) { navBackStackEntry ->
-        val sessionId = navBackStackEntry.arguments?.getString("id") ?: ""
+    composable<Route.SessionDetail> { navBackStackEntry ->
+        val sessionId = navBackStackEntry.toRoute<Route.SessionDetail>().sessionId
         SessionDetailScreen(
             sessionId = sessionId,
             onBackClick = onBackClick
         )
     }
-}
-
-object SessionRoute {
-
-    const val ROUTE: String = "session"
-
-    fun detailRoute(sessionId: String): String = "$ROUTE/$sessionId"
 }
