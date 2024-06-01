@@ -19,6 +19,7 @@ dependencies {
     implementation(projects.feature.contributor)
     implementation(projects.feature.session)
     implementation(projects.feature.bookmark)
+    androidTestImplementation(projects.core.testing)
 
     implementation(projects.widget)
     implementation(projects.core.dataApi)
@@ -29,4 +30,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.kotlinx.immutable)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
 }
