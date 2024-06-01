@@ -20,6 +20,7 @@ dependencies {
     implementation(projects.feature.session)
     implementation(projects.feature.bookmark)
     androidTestImplementation(projects.core.testing)
+    debugImplementation(projects.core.uiTestHiltManifest)
 
     implementation(projects.widget)
     implementation(projects.core.dataApi)

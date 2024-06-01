@@ -1,6 +1,5 @@
 package com.droidknights.app.feature.main
 
-import androidx.activity.ComponentActivity
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -9,6 +8,7 @@ import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import com.droidknights.app.core.navigation.MainTabRoute
+import com.droidknights.app.core.uitesthiltmanifest.HiltComponentActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Assert.assertEquals
@@ -23,7 +23,7 @@ class MainScreenTest {
     var hiltRule = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
-    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+    val composeTestRule = createAndroidComposeRule<HiltComponentActivity>()
     private lateinit var navController: TestNavHostController
 
     @Before
