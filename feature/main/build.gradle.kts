@@ -6,6 +6,11 @@ plugins {
 
 android {
     setNamespace("feature.main")
+
+    defaultConfig {
+        testInstrumentationRunner =
+            "com.droidknights.app.core.testing.runner.DroidKnightsTestRunner"
+    }
 }
 
 dependencies {
