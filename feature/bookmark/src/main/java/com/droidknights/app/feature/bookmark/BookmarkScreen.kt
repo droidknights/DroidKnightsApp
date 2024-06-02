@@ -182,7 +182,7 @@ private fun BookmarkTopAppBar(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
                 .clickable(onClick = onClickEditButton)
-                .padding(8.dp),
+                .padding(6.dp),
             text = if (isEditMode) {
                 stringResource(id = R.string.edit_button_confirm_label)
             } else {
