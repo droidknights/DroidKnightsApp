@@ -19,6 +19,7 @@ androidxDatastore = "1.1.1"
 # https://developer.android.com/jetpack/androidx/releases/glance
 androidxGlance = "1.0.0"
 glanceExperimentalTools = "0.2.2"
+androidxTestRunner = "1.5.2"
 
 ## Compose
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
@@ -110,6 +111,7 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
 androidx-compose-navigation-test = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxComposeNavigation" }
+androidx-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
 compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }

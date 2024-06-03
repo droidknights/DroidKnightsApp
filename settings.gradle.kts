@@ -28,6 +28,7 @@ include(
     ":core:navigation",
     ":core:model",
     ":core:ui",
+    ":core:ui-test-hilt-manifest",
     ":core:testing",
     ":core:datastore",
 )
