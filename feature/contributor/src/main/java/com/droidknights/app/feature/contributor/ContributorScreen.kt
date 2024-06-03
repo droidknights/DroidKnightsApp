@@ -39,6 +39,7 @@ import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
+import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.res.rememberPainterResource
 import com.droidknights.app.core.designsystem.theme.Black
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
@@ -106,6 +107,7 @@ private fun ContributorTopAppBar(
         titleRes = R.string.contributor_top_title,
         navigationIconContentDescription = null,
         modifier = Modifier.statusBarsPadding(),
+        navigationType = TopAppBarNavigationType.Close,
         onNavigationClick = onBackClick,
         containerColor = containerColor,
     )

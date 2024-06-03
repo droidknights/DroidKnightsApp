@@ -15,4 +15,6 @@ dependencies {
     api(libs.mockk)
     api(libs.turbine)
     api(libs.coroutines.test)
+    implementation(libs.androidx.runner)
+    implementation(libs.hilt.android.testing)
 }

@@ -34,7 +34,7 @@ fun TextChip(
         shape = RoundedCornerShape(10.dp),
         color = containerColor,
     ) {
-        ProvideTextStyle(KnightsTheme.typography.labelMediumR) {
+        ProvideTextStyle(KnightsTheme.typography.labelSmallM) {
             Text(text = text, color = labelColor, modifier = Modifier.padding(TextChipPadding))
         }
     }
