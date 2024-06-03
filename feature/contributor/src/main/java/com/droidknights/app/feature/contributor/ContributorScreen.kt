@@ -272,13 +272,16 @@ private fun ContributorScreenPreview() {
         uiState = ContributorsUiState.Contributors(
             persistentListOf(
                 Contributor(
+                    0L,
                     "Contributor1",
                     "https://avatars.githubusercontent.com/u/25101514",
                     "https://github.com/droidknights",
                 ),
                 Contributor(
+                    1L,
                     "Contributor2",
                     "https://avatars.githubusercontent.com/u/25101514",
+
                     "https://github.com/droidknights",
                 ),
             )
