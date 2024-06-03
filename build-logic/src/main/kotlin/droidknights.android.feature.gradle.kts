@@ -7,6 +7,11 @@ plugins {
 }
 
 android {
+    packaging {
+        resources {
+            excludes.add("META-INF/**")
+        }
+    }
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -22,12 +22,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.component.IconTextChip
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
+import com.droidknights.app.core.designsystem.theme.Purple01
+import com.droidknights.app.core.designsystem.theme.Purple01A30
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
@@ -131,6 +134,16 @@ private fun SessionTrackInfo(
         TrackChip(room = session.room)
         Spacer(modifier = Modifier.width(8.dp))
         TimeChip(dateTime = session.startTime)
+        if (session.isBookmarked) {
+            Spacer(modifier = Modifier.width(8.dp))
+            IconTextChip(
+                text = stringResource(id = R.string.bookmark),
+                containerColor = Purple01A30,
+                labelColor = Purple01,
+                iconPainter = painterResource(id = R.drawable.ic_session_bookmark_filled),
+                iconTint = Purple01
+            )
+        }
     }
 }
 

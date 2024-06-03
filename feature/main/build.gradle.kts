@@ -6,6 +6,11 @@ plugins {
 
 android {
     setNamespace("feature.main")
+
+    defaultConfig {
+        testInstrumentationRunner =
+            "com.droidknights.app.core.testing.runner.DroidKnightsTestRunner"
+    }
 }
 
 dependencies {
@@ -14,6 +19,8 @@ dependencies {
     implementation(projects.feature.contributor)
     implementation(projects.feature.session)
     implementation(projects.feature.bookmark)
+    androidTestImplementation(projects.core.testing)
+    debugImplementation(projects.core.uiTestHiltManifest)
 
     implementation(projects.widget)
     implementation(projects.core.dataApi)
@@ -24,4 +31,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.kotlinx.immutable)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
 }

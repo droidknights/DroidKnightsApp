@@ -142,7 +142,7 @@ private fun TabIndicator(height: Dp, modifier: Modifier) {
         modifier = modifier
             .height(height * 2)
             .offset { IntOffset(0, height.roundToPx()) }
-            .background(brush, RoundedCornerShape(8.dp))
+            .background(brush, RoundedCornerShape(100.dp, 100.dp, 0.dp, 0.dp))
     )
 }
 
