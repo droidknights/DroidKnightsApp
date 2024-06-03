@@ -49,4 +49,11 @@ internal class DefaultSessionRepository @Inject constructor(
             }
         )
     }
+
+    override suspend fun deleteBookmarkedSessions(sessionIds: Set<String>) {
+        val currentBookmarkedSessionIds = bookmarkIds.first()
+        sessionDataSource.updateBookmarkedSession(
+            currentBookmarkedSessionIds - sessionIds
+        )
+    }
 }

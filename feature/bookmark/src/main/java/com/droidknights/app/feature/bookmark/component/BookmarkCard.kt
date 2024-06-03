@@ -10,17 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.theme.DarkGray
-import com.droidknights.app.core.designsystem.theme.Green04
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Purple01
-import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.ui.RoomText
 
@@ -35,7 +33,10 @@ internal fun BookmarkCard(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(color = White, shape = RoundedCornerShape(8.dp))
+            .background(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                shape = RoundedCornerShape(8.dp)
+            )
             .padding(start = 16.dp, end = 18.dp, top = 16.dp, bottom = 16.dp),
         verticalArrangement = Arrangement.spacedBy(space = 8.dp)
     ) {
@@ -53,25 +54,25 @@ internal fun BookmarkCard(
                 modifier = Modifier.weight(1F),
                 text = tagLabel,
                 style = KnightsTheme.typography.labelSmallM,
-                color = DarkGray
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             RoomText(
                 room,
                 style = KnightsTheme.typography.labelSmallM,
-                color = DarkGray
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
         Text(
             text = title,
             style = KnightsTheme.typography.titleSmallB,
-            color = Green04
+            color = MaterialTheme.colorScheme.onSecondaryContainer
         )
 
         Text(
             text = speaker,
             style = KnightsTheme.typography.labelSmallM,
-            color = Green04
+            color = MaterialTheme.colorScheme.onSecondaryContainer
         )
     }
 }
