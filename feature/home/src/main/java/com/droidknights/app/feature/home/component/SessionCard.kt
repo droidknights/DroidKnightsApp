@@ -55,7 +55,7 @@ internal fun SessionCard(
 private fun SessionCardCaption() {
     Box(
         modifier = Modifier
-            .background(Graphite, RoundedCornerShape(32.dp))
+            .background(Graphite, RoundedCornerShape(10.dp))
             .padding(horizontal = 12.dp, vertical = 2.dp)
     ) {
         Text(

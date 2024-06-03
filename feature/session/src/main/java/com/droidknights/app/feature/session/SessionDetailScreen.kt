@@ -43,8 +43,10 @@ import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.theme.DarkGray
+import com.droidknights.app.core.designsystem.theme.Gray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
+import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
@@ -154,7 +156,7 @@ private fun SessionDetailContent(session: Session) {
             .padding(horizontal = 16.dp)
     ) {
         SessionDetailTitle(title = session.title, modifier = Modifier.padding(top = 8.dp))
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         SessionChips(session = session)
 
         if (session.content.isNotEmpty()) {
@@ -203,7 +205,7 @@ private fun SessionDetailTitle(
     modifier: Modifier = Modifier,
 ) {
     Text(
-        modifier = modifier.padding(end = 64.dp),
+        modifier = modifier.padding(end = 58.dp),
         text = title,
         style = KnightsTheme.typography.headlineMediumB,
         color = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -249,11 +251,19 @@ private fun SessionDetailSpeaker(
 
 @Composable
 private fun SessionOverview(content: String) {
-    Text(
-        text = content,
-        style = KnightsTheme.typography.titleSmallR140,
-        color = MaterialTheme.colorScheme.onSecondaryContainer
-    )
+    Column {
+        Text(
+            text = stringResource(id = R.string.session_overview_title),
+            style = KnightsTheme.typography.titleSmallB,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
+        )
+        Spacer(Modifier.height(4.dp))
+        Text(
+            text = content,
+            style = KnightsTheme.typography.titleSmallR140,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
+        )
+    }
 }
 
 @Composable
@@ -272,7 +282,8 @@ private fun BookmarkToggleButton(
             } else {
                 painterResource(id = R.drawable.ic_session_bookmark)
             },
-            contentDescription = null
+            contentDescription = null,
+            tint = if (bookmarked) Purple01 else Gray
         )
     }
 }
