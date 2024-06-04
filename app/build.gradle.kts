@@ -2,6 +2,7 @@ plugins {
     id("droidknights.android.application")
     id("com.google.android.gms.oss-licenses-plugin")
     alias(libs.plugins.baselineprofile)
+    alias(libs.plugins.roborazzi.plugin)
 }
 
 android {
@@ -43,4 +44,6 @@ dependencies {
 
     baselineProfile(projects.baselineprofile)
     implementation(libs.androidx.profileinstaller)
+
+    testImplementation(projects.core.testing)
 }

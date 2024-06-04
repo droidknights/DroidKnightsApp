@@ -87,10 +87,14 @@ ossLicensesPlugin = "0.10.6"
 junit4 = "4.13.2"
 # https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
 junitVintageEngine = "5.10.2"
+ui-test-junit4 = "1.6.7"
 
 # # https://developer.android.com/jetpack/androidx/releases/test
 androidxTestExt = "1.1.5"
 androidxEspresso = "3.5.1"
+# # https://github.com/takahirom/roborazzi
+roborazzi = "1.20.0"
+robolectric = "4.11.1"
 # https://kotest.io/
 kotest = "5.9.0"
 # https://github.com/detekt/detekt
@@ -117,7 +121,7 @@ androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profi
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "ui-test-junit4" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
@@ -153,6 +157,10 @@ junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junitVintageEngine" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+roborazziRule = { module = "io.github.takahirom.roborazzi:roborazzi-junit-rule", version.ref = "roborazzi" }
+roborazziCompose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 inject = "javax.inject:javax.inject:1"
 kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
@@ -192,3 +200,4 @@ verify-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
+roborazzi-plugin = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
