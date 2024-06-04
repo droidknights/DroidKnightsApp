@@ -16,7 +16,7 @@ internal enum class MainTab(
     ),
     HOME(
         iconResId = R.drawable.ic_home,
-        contentDescription = "홈",
+        contentDescription = "홈홈",
         MainTabRoute.Home
     ),
     BOOKMARK(
