@@ -35,7 +35,7 @@ jobs:
           workflow: UnitTest.yml
           branch: main
 
-      - run: ./gradlew compareRoborazziDebug compareRoborazziDevDebug --stacktrace -Pscreenshot
+      - run: ./gradlew compareRoborazziDebug
 
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
