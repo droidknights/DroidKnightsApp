@@ -1,34 +1,39 @@
-name: Compare Screenshot
+name: CompareScreenshot
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref }}
-  cancel-in-progress: true
-
-permissions: { }
+permissions: {}
 
 jobs:
   compare-screenshot-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 20
 
     permissions:
-      contents: read
-      actions: write
+      contents: read # for clone
+      actions: write # for upload-artifact
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: set up JDK 17
-        uses: actions/setup-java@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@99b8673ff64fbf99d8d325f52d9a5bdedb8483e9 # v4.2.1
         with:
-          distribution: 'corretto'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
-      - uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@4c39dd82cd5e1ec7c6fa0173bb41b4b6bb3b86ff # v3.3.2
+        with:
+          gradle-version: wrapper
+
+
+      - uses: dawidd6/action-download-artifact@v3
         continue-on-error: true
         with:
           name: screenshot
@@ -40,7 +45,7 @@ jobs:
         run: |
           ./gradlew compareRoborazziDebug --stacktrace
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
           name: screenshot-diff
@@ -48,16 +53,15 @@ jobs:
             **/build/outputs/roborazzi
           retention-days: 30
 
-      - uses: actions/upload-artifact@v3
-        if: always()
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
         with:
           name: screenshot-diff-reports
           path: |
-            **/reports
-            **/build/outputs/roborazzi
+            **/build/reports
           retention-days: 30
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
           name: screenshot-diff-test-results
@@ -70,7 +74,7 @@ jobs:
         run: |
           mkdir -p ./pr
           echo ${{ github.event.number }} > ./pr/NR
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: pr
           path: pr/

@@ -3,18 +3,14 @@ name: Screenshot compare comment
 on:
   workflow_run:
     workflows:
-      - Compare Screenshot
+      - CompareScreenshot
     types:
       - completed
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref }}-${{ github.event.workflow_run.id }}
-  cancel-in-progress: true
 
 permissions: { }
 
 jobs:
-  compare-screenshot-comment:
+  Comment-CompareScreenshot:
     if: >
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
@@ -29,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615
+      - uses: dawidd6/action-download-artifact@09f2f74827fd3a8607589e5ad7f9398816f540fe # v3.1.4
         with:
           name: pr
           run_id: ${{ github.event.workflow_run.id }}
@@ -40,17 +36,18 @@ jobs:
           echo "pull_request_number=$(cat NR)" >> "$GITHUB_OUTPUT"
       - name: main checkout
         id: checkout-main
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.event.pull_request.base.ref || github.event.repository.default_branch }}
       - id: switch-companion-branch
         env:
           BRANCH_NAME: companion_${{ github.event.workflow_run.head_branch }}
         run: |
+          # orphan means it will create no history branch
           git branch -D "$BRANCH_NAME" || true
           git checkout --orphan "$BRANCH_NAME"
           git rm -rf .
-      - uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615 # v2.27.0
+      - uses: dawidd6/action-download-artifact@09f2f74827fd3a8607589e5ad7f9398816f540fe # v3.1.4
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: screenshot-diff
@@ -104,7 +101,7 @@ jobs:
             echo "reports<<${delimiter}"
           
             # Create markdown table header
-            echo "Snapshot diff report"
+            echo "Snapshot diff report vs base branch: ${{ github.event.workflow_run.event  == 'pull_request' && github.event.workflow_run.event.pull_request.base.ref || github.event.repository.default_branch }}"
             echo "| File name | Image |"
             echo "|-------|-------|"
           } >> "$GITHUB_OUTPUT"
@@ -113,12 +110,11 @@ jobs:
           for file in $files; do
             # Get the file name and insert newlines every 20 characters
             fileName=$(basename "$file" | sed -r 's/(.{20})/\1<br>/g')
-            urlPart="${BRANCH_NAME//#/%23}/${file//#/%23}"
-            echo "| [$fileName](https://github.com/${{ github.repository }}/blob/$urlPart) | ![](https://github.com/${{ github.repository }}/blob/$urlPart?raw=true) |" >> "$GITHUB_OUTPUT"
+            echo "| [$fileName](https://github.com/${{ github.repository }}/blob/$BRANCH_NAME/$file) | ![](https://github.com/${{ github.repository }}/blob/$BRANCH_NAME/$file?raw=true) |" >> "$GITHUB_OUTPUT"
           done
           echo "${delimiter}" >> "$GITHUB_OUTPUT"
       - name: Find Comment
-        uses: peter-evans/find-comment@a54c31d7fa095754bfef525c0c8e5e5674c4b4b1 # v2
+        uses: peter-evans/find-comment@v3
         id: fc
         if: steps.generate-diff-reports.outputs.reports != ''
         with:
@@ -127,7 +123,7 @@ jobs:
           body-includes: Snapshot diff report
 
       - name: Add or update comment on PR
-        uses: peter-evans/create-or-update-comment@c6c9a1a66007646a28c153e2a8580a5bad27bcfa # v3
+        uses: peter-evans/create-or-update-comment@v4
         if: steps.generate-diff-reports.outputs.reports != ''
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
