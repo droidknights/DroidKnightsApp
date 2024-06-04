@@ -46,11 +46,12 @@ jobs:
           retention-days: 30
 
       - uses: actions/upload-artifact@v3
-        if: ${{ always() }}
+        if: always()
         with:
           name: screenshot-diff-reports
           path: |
-            **/build/reports
+            **/reports
+            **/build/outputs/roborazzi
           retention-days: 30
 
       - uses: actions/upload-artifact@v3
