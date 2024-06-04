@@ -38,6 +38,11 @@ internal fun Project.configureKotlinAndroid() {
                 )
             }
         }
+        testOptions {
+            unitTests {
+                isIncludeAndroidResources = true
+            }
+        }
     }
 
     configureKotlin()
