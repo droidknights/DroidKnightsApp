@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: dawidd6/action-download-artifact@09f2f74827fd3a8607589e5ad7f9398816f540fe # v3.1.4
+      - uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615
         with:
           name: pr
           run_id: ${{ github.event.workflow_run.id }}
@@ -36,7 +36,7 @@ jobs:
           echo "pull_request_number=$(cat NR)" >> "$GITHUB_OUTPUT"
       - name: main checkout
         id: checkout-main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.event.pull_request.base.ref || github.event.repository.default_branch }}
       - id: switch-companion-branch
@@ -47,7 +47,7 @@ jobs:
           git branch -D "$BRANCH_NAME" || true
           git checkout --orphan "$BRANCH_NAME"
           git rm -rf .
-      - uses: dawidd6/action-download-artifact@09f2f74827fd3a8607589e5ad7f9398816f540fe # v3.1.4
+      - uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615
         with:
           run_id: ${{ github.event.workflow_run.id }}
           name: screenshot-diff
