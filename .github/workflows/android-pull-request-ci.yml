@@ -47,3 +47,13 @@ jobs:
         with:
           name: Event File
           path: ${{ github.event_path }}
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Results
+          path: "**/test-results/**/*.xml"
