@@ -24,7 +24,6 @@ import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.height
 import androidx.glance.layout.padding
 import com.droidknights.app.core.designsystem.theme.KnightsGlanceTheme
-import com.droidknights.app.core.model.Session
 import com.droidknights.app.widget.DroidKnightsWidgetReceiver.Companion.KEY_SESSION_IDS
 import com.droidknights.app.widget.di.WidgetModule
 import dagger.hilt.EntryPoints
@@ -44,14 +43,16 @@ class DroidKnightsWidget : GlanceAppWidget() {
         provideContent {
             KnightsGlanceTheme {
                 val state = currentState(stringSetPreferencesKey(KEY_SESSION_IDS))
-                var list: List<Session> by remember(state) { mutableStateOf(listOf()) }
+                var widgetSessionCards: List<WidgetSessionCardUiState> by remember(state) {
+                    mutableStateOf(listOf())
+                }
 
                 LaunchedEffect(state) {
-                    list = arrayListOf<Session>().apply {
-                        state?.forEach {
-                            this.add(widgetModule.getSessionUseCase().invoke(it))
-                        }
-                    }
+                    widgetSessionCards = state?.map {
+                        WidgetSessionCardUiState(
+                            session = widgetModule.getSessionUseCase().invoke(it),
+                        )
+                    } ?: emptyList()
                 }
 
                 Column(
@@ -64,7 +65,7 @@ class DroidKnightsWidget : GlanceAppWidget() {
                     WidgetTitle()
                     Spacer(modifier = GlanceModifier.height(16.dp))
                     LazyColumn {
-                        items(list) {
+                        items(widgetSessionCards) {
                             WidgetSessionCard(it)
                         }
                     }
