@@ -48,6 +48,22 @@ jobs:
           name: Event File
           path: ${{ github.event_path }}
 
+      - uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: screenshot
+          path: |
+            **/build/outputs/roborazzi
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-reports
+          path: |
+            **/reports
+            **/build/outputs/roborazzi
+
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v3
