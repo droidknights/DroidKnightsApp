@@ -58,11 +58,6 @@ class RobotTestRule(
         return RuleChain
             .outerRule(HiltAndroidAutoInjectRule(testInstance))
             .around(CoroutinesTestRule())
-            .around(object : TestWatcher() {
-                override fun starting(description: Description) {
-
-                }
-            })
             .around(
                 RoborazziRule(
                     Options(
