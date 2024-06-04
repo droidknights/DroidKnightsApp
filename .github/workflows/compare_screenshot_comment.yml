@@ -3,7 +3,7 @@ name: Screenshot compare comment
 on:
   workflow_run:
     workflows:
-      - Android Pull Request CI
+      - Compare Screenshot
     types:
       - completed
 
