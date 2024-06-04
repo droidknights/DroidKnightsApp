@@ -37,6 +37,29 @@ jobs:
           run_id: ${{ github.event.workflow_run.id }}
           path: artifacts
 
+      - uses: dawidd6/action-download-artifact@246dbf436b23d7c49e21a7ab8204ca9ecd1fe615
+        continue-on-error: true
+        with:
+          name: screenshot
+          workflow: UnitTest.yml
+          branch: main
+
+      - name: Upload an event payload for EnricoMi/publish-unit-test-result-action
+        uses: actions/upload-artifact@v3
+        with:
+          name: event-payload
+          path: ${{ github.event_path }}
+
+      - run: ./gradlew testDevDebugUnitTest testDebugUnitTest --stacktrace
+
+      - uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: screenshot
+          path: |
+            **/build/outputs/roborazzi
+          retention-days: 30
+
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
