@@ -14,7 +14,6 @@ import com.github.takahirom.roborazzi.RoborazziRule
 import com.github.takahirom.roborazzi.RoborazziRule.Options
 import org.junit.rules.RuleChain
 import org.junit.rules.TestRule
-import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
