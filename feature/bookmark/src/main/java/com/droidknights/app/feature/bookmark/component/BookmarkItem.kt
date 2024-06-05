@@ -24,6 +24,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
@@ -153,24 +155,19 @@ private fun BookMarkItemForPreview(isEditMode: Boolean) {
     )
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
-@Composable
-private fun BookmarkItemPreview() {
-    KnightsTheme {
-        Column {
-            BookMarkItemForPreview(isEditMode = false)
-            BookMarkItemForPreview(isEditMode = false)
-        }
-    }
+class IsEditModePreviewParameterProvider : PreviewParameterProvider<Boolean> {
+    override val values = sequenceOf(true, false)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
 @Composable
-private fun BookmarkItemEditModePreview() {
+private fun BookmarkItemPreview(
+    @PreviewParameter(IsEditModePreviewParameterProvider::class) isEditMode: Boolean,
+) {
     KnightsTheme {
         Column {
-            BookMarkItemForPreview(isEditMode = true)
-            BookMarkItemForPreview(isEditMode = true)
+            BookMarkItemForPreview(isEditMode = isEditMode)
+            BookMarkItemForPreview(isEditMode = isEditMode)
         }
     }
 }
