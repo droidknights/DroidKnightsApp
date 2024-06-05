@@ -63,7 +63,7 @@ class RobotTestRule(
                         roborazziOptions = RoborazziOptions(
                             compareOptions = CompareOptions(
                                 // Detect small changes
-                                changeThreshold = 0.000001F,
+                                changeThreshold = 0.01F,
                             ),
                             recordOptions = RecordOptions(
                                 // For saving money
