@@ -127,7 +127,9 @@ private fun ThemeCard(
         )
 
         RadioButton(
-            selected = selected, onClick = onClick, colors = RadioButtonDefaults.colors(
+            selected = selected,
+            onClick = onClick,
+            colors = RadioButtonDefaults.colors(
                 selectedColor = MaterialTheme.colorScheme.onPrimaryContainer,
                 unselectedColor = MaterialTheme.colorScheme.onSurface,
             )
