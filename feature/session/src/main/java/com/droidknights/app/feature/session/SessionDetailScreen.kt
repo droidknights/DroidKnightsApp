@@ -12,8 +12,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -33,11 +30,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
-import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
-import com.droidknights.app.core.designsystem.theme.Gray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
@@ -45,6 +38,7 @@ import com.droidknights.app.core.model.Tag
 import com.droidknights.app.feature.session.component.SessionChips
 import com.droidknights.app.feature.session.component.SessionDetailBookmarkStatePopup
 import com.droidknights.app.feature.session.component.SessionDetailSpeaker
+import com.droidknights.app.feature.session.component.SessionDetailTopAppBar
 import com.droidknights.app.feature.session.model.SessionDetailEffect
 import com.droidknights.app.feature.session.model.SessionDetailUiState
 import com.droidknights.app.widget.sendWidgetUpdateCommand
@@ -100,26 +94,6 @@ internal fun SessionDetailScreen(
             viewModel.hidePopup()
         }
     }
-}
-
-@Composable
-private fun SessionDetailTopAppBar(
-    bookmarked: Boolean,
-    onClickBookmark: (Boolean) -> Unit,
-    onBackClick: () -> Unit,
-) {
-    KnightsTopAppBar(
-        titleRes = R.string.session_detail_title,
-        navigationIconContentDescription = null,
-        navigationType = TopAppBarNavigationType.Back,
-        actionButtons = {
-            BookmarkToggleButton(
-                bookmarked = bookmarked,
-                onClickBookmark = onClickBookmark
-            )
-        },
-        onNavigationClick = onBackClick,
-    )
 }
 
 @Composable
@@ -191,28 +165,6 @@ private fun SessionOverview(content: String) {
             text = content,
             style = KnightsTheme.typography.titleSmallR140,
             color = MaterialTheme.colorScheme.onSecondaryContainer
-        )
-    }
-}
-
-@Composable
-private fun BookmarkToggleButton(
-    bookmarked: Boolean,
-    onClickBookmark: (Boolean) -> Unit,
-) {
-    IconToggleButton(
-        checked = bookmarked,
-        onCheckedChange = onClickBookmark
-    ) {
-        Icon(
-            painter =
-            if (bookmarked) {
-                painterResource(id = R.drawable.ic_session_bookmark_filled)
-            } else {
-                painterResource(id = R.drawable.ic_session_bookmark)
-            },
-            contentDescription = null,
-            tint = if (bookmarked) Purple01 else Gray
         )
     }
 }
