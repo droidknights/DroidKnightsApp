@@ -2,20 +2,15 @@ package com.droidknights.app.feature.session
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,8 +26,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
-import com.droidknights.app.core.ui.RoomText
-import com.droidknights.app.feature.session.component.SessionCard
+import com.droidknights.app.feature.session.component.SessionItem
 import com.droidknights.app.feature.session.component.SessionTopAppBar
 import com.droidknights.app.feature.session.model.SessionState
 import com.droidknights.app.feature.session.model.SessionUiState
@@ -125,42 +119,6 @@ private fun LazyListScope.sessionItems(
         if (isLastGroup && index == items.size - 1) {
             DroidKnightsFooter()
         }
-    }
-}
-
-@Composable
-private fun SessionItem(
-    index: Int,
-    item: Session,
-    room: Room,
-    topPadding: Dp,
-    onItemClick: (Session) -> Unit,
-) {
-    Column {
-        if (index == 0) {
-            RoomTitle(room = room, topPadding = topPadding)
-        }
-        SessionCard(session = item, onSessionClick = onItemClick)
-    }
-}
-
-@Composable
-private fun RoomTitle(
-    room: Room,
-    topPadding: Dp,
-) {
-    Column(modifier = Modifier.padding(start = 20.dp, top = topPadding, end = 20.dp)) {
-        RoomText(
-            room = room,
-            style = KnightsTheme.typography.titleLargeB,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        HorizontalDivider(thickness = 2.dp, color = MaterialTheme.colorScheme.onPrimaryContainer)
-
-        Spacer(modifier = Modifier.height(32.dp))
     }
 }
 
