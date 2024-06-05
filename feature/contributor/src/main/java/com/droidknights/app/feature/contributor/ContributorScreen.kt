@@ -3,18 +3,13 @@ package com.droidknights.app.feature.contributor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -23,18 +18,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.component.BottomLogo
-import com.droidknights.app.core.designsystem.component.KnightsCard
-import com.droidknights.app.core.designsystem.component.NetworkImage
-import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.res.rememberPainterResource
-import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.feature.contributor.component.ContributorCard
 import com.droidknights.app.feature.contributor.component.ContributorTopAppBar
 import com.droidknights.app.feature.contributor.component.ContributorTopBanner
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
@@ -149,48 +140,13 @@ private fun ContributorItem(
         darkId = R.drawable.ic_contributor_placeholder_darkmode,
     )
 
-    KnightsCard(
-        enabled = contributor?.githubUrl?.isNotEmpty() ?: false,
-        onClick = { uriHandler.openUri(contributor?.githubUrl ?: return@KnightsCard) },
+    ContributorCard(
+        contributor = contributor,
+        uriHandler = uriHandler,
         modifier = modifier,
-    ) {
-        Row {
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(
-                        top = 16.dp,
-                        bottom = 16.dp,
-                        start = 24.dp,
-                        end = 16.dp
-                    )
-            ) {
-                TextChip(
-                    stringResource(id = R.string.contributor_chip),
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                    labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                    modifier = shimmerModifier
-                )
-                Text(
-                    text = contributor?.name ?: " ".repeat(20),
-                    style = KnightsTheme.typography.headlineSmallBL,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier
-                        .padding(top = 12.dp)
-                        .then(shimmerModifier)
-                )
-            }
-            NetworkImage(
-                imageUrl = contributor?.imageUrl,
-                placeholder = placeholder,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .size(100.dp)
-                    .clip(CircleShape)
-                    .then(shimmerModifier)
-            )
-        }
-    }
+        shimmerModifier = shimmerModifier,
+        placeholder = placeholder
+    )
 }
 
 @Composable
