@@ -205,7 +205,7 @@ private fun BookmarkImage(
 private val CardContentPadding =
     PaddingValues(start = 24.dp, top = 16.dp, end = 24.dp, bottom = 24.dp)
 
-class SessionPreviewParameterProvider : PreviewParameterProvider<Session> {
+internal class SessionPreviewParameterProvider : PreviewParameterProvider<Session> {
     override val values = sequenceOf(
         Session( // single speaker with out bookmark
             id = "1",

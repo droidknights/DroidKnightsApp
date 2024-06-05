@@ -267,7 +267,7 @@ private fun Footer(modifier: Modifier = Modifier) {
 
 private const val SHIMMERING_ITEM_COUNT = 4
 
-class ContributorPreviewParameterProvider : PreviewParameterProvider<ContributorsUiState> {
+internal class ContributorPreviewParameterProvider : PreviewParameterProvider<ContributorsUiState> {
     override val values = sequenceOf(
         ContributorsUiState.Loading,
         ContributorsUiState.Contributors(

@@ -37,7 +37,7 @@ internal fun TimeChip(dateTime: LocalDateTime) {
     )
 }
 
-class RoomPreviewParameterProvider : PreviewParameterProvider<Room> {
+internal class RoomPreviewParameterProvider : PreviewParameterProvider<Room> {
     override val values = sequenceOf(
         Room.TRACK1,
         Room.TRACK2,
