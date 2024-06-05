@@ -79,7 +79,7 @@ internal fun BookmarkCard(
     }
 }
 
-class UserPreviewParameterProvider : PreviewParameterProvider<Room> {
+class RoomPreviewParameterProvider : PreviewParameterProvider<Room> {
     override val values = sequenceOf(
         Room.TRACK1,
         Room.TRACK2,
@@ -91,7 +91,7 @@ class UserPreviewParameterProvider : PreviewParameterProvider<Room> {
 @Preview
 @Composable
 private fun BookmarkCardPreview(
-    @PreviewParameter(UserPreviewParameterProvider::class) room: Room,
+    @PreviewParameter(RoomPreviewParameterProvider::class) room: Room,
 ) {
     KnightsTheme {
         Box {
