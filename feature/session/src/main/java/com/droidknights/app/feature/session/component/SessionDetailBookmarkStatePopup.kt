@@ -46,16 +46,11 @@ internal fun SessionDetailBookmarkStatePopup(bookmarked: Boolean) {
     }
 }
 
-class BookmarkedPreviewParameterProvider : PreviewParameterProvider<Boolean> {
-    override val values = sequenceOf(true, false)
-}
-
 @Preview
 @Composable
-private fun BookmarkStatePopupPreview(
-    @PreviewParameter(BookmarkedPreviewParameterProvider::class) bookmarked: Boolean,
-) {
+private fun BookmarkStatePopupPreview() {
     Column {
-        SessionDetailBookmarkStatePopup(bookmarked = bookmarked)
+        SessionDetailBookmarkStatePopup(bookmarked = true)
+        SessionDetailBookmarkStatePopup(bookmarked = false)
     }
 }
