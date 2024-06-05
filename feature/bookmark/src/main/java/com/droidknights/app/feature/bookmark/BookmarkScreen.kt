@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -127,70 +128,22 @@ private fun BookmarkScreen(
                 .background(color = MaterialTheme.colorScheme.surfaceDim),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            BookmarkTopAppBar(isEditMode = isEditMode, onClickEditButton = toggleEditMode)
+            BookmarkTopAppBar(
+                isEditMode = isEditMode,
+                onClickEditButton = toggleEditMode
+            )
 
             if (bookmarkItems.isEmpty()) {
                 BookmarkEmptyScreen()
             }
 
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(bottom = listContentBottomPadding)
-            ) {
-                items(
-                    items = bookmarkItems,
-                    key = { item -> item.session.id }
-                ) { itemState ->
-                    val isSelected = selectedSessionIds.contains(itemState.session.id)
-                    BookmarkItem(
-                        modifier = Modifier
-                            .background(
-                                color = if (isSelected) {
-                                    MaterialTheme.colorScheme.surfaceContainerHigh
-                                } else {
-                                    MaterialTheme.colorScheme.surfaceDim
-                                }
-                            )
-                            .padding(
-                                end = if (isEditMode) 0.dp else 16.dp
-                            ),
-                        leadingContent = @Composable {
-                            if (isEditMode) {
-                                EditModeLeadingItem(
-                                    itemState = itemState,
-                                    selectedSessionIds = selectedSessionIds,
-                                    onSelectedItem = onSelectedItem
-                                )
-                            } else {
-                                BookmarkTimelineItem(
-                                    modifier = Modifier.padding(horizontal = 8.dp),
-                                    sequence = itemState.sequence,
-                                    time = itemState.time
-                                )
-                            }
-                        },
-                        midContent = @Composable {
-                            BookmarkCard(
-                                tagLabel = itemState.tagLabel,
-                                room = itemState.session.room,
-                                title = itemState.session.title,
-                                speaker = itemState.speakerLabel
-                            )
-                        },
-                        isEditMode = isEditMode,
-                        trailingContent = @Composable {
-                            Icon(
-                                modifier = Modifier
-                                    .padding(horizontal = 18.dp)
-                                    .size(24.dp),
-                                imageVector = ImageVector.vectorResource(id = R.drawable.ic_menu),
-                                contentDescription = stringResource(id = R.string.drag_and_drop),
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    )
-                }
-            }
+            BookmarkList(
+                listContentBottomPadding = listContentBottomPadding,
+                bookmarkItems = bookmarkItems,
+                selectedSessionIds = selectedSessionIds,
+                isEditMode = isEditMode,
+                onSelectedItem = onSelectedItem
+            )
         }
 
         AnimatedVisibility(
@@ -205,6 +158,88 @@ private fun BookmarkScreen(
                 onClick = onDeletedSessions,
             )
         }
+    }
+}
+
+@Composable
+private fun BookmarkList(
+    listContentBottomPadding: Dp,
+    bookmarkItems: ImmutableList<BookmarkItemUiState>,
+    selectedSessionIds: ImmutableSet<String>,
+    isEditMode: Boolean,
+    onSelectedItem: (Session) -> Unit
+) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(bottom = listContentBottomPadding)
+    ) {
+        bookmarkItems(
+            bookmarkItems = bookmarkItems,
+            selectedSessionIds = selectedSessionIds,
+            isEditMode = isEditMode,
+            onSelectedItem = onSelectedItem
+        )
+    }
+}
+
+private fun LazyListScope.bookmarkItems(
+    bookmarkItems: ImmutableList<BookmarkItemUiState>,
+    selectedSessionIds: ImmutableSet<String>,
+    isEditMode: Boolean,
+    onSelectedItem: (Session) -> Unit
+) {
+    items(
+        items = bookmarkItems,
+        key = { item -> item.session.id }
+    ) { itemState ->
+        val isSelected = selectedSessionIds.contains(itemState.session.id)
+        BookmarkItem(
+            modifier = Modifier
+                .background(
+                    color = if (isSelected) {
+                        MaterialTheme.colorScheme.surfaceContainerHigh
+                    } else {
+                        MaterialTheme.colorScheme.surfaceDim
+                    }
+                )
+                .padding(
+                    end = if (isEditMode) 0.dp else 16.dp
+                ),
+            leadingContent = @Composable {
+                if (isEditMode) {
+                    EditModeLeadingItem(
+                        itemState = itemState,
+                        selectedSessionIds = selectedSessionIds,
+                        onSelectedItem = onSelectedItem
+                    )
+                } else {
+                    BookmarkTimelineItem(
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        sequence = itemState.sequence,
+                        time = itemState.time
+                    )
+                }
+            },
+            midContent = @Composable {
+                BookmarkCard(
+                    tagLabel = itemState.tagLabel,
+                    room = itemState.session.room,
+                    title = itemState.session.title,
+                    speaker = itemState.speakerLabel
+                )
+            },
+            isEditMode = isEditMode,
+            trailingContent = @Composable {
+                Icon(
+                    modifier = Modifier
+                        .padding(horizontal = 18.dp)
+                        .size(24.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_menu),
+                    contentDescription = stringResource(id = R.string.drag_and_drop),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        )
     }
 }
 
