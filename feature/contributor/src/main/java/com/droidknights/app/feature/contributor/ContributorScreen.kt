@@ -1,6 +1,5 @@
 package com.droidknights.app.feature.contributor
 
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -36,10 +35,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.component.BottomLogo
 import com.droidknights.app.core.designsystem.component.KnightsCard
-import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
-import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.res.rememberPainterResource
 import com.droidknights.app.core.designsystem.theme.Black
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
@@ -47,6 +44,7 @@ import com.droidknights.app.core.designsystem.theme.LocalDarkTheme
 import com.droidknights.app.core.designsystem.theme.Neon01
 import com.droidknights.app.core.designsystem.theme.Neon05
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.feature.contributor.component.ContributorTopAppBar
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.persistentListOf
@@ -79,6 +77,10 @@ internal fun ContributorScreen(
     modifier: Modifier = Modifier,
 ) {
     val lazyListState = rememberLazyListState()
+    val isAppBarAtTop by remember {
+        derivedStateOf { lazyListState.firstVisibleItemIndex == 0 }
+    }
+
     Box(
         modifier = modifier.navigationBarsPadding(),
     ) {
@@ -87,29 +89,9 @@ internal fun ContributorScreen(
             lazyListState = lazyListState
         )
     }
-    ContributorTopAppBar(lazyListState, onBackClick)
-}
-
-@Composable
-private fun ContributorTopAppBar(
-    lazyListState: LazyListState,
-    onBackClick: () -> Unit,
-) {
-    val isAtTop by remember {
-        derivedStateOf { lazyListState.firstVisibleItemIndex == 0 }
-    }
-    val alpha by animateFloatAsState(
-        targetValue = if (isAtTop) 0f else 0.8f,
-        label = "topAppBarContainerColor",
-    )
-    val containerColor = MaterialTheme.colorScheme.surfaceDim.copy(alpha)
-    KnightsTopAppBar(
-        titleRes = R.string.contributor_top_title,
-        navigationIconContentDescription = null,
-        modifier = Modifier.statusBarsPadding(),
-        navigationType = TopAppBarNavigationType.Close,
-        onNavigationClick = onBackClick,
-        containerColor = containerColor,
+    ContributorTopAppBar(
+        isAtTop = isAppBarAtTop,
+        onBackClick = onBackClick,
     )
 }
 
