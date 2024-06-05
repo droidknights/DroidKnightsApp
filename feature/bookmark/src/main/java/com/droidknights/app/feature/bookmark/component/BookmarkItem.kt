@@ -155,19 +155,13 @@ private fun BookMarkItemForPreview(isEditMode: Boolean) {
     )
 }
 
-class IsEditModePreviewParameterProvider : PreviewParameterProvider<Boolean> {
-    override val values = sequenceOf(true, false)
-}
-
 @Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
 @Composable
-private fun BookmarkItemPreview(
-    @PreviewParameter(IsEditModePreviewParameterProvider::class) isEditMode: Boolean,
-) {
+private fun BookmarkItemPreview() {
     KnightsTheme {
         Column {
-            BookMarkItemForPreview(isEditMode = isEditMode)
-            BookMarkItemForPreview(isEditMode = isEditMode)
+            BookMarkItemForPreview(isEditMode = true)
+            BookMarkItemForPreview(isEditMode = false)
         }
     }
 }
