@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -35,13 +34,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
 import com.droidknights.app.core.designsystem.theme.Neon01
-import com.droidknights.app.feature.bookmark.navigation.bookmarkNavGraph
-import com.droidknights.app.feature.contributor.navigation.contributorNavGraph
-import com.droidknights.app.feature.home.navigation.homeNavGraph
-import com.droidknights.app.feature.session.navigation.sessionNavGraph
-import com.droidknights.app.feature.setting.navigation.settingNavGraph
+import com.droidknights.app.feature.main.component.MainNavHost
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
@@ -67,55 +61,35 @@ internal fun MainScreen(
         }
     }
 
-    Scaffold(
-        content = { padding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.surfaceDim)
-            ) {
-                NavHost(
-                    navController = navigator.navController,
-                    startDestination = navigator.startDestination,
-                ) {
-                    homeNavGraph(
-                        padding = padding,
-                        onSessionClick = { navigator.navigateSession() },
-                        onContributorClick = { navigator.navigateContributor() },
-                        onShowErrorSnackBar = onShowErrorSnackBar
-                    )
-                    settingNavGraph(
-                        padding = padding,
-                        onChangeDarkTheme = onChangeDarkTheme
-                    )
-
-                    bookmarkNavGraph(
-                        onShowErrorSnackBar = onShowErrorSnackBar
-                    )
-
-                    contributorNavGraph(
-                        onBackClick = navigator::popBackStackIfNotHome,
-                        onShowErrorSnackBar = onShowErrorSnackBar
-                    )
-
-                    sessionNavGraph(
-                        onBackClick = navigator::popBackStackIfNotHome,
-                        onSessionClick = { navigator.navigateSessionDetail(it.id) },
-                        onShowErrorSnackBar = onShowErrorSnackBar
-                    )
-                }
-            }
-        },
-        bottomBar = {
-            MainBottomBar(
-                visible = navigator.shouldShowBottomBar(),
-                tabs = MainTab.entries.toPersistentList(),
-                currentTab = navigator.currentTab,
-                onTabSelected = { navigator.navigate(it) }
-            )
-        },
-        snackbarHost = { SnackbarHost(snackBarHostState) }
+    MainScreenContent(
+        navigator = navigator,
+        onShowErrorSnackBar = onShowErrorSnackBar,
+        onChangeDarkTheme = onChangeDarkTheme,
+        snackBarHostState = snackBarHostState
     )
+}
+
+@Composable
+private fun MainScreenContent(
+    modifier: Modifier = Modifier,
+    navigator: MainNavigator,
+    onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
+    onChangeDarkTheme: (Boolean) -> Unit,
+    snackBarHostState: SnackbarHostState,
+) {
+    Scaffold(modifier = modifier, content = { padding ->
+        MainNavHost(
+            navigator = navigator,
+            padding = padding,
+            onShowErrorSnackBar = onShowErrorSnackBar,
+            onChangeDarkTheme = onChangeDarkTheme,
+        )
+    }, bottomBar = {
+        MainBottomBar(visible = navigator.shouldShowBottomBar(),
+            tabs = MainTab.entries.toPersistentList(),
+            currentTab = navigator.currentTab,
+            onTabSelected = { navigator.navigate(it) })
+    }, snackbarHost = { SnackbarHost(snackBarHostState) })
 }
 
 @Composable
@@ -125,27 +99,16 @@ private fun MainBottomBar(
     currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
 ) {
-    AnimatedVisibility(
-        visible = visible,
+    AnimatedVisibility(visible = visible,
         enter = fadeIn() + slideIn { IntOffset(0, it.height) },
-        exit = fadeOut() + slideOut { IntOffset(0, it.height) }
-    ) {
+        exit = fadeOut() + slideOut { IntOffset(0, it.height) }) {
         Row(
-            modifier = Modifier
-                .navigationBarsPadding()
-                .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
-                .fillMaxWidth()
-                .height(56.dp)
-                .border(
-                    width = 1.dp,
-                    color = MaterialTheme.colorScheme.outline,
-                    shape = RoundedCornerShape(size = 28.dp)
-                )
-                .background(
-                    color = MaterialTheme.colorScheme.surface,
-                    shape = RoundedCornerShape(28.dp)
-                )
-                .padding(horizontal = 28.dp),
+            modifier = Modifier.navigationBarsPadding().padding(start = 8.dp, end = 8.dp, bottom = 28.dp).fillMaxWidth()
+                .height(56.dp).border(
+                    width = 1.dp, color = MaterialTheme.colorScheme.outline, shape = RoundedCornerShape(size = 28.dp)
+                ).background(
+                    color = MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(28.dp)
+                ).padding(horizontal = 28.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             tabs.forEach { tab ->
@@ -166,10 +129,7 @@ private fun RowScope.MainBottomBarItem(
     onClick: () -> Unit,
 ) {
     Box(
-        modifier = Modifier
-            .weight(1f)
-            .fillMaxHeight()
-            .selectable(
+        modifier = Modifier.weight(1f).fillMaxHeight().selectable(
                 selected = selected,
                 indication = null,
                 role = null,
