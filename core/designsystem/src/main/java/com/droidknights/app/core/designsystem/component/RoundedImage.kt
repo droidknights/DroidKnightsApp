@@ -1,5 +1,6 @@
 package com.droidknights.app.core.designsystem.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,15 +16,17 @@ fun RoundedImage(
     imageRes: Int,
     onClick: () -> Unit = {},
     roundSize: Dp = 16.dp,
+    border: BorderStroke? = null,
 ) {
     Surface(
-        shape = RoundedCornerShape(roundSize),
         onClick = onClick,
+        shape = RoundedCornerShape(roundSize),
+        border = border,
     ) {
         Image(
             painter = painterResource(id = imageRes),
             contentDescription = null,
-            modifier = Modifier.aspectRatio(1f)
+            modifier = Modifier.aspectRatio(1f),
         )
     }
 }
