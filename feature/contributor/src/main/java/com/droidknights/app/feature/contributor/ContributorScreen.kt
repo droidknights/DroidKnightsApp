@@ -1,16 +1,13 @@
 package com.droidknights.app.feature.contributor
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -25,9 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,13 +33,10 @@ import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.res.rememberPainterResource
-import com.droidknights.app.core.designsystem.theme.Black
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LocalDarkTheme
-import com.droidknights.app.core.designsystem.theme.Neon01
-import com.droidknights.app.core.designsystem.theme.Neon05
 import com.droidknights.app.core.model.Contributor
 import com.droidknights.app.feature.contributor.component.ContributorTopAppBar
+import com.droidknights.app.feature.contributor.component.ContributorTopBanner
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.persistentListOf
@@ -96,43 +88,6 @@ internal fun ContributorScreen(
 }
 
 @Composable
-private fun TopBanner(darkTheme: Boolean = LocalDarkTheme.current) {
-    Box(
-        modifier = Modifier
-            .background(if (darkTheme) Black else Neon05)
-            .statusBarsPadding()
-            .padding(top = 48.dp)
-    ) {
-        Image(
-            painter = painterResource(
-                id = if (darkTheme) {
-                    R.drawable.bg_contributors_darkmode
-                } else {
-                    R.drawable.bg_contributors_lightmode
-                }
-            ),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Column(modifier = Modifier.padding(horizontal = 32.dp)) {
-            Text(
-                text = stringResource(id = R.string.contributor_banner_title),
-                style = KnightsTheme.typography.headlineSmallBL,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier.padding(top = 24.dp),
-            )
-            Text(
-                text = stringResource(id = R.string.contributor_banner_description),
-                style = KnightsTheme.typography.titleSmallM140,
-                color = Neon01,
-                modifier = Modifier.padding(top = 6.dp, start = 3.dp),
-            )
-        }
-    }
-}
-
-@Composable
 private fun ContributorList(
     uiState: ContributorsUiState,
     lazyListState: LazyListState,
@@ -144,7 +99,7 @@ private fun ContributorList(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item {
-            TopBanner()
+            ContributorTopBanner()
         }
 
         when (uiState) {
