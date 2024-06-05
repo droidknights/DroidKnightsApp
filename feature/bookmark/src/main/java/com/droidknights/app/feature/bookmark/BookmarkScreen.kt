@@ -2,7 +2,6 @@ package com.droidknights.app.feature.bookmark
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
@@ -13,8 +12,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -38,7 +35,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app.core.designsystem.theme.Gray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.designsystem.theme.White
@@ -46,6 +42,7 @@ import com.droidknights.app.core.model.Session
 import com.droidknights.app.feature.bookmark.component.BookmarkCard
 import com.droidknights.app.feature.bookmark.component.BookmarkItem
 import com.droidknights.app.feature.bookmark.component.BookmarkTimelineItem
+import com.droidknights.app.feature.bookmark.component.BookmarkTopAppBar
 import com.droidknights.app.feature.bookmark.component.RemoveBookmarkSnackBar
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import com.droidknights.app.feature.bookmark.model.BookmarkUiState
@@ -219,48 +216,6 @@ private fun BookmarkEmptyScreen() {
             text = stringResource(id = R.string.empty_bookmark_item_description),
             style = KnightsTheme.typography.titleSmallM,
             color = MaterialTheme.colorScheme.onSurface
-        )
-    }
-}
-
-@Composable
-private fun BookmarkTopAppBar(
-    isEditMode: Boolean,
-    onClickEditButton: () -> Unit,
-) {
-    val editButtonColor by animateColorAsState(
-        label = "Edit Button Color Animation",
-        targetValue = if (isEditMode) {
-            Purple01
-        } else {
-            Gray
-        }
-    )
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(48.dp)
-    ) {
-        Text(
-            modifier = Modifier.align(Alignment.Center),
-            text = stringResource(id = R.string.book_mark_top_bar_title),
-            style = KnightsTheme.typography.titleSmallM,
-            color = MaterialTheme.colorScheme.onSurface
-        )
-
-        Text(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .clickable(onClick = onClickEditButton)
-                .padding(horizontal = 12.dp),
-            text = if (isEditMode) {
-                stringResource(id = R.string.edit_button_confirm_label)
-            } else {
-                stringResource(id = R.string.edit_button_edit_label)
-            },
-            style = KnightsTheme.typography.titleSmallM,
-            color = editButtonColor
         )
     }
 }
