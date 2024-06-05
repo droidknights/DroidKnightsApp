@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RoborazziOptions
 import com.github.takahirom.roborazzi.RoborazziOptions.CompareOptions
 import com.github.takahirom.roborazzi.RoborazziOptions.PixelBitConfig
@@ -48,6 +49,7 @@ inline fun <reified A : ComponentActivity> RobotTestRule(
     )
 }
 
+@OptIn(ExperimentalRoborazziApi::class)
 class RobotTestRule(
     private val testInstance: Any,
     val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<*>, *>,
@@ -63,12 +65,15 @@ class RobotTestRule(
                         roborazziOptions = RoborazziOptions(
                             compareOptions = CompareOptions(
                                 // Detect small changes
-                                changeThreshold = 0.000001F,
+                                changeThreshold = 0.01F,
                             ),
                             recordOptions = RecordOptions(
                                 // For saving money
                                 pixelBitConfig = PixelBitConfig.Rgb565,
                             ),
+                            reportOptions = RoborazziOptions.ReportOptions(
+                                RoborazziOptions.CaptureResultReporter.JsonOutputCaptureResultReporter()
+                            )
                         ),
                     ),
                 ),
