@@ -1,10 +1,8 @@
 package com.droidknights.app.feature.session
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -36,26 +34,20 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
-import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
-import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.Gray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LightGray
 import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
 import com.droidknights.app.core.model.Tag
+import com.droidknights.app.feature.session.component.SessionChips
 import com.droidknights.app.feature.session.component.SessionDetailBookmarkStatePopup
 import com.droidknights.app.feature.session.component.SessionDetailSpeaker
-import com.droidknights.app.feature.session.component.TimeChip
-import com.droidknights.app.feature.session.component.TrackChip
 import com.droidknights.app.feature.session.model.SessionDetailEffect
 import com.droidknights.app.feature.session.model.SessionDetailUiState
 import com.droidknights.app.widget.sendWidgetUpdateCommand
-import kotlinx.collections.immutable.PersistentList
-import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalDateTime
 
@@ -171,34 +163,6 @@ private fun SessionDetailContent(session: Session) {
             }
         }
     }
-}
-
-@Composable
-private fun SessionChips(session: Session) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        TrackChip(room = session.room)
-        TimeChip(dateTime = session.startTime)
-        TagChips(tags = session.tags.toPersistentList())
-    }
-}
-
-@Composable
-private fun TagChips(tags: PersistentList<Tag>) {
-    tags.forEach { tag ->
-        TagChip(tag = tag)
-    }
-}
-
-@Composable
-private fun TagChip(tag: Tag) {
-    TextChip(
-        text = tag.name,
-        containerColor = DarkGray,
-        labelColor = LightGray,
-    )
 }
 
 @Composable
