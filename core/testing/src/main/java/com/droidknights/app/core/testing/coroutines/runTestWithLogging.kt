@@ -1,6 +1,5 @@
 package com.droidknights.app.core.testing.coroutines
 
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import kotlin.coroutines.CoroutineContext
@@ -14,15 +13,9 @@ fun runTestWithLogging(
     testBody: suspend TestScope.() -> Unit,
 ) = runTest(context, timeout) {
     runCatching {
-        coroutineScope {
-            testBody()
-        }
-    }.let {
-        if (it.isFailure) {
-            it.exceptionOrNull()?.let { exception ->
-                exception.printStackTrace()
-                throw exception
-            }
-        }
+        testBody()
+    }.onFailure { exception ->
+        exception.printStackTrace()
+        throw exception
     }
 }
