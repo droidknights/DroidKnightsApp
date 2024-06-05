@@ -9,10 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -28,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -39,7 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
-import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.theme.DarkGray
@@ -52,6 +48,7 @@ import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
 import com.droidknights.app.core.model.Tag
 import com.droidknights.app.feature.session.component.SessionDetailBookmarkStatePopup
+import com.droidknights.app.feature.session.component.SessionDetailSpeaker
 import com.droidknights.app.feature.session.component.TimeChip
 import com.droidknights.app.feature.session.component.TrackChip
 import com.droidknights.app.feature.session.model.SessionDetailEffect
@@ -215,43 +212,6 @@ private fun SessionDetailTitle(
         style = KnightsTheme.typography.headlineMediumB,
         color = MaterialTheme.colorScheme.onSecondaryContainer,
     )
-}
-
-@Composable
-private fun SessionDetailSpeaker(
-    speaker: Speaker,
-    modifier: Modifier = Modifier,
-) {
-    Column(modifier = modifier) {
-        NetworkImage(
-            imageUrl = speaker.imageUrl,
-            modifier = Modifier
-                .size(108.dp)
-                .clip(CircleShape),
-            placeholder = painterResource(id = com.droidknights.app.core.ui.R.drawable.placeholder_speaker)
-        )
-
-        Spacer(Modifier.height(16.dp))
-
-        Text(
-            text = stringResource(id = R.string.session_detail_speaker),
-            style = KnightsTheme.typography.labelSmallM,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
-        )
-        Text(
-            text = speaker.name,
-            style = KnightsTheme.typography.titleMediumB,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
-        )
-
-        Spacer(Modifier.height(16.dp))
-
-        Text(
-            text = speaker.introduction,
-            style = KnightsTheme.typography.titleSmallR140,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
-        )
-    }
 }
 
 @Composable
