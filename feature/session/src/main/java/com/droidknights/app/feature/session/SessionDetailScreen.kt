@@ -16,8 +16,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,15 +36,14 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.droidknights.app.core.designsystem.component.IconToggleButton
 import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.theme.DarkGray
-import com.droidknights.app.core.designsystem.theme.Gray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Speaker
@@ -124,9 +121,11 @@ private fun SessionDetailTopAppBar(
         navigationIconContentDescription = null,
         navigationType = TopAppBarNavigationType.Back,
         actionButtons = {
-            BookmarkToggleButton(
-                bookmarked = bookmarked,
-                onClickBookmark = onClickBookmark
+            IconToggleButton(
+                isChecked = bookmarked,
+                onCheckedChange = onClickBookmark,
+                checkedImageRes = R.drawable.ic_session_bookmark_filled,
+                uncheckedImageRes = R.drawable.ic_session_bookmark,
             )
         },
         onNavigationClick = onBackClick,
@@ -267,28 +266,6 @@ private fun SessionOverview(content: String) {
             text = content,
             style = KnightsTheme.typography.titleSmallR140,
             color = MaterialTheme.colorScheme.onSecondaryContainer
-        )
-    }
-}
-
-@Composable
-private fun BookmarkToggleButton(
-    bookmarked: Boolean,
-    onClickBookmark: (Boolean) -> Unit,
-) {
-    IconToggleButton(
-        checked = bookmarked,
-        onCheckedChange = onClickBookmark
-    ) {
-        Icon(
-            painter =
-            if (bookmarked) {
-                painterResource(id = R.drawable.ic_session_bookmark_filled)
-            } else {
-                painterResource(id = R.drawable.ic_session_bookmark)
-            },
-            contentDescription = null,
-            tint = if (bookmarked) Purple01 else Gray
         )
     }
 }
