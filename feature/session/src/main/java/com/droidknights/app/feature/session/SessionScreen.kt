@@ -64,7 +64,7 @@ internal fun SessionScreen(
             sessionState = sessionState,
             onBackClick = onBackClick,
         )
-        SessionContent(
+        SessionList(
             sessionState = sessionState,
             modifier = Modifier
                 .systemBarsPadding()
@@ -76,7 +76,7 @@ internal fun SessionScreen(
 }
 
 @Composable
-private fun SessionContent(
+private fun SessionList(
     sessionState: SessionState,
     onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier,
