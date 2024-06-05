@@ -12,13 +12,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun RoundedImage(
-    modifier: Modifier = Modifier,
     imageRes: Int,
     onClick: () -> Unit = {},
     roundSize: Dp = 16.dp,
 ) {
     Surface(
-        modifier = modifier,
         shape = RoundedCornerShape(roundSize),
         onClick = onClick,
     ) {
