@@ -158,19 +158,8 @@ private fun BookMarkItemForPreview(isEditMode: Boolean) {
 private fun BookmarkItemPreview() {
     KnightsTheme {
         Column {
-            BookMarkItemForPreview(isEditMode = false)
-            BookMarkItemForPreview(isEditMode = false)
-        }
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF9F9F9)
-@Composable
-private fun BookmarkItemEditModePreview() {
-    KnightsTheme {
-        Column {
             BookMarkItemForPreview(isEditMode = true)
-            BookMarkItemForPreview(isEditMode = true)
+            BookMarkItemForPreview(isEditMode = false)
         }
     }
 }

@@ -31,6 +31,8 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -265,11 +267,10 @@ private fun Footer(modifier: Modifier = Modifier) {
 
 private const val SHIMMERING_ITEM_COUNT = 4
 
-@Preview
-@Composable
-private fun ContributorScreenPreview() {
-    ContributorScreen(
-        uiState = ContributorsUiState.Contributors(
+internal class ContributorPreviewParameterProvider : PreviewParameterProvider<ContributorsUiState> {
+    override val values = sequenceOf(
+        ContributorsUiState.Loading,
+        ContributorsUiState.Contributors(
             persistentListOf(
                 Contributor(
                     0L,
@@ -285,16 +286,17 @@ private fun ContributorScreenPreview() {
                     "https://github.com/droidknights",
                 ),
             )
-        ),
-        onBackClick = {},
+        )
     )
 }
 
 @Preview
 @Composable
-private fun ContributorScreenLoadingPreview() {
+private fun ContributorScreenPreview(
+    @PreviewParameter(ContributorPreviewParameterProvider::class) uiState: ContributorsUiState,
+) {
     ContributorScreen(
-        uiState = ContributorsUiState.Loading,
+        uiState = uiState,
         onBackClick = {},
     )
 }
