@@ -167,7 +167,12 @@ private fun SessionDetailContent(session: Session) {
         HorizontalDivider(thickness = 1.dp, color = MaterialTheme.colorScheme.outline)
         Spacer(modifier = Modifier.height(40.dp))
 
-        SessionDetailSpeaker(session.speakers.first())
+        session.speakers.forEach { speaker ->
+            SessionDetailSpeaker(speaker)
+            if (speaker != session.speakers.last()) {
+                Spacer(modifier = Modifier.height(40.dp))
+            }
+        }
     }
 }
 
