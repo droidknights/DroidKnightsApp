@@ -16,7 +16,6 @@ import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.model.Tag
 import com.droidknights.app.core.ui.textRes
 import com.droidknights.app.feature.session.R
-import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime
@@ -28,16 +27,13 @@ internal fun SessionChips(session: Session) {
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        val sessionTags = session.tags.toPersistentList()
+
         TrackChip(room = session.room)
         TimeChip(dateTime = session.startTime)
-        TagChips(tags = session.tags.toPersistentList())
-    }
-}
-
-@Composable
-internal fun TagChips(tags: PersistentList<Tag>) {
-    tags.forEach { tag ->
-        TagChip(tag = tag)
+        sessionTags.forEach { tag ->
+            TagChip(tag = tag)
+        }
     }
 }
 
