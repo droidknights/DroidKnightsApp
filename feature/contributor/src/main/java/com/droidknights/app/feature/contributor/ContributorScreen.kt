@@ -1,35 +1,29 @@
 package com.droidknights.app.feature.contributor
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.component.BottomLogo
-import com.droidknights.app.core.designsystem.res.rememberPainterResource
 import com.droidknights.app.core.model.Contributor
 import com.droidknights.app.feature.contributor.component.ContributorCard
 import com.droidknights.app.feature.contributor.component.ContributorTopAppBar
 import com.droidknights.app.feature.contributor.component.ContributorTopBanner
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
-import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
 
@@ -96,18 +90,17 @@ private fun ContributorList(
         when (uiState) {
             ContributorsUiState.Loading -> {
                 items(SHIMMERING_ITEM_COUNT) {
-                    ContributorItem(
+                    ContributorCard(
                         contributor = null,
-                        Modifier.padding(horizontal = 8.dp)
+                        modifier = Modifier.padding(horizontal = 8.dp)
                     )
                 }
             }
 
             is ContributorsUiState.Contributors -> {
-                val contributors = uiState.contributors
-                items(contributors.size) { index ->
-                    ContributorItem(
-                        contributor = contributors[index],
+                items(uiState.contributors) { contributor ->
+                    ContributorCard(
+                        contributor = contributor,
                         modifier = Modifier.padding(horizontal = 8.dp),
                     )
                 }
@@ -118,35 +111,6 @@ private fun ContributorList(
             Footer(modifier = Modifier.padding(bottom = 16.dp))
         }
     }
-}
-
-@Composable
-private fun ContributorItem(
-    contributor: Contributor?,
-    modifier: Modifier = Modifier,
-) {
-    val uriHandler = LocalUriHandler.current
-    val shimmerModifier = if (contributor == null) {
-        Modifier
-            .clip(RoundedCornerShape(10.dp))
-            .shimmer()
-            .background(color = MaterialTheme.colorScheme.outline)
-    } else {
-        Modifier
-    }
-
-    val placeholder = rememberPainterResource(
-        lightId = R.drawable.ic_contributor_placeholder_lightmode,
-        darkId = R.drawable.ic_contributor_placeholder_darkmode,
-    )
-
-    ContributorCard(
-        contributor = contributor,
-        uriHandler = uriHandler,
-        modifier = modifier,
-        shimmerModifier = shimmerModifier,
-        placeholder = placeholder
-    )
 }
 
 @Composable

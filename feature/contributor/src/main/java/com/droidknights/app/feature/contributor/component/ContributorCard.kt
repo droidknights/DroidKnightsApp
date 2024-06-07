@@ -1,34 +1,49 @@
 package com.droidknights.app.feature.contributor.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
+import com.droidknights.app.core.designsystem.res.rememberPainterResource
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.Contributor
 import com.droidknights.app.feature.contributor.R
+import com.valentinilk.shimmer.shimmer
 
 @Composable
 internal fun ContributorCard(
     contributor: Contributor?,
-    uriHandler: UriHandler,
     modifier: Modifier,
-    shimmerModifier: Modifier,
-    placeholder: Painter
 ) {
+    val uriHandler = LocalUriHandler.current
+    val shimmerModifier = if (contributor == null) {
+        Modifier
+            .clip(RoundedCornerShape(10.dp))
+            .shimmer()
+            .background(color = MaterialTheme.colorScheme.outline)
+    } else {
+        Modifier
+    }
+
+    val placeholder = rememberPainterResource(
+        lightId = R.drawable.ic_contributor_placeholder_lightmode,
+        darkId = R.drawable.ic_contributor_placeholder_darkmode,
+    )
+
     KnightsCard(
         enabled = contributor?.githubUrl?.isNotEmpty() ?: false,
         onClick = { uriHandler.openUri(contributor?.githubUrl ?: return@KnightsCard) },
