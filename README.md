@@ -21,7 +21,7 @@
 
 ### Required
 
-- IDE : Android Studio Giraffe ([Download](https://developer.android.com/studio))
+- IDE : Android Studio 최신 버전 ([Download](https://developer.android.com/studio))
 - JDK : Java 17을 실행할 수 있는 JDK
   - (권장) Android Studio 설치 시 Embeded 된 JDK (Open JDK)
   - Java 17을 사용하는 JDK (Open JDK, AdoptOpenJDK, GraalVM)
