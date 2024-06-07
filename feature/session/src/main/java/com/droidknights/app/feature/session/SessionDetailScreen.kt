@@ -75,7 +75,11 @@ internal fun SessionDetailScreen(
             onBackClick = onBackClick
         )
         Box {
-            SessionDetailContent(uiState = sessionUiState)
+            when (val uiState = sessionUiState) {
+                is SessionDetailUiState.Loading -> SessionDetailLoading()
+                is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
+            }
+
             if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
                 SessionDetailBookmarkStatePopup(
                     bookmarked = (effect as SessionDetailEffect.ShowToastForBookmarkState).bookmarked
@@ -93,14 +97,6 @@ internal fun SessionDetailScreen(
             delay(1000L)
             viewModel.hidePopup()
         }
-    }
-}
-
-@Composable
-private fun SessionDetailContent(uiState: SessionDetailUiState) {
-    when (uiState) {
-        is SessionDetailUiState.Loading -> SessionDetailLoading()
-        is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
     }
 }
 
