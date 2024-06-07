@@ -120,9 +120,7 @@ private fun SessionDetailContent(session: Session) {
             style = KnightsTheme.typography.headlineMediumB,
             color = MaterialTheme.colorScheme.onSecondaryContainer,
         )
-
         Spacer(modifier = Modifier.height(12.dp))
-
         SessionChips(session = session)
 
         if (session.content.isNotEmpty()) {
@@ -131,11 +129,8 @@ private fun SessionDetailContent(session: Session) {
         }
 
         Spacer(modifier = Modifier.height(40.dp))
-
         HorizontalDivider(thickness = 1.dp, color = MaterialTheme.colorScheme.outline)
-
         Spacer(modifier = Modifier.height(40.dp))
-
         session.speakers.forEach { speaker ->
             SessionDetailSpeaker(speaker)
             if (speaker != session.speakers.last()) {
