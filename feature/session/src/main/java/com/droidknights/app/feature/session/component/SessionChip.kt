@@ -7,6 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.theme.DarkGray
@@ -66,4 +69,27 @@ internal fun TimeChip(dateTime: LocalDateTime) {
         containerColor = MaterialTheme.colorScheme.tertiaryContainer,
         labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
     )
+}
+
+internal class RoomPreviewParameterProvider : PreviewParameterProvider<Room> {
+    override val values = sequenceOf(
+        Room.TRACK1,
+        Room.TRACK2,
+        Room.TRACK3,
+        Room.ETC
+    )
+}
+
+@Preview
+@Composable
+fun TrackChipPreview(
+    @PreviewParameter(RoomPreviewParameterProvider::class) room: Room,
+) {
+    TrackChip(room)
+}
+
+@Preview
+@Composable
+fun TimeChipPreview() {
+    TimeChip(LocalDateTime(2022, 1, 1, 10, 22))
 }
