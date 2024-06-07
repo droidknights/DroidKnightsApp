@@ -31,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
@@ -39,8 +40,8 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
 import com.droidknights.app.core.model.Sponsor
 import com.droidknights.app.feature.home.R
-import com.droidknights.app.feature.home.model.SponsorsUiState
 import com.droidknights.app.feature.home.SponsorsUiStatePreviewParameterProvider
+import com.droidknights.app.feature.home.model.SponsorsUiState
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.ImmutableList
 
@@ -88,23 +89,16 @@ private fun SponsorGroup(
     groupedSponsorsByGrade: ImmutableList<List<Sponsor>>,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxWidth().padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        groupedSponsorsByGrade
-            .forEachIndexed { index, groupedSponsorsByGrade ->
-                SponsorGroupRow(
-                    modifier = Modifier
-                        .wrapContentWidth()
-                        .padding(
-                            start = if (index % 2 == 0) 0.dp else 36.dp,
-                            end = if (index % 2 == 0) 36.dp else 0.dp,
-                        ),
-                    sponsors = groupedSponsorsByGrade
-                )
-            }
+        groupedSponsorsByGrade.forEachIndexed { index, groupedSponsorsByGrade ->
+            SponsorGroupRow(
+                modifier = Modifier.wrapContentWidth().padding(
+                    start = if (index % 2 == 0) 0.dp else 36.dp,
+                    end = if (index % 2 == 0) 36.dp else 0.dp,
+                ), sponsors = groupedSponsorsByGrade
+            )
+        }
     }
 }
 
@@ -116,20 +110,12 @@ private fun SponsorGroupRow(
     val uriHandler = LocalUriHandler.current
 
     LazyRow(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(space = 24.dp),
-        userScrollEnabled = false
+        modifier = modifier, horizontalArrangement = Arrangement.spacedBy(space = 24.dp), userScrollEnabled = false
     ) {
-        items(
-            items = sponsors,
-            key = { sponsor ->
-                sponsor.name
-            }
-        ) { sponsor ->
-            SponsorLogo(
-                sponsor = sponsor,
-                onClick = { uriHandler.openUri(sponsor.homepage) }
-            )
+        items(items = sponsors, key = { sponsor ->
+            sponsor.name
+        }) { sponsor ->
+            SponsorLogo(sponsor = sponsor, onClick = { uriHandler.openUri(sponsor.homepage) })
         }
     }
 }
@@ -148,34 +134,23 @@ private fun SponsorLogo(
     )
 
     Box(
-        modifier = Modifier
-            .padding(horizontal = 1.dp)
+        modifier = Modifier.padding(horizontal = 1.dp)
     ) {
         Surface(
-            modifier = Modifier
-                .size(100.dp)
-                .clickable(onClick = onClick),
-            shape = CircleShape,
-            shadowElevation = 3.dp
+            modifier = Modifier.size(100.dp).clickable(onClick = onClick), shape = CircleShape, shadowElevation = 3.dp
         ) {
             Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
             ) {
                 NetworkImage(
-                    imageUrl = sponsor.imageUrl,
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier
-                        .size(80.dp)
+                    imageUrl = sponsor.imageUrl, contentScale = ContentScale.FillWidth, modifier = Modifier.size(80.dp)
                 )
             }
         }
         Image(
             painter = painterResource(id = gradeIcon),
             contentDescription = null,
-            modifier = Modifier
-                .size(28.dp)
-                .align(Alignment.TopStart),
+            modifier = Modifier.size(28.dp).align(Alignment.TopStart),
         )
     }
 }
@@ -188,39 +163,32 @@ private fun SponsorCardSkeleton(
         modifier = modifier,
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp),
+            modifier = Modifier.fillMaxWidth().padding(24.dp),
         ) {
-            Spacer(
-                modifier = Modifier
-                    .size(
-                        width = 120.dp,
-                        height = 24.dp,
-                    )
-                    .shimmer()
-                    .background(
-                        color = LightGray,
-                        shape = RoundedCornerShape(4.dp),
-                    ),
-            )
-            Spacer(
-                modifier = Modifier
-                    .padding(top = 8.dp)
-                    .size(
-                        width = 80.dp,
-                        height = 32.dp,
-                    )
-                    .fillMaxWidth()
-                    .shimmer()
-                    .background(
-                        color = LightGray,
-                        shape = RoundedCornerShape(4.dp),
-                    ),
-            )
+            TextSkeleton(width = 120.dp, height = 24.dp)
+            Spacer(modifier = Modifier.padding(top = 8.dp))
+            TextSkeleton(width = 80.dp, height = 32.dp)
+
             SponsorGroupSkeleton()
         }
     }
+}
+
+@Composable
+private fun TextSkeleton(
+    width: Dp,
+    height: Dp,
+) {
+    Spacer(
+        modifier = Modifier
+            .size(width = width, height = height)
+            .fillMaxWidth()
+            .shimmer()
+            .background(
+                color = LightGray,
+                shape = RoundedCornerShape(4.dp),
+            )
+    )
 }
 
 @Composable
@@ -229,16 +197,13 @@ private fun SponsorGroupSkeleton(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-            .padding(top = 24.dp)
-            .fillMaxWidth(),
+        modifier = modifier.padding(top = 24.dp).fillMaxWidth(),
     ) {
         Column(
-            modifier = Modifier
-                .wrapContentWidth(
-                    align = Alignment.Start,
-                    unbounded = true,
-                ),
+            modifier = Modifier.wrapContentWidth(
+                align = Alignment.Start,
+                unbounded = true,
+            ),
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(24.dp),
@@ -249,8 +214,7 @@ private fun SponsorGroupSkeleton(
             }
             Row(
                 horizontalArrangement = Arrangement.spacedBy(space = 24.dp),
-                modifier = Modifier
-                    .padding(start = 72.dp),
+                modifier = Modifier.padding(start = 72.dp),
             ) {
                 repeat(5) {
                     SponsorLogoSkeleton()
@@ -265,21 +229,17 @@ private fun SponsorLogoSkeleton(
     modifier: Modifier = Modifier,
 ) {
     Spacer(
-        modifier = modifier
-            .size(84.dp)
-            .shimmer()
-            .background(
-                color = LightGray,
-                shape = CircleShape,
-            ),
+        modifier = modifier.size(84.dp).shimmer().background(
+            color = LightGray,
+            shape = CircleShape,
+        ),
     )
 }
 
 @Preview
 @Composable
 private fun SponsorCardPreview(
-    @PreviewParameter(SponsorsUiStatePreviewParameterProvider::class)
-    sponsorsUiState: SponsorsUiState,
+    @PreviewParameter(SponsorsUiStatePreviewParameterProvider::class) sponsorsUiState: SponsorsUiState,
 ) {
     KnightsTheme {
         SponsorCard(
