@@ -96,7 +96,8 @@ private fun SponsorGroup(
                 modifier = Modifier.wrapContentWidth().padding(
                     start = if (index % 2 == 0) 0.dp else 36.dp,
                     end = if (index % 2 == 0) 36.dp else 0.dp,
-                ), sponsors = groupedSponsorsByGrade
+                ),
+                sponsors = groupedSponsorsByGrade,
             )
         }
     }
