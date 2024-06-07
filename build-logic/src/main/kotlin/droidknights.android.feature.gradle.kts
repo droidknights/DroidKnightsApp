@@ -1,4 +1,5 @@
 import com.droidknights.app.configureHiltAndroid
+import com.droidknights.app.configureRoborazzi
 import com.droidknights.app.libs
 
 plugins {
@@ -18,6 +19,7 @@ android {
 }
 
 configureHiltAndroid()
+configureRoborazzi()
 
 dependencies {
     implementation(project(":core:model"))
