@@ -114,16 +114,26 @@ private fun SessionDetailContent(session: Session) {
             .fillMaxSize()
             .padding(horizontal = 16.dp)
     ) {
-        SessionDetailTitle(title = session.title, modifier = Modifier.padding(top = 8.dp))
+        Text(
+            modifier = Modifier.padding(top = 8.dp).padding(end = 58.dp),
+            text = session.title,
+            style = KnightsTheme.typography.headlineMediumB,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
+        )
+
         Spacer(modifier = Modifier.height(12.dp))
+
         SessionChips(session = session)
 
         if (session.content.isNotEmpty()) {
             Spacer(modifier = Modifier.height(16.dp))
             SessionOverview(content = session.content)
         }
+
         Spacer(modifier = Modifier.height(40.dp))
+
         HorizontalDivider(thickness = 1.dp, color = MaterialTheme.colorScheme.outline)
+
         Spacer(modifier = Modifier.height(40.dp))
 
         session.speakers.forEach { speaker ->
@@ -133,19 +143,6 @@ private fun SessionDetailContent(session: Session) {
             }
         }
     }
-}
-
-@Composable
-private fun SessionDetailTitle(
-    title: String,
-    modifier: Modifier = Modifier,
-) {
-    Text(
-        modifier = modifier.padding(end = 58.dp),
-        text = title,
-        style = KnightsTheme.typography.headlineMediumB,
-        color = MaterialTheme.colorScheme.onSecondaryContainer,
-    )
 }
 
 @Composable
@@ -229,14 +226,6 @@ private fun SessionDetailContentPreview(
 ) {
     KnightsTheme {
         SessionDetailContent(session = session)
-    }
-}
-
-@Preview
-@Composable
-private fun SessionDetailTitlePreview() {
-    KnightsTheme {
-        SessionDetailTitle(title = SampleSessionHasContent.title)
     }
 }
 
