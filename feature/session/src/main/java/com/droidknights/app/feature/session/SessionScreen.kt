@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +36,6 @@ import com.droidknights.app.feature.session.component.SessionTopAppBar
 import com.droidknights.app.feature.session.model.SessionState
 import com.droidknights.app.feature.session.model.SessionUiState
 import com.droidknights.app.feature.session.model.rememberSessionState
-import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
 
@@ -49,11 +47,9 @@ internal fun SessionScreen(
     sessionViewModel: SessionViewModel = hiltViewModel(),
 ) {
     val sessionUiState by sessionViewModel.uiState.collectAsStateWithLifecycle()
-    val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions
-        ?.let { sessions ->
-            rememberSessionState(sessions = sessions) // SessionUiState.Sessions
-        }
-        ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
+    val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions?.let { sessions ->
+        rememberSessionState(sessions = sessions) // SessionUiState.Sessions
+    } ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
 
     LaunchedEffect(Unit) {
         sessionViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
@@ -64,19 +60,16 @@ internal fun SessionScreen(
             sessionState = sessionState,
             onBackClick = onBackClick,
         )
-        SessionContent(
+        SessionList(
             sessionState = sessionState,
-            modifier = Modifier
-                .systemBarsPadding()
-                .padding(top = 48.dp)
-                .fillMaxSize(),
+            modifier = Modifier.systemBarsPadding().padding(top = 48.dp).fillMaxSize(),
             onSessionClick = onSessionClick,
         )
     }
 }
 
 @Composable
-private fun SessionContent(
+private fun SessionList(
     sessionState: SessionState,
     onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier,
@@ -87,60 +80,27 @@ private fun SessionContent(
         contentPadding = PaddingValues(horizontal = 8.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        sessionState.groups.forEachIndexed { index, group ->
-            val topPadding = if (index == 0) {
-                SessionTopSpace
-            } else {
-                SessionGroupSpace
+        sessionState.groups.forEachIndexed { groupIndex, group ->
+            itemsIndexed(group.sessions) { sessionIndex, session ->
+                val isFirstSession = sessionIndex == 0
+                val isLastGroup = groupIndex == sessionState.groups.size - 1
+                val isLastSession = sessionIndex == group.sessions.size - 1
+
+                Column {
+                    if (isFirstSession) {
+                        RoomTitle(
+                            room = group.room,
+                            topPadding = if (groupIndex == 0) SessionTopSpace else SessionGroupSpace,
+                        )
+                    }
+                    SessionCard(session = session, onSessionClick = onSessionClick)
+                }
+
+                if (isLastGroup && isLastSession) {
+                    DroidKnightsFooter()
+                }
             }
-            sessionItems(
-                room = group.room,
-                items = group.sessions,
-                topPadding = topPadding,
-                isLastGroup = index == sessionState.groups.size - 1,
-                onItemClick = onSessionClick,
-            )
         }
-    }
-}
-
-private val SessionTopSpace = 16.dp
-private val SessionGroupSpace = 100.dp
-
-private fun LazyListScope.sessionItems(
-    room: Room,
-    items: PersistentList<Session>,
-    topPadding: Dp,
-    isLastGroup: Boolean,
-    onItemClick: (Session) -> Unit,
-) {
-    itemsIndexed(items) { index, item ->
-        SessionItem(
-            index = index,
-            item = item,
-            room = room,
-            topPadding = topPadding,
-            onItemClick = onItemClick
-        )
-        if (isLastGroup && index == items.size - 1) {
-            DroidKnightsFooter()
-        }
-    }
-}
-
-@Composable
-private fun SessionItem(
-    index: Int,
-    item: Session,
-    room: Room,
-    topPadding: Dp,
-    onItemClick: (Session) -> Unit,
-) {
-    Column {
-        if (index == 0) {
-            RoomTitle(room = room, topPadding = topPadding)
-        }
-        SessionCard(session = item, onSessionClick = onItemClick)
     }
 }
 
@@ -164,13 +124,13 @@ private fun RoomTitle(
     }
 }
 
+private val SessionTopSpace = 16.dp
+private val SessionGroupSpace = 100.dp
+
 @Composable
 private fun DroidKnightsFooter() {
     Text(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(top = 56.dp, bottom = 80.dp),
+        modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(top = 56.dp, bottom = 80.dp),
         text = stringResource(id = R.string.footer_text),
         style = KnightsTheme.typography.labelMediumR,
         color = Color.LightGray,
