@@ -53,48 +53,30 @@ internal fun LightDarkThemeCard(
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                LightDarkThemeCards(
-                    darkTheme = darkTheme,
-                    onChangeDarkTheme = onChangeDarkTheme,
-                    lightModeTitleRes = lightModeTitleRes,
-                    lightModeImageRes = lightModeImageRes,
-                    darkModeTitleRes = darkModeTitleRes,
-                    darkModeImageRes = darkModeImageRes
-                )
+                Row(
+                    modifier = Modifier
+                        .padding(start = 16.dp, end = 16.dp, bottom = 24.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    val cardModifier = Modifier.weight(1f)
+                    ThemeCard(
+                        selected = darkTheme.not(),
+                        titleRes = lightModeTitleRes,
+                        imageRes = lightModeImageRes,
+                        onClick = { onChangeDarkTheme(false) },
+                        modifier = cardModifier,
+                    )
+                    ThemeCard(
+                        selected = darkTheme,
+                        titleRes = darkModeTitleRes,
+                        imageRes = darkModeImageRes,
+                        onClick = { onChangeDarkTheme(true) },
+                        modifier = cardModifier,
+                    )
+                }
             }
         }
-    }
-}
-
-@Composable
-private fun LightDarkThemeCards(
-    modifier: Modifier = Modifier,
-    darkTheme: Boolean,
-    onChangeDarkTheme: (Boolean) -> Unit,
-    lightModeTitleRes: Int,
-    lightModeImageRes: Int,
-    darkModeTitleRes: Int,
-    darkModeImageRes: Int,
-) {
-    Row(
-        modifier = modifier.padding(start = 16.dp, end = 16.dp, bottom = 24.dp).fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        val cardModifier = Modifier.weight(1f)
-        ThemeCard(
-            selected = darkTheme.not(),
-            titleRes = lightModeTitleRes,
-            imageRes = lightModeImageRes,
-            onClick = { onChangeDarkTheme(false) },
-            modifier = cardModifier,
-        )
-        ThemeCard(
-            selected = darkTheme,
-            titleRes = darkModeTitleRes,
-            imageRes = darkModeImageRes,
-            onClick = { onChangeDarkTheme(true) },
-            modifier = cardModifier,
-        )
     }
 }
 
