@@ -27,7 +27,7 @@ import com.valentinilk.shimmer.shimmer
 @Composable
 internal fun ContributorCard(
     contributor: Contributor?,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     val uriHandler = LocalUriHandler.current
     val shimmerModifier = if (contributor == null) {
