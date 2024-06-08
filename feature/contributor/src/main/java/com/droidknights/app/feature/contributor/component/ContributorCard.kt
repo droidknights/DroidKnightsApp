@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
@@ -86,5 +87,20 @@ internal fun ContributorCard(
                     .then(shimmerModifier)
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun ContributorCardPreview() {
+    KnightsTheme {
+        ContributorCard(
+            contributor = Contributor(
+                id = 1L,
+                name = "Droid Knights",
+                imageUrl = "",
+                githubUrl = ""
+            ),
+        )
     }
 }
