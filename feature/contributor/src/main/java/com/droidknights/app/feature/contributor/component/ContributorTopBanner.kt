@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.Black
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
@@ -74,5 +76,19 @@ private fun ContributorBannerContent(
             color = Neon01,
             modifier = Modifier.padding(top = 6.dp, start = 3.dp),
         )
+    }
+}
+
+@Preview
+@Composable
+private fun ContributorTopBannerPreview() {
+    KnightsTheme {
+        Column {
+            ContributorTopBanner(darkTheme = false)
+
+            Spacer(modifier = Modifier.padding(top = 20.dp))
+
+            ContributorTopBanner(darkTheme = true)
+        }
     }
 }
