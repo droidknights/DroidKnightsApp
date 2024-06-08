@@ -82,6 +82,12 @@ internal class RoomPreviewParameterProvider : PreviewParameterProvider<Room> {
 
 @Preview
 @Composable
+private fun TagChipPreview() {
+    TagChip(Tag("Android"))
+}
+
+@Preview
+@Composable
 fun TrackChipPreview(
     @PreviewParameter(RoomPreviewParameterProvider::class) room: Room,
 ) {
