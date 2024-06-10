@@ -3,6 +3,7 @@ package com.droidknights.app.feature.contributor
 import app.cash.turbine.test
 import com.droidknights.app.core.domain.usecase.GetContributorsUseCase
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.core.model.ContributorGroup
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import io.mockk.coEvery
@@ -34,13 +35,16 @@ internal class ContributorViewModelTest {
     }
 
     companion object {
-        private val fakeContributors = mapOf(
-            2024 to listOf(
-                Contributor(
-                    id = 0L,
-                    name = "test name",
-                    imageUrl = "test image url",
-                    githubUrl = "test github url",
+        private val fakeContributors = listOf(
+            ContributorGroup(
+                year = 2024,
+                contributors = listOf(
+                    Contributor(
+                        id = 0L,
+                        name = "test name",
+                        imageUrl = "test image url",
+                        githubUrl = "test github url",
+                    ),
                 ),
             )
         )
