@@ -7,10 +7,11 @@ import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlin.test.assertIs
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertIs
 
 internal class ContributorViewModelTest {
     @get:Rule
@@ -22,7 +23,7 @@ internal class ContributorViewModelTest {
     @Test
     fun `컨트리뷰터 데이터를 확인할 수 있다`() = runTest {
         // given
-        coEvery { getContributorsUseCase() } returns fakeContributors
+        coEvery { getContributorsUseCase() } returns flowOf(fakeContributors)
         viewModel = ContributorViewModel(getContributorsUseCase)
 
         // when & then
@@ -33,12 +34,14 @@ internal class ContributorViewModelTest {
     }
 
     companion object {
-        private val fakeContributors = listOf(
-            Contributor(
-                id = 0L,
-                name = "test name",
-                imageUrl = "test image url",
-                githubUrl = "test github url",
+        private val fakeContributors = mapOf(
+            2024 to listOf(
+                Contributor(
+                    id = 0L,
+                    name = "test name",
+                    imageUrl = "test image url",
+                    githubUrl = "test github url",
+                ),
             )
         )
     }

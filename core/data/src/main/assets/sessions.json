@@ -19,7 +19,7 @@
         "introduction": "Android & Kotlin GDE로 기여하고 있으며, Stream이라는 미국 회사에서 Lead Android Developer Advocate로 재직 중입니다. skydoves라는 닉네임으로 오픈소스 활동을 즐겨 하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/엄재웅.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -37,7 +37,7 @@
         "introduction": "UI와 사용자 경험에 관심이 많은 개발자 입니다. 최근에는 디자인 시스템 개발에 참여하여 유저 경험 뿐만 아니라 동료의 개발 경험도 개선하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/신현성.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -55,7 +55,7 @@
         "introduction": "코드스피츠를 운영하며 개발과 교육에 관심많은 일인입니다. 소소한 언어덕후로서 코틀린에 많은 흥미를 갖고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/히카맹.png"
       }
-    ]
+    ],
     "tags": [
       "General"
     ],
@@ -78,7 +78,7 @@
         "introduction": "현재 Naver에서 Cafe 앱을 개발하고 있습니다.\nAndroid 개발자로 시작하여 6년정도 하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/최재웅.png"
       }
-    ]
+    ],
     "tags": [
       "General"
     ],
@@ -96,7 +96,7 @@
         "introduction": "현재는 네이버제트에서 제페토 서비스를 좀 더 빠르고 쾌적하게 즐길 수 있게 하기 위한 이런 저런 고민들을 하고 있습니다. 또한 개발 이야기 나누는 것을 좋아해서 GDG Korea Android 운영진으로도 활동하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/배필주.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -126,7 +126,7 @@
         "introduction": "우아한형제들에서 우아한테크코스 모바일 안드로이드 교육 분야를 운영합니다. GDG Korea Android와 드로이드나이츠의 Organizer로 활동하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/김수현.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -144,7 +144,7 @@
         "introduction": "안녕하세요. `안되는 건 없다! 된다고 하게`라는 마음으로 카카오뱅크에서 다양한 도전을 하고 있는 문종락입니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/문종락.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -162,7 +162,7 @@
         "introduction": "채널톡에서 고객과 기업을 이어주는 앱을 개발하고 있습니다. 고객사에서 고객과 손쉽게 채팅할 수 있는 채팅 SDK 뿐만 아니라, 상담사가 고객과 언제든 문의 답변을 할 수 있게끔 채팅 앱을 만들고 관리하고 있습니다.\n말리빈이라는 닉네임으로 교육 분야에서 활동하고 있으며, 가끔은 일상 유튜브 영상을 편집해 올리곤 합니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/윤혁.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -190,7 +190,7 @@
         "introduction": "안드로이드 2.0 시절, 앱 개발자로 안드로이드에 발을 들였습니다. 시간이 꽤 흘러 현재는 순수 개발 일 대신 Google Korea 개발자 관계 팀에서 앱 개발자 분들이 더 좋은 앱을 만들 수 있도록 돕는 일을 하고 있습니다. 개발자 커뮤니티  활동에 관심이 많고, 종종 안드로이드 관련된 내용을 소개하는 발표를 진행하기도 했습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/양찬석.png"
       }
-    ]
+    ],
     "tags": [
       "General"
     ],
@@ -208,7 +208,7 @@
         "introduction": "동료들이 효율적으로 일할 수 있도록 개발 환경에 대해 고민하고 개선하고 있어요.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/김태성.png"
       }
-    ]
+    ],
     "tags": [
       "General"
     ],
@@ -226,7 +226,7 @@
         "introduction": "안녕하세요. 현재 at이라는 스타트업에서 프로덕트 엔지니어로 근무하고 있는 이상훈이라고 합니다. 7년차 안드로이드 개발자이며, 지금은 안드로이드와 iOS 등 모바일 쪽의 개발을 같이 하고 있습니다. 개발할 때 로우 레벨까지 내려가는 것을 좋아하며, 제일 좋아하는 분야는 최적화 분야입니다. 요즘은 Compose에서의 최적화와 KMP, CMP 찍먹을 해보고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/이상훈.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -244,7 +244,7 @@
         "introduction": "LINE Plus에서 안드로이드 개발자 분들의 업무 효율을 높이기 위한 여러가지 업무개선작업을 진행하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/차영호.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -262,7 +262,7 @@
         "introduction": "현재 네이버에서 PRISM Player SDK를 개발하고 있습니다.\nKMP에 푹 빠져있으며, 공유 코드가 늘어날 때마다 흐뭇한 표정을 짓습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/모진섭.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -292,7 +292,7 @@
         "introduction": "현재 컬리에 재직 중이며,\n기존 서비스에 Compose를 적용하고, KPDS(Kurly Product Design System)를 만들어 나가는 과정에서의 경험들을 공유합니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/권대원.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -310,7 +310,7 @@
         "introduction": "요새 운동에 푹빠진 ONE store에서 일하고있는 Android 개발자입니다.\n사용자의 인터렉션에 대해 관심이 많고, 남들에게 공유하는것을 좋아합니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/최우성.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],
@@ -328,7 +328,7 @@
         "introduction": "안녕하세요, 학생 개발자 이현우입니다! 매스프레소(콴다)에서 2년동안 안드로이드 개발자로 재직한 경험이 있습니다. 현재는 GDSC 건국대학교 챕터의 리드를 맡고 있고 Kotlin User Groups Seoul의 오거나이저로 활동하고 있습니다.",
         "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnights2023_App/main/storage/speaker/이현우.png"
       }
-    ]
+    ],
     "tags": [
       "Android"
     ],

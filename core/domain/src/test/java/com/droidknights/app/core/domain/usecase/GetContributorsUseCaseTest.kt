@@ -1,60 +1,53 @@
 package com.droidknights.app.core.domain.usecase
 
 import com.droidknights.app.core.model.Contributor
-import com.droidknights.app.core.model.ContributorWithYears
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.flow.first
 
 internal class GetContributorsUseCaseTest : BehaviorSpec() {
 
     private val useCase: GetContributorsUseCase = GetContributorsUseCase(
-        repository = FakeContributorRepository(contributors, contributorsWithYears)
+        repository = FakeContributorRepository(contributors)
     )
 
     init {
         Given("드로이드나이츠 컨트리뷰터가 존재한다") {
 
             When("드로이드나이츠 컨트리뷰터를 조회한다") {
-                val contributors: List<Contributor> = useCase.invoke()
+                val contributors = useCase.invoke().first()
 
                 Then("올해 드로이드나이츠 컨트리뷰터를 반환한다") {
-                    contributors.size shouldBe 2
+                    contributors shouldBe contributors
                 }
             }
         }
     }
 
     companion object {
-        private val contributors = listOf(
-            Contributor(
-                id = 0L,
-                name = "test name",
-                imageUrl = "test image url",
-                githubUrl = "test github url",
+        private val contributors = mapOf(
+            2023 to listOf(
+                Contributor(
+                    name = "test name",
+                    imageUrl = "test image url",
+                    githubUrl = "test github url",
+                    id = 28249981
+                ),
+                Contributor(
+                    name = "2024 - name",
+                    imageUrl = "test image url",
+                    githubUrl = "test github url",
+                    id = 32327475
+                ),
             ),
-            Contributor(
-                id = 1L,
-                name = "test name1",
-                imageUrl = "test image url1",
-                githubUrl = "test github url1",
+            2024 to listOf(
+                Contributor(
+                    name = "2024 - name",
+                    imageUrl = "test image url",
+                    githubUrl = "test github url",
+                    id = 32327475
+                ),
             ),
-            Contributor(
-                id = 2L,
-                name = "test name2",
-                imageUrl = "test image url2",
-                githubUrl = "test github url2",
-            )
-        )
-
-        private val contributorsWithYears = listOf(
-            ContributorWithYears(
-                id = 1L,
-                listOf(2023, 2024)
-            ),
-            ContributorWithYears(
-                id = 2L,
-                listOf(2023)
-            )
         )
     }
 }
