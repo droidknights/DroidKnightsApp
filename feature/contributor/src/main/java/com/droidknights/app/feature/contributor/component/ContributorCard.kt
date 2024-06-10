@@ -1,5 +1,6 @@
 package com.droidknights.app.feature.contributor.component
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
@@ -27,7 +29,7 @@ import com.valentinilk.shimmer.shimmer
 @Composable
 internal fun ContributorCard(
     contributor: Contributor?,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     val uriHandler = LocalUriHandler.current
     val shimmerModifier = if (contributor == null) {
@@ -86,5 +88,21 @@ internal fun ContributorCard(
                     .then(shimmerModifier)
             )
         }
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContributorCardPreview() {
+    KnightsTheme {
+        ContributorCard(
+            contributor = Contributor(
+                id = 1L,
+                name = "Droid Knights",
+                imageUrl = "",
+                githubUrl = ""
+            ),
+        )
     }
 }

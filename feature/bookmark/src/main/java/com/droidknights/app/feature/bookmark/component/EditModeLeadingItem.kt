@@ -15,13 +15,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.designsystem.theme.White
+import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.feature.bookmark.R
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import kotlinx.collections.immutable.ImmutableSet
+import kotlinx.collections.immutable.persistentSetOf
+import kotlinx.datetime.LocalDateTime
 
 @Composable
 internal fun EditModeLeadingItem(
@@ -55,6 +60,48 @@ internal fun EditModeLeadingItem(
                     color = MaterialTheme.colorScheme.surfaceContainerHigh,
                     shape = CircleShape
                 )
+        )
+    }
+}
+
+private val SampleBookmarkItemUiState = BookmarkItemUiState(
+    index = 0,
+    session = Session(
+        id = "1",
+        title = "Session Title",
+        content = "Compose 성능 최적화를 위한 Stability 마스터하기",
+        speakers = emptyList(),
+        tags = emptyList(),
+        room = Room.TRACK1,
+        startTime = LocalDateTime(2022, 1, 1, 10, 0, 0),
+        endTime = LocalDateTime(2022, 1, 1, 11, 0, 0),
+        isBookmarked = true,
+    ),
+)
+
+private val SampleSelectedSessionIds = persistentSetOf("1", "2", "3")
+private val SampleUnselectedSessionIds = persistentSetOf("-1")
+
+@Preview
+@Composable
+private fun CheckedEditModeLeadingItemPreview() {
+    KnightsTheme {
+        EditModeLeadingItem(
+            itemState = SampleBookmarkItemUiState,
+            selectedSessionIds = SampleSelectedSessionIds,
+            onSelectedItem = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun UncheckedEditModeLeadingItemPreview() {
+    KnightsTheme {
+        EditModeLeadingItem(
+            itemState = SampleBookmarkItemUiState,
+            selectedSessionIds = SampleUnselectedSessionIds,
+            onSelectedItem = {}
         )
     }
 }
