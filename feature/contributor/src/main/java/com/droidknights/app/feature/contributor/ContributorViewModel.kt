@@ -1,6 +1,5 @@
 package com.droidknights.app.feature.contributor
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.usecase.GetContributorsUseCase
@@ -27,7 +26,6 @@ class ContributorViewModel @Inject constructor(
     val uiState: StateFlow<ContributorsUiState> =
         getContributorsUseCase()
             .map {
-                Log.i("TEMP", "map? ${it}")
                 it.toContributorsUiState()
             }
             .catch { throwable ->

@@ -6,6 +6,8 @@ import kotlinx.collections.immutable.toPersistentList
 
 internal fun Map<Int, List<Contributor>>.toContributorsUiState(): ContributorsUiState {
     val newList = mutableListOf<ContributorsUiState.Contributors.Item>()
+
+    // key, value 추가
     forEach { (key, values) ->
         newList.add(
             ContributorsUiState.Contributors.Item.Section(
@@ -23,6 +25,7 @@ internal fun Map<Int, List<Contributor>>.toContributorsUiState(): ContributorsUi
             )
         }
     }
+
     return ContributorsUiState.Contributors(
         contributors = newList.toPersistentList(),
     )
