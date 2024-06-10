@@ -22,17 +22,18 @@ import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.res.rememberPainterResource
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.model.Contributor
 import com.droidknights.app.feature.contributor.R
+import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import com.valentinilk.shimmer.shimmer
 
 @Composable
 internal fun ContributorCard(
-    contributor: Contributor?,
+    contributor: ContributorsUiState.Contributors.Item.User,
     modifier: Modifier = Modifier,
+    showPlaceholder: Boolean,
 ) {
     val uriHandler = LocalUriHandler.current
-    val shimmerModifier = if (contributor == null) {
+    val shimmerModifier = if (showPlaceholder) {
         Modifier
             .clip(RoundedCornerShape(10.dp))
             .shimmer()
@@ -47,8 +48,8 @@ internal fun ContributorCard(
     )
 
     KnightsCard(
-        enabled = contributor?.githubUrl?.isNotEmpty() ?: false,
-        onClick = { uriHandler.openUri(contributor?.githubUrl ?: return@KnightsCard) },
+        enabled = contributor.githubUrl.isNotEmpty(),
+        onClick = { uriHandler.openUri(contributor.githubUrl) },
         modifier = modifier,
     ) {
         Row {
@@ -69,7 +70,7 @@ internal fun ContributorCard(
                     modifier = shimmerModifier
                 )
                 Text(
-                    text = contributor?.name ?: " ".repeat(20),
+                    text = contributor.name,
                     style = KnightsTheme.typography.headlineSmallBL,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier
@@ -79,7 +80,7 @@ internal fun ContributorCard(
             }
 
             NetworkImage(
-                imageUrl = contributor?.imageUrl,
+                imageUrl = contributor.imageUrl,
                 placeholder = placeholder,
                 modifier = Modifier
                     .padding(16.dp)
@@ -97,12 +98,22 @@ internal fun ContributorCard(
 private fun ContributorCardPreview() {
     KnightsTheme {
         ContributorCard(
-            contributor = Contributor(
-                id = 1L,
-                name = "Droid Knights",
-                imageUrl = "",
-                githubUrl = ""
+            contributor = ContributorsUiState.Contributors.Item.User(
+                id = 0L,
+                name = "Contributor1",
+                imageUrl = "https://avatars.githubusercontent.com/u/25101514",
+                githubUrl = "https://github.com/droidknights",
             ),
+            showPlaceholder = true,
+        )
+        ContributorCard(
+            contributor = ContributorsUiState.Contributors.Item.User(
+                id = 0L,
+                name = "Contributor1",
+                imageUrl = "https://avatars.githubusercontent.com/u/25101514",
+                githubUrl = "https://github.com/droidknights",
+            ),
+            showPlaceholder = false,
         )
     }
 }

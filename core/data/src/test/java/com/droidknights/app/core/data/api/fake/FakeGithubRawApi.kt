@@ -16,6 +16,7 @@ internal class FakeGithubRawApi(
         coerceInputValues = true
     },
 ) : GithubRawApi {
+
     private val sponsors = File("src/main/assets/sponsors.json")
     private val sessions = File("src/main/assets/sessions.json")
     private val contributors = File("src/main/assets/contributors.json")

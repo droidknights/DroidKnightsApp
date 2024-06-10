@@ -70,6 +70,11 @@ internal abstract class DataModule {
             @ApplicationContext context: Context,
             json: Json,
         ): AssetsGithubRawApi =
-            AssetsGithubRawApi(context, json)
+            AssetsGithubRawApi(
+                json = json,
+                sponsors = context.assets.open("sponsors.json"),
+                sessions = context.assets.open("sessions.json"),
+                contributors = context.assets.open("contributors.json"),
+            )
     }
 }

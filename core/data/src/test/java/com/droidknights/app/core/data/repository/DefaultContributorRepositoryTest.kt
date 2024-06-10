@@ -4,8 +4,10 @@ import com.droidknights.app.core.data.api.fake.FakeGithubApi
 import com.droidknights.app.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app.core.data.api.model.ContributorResponse
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.core.model.ContributorGroup
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.flow.first
 
 internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
@@ -16,30 +18,63 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
 
     init {
         Given("컨트리뷰터가 존재한다") {
-            val expected = contributors
-
             When("컨트리뷰터를 조회한다") {
-                val contributors: List<Contributor> = repository.getContributors(
-                    owner = "droidknights", name = "app"
-                )
+                val contributorList = repository.flowContributors(
+                    owner = "droidknights",
+                    name = "app",
+                ).first()
                 Then("컨트리뷰터를 반환한다") {
-                    contributors.size shouldBe 1
-                    contributors.all {
-                        it.name == expected[0].name
-                    }
+                    contributorList.size shouldBe 2
+                    contributorList shouldBe listOf(
+                        ContributorGroup(
+                            year = 2024,
+                            contributors = listOf(
+                                Contributor(
+                                    name = "2024 - name",
+                                    imageUrl = "test image url",
+                                    githubUrl = "test github url",
+                                    id = 32327475
+                                ),
+                            ),
+                        ),
+                        ContributorGroup(
+                            year = 2023,
+                            contributors = listOf(
+                                Contributor(
+                                    name = "test name",
+                                    imageUrl = "test image url",
+                                    githubUrl = "test github url",
+                                    id = 28249981
+                                ),
+                                Contributor(
+                                    name = "2024 - name",
+                                    imageUrl = "test image url",
+                                    githubUrl = "test github url",
+                                    id = 32327475
+                                ),
+                            ),
+                        ),
+                    )
                 }
             }
         }
     }
 
     companion object {
+
         private val contributors = listOf(
             ContributorResponse(
                 name = "test name",
                 imageUrl = "test image url",
                 githubUrl = "test github url",
-                id = 0
-            )
+                id = 28249981
+            ),
+            ContributorResponse(
+                name = "2024 - name",
+                imageUrl = "test image url",
+                githubUrl = "test github url",
+                id = 32327475
+            ),
         )
     }
 }

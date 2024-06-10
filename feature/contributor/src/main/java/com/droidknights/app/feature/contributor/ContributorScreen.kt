@@ -21,8 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.component.BottomLogo
-import com.droidknights.app.core.model.Contributor
 import com.droidknights.app.feature.contributor.component.ContributorCard
+import com.droidknights.app.feature.contributor.component.ContributorSection
 import com.droidknights.app.feature.contributor.component.ContributorTopAppBar
 import com.droidknights.app.feature.contributor.component.ContributorTopBanner
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
@@ -93,32 +93,44 @@ private fun ContributorList(
             ContributorsUiState.Loading -> {
                 items(SHIMMERING_ITEM_COUNT) {
                     ContributorCard(
-                        contributor = null,
-                        modifier = Modifier.padding(horizontal = 8.dp)
+                        contributor = ContributorsUiState.Contributors.Item.User.Default,
+                        showPlaceholder = true,
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp)
                     )
                 }
             }
 
             is ContributorsUiState.Contributors -> {
-                items(uiState.contributors) { contributor ->
-                    ContributorCard(
-                        contributor = contributor,
-                        modifier = Modifier.padding(horizontal = 8.dp),
-                    )
+                items(uiState.contributors) { item ->
+                    when (item) {
+                        is ContributorsUiState.Contributors.Item.Section -> {
+                            ContributorSection(
+                                section = item,
+                            )
+                        }
+
+                        is ContributorsUiState.Contributors.Item.User -> {
+                            ContributorCard(
+                                contributor = item,
+                                showPlaceholder = false,
+                                modifier = Modifier
+                                    .padding(horizontal = 8.dp),
+                            )
+                        }
+                    }
                 }
             }
         }
 
         item {
-            Footer(modifier = Modifier.padding(bottom = 16.dp))
+            Box(
+                modifier = Modifier
+                    .padding(bottom = 16.dp)
+            ) {
+                BottomLogo()
+            }
         }
-    }
-}
-
-@Composable
-private fun Footer(modifier: Modifier = Modifier) {
-    Box(modifier = modifier) {
-        BottomLogo()
     }
 }
 
@@ -128,19 +140,24 @@ internal class ContributorPreviewParameterProvider : PreviewParameterProvider<Co
     override val values = sequenceOf(
         ContributorsUiState.Loading,
         ContributorsUiState.Contributors(
-            persistentListOf(
-                Contributor(
-                    0L,
-                    "Contributor1",
-                    "https://avatars.githubusercontent.com/u/25101514",
-                    "https://github.com/droidknights",
+            contributors = persistentListOf(
+                ContributorsUiState.Contributors.Item.Section(
+                    title = "2023",
                 ),
-                Contributor(
-                    1L,
-                    "Contributor2",
-                    "https://avatars.githubusercontent.com/u/25101514",
-
-                    "https://github.com/droidknights",
+                ContributorsUiState.Contributors.Item.User(
+                    id = 0L,
+                    name = "Contributor1",
+                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
+                    githubUrl = "https://github.com/droidknights",
+                ),
+                ContributorsUiState.Contributors.Item.Section(
+                    title = "2024",
+                ),
+                ContributorsUiState.Contributors.Item.User(
+                    id = 1L,
+                    name = "Contributor2",
+                    imageUrl = "https://avatars.githubusercontent.com/u/25101514",
+                    githubUrl = "https://github.com/droidknights",
                 ),
             )
         )

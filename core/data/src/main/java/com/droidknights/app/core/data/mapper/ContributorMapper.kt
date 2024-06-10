@@ -6,7 +6,7 @@ import com.droidknights.app.core.model.Contributor
 internal fun ContributorResponse.toData(): Contributor =
     Contributor(
         id = id,
-        name = this.name,
-        imageUrl = this.imageUrl,
-        githubUrl = this.githubUrl,
+        name = name,
+        imageUrl = imageUrl,
+        githubUrl = githubUrl,
     )
