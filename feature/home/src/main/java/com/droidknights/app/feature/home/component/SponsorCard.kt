@@ -2,7 +2,6 @@ package com.droidknights.app.feature.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,6 +37,7 @@ import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.theme.DuskGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
+import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.core.model.Sponsor
 import com.droidknights.app.feature.home.R
 import com.droidknights.app.feature.home.SponsorsUiStatePreviewParameterProvider
@@ -55,7 +55,9 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
 }
 
 @Composable
-private fun SponsorCardContents(uiState: SponsorsUiState.Sponsors) {
+private fun SponsorCardContents(
+    uiState: SponsorsUiState.Sponsors,
+) {
     KnightsCard {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -89,7 +91,8 @@ private fun SponsorGroup(
     groupedSponsorsByGrade: ImmutableList<List<Sponsor>>,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth().padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxWidth().padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         groupedSponsorsByGrade.forEachIndexed { index, groupedSponsorsByGrade ->
             SponsorGroupRow(
@@ -111,7 +114,9 @@ private fun SponsorGroupRow(
     val uriHandler = LocalUriHandler.current
 
     LazyRow(
-        modifier = modifier, horizontalArrangement = Arrangement.spacedBy(space = 24.dp), userScrollEnabled = false
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(space = 24.dp),
+        userScrollEnabled = false
     ) {
         items(items = sponsors, key = { sponsor ->
             sponsor.name
@@ -135,16 +140,27 @@ private fun SponsorLogo(
     )
 
     Box(
-        modifier = Modifier.padding(horizontal = 1.dp)
+        modifier = Modifier
+            .padding(horizontal = 1.dp)
     ) {
         Surface(
-            modifier = Modifier.size(100.dp).clickable(onClick = onClick), shape = CircleShape, shadowElevation = 3.dp
+            onClick = onClick,
+            shape = CircleShape,
+            color = White,
+            shadowElevation = 3.dp,
+            modifier = Modifier
+                .size(100.dp)
         ) {
             Box(
-                modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxSize()
             ) {
                 NetworkImage(
-                    imageUrl = sponsor.imageUrl, contentScale = ContentScale.FillWidth, modifier = Modifier.size(80.dp)
+                    imageUrl = sponsor.imageUrl,
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier
+                        .size(80.dp)
                 )
             }
         }
