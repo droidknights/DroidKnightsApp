@@ -4,7 +4,7 @@ import com.droidknights.app.core.data.api.GithubApi
 import com.droidknights.app.core.data.api.GithubRawApi
 import com.droidknights.app.core.data.mapper.toData
 import com.droidknights.app.core.data.repository.api.ContributorRepository
-import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.core.model.ContributorGroup
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
@@ -16,7 +16,7 @@ internal class DefaultContributorRepository @Inject constructor(
     private val githubRawApi: GithubRawApi
 ) : ContributorRepository {
 
-    override fun flowContributors(owner: String, name: String): Flow<Map<Int, List<Contributor>>> =
+    override fun flowContributors(owner: String, name: String): Flow<List<ContributorGroup>> =
         combine(
             flow {
                 emit(githubApi.getContributors(owner, name))
@@ -47,6 +47,12 @@ internal class DefaultContributorRepository @Inject constructor(
             // map1의 각 키에 해당하는 데이터 리스트 추출 및 Data 객체로 변환
             yearMap.mapValues { year ->
                 year.value.mapNotNull { id -> resultMap[id] }
+            }
+            yearMap.map { year ->
+                ContributorGroup(
+                    year = year.key,
+                    contributors = year.value.mapNotNull { id -> resultMap[id] },
+                )
             }
         }
 }

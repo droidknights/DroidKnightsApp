@@ -4,6 +4,7 @@ import com.droidknights.app.core.data.api.fake.FakeGithubApi
 import com.droidknights.app.core.data.api.fake.FakeGithubRawApi
 import com.droidknights.app.core.data.api.model.ContributorResponse
 import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.core.model.ContributorGroup
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.first
@@ -24,27 +25,33 @@ internal class DefaultContributorRepositoryTest : BehaviorSpec() {
                 ).first()
                 Then("컨트리뷰터를 반환한다") {
                     contributorList.size shouldBe 2
-                    contributorList shouldBe mapOf(
-                        2024 to listOf(
-                            Contributor(
-                                name = "2024 - name",
-                                imageUrl = "test image url",
-                                githubUrl = "test github url",
-                                id = 32327475
+                    contributorList shouldBe listOf(
+                        ContributorGroup(
+                            year = 2024,
+                            contributors = listOf(
+                                Contributor(
+                                    name = "2024 - name",
+                                    imageUrl = "test image url",
+                                    githubUrl = "test github url",
+                                    id = 32327475
+                                ),
                             ),
                         ),
-                        2023 to listOf(
-                            Contributor(
-                                name = "test name",
-                                imageUrl = "test image url",
-                                githubUrl = "test github url",
-                                id = 28249981
-                            ),
-                            Contributor(
-                                name = "2024 - name",
-                                imageUrl = "test image url",
-                                githubUrl = "test github url",
-                                id = 32327475
+                        ContributorGroup(
+                            year = 2023,
+                            contributors = listOf(
+                                Contributor(
+                                    name = "test name",
+                                    imageUrl = "test image url",
+                                    githubUrl = "test github url",
+                                    id = 28249981
+                                ),
+                                Contributor(
+                                    name = "2024 - name",
+                                    imageUrl = "test image url",
+                                    githubUrl = "test github url",
+                                    id = 32327475
+                                ),
                             ),
                         ),
                     )

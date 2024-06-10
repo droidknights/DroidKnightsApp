@@ -1,6 +1,6 @@
 package com.droidknights.app.core.data.repository.api
 
-import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.core.model.ContributorGroup
 import kotlinx.coroutines.flow.Flow
 
 interface ContributorRepository {
@@ -8,5 +8,5 @@ interface ContributorRepository {
     fun flowContributors(
         owner: String,
         name: String,
-    ): Flow<Map<Int, List<Contributor>>>
+    ): Flow<List<ContributorGroup>>
 }
