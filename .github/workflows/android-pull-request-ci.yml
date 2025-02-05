@@ -43,7 +43,7 @@ jobs:
         run: ./gradlew detekt
 
       - name: Upload Event File
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Event File
           path: ${{ github.event_path }}
@@ -53,7 +53,7 @@ jobs:
 
       - name: Upload Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Test Results
           path: "**/test-results/**/*.xml"
