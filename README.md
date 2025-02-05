@@ -26,7 +26,7 @@
   - (권장) Android Studio 설치 시 Embeded 된 JDK (Open JDK)
   - Java 17을 사용하는 JDK (Open JDK, AdoptOpenJDK, GraalVM)
 
-- Kotlin Language : 2.0.0
+- Kotlin Language : 2.1.0
 
 ### Language
 
@@ -41,10 +41,11 @@
   - Lifecycle & ViewModel Compose
   - Navigation
 
-- Kotlin Libraries (Coroutine, DateTime, Serialization)
+- Kotlin Libraries (Coroutines, DateTime, Serialization)
 - Compose
   - Material3
   - Navigation
+  - Glance(Widget)
 
 - Landscapist & Landscapist Coil
 - Dagger & Hilt
