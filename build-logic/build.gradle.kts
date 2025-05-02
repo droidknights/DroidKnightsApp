@@ -23,5 +23,15 @@ gradlePlugin {
             id = "droidknights.kmp"
             implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformPlugin"
         }
+        register("kmpLibrary") {
+            id = "droidknights.kmp"
+            implementationClass =
+                "com.droidknights.app.convention.KotlinMultiplatformConventionPlugin"
+        }
+        register("cmp") {
+            id = "droidknights.compose.multiplatform"
+            implementationClass =
+                "com.droidknights.app.convention.ComposeMultiplatformConventionPlugin"
+        }
     }
 }
