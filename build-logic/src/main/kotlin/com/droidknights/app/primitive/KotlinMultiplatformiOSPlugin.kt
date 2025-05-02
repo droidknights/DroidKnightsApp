@@ -15,7 +15,13 @@ class KotlinMultiplatformiOSPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         extensions.configure<KotlinMultiplatformExtension> {
             when (activeArch) {
-                Arch.ARM -> iosSimulatorArm64()
+                Arch.ARM -> {
+                    iosSimulatorArm64()
+                    iosArm64()
+                }
+                Arch.ARM_SIMULATOR_DEBUG -> {
+                    iosSimulatorArm64()
+                }
                 Arch.X86 -> iosX64()
                 Arch.ALL -> {
                     iosArm64()

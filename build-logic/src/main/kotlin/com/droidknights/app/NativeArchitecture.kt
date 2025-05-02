@@ -4,8 +4,9 @@ import org.gradle.api.Project
 import java.util.Properties
 
 internal enum class Arch(val arch: String?) {
-    ARM("arm64"),
-    X86("x86_64"),
+    ARM("ARM64"),
+    ARM_SIMULATOR_DEBUG("arm64SimulatorDebug"),
+    X86("X86_64"),
     ALL(null);
 
     companion object {
