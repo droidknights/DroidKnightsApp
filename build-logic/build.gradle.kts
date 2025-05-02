@@ -8,3 +8,20 @@ dependencies {
     compileOnly(libs.compose.compiler.gradle.plugin)
     compileOnly(libs.compose.gradle.plugin)
 }
+
+gradlePlugin {
+    plugins {
+        register("kmpIos") {
+            id = "droidknights.kmp.ios"
+            implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformiOSPlugin"
+        }
+        register("kmpAndroid") {
+            id = "droidknights.kmp.android"
+            implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformAndroidPlugin"
+        }
+        register("kmp") {
+            id = "droidknights.kmp"
+            implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformPlugin"
+        }
+    }
+}
