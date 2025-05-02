@@ -1,6 +1,5 @@
 package com.droidknights.app.primitive
 
-import com.droidknights.app.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

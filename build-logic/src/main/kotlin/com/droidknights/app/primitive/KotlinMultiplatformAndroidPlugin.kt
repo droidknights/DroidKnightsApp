@@ -1,6 +1,6 @@
 package com.droidknights.app.primitive
 
-import com.android.build.gradle.LibraryExtension
+import com.droidknights.app.androidExtension
 import com.droidknights.app.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -10,8 +10,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class KotlinMultiplatformAndroidPlugin : Plugin<Project> {
-    override fun apply(target: Project) = with(target) {
-        extensions.configure<LibraryExtension> {
+    override fun apply(target: Project): Unit = with(target) {
+        androidExtension.apply {
             compileSdk = libs.findVersion("android-compileSdk").get().requiredVersion.toInt()
 
             extensions.configure<KotlinMultiplatformExtension> {
@@ -22,8 +22,8 @@ class KotlinMultiplatformAndroidPlugin : Plugin<Project> {
 
             defaultConfig {
                 minSdk = libs.findVersion("android.minSdk").get().requiredVersion.toInt()
-                consumerProguardFiles("consumer-proguard-rules.pro")
             }
+
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_17
                 targetCompatibility = JavaVersion.VERSION_17
