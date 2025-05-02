@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     alias(libs.plugins.androidApplication)
-    id("droidknights.kmp")
+    id("droidknights.kotlin.multiplatform")
     id("droidknights.compose.multiplatform")
 }
 

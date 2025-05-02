@@ -19,16 +19,16 @@ gradlePlugin {
             id = "droidknights.kmp.android"
             implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformAndroidPlugin"
         }
-        register("kmp") {
+        register("kmpPrimitive") {
             id = "droidknights.kmp"
             implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformPlugin"
         }
-        register("kmpLibrary") {
-            id = "droidknights.kmp"
+        register("kmpConvention") {
+            id = "droidknights.kotlin.multiplatform"
             implementationClass =
                 "com.droidknights.app.convention.KotlinMultiplatformConventionPlugin"
         }
-        register("cmp") {
+        register("cmpConvention") {
             id = "droidknights.compose.multiplatform"
             implementationClass =
                 "com.droidknights.app.convention.ComposeMultiplatformConventionPlugin"
