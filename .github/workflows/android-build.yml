@@ -37,5 +37,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-outputs
-          path: app-android/build/outputs
+          path: composeApp/build/outputs
           retention-days: 1

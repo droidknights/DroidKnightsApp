@@ -15,7 +15,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
-permissions: {}
+permissions: { }
 
 jobs:
   build:
@@ -27,15 +27,8 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       - uses: ./.github/actions/setup-java
 
       - run: ./gradlew :composeApp:desktopJar --stacktrace
-
-      - name: Upload build outputs (APKs)
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-outputs
-          path: app-android/build/outputs
-          retention-days: 1
