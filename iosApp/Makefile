@@ -12,7 +12,7 @@ open:
 .PHONY: build-app-module
 build-app-module:
 	cd .. && \
-	./gradlew composeApp:assembleSharedXCFramework --no-configuration-cache
+	./gradlew composeApp:embedAndSignAppleFrameworkForXcode --no-configuration-cache
 
 .PHONY: build-app-debug
 build-app-debug: build-app-module
