@@ -14,7 +14,6 @@ class KotlinMultiPlatformPlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.multiplatform")
             }
             applyDefaultHierarchyTemplate()
-            androidTarget()
 
             sourceSets.apply {
                 commonMain {
