@@ -8,7 +8,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-class ComposeMultiplatformConventionPlugin : Plugin<Project> {
+class ComposeMultiPlatformConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         with(pluginManager) {
             apply(libs.findPlugin("composeMultiplatform").get().get().pluginId)

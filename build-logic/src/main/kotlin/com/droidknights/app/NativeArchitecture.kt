@@ -5,8 +5,8 @@ import java.util.Properties
 
 internal enum class Arch(val arch: String?) {
     ARM("ARM64"),
-    ARM_SIMULATOR_DEBUG("arm64SimulatorDebug"),
-    X86("X86_64"),
+    ARM_SIMULATOR_DEBUG("ARM64SIMULATOR_DEBUG"),
+    X86_64("X86_64"),
     ALL(null);
 
     companion object {

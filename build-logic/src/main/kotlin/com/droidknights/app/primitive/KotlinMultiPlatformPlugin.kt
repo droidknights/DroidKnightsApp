@@ -6,7 +6,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-class KotlinMultiplatformPlugin : Plugin<Project> {
+class KotlinMultiPlatformPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         extensions.configure<KotlinMultiplatformExtension> {
             jvmToolchain(17)

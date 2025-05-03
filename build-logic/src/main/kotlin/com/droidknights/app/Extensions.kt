@@ -21,7 +21,6 @@ internal val Project.applicationExtension: CommonExtension<*, *, *, *, *, *>
 internal val Project.libraryExtension: CommonExtension<*, *, *, *, *, *>
     get() = extensions.getByType<LibraryExtension>()
 
-
 internal val Project.androidExtension: CommonExtension<*, *, *, *, *, *>
     get() = runCatching { libraryExtension }
         .recoverCatching { applicationExtension }

@@ -22,7 +22,7 @@ class KotlinMultiplatformiOSPlugin : Plugin<Project> {
                 Arch.ARM_SIMULATOR_DEBUG -> {
                     iosSimulatorArm64()
                 }
-                Arch.X86 -> iosX64()
+                Arch.X86_64 -> iosX64()
                 Arch.ALL -> {
                     iosArm64()
                     iosX64()

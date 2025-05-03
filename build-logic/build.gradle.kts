@@ -13,25 +13,25 @@ gradlePlugin {
     plugins {
         register("kmpIos") {
             id = "droidknights.kmp.ios"
-            implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformiOSPlugin"
+            implementationClass = "com.droidknights.app.primitive.KotlinMultiPlatformiOSPlugin"
         }
         register("kmpAndroid") {
             id = "droidknights.kmp.android"
-            implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformAndroidPlugin"
+            implementationClass = "com.droidknights.app.primitive.KotlinMultiPlatformAndroidPlugin"
         }
         register("kmpPrimitive") {
             id = "droidknights.kmp"
-            implementationClass = "com.droidknights.app.primitive.KotlinMultiplatformPlugin"
+            implementationClass = "com.droidknights.app.primitive.KotlinMultiPlatformPlugin"
         }
         register("kmpConvention") {
             id = "droidknights.kotlin.multiplatform"
             implementationClass =
-                "com.droidknights.app.convention.KotlinMultiplatformConventionPlugin"
+                "com.droidknights.app.convention.KotlinMultiPlatformConventionPlugin"
         }
         register("cmpConvention") {
             id = "droidknights.compose.multiplatform"
             implementationClass =
-                "com.droidknights.app.convention.ComposeMultiplatformConventionPlugin"
+                "com.droidknights.app.convention.ComposeMultiPlatformConventionPlugin"
         }
     }
 }

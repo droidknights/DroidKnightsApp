@@ -9,7 +9,7 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-class KotlinMultiplatformAndroidPlugin : Plugin<Project> {
+class KotlinMultiPlatformAndroidPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         androidExtension.apply {
             compileSdk = libs.findVersion("android-compileSdk").get().requiredVersion.toInt()
