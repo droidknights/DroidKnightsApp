@@ -1,0 +1,23 @@
+name: iOS x64(Intel) Build
+
+on:
+  push:
+    branches:
+      - develop-2025
+  pull_request:
+
+concurrency:
+  group: ios-build-intel-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-ios:
+    runs-on: macos-13
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-java
+      - name: Set up XCFramework arch filter
+        run: echo "arch=X86_64" >> local.properties
+      - run: make build-app-debug
+        working-directory: iosApp
