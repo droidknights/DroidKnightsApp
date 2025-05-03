@@ -1,4 +1,3 @@
-rootProject.name = "DroidKnights"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -29,6 +28,5 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
-include(":backend")
-include(":shared")
+rootProject.name = "DroidKnights"
+include(":composeApp", ":backend", ":shared")
