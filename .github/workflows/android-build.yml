@@ -1,0 +1,41 @@
+name: Android Build
+# From now in android
+# https://github.com/android/nowinandroid
+
+on:
+  push:
+    branches:
+      - develop-2025
+  pull_request:
+    paths-ignore:
+      - 'iosApp/**'
+      - 'kotlin-js-store'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  build:
+    permissions:
+      contents: read
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - uses: ./.github/actions/setup-java
+
+      - run: ./gradlew :composeApp:assembleDebug --stacktrace
+
+      - name: Upload build outputs (APKs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-outputs
+          path: app-android/build/outputs
+          retention-days: 1
