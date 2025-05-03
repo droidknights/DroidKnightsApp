@@ -1,5 +1,5 @@
-PROJECT_FILE := iosApp/iosApp.xcodeproj
-SCHEME_NAME_APP := DroidKnights
+PROJECT_FILE := iosApp.xcodeproj
+SCHEME_NAME_APP := iosApp
 
 .PHONY: setup
 setup:
@@ -9,13 +9,8 @@ setup:
 open:
 	open $(PROJECT_FILE)
 
-.PHONY: build-app-module
-build-app-module:
-	cd .. && \
-	./gradlew composeApp:embedAndSignAppleFrameworkForXcode --no-configuration-cache
-
 .PHONY: build-app-debug
-build-app-debug: build-app-module
+build-app-debug:
 	set -o pipefail && \
 		xcodebuild -project $(PROJECT_FILE) \
 		-scheme $(SCHEME_NAME_APP) \
@@ -26,14 +21,15 @@ build-app-debug: build-app-module
 		clean build
 
 .PHONY: build-app-debug-x64
-build-app-debug: build-app-module
+build-app-debug-x64:
 	set -o pipefail && \
 		xcodebuild -project $(PROJECT_FILE) \
 		-scheme $(SCHEME_NAME_APP) \
 		-configuration Debug \
 		-skipPackagePluginValidation \
 		-skipMacroValidation \
-		-destination "platform=iOS Simulator,name=iPhone 14 Pro,OS=16.4" \
+		-allowProvisioningUpdates \
+		-destination "platform=iOS Simulator,name=iPhone 15 Pro,OS=17.2" \
 		clean build
 
 # Gradle Utility
