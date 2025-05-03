@@ -1,5 +1,6 @@
 package com.droidknights.app.primitive
 
+import com.droidknights.app.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -11,7 +12,7 @@ class KotlinMultiPlatformPlugin : Plugin<Project> {
         extensions.configure<KotlinMultiplatformExtension> {
             jvmToolchain(17)
             with(pluginManager) {
-                apply("org.jetbrains.kotlin.multiplatform")
+                apply(libs.findPlugin("kotlinMultiplatform").get().get().pluginId)
             }
             applyDefaultHierarchyTemplate()
 
