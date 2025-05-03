@@ -20,16 +20,11 @@ class KotlinMultiPlatformPlugin : Plugin<Project> {
                 }
             }
 
-            applyDefaultHierarchyTemplate()
-
-            sourceSets.apply {
-                commonMain {
-                    dependencies {
-                        // implementation(libs.findLibrary("coroutines-core").get())
-                        // implementation(libs.findLibrary("kermit").get())
-                    }
-                }
+            compilerOptions {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
             }
+
+            applyDefaultHierarchyTemplate()
             tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinNativeLink>().configureEach {
                 notCompatibleWithConfigurationCache("Configuration cache not supported for a system property read at configuration time")
             }
