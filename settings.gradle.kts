@@ -32,4 +32,5 @@ rootProject.name = "DroidKnights"
 include(":composeApp", ":backend", ":shared")
 
 // core
+include(":core:designsystem")
 include(":core:navigation")
