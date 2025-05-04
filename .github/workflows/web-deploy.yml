@@ -6,9 +6,6 @@ on:
     branches:
       - develop-2025
   workflow_dispatch:
-  pull_request:
-    branches:
-      - develop-2025
 
 jobs:
   # Build job
