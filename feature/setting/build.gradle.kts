@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
     alias(libs.plugins.androidLibrary)
     id("droidknights.kotlin.multiplatform")
-    alias(libs.plugins.kotlinxSerialization)
+    id("droidknights.compose.multiplatform")
 }
 
 kotlin {
@@ -29,9 +29,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.kotlinx.serialization.json)
+            //
         }
     }
 }
 
-android.namespace = "com.droidknights.app.core.navigation"
+android.namespace = "com.droidknights.app.feature.setting"
