@@ -29,7 +29,10 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //
+            // TODO feature plugin
+            implementation(libs.androidx.navigation.compose)
+            implementation(projects.core.designsystem)
+            implementation(projects.core.navigation)
         }
     }
 }
