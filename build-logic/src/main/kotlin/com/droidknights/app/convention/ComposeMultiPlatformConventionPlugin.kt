@@ -20,9 +20,6 @@ class ComposeMultiPlatformConventionPlugin : Plugin<Project> {
             sourceSets.apply {
                 commonMain {
                     dependencies {
-                        // TODO (임시 해결) Could not resolve androidx.compose.material:material:1.0.0.
-                        implementation(composeDeps.material)
-
                         implementation(composeDeps.runtime)
                         implementation(composeDeps.foundation)
                         implementation(composeDeps.ui)
