@@ -31,4 +31,4 @@ jobs:
       - name: kotlinUpgradeYarnLock
         run: ./gradlew kotlinUpgradeYarnLock
 
-      - run: ./gradlew :composeApp:wasmJsBrowserDistribution --stacktrace
+      - run: ./gradlew :composeApp:buildWebApp --stacktrace
