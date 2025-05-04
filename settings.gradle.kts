@@ -30,3 +30,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "DroidKnights"
 include(":composeApp", ":backend", ":shared")
+
+// core
+include(":core:navigation")
