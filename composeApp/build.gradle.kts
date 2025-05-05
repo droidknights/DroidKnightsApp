@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.registering
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
@@ -98,4 +99,16 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+// From KotlinConf App
+// https://github.com/JetBrains/kotlinconf-app/blob/c81492ee57a8da67390d84ad29f41b08128fe0e1/shared/build.gradle.kts#L193
+val buildWebApp by tasks.registering(Copy::class) {
+    val wasmDist = "wasmJsBrowserDistribution"
+
+    from(tasks.named(wasmDist).get().outputs.files)
+
+    into(layout.buildDirectory.dir("webApp"))
+
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
