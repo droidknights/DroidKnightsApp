@@ -1,3 +1,5 @@
+package com.droidknights.app.core.designsystem.theme
+
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
