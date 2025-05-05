@@ -1,0 +1,35 @@
+name: Comment Desktop CI Artifacts
+
+on:
+  workflow_run:
+    workflows: [ "Compose Desktop(JVM) CI" ]
+    types: [ completed ]
+
+concurrency:
+  group: comment-${{ github.event.workflow_run.id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  comment:
+    # 이전 빌드가 성공했고, 그 빌드가 pull_request 이벤트로 실행된 경우에만 동작
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Post artifact link to PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.event.workflow_run.repository.full_name }}
+          issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          body: |
+            ✅ Compose Desktop(JVM) 빌드가 성공적으로 완료되었습니다!
+            아티팩트(1일 보관):  
+            ${{ github.server_url }}/${{ github.event.workflow_run.repository.full_name }}/actions/runs/${{ github.event.workflow_run.id }}

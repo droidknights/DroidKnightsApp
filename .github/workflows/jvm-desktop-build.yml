@@ -1,28 +1,14 @@
 name: Compose Desktop(JVM) CI
 
 on:
-  # 1) 포크 PR → 자동 빌드만
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - develop-2025
+    types: [ opened, synchronize, reopened ]
+    branches: [ develop-2025 ]
     paths-ignore:
       - 'iosApp/**'
       - 'kotlin-js-store/**'
-
-  # 2) PR 승인 후(관리자 수동 승인) → 코멘트 작성
-  pull_request_target:
-    types: [opened, synchronize, reopened]
-    branches:
-      - develop-2025
-    paths-ignore:
-      - 'iosApp/**'
-      - 'kotlin-js-store/**'
-
-  # 3) develop-2025 브랜치에 푸시(머지 포함) → 빌드 + 3일짜리 아티팩트
   push:
-    branches:
-      - develop-2025
+    branches: [ develop-2025 ]
     paths-ignore:
       - 'iosApp/**'
       - 'kotlin-js-store/**'
@@ -33,20 +19,14 @@ concurrency:
 
 permissions:
   contents: read
-  issues:   write       # PR 코멘트 작성 권한
-  pull-requests: write  # PR 코멘트 작성 권한
 
 jobs:
   build:
-    # pull_request 이벤트와 push 이벤트에서만 실행
-    if: >
-      github.event_name == 'pull_request' ||
-      github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -58,7 +38,7 @@ jobs:
       - name: Build Desktop Jar
         run: ./gradlew :composeApp:desktopJar --stacktrace
 
-      - name: Upload artifact (PR)
+      - name: Upload artifact for PR
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
@@ -66,31 +46,10 @@ jobs:
           path: composeApp/build/libs/*.jar
           retention-days: 1
 
-      - name: Upload artifact (develop-2025)
+      - name: Upload artifact for develop-2025
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: desktop-jar
           path: composeApp/build/libs/*.jar
           retention-days: 3
-
-  comment:
-    if: github.event_name == 'pull_request_target'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Comment on PR with artifact link
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ✅ Compose Desktop(JVM) 빌드가 완료되었습니다!
-            아티팩트 다운로드 (1일 보관):  
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
