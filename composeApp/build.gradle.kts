@@ -50,10 +50,9 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(projects.core.designsystem)
-            implementation(projects.shared)
+
+            implementation(projects.feature.main)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
