@@ -63,23 +63,41 @@ private fun DevelopScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button("Bookmark") {
-            navController.navigateBookmark()
-        }
-        Button("Contributor") {
-            navController.navigateContributor()
-        }
-        Button("Home") {
-            navController.navigateHome()
-        }
-        Button("Session List") {
-            navController.navigateSession()
-        }
-        Button("Session Detail") {
-            navController.navigateSessionDetail("sample:123")
-        }
-        Button("Setting") {
-            navController.navigateSetting()
-        }
+        Button(
+            text = "Bookmark",
+            onClick = {
+                navController.navigateBookmark()
+            }
+        )
+        Button(
+            text = "Contributor",
+            onClick = {
+                navController.navigateContributor()
+            }
+        )
+        Button(
+            text = "Home",
+            onClick = {
+                navController.navigateHome()
+            }
+        )
+        Button(
+            text = "Session List",
+            onClick = {
+                navController.navigateSession()
+            }
+        )
+        Button(
+            text = "Session Detail",
+            onClick = {
+                navController.navigateSessionDetail("sample:123")
+            }
+        )
+        Button(
+            text = "Setting",
+            onClick = {
+                navController.navigateSetting()
+            }
+        )
     }
 }
