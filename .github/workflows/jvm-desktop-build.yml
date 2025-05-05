@@ -1,12 +1,25 @@
 name: Compose Desktop(JVM) CI
 
 on:
+  # 1) 포크 PR → 자동 빌드만
   pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - develop-2025
     paths-ignore:
       - 'iosApp/**'
       - 'kotlin-js-store/**'
+
+  # 2) PR 승인 후(관리자 수동 승인) → 코멘트 작성
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    branches:
+      - develop-2025
+    paths-ignore:
+      - 'iosApp/**'
+      - 'kotlin-js-store/**'
+
+  # 3) develop-2025 브랜치에 푸시(머지 포함) → 빌드 + 3일짜리 아티팩트
   push:
     branches:
       - develop-2025
@@ -20,16 +33,24 @@ concurrency:
 
 permissions:
   contents: read
-  issues: write    # PR 댓글을 달기 위해 필요
+  issues:   write       # PR 코멘트 작성 권한
+  pull-requests: write  # PR 코멘트 작성 권한
 
 jobs:
-  build-desktop:
+  build:
+    # pull_request 이벤트와 push 이벤트에서만 실행
+    if: >
+      github.event_name == 'pull_request' ||
+      github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Setup Java
         uses: ./.github/actions/setup-java
@@ -37,7 +58,6 @@ jobs:
       - name: Build Desktop Jar
         run: ./gradlew :composeApp:desktopJar --stacktrace
 
-      # PR 빌드 아티팩트 업로드 (1일 보관)
       - name: Upload artifact (PR)
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
@@ -46,20 +66,6 @@ jobs:
           path: composeApp/build/libs/*.jar
           retention-days: 1
 
-      # PR에 댓글로 아티팩트 링크 남기기
-      - name: Comment on PR with artifact link
-        if: github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ✅ DroidKnights 데스크탑 앱의 빌드가 완료되었습니다!  
-            아래 링크를 통해 아티팩트를: 다운로드할 수 있습니다:
-            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-      # develop-2025 머지(또는 직접 푸시) 시 아티팩트 업로드 (3일 보관)
       - name: Upload artifact (develop-2025)
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
@@ -67,3 +73,24 @@ jobs:
           name: desktop-jar
           path: composeApp/build/libs/*.jar
           retention-days: 3
+
+  comment:
+    if: github.event_name == 'pull_request_target'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Comment on PR with artifact link
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ✅ Compose Desktop(JVM) 빌드가 완료되었습니다!
+            아티팩트 다운로드 (1일 보관):  
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
