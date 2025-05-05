@@ -30,3 +30,19 @@ dependencyResolutionManagement {
 
 rootProject.name = "DroidKnights"
 include(":composeApp", ":backend", ":shared")
+
+// core
+include(
+    ":core:designsystem",
+    ":core:navigation"
+)
+
+// feature
+include(
+    ":feature:main",
+    ":feature:home",
+    ":feature:session",
+    ":feature:setting",
+    ":feature:contributor",
+    ":feature:bookmark",
+)
