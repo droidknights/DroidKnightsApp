@@ -20,8 +20,6 @@ kotlin {
             }
         }
 
-    jvm("desktop")
-
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         outputModuleName.set("composeApp")

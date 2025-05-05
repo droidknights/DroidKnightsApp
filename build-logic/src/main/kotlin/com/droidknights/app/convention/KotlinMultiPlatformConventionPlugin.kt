@@ -2,6 +2,7 @@ package com.droidknights.app.convention
 
 import com.droidknights.app.libs
 import com.droidknights.app.primitive.KotlinMultiPlatformAndroidPlugin
+import com.droidknights.app.primitive.KotlinMultiPlatformJvmPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformWasmPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformiOSPlugin
@@ -18,6 +19,7 @@ class KotlinMultiPlatformConventionPlugin : Plugin<Project> {
         apply<KotlinMultiPlatformPlugin>()
         apply<KotlinMultiPlatformAndroidPlugin>()
         apply<KotlinMultiPlatformiOSPlugin>()
+        apply<KotlinMultiPlatformJvmPlugin>()
         apply<KotlinMultiPlatformWasmPlugin>()
     }
 }
