@@ -6,6 +6,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 
 // Light/Dark 모두 컴포넌트 + 화면 추가에 따라 색상 추가해야함
@@ -52,5 +53,6 @@ fun KnightsTheme(
 object KnightsTheme {
     val typography: KnightsTypography
         @Composable
+        @ReadOnlyComposable
         get() = LocalTypography.current
 }
