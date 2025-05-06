@@ -48,3 +48,9 @@ fun KnightsTheme(
         )
     }
 }
+
+object KnightsTheme {
+    val typography: KnightsTypography
+        @Composable
+        get() = LocalTypography.current
+}
