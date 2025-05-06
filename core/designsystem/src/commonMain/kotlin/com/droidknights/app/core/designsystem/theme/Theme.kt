@@ -10,7 +10,7 @@ import androidx.compose.runtime.compositionLocalOf
 
 // Light/Dark 모두 컴포넌트 + 화면 추가에 따라 색상 추가해야함
 private val DarkColorScheme = darkColorScheme(
-    primary = Blue02,
+    primary = Blue01,
     onPrimary = White,
     background = Black,
     surface = Graphite,
@@ -20,7 +20,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Blue01,
+    primary = Blue02,
     onPrimary = White,
     background = PaleGray,
     surface = White,
