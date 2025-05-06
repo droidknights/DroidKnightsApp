@@ -1,32 +1,55 @@
-name: Compose Desktop(JVM) Build
+name: Compose Desktop(JVM) CI
 
 on:
-  push:
-    branches:
-      - develop-2025
   pull_request:
+    types: [ opened, synchronize, reopened ]
+    branches: [ develop-2025 ]
     paths-ignore:
       - 'iosApp/**'
-      - 'kotlin-js-store'
+      - 'kotlin-js-store/**'
+  push:
+    branches: [ develop-2025 ]
+    paths-ignore:
+      - 'iosApp/**'
+      - 'kotlin-js-store/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
-permissions: { }
+permissions:
+  contents: read
 
 jobs:
   build:
-    permissions:
-      contents: read
-
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-      - uses: ./.github/actions/setup-java
+      - name: Setup Java
+        uses: ./.github/actions/setup-java
 
-      - run: ./gradlew :composeApp:desktopJar --stacktrace
+      - name: Build Desktop Jar
+        run: ./gradlew :composeApp:desktopJar --stacktrace
+
+      - name: Upload artifact for PR
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-jar
+          path: composeApp/build/libs/*.jar
+          retention-days: 1
+
+      - name: Upload artifact for develop-2025
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-jar
+          path: composeApp/build/libs/*.jar
+          retention-days: 3
