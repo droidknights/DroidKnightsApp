@@ -6,8 +6,8 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun Scaffold(
-    content: @Composable (PaddingValues) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    content: @Composable (PaddingValues) -> Unit
 ) {
     androidx.compose.material3.Scaffold(
         modifier = modifier,
