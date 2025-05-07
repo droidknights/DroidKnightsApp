@@ -20,7 +20,7 @@ fun Button(
     Surface(
         onClick = onClick,
         modifier = modifier.semantics { role = Role.Button },
-        shape = RoundedCornerShape(50),
+        shape = RoundedCornerShape(percent = 50),
         color = KnightsTheme.colorScheme.primary,
     ) {
         Text(
