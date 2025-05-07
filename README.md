@@ -4,7 +4,17 @@
 
 ## 개발 방향
 
-Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성
+Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성 -> Compose Multiplatform 1.8.0을 체험하고, 논의하는 장이 되었으면 좋겠음
+
+## 개발 환경
+- Android Studio
+  - Meerkat Feature Drop
+  - Narwhal
+- JDK
+  - (권장) Android Studio 설치 시 Embeded 된 JDK
+- Android Gradle Plugin 8.10.0
+- Kotlin 2.1.20
+- Compose Multiplatform 1.8.0
 
 ## Run Configuration
 
