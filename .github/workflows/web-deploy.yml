@@ -4,7 +4,7 @@ name: Publish Wasm App on GitHub Pages
 on:
   push:
     branches:
-      - develop-2025
+      - 2025/compose-multiplatform
   workflow_dispatch:
 
 jobs:

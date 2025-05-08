@@ -3,7 +3,7 @@ name: iOS x64(Intel) Build
 on:
   push:
     branches:
-      - develop-2025
+      - 2025/compose-multiplatform
   pull_request:
 
 concurrency:

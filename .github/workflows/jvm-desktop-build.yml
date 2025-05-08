@@ -3,12 +3,12 @@ name: Compose Desktop(JVM) CI
 on:
   pull_request:
     types: [ opened, synchronize, reopened ]
-    branches: [ develop-2025 ]
+    branches: [ 2025/compose-multiplatform ]
     paths-ignore:
       - 'iosApp/**'
       - 'kotlin-js-store/**'
   push:
-    branches: [ develop-2025 ]
+    branches: [ 2025/compose-multiplatform ]
     paths-ignore:
       - 'iosApp/**'
       - 'kotlin-js-store/**'
@@ -46,7 +46,7 @@ jobs:
           path: composeApp/build/libs/*.jar
           retention-days: 1
 
-      - name: Upload artifact for develop-2025
+      - name: Upload artifact for 2025/compose-multiplatform
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
