@@ -5,7 +5,7 @@ name: Android Build
 on:
   push:
     branches:
-      - develop-2025
+      - 2025/compose-multiplatform
   pull_request:
     paths-ignore:
       - 'iosApp/**'
