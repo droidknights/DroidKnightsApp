@@ -13,17 +13,19 @@ import com.droidknights.app.feature.main.components.MainNavHost
 fun MainScreen(
     modifier: Modifier = Modifier
 ) {
+    val navigator = rememberMainNavigator()
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = KnightsTheme.colorScheme.background
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            MainNavHost()
+            MainNavHost(navigator)
 
             MainBottomBar(
-                visible = true,
-                currentTab = MainTab.HOME,
-                onTabSelected = { },
+                visible = navigator.shouldShowBottomBar(),
+                currentTab = navigator.currentTab,
+                onTabSelected = { navigator.navigate(it) }
             )
         }
     }

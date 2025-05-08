@@ -13,6 +13,7 @@ import com.droidknights.app.core.designsystem.components.Text
 @Composable
 internal fun SessionScreen(
     onBackClick: () -> Unit,
+    onSessionClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -22,5 +23,6 @@ internal fun SessionScreen(
     ) {
         Text("SessionScreen")
         Button(text = "Back", onClick = onBackClick)
+        Button(text = "Session Detail (id = 1234)", onClick = { onSessionClick("1234") })
     }
 }

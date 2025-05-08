@@ -56,6 +56,7 @@ internal fun BoxScope.MainBottomBar(
     ) {
         Surface(
             modifier = modifier
+                .padding(horizontal = 8.dp)
                 .fillMaxWidth()
                 .height(56.dp),
             shape = CircleShape,

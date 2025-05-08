@@ -2,18 +2,23 @@ package com.droidknights.app.feature.home.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.droidknights.app.core.navigation.MainTabRoute
 import com.droidknights.app.feature.home.HomeScreen
 
-fun NavController.navigateHome() {
-    navigate(MainTabRoute.Home)
+fun NavController.navigateHome(navOptions: NavOptions) {
+    navigate(MainTabRoute.Home, navOptions)
 }
 
 fun NavGraphBuilder.homeNavGraph(
-    onBackClick: () -> Unit,
+    onSessionClick: () -> Unit,
+    onContributorClick: () -> Unit,
 ) {
     composable<MainTabRoute.Home> {
-        HomeScreen(onBackClick = onBackClick)
+        HomeScreen(
+            onSessionClick = onSessionClick,
+            onContributorClick = onContributorClick
+        )
     }
 }
