@@ -1,11 +1,12 @@
 package com.droidknights.app.feature.home
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Button
 import com.droidknights.app.core.designsystem.components.Text
 
@@ -14,15 +15,12 @@ internal fun HomeScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    Column(
         modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("HomeScreen")
-            Button(text = "Back", onClick = onBackClick)
-        }
+        Text("HomeScreen")
+        Button(text = "Back", onClick = onBackClick)
     }
 }

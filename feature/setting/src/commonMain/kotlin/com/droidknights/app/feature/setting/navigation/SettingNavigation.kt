@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.navigation
+package com.droidknights.app.feature.setting.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
