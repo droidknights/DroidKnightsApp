@@ -19,9 +19,13 @@ fun NavController.navigateSessionDetail(sessionId: String) {
 
 fun NavGraphBuilder.sessionNavGraph(
     onBackClick: () -> Unit,
+    onSessionClick: (String) -> Unit
 ) {
     composable<SessionRoute> {
-        SessionScreen(onBackClick = onBackClick)
+        SessionScreen(
+            onBackClick = onBackClick,
+            onSessionClick = onSessionClick
+        )
     }
 
     composable<Route.SessionDetail> { navBackStackEntry ->

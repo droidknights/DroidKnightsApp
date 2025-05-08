@@ -8,11 +8,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Button
-import com.droidknights.app.core.designsystem.components.Text
 
 @Composable
 internal fun HomeScreen(
-    onBackClick: () -> Unit,
+    onSessionClick: () -> Unit,
+    onContributorClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -20,7 +20,13 @@ internal fun HomeScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("HomeScreen")
-        Button(text = "Back", onClick = onBackClick)
+        Button(
+            text = "Contributor",
+            onClick = onContributorClick
+        )
+        Button(
+            text = "Session List",
+            onClick = onSessionClick
+        )
     }
 }

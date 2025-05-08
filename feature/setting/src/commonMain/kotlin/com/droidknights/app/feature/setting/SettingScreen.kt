@@ -7,12 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.components.Button
 import com.droidknights.app.core.designsystem.components.Text
 
 @Composable
 internal fun SettingScreen(
-    onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -21,6 +19,5 @@ internal fun SettingScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("SettingScreen")
-        Button(text = "Back", onClick = onBackClick)
     }
 }
