@@ -195,7 +195,7 @@ internal val Typography = KnightsTypography(
     bodySmallR = SansSerifStyle.copy(
         fontSize = 12.sp,
         lineHeight = 16.sp,
-    )
+    ),
 )
 
 val LocalTypography = staticCompositionLocalOf {

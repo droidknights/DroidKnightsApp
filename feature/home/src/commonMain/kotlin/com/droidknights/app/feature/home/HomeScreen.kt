@@ -13,20 +13,20 @@ import com.droidknights.app.core.designsystem.components.Button
 internal fun HomeScreen(
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(
             text = "Contributor",
-            onClick = onContributorClick
+            onClick = onContributorClick,
         )
         Button(
             text = "Session List",
-            onClick = onSessionClick
+            onClick = onSessionClick,
         )
     }
 }

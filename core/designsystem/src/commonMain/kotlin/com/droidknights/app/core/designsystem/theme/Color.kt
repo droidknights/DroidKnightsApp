@@ -28,7 +28,7 @@ data class KnightsColorScheme(
     val onSurface: Color,
     val borderColor: Color,
     val selectedIconColor: Color,
-    val unselectedIconColor: Color
+    val unselectedIconColor: Color,
 ) {
     companion object {
         val lightColorScheme = KnightsColorScheme(
@@ -40,7 +40,7 @@ data class KnightsColorScheme(
             onSurface = Black,
             borderColor = LightGray,
             selectedIconColor = Blue02,
-            unselectedIconColor = LightGray
+            unselectedIconColor = LightGray,
         )
 
         val darkColorScheme = KnightsColorScheme(
@@ -52,7 +52,7 @@ data class KnightsColorScheme(
             onSurface = White,
             borderColor = DarkGray,
             selectedIconColor = Blue01,
-            unselectedIconColor = DarkGray
+            unselectedIconColor = DarkGray,
         )
     }
 }

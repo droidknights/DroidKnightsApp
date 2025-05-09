@@ -1,3 +1,5 @@
+@file:Suppress("Filename")
+
 package com.droidknights.app
 
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +26,7 @@ fun main() {
         KnightsTheme {
             Surface(
                 modifier = Modifier.fillMaxSize(),
-                color = KnightsTheme.colorScheme.background
+                color = KnightsTheme.colorScheme.background,
             ) {
                 if (size.width > WideWidth) {
                     ProjectDescription(
@@ -33,7 +35,7 @@ fun main() {
                         },
                         app = {
                             App()
-                        }
+                        },
                     )
                 } else {
                     App()

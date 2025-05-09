@@ -52,7 +52,7 @@ internal fun BoxScope.MainBottomBar(
             .navigationBarsPadding(),
         visible = visible,
         enter = fadeIn() + slideIn { IntOffset(0, it.height) },
-        exit = fadeOut() + slideOut { IntOffset(0, it.height) }
+        exit = fadeOut() + slideOut { IntOffset(0, it.height) },
     ) {
         Surface(
             modifier = modifier
@@ -60,7 +60,7 @@ internal fun BoxScope.MainBottomBar(
                 .fillMaxWidth()
                 .height(56.dp),
             shape = CircleShape,
-            border = BorderStroke(1.dp, KnightsTheme.colorScheme.borderColor)
+            border = BorderStroke(1.dp, KnightsTheme.colorScheme.borderColor),
         ) {
             Row(
                 modifier = Modifier
@@ -68,7 +68,7 @@ internal fun BoxScope.MainBottomBar(
                     .padding(horizontal = 28.dp)
                     .selectableGroup(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 MainTab.entries.forEach { tab ->
                     MainBottomBarItem(
@@ -84,10 +84,10 @@ internal fun BoxScope.MainBottomBar(
 
 @Composable
 private fun RowScope.MainBottomBarItem(
-    modifier: Modifier = Modifier,
     tab: MainTab,
     selected: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -118,14 +118,14 @@ private fun RowScope.MainBottomBarItem(
 private fun MainBottomBarPreview() {
     KnightsTheme {
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {
             var show by remember { mutableStateOf(true) }
 
             Button(
                 text = "show/hide",
                 onClick = { show = !show },
-                modifier = Modifier.align(Alignment.Center)
+                modifier = Modifier.align(Alignment.Center),
             )
             MainBottomBar(
                 visible = show,

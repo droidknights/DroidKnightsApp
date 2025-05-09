@@ -18,7 +18,7 @@ fun NavGraphBuilder.homeNavGraph(
     composable<MainTabRoute.Home> {
         HomeScreen(
             onSessionClick = onSessionClick,
-            onContributorClick = onContributorClick
+            onContributorClick = onContributorClick,
         )
     }
 }

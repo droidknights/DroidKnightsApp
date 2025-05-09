@@ -25,7 +25,7 @@ fun Icon(
     painter: Painter,
     contentDescription: String?,
     modifier: Modifier = Modifier,
-    tint: Color = LocalContentColor.current
+    tint: Color = LocalContentColor.current,
 ) {
     val colorFilter =
         remember(tint) { if (tint == Color.Unspecified) null else ColorFilter.tint(tint) }
@@ -43,7 +43,7 @@ fun Icon(
             .toolingGraphicsLayer()
             .defaultSizeFor(painter)
             .paint(painter, colorFilter = colorFilter, contentScale = ContentScale.Fit)
-            .then(semantics)
+            .then(semantics),
     )
 }
 
@@ -53,7 +53,7 @@ private fun Modifier.defaultSizeFor(painter: Painter) =
             DefaultIconSizeModifier
         } else {
             Modifier
-        }
+        },
     )
 
 private fun Size.isInfinite() = width.isInfinite() && height.isInfinite()

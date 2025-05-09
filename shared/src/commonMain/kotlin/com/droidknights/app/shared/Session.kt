@@ -23,5 +23,5 @@ data class Session(
     @SerialName("endTime")
     val endTime: LocalDateTime,
     @SerialName("isBookmarked")
-    val isBookmarked: Boolean
+    val isBookmarked: Boolean,
 )

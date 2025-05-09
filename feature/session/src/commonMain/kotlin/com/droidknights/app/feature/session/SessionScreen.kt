@@ -14,12 +14,12 @@ import com.droidknights.app.core.designsystem.components.Text
 internal fun SessionScreen(
     onBackClick: () -> Unit,
     onSessionClick: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("SessionScreen")
         Button(text = "Back", onClick = onBackClick)

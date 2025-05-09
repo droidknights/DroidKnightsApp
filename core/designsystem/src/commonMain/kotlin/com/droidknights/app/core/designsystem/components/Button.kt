@@ -15,7 +15,7 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 fun Button(
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         onClick = onClick,
@@ -26,7 +26,7 @@ fun Button(
         Text(
             text = text,
             style = KnightsTheme.typography.labelLargeM,
-            modifier = Modifier.padding(24.dp, 8.dp)
+            modifier = Modifier.padding(24.dp, 8.dp),
         )
     }
 }
