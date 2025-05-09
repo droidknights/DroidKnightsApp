@@ -26,6 +26,11 @@ Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성 -> Co
 
 ![Run Configuration](docs/image.png)
 
+## Code Formatting
+```
+./gradlew detekt --auto-correct
+```
+
 ### Intel Mac에서 프로젝트 빌드하기
 
 현재 이 프로젝트는 Apple Silicon Mac에서 iOS 앱이 빌드되도록 기본 설정되어 있습니다.
