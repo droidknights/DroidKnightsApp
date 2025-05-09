@@ -1,6 +1,7 @@
 package com.droidknights.app.convention
 
 import com.droidknights.app.libs
+import com.droidknights.app.primitive.DetektPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformAndroidPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformJvmPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformPlugin
@@ -21,5 +22,6 @@ class KotlinMultiPlatformConventionPlugin : Plugin<Project> {
         apply<KotlinMultiPlatformiOSPlugin>()
         apply<KotlinMultiPlatformJvmPlugin>()
         apply<KotlinMultiPlatformWasmPlugin>()
+        apply<DetektPlugin>()
     }
 }
