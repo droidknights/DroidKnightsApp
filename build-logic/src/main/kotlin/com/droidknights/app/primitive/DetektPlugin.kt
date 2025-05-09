@@ -6,10 +6,12 @@ import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
+import java.io.File
 
 // https://github.com/DroidKaigi/conference-app-2024/blob/main/build-logic/src/main/kotlin/io/github/droidkaigi/confsched/primitive/AndroidGradleDsl.kt#L81
 // setupDetekt
@@ -42,7 +44,25 @@ class DetektPlugin : Plugin<Project> {
                     finalizedBy(reportMerge)
 
                     // 분석 대상 파일 설정
-                    source = project.files("./").asFileTree
+                    // precommit일 때, staged된 파일에 대해서만 detekt 실행
+                    // ref. https://detekt.dev/docs/gettingstarted/git-pre-commit-hook/#only-run-on-staged-files---gradle
+                    source = if (project.hasProperty("precommit")) {
+                        getGitStagedFiles(project.rootDir)
+                            .map { stagedFiles ->
+                                files()
+                                    .apply {
+                                        setFrom(
+                                            *stagedFiles
+                                                .filter { it.startsWith(projectDir) }
+                                                .toTypedArray()
+                                        )
+                                    }
+                                    .asFileTree
+                            }
+                            .get()
+                    } else {
+                        project.files("./").asFileTree
+                    }
 
                     include("**/*.kt")
                     include("**/*.kts")
@@ -62,4 +82,17 @@ class DetektPlugin : Plugin<Project> {
             }
         }
     }
+}
+
+// ref. https://detekt.dev/docs/gettingstarted/git-pre-commit-hook/#only-run-on-staged-files---gradle
+private fun Project.getGitStagedFiles(rootDir: File): Provider<List<File>> {
+    return providers.exec {
+        commandLine("git", "--no-pager", "diff", "--name-only", "--cached")
+    }.standardOutput.asText
+        .map { outputText ->
+            outputText.trim()
+                .split("\n")
+                .filter { it.isNotBlank() }
+                .map { File(rootDir, it) }
+        }
 }
