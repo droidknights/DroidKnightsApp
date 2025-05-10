@@ -26,10 +26,11 @@ internal fun HomeScreen(
 ) {
     Column(
         modifier = modifier
-            .verticalScroll(rememberScrollState())
             .systemBarsPadding()
+            .verticalScroll(rememberScrollState())
             .fillMaxSize()
-            .padding(8.dp),
+            .padding(8.dp)
+            .padding(bottom = 64.dp), // MainBottomBar 56(높이) + 8(하단 패딩)
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         HomeSessionCard(
