@@ -29,6 +29,9 @@ naming:
   # ref. https://detekt.dev/docs/introduction/compose/#toplevelpropertynaming-for-compose
   TopLevelPropertyNaming:
     constantPattern: '[A-Z][_A-Za-z0-9]*'
+  # multiplatform에 적합하지 않은 룰
+  MatchingDeclarationName:
+    active: false
 
 # https://github.com/DroidKaigi/conference-app-2024/blob/main/config/detekt/detekt.yml#L35
 style:

@@ -3,11 +3,20 @@ package com.droidknights.app.feature.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.components.Button
+import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.feature.home.components.HomeContributorCard
+import com.droidknights.app.feature.home.components.HomeMapCard
+import com.droidknights.app.feature.home.components.HomeSessionCard
+import com.droidknights.app.feature.home.components.HomeSponsorCard
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun HomeScreen(
@@ -16,17 +25,39 @@ internal fun HomeScreen(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .systemBarsPadding()
+            .verticalScroll(rememberScrollState())
+            .fillMaxSize()
+            .padding(8.dp)
+            .padding(bottom = 64.dp), // MainBottomBar 56(높이) + 8(하단 패딩)
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Button(
-            text = "Contributor",
-            onClick = onContributorClick,
-        )
-        Button(
-            text = "Session List",
+        HomeSessionCard(
             onClick = onSessionClick,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        HomeContributorCard(
+            onClick = onContributorClick,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        HomeSponsorCard(
+            modifier = Modifier.fillMaxWidth(),
+        )
+        HomeMapCard(
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+}
+
+@Preview
+@Composable
+fun HomeScreenPreview() {
+    KnightsTheme {
+        HomeScreen(
+            onSessionClick = {},
+            onContributorClick = {},
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }
