@@ -11,10 +11,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.components.Button
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.home.components.HomeContributorCard
 import com.droidknights.app.feature.home.components.HomeSessionCard
+import com.droidknights.app.feature.home.components.HomeSponsorCard
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -39,9 +39,8 @@ internal fun HomeScreen(
             onClick = onContributorClick,
             modifier = Modifier.fillMaxWidth(),
         )
-        Button(
-            text = "Contributor",
-            onClick = onContributorClick,
+        HomeSponsorCard(
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
