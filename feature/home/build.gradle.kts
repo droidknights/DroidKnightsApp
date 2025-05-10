@@ -11,6 +11,7 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(projects.core.designsystem)
             implementation(projects.core.navigation)
+            implementation(projects.core.ui.shader)
         }
     }
 }
