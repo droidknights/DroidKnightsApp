@@ -27,7 +27,7 @@ jobs:
           mkdir -p ./pr
           echo '${{ toJson(github.event) }}' > ./pr/event.json
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: pr
