@@ -1,5 +1,6 @@
 package com.droidknights.app.feature.home.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
@@ -33,6 +35,8 @@ fun HomeSessionCard(
         BottomUpGlowBackground {
             Column(
                 modifier = Modifier
+                    .background(Color.Black.copy(alpha = 0.16F))
+                    .fillMaxWidth()
                     .padding(24.dp, 18.dp, 24.dp, 38.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
