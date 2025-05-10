@@ -45,3 +45,15 @@ internal fun HomeScreen(
         )
     }
 }
+
+@Preview
+@Composable
+fun HomeScreenPreview() {
+    KnightsTheme {
+        HomeScreen(
+            onSessionClick = {},
+            onContributorClick = {},
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+}
