@@ -34,7 +34,8 @@ include(":composeApp", ":backend", ":shared")
 // core
 include(
     ":core:designsystem",
-    ":core:navigation"
+    ":core:navigation",
+    ":core:ui:shader"
 )
 
 // feature
