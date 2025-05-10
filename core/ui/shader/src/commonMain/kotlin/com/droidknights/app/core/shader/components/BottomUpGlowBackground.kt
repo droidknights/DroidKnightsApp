@@ -1,9 +1,11 @@
 package com.droidknights.app.core.shader.components
 
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.droidknights.app.core.shader.Shader
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun BottomUpGlowBackground(
@@ -61,4 +63,12 @@ half4 main(float2 fragCoord) {
     return half4(color, 1.0);
 }
         """.trimIndent()
+}
+
+@Preview
+@Composable
+fun BottomUpGlowBackgroundPreview() {
+    BottomUpGlowBackground(
+        modifier = Modifier.fillMaxSize(),
+    ) {}
 }
