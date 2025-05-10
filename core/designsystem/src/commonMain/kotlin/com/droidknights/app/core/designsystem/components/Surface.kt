@@ -35,24 +35,24 @@ fun Surface(
     contentColor: Color = contentColorFor(color),
     shadowElevation: Dp = 0.dp,
     border: BorderStroke? = null,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(LocalContentColor provides contentColor) {
         Box(
             modifier =
-                modifier
-                    .surface(
-                        shape = shape,
-                        backgroundColor = color,
-                        border = border,
-                        shadowElevation = with(LocalDensity.current) { shadowElevation.toPx() }
-                    )
-                    .semantics(mergeDescendants = false) {
-                        @Suppress("DEPRECATION")
-                        isContainer = true
-                    }
-                    .pointerInput(Unit) {},
-            propagateMinConstraints = true
+            modifier
+                .surface(
+                    shape = shape,
+                    backgroundColor = color,
+                    border = border,
+                    shadowElevation = with(LocalDensity.current) { shadowElevation.toPx() },
+                )
+                .semantics(mergeDescendants = false) {
+                    @Suppress("DEPRECATION")
+                    isContainer = true
+                }
+                .pointerInput(Unit) {},
+            propagateMinConstraints = true,
         ) {
             content()
         }
@@ -70,29 +70,28 @@ fun Surface(
     contentColor: Color = contentColorFor(color),
     shadowElevation: Dp = 0.dp,
     border: BorderStroke? = null,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(LocalContentColor provides contentColor) {
         Box(
             modifier =
-                modifier
-                    .surface(
-                        shape = shape,
-                        backgroundColor = color,
-                        border = border,
-                        shadowElevation = with(LocalDensity.current) { shadowElevation.toPx() }
-                    )
-                    .clickable(
-                        enabled = enabled,
-                        onClick = onClick
-                    ),
-            propagateMinConstraints = true
+            modifier
+                .surface(
+                    shape = shape,
+                    backgroundColor = color,
+                    border = border,
+                    shadowElevation = with(LocalDensity.current) { shadowElevation.toPx() },
+                )
+                .clickable(
+                    enabled = enabled,
+                    onClick = onClick,
+                ),
+            propagateMinConstraints = true,
         ) {
             content()
         }
     }
 }
-
 
 @Stable
 private fun Modifier.surface(
@@ -106,11 +105,11 @@ private fun Modifier.surface(
             Modifier.graphicsLayer(
                 shadowElevation = shadowElevation,
                 shape = shape,
-                clip = false
+                clip = false,
             )
         } else {
             Modifier
-        }
+        },
     )
         .then(if (border != null) Modifier.border(border, shape) else Modifier)
         .background(color = backgroundColor, shape = shape)

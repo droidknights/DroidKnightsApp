@@ -5,8 +5,9 @@ plugins {
 dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
-    compileOnly(libs.compose.compiler.gradle.plugin)
-    compileOnly(libs.compose.gradle.plugin)
+    compileOnly(libs.compose.compiler.gradlePlugin)
+    compileOnly(libs.compose.gradlePlugin)
+    compileOnly(libs.detekt.gradlePlugin)
 }
 
 gradlePlugin {
@@ -22,6 +23,10 @@ gradlePlugin {
         register("kmpPrimitive") {
             id = "droidknights.kmp"
             implementationClass = "com.droidknights.app.primitive.KotlinMultiPlatformPlugin"
+        }
+        register("detekt") {
+            id = "droidknights.verify.detekt"
+            implementationClass = "com.droidknights.app.primitive.DetektPlugin"
         }
         register("kmpConvention") {
             id = "droidknights.kotlin.multiplatform"

@@ -24,7 +24,7 @@ fun KnightsTheme(
         },
         LocalIndication provides ripple(),
         LocalTypography provides Typography,
-        content = content
+        content = content,
     )
 }
 

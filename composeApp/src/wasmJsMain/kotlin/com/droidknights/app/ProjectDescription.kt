@@ -38,7 +38,7 @@ import org.jetbrains.compose.resources.painterResource
 fun ProjectDescription(
     onGithubClick: () -> Unit,
     modifier: Modifier = Modifier,
-    app: @Composable () -> Unit
+    app: @Composable () -> Unit,
 ) {
     Row(modifier = modifier.fillMaxSize()) {
         Column(
@@ -46,19 +46,19 @@ fun ProjectDescription(
                 .weight(1F)
                 .fillMaxHeight()
                 .padding(40.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text("Droid Knights 2025 APP (TBD)", style = KnightsTheme.typography.displayLargeR)
             Text(
                 "by Compose Multiplatform",
-                style = KnightsTheme.typography.displaySmallR
+                style = KnightsTheme.typography.displaySmallR,
             )
             Icon(
                 painter = painterResource(Res.drawable.ic_github),
                 contentDescription = null,
                 modifier = Modifier
                     .clip(CircleShape)
-                    .clickable(onClick = onGithubClick)
+                    .clickable(onClick = onGithubClick),
             )
         }
         // 스마트폰 프레임
@@ -67,7 +67,7 @@ fun ProjectDescription(
                 .padding(40.dp)
                 .width(360.dp)
                 .fillMaxHeight()
-                .border(4.dp, KnightsTheme.colorScheme.borderColor, RoundedCornerShape(24.dp))
+                .border(4.dp, KnightsTheme.colorScheme.borderColor, RoundedCornerShape(24.dp)),
         ) {
             val systemContentColor = LocalContentColor.current.copy(alpha = 0.6F)
             // 상태바
@@ -83,27 +83,27 @@ fun ProjectDescription(
                     contentDescription = null,
                     modifier = Modifier
                         .size(32.dp)
-                        .align(Alignment.Center)
+                        .align(Alignment.Center),
                 )
                 // 상태 아이콘
                 Row(
                     modifier = Modifier.padding(end = 16.dp)
-                        .align(Alignment.CenterEnd)
+                        .align(Alignment.CenterEnd),
                 ) {
                     Icon(
                         painter = painterResource(Res.drawable.ic_wifi),
                         contentDescription = null,
-                        tint = systemContentColor
+                        tint = systemContentColor,
                     )
                     Icon(
                         painter = painterResource(Res.drawable.ic_signal),
                         contentDescription = null,
-                        tint = systemContentColor
+                        tint = systemContentColor,
                     )
                     Icon(
                         painter = painterResource(Res.drawable.ic_battery),
                         contentDescription = null,
-                        tint = systemContentColor
+                        tint = systemContentColor,
                     )
                 }
             }
@@ -111,7 +111,7 @@ fun ProjectDescription(
             Box(
                 modifier = Modifier
                     .padding(top = 40.dp, bottom = 20.dp)
-                    .fillMaxSize()
+                    .fillMaxSize(),
             ) {
                 app()
             }
@@ -121,7 +121,7 @@ fun ProjectDescription(
                     .padding(bottom = 8.dp)
                     .size(72.dp, 2.dp)
                     .background(systemContentColor, CircleShape)
-                    .align(Alignment.BottomCenter)
+                    .align(Alignment.BottomCenter),
             )
         }
     }

@@ -13,7 +13,7 @@ fun Text(
     text: String,
     modifier: Modifier = Modifier,
     style: TextStyle = TextStyle.Default,
-    color: Color = Color.Unspecified
+    color: Color = Color.Unspecified,
 ) {
     val textColor = color.takeOrElse { style.color.takeOrElse { LocalContentColor.current } }
 
@@ -21,7 +21,7 @@ fun Text(
         text = text,
         modifier = modifier,
         style = style.merge(
-            color = textColor
-        )
+            color = textColor,
+        ),
     )
 }

@@ -1,0 +1,145 @@
+complexity:
+  active: true
+  # Composable 함수 파라미터 수 늘리기
+  # ref. https://detekt.dev/docs/introduction/compose/#longparameterlist-for-compose
+  LongParameterList:
+    functionThreshold: 20
+  # Composable 함수 크기를 제한하기
+  LongMethod:
+    active: true
+    threshold: 400
+  # Composable Preview는 복잡성을 키우지 않으니 무시
+  # ref. https://detekt.dev/docs/introduction/compose/#toomanyfunctions-for-compose
+  TooManyFunctions:
+    ignoreAnnotated:
+      - 'Preview'
+
+coroutines:
+  active: true
+
+naming:
+  # 1. 특정 이름의 함수 허용 (ios - MainViewController)
+  # 2. @Composable 어노테이션 붙어 있는 경우 룰 무시
+  # ref. https://detekt.dev/docs/introduction/compose/#functionnaming-for-compose
+  FunctionNaming:
+    functionPattern: '^[a-z][a-zA-Z0-9]*$|^MainViewController$'
+    ignoreAnnotated:
+      - 'Composable'
+  # Composable에서 PascalCase top-level 상수도 허용
+  # ref. https://detekt.dev/docs/introduction/compose/#toplevelpropertynaming-for-compose
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][_A-Za-z0-9]*'
+
+# https://github.com/DroidKaigi/conference-app-2024/blob/main/config/detekt/detekt.yml#L35
+style:
+  active: true
+  MaxLineLength:
+    active: false
+  MagicNumber:
+    # After installing Compose, it became difficult to control Magic Number, so disabled it.
+    active: false
+  ReturnCount:
+    # Disable the limit on the number of early returns because it seems to be fine
+    active: false
+  ThrowsCount:
+    # Disabled because it seems that there is no limit on the number of throws
+    active: false
+  LoopWithTooManyJumpStatements:
+    # Disabled because it seems that there is no limit on the number of breaks
+    active: false
+  ForbiddenComment:
+    # Disabled because there is no need to delete development comments
+    active: false
+  DestructuringDeclarationWithTooManyEntries:
+    # Disabled because it may be used in Compose's ConstraintLayout#createRefs etc.
+    active: false
+  # Force empty... when representing an empty collection
+  UseEmptyCounterpart:
+    active: true
+  # Enforce the order of properties, methods, companion objects
+  ClassOrdering:
+    active: true
+  # Multi-line if statements force curly braces
+  BracesOnIfStatements:
+    active: true
+  # Multiline for, while... forces curly braces
+  MandatoryBracesLoops:
+    active: true
+  # ref. https://detekt.dev/docs/introduction/compose/#unusedprivatemember-for-compose
+  UnusedPrivateMember:
+    active: true
+    # Disable Compose's Preview function and anything mocked in Test
+    ignoreAnnotated:
+      - 'Preview'
+
+potential-bugs:
+  active: true
+
+formatting:
+  active: true
+  autoCorrect: true
+  MaximumLineLength:
+    active: false
+  ArgumentListWrapping:
+    maxLineLength: 999
+  ParameterListWrapping:
+    maxLineLength: 999
+  # Do not use wildcards
+  NoWildcardImports:
+    active: false
+  # Force TrailingComma at definition
+  TrailingCommaOnDeclarationSite:
+    active: true
+  # Enforce TrailingComma at call sites
+  TrailingCommaOnCallSite:
+    active: true
+  PackageName:
+    active: false
+
+# https://twitter.github.io/compose-rules/detekt/
+TwitterCompose:
+  CompositionLocalAllowlist:
+    active: true
+    allowedCompositionLocals: LocalContentColor, LocalColorScheme, LocalDarkTheme, LocalTypography
+    # You can optionally define a list of CompositionLocals that are allowed here
+    # allowedCompositionLocals: LocalSomething,LocalSomethingElse
+  CompositionLocalNaming:
+    active: true
+  ContentEmitterReturningValues:
+    active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
+  ModifierComposable:
+    active: true
+  ModifierMissing:
+    active: true
+  ModifierReused:
+    active: true
+  ModifierWithoutDefault:
+    active: true
+  MultipleEmitters:
+    active: true
+    # You can optionally add your own composables here
+    # contentEmitters: MyComposable,MyOtherComposable
+  MutableParams:
+    active: true
+  ComposableNaming:
+    active: true
+    # You can optionally disable the checks in this rule for regex matches against the composable name (e.g. molecule presenters)
+    # allowedComposableFunctionNames: .*Presenter,.*MoleculePresenter
+  ComposableParamOrder:
+    active: true
+  PreviewNaming:
+    active: true
+  PreviewPublic:
+    active: true
+    # You can optionally disable that only previews with @PreviewParameter are flagged
+    # previewPublicOnlyIfParams: false
+  RememberMissing:
+    active: true
+  UnstableCollections:
+    active: true
+  ViewModelForwarding:
+    active: true
+  ViewModelInjection:
+    active: true

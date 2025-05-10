@@ -14,7 +14,7 @@ import com.droidknights.app.feature.setting.navigation.settingNavGraph
 @Composable
 internal fun MainNavHost(
     navigator: MainNavigator,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavHost(
         modifier = modifier.fillMaxSize(),
@@ -28,13 +28,13 @@ internal fun MainNavHost(
         )
         bookmarkNavGraph()
         contributorNavGraph(
-            onBackClick = navigator::popBackStackIfNotHome
+            onBackClick = navigator::popBackStackIfNotHome,
         )
         sessionNavGraph(
             onBackClick = navigator::popBackStackIfNotHome,
             onSessionClick = { sessionId ->
                 navigator.navigateSessionDetail(sessionId)
-            }
+            },
         )
     }
 }

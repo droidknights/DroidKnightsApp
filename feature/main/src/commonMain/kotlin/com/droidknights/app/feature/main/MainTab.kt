@@ -22,13 +22,14 @@ internal enum class MainTab(
     HOME(
         iconResId = Res.drawable.ic_home,
         contentDescription = "홈",
-        MainTabRoute.Home
+        MainTabRoute.Home,
     ),
     BOOKMARK(
         iconResId = Res.drawable.ic_bookmark,
         contentDescription = "북마크",
         MainTabRoute.Bookmark,
-    );
+    ),
+    ;
 
     companion object {
         @Composable

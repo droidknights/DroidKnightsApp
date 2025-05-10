@@ -11,13 +11,13 @@ import com.droidknights.app.feature.main.components.MainNavHost
 
 @Composable
 fun MainScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val navigator = rememberMainNavigator()
 
     Surface(
         modifier = modifier.fillMaxSize(),
-        color = KnightsTheme.colorScheme.background
+        color = KnightsTheme.colorScheme.background,
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             MainNavHost(navigator)
@@ -25,7 +25,7 @@ fun MainScreen(
             MainBottomBar(
                 visible = navigator.shouldShowBottomBar(),
                 currentTab = navigator.currentTab,
-                onTabSelected = { navigator.navigate(it) }
+                onTabSelected = { navigator.navigate(it) },
             )
         }
     }
