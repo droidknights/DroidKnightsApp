@@ -2,8 +2,6 @@ package com.droidknights.app.core.shader.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
@@ -16,23 +14,17 @@ internal fun ShaderBackground(
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit,
 ) {
-    BoxWithConstraints(modifier = modifier) {
-        Box(
-            modifier = Modifier
-                .drawWithCache {
-                    val runtimeEffect = buildEffect(shader).apply {
-                        update(
-                            shader = shader,
-                            width = this@BoxWithConstraints.maxWidth.toPx(),
-                            height = this@BoxWithConstraints.maxHeight.toPx(),
-                        )
-                    }
-                    onDrawBehind {
-                        drawRect(brush = runtimeEffect.build())
-                    }
+    Box(
+        modifier = modifier
+            .drawWithCache {
+                val runtimeEffect = buildEffect(shader)
+                val brush = runtimeEffect.build()
+
+                onDrawBehind {
+                    runtimeEffect.update(shader, size.width, size.height)
+                    drawRect(brush = brush)
                 }
-                .fillMaxSize(),
-            content = content,
-        )
-    }
+            },
+        content = content,
+    )
 }
