@@ -9,7 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.dataApi)
+    implementation(projects.core.data.dataApi)
     implementation(projects.core.model)
 
     implementation(libs.inject)
