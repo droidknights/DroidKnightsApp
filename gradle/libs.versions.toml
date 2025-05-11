@@ -181,6 +181,7 @@ verify-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatt
 verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 oss-licenses-plugin = { group = "com.google.android.gms", name = "oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
+plugin-kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 
 androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidxGlance" }
 androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "androidxGlance" }
@@ -211,3 +212,4 @@ droidknights-android-compose = { id = "droidknights.android.compose", version = 
 droidknights-android-hilt = { id = "droidknights.android.hilt", version = "unspecified" }
 
 droidknights-kotlin-library = { id = "droidknights.kotlin.library", version = "unspecified" }
+droidknights-kotlin-library-serialization = { id = "droidknights.kotlin.library.serialization", version = "unspecified" }
