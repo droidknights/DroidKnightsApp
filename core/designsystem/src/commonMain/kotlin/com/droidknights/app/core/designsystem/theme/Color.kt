@@ -29,6 +29,10 @@ data class KnightsColorScheme(
     val borderColor: Color,
     val selectedIconColor: Color,
     val unselectedIconColor: Color,
+    val darkSurface: Color = Graphite,
+    val onDarkSurface: Color = Color.White,
+    val lightSurface: Color = White,
+    val onLightSurface: Color = Color.Black,
 ) {
     companion object {
         val lightColorScheme = KnightsColorScheme(
@@ -63,6 +67,8 @@ private fun KnightsColorScheme.contentColorFor(backgroundColor: Color): Color =
         primary -> onPrimary
         background -> onBackground
         surface -> onSurface
+        darkSurface -> onDarkSurface
+        lightSurface -> onLightSurface
         else -> Color.Unspecified
     }
 
