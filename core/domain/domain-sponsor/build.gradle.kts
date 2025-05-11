@@ -11,7 +11,6 @@ android {
 dependencies {
     implementation(projects.core.domain.domainSponsorApi)
     implementation(projects.core.data.dataSponsorApi)
-    implementation(projects.core.model)
 
     implementation(libs.inject)
 }

@@ -1,7 +1,7 @@
 package com.droidknights.app.core.domain.session.usecase.fake
 
 import com.droidknights.app.core.data.session.api.SessionRepository
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

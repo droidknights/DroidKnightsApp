@@ -12,7 +12,6 @@ dependencies {
     implementation(projects.core.domain.domainSessionApi)
 
     implementation(projects.core.data.dataSessionApi)
-    implementation(projects.core.model)
 
     implementation(libs.inject)
 }

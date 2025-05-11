@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.model.Room
+import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.ui.RoomText
 import com.droidknights.app.feature.session.R
 import com.droidknights.app.feature.session.model.SessionState

@@ -5,8 +5,8 @@ import com.droidknights.app.core.data.session.api.SessionRepository
 import com.droidknights.app.core.data.session.fake.FakeDroidknightsBuildConfig
 import com.droidknights.app.core.data.session.fake.FakeSessionApi
 import com.droidknights.app.core.data.session.fake.FakeSessionPreferencesDataSource
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.datetime.LocalDateTime

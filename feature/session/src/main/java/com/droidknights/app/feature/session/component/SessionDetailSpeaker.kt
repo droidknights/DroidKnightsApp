@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.NetworkImage
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.model.Speaker
+import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.ui.R
 
 @Composable

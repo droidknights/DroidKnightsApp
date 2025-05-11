@@ -2,7 +2,7 @@ package com.droidknights.app.core.domain.session.usecase
 
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionsUseCase
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject

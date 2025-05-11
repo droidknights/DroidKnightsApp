@@ -2,7 +2,7 @@ package com.droidknights.app.core.domain.contributor.usecase
 
 import com.droidknights.app.core.data.contributor.api.ContributorRepository
 import com.droidknights.app.core.domain.contributor.usecase.api.GetContributorsUseCase
-import com.droidknights.app.core.model.ContributorGroup
+import com.droidknights.app.core.model.contributor.ContributorGroup
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

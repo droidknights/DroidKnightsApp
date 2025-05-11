@@ -28,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.ui.RoomText
 import com.droidknights.app.feature.session.component.SessionCard
 import com.droidknights.app.feature.session.component.SessionTopAppBar

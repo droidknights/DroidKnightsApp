@@ -4,8 +4,8 @@ import app.cash.turbine.test
 import com.droidknights.app.core.domain.session.usecase.api.BookmarkSessionUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetSessionUseCase
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.session.model.SessionDetailUiState
 import io.mockk.coEvery

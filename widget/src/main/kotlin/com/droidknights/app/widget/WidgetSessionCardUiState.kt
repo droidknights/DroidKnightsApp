@@ -1,7 +1,7 @@
 package com.droidknights.app.widget
 
 import androidx.compose.runtime.Immutable
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 
 @Immutable
 data class WidgetSessionCardUiState(

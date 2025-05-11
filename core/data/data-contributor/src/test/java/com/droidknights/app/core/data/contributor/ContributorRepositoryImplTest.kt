@@ -4,8 +4,8 @@ import com.droidknights.app.core.data.contributor.api.fake.FakeDroidknightsBuild
 import com.droidknights.app.core.data.contributor.api.fake.FakeDroidnightsContributorsApi
 import com.droidknights.app.core.data.contributor.api.fake.FakeGithubContributorsApi
 import com.droidknights.app.core.data.contributor.model.ContributorResponse
-import com.droidknights.app.core.model.Contributor
-import com.droidknights.app.core.model.ContributorGroup
+import com.droidknights.app.core.model.contributor.Contributor
+import com.droidknights.app.core.model.contributor.ContributorGroup
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.first

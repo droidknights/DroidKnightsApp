@@ -10,6 +10,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
     implementation(projects.core.designsystem)
+    implementation(projects.core.domain.domainSessionApi)
 }

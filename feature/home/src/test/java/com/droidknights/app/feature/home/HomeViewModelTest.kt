@@ -1,7 +1,7 @@
 package com.droidknights.app.feature.home
 
 import app.cash.turbine.test
-import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.core.model.sponsor.Sponsor
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.home.model.SponsorsUiState
 import io.mockk.coEvery

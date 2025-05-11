@@ -5,7 +5,7 @@ import com.droidknights.app.core.data.contributor.api.ContributorRepository
 import com.droidknights.app.core.data.contributor.api.DroidnightsContributorsApi
 import com.droidknights.app.core.data.contributor.api.GithubContributorsApi
 import com.droidknights.app.core.data.contributor.mapper.toData
-import com.droidknights.app.core.model.ContributorGroup
+import com.droidknights.app.core.model.contributor.ContributorGroup
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow

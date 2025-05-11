@@ -25,6 +25,7 @@ dependencies {
     implementation(projects.widget)
     implementation(projects.core.data.dataContributorApi)
     implementation(projects.core.data.dataSettingsApi)
+    implementation(projects.core.model.modelSession)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

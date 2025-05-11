@@ -38,7 +38,7 @@ import com.droidknights.app.core.designsystem.theme.DuskGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
 import com.droidknights.app.core.designsystem.theme.White
-import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.core.model.sponsor.Sponsor
 import com.droidknights.app.feature.home.R
 import com.droidknights.app.feature.home.SponsorsUiStatePreviewParameterProvider
 import com.droidknights.app.feature.home.model.SponsorsUiState

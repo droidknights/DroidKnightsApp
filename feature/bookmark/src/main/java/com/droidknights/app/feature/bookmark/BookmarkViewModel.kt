@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.usecase.api.DeleteBookmarkedSessionUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionsUseCase
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import com.droidknights.app.feature.bookmark.model.BookmarkUiState
 import dagger.hilt.android.lifecycle.HiltViewModel

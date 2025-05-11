@@ -18,7 +18,7 @@ import androidx.glance.layout.padding
 import androidx.glance.layout.width
 import androidx.glance.text.Text
 import androidx.glance.text.TextDefaults
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import kotlinx.datetime.toJavaLocalDateTime
 
 @Composable

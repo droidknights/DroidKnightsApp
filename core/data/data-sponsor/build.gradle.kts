@@ -11,7 +11,6 @@ setNamespace("core.data.sponsor")
 dependencies {
     implementation(projects.core.data.dataSponsorApi)
 
-    implementation(projects.core.model)
     implementation(projects.core.datastore)
 
     implementation(projects.appConfig.appConfigApi)

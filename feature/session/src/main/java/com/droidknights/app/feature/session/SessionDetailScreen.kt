@@ -31,10 +31,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
-import com.droidknights.app.core.model.Speaker
-import com.droidknights.app.core.model.Tag
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.core.model.session.Speaker
+import com.droidknights.app.core.model.session.Tag
 import com.droidknights.app.feature.session.component.SessionChips
 import com.droidknights.app.feature.session.component.SessionDetailBookmarkStatePopup
 import com.droidknights.app.feature.session.component.SessionDetailSpeaker

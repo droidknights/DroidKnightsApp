@@ -1,6 +1,6 @@
 package com.droidknights.app.core.data.session.api
 
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import kotlinx.coroutines.flow.Flow
 
 interface SessionRepository {

@@ -2,7 +2,7 @@ package com.droidknights.app.feature.home.model
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.core.model.sponsor.Sponsor
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 

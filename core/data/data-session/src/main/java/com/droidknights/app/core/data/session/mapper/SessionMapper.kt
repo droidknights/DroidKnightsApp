@@ -3,10 +3,10 @@ package com.droidknights.app.core.data.session.mapper
 import com.droidknights.app.core.data.session.model.RoomResponse
 import com.droidknights.app.core.data.session.model.SessionResponse
 import com.droidknights.app.core.data.session.model.SpeakerResponse
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
-import com.droidknights.app.core.model.Speaker
-import com.droidknights.app.core.model.Tag
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.core.model.session.Speaker
+import com.droidknights.app.core.model.session.Tag
 
 internal fun SessionResponse.toData(): Session =
     Session(
