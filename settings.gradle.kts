@@ -46,8 +46,6 @@ include(
     ":core:network:network",
     ":core:network:network-api",
     ":core:designsystem",
-    ":core:data",
-    ":core:data-api",
     ":core:domain",
     ":core:navigation",
     ":core:model",
@@ -55,6 +53,12 @@ include(
     ":core:ui-test-hilt-manifest",
     ":core:testing",
     ":core:datastore",
+)
+
+// core - data
+include(
+    ":core:data:data",
+    ":core:data:data-api",
 )
 
 // Feature

@@ -11,7 +11,7 @@ setNamespace("core.data")
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.datastore)
-    implementation(projects.core.dataApi)
+    implementation(projects.core.data.dataApi)
 
     implementation(projects.core.network.networkApi)
     implementation(libs.retrofit.core)

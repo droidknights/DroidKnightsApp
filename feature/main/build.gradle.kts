@@ -23,7 +23,7 @@ dependencies {
     debugImplementation(projects.core.uiTestHiltManifest)
 
     implementation(projects.widget)
-    implementation(projects.core.dataApi)
+    implementation(projects.core.data.dataApi)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
