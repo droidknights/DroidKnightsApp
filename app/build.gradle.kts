@@ -36,6 +36,8 @@ android {
 dependencies {
     implementation(projects.core.network.network)
     implementation(projects.core.network.networkApi)
+    implementation(projects.appConfig.appConfig)
+    implementation(projects.appConfig.appConfigApi)
 
     implementation(projects.core.navigation)
     implementation(projects.feature.main)

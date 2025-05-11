@@ -33,6 +33,11 @@ rootProject.name = "DroidKnights"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 
+include(
+    ":app-config:app-config-api",
+    ":app-config:app-config",
+)
+
 // Baseline Profile
 include(":baselineprofile")
 
