@@ -10,9 +10,7 @@ import com.droidknights.app.core.data.repository.DefaultSponsorRepository
 import com.droidknights.app.core.data.repository.api.ContributorRepository
 import com.droidknights.app.core.data.repository.api.SessionRepository
 import com.droidknights.app.core.data.repository.api.SponsorRepository
-import com.droidknights.app.core.datastore.datasource.DefaultSessionPreferencesDataSource
 import com.droidknights.app.core.datastore.datasource.SessionPreferencesDataSource
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,11 +22,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 internal abstract class DataModule {
-
-    @Binds
-    abstract fun bindSessionLocalDataSource(
-        dataSource: DefaultSessionPreferencesDataSource,
-    ): SessionPreferencesDataSource
 
     @InstallIn(SingletonComponent::class)
     @Module
