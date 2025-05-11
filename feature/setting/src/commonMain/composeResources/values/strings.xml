@@ -1,3 +1,6 @@
 <resources>
     <string name="setting_open_source_card_title">오픈소스 라이센스</string>
+    <string name="setting_dark_theme_card_title">설정</string>
+    <string name="setting_dark_theme_card_desc_dark_mode">다크 모드</string>
+    <string name="setting_dark_theme_card_desc_light_mode">라이트 모드</string>
 </resources>
