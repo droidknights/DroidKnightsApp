@@ -38,6 +38,8 @@ include(":baselineprofile")
 
 // core
 include(
+    ":core:network:network",
+    ":core:network:network-api",
     ":core:designsystem",
     ":core:data",
     ":core:data-api",

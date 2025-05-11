@@ -2,12 +2,10 @@ import com.droidknights.app.setNamespace
 
 plugins {
     alias(libs.plugins.droidknights.android.library)
-    id("kotlinx-serialization")
+    alias(libs.plugins.droidknights.kotlin.library.serialization)
 }
 
-android {
-    setNamespace("core.data.api")
-}
+setNamespace("core.data.api")
 
 dependencies {
     implementation(projects.core.model)

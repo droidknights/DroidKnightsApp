@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 internal class DefaultContributorRepository @Inject constructor(
     private val githubApi: GithubApi,
-    private val githubRawApi: GithubRawApi
+    private val githubRawApi: GithubRawApi,
 ) : ContributorRepository {
 
     override fun flowContributors(owner: String, name: String): Flow<List<ContributorGroup>> =

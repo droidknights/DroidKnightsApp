@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
     implementation(libs.verify.detektPlugin)
+    compileOnly(libs.plugin.kotlin.serializationPlugin)
     compileOnly(libs.compose.compiler.gradle.plugin)
 }
 
@@ -59,6 +60,16 @@ gradlePlugin {
         register("kotlinHilt") {
             id = "droidknights.kotlin.hilt"
             implementationClass = "com.droidknights.app.HiltKotlinPlugin"
+        }
+
+        // Kotlin
+        register("kotlinLibrary") {
+            id = "droidknights.kotlin.library"
+            implementationClass = "KotlinLibraryConventionPlugin"
+        }
+        register("kotlinLibrarySerialization") {
+            id = "droidknights.kotlin.library.serialization"
+            implementationClass = "KotlinLibrarySerializationConventionPlugin"
         }
     }
 }

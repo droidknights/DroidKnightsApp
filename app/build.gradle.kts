@@ -34,6 +34,9 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.network.network)
+    implementation(projects.core.network.networkApi)
+
     implementation(projects.core.navigation)
     implementation(projects.feature.main)
     implementation(projects.feature.home)
