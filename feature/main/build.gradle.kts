@@ -24,6 +24,7 @@ dependencies {
 
     implementation(projects.widget)
     implementation(projects.core.data.dataApi)
+    implementation(projects.core.data.dataSettingsApi)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

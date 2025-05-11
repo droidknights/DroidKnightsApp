@@ -46,7 +46,6 @@ include(
     ":core:network:network",
     ":core:network:network-api",
     ":core:designsystem",
-    ":core:domain",
     ":core:navigation",
     ":core:model",
     ":core:ui",
@@ -59,6 +58,13 @@ include(
 include(
     ":core:data:data",
     ":core:data:data-api",
+    ":core:data:data-settings",
+    ":core:data:data-settings-api",
+)
+
+// core - domain
+include(
+    ":core:domain:domain",
 )
 
 // Feature
