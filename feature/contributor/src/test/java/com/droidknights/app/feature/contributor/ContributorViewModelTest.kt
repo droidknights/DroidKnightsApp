@@ -1,7 +1,7 @@
 package com.droidknights.app.feature.contributor
 
 import app.cash.turbine.test
-import com.droidknights.app.core.domain.usecase.GetContributorsUseCase
+import com.droidknights.app.core.domain.contributor.usecase.api.GetContributorsUseCase
 import com.droidknights.app.core.model.Contributor
 import com.droidknights.app.core.model.ContributorGroup
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
@@ -18,7 +18,7 @@ internal class ContributorViewModelTest {
     @get:Rule
     val dispatcherRule = MainDispatcherRule()
 
-    private val getContributorsUseCase: GetContributorsUseCase = mockk()
+    private val getContributorsUseCase = mockk<GetContributorsUseCase>()
     private lateinit var viewModel: ContributorViewModel
 
     @Test

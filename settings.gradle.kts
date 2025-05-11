@@ -56,8 +56,8 @@ include(
 
 // core - data
 include(
-    ":core:data:data",
-    ":core:data:data-api",
+    ":core:data:data-contributor",
+    ":core:data:data-contributor-api",
     ":core:data:data-session",
     ":core:data:data-session-api",
     ":core:data:data-sponsor",
@@ -68,7 +68,8 @@ include(
 
 // core - domain
 include(
-    ":core:domain:domain",
+    ":core:domain:domain-contributor",
+    ":core:domain:domain-contributor-api",
     ":core:domain:domain-session",
     ":core:domain:domain-session-api",
     ":core:domain:domain-sponsor",
