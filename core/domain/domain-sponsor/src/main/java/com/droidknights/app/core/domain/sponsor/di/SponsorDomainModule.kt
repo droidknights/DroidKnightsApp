@@ -1,7 +1,7 @@
 package com.droidknights.app.core.domain.sponsor.di
 
-import com.droidknights.app.core.domain.sponsor.GetSponsorsUseCaseImpl
-import com.droidknights.app.core.domain.sponsor.api.GetSponsorsUseCase
+import com.droidknights.app.core.domain.sponsor.usecase.GetSponsorsUseCaseImpl
+import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

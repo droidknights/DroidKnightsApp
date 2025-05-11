@@ -75,7 +75,6 @@ internal class RoomPreviewParameterProvider : PreviewParameterProvider<Room> {
     override val values = sequenceOf(
         Room.TRACK1,
         Room.TRACK2,
-        Room.TRACK3,
         Room.ETC
     )
 }

@@ -15,5 +15,8 @@ internal class DroidknightsBuildConfigImpl @Inject constructor() : DroidknightsB
         "https://raw.githubusercontent.com/"
 
     override fun sponsorDataUrl(): String =
-        "droidknights/DroidKnightsApp/main/core/data/src/main/assets/sponsors.json"
+        "droidknights/DroidKnightsApp/refs/heads/2025/app/assets/sponsors/sponsors.json"
+
+    override fun sessionsDataUrl(): String =
+        "droidknights/DroidKnightsApp/refs/heads/2025/app/assets/sessions/sessions.json"
 }

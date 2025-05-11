@@ -2,7 +2,7 @@ package com.droidknights.app.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app.core.domain.sponsor.api.GetSponsorsUseCase
+import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
 import com.droidknights.app.feature.home.model.SponsorsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList

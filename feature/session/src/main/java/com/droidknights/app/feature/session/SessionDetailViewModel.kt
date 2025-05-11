@@ -2,9 +2,9 @@ package com.droidknights.app.feature.session
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app.core.domain.usecase.BookmarkSessionUseCase
-import com.droidknights.app.core.domain.usecase.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app.core.domain.usecase.GetSessionUseCase
+import com.droidknights.app.core.domain.session.usecase.api.BookmarkSessionUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetSessionUseCase
 import com.droidknights.app.feature.session.model.SessionDetailEffect
 import com.droidknights.app.feature.session.model.SessionDetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -2,8 +2,8 @@ package com.droidknights.app.feature.session
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app.core.domain.usecase.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app.core.domain.usecase.GetSessionsUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetSessionsUseCase
 import com.droidknights.app.feature.session.model.SessionUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList

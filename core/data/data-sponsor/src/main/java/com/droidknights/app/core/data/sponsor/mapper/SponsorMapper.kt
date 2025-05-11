@@ -1,6 +1,6 @@
 package com.droidknights.app.core.data.sponsor.mapper
 
-import com.droidknights.app.core.data.sponsor.api.model.SponsorResponse
+import com.droidknights.app.core.data.sponsor.model.SponsorResponse
 import com.droidknights.app.core.model.Sponsor
 
 internal fun SponsorResponse.toData(): Sponsor =

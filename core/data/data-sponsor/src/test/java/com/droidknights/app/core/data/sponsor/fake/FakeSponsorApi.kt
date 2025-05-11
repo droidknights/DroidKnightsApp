@@ -1,7 +1,7 @@
 package com.droidknights.app.core.data.sponsor.fake
 
 import com.droidknights.app.core.data.sponsor.api.SponsorApi
-import com.droidknights.app.core.data.sponsor.api.model.SponsorResponse
+import com.droidknights.app.core.data.sponsor.model.SponsorResponse
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream

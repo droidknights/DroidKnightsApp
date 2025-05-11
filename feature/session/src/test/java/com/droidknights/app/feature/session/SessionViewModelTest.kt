@@ -1,20 +1,20 @@
 package com.droidknights.app.feature.session
 
 import app.cash.turbine.test
-import com.droidknights.app.core.domain.usecase.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app.core.domain.usecase.GetSessionsUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetSessionsUseCase
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.session.model.SessionUiState
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertEquals
 
 internal class SessionViewModelTest {
 

@@ -14,7 +14,6 @@ val Room.textRes: Int
         Room.ETC -> R.string.session_room_keynote
         Room.TRACK1 -> R.string.session_room_track_01
         Room.TRACK2 -> R.string.session_room_track_02
-        Room.TRACK3 -> R.string.session_room_track_03
     }
 
 @Composable

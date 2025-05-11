@@ -7,4 +7,6 @@ interface DroidknightsBuildConfig {
     fun userContentUrl(): String = ""
 
     fun sponsorDataUrl(): String = ""
+
+    fun sessionsDataUrl(): String = ""
 }
