@@ -9,8 +9,6 @@ class KotlinLibrarySerializationConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("kotlinx-serialization")
-
-                apply("droidknights.verify.detekt")
             }
 
             dependencies {

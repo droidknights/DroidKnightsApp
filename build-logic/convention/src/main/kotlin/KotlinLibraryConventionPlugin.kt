@@ -9,6 +9,8 @@ class KotlinLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("org.jetbrains.kotlin.jvm")
+
+                apply("droidknights.verify.detekt")
             }
 
             configureKotlinJvm()
