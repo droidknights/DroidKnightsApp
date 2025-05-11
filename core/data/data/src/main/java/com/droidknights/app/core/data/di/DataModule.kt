@@ -2,15 +2,9 @@ package com.droidknights.app.core.data.di
 
 import android.content.Context
 import com.droidknights.app.core.data.api.GithubApi
-import com.droidknights.app.core.data.api.GithubRawApi
 import com.droidknights.app.core.data.api.fake.AssetsGithubRawApi
 import com.droidknights.app.core.data.repository.DefaultContributorRepository
-import com.droidknights.app.core.data.repository.DefaultSessionRepository
-import com.droidknights.app.core.data.repository.DefaultSponsorRepository
 import com.droidknights.app.core.data.repository.api.ContributorRepository
-import com.droidknights.app.core.data.repository.api.SessionRepository
-import com.droidknights.app.core.data.repository.api.SponsorRepository
-import com.droidknights.app.core.datastore.datasource.SessionPreferencesDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,21 +23,6 @@ internal abstract class DataModule {
 
         @Provides
         @Singleton
-        fun provideSponsorRepository(
-            githubRawApi: GithubRawApi,
-        ): SponsorRepository =
-            DefaultSponsorRepository(githubRawApi)
-
-        @Provides
-        @Singleton
-        fun provideSessionRepository(
-            githubRawApi: GithubRawApi,
-            sessionDataSource: SessionPreferencesDataSource,
-        ): SessionRepository =
-            DefaultSessionRepository(githubRawApi, sessionDataSource)
-
-        @Provides
-        @Singleton
         fun provideContributorRepository(
             githubApi: GithubApi,
             githubRawApi: AssetsGithubRawApi,
@@ -58,8 +37,6 @@ internal abstract class DataModule {
         ): AssetsGithubRawApi =
             AssetsGithubRawApi(
                 json = json,
-                sponsors = context.assets.open("sponsors.json"),
-                sessions = context.assets.open("sessions.json"),
                 contributors = context.assets.open("contributors.json"),
             )
     }

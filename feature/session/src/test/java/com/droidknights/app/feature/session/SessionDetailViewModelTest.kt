@@ -1,17 +1,15 @@
 package com.droidknights.app.feature.session
 
 import app.cash.turbine.test
-import com.droidknights.app.core.domain.usecase.BookmarkSessionUseCase
-import com.droidknights.app.core.domain.usecase.GetBookmarkedSessionIdsUseCase
-import com.droidknights.app.core.domain.usecase.GetSessionUseCase
+import com.droidknights.app.core.domain.session.usecase.api.BookmarkSessionUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
+import com.droidknights.app.core.domain.session.usecase.api.GetSessionUseCase
 import com.droidknights.app.core.model.Room
 import com.droidknights.app.core.model.Session
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.session.model.SessionDetailUiState
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlin.test.assertIs
-import kotlin.test.assertTrue
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.update
@@ -20,6 +18,8 @@ import kotlinx.datetime.LocalDateTime
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertIs
+import kotlin.test.assertTrue
 
 class SessionDetailViewModelTest {
     @get:Rule
