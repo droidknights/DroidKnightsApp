@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath(libs.oss.licenses.plugin)
+        classpath(libs.plugin.android.junit5)
     }
 }
 
