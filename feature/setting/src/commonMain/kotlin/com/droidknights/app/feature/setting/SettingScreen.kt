@@ -11,6 +11,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.feature.setting.components.SettingDarkThemeCard
 import com.droidknights.app.feature.setting.components.SettingOpenSourceCard
 
 @Composable
@@ -28,7 +29,12 @@ internal fun SettingScreen(
     ) {
         SettingOpenSourceCard(
             onClick = {
+                // TODO 오픈소스 라이브러리 목록 보여주기
             },
+            modifier = Modifier.fillMaxWidth(),
+        )
+        SettingDarkThemeCard(
+            onDarkThemeChange = {}, // TODO 다크 모드 변경하기
             modifier = Modifier.fillMaxWidth(),
         )
     }
