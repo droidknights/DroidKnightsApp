@@ -11,7 +11,10 @@ internal class DroidknightsBuildConfigImpl @Inject constructor() : DroidknightsB
     override fun isDebug(): Boolean =
         BuildConfig.DEBUG
 
-    override fun userContentUrl(): String =
+    override fun gitHubUrl(): String =
+        "https://api.github.com/"
+
+    override fun userDroidknightsUrl(): String =
         "https://raw.githubusercontent.com/"
 
     override fun sponsorDataUrl(): String =
@@ -19,4 +22,7 @@ internal class DroidknightsBuildConfigImpl @Inject constructor() : DroidknightsB
 
     override fun sessionsDataUrl(): String =
         "droidknights/DroidKnightsApp/refs/heads/2025/app/assets/sessions/sessions.json"
+
+    override fun contributorsDataUrl(): String =
+        "droidknights/DroidKnightsApp/refs/heads/2025/app/assets/contributors.json"
 }

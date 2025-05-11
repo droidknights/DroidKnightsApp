@@ -13,4 +13,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.shimmer)
     implementation(libs.kotlinx.immutable)
+
+    implementation(projects.core.domain.domainContributorApi)
 }

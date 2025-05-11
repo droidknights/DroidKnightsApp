@@ -2,7 +2,7 @@ package com.droidknights.app.feature.contributor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app.core.domain.usecase.GetContributorsUseCase
+import com.droidknights.app.core.domain.contributor.usecase.api.GetContributorsUseCase
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import com.droidknights.app.feature.contributor.model.convert.toContributorsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -21,7 +21,7 @@ internal object ApiModule {
     ): SessionApi =
         droidknightsNetwork
             .create(
-                baseUrl = droidknightsBuildConfig.userContentUrl(),
+                baseUrl = droidknightsBuildConfig.userDroidknightsUrl(),
                 service = SessionApi::class.java,
             )
 }

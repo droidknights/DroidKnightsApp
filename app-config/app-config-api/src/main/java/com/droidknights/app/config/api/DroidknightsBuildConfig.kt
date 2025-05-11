@@ -4,9 +4,13 @@ interface DroidknightsBuildConfig {
 
     fun isDebug(): Boolean = false
 
-    fun userContentUrl(): String = ""
+    fun gitHubUrl(): String = ""
+
+    fun userDroidknightsUrl(): String = ""
 
     fun sponsorDataUrl(): String = ""
 
     fun sessionsDataUrl(): String = ""
+
+    fun contributorsDataUrl(): String = ""
 }

@@ -23,9 +23,7 @@ configureRoborazzi()
 
 dependencies {
     implementation(project(":core:model"))
-    implementation(project(":core:data:data-api"))
     implementation(project(":core:designsystem"))
-    implementation(project(":core:domain:domain"))
     implementation(project(":core:navigation"))
     implementation(project(":core:ui"))
 

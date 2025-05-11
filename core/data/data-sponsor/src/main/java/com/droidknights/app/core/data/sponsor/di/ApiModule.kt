@@ -21,7 +21,7 @@ internal object ApiModule {
     ): SponsorApi =
         droidknightsNetwork
             .create(
-                baseUrl = droidknightsBuildConfig.userContentUrl(),
+                baseUrl = droidknightsBuildConfig.userDroidknightsUrl(),
                 service = SponsorApi::class.java,
             )
 }
