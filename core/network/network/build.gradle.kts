@@ -10,6 +10,7 @@ setNamespace("core.network")
 
 dependencies {
     implementation(projects.core.network.networkApi)
+    implementation(projects.appConfig.appConfigApi)
 
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)

@@ -11,6 +11,14 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
+fun Project.configureBuildConfig() {
+    androidExtension.apply {
+        buildFeatures {
+            buildConfig = true
+        }
+    }
+}
+
 /**
  * https://github.com/android/nowinandroid/blob/main/build-logic/convention/src/main/kotlin/com/google/samples/apps/nowinandroid/KotlinAndroid.kt
  */
@@ -45,6 +53,9 @@ internal fun Project.configureKotlinAndroid() {
             unitTests {
                 isIncludeAndroidResources = true
             }
+        }
+        buildFeatures {
+            buildConfig = false
         }
     }
 
