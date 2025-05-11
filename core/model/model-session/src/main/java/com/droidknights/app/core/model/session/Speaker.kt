@@ -1,4 +1,4 @@
-package com.droidknights.app.core.model
+package com.droidknights.app.core.model.session
 
 data class Speaker(
     val name: String,

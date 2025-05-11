@@ -33,10 +33,10 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
 import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.designsystem.theme.Purple01A30
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
-import com.droidknights.app.core.model.Speaker
-import com.droidknights.app.core.model.Tag
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.core.model.session.Speaker
+import com.droidknights.app.core.model.session.Tag
 import com.droidknights.app.feature.session.R
 import kotlinx.datetime.LocalDateTime
 

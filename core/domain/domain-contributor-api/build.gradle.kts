@@ -9,5 +9,5 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
+    api(projects.core.model.modelContributor)
 }

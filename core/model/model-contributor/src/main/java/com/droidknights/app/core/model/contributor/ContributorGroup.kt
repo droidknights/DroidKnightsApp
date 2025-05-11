@@ -1,4 +1,4 @@
-package com.droidknights.app.core.model
+package com.droidknights.app.core.model.contributor
 
 data class ContributorGroup(
     val year: Int,

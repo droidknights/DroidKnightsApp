@@ -8,5 +8,5 @@ plugins {
 setNamespace("core.data.sponsor.api")
 
 dependencies {
-    implementation(projects.core.model)
+    api(projects.core.model.modelSponsor)
 }

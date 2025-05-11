@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.designsystem.theme.White
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.feature.bookmark.R
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import kotlinx.collections.immutable.ImmutableSet

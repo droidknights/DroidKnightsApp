@@ -5,7 +5,7 @@ import com.droidknights.app.core.data.session.api.SessionApi
 import com.droidknights.app.core.data.session.api.SessionRepository
 import com.droidknights.app.core.data.session.mapper.toData
 import com.droidknights.app.core.datastore.datasource.SessionPreferencesDataSource
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first

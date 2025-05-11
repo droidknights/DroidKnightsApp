@@ -47,11 +47,17 @@ include(
     ":core:network:network-api",
     ":core:designsystem",
     ":core:navigation",
-    ":core:model",
     ":core:ui",
     ":core:ui-test-hilt-manifest",
     ":core:testing",
     ":core:datastore",
+)
+
+// core - model
+include(
+    ":core:model:model-contributor",
+    ":core:model:model-session",
+    ":core:model:model-sponsor",
 )
 
 // core - data

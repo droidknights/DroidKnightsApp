@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.session.SessionDetailScreen
 import com.droidknights.app.feature.session.SessionScreen

@@ -12,7 +12,6 @@ dependencies {
     implementation(projects.core.domain.domainContributorApi)
 
     implementation(projects.core.data.dataContributorApi)
-    implementation(projects.core.model)
 
     implementation(libs.inject)
 }

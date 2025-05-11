@@ -2,8 +2,8 @@ package com.droidknights.app.core.domain.contributor.usecase
 
 import com.droidknights.app.core.domain.contributor.usecase.api.GetContributorsUseCase
 import com.droidknights.app.core.domain.contributor.usecase.fake.FakeContributorRepository
-import com.droidknights.app.core.model.Contributor
-import com.droidknights.app.core.model.ContributorGroup
+import com.droidknights.app.core.model.contributor.Contributor
+import com.droidknights.app.core.model.contributor.ContributorGroup
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.first

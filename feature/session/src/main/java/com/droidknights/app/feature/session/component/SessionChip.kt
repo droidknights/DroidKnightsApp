@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.TextChip
 import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
-import com.droidknights.app.core.model.Tag
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.core.model.session.Tag
 import com.droidknights.app.core.ui.textRes
 import com.droidknights.app.feature.session.R
 import kotlinx.collections.immutable.toPersistentList

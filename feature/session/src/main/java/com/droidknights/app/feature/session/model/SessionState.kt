@@ -13,8 +13,8 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList

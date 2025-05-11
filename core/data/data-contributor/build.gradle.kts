@@ -11,8 +11,6 @@ setNamespace("core.data.contributor")
 dependencies {
     implementation(projects.core.data.dataContributorApi)
 
-    implementation(projects.core.model)
-
     implementation(projects.appConfig.appConfigApi)
 
     implementation(projects.core.network.networkApi)

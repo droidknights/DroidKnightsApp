@@ -2,7 +2,7 @@ package com.droidknights.app.core.domain.sponsor
 
 import com.droidknights.app.core.data.sponsor.api.SponsorRepository
 import com.droidknights.app.core.domain.sponsor.usecase.GetSponsorsUseCaseImpl
-import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.core.model.sponsor.Sponsor
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
