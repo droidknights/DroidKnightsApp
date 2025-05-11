@@ -58,6 +58,8 @@ include(
 include(
     ":core:data:data",
     ":core:data:data-api",
+    ":core:data:data-sponsor",
+    ":core:data:data-sponsor-api",
     ":core:data:data-settings",
     ":core:data:data-settings-api",
 )
@@ -65,6 +67,8 @@ include(
 // core - domain
 include(
     ":core:domain:domain",
+    ":core:domain:domain-sponsor",
+    ":core:domain:domain-sponsor-api",
 )
 
 // Feature

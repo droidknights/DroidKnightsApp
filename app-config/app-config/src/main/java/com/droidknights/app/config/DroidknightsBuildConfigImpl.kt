@@ -10,4 +10,10 @@ internal class DroidknightsBuildConfigImpl @Inject constructor() : DroidknightsB
 
     override fun isDebug(): Boolean =
         BuildConfig.DEBUG
+
+    override fun userContentUrl(): String =
+        "https://raw.githubusercontent.com/"
+
+    override fun sponsorDataUrl(): String =
+        "droidknights/DroidKnightsApp/main/core/data/src/main/assets/sponsors.json"
 }

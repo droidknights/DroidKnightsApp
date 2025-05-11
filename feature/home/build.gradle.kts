@@ -11,4 +11,6 @@ android {
 dependencies {
     implementation(libs.kotlinx.immutable)
     implementation(libs.compose.shimmer)
+
+    implementation(projects.core.domain.domainSponsorApi)
 }

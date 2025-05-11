@@ -6,5 +6,20 @@ data class Sponsor(
     val homepage: String,
     val grade: Grade,
 ) {
-    enum class Grade(val priority: Int) { PLATINUM(0), GOLD(1), SILVER(2) }
+
+    enum class Grade(val priority: Int) {
+        PLATINUM(0),
+        GOLD(1),
+        SILVER(2),
+    }
+
+    companion object {
+
+        val Default = Sponsor(
+            name = "",
+            imageUrl = "",
+            homepage = "",
+            grade = Grade.PLATINUM,
+        )
+    }
 }
