@@ -1,3 +1,5 @@
+import com.droidknights.app.filterProject
+
 plugins {
     alias(libs.plugins.droidknights.android.application)
     id("com.google.android.gms.oss-licenses-plugin")
@@ -34,21 +36,14 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.network.network)
-    implementation(projects.core.network.networkApi)
-    implementation(projects.appConfig.appConfig)
-    implementation(projects.appConfig.appConfigApi)
-
-    implementation(projects.core.navigation)
-    implementation(projects.feature.main)
-    implementation(projects.feature.home)
-
-    implementation(projects.core.designsystem)
-
-    implementation(projects.widget)
-
-    baselineProfile(projects.baselineprofile)
+    rootProject.subprojects.filterProject {
+        if (it.name.contains("baselineprofile")) {
+            baselineProfile(it)
+        } else if (it.name.contains("testing")) {
+            testImplementation(it)
+        } else {
+            implementation(it)
+        }
+    }
     implementation(libs.androidx.profileinstaller)
-
-    testImplementation(projects.core.testing)
 }
