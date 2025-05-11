@@ -7,10 +7,10 @@ import org.gradle.kotlin.dsl.withType
 
 internal fun Project.configureKotest() {
     configureJUnit()
-    val libs = extensions.libs
+
     dependencies {
-        "testImplementation"(libs.findLibrary("kotest.runner").get())
-        "testImplementation"(libs.findLibrary("kotest.assertions").get())
+        "testImplementation"(findLibrary("kotest.runner"))
+        "testImplementation"(findLibrary("kotest.assertions"))
     }
 }
 

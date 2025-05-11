@@ -201,3 +201,13 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 roborazzi-plugin = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+
+# Plugins defined by this project
+droidknights-android-application = { id = "droidknights.android.application", version = "unspecified" }
+
+droidknights-android-library = { id = "droidknights.android.library", version = "unspecified" }
+droidknights-android-feature = { id = "droidknights.android.feature", version = "unspecified" }
+droidknights-android-compose = { id = "droidknights.android.compose", version = "unspecified" }
+droidknights-android-hilt = { id = "droidknights.android.hilt", version = "unspecified" }
+
+droidknights-kotlin-library = { id = "droidknights.kotlin.library", version = "unspecified" }

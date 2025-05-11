@@ -1,6 +1,6 @@
 import com.droidknights.app.configureHiltAndroid
 import com.droidknights.app.configureRoborazzi
-import com.droidknights.app.libs
+import com.droidknights.app.findLibrary
 
 plugins {
     id("droidknights.android.library")
@@ -31,11 +31,10 @@ dependencies {
 
     testImplementation(project(":core:testing"))
 
-    val libs = project.extensions.libs
-    implementation(libs.findLibrary("hilt.navigation.compose").get())
-    implementation(libs.findLibrary("androidx.compose.navigation").get())
-    androidTestImplementation(libs.findLibrary("androidx.compose.navigation.test").get())
+    implementation(findLibrary("hilt.navigation.compose"))
+    implementation(findLibrary("androidx.compose.navigation"))
+    androidTestImplementation(findLibrary("androidx.compose.navigation.test"))
 
-    implementation(libs.findLibrary("androidx.lifecycle.viewModelCompose").get())
-    implementation(libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
+    implementation(findLibrary("androidx.lifecycle.viewModelCompose"))
+    implementation(findLibrary("androidx.lifecycle.runtimeCompose"))
 }

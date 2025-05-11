@@ -26,14 +26,14 @@ internal fun Project.configureRoborazzi() {
             }
         }
     }
-    val libs = extensions.libs
+
     dependencies {
-        "testImplementation"(libs.findLibrary("androidx.test.espresso.core").get())
-        "testImplementation"(libs.findLibrary("junit4").get())
-        "testImplementation"(libs.findLibrary("robolectric").get())
-        "testImplementation"(libs.findLibrary("androidx.compose.ui.test").get())
-        "testImplementation"(libs.findLibrary("hilt.android.testing").get())
-        "testImplementation"(libs.findLibrary("roborazzi").get())
-        "testImplementation"(libs.findLibrary("roborazziCompose").get())
+        "testImplementation"(findLibrary("androidx.test.espresso.core"))
+        "testImplementation"(findLibrary("junit4"))
+        "testImplementation"(findLibrary("robolectric"))
+        "testImplementation"(findLibrary("androidx.compose.ui.test"))
+        "testImplementation"(findLibrary("hilt.android.testing"))
+        "testImplementation"(findLibrary("roborazzi"))
+        "testImplementation"(findLibrary("roborazziCompose"))
     }
 }

@@ -9,10 +9,9 @@ internal fun Project.configureHiltKotlin() {
         apply("com.google.devtools.ksp")
     }
 
-    val libs = extensions.libs
     dependencies {
-        "implementation"(libs.findLibrary("hilt.core").get())
-        "ksp"(libs.findLibrary("hilt.compiler").get())
+        "implementation"(findLibrary("hilt.core"))
+        "ksp"(findLibrary("hilt.compiler"))
     }
 }
 
