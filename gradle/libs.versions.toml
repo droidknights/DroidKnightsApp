@@ -101,6 +101,14 @@ kotest = "5.9.0"
 detekt = "1.23.8"
 # https://mockk.io/
 mockk = "1.14.2"
+# https://github.com/mockito/mockito
+test-mockito = "5.17.0"
+# https://github.com/mockito/mockito-kotlin
+test-mockito-kotlin = "5.4.0"
+# https://github.com/mannodermaus/android-junit5
+test-junit5-plugin = "1.12.0.0"
+# https://github.com/junit-team/junit5
+test-junit5 = "5.12.1"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -168,6 +176,15 @@ kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.re
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
+## Test mockito
+test-mockito = { group = "org.mockito", name = "mockito-core", version.ref = "test-mockito" }
+test-mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "test-mockito-kotlin" }
+
+## Test junit 5
+test-junit5 = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "test-junit5" }
+test-junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "test-junit5" }
+test-junit5-vintage = { group = "org.junit.jupiter", name = "junit-vintage-engin", version.ref = "test-junit5" }
+
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutine" }
@@ -182,6 +199,7 @@ verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plug
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 oss-licenses-plugin = { group = "com.google.android.gms", name = "oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
 plugin-kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+plugin-android-junit5 = { group = "de.mannodermaus.gradle.plugins", name = "android-junit5", version.ref = "test-junit5-plugin" }
 
 androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidxGlance" }
 androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "androidxGlance" }

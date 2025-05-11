@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.verify.detektPlugin)
     compileOnly(libs.plugin.kotlin.serializationPlugin)
     compileOnly(libs.compose.compiler.gradle.plugin)
+    compileOnly(libs.plugin.android.junit5)
 }
 
 tasks {
