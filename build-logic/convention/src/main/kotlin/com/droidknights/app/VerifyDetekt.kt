@@ -8,8 +8,7 @@ internal fun Project.configureVerifyDetekt() {
         apply("io.gitlab.arturbosch.detekt")
     }
 
-    val libs = extensions.libs
     dependencies {
-        "detektPlugins"(libs.findLibrary("verify.detektFormatting").get())
+        "detektPlugins"(findLibrary("verify.detektFormatting"))
     }
 }

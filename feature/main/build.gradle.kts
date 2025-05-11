@@ -1,7 +1,7 @@
 import com.droidknights.app.setNamespace
 
 plugins {
-    id("droidknights.android.feature")
+    alias(libs.plugins.droidknights.android.feature)
 }
 
 android {

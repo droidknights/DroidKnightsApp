@@ -7,7 +7,6 @@ internal fun Project.configureKotestAndroid() {
     configureJUnitAndroid()
 }
 
-@Suppress("UnstableApiUsage")
 internal fun Project.configureJUnitAndroid() {
     androidExtension.apply {
         testOptions {

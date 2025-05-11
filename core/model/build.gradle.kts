@@ -1,5 +1,5 @@
 plugins {
-    id("droidknights.kotlin.library")
+    alias(libs.plugins.droidknights.kotlin.library)
     id("kotlinx-serialization")
 }
 
