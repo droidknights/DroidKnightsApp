@@ -1,9 +1,7 @@
-package com.droidknights.app.core.datastore
+package com.droidknights.app.core.datastore.settings
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import com.droidknights.app.core.datastore.datasource.SettingsPreferencesDataSource
 import io.kotest.core.spec.style.StringSpec
-import kotlin.test.assertFalse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -11,18 +9,19 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.rules.TemporaryFolder
+import kotlin.test.assertFalse
 
-internal class SettingsPreferencesDataSourceTest : StringSpec() {
+internal class DefaultSettingsPreferencesDataSourceTest : StringSpec() {
 
     private lateinit var testDispatcher: TestDispatcher
     private lateinit var tempFolder: TemporaryFolder
-    private lateinit var dataSource: SettingsPreferencesDataSource
+    private lateinit var dataSource: DefaultSettingsPreferencesDataSource
 
     init {
         beforeSpec {
             testDispatcher = StandardTestDispatcher()
             tempFolder = TemporaryFolder.builder().assureDeletion().build()
-            dataSource = SettingsPreferencesDataSource(
+            dataSource = DefaultSettingsPreferencesDataSource(
                 PreferenceDataStoreFactory.create(
                     scope = CoroutineScope(testDispatcher),
                     produceFile = { tempFolder.newFile("SETTINGS_PREFERENCES_TEST") }
@@ -38,11 +37,11 @@ internal class SettingsPreferencesDataSourceTest : StringSpec() {
             CoroutineScope(testDispatcher).launch {
                 // Given - 초기상태
 
-                // When - dataSource 의 초기 SettingsData 값 조회
-                val settingsData = dataSource.settingsData.first()
+                // When - dataSource 의 초기 isDarkTheme 값 조회
+                val isDarkTheme = dataSource.isDarkThemeFlow.first()
 
-                // Then - SettingsData.isDarkTheme 값이 false 이어야 한다
-                assertFalse(settingsData.isDarkTheme)
+                // Then - isDarkTheme 값이 false 이어야 한다
+                assertFalse(isDarkTheme)
             }
         }
 
@@ -51,11 +50,11 @@ internal class SettingsPreferencesDataSourceTest : StringSpec() {
                 // Given - isDarkTheme is true
                 dataSource.updateIsDarkTheme(true)
 
-                // When - isDarkTheme 을 true 로 업데이트 후 SettingsData 값 조회
-                val settingsData = dataSource.settingsData.first()
+                // When - isDarkTheme 을 true 로 업데이트 후 isDarkTheme 값 조회
+                val isDarkTheme = dataSource.isDarkThemeFlow.first()
 
-                // Then - SettingsData.isDarkTheme 값이 true 이어야 한다
-                assertTrue(settingsData.isDarkTheme)
+                // Then - isDarkTheme 값이 true 이어야 한다
+                assertTrue(isDarkTheme)
             }
         }
     }

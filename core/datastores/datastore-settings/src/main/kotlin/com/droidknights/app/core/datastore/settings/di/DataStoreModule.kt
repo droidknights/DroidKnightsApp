@@ -1,4 +1,4 @@
-package com.droidknights.app.core.datastore.di
+package com.droidknights.app.core.datastore.settings.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore

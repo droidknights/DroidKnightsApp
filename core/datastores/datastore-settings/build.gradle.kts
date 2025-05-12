@@ -4,12 +4,13 @@ plugins {
     alias(libs.plugins.droidknights.android.library)
 }
 
-android {
-    setNamespace("core.datastore")
-}
+setNamespace("core.datastore.settings")
 
 dependencies {
+    implementation(projects.core.datastores.datastoreSettingsApi)
+
+    implementation(libs.androidx.datastore)
+
     testImplementation(libs.junit4)
     testImplementation(libs.kotlin.test)
-    implementation(libs.androidx.datastore)
 }
