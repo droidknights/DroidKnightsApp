@@ -50,7 +50,6 @@ include(
     ":core:ui",
     ":core:ui-test-hilt-manifest",
     ":core:testing",
-    ":core:datastore",
 )
 
 // core - model
@@ -70,6 +69,14 @@ include(
     ":core:data:data-sponsor-api",
     ":core:data:data-settings",
     ":core:data:data-settings-api",
+)
+
+// core - datastore
+include(
+    ":core:datastore:datastore-session",
+    ":core:datastore:datastore-session-api",
+    ":core:datastore:datastore-settings",
+    ":core:datastore:datastore-settings-api",
 )
 
 // core - domain

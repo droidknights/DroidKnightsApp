@@ -11,5 +11,5 @@ setNamespace("core.data.settings")
 dependencies {
     implementation(projects.core.data.dataSettingsApi)
 
-    implementation(projects.core.datastore)
+    implementation(projects.core.datastore.datastoreSettingsApi)
 }

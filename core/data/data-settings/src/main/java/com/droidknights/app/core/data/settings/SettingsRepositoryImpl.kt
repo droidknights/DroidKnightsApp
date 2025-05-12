@@ -1,9 +1,8 @@
 package com.droidknights.app.core.data.settings
 
 import com.droidknights.app.core.data.settings.api.SettingsRepository
-import com.droidknights.app.core.datastore.datasource.SettingsPreferencesDataSource
+import com.droidknights.app.core.datastore.settings.api.SettingsPreferencesDataSource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 internal class SettingsRepositoryImpl @Inject constructor(
@@ -11,10 +10,7 @@ internal class SettingsRepositoryImpl @Inject constructor(
 ) : SettingsRepository {
 
     override fun flowIsDarkTheme(): Flow<Boolean> =
-        preferencesDataSource.settingsData
-            .map { settingsData ->
-                settingsData.isDarkTheme
-            }
+        preferencesDataSource.isDarkThemeFlow
 
     override suspend fun updateIsDarkTheme(isDarkTheme: Boolean) {
         preferencesDataSource.updateIsDarkTheme(isDarkTheme)
