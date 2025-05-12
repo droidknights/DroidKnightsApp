@@ -72,6 +72,12 @@ include(
     ":core:data:data-settings-api",
 )
 
+// core - datastore
+include(
+    ":core:datastores:datastore-session",
+    ":core:datastores:datastore-session-api",
+)
+
 // core - domain
 include(
     ":core:domain:domain-contributor",

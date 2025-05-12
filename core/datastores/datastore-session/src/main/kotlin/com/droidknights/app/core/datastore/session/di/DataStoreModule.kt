@@ -1,4 +1,4 @@
-package com.droidknights.app.core.datastore.di
+package com.droidknights.app.core.datastore.session.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -16,15 +16,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DataStoreModule {
 
-    private const val SETTING_DATASTORE_NAME = "SETTINGS_PREFERENCES"
+    private const val SESSION_DATASTORE_NAME = "SESSION_PREFERENCES"
 
-    private val Context.settingDataStore by preferencesDataStore(SETTING_DATASTORE_NAME)
+    private val Context.sessionDataStore by preferencesDataStore(SESSION_DATASTORE_NAME)
 
     @Provides
     @Singleton
-    @Named("setting")
-    fun provideSettingsDataStore(
+    @Named("session")
+    fun provideSessionDataStore(
         @ApplicationContext context: Context,
     ): DataStore<Preferences> =
-        context.settingDataStore
+        context.sessionDataStore
 }
