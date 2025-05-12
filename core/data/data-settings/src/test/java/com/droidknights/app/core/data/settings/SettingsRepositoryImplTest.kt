@@ -1,8 +1,7 @@
 package com.droidknights.app.core.data.settings
 
 import app.cash.turbine.test
-import com.droidknights.app.core.datastore.datasource.SettingsPreferencesDataSource
-import com.droidknights.app.core.datastore.model.SettingsData
+import com.droidknights.app.core.datastore.settings.api.SettingsPreferencesDataSource
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -21,14 +20,14 @@ class SettingsRepositoryImplTest {
 
     @Test
     fun `test flowIsDarkTheme`() = runTest {
-        whenever(settingsPreferencesDataSource.settingsData).thenReturn(flowOf(SettingsData(isDarkTheme = true)))
+        whenever(settingsPreferencesDataSource.isDarkThemeFlow).thenReturn(flowOf(true))
 
         repository.flowIsDarkTheme().test {
             val result = awaitItem()
 
             assertTrue(result)
 
-            verify(settingsPreferencesDataSource).settingsData
+            verify(settingsPreferencesDataSource).isDarkThemeFlow
 
             cancelAndIgnoreRemainingEvents()
         }

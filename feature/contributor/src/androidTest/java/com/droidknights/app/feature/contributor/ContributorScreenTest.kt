@@ -41,7 +41,8 @@ class ContributorScreenTest {
         // when
         fakeUiState.value = ContributorsUiState.Contributors(
             persistentListOf(
-                Contributor(
+                ContributorsUiState.Contributors.Item.User(
+                    id = 1L,
                     name = "test name",
                     imageUrl = "test image url",
                     githubUrl = "test github url"
