@@ -10,7 +10,7 @@ setNamespace("core.data.session")
 
 dependencies {
     implementation(projects.core.data.dataSessionApi)
-    implementation(projects.core.datastores.datastoreSessionApi)
+    implementation(projects.core.datastore.datastoreSessionApi)
 
     implementation(projects.appConfig.appConfigApi)
 

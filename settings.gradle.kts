@@ -73,10 +73,10 @@ include(
 
 // core - datastore
 include(
-    ":core:datastores:datastore-session",
-    ":core:datastores:datastore-session-api",
-    ":core:datastores:datastore-settings",
-    ":core:datastores:datastore-settings-api",
+    ":core:datastore:datastore-session",
+    ":core:datastore:datastore-session-api",
+    ":core:datastore:datastore-settings",
+    ":core:datastore:datastore-settings-api",
 )
 
 // core - domain

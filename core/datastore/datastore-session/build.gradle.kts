@@ -7,7 +7,7 @@ plugins {
 setNamespace("core.datastore.session")
 
 dependencies {
-    implementation(projects.core.datastores.datastoreSessionApi)
+    implementation(projects.core.datastore.datastoreSessionApi)
 
     implementation(libs.androidx.datastore)
 }
