@@ -15,11 +15,11 @@ internal class NavigatorImplTest {
         navigator.channel.consumeAsFlow().test {
             // move 테스트
             navigator.move(MockRoute)
-            Assertions.assertEquals(RouteSideEffect.MoveNavigation(MockRoute), awaitItem())
+            Assertions.assertEquals(MockRoute, awaitItem())
 
             // Back test
             navigator.moveBack()
-            Assertions.assertEquals(RouteSideEffect.MoveNavigationBack, awaitItem())
+            Assertions.assertEquals(RouteBack, awaitItem())
 
             cancelAndConsumeRemainingEvents()
         }

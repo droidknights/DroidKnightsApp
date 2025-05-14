@@ -9,13 +9,13 @@ import javax.inject.Inject
 @ActivityRetainedScoped
 internal class NavigatorImpl @Inject constructor() : Navigator, InternalNavigator {
 
-    override val channel = Channel<RouteSideEffect>(Channel.BUFFERED)
+    override val channel = Channel<Route>(Channel.BUFFERED)
 
     override fun move(route: Route) {
-        channel.trySend(RouteSideEffect.MoveNavigation(route))
+        channel.trySend(route)
     }
 
     override fun moveBack() {
-        channel.trySend(RouteSideEffect.MoveNavigationBack)
+        channel.trySend(RouteBack)
     }
 }

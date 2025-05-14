@@ -28,7 +28,6 @@ private fun InternalLaunchedCaRouter(
 ) {
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     LaunchedEffect(routeViewModel) {
-
         lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
             routeViewModel.sideEffect.collectLatest { sideEffect ->
                 when (sideEffect) {
