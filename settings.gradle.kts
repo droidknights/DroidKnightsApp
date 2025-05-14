@@ -45,6 +45,8 @@ include(":baselineprofile")
 include(
     ":core:network:network",
     ":core:network:network-api",
+    ":core:router:router",
+    ":core:router:router-api",
     ":core:designsystem",
     ":core:navigation",
     ":core:ui",
@@ -94,8 +96,10 @@ include(
     ":feature:main",
     ":feature:home",
     ":feature:session",
+    ":feature:session-api",
     ":feature:setting",
     ":feature:contributor",
+    ":feature:contributor-api",
     ":feature:bookmark",
 )
 

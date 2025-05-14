@@ -34,8 +34,6 @@ internal fun MainNavHost(
         ) {
             homeNavGraph(
                 padding = padding,
-                onSessionClick = { navigator.navigateSession() },
-                onContributorClick = { navigator.navigateContributor() },
                 onShowErrorSnackBar = onShowErrorSnackBar
             )
             settingNavGraph(
@@ -48,7 +46,6 @@ internal fun MainNavHost(
             )
 
             contributorNavGraph(
-                onBackClick = navigator::popBackStackIfNotHome,
                 onShowErrorSnackBar = onShowErrorSnackBar
             )
 

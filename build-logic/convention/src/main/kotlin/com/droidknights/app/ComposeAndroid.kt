@@ -31,3 +31,18 @@ internal fun Project.configureComposeAndroid() {
         includeSourceInformation.set(true)
     }
 }
+
+/**
+ * Compose Library
+ */
+fun Project.configureComposeFeature() {
+    androidExtension.apply {
+        with(plugins) {
+            apply("org.jetbrains.kotlin.plugin.compose")
+        }
+
+        buildFeatures {
+            compose = true
+        }
+    }
+}

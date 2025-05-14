@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.core.router.LaunchedRouter
 import com.droidknights.app.widget.DroidKnightsWidget.Companion.KEY_SESSION_ID
 import com.droidknights.app.widget.sendWidgetUpdateCommand
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,9 @@ class MainActivity : ComponentActivity() {
 
             val navigator: MainNavigator = rememberMainNavigator()
             val sessionId = sessionIdFromWidget.collectAsStateWithLifecycle().value
+
+            // 시작지점
+            LaunchedRouter(navigator.navController)
 
             LaunchedEffect(sessionId) {
                 sessionId?.let {

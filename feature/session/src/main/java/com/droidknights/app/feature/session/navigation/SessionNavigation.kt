@@ -8,10 +8,10 @@ import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.session.SessionDetailScreen
 import com.droidknights.app.feature.session.SessionScreen
-import com.droidknights.app.core.navigation.Route.Session as SessionRoute
+import com.droidknights.app.feature.session.api.RouteSession
 
 fun NavController.navigateSession() {
-    navigate(SessionRoute)
+    navigate(RouteSession)
 }
 
 fun NavController.navigateSessionDetail(sessionId: String) {
@@ -23,7 +23,7 @@ fun NavGraphBuilder.sessionNavGraph(
     onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
-    composable<SessionRoute> {
+    composable<RouteSession> {
         SessionScreen(
             onBackClick = onBackClick,
             onSessionClick = onSessionClick,

@@ -3,7 +3,10 @@ package com.droidknights.app.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
+import com.droidknights.app.core.router.api.Navigator
+import com.droidknights.app.feature.contributor.api.RouteContributor
 import com.droidknights.app.feature.home.model.SponsorsUiState
+import com.droidknights.app.feature.session.api.RouteSession
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,6 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     getSponsorsUseCase: GetSponsorsUseCase,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     private val _errorFlow = MutableSharedFlow<Throwable>()
@@ -41,4 +45,12 @@ class HomeViewModel @Inject constructor(
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = SponsorsUiState.Loading,
             )
+
+    fun navigateSession() {
+        navigator.move(RouteSession)
+    }
+
+    fun navigateContributor() {
+        navigator.move(RouteContributor)
+    }
 }
