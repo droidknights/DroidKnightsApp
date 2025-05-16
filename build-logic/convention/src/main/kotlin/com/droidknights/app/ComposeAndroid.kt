@@ -40,9 +40,5 @@ fun Project.configureComposeFeature() {
         with(plugins) {
             apply("org.jetbrains.kotlin.plugin.compose")
         }
-
-        buildFeatures {
-            compose = true
-        }
     }
 }

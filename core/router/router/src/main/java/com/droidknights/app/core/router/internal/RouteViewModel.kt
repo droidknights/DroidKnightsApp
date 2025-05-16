@@ -15,7 +15,7 @@ internal class RouteViewModel @Inject constructor(
         navigator.channel.consumeAsFlow()
             .map { router ->
                 when (router) {
-                    is RouteBack -> RouteSideEffect.MoveNavigationBack
+                    is BackRoute -> RouteSideEffect.MoveNavigationBack
                     else -> RouteSideEffect.MoveNavigation(router)
                 }
             }

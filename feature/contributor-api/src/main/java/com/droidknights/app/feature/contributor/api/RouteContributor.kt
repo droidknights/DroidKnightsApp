@@ -1,7 +1,7 @@
 package com.droidknights.app.feature.contributor.api
 
-import com.droidknights.app.core.router.api.Route
+import com.droidknights.app.core.router.api.model.NavigatorRoute
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object RouteContributor : Route
+data object RouteContributor : NavigatorRoute

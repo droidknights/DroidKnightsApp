@@ -1,7 +1,7 @@
 package com.droidknights.app.core.router.internal
 
 import com.droidknights.app.core.router.api.Navigator
-import com.droidknights.app.core.router.api.Route
+import com.droidknights.app.core.router.api.model.NavigatorRoute
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.channels.Channel
 import javax.inject.Inject
@@ -9,13 +9,13 @@ import javax.inject.Inject
 @ActivityRetainedScoped
 internal class NavigatorImpl @Inject constructor() : Navigator, InternalNavigator {
 
-    override val channel = Channel<Route>(Channel.BUFFERED)
+    override val channel = Channel<NavigatorRoute>(Channel.BUFFERED)
 
-    override fun move(route: Route) {
-        channel.trySend(route)
+    override fun navigate(navigatorRoute: NavigatorRoute) {
+        channel.trySend(navigatorRoute)
     }
 
-    override fun moveBack() {
-        channel.trySend(RouteBack)
+    override fun back() {
+        channel.trySend(BackRoute)
     }
 }

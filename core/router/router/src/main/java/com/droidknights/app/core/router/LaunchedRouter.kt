@@ -16,13 +16,13 @@ import kotlinx.coroutines.flow.collectLatest
 fun LaunchedRouter(
     navHostController: NavHostController,
 ) {
-    InternalLaunchedCaRouter(
+    InternalLaunchedRouter(
         navHostController = navHostController,
     )
 }
 
 @Composable
-private fun InternalLaunchedCaRouter(
+private fun InternalLaunchedRouter(
     navHostController: NavHostController,
     routeViewModel: RouteViewModel = hiltViewModel(),
 ) {

@@ -1,11 +1,11 @@
 package com.droidknights.app.core.router.internal
 
-import com.droidknights.app.core.router.api.Route
+import com.droidknights.app.core.router.api.model.NavigatorRoute
 
 internal sealed interface RouteSideEffect {
 
     data class MoveNavigation(
-        val route: Route,
+        val route: NavigatorRoute,
     ) : RouteSideEffect
 
     data object MoveNavigationBack : RouteSideEffect

@@ -14,12 +14,12 @@ internal class NavigatorImplTest {
     fun `test move`() = runTest {
         navigator.channel.consumeAsFlow().test {
             // move 테스트
-            navigator.move(MockRoute)
+            navigator.navigate(MockRoute)
             Assertions.assertEquals(MockRoute, awaitItem())
 
             // Back test
-            navigator.moveBack()
-            Assertions.assertEquals(RouteBack, awaitItem())
+            navigator.back()
+            Assertions.assertEquals(BackRoute, awaitItem())
 
             cancelAndConsumeRemainingEvents()
         }

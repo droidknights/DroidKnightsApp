@@ -47,10 +47,10 @@ class HomeViewModel @Inject constructor(
             )
 
     fun navigateSession() {
-        navigator.move(RouteSession)
+        navigator.navigate(RouteSession)
     }
 
     fun navigateContributor() {
-        navigator.move(RouteContributor)
+        navigator.navigate(RouteContributor)
     }
 }

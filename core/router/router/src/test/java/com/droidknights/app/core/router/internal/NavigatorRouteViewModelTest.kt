@@ -1,7 +1,7 @@
 package com.droidknights.app.core.router.internal
 
 import app.cash.turbine.test
-import com.droidknights.app.core.router.api.Route
+import com.droidknights.app.core.router.api.model.NavigatorRoute
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-internal class RouteViewModelTest {
+internal class NavigatorRouteViewModelTest {
 
     private val navigator = mock<InternalNavigator>()
 
@@ -17,7 +17,7 @@ internal class RouteViewModelTest {
 
     @Test
     fun `test sideEffect`() = runTest {
-        val mockChannel = Channel<Route>(Channel.BUFFERED)
+        val mockChannel = Channel<NavigatorRoute>(Channel.BUFFERED)
         whenever(navigator.channel).thenReturn(mockChannel)
 
         viewModel.sideEffect.test {
@@ -26,7 +26,7 @@ internal class RouteViewModelTest {
             Assertions.assertEquals(RouteSideEffect.MoveNavigation(MockRoute), awaitItem())
 
             // Back test
-            mockChannel.send(RouteBack)
+            mockChannel.send(BackRoute)
             Assertions.assertEquals(RouteSideEffect.MoveNavigationBack, awaitItem())
 
             cancelAndConsumeRemainingEvents()

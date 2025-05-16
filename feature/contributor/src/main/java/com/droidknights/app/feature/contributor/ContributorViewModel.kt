@@ -40,6 +40,6 @@ class ContributorViewModel @Inject constructor(
             )
 
     fun moveBack() {
-        navigator.moveBack()
+        navigator.back()
     }
 }
