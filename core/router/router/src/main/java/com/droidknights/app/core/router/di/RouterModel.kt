@@ -1,8 +1,8 @@
 package com.droidknights.app.core.router.di
 
 import com.droidknights.app.core.router.api.Navigator
-import com.droidknights.app.core.router.internal.InternalNavigator
-import com.droidknights.app.core.router.internal.NavigatorImpl
+import com.droidknights.app.core.router.internal.navigator.InternalNavigator
+import com.droidknights.app.core.router.internal.navigator.NavigatorImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

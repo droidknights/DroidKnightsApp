@@ -1,6 +1,7 @@
-package com.droidknights.app.core.router.internal
+package com.droidknights.app.core.router.internal.navigator
 
 import app.cash.turbine.test
+import com.droidknights.app.core.router.internal.MockRoute
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions

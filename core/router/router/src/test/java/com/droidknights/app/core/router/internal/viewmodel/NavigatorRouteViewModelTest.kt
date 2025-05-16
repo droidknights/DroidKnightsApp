@@ -1,7 +1,10 @@
-package com.droidknights.app.core.router.internal
+package com.droidknights.app.core.router.internal.viewmodel
 
 import app.cash.turbine.test
 import com.droidknights.app.core.router.api.model.NavigatorRoute
+import com.droidknights.app.core.router.internal.MockRoute
+import com.droidknights.app.core.router.internal.navigator.BackRoute
+import com.droidknights.app.core.router.internal.navigator.InternalNavigator
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions

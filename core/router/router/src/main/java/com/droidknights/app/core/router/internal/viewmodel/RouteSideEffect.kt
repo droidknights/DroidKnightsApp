@@ -1,4 +1,4 @@
-package com.droidknights.app.core.router.internal
+package com.droidknights.app.core.router.internal.viewmodel
 
 import com.droidknights.app.core.router.api.model.NavigatorRoute
 

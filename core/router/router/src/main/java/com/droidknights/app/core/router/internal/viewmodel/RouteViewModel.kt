@@ -1,6 +1,8 @@
-package com.droidknights.app.core.router.internal
+package com.droidknights.app.core.router.internal.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.droidknights.app.core.router.internal.navigator.BackRoute
+import com.droidknights.app.core.router.internal.navigator.InternalNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.map
