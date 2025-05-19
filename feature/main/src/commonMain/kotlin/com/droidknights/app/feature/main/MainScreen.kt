@@ -10,11 +10,13 @@ import com.droidknights.app.feature.main.components.MainBottomBar
 import com.droidknights.app.feature.main.components.MainNavHost
 
 @Composable
-fun MainScreen(
-    modifier: Modifier = Modifier,
-) {
-    val navigator = rememberMainNavigator()
+expect fun MainScreen(modifier: Modifier = Modifier)
 
+@Composable
+internal fun MainContent(
+    modifier: Modifier = Modifier,
+    navigator: MainNavigator = rememberMainNavigator(),
+) {
     Surface(
         modifier = modifier.fillMaxSize(),
         color = KnightsTheme.colorScheme.background,
