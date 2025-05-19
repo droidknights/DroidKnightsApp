@@ -16,10 +16,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -28,7 +26,6 @@ import com.droidknights.app.core.designsystem.components.Icon
 import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LocalDarkTheme
 import droidknights.feature.setting.generated.resources.Res
 import droidknights.feature.setting.generated.resources.ic_disabled
 import droidknights.feature.setting.generated.resources.ic_enabled
@@ -41,12 +38,11 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun SettingDarkThemeCard(
+internal fun SettingDarkThemeCard(
+    isDarkTheme: Boolean,
     onDarkThemeChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val darkTheme = LocalDarkTheme.current
-
     Surface(
         modifier = modifier,
         color = KnightsTheme.colorScheme.surface,
@@ -68,14 +64,14 @@ fun SettingDarkThemeCard(
             ) {
                 ModeButton(
                     mode = Mode.Light,
-                    isSelected = !darkTheme,
+                    isSelected = !isDarkTheme,
                     onClick = {
                         onDarkThemeChange(false)
                     },
                 )
                 ModeButton(
                     mode = Mode.Dark,
-                    isSelected = darkTheme,
+                    isSelected = isDarkTheme,
                     onClick = {
                         onDarkThemeChange(true)
                     },
@@ -157,14 +153,13 @@ private enum class Mode {
 
 @Preview
 @Composable
-fun SettingDarkThemeCardPreview() {
-    var isDarkTheme by remember { mutableStateOf(false) }
+private fun SettingDarkThemeCardPreview() {
+    val (isDarkTheme, onDarkThemeChange) = remember { mutableStateOf(false) }
 
     KnightsTheme(darkTheme = isDarkTheme) {
         SettingDarkThemeCard(
-            onDarkThemeChange = { darkTheme ->
-                isDarkTheme = darkTheme
-            },
+            isDarkTheme = isDarkTheme,
+            onDarkThemeChange = onDarkThemeChange,
             modifier = Modifier.fillMaxWidth(),
         )
     }

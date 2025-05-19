@@ -18,6 +18,22 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(projects.core.navigation)
         }
+
+        val nonWasmJsMain by creating {
+            dependsOn(commonMain.get())
+        }
+
+        appleMain {
+            dependsOn(nonWasmJsMain)
+        }
+
+        desktopMain {
+            dependsOn(nonWasmJsMain)
+        }
+
+        androidMain {
+            dependsOn(nonWasmJsMain)
+        }
     }
 }
 
