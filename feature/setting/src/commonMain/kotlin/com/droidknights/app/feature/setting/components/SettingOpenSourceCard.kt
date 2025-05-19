@@ -23,7 +23,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun SettingOpenSourceCard(
+internal fun SettingOpenSourceCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -58,7 +58,7 @@ fun SettingOpenSourceCard(
 
 @Preview
 @Composable
-fun SettingOpenSourceCardPreview() {
+private fun SettingOpenSourceCardPreview() {
     KnightsTheme {
         SettingOpenSourceCard(
             onClick = {},

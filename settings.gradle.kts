@@ -38,6 +38,12 @@ include(
     ":core:ui:shader"
 )
 
+// core - data
+include(
+    ":core:data:data-setting",
+    ":core:data:data-setting-api",
+)
+
 // feature
 include(
     ":feature:main",

@@ -9,13 +9,32 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.feature.setting.components.SettingDarkThemeCard
 import com.droidknights.app.feature.setting.components.SettingOpenSourceCard
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun SettingScreen(
+    modifier: Modifier = Modifier,
+    viewModel: SettingViewModel = koinViewModel(),
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    SettingScreen(
+        isDarkTheme = uiState.isDarkTheme,
+        onDarkThemeChange = viewModel::updateDarkTheme,
+        modifier = modifier,
+    )
+}
+
+@Composable
+private fun SettingScreen(
+    isDarkTheme: Boolean,
+    onDarkThemeChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -34,7 +53,8 @@ internal fun SettingScreen(
             modifier = Modifier.fillMaxWidth(),
         )
         SettingDarkThemeCard(
-            onDarkThemeChange = {}, // TODO 다크 모드 변경하기
+            isDarkTheme = isDarkTheme,
+            onDarkThemeChange = onDarkThemeChange,
             modifier = Modifier.fillMaxWidth(),
         )
     }

@@ -41,7 +41,15 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.core.designsystem)
 
+            implementation(projects.core.data.dataSettingApi)
+            implementation(projects.core.data.dataSetting)
+
             implementation(projects.feature.main)
+            implementation(projects.feature.setting)
+
+            implementation(libs.androidx.lifecycle.runtime.compose)
+
+            implementation(libs.koin.compose.viewmodel.navigation)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
