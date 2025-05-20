@@ -3,8 +3,8 @@
     <string name="home_session_card_desc">자리를 빛내주신 스피커와\n올해 세션을 소개합니다</string>
     <string name="home_contributor_card_title">드로이드 나이츠앱\n누가 개발했을까?</string>
     <string name="home_contributor_card_desc">메이커를 소개합니다</string>
-    <string name="home_sponsor_card_title">이 기업들이 후원해요</string>
-    <string name="home_sponsor_card_desc">플래티넘 N곳, 골드 N곳이 후원해주셨습니다.</string>
+    <string name="home_sponsor_card_title">후원 감사합니다</string>
+    <string name="home_sponsor_card_desc">골드 등급으로 후원해주셨습니다</string>
     <string name="home_map_card_title">행사 부스를 둘러보세요!</string>
     <!--TODO 문구 수정-->
     <string name="home_map_card_desc">과학기술컨벤션센터 배치도</string>
