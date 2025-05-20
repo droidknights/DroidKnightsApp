@@ -7,11 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.text.font.FontFamily
 
 val LocalDarkTheme = compositionLocalOf { true }
 
 @Composable
 fun KnightsTheme(
+    fontFamily: FontFamily = FontFamily.Default,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
@@ -23,7 +25,7 @@ fun KnightsTheme(
             KnightsColorScheme.lightColorScheme
         },
         LocalIndication provides ripple(),
-        LocalTypography provides Typography,
+        LocalTypography provides KnightsTypography.with(fontFamily),
         content = content,
     )
 }

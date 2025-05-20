@@ -7,228 +7,173 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-private val SansSerifStyle = TextStyle(
-    fontFamily = FontFamily.SansSerif,
-    fontWeight = FontWeight.Normal,
-)
-
 @Immutable
 data class KnightsTypography(
-    val displayLargeR: TextStyle,
-    val displayMediumR: TextStyle,
-    val displaySmallR: TextStyle,
+    val default: TextStyle,
 
-    val headlineLargeEB: TextStyle,
-    val headlineLargeSB: TextStyle,
-    val headlineLargeR: TextStyle,
-    val headlineMediumB: TextStyle,
-    val headlineMediumM: TextStyle,
-    val headlineMediumR: TextStyle,
-    val headlineSmallBL: TextStyle,
-    val headlineSmallM: TextStyle,
-    val headlineSmallR: TextStyle,
-
-    val titleLargeBL: TextStyle,
-    val titleLargeB: TextStyle,
-    val titleLargeM: TextStyle,
-    val titleLargeR: TextStyle,
-    val titleMediumBL: TextStyle,
-    val titleMediumB: TextStyle,
-    val titleMediumR: TextStyle,
-    val titleSmallB: TextStyle,
-    val titleSmallM: TextStyle,
-    val titleSmallM140: TextStyle,
-    val titleSmallR: TextStyle,
-    val titleSmallR140: TextStyle,
-
-    val labelLargeM: TextStyle,
-    val labelMediumR: TextStyle,
-    val labelSmallM: TextStyle,
-
-    val bodyLargeR: TextStyle,
-    val bodyMediumR: TextStyle,
-    val bodySmallR: TextStyle,
-)
-
-internal val Typography = KnightsTypography(
-    displayLargeR = SansSerifStyle.copy(
+    val displayLargeR: TextStyle = default.copy(
         fontSize = 57.sp,
         lineHeight = 64.sp,
         letterSpacing = (-0.25).sp,
     ),
-    displayMediumR = SansSerifStyle.copy(
+    val displayMediumR: TextStyle = default.copy(
         fontSize = 45.sp,
         lineHeight = 52.sp,
     ),
-    displaySmallR = SansSerifStyle.copy(
+    val displaySmallR: TextStyle = default.copy(
         fontSize = 36.sp,
         lineHeight = 44.sp,
     ),
-    headlineLargeEB = SansSerifStyle.copy(
+
+    val headlineLargeEB: TextStyle = default.copy(
         fontSize = 32.sp,
         lineHeight = 40.sp,
         fontWeight = FontWeight.ExtraBold,
     ),
-    headlineLargeSB = SansSerifStyle.copy(
+    val headlineLargeSB: TextStyle = default.copy(
         fontSize = 32.sp,
         lineHeight = 40.sp,
         fontWeight = FontWeight.SemiBold,
     ),
-    headlineLargeR = SansSerifStyle.copy(
+    val headlineLargeR: TextStyle = default.copy(
         fontSize = 32.sp,
         lineHeight = 40.sp,
     ),
-    headlineMediumB = SansSerifStyle.copy(
+    val headlineMediumB: TextStyle = default.copy(
         fontSize = 28.sp,
         lineHeight = 36.sp,
         fontWeight = FontWeight.Bold,
     ),
-    headlineMediumM = SansSerifStyle.copy(
+    val headlineMediumM: TextStyle = default.copy(
         fontSize = 28.sp,
         lineHeight = 36.sp,
         fontWeight = FontWeight.Medium,
     ),
-    headlineMediumR = SansSerifStyle.copy(
+    val headlineMediumR: TextStyle = default.copy(
         fontSize = 28.sp,
         lineHeight = 36.sp,
     ),
-    headlineSmallBL = SansSerifStyle.copy(
+    val headlineSmallBL: TextStyle = default.copy(
         fontSize = 24.sp,
         lineHeight = 32.sp,
         fontWeight = FontWeight.Black,
         letterSpacing = (-0.2).sp,
     ),
-    headlineSmallM = SansSerifStyle.copy(
+    val headlineSmallM: TextStyle = default.copy(
         fontSize = 24.sp,
         lineHeight = 32.sp,
         fontWeight = FontWeight.Medium,
     ),
-    headlineSmallR = SansSerifStyle.copy(
+    val headlineSmallR: TextStyle = default.copy(
         fontSize = 24.sp,
         lineHeight = 32.sp,
     ),
-    titleLargeBL = SansSerifStyle.copy(
+
+    val titleLargeBL: TextStyle = default.copy(
         fontSize = 22.sp,
         lineHeight = 28.sp,
         fontWeight = FontWeight.Black,
     ),
-    titleLargeB = SansSerifStyle.copy(
+    val titleLargeB: TextStyle = default.copy(
         fontSize = 22.sp,
         lineHeight = 28.sp,
         fontWeight = FontWeight.Bold,
     ),
-    titleLargeM = SansSerifStyle.copy(
+    val titleLargeM: TextStyle = default.copy(
         fontSize = 22.sp,
         lineHeight = 28.sp,
         fontWeight = FontWeight.Medium,
     ),
-    titleLargeR = SansSerifStyle.copy(
+    val titleLargeR: TextStyle = default.copy(
         fontSize = 22.sp,
         lineHeight = 28.sp,
     ),
-    titleMediumBL = SansSerifStyle.copy(
+    val titleMediumBL: TextStyle = default.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         fontWeight = FontWeight.Black,
     ),
-    titleMediumB = SansSerifStyle.copy(
+    val titleMediumB: TextStyle = default.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         fontWeight = FontWeight.Bold,
     ),
-    titleMediumR = SansSerifStyle.copy(
+    val titleMediumR: TextStyle = default.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
     ),
-    titleSmallB = SansSerifStyle.copy(
+    val titleSmallB: TextStyle = default.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         fontWeight = FontWeight.Bold,
         letterSpacing = 0.25.sp,
     ),
-    titleSmallM = SansSerifStyle.copy(
+    val titleSmallM: TextStyle = default.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         fontWeight = FontWeight.Medium,
         letterSpacing = 0.25.sp,
     ),
-    titleSmallM140 = SansSerifStyle.copy(
+    val titleSmallM140: TextStyle = default.copy(
         fontSize = 14.sp,
         lineHeight = (19.6).sp,
         fontWeight = FontWeight.Medium,
         letterSpacing = (-0.2).sp,
     ),
-    titleSmallR140 = SansSerifStyle.copy(
-        fontSize = 14.sp,
-        lineHeight = (19.6).sp,
-        letterSpacing = (-0.2).sp,
-    ),
-    titleSmallR = SansSerifStyle.copy(
+    val titleSmallR: TextStyle = default.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
     ),
-    labelLargeM = SansSerifStyle.copy(
+    val titleSmallR140: TextStyle = default.copy(
+        fontSize = 14.sp,
+        lineHeight = (19.6).sp,
+        letterSpacing = (-0.2).sp,
+    ),
+
+    val labelLargeM: TextStyle = default.copy(
         fontSize = 12.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight.Medium,
     ),
-    labelMediumR = SansSerifStyle.copy(
+    val labelMediumR: TextStyle = default.copy(
         fontSize = 12.sp,
         lineHeight = 16.sp,
     ),
-    labelSmallM = SansSerifStyle.copy(
+    val labelSmallM: TextStyle = default.copy(
         fontSize = 11.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight.Medium,
         letterSpacing = (-0.2).sp,
     ),
-    bodyLargeR = SansSerifStyle.copy(
+
+    val bodyLargeR: TextStyle = default.copy(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
     ),
-    bodyMediumR = SansSerifStyle.copy(
+    val bodyMediumR: TextStyle = default.copy(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
     ),
-    bodySmallR = SansSerifStyle.copy(
+    val bodySmallR: TextStyle = default.copy(
         fontSize = 12.sp,
         lineHeight = 16.sp,
     ),
-)
+) {
+    companion object {
+        fun with(
+            fontFamily: FontFamily = FontFamily.Default,
+            fontWeight: FontWeight = FontWeight.Normal,
+        ) = KnightsTypography(
+            default = TextStyle(
+                fontFamily = fontFamily,
+                fontWeight = fontWeight,
+            ),
+        )
+    }
+}
 
-val LocalTypography = staticCompositionLocalOf {
-    KnightsTypography(
-        labelSmallM = SansSerifStyle,
-        displayLargeR = SansSerifStyle,
-        displayMediumR = SansSerifStyle,
-        displaySmallR = SansSerifStyle,
-        headlineLargeEB = SansSerifStyle,
-        headlineLargeSB = SansSerifStyle,
-        headlineLargeR = SansSerifStyle,
-        headlineMediumB = SansSerifStyle,
-        headlineMediumM = SansSerifStyle,
-        headlineMediumR = SansSerifStyle,
-        headlineSmallBL = SansSerifStyle,
-        headlineSmallM = SansSerifStyle,
-        headlineSmallR = SansSerifStyle,
-        titleLargeBL = SansSerifStyle,
-        titleLargeB = SansSerifStyle,
-        titleLargeM = SansSerifStyle,
-        titleLargeR = SansSerifStyle,
-        titleMediumBL = SansSerifStyle,
-        titleMediumB = SansSerifStyle,
-        titleMediumR = SansSerifStyle,
-        titleSmallB = SansSerifStyle,
-        titleSmallM = SansSerifStyle,
-        titleSmallM140 = SansSerifStyle,
-        titleSmallR = SansSerifStyle,
-        titleSmallR140 = SansSerifStyle,
-        labelLargeM = SansSerifStyle,
-        labelMediumR = SansSerifStyle,
-        bodyLargeR = SansSerifStyle,
-        bodyMediumR = SansSerifStyle,
-        bodySmallR = SansSerifStyle,
-    )
+internal val LocalTypography = staticCompositionLocalOf<KnightsTypography> {
+    error("KnightsTypography를 provide 해야합니다.")
 }
