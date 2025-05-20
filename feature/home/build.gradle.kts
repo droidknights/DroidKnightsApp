@@ -11,7 +11,8 @@ kotlin {
             implementation(libs.androidx.navigation.compose)
             implementation(projects.core.designsystem)
             implementation(projects.core.navigation)
-            implementation(projects.core.ui.shader)
+            // TODO 카드 배경 png 말고 shader로 구현 해보기
+//            implementation(projects.core.ui.shader)
         }
     }
 }
