@@ -44,6 +44,11 @@ include(
     ":core:data:data-setting-api",
 )
 
+// core - model
+include(
+    ":core:model:model-session",
+)
+
 // feature
 include(
     ":feature:main",
