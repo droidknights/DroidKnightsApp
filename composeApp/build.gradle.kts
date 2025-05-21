@@ -41,8 +41,11 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.core.designsystem)
 
-            implementation(projects.core.data.dataSettingApi)
+            implementation(projects.core.data.dataSession)
             implementation(projects.core.data.dataSetting)
+            implementation(projects.core.data.dataSettingApi)
+
+            implementation(projects.core.domain.domainSession)
 
             implementation(projects.feature.main)
             implementation(projects.feature.setting)

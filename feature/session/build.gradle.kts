@@ -7,6 +7,9 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.koin.compose.viewmodel.navigation)
+            implementation(projects.core.domain.domainSessionApi)
+
             // TODO feature plugin
             implementation(libs.androidx.navigation.compose)
             implementation(projects.core.designsystem)

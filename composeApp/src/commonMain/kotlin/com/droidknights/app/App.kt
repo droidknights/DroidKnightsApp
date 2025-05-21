@@ -5,8 +5,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.text.font.FontFamily
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.droidknights.app.core.data.session.di.coreDataSessionModule
 import com.droidknights.app.core.data.setting.di.coreDataSettingModule
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
 import com.droidknights.app.feature.main.MainScreen
 import com.droidknights.app.feature.setting.di.featureSettingModule
 import droidknights.composeapp.generated.resources.NotoSans
@@ -48,11 +50,16 @@ private val koinAppDeclaration: KoinAppDeclaration = {
     }
     val coreDataModules = listOf(
         coreDataSettingModule,
+        coreDataSessionModule,
+    )
+    val coreDomainModules = listOf(
+        coreDomainSessionModule,
     )
     val featureViewModelModules = listOf(
         featureSettingModule,
     )
     modules(appModule)
     modules(coreDataModules)
+    modules(coreDomainModules)
     modules(featureViewModelModules)
 }
