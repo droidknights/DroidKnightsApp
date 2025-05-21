@@ -23,7 +23,7 @@ internal class SessionRepositoryImpl : SessionRepository {
             speakers = listOf(
                 SpeakerResponse(
                     name = "세션 연사자 1",
-                    introduction = "",
+                    introduction = "세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1",
                     imageUrl = "",
                 ),
             ),
@@ -39,7 +39,7 @@ internal class SessionRepositoryImpl : SessionRepository {
             speakers = listOf(
                 SpeakerResponse(
                     name = "세션 연사자 2",
-                    introduction = "",
+                    introduction = "세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2",
                     imageUrl = "",
                 ),
             ),

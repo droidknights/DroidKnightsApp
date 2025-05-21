@@ -9,6 +9,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.koin.compose.viewmodel.navigation)
             implementation(projects.core.domain.domainSessionApi)
+            implementation(projects.core.model.modelSession)
 
             // TODO feature plugin
             implementation(libs.androidx.navigation.compose)

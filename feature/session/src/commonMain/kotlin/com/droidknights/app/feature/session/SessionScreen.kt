@@ -13,26 +13,26 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.components.Button
 import com.droidknights.app.core.designsystem.components.Text
-import com.droidknights.app.core.domain.session.api.usecase.GetSessionsUseCase
-import org.koin.compose.LocalKoinApplication
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun SessionScreen(
     onBackClick: () -> Unit,
     onSessionClick: (String) -> Unit,
     modifier: Modifier = Modifier,
+    viewModel: SessionViewModel = koinViewModel(),
 ) {
-    val getSessionsUseCase = LocalKoinApplication.current.get<GetSessionsUseCase>()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val sessions by getSessionsUseCase.invoke().collectAsStateWithLifecycle(emptyList())
     Column(
         modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("SessionScreen")
-        Text("$sessions")
+        // TODO session 화면
+        Text("$uiState")
         Button(text = "Back", onClick = onBackClick)
-        Button(text = "Session Detail (id = 1234)", onClick = { onSessionClick("1234") })
+        Button(text = "Session Detail (id = 1)", onClick = { onSessionClick("1") })
     }
 }

@@ -48,6 +48,7 @@ kotlin {
             implementation(projects.core.domain.domainSession)
 
             implementation(projects.feature.main)
+            implementation(projects.feature.session)
             implementation(projects.feature.setting)
 
             implementation(libs.androidx.lifecycle.runtime.compose)
