@@ -4,9 +4,13 @@ import app.cash.turbine.test
 import com.droidknights.app.core.domain.contributor.usecase.api.GetContributorsUseCase
 import com.droidknights.app.core.model.contributor.Contributor
 import com.droidknights.app.core.model.contributor.ContributorGroup
+import com.droidknights.app.core.router.api.Navigation
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
+import io.mockk.Runs
 import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -15,23 +19,38 @@ import org.junit.Test
 import kotlin.test.assertIs
 
 internal class ContributorViewModelTest {
+
     @get:Rule
     val dispatcherRule = MainDispatcherRule()
 
     private val getContributorsUseCase = mockk<GetContributorsUseCase>()
+    private val navigation = mockk<Navigation>()
     private lateinit var viewModel: ContributorViewModel
 
     @Test
     fun `컨트리뷰터 데이터를 확인할 수 있다`() = runTest {
         // given
         coEvery { getContributorsUseCase() } returns flowOf(fakeContributors)
-        viewModel = ContributorViewModel(getContributorsUseCase)
+        viewModel = ContributorViewModel(getContributorsUseCase, navigation)
 
         // when & then
         viewModel.uiState.test {
             val actual: ContributorsUiState = awaitItem()
             assertIs<ContributorsUiState.Contributors>(actual)
         }
+    }
+
+    @Test
+    fun `move Back`() = runTest {
+        // suspend 함수 호출에 대한 stub
+        coEvery { navigation.navigateBack() } just Runs
+        viewModel = ContributorViewModel(getContributorsUseCase, navigation)
+
+        // when
+        viewModel.navigateBack()
+
+        // then
+        coVerify(exactly = 1) { navigation.navigateBack() }
     }
 
     companion object {

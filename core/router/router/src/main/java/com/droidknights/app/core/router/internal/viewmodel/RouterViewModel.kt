@@ -1,24 +1,24 @@
 package com.droidknights.app.core.router.internal.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.droidknights.app.core.router.internal.navigator.BackRoute
 import com.droidknights.app.core.router.internal.navigator.InternalNavigator
+import com.droidknights.app.core.router.internal.navigator.InternalRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 @HiltViewModel
-internal class RouteViewModel @Inject constructor(
+internal class RouterViewModel @Inject constructor(
     navigator: InternalNavigator,
 ) : ViewModel() {
 
     val sideEffect by lazy(LazyThreadSafetyMode.NONE) {
-        navigator.channel.consumeAsFlow()
+        navigator.channel.receiveAsFlow()
             .map { router ->
                 when (router) {
-                    is BackRoute -> RouteSideEffect.MoveNavigationBack
-                    else -> RouteSideEffect.MoveNavigation(router)
+                    is InternalRoute.Navigate -> RouteSideEffect.Navigate(router.route, router.saveState)
+                    is InternalRoute.NavigateBack -> RouteSideEffect.NavigateBack
                 }
             }
     }

@@ -3,10 +3,13 @@ package com.droidknights.app.core.router
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.droidknights.app.core.router.internal.viewmodel.RouteSideEffect
-import com.droidknights.app.core.router.internal.viewmodel.RouteViewModel
+import com.droidknights.app.core.router.internal.viewmodel.RouterViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -21,23 +24,26 @@ fun LaunchedRouter(
 @Composable
 private fun InternalLaunchedRouter(
     navHostController: NavHostController,
-    routeViewModel: RouteViewModel = hiltViewModel(),
+    routerViewModel: RouterViewModel = hiltViewModel(),
 ) {
-    LaunchedEffect(routeViewModel) {
-        routeViewModel.sideEffect.collectLatest { sideEffect ->
-            when (sideEffect) {
-                is RouteSideEffect.MoveNavigationBack -> {
-                    navHostController.popBackStack()
-                }
+    val lifecycleOwner = LocalLifecycleOwner.current
+    LaunchedEffect(routerViewModel, lifecycleOwner) {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            routerViewModel.sideEffect.collectLatest { sideEffect ->
+                when (sideEffect) {
+                    is RouteSideEffect.NavigateBack -> {
+                        navHostController.popBackStack()
+                    }
 
-                is RouteSideEffect.MoveNavigation -> {
-                    navHostController.navigate(sideEffect.route) {
-                        navHostController.graph.findStartDestination().route?.let {
-                            popUpTo(it) {
-                                saveState = true
+                    is RouteSideEffect.Navigate -> {
+                        navHostController.navigate(sideEffect.route) {
+                            navHostController.graph.findStartDestination().route?.let {
+                                popUpTo(it) {
+                                    saveState = sideEffect.saveState
+                                }
                             }
+                            restoreState = sideEffect.saveState
                         }
-                        restoreState = true
                     }
                 }
             }

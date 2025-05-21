@@ -3,7 +3,7 @@ package com.droidknights.app.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
-import com.droidknights.app.core.router.api.Navigator
+import com.droidknights.app.core.router.api.Navigation
 import com.droidknights.app.feature.contributor.api.RouteContributor
 import com.droidknights.app.feature.home.model.SponsorsUiState
 import com.droidknights.app.feature.session.api.RouteSession
@@ -17,12 +17,13 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     getSponsorsUseCase: GetSponsorsUseCase,
-    private val navigator: Navigator,
+    private val navigation: Navigation,
 ) : ViewModel() {
 
     private val _errorFlow = MutableSharedFlow<Throwable>()
@@ -46,11 +47,11 @@ class HomeViewModel @Inject constructor(
                 initialValue = SponsorsUiState.Loading,
             )
 
-    fun navigateSession() {
-        navigator.navigate(RouteSession)
+    fun navigateSession() = viewModelScope.launch {
+        navigation.navigate(RouteSession)
     }
 
-    fun navigateContributor() {
-        navigator.navigate(RouteContributor)
+    fun navigateContributor() = viewModelScope.launch {
+        navigation.navigate(RouteContributor)
     }
 }

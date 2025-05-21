@@ -43,7 +43,7 @@ fun ContributorRoute(
 
     ContributorScreen(
         uiState = uiState,
-        onBackClick = viewModel::moveBack,
+        onBackClick = viewModel::navigateBack,
         modifier = modifier,
     )
 }

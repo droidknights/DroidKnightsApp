@@ -3,9 +3,15 @@ package com.droidknights.app.feature.home
 import app.cash.turbine.test
 import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
 import com.droidknights.app.core.model.sponsor.Sponsor
+import com.droidknights.app.core.router.api.Navigation
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
+import com.droidknights.app.feature.contributor.api.RouteContributor
 import com.droidknights.app.feature.home.model.SponsorsUiState
+import com.droidknights.app.feature.session.api.RouteSession
+import io.mockk.Runs
 import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
@@ -16,14 +22,15 @@ internal class HomeViewModelTest {
     @get:Rule
     val dispatcherRule = MainDispatcherRule()
 
-    private val getSponsorsUseCase: GetSponsorsUseCase = mockk()
+    private val getSponsorsUseCase = mockk<GetSponsorsUseCase>()
+    private val navigation = mockk<Navigation>()
     private lateinit var viewModel: HomeViewModel
 
     @Test
     fun `후원사 리스트가 비어있다면 후원사 데이터를 확인할 수 없다`() = runTest {
         // given
         coEvery { getSponsorsUseCase() } returns emptyList()
-        viewModel = HomeViewModel(getSponsorsUseCase)
+        viewModel = HomeViewModel(getSponsorsUseCase, navigation)
 
         // when & then
         viewModel.sponsorsUiState.test {
@@ -36,13 +43,39 @@ internal class HomeViewModelTest {
     fun `후원사 리스트가 존재한다면 후원사 데이터를 확인할 수 있다`() = runTest {
         // given
         coEvery { getSponsorsUseCase() } returns fakeSponsors
-        viewModel = HomeViewModel(getSponsorsUseCase)
+        viewModel = HomeViewModel(getSponsorsUseCase, navigation)
 
         // when & then
         viewModel.sponsorsUiState.test {
             val actual = awaitItem()
             assertIs<SponsorsUiState.Sponsors>(actual)
         }
+    }
+
+    @Test
+    fun `navigate RouteSession`() = runTest {
+        // suspend 함수 호출에 대한 stub
+        coEvery { navigation.navigate(RouteSession) } just Runs
+        viewModel = HomeViewModel(getSponsorsUseCase, navigation)
+
+        // when
+        viewModel.navigateSession()
+
+        // then
+        coVerify(exactly = 1) { navigation.navigate(RouteSession) }
+    }
+
+    @Test
+    fun `navigate Contributor`() = runTest {
+        // suspend 함수 호출에 대한 stub
+        coEvery { navigation.navigate(RouteContributor) } just Runs
+        viewModel = HomeViewModel(getSponsorsUseCase, navigation)
+
+        // when
+        viewModel.navigateContributor()
+
+        // then
+        coVerify(exactly = 1) { navigation.navigate(RouteContributor) }
     }
 
     companion object {
