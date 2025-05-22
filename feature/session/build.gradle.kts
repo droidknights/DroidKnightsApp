@@ -9,6 +9,7 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.core.domain.domainSessionApi)
             implementation(projects.core.model.modelSession)
+            implementation(libs.kotlinx.datetime)
 
             // TODO feature plugin
             implementation(libs.koin.compose.viewmodel.navigation)
