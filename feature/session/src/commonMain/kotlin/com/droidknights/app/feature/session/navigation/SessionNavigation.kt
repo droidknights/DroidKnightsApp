@@ -23,8 +23,9 @@ fun NavGraphBuilder.sessionNavGraph(
 ) {
     composable<SessionRoute> {
         SessionScreen(
-            onBackClick = onBackClick,
-            onSessionClick = onSessionClick,
+            onSessionClick = {
+                onSessionClick(it.id)
+            },
         )
     }
 
