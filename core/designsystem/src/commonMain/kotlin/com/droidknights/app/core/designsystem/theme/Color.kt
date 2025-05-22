@@ -9,7 +9,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 
 val Blue01 = Color(0xFF5180FF)
+val Blue01_A30 = Color(0x4D5180FF)
 val Blue02 = Color(0xFF215BF6)
+
+val Purple01 = Color(0xFFB469FF)
+val Purple01_A30 = Color(0x4DB469FF)
 
 val White = Color(0xFFFFFFFF)
 val PaleGray = Color(0xFFF9F9F9)
@@ -26,6 +30,12 @@ data class KnightsColorScheme(
     val onBackground: Color,
     val surface: Color,
     val onSurface: Color,
+    val primarySurface: Color,
+    val onPrimarySurface: Color,
+    val secondarySurface: Color,
+    val onSecondarySurface: Color,
+    val accentSurface: Color,
+    val onAccentSurface: Color,
     val borderColor: Color,
     val selectedIconColor: Color,
     val unselectedIconColor: Color,
@@ -42,6 +52,12 @@ data class KnightsColorScheme(
             onBackground = Black,
             surface = White,
             onSurface = Black,
+            primarySurface = Blue02,
+            onPrimarySurface = White,
+            secondarySurface = Blue01_A30,
+            onSecondarySurface = Blue01,
+            accentSurface = Purple01_A30,
+            onAccentSurface = Purple01,
             borderColor = LightGray,
             selectedIconColor = Blue02,
             unselectedIconColor = LightGray,
@@ -54,6 +70,12 @@ data class KnightsColorScheme(
             onBackground = White,
             surface = Graphite,
             onSurface = White,
+            primarySurface = Blue02,
+            onPrimarySurface = White,
+            secondarySurface = Blue01_A30,
+            onSecondarySurface = White,
+            accentSurface = Purple01_A30,
+            onAccentSurface = Purple01,
             borderColor = DarkGray,
             selectedIconColor = Blue01,
             unselectedIconColor = DarkGray,
@@ -69,6 +91,9 @@ private fun KnightsColorScheme.contentColorFor(backgroundColor: Color): Color =
         surface -> onSurface
         darkSurface -> onDarkSurface
         lightSurface -> onLightSurface
+        primarySurface -> onPrimarySurface
+        secondarySurface -> onSecondarySurface
+        accentSurface -> onAccentSurface
         else -> Color.Unspecified
     }
 
