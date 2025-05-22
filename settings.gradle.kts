@@ -37,13 +37,22 @@ include(
     ":core:navigation",
     ":core:ui:shader"
 )
-
 // core - data
 include(
+    ":core:data:data-session",
+    ":core:data:data-session-api",
     ":core:data:data-setting",
     ":core:data:data-setting-api",
 )
-
+// core - domain
+include(
+    ":core:domain:domain-session",
+    ":core:domain:domain-session-api",
+)
+// core - model
+include(
+    ":core:model:model-session",
+)
 // feature
 include(
     ":feature:main",
