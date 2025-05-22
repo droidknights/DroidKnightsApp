@@ -19,6 +19,7 @@ kotlin = "2.1.20"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization-json = "1.8.1"
 kotlinx-datetime = "0.6.2"
+kotlinx-immutable = "0.4.0"
 ktor = "3.1.2"
 logback = "1.5.18"
 detekt = "1.23.8"
@@ -35,6 +36,7 @@ kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-immutable" }
 
 # androidx + compose
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
