@@ -28,12 +28,13 @@ fun Chip(
     text: String,
     modifier: Modifier = Modifier,
     icon: Painter? = null,
-    style: ChipStyle = ChipStyle.Primary,
+    style: ChipStyle = ChipStyle.Default,
 ) {
     Surface(
         modifier = modifier,
         shape = CircleShape,
         color = when (style) {
+            ChipStyle.Default -> KnightsTheme.colorScheme.neutralSurface
             ChipStyle.Primary -> KnightsTheme.colorScheme.primarySurface
             ChipStyle.Secondary -> KnightsTheme.colorScheme.secondarySurface
             ChipStyle.Accent -> KnightsTheme.colorScheme.accentSurface
@@ -64,6 +65,7 @@ fun Chip(
                 text = text,
                 style = KnightsTheme.typography.labelSmallM,
                 color = when (style) {
+                    ChipStyle.Default,
                     ChipStyle.Primary,
                     ChipStyle.Secondary,
                     ChipStyle.Accent,
@@ -76,7 +78,7 @@ fun Chip(
 }
 
 enum class ChipStyle {
-    Primary, Secondary, Accent, Border
+    Default, Primary, Secondary, Accent, Border
 }
 
 private val ChipPadding = PaddingValues(12.dp, 2.dp, 12.dp, 2.dp)
@@ -93,6 +95,7 @@ private fun ChipPreview() {
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier.padding(16.dp),
                 ) {
+                    Chip("Android")
                     Chip(
                         text = "Track 02",
                         style = ChipStyle.Primary,
@@ -113,6 +116,7 @@ private fun ChipPreview() {
                 }
             }
             Surface(color = White) {
+                Chip("Android")
                 Column(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier.padding(16.dp),
