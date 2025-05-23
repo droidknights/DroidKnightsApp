@@ -46,7 +46,7 @@ actual fun MainScreen(modifier: Modifier) {
                     modifier = Modifier
                         .padding(40.dp)
                         .width(360.dp)
-                        .heightIn(max = 720.dp)
+                        .heightIn(max = 780.dp)
                         .fillMaxHeight(),
                     content = {
                         MainContent(navigator = navigator)
