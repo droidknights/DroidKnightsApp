@@ -20,6 +20,12 @@ data class KnightsTypography(
         fontSize = 45.sp,
         lineHeight = 52.sp,
     ),
+
+    val displayMediumEB: TextStyle = default.copy(
+        fontSize = 45.sp,
+        lineHeight = 52.sp,
+        fontWeight = FontWeight.ExtraBold,
+    ),
     val displaySmallR: TextStyle = default.copy(
         fontSize = 36.sp,
         lineHeight = 44.sp,

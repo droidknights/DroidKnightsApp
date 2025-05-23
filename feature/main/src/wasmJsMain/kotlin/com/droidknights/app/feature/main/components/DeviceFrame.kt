@@ -27,7 +27,7 @@ import droidknights.feature.main.generated.resources.img_front_camera
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun DeviceFrame(
+internal fun DeviceFrame(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
