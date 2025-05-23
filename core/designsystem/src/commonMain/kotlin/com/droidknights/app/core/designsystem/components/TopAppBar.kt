@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.core.designsystem.theme.contentColorFor
 import droidknights.core.designsystem.generated.resources.Res
 import droidknights.core.designsystem.generated.resources.ic_arrow_back
 import droidknights.core.designsystem.generated.resources.ic_close
@@ -25,9 +26,11 @@ fun TopAppBar(
     actions: (@Composable (Modifier) -> Unit)? = null,
 ) {
     Surface(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .height(48.dp),
         color = backgroundColor,
+        contentColor = contentColorFor(backgroundColor).copy(alpha = 0.5F),
     ) {
         Box(modifier = Modifier.fillMaxWidth()) {
             navigation?.invoke(Modifier.align(Alignment.CenterStart))

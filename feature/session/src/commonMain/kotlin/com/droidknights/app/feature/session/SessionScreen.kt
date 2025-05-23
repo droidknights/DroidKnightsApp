@@ -1,13 +1,12 @@
 package com.droidknights.app.feature.session
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,11 +19,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.components.Divider
+import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.feature.session.components.SessionCard
+import com.droidknights.app.feature.session.components.SessionTopAppBar
 import com.droidknights.app.feature.session.model.SessionState
 import com.droidknights.app.feature.session.model.SessionUiState
 import com.droidknights.app.feature.session.model.rememberSessionState
@@ -39,6 +40,7 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun SessionScreen(
+    onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
     sessionViewModel: SessionViewModel = koinViewModel(),
 ) {
@@ -47,13 +49,23 @@ internal fun SessionScreen(
         rememberSessionState(sessions = sessions) // SessionUiState.Sessions
     } ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        // TODO TopBar
-        SessionList(
-            sessionState = sessionState,
-            modifier = Modifier.systemBarsPadding().padding(top = 48.dp).fillMaxSize(),
-            onSessionClick = onSessionClick,
-        )
+    Surface(
+        color = KnightsTheme.colorScheme.background,
+    ) {
+        Column(
+            modifier = Modifier
+                .safeDrawingPadding()
+                .fillMaxSize(),
+        ) {
+            SessionTopAppBar(
+                onBackClick = onBackClick,
+            )
+            SessionList(
+                sessionState = sessionState,
+                modifier = Modifier.weight(1F),
+                onSessionClick = onSessionClick,
+            )
+        }
     }
 }
 
