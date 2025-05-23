@@ -48,7 +48,7 @@ actual fun MainScreen(modifier: Modifier) {
         if (size.width > WideWidth) {
             Column(
                 modifier = Modifier
-                    .requiredWidthIn(max = 900.dp)
+                    .requiredWidthIn(max = 1280.dp)
                     .fillMaxSize(),
             ) {
                 AppBar(
@@ -116,5 +116,5 @@ private fun AppBar(
     }
 }
 
-private val WideWidth = 900.dp
+private val WideWidth = 1280.dp
 private const val ProjectUrl = "https://github.com/droidknights/DroidKnightsApp/tree/2025/compose-multiplatform"
