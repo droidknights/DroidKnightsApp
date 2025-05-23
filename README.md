@@ -4,27 +4,29 @@
 
 ## 개발 방향
 
-Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성 -> Compose Multiplatform 1.8.0을 체험하고, 논의하는 장이 되었으면 좋겠음
+Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성 -> Compose Multiplatform 1.8을 체험하고, 논의하는 장이 되었으면 좋겠음
 
 ## 개발 환경
 - Android Studio
-  - Meerkat Feature Drop
-  - Narwhal
+  - Narwhal Feature Drop
 - JDK
-  - (권장) Android Studio 설치 시 Embeded 된 JDK
+  - (권장) Android Studio 설치 시 Embeded 된 JDK (JBR)
 - Android Gradle Plugin 8.10.0
-- Kotlin 2.1.20
-- Compose Multiplatform 1.8.0
+- Kotlin 2.1.21
+- Compose Multiplatform 1.8.1
 
 ## Run Configuration
 
-- composeApp (Android 에뮬레이터 or 실제 기기)
-- iosApp (iOS 시뮬레이터, xcode 및 [Kotlin Multiplatform Plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform) 설치 필요)
-- desktop (Windows, macOS, Linux)
-- web (localhost)
-- backend (localhost)
+[Kotlin Multiplatform Plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform) 설치 필요
 
-![Run Configuration](docs/image.png)
+- composeApp
+  - Android 에뮬레이터 or 실제 기기
+  - (desktop) Windows / macOS / Linux
+  - (wasmJs) localhost 웹
+- iosApp
+  - iOS 시뮬레이터 (xcode 설치 필요)
+
+![Run Configuration](docs/run-configuration.png)
 
 ## Code Formatting
 ### Git Pre Commit hook 설치
