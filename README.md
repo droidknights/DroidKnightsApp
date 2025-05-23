@@ -3,6 +3,7 @@
 # DroidKnights 2025 Multiplatform App
 
 Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성했습니다. Compose Multiplatform 1.8을 체험하고, 논의하는 장이 되었으면 좋겠습니다.
+
 - [공식 홈페이지](https://www.droidknights.dev/)
 - [티켓 구입하기](https://www.ticketa.co/events/1)
 - [드로이드나이츠 앱 소개 페이지 + 라이브 데모 by Compose Multiplatform (Wasm)](https://droidknights.github.io/DroidKnightsApp/)
@@ -15,6 +16,10 @@ Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성했습
 - Android Gradle Plugin 8.10.0
 - Kotlin 2.1.21
 - Compose Multiplatform 1.8.1
+
+## Contribution
+- 메인 브랜치의 [Contribution 가이드](https://github.com/droidknights/DroidKnightsApp/blob/main/CONTRIBUTING.md)를 참고해주세요.
+- 하단의 Code Formatting 섹션 가이드에 따라 코드 컨벤션을 유지 해주세요.
 
 ## Code Formatting
 ### Git Pre Commit hook 설치
