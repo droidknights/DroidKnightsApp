@@ -1,8 +1,10 @@
 package com.droidknights.app.core.designsystem.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
@@ -23,10 +25,14 @@ fun Button(
         shape = RoundedCornerShape(percent = 50),
         color = KnightsTheme.colorScheme.primary,
     ) {
-        Text(
-            text = text,
-            style = KnightsTheme.typography.labelLargeM,
-            modifier = Modifier.padding(24.dp, 8.dp),
-        )
+        Box(
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = text,
+                style = KnightsTheme.typography.titleMediumB,
+                modifier = Modifier.padding(24.dp, 8.dp),
+            )
+        }
     }
 }

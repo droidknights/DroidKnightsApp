@@ -19,6 +19,12 @@ kotlin {
             implementation(projects.core.navigation)
         }
 
+        wasmJsMain {
+            dependencies {
+                implementation(libs.kotlinx.immutable)
+            }
+        }
+
         val nonWasmJsMain by creating {
             dependsOn(commonMain.get())
         }

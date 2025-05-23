@@ -16,6 +16,8 @@ fun Text(
     style: TextStyle = TextStyle.Default,
     color: Color = Color.Unspecified,
     textAlign: TextAlign = TextAlign.Unspecified,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
 ) {
     val textColor = color.takeOrElse { style.color.takeOrElse { LocalContentColor.current } }
 
@@ -26,5 +28,7 @@ fun Text(
             color = textColor,
             textAlign = textAlign,
         ),
+        maxLines = maxLines,
+        minLines = minLines,
     )
 }
