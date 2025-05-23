@@ -1,6 +1,11 @@
 package com.droidknights.app.feature.main
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
@@ -12,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.layout.width
@@ -92,12 +98,12 @@ private fun MainDesktopScreen(
                     .verticalScroll(rememberScrollState())
                     .weight(1F)
                     .fillMaxHeight()
-                    .padding(40.dp, 20.dp),
+                    .padding(16.dp, 20.dp),
             )
 
             DeviceFrame(
                 modifier = Modifier
-                    .padding(40.dp, 20.dp)
+                    .padding(16.dp, 20.dp)
                     .width(360.dp)
                     .heightIn(max = 780.dp)
                     .fillMaxHeight(),
@@ -184,19 +190,32 @@ private fun MainMobileScreen(
                             .verticalScroll(rememberScrollState())
                             .weight(1F)
                             .fillMaxHeight()
-                            .padding(40.dp, 20.dp),
+                            .padding(16.dp, 20.dp),
                     )
                     Box(
                         modifier = Modifier.fillMaxWidth()
-                            .padding(8.dp),
+                            .padding(16.dp),
                         contentAlignment = Alignment.Center,
                     ) {
+                        val infiniteTransition = rememberInfiniteTransition()
+
+                        val offsetY by infiniteTransition.animateFloat(
+                            initialValue = 0F,
+                            targetValue = -4F,
+                            animationSpec =
+                            infiniteRepeatable(
+                                animation = tween(500),
+                                repeatMode = RepeatMode.Reverse,
+                            ),
+                        )
                         Button(
                             text = "멀티플랫폼 웹 체험하기",
                             onClick = {
                                 showExitGuidePopup = true
                             },
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(x = 0.dp, y = offsetY.dp),
                         )
                     }
                 }

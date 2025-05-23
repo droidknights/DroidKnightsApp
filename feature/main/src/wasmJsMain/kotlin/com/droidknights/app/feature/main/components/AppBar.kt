@@ -26,7 +26,7 @@ internal fun AppBar(
     Box(modifier.fillMaxWidth()) {
         Icon(
             modifier = Modifier
-                .padding(40.dp, 20.dp)
+                .padding(16.dp, 20.dp)
                 .height(40.dp)
                 .align(Alignment.CenterStart),
             painter = painterResource(Res.drawable.web_logo),
@@ -37,7 +37,7 @@ internal fun AppBar(
             painter = painterResource(Res.drawable.ic_github),
             contentDescription = null,
             modifier = Modifier
-                .padding(40.dp, 20.dp)
+                .padding(16.dp, 20.dp)
                 .clip(CircleShape)
                 .size(40.dp)
                 .clickable(onClick = onGithubClick)
