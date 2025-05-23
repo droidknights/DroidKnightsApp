@@ -24,7 +24,7 @@ internal class SessionRepositoryImpl : SessionRepository {
                 SpeakerResponse(
                     name = "세션 연사자 1",
                     introduction = "세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1 세션 연사자 설명 1",
-                    imageUrl = "",
+                    imageUrl = "https://picsum.photos/200",
                 ),
             ),
             tags = listOf("Android", "iOS", "Desktop", "Web"),
@@ -40,7 +40,7 @@ internal class SessionRepositoryImpl : SessionRepository {
                 SpeakerResponse(
                     name = "세션 연사자 2",
                     introduction = "세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2 세션 연사자 설명 2",
-                    imageUrl = "",
+                    imageUrl = "https://picsum.photos/200",
                 ),
             ),
             tags = listOf("Android", "iOS", "Desktop", "Web"),

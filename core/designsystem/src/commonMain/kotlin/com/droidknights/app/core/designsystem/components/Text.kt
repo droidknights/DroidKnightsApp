@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import com.droidknights.app.core.designsystem.theme.LocalContentColor
 
 @Composable
@@ -14,6 +15,7 @@ fun Text(
     modifier: Modifier = Modifier,
     style: TextStyle = TextStyle.Default,
     color: Color = Color.Unspecified,
+    textAlign: TextAlign = TextAlign.Unspecified,
 ) {
     val textColor = color.takeOrElse { style.color.takeOrElse { LocalContentColor.current } }
 
@@ -22,6 +24,7 @@ fun Text(
         modifier = modifier,
         style = style.merge(
             color = textColor,
+            textAlign = textAlign,
         ),
     )
 }

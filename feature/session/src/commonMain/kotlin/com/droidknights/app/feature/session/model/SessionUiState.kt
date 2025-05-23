@@ -3,6 +3,7 @@ package com.droidknights.app.feature.session.model
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import com.droidknights.app.core.model.session.Session
+import kotlinx.collections.immutable.ImmutableList
 
 @Stable
 sealed interface SessionUiState {
@@ -12,6 +13,6 @@ sealed interface SessionUiState {
 
     @Immutable
     data class Sessions(
-        val sessions: List<Session>,
+        val sessions: ImmutableList<Session>,
     ) : SessionUiState
 }

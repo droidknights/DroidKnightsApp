@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.api.usecase.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.session.api.usecase.GetSessionsUseCase
 import com.droidknights.app.feature.session.model.SessionUiState
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -35,7 +36,8 @@ internal class SessionViewModel(
                 sessions = sessions
                     .map { session ->
                         session.copy(isBookmarked = bookmarkedIds.contains(session.id))
-                    },
+                    }
+                    .toPersistentList(),
             )
         }
             .catch { throwable ->
