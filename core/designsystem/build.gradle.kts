@@ -37,4 +37,8 @@ kotlin {
     }
 }
 
+compose.resources {
+    publicResClass = true
+}
+
 android.namespace = "com.droidknights.app.core.designsystem"
