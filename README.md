@@ -1,32 +1,20 @@
-# 🚧DroidKnights 2025 App🚧
+![header.png](docs/header.png)
 
-[공식 홈페이지](https://www.droidknights.dev/)
+# DroidKnights 2025 Multiplatform App
 
-## 개발 방향
-
-Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성 -> Compose Multiplatform 1.8을 체험하고, 논의하는 장이 되었으면 좋겠음
+Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성했습니다. Compose Multiplatform 1.8을 체험하고, 논의하는 장이 되었으면 좋겠습니다.
+- [공식 홈페이지](https://www.droidknights.dev/)
+- [티켓 구입하기](https://www.ticketa.co/events/1)
+- [드로이드나이츠 앱 소개 페이지 + 라이브 데모 by Compose Multiplatform (Wasm)](https://droidknights.github.io/DroidKnightsApp/)
 
 ## 개발 환경
 - Android Studio
-  - Narwhal Feature Drop
+  - Narwhal Feature Drop Canary 최신
 - JDK
   - (권장) Android Studio 설치 시 Embeded 된 JDK (JBR)
 - Android Gradle Plugin 8.10.0
 - Kotlin 2.1.21
 - Compose Multiplatform 1.8.1
-
-## Run Configuration
-
-[Kotlin Multiplatform Plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform) 설치 필요
-
-- composeApp
-  - Android 에뮬레이터 or 실제 기기
-  - (desktop) Windows / macOS / Linux
-  - (wasmJs) localhost 웹
-- iosApp
-  - iOS 시뮬레이터 (xcode 설치 필요)
-
-![Run Configuration](docs/run-configuration.png)
 
 ## Code Formatting
 ### Git Pre Commit hook 설치
@@ -40,7 +28,28 @@ Compose Multiplatform을 활용하여 기존 컨퍼런스 앱을 재구성 -> Co
 ./gradlew detekt --auto-correct
 ```
 
-### Intel Mac에서 프로젝트 빌드하기
+## Run Configuration
+
+[Kotlin Multiplatform Plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform) 설치가 필요합니다.
+
+- composeApp
+  - Android 에뮬레이터 or 실제 기기
+  - (desktop) Windows / macOS / Linux
+  - (wasmJs) localhost 웹
+- iosApp
+  - iOS 시뮬레이터 (xcode 설치 필요)
+
+![Run Configuration](docs/run-configuration.png)
+
+### iOS 실제 기기에 앱 설치 시 주의사항
+
+1. 메뉴 - Run - Edit Configurations... 클릭
+2. 아래 그림과 같이 Development Team이 설정 되어 있어야 합니다.
+3. ⚠️pr 작성 시 해당 값이 저장되는 `project.pbxproj`이 수정되지 않도록 주의해 주세요!
+
+![ios-developer-team.png](docs/ios-developer-team.png)
+
+### Intel Mac에서 프로젝트 빌드하는 법
 
 현재 이 프로젝트는 Apple Silicon Mac에서 iOS 앱이 빌드되도록 기본 설정되어 있습니다.
 
