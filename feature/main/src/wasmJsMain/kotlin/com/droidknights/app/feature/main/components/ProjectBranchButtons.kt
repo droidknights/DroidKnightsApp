@@ -2,6 +2,7 @@ package com.droidknights.app.feature.main.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,9 +28,9 @@ internal fun ProjectBranchButtons(
     branches: PersistentList<ProjectBranch>,
     modifier: Modifier = Modifier,
 ) {
-    Row(
+    FlowRow(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         branches.forEach { branch ->
@@ -42,7 +43,7 @@ internal fun ProjectBranchButtons(
 }
 
 @Composable
-internal fun ProjectBranchButton(
+private fun ProjectBranchButton(
     onClick: (ProjectBranch) -> Unit,
     branch: ProjectBranch,
     modifier: Modifier = Modifier,
@@ -69,11 +70,13 @@ internal fun ProjectBranchButton(
                 Text(
                     text = branch.name,
                     style = KnightsTheme.typography.titleLargeBL,
+                    maxLines = 1,
                 )
                 Text(
                     text = "#${branch.tag}",
                     style = KnightsTheme.typography.titleMediumR,
                     color = LocalContentColor.current.copy(alpha = 0.5F),
+                    maxLines = 1,
                 )
             }
         }
