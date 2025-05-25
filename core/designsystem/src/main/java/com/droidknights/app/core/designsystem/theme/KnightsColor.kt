@@ -15,7 +15,7 @@ object KnightsColor {
     val PaleGray = Color(0xFFF1F1F1)
 
     @Stable
-    val PaperGray = Color(0xFFFDFDFD)
+    val Gainsboro = Color(0xFFDCDCDC)
 
     @Stable
     val LightGray = Color(0x99000000)

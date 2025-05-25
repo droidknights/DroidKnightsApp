@@ -1,5 +1,6 @@
 package com.droidknights.app.feature.main.component
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -99,7 +100,7 @@ private fun RowScope.MainBottomBarItem(
             painter = painterResource(tab.iconResId),
             contentDescription = tab.contentDescription,
             tint = if (selected) {
-                KnightsColor.Neon01
+                KnightsColor.Blue01
             } else {
                 MaterialTheme.colorScheme.outline
             },
@@ -108,7 +109,8 @@ private fun RowScope.MainBottomBarItem(
     }
 }
 
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun MainBottomBarPreview() {
     KnightsTheme {
