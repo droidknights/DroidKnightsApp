@@ -17,11 +17,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.theme.Black
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LocalDarkTheme
-import com.droidknights.app.core.designsystem.theme.Neon01
-import com.droidknights.app.core.designsystem.theme.Neon05
 import com.droidknights.app.feature.contributor.R
 
 @Composable
@@ -31,7 +29,7 @@ internal fun ContributorTopBanner(
 ) {
     Box(
         modifier = modifier
-            .background(if (darkTheme) Black else Neon05)
+            .background(if (darkTheme) KnightsColor.Black else KnightsColor.Neon05)
             .statusBarsPadding()
             .padding(top = 48.dp)
     ) {
@@ -73,7 +71,7 @@ private fun ContributorBannerContent(
         Text(
             text = stringResource(id = R.string.contributor_banner_description),
             style = KnightsTheme.typography.titleSmallM140,
-            color = Neon01,
+            color = KnightsColor.Neon01,
             modifier = Modifier.padding(top = 6.dp, start = 3.dp),
         )
     }

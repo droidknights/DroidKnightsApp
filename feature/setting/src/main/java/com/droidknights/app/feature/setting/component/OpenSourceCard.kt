@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
-import com.droidknights.app.core.designsystem.theme.Graphite
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.setting.R
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
@@ -35,7 +35,7 @@ internal fun OpenSourceCard(
     CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onPrimaryContainer) {
         KnightsCard(
             modifier = modifier,
-            color = Graphite,
+            color = KnightsColor.Graphite,
             onClick = {
                 context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
             }

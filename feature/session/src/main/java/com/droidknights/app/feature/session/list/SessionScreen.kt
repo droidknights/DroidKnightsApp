@@ -1,5 +1,6 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.list
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,11 +32,12 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.ui.RoomText
-import com.droidknights.app.feature.session.component.SessionCard
-import com.droidknights.app.feature.session.component.SessionTopAppBar
-import com.droidknights.app.feature.session.model.SessionState
-import com.droidknights.app.feature.session.model.SessionUiState
-import com.droidknights.app.feature.session.model.rememberSessionState
+import com.droidknights.app.feature.session.R
+import com.droidknights.app.feature.session.list.component.SessionCard
+import com.droidknights.app.feature.session.list.component.SessionListTopAppBar
+import com.droidknights.app.feature.session.list.model.SessionState
+import com.droidknights.app.feature.session.list.model.SessionUiState
+import com.droidknights.app.feature.session.list.model.rememberSessionState
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
 
@@ -44,26 +46,35 @@ internal fun SessionScreen(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
-    sessionViewModel: SessionViewModel = hiltViewModel(),
+    sessionListViewModel: SessionListViewModel = hiltViewModel(),
 ) {
-    val sessionUiState by sessionViewModel.uiState.collectAsStateWithLifecycle()
+    val sessionUiState by sessionListViewModel.uiState.collectAsStateWithLifecycle()
     val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions?.let { sessions ->
         rememberSessionState(sessions = sessions) // SessionUiState.Sessions
     } ?: rememberSessionState(sessions = persistentListOf()) // SessionUiState.Loading, SessionUiState.Error
 
     LaunchedEffect(Unit) {
-        sessionViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
+        sessionListViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        SessionTopAppBar(
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        SessionListTopAppBar(
             sessionState = sessionState,
             onBackClick = onBackClick,
         )
         SessionList(
             sessionState = sessionState,
-            modifier = Modifier.systemBarsPadding().padding(top = 48.dp).fillMaxSize(),
-            onSessionClick = onSessionClick,
+            onSessionClick = {
+                Log.w("TEMP", "onClick session $it")
+                onSessionClick(it)
+            },
+            modifier = Modifier
+                .systemBarsPadding()
+                .padding(top = 48.dp)
+                .fillMaxSize(),
         )
     }
 }
@@ -109,18 +120,27 @@ private fun RoomTitle(
     room: Room,
     topPadding: Dp,
 ) {
-    Column(modifier = Modifier.padding(start = 20.dp, top = topPadding, end = 20.dp)) {
+    Column(
+        modifier = Modifier
+            .padding(start = 20.dp, top = topPadding, end = 20.dp)
+    ) {
         RoomText(
             room = room,
             style = KnightsTheme.typography.titleLargeB,
             color = MaterialTheme.colorScheme.onPrimaryContainer,
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(
+            modifier = Modifier
+                .height(8.dp)
+        )
 
         HorizontalDivider(thickness = 2.dp, color = MaterialTheme.colorScheme.onPrimaryContainer)
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(
+            modifier = Modifier
+                .height(32.dp)
+        )
     }
 }
 
@@ -130,7 +150,10 @@ private val SessionGroupSpace = 100.dp
 @Composable
 private fun DroidKnightsFooter() {
     Text(
-        modifier = Modifier.fillMaxWidth().wrapContentHeight().padding(top = 56.dp, bottom = 80.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(top = 56.dp, bottom = 80.dp),
         text = stringResource(id = R.string.footer_text),
         style = KnightsTheme.typography.labelMediumR,
         color = Color.LightGray,

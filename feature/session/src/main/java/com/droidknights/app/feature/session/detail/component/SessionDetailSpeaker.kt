@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session.component
+package com.droidknights.app.feature.session.detail.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session.component
+package com.droidknights.app.feature.session.list.component
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
@@ -44,29 +44,26 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.ui.RoomText
 import com.droidknights.app.feature.session.R
-import com.droidknights.app.feature.session.model.SessionState
+import com.droidknights.app.feature.session.list.model.SessionState
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun SessionTopAppBar(
+internal fun SessionListTopAppBar(
     sessionState: SessionState,
     onBackClick: () -> Unit,
 ) {
-    val enter = fadeIn()
-    val exit = fadeOut()
-
     val rooms = sessionState.rooms
     val coroutineScope = rememberCoroutineScope()
 
     Box {
         if (rooms.isNotEmpty()) {
             AnimatedVisibility(
-                visible = !sessionState.isAtTop,
-                enter = enter,
-                exit = exit,
+                visible = sessionState.isAtTop.not(),
+                enter = fadeIn(),
+                exit = fadeOut(),
             ) {
                 SessionTabRow(
                     selectedRoom = sessionState.selectedRoom,
@@ -82,8 +79,8 @@ internal fun SessionTopAppBar(
         }
         AnimatedVisibility(
             visible = sessionState.isAtTop,
-            enter = enter,
-            exit = exit,
+            enter = fadeIn(),
+            exit = fadeOut(),
         ) {
             KnightsTopAppBar(
                 titleRes = R.string.session_title,
@@ -196,7 +193,7 @@ private fun Modifier.tabIndicatorOffset(
 @Composable
 private fun SessionTopAppBarPreview() {
     KnightsTheme {
-        SessionTopAppBar(
+        SessionListTopAppBar(
             sessionState = SessionState(
                 sessions = persistentListOf(),
                 listState = rememberLazyListState()

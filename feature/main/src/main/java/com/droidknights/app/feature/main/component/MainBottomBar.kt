@@ -29,8 +29,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Neon01
 import com.droidknights.app.feature.main.MainTab
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
@@ -99,7 +99,7 @@ private fun RowScope.MainBottomBarItem(
             painter = painterResource(tab.iconResId),
             contentDescription = tab.contentDescription,
             tint = if (selected) {
-                Neon01
+                KnightsColor.Neon01
             } else {
                 MaterialTheme.colorScheme.outline
             },

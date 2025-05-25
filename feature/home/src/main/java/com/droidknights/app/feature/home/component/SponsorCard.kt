@@ -34,10 +34,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
-import com.droidknights.app.core.designsystem.theme.DuskGray
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.core.model.sponsor.Sponsor
 import com.droidknights.app.feature.home.R
 import com.droidknights.app.feature.home.SponsorsUiStatePreviewParameterProvider
@@ -78,7 +76,7 @@ private fun SponsorCardContents(
                         uiState.silverCount
                     ),
                     style = KnightsTheme.typography.titleSmallM140,
-                    color = DuskGray,
+                    color = KnightsColor.DuskGray,
                     modifier = Modifier.padding(top = 8.dp),
                 )
             }
@@ -152,7 +150,7 @@ private fun SponsorLogo(
         Surface(
             onClick = onClick,
             shape = CircleShape,
-            color = White,
+            color = KnightsColor.White,
             shadowElevation = 3.dp,
             modifier = Modifier
                 .size(100.dp)
@@ -212,7 +210,7 @@ private fun TextSkeleton(
             .fillMaxWidth()
             .shimmer()
             .background(
-                color = LightGray,
+                color = KnightsColor.LightGray,
                 shape = RoundedCornerShape(4.dp),
             )
     )
@@ -262,7 +260,7 @@ private fun SponsorLogoSkeleton(
             .size(84.dp)
             .shimmer()
             .background(
-                color = LightGray,
+                color = KnightsColor.LightGray,
                 shape = CircleShape,
             ),
     )

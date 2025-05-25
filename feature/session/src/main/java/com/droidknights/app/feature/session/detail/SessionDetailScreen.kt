@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -35,12 +35,13 @@ import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.model.session.Tag
-import com.droidknights.app.feature.session.component.SessionChips
-import com.droidknights.app.feature.session.component.SessionDetailBookmarkStatePopup
-import com.droidknights.app.feature.session.component.SessionDetailSpeaker
-import com.droidknights.app.feature.session.component.SessionDetailTopAppBar
-import com.droidknights.app.feature.session.model.SessionDetailEffect
-import com.droidknights.app.feature.session.model.SessionDetailUiState
+import com.droidknights.app.feature.session.R
+import com.droidknights.app.feature.session.detail.component.SessionDetailBookmarkStatePopup
+import com.droidknights.app.feature.session.detail.component.SessionDetailChips
+import com.droidknights.app.feature.session.detail.component.SessionDetailSpeaker
+import com.droidknights.app.feature.session.detail.component.SessionDetailTopAppBar
+import com.droidknights.app.feature.session.detail.model.SessionDetailEffect
+import com.droidknights.app.feature.session.detail.model.SessionDetailUiState
 import com.droidknights.app.widget.sendWidgetUpdateCommand
 import kotlinx.coroutines.delay
 import kotlinx.datetime.LocalDateTime
@@ -115,13 +116,15 @@ private fun SessionDetailContent(session: Session) {
             .padding(horizontal = 16.dp)
     ) {
         Text(
-            modifier = Modifier.padding(top = 8.dp).padding(end = 58.dp),
+            modifier = Modifier
+                .padding(top = 8.dp)
+                .padding(end = 58.dp),
             text = session.title,
             style = KnightsTheme.typography.headlineMediumB,
             color = MaterialTheme.colorScheme.onSecondaryContainer,
         )
         Spacer(modifier = Modifier.height(12.dp))
-        SessionChips(session = session)
+        SessionDetailChips(session = session)
 
         if (session.content.isNotEmpty()) {
             Spacer(modifier = Modifier.height(16.dp))

@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session.model
+package com.droidknights.app.feature.session.list.model
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState

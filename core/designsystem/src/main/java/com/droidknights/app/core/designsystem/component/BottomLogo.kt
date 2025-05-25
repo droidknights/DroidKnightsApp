@@ -10,13 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LightGray
 
 @Composable
 fun BottomLogo(
     modifier: Modifier = Modifier,
-    color: Color = LightGray,
+    color: Color = KnightsColor.LightGray,
 ) {
     Box(
         modifier = modifier

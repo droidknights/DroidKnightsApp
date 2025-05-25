@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session.component
+package com.droidknights.app.feature.session.detail.component
 
 import android.content.res.Configuration
 import androidx.compose.material3.Icon
@@ -12,9 +12,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.droidknights.app.core.designsystem.component.KnightsTopAppBar
 import com.droidknights.app.core.designsystem.component.TopAppBarNavigationType
-import com.droidknights.app.core.designsystem.theme.Gray
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.feature.session.R
 
 @Composable
@@ -44,17 +43,16 @@ private fun BookmarkToggleButton(
 ) {
     IconToggleButton(
         checked = bookmarked,
-        onCheckedChange = onClickBookmark
+        onCheckedChange = onClickBookmark,
     ) {
         Icon(
-            painter =
-            if (bookmarked) {
+            painter = if (bookmarked) {
                 painterResource(id = R.drawable.ic_session_bookmark_filled)
             } else {
                 painterResource(id = R.drawable.ic_session_bookmark)
             },
             contentDescription = null,
-            tint = if (bookmarked) Purple01 else Gray
+            tint = if (bookmarked) KnightsColor.Blue01 else KnightsColor.Gray
         )
     }
 }

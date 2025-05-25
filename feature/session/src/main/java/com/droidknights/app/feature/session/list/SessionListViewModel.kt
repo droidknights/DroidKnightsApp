@@ -1,10 +1,10 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetSessionsUseCase
-import com.droidknights.app.feature.session.model.SessionUiState
+import com.droidknights.app.feature.session.list.model.SessionUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionViewModel @Inject constructor(
+class SessionListViewModel @Inject constructor(
     getSessionsUseCase: GetSessionsUseCase,
     getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase,
 ) : ViewModel() {
