@@ -38,6 +38,8 @@ import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.model.session.Tag
 import com.droidknights.app.feature.session.R
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -86,7 +88,7 @@ private fun SessionCardContent(
             Spacer(modifier = Modifier.height(12.dp))
             SessionTrackInfo(session)
             Spacer(modifier = Modifier.height(12.dp))
-            SessionSpeakers(session.speakers)
+            SessionSpeakers(session.speakers.toPersistentList())
         }
     }
 }
@@ -151,7 +153,7 @@ private fun SessionTrackInfo(
 
 @Composable
 private fun SessionSpeakers(
-    speakers: List<Speaker>,
+    speakers: ImmutableList<Speaker>,
     modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier.fillMaxWidth()) {

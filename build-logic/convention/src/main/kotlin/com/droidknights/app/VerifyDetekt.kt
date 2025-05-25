@@ -9,6 +9,7 @@ internal fun Project.configureVerifyDetekt() {
     }
 
     dependencies {
-        "detektPlugins"(findLibrary("verify.detektFormatting"))
+        "detektPlugins"(findLibrary("verify-detektFormatting"))
+        "detektPlugins"(findLibrary("verify-twitter-detektComposeRule"))
     }
 }

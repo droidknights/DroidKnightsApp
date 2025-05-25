@@ -27,9 +27,9 @@ import java.time.format.DateTimeFormatter
 
 @Composable
 internal fun BookmarkTimelineItem(
-    modifier: Modifier = Modifier,
     sequence: Int,
     time: LocalTime,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.padding(vertical = 8.dp),
@@ -43,8 +43,8 @@ internal fun BookmarkTimelineItem(
 
 @Composable
 private fun SequenceBadge(
-    modifier: Modifier = Modifier,
     sequence: Int,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -63,8 +63,8 @@ private fun SequenceBadge(
 
 @Composable
 private fun SessionTimeBadge(
-    modifier: Modifier = Modifier,
     time: LocalTime,
+    modifier: Modifier = Modifier,
 ) {
     val pattern = stringResource(id = R.string.session_time_format)
     val formatter = remember { DateTimeFormatter.ofPattern(pattern) }

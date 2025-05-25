@@ -42,8 +42,8 @@ internal fun ContributorTopBanner(
 
 @Composable
 private fun ContributorBannerImage(
-    modifier: Modifier = Modifier,
     darkTheme: Boolean,
+    modifier: Modifier = Modifier,
 ) {
     Image(
         painter = painterResource(

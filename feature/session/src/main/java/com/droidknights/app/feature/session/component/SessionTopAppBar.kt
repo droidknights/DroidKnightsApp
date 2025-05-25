@@ -138,7 +138,10 @@ private fun SessionTabRow(
 }
 
 @Composable
-private fun TabIndicator(height: Dp, modifier: Modifier) {
+private fun TabIndicator(
+    height: Dp,
+    modifier: Modifier = Modifier,
+) {
     val brush = SolidColor(MaterialTheme.colorScheme.onSurface)
     Box(
         modifier = modifier

@@ -47,11 +47,11 @@ internal fun MainScreen(
 
 @Composable
 private fun MainScreenContent(
-    modifier: Modifier = Modifier,
     navigator: MainNavigator,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     onChangeDarkTheme: (Boolean) -> Unit,
     snackBarHostState: SnackbarHostState,
+    modifier: Modifier = Modifier,
 ) {
     Scaffold(
         modifier = modifier,

@@ -38,12 +38,12 @@ fun IconTextChip(
         color = containerColor,
     ) {
         Row(
-            modifier = modifier.padding(start = 4.dp, end = 10.dp),
+            modifier = Modifier.padding(start = 4.dp, end = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
             Icon(
-                modifier = modifier
+                modifier = Modifier
                     .width(20.dp)
                     .height(20.dp),
                 painter = iconPainter,

@@ -33,8 +33,8 @@ import com.droidknights.app.feature.setting.R
 
 @Composable
 internal fun LightDarkThemeCard(
-    modifier: Modifier = Modifier,
     onChangeDarkTheme: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
     darkTheme: Boolean = LocalDarkTheme.current,
     @StringRes lightModeTitleRes: Int = R.string.light_mode,
     @StringRes darkModeTitleRes: Int = R.string.dark_mode,
@@ -82,11 +82,11 @@ internal fun LightDarkThemeCard(
 
 @Composable
 private fun ThemeCard(
-    modifier: Modifier = Modifier,
     selected: Boolean,
     @StringRes titleRes: Int,
     @DrawableRes imageRes: Int,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
