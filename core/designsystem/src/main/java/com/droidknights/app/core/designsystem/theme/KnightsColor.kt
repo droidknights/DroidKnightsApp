@@ -45,28 +45,10 @@ object KnightsColor {
     val Purple01A30 = Color(0x4DB469FF)
 
     @Stable
-    val Mint01 = Color(0xFF7BFAF2)
-
-    @Stable
     val Neon01 = Color(0xFF49F300)
 
     @Stable
-    val Neon01A50 = Color(0x8049F300)
-
-    @Stable
-    val Neon02 = Color(0xFF6CFF2D)
-
-    @Stable
-    val Neon03 = Color(0xFF94FB67)
-
-    @Stable
-    val Neon04 = Color(0xFFA1FF78)
-
-    @Stable
     val Neon05 = Color(0xFFEEFFE7)
-
-    @Stable
-    val Neon05A40 = Color(0x66EEFFE7)
 
     @Stable
     val Blue01 = Color(0xFF215BF6)
@@ -78,19 +60,10 @@ object KnightsColor {
     val Blue02A30 = Color(0x4D5180FF)
 
     @Stable
-    val Blue03A30 = Color(0x4D52C520)
-
-    @Stable
     val Blue04 = Color(0xFF386524)
 
     @Stable
     val Yellow01 = Color(0xFFF2E800)
-
-    @Stable
-    val Yellow02 = Color(0xFFE8ED00)
-
-    @Stable
-    val Yellow03 = Color(0xFFBEED00)
 
     @Stable
     val Yellow03A40 = Color(0x66A1ED00)

@@ -18,7 +18,7 @@ import androidx.glance.color.colorProviders
 
 private val DarkColorScheme = darkColorScheme(
     primary = KnightsColor.White,
-    onPrimary = KnightsColor.Neon01,
+    onPrimary = KnightsColor.Blue01,
     primaryContainer = KnightsColor.Graphite,
     onPrimaryContainer = KnightsColor.White,
     inversePrimary = KnightsColor.Blue02,

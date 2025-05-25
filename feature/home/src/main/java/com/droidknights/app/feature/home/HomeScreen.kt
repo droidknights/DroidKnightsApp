@@ -65,10 +65,7 @@ private fun HomeScreen(
 
 @Preview
 @Composable
-private fun PreviewHomeScreen(
-    @PreviewParameter(SponsorsUiStatePreviewParameterProvider::class)
-    sponsorsUiState: SponsorsUiState,
-) {
+private fun PreviewHomeScreen(@PreviewParameter(SponsorsUiStatePreviewParameterProvider::class) sponsorsUiState: SponsorsUiState) {
     HomeScreen(
         padding = PaddingValues(),
         sponsorsUiState = sponsorsUiState,
