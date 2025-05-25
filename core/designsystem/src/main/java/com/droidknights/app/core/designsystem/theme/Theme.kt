@@ -46,6 +46,7 @@ private val DarkColorScheme = darkColorScheme(
     outline = KnightsColor.DarkGray,
     outlineVariant = KnightsColor.Cosmos,
     scrim = KnightsColor.Black,
+    surfaceContainerLowest = KnightsColor.Graphite,
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -78,6 +79,7 @@ private val LightColorScheme = lightColorScheme(
     outline = KnightsColor.LightGray,
     outlineVariant = KnightsColor.DarkGray,
     scrim = KnightsColor.Black,
+    surfaceContainerLowest = KnightsColor.PaleGray,
 )
 
 val LocalDarkTheme = compositionLocalOf { true }

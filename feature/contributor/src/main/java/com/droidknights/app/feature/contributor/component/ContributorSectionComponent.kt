@@ -31,7 +31,7 @@ private fun ContributorCardPreview() {
     KnightsTheme {
         ContributorSection(
             section = ContributorsUiState.Contributors.Item.Section(
-                title = "2024",
+                title = "2025",
             ),
         )
     }

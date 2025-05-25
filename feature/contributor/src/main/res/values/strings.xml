@@ -1,6 +1,6 @@
 <resources>
     <string name="contributor_top_title">컨트리뷰터</string>
     <string name="contributor_chip">Contributor</string>
-    <string name="contributor_banner_title">여러분 덕분입니다!</string>
-    <string name="contributor_banner_description">드로이드 나이츠 앱을 개발한\n개발자 분들을 소개합니다.</string>
+    <string name="contributor_banner_title">드로이드 나이츠앱\n누가 개발했을까?</string>
+    <string name="contributor_banner_description">메이커를 소개합니다</string>
 </resources>
