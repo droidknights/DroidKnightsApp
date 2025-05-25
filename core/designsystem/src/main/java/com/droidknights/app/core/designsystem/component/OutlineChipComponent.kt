@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session.component.chip
+package com.droidknights.app.core.designsystem.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.MaterialTheme
@@ -6,10 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.component.TextChip
 
 @Composable
-internal fun OutlineChip(text: String) {
+fun OutlineChip(text: String) {
     TextChip(
         text = text,
         containerColor = Color.Transparent,

@@ -9,11 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.component.OutlineChip
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.ui.textRes
 import com.droidknights.app.feature.session.component.SessionPreviewParameterProvider
-import com.droidknights.app.feature.session.component.chip.OutlineChip
 import com.droidknights.app.feature.session.component.chip.TimeChip
 import com.droidknights.app.feature.session.component.chip.TrackChip
 import kotlinx.collections.immutable.toPersistentList
