@@ -16,10 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
-import com.droidknights.app.core.designsystem.theme.Black
-import com.droidknights.app.core.designsystem.theme.Graphite
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.feature.home.R
 
 @Composable
@@ -44,7 +42,7 @@ internal fun SessionCard(
             Text(
                 text = stringResource(id = R.string.session_card_title),
                 style = KnightsTheme.typography.headlineSmallBL,
-                color = Black,
+                color = KnightsColor.Black,
                 modifier = Modifier.padding(top = 12.dp),
             )
         }
@@ -55,13 +53,13 @@ internal fun SessionCard(
 private fun SessionCardCaption() {
     Box(
         modifier = Modifier
-            .background(Graphite, RoundedCornerShape(10.dp))
+            .background(KnightsColor.Graphite, RoundedCornerShape(10.dp))
             .padding(horizontal = 12.dp, vertical = 2.dp)
     ) {
         Text(
             text = stringResource(id = R.string.session_card_caption),
             style = KnightsTheme.typography.labelSmallM,
-            color = White,
+            color = KnightsColor.White,
         )
     }
 }

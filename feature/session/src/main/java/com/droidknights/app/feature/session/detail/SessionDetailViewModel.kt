@@ -1,12 +1,12 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.usecase.api.BookmarkSessionUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetSessionUseCase
-import com.droidknights.app.feature.session.model.SessionDetailEffect
-import com.droidknights.app.feature.session.model.SessionDetailUiState
+import com.droidknights.app.feature.session.detail.model.SessionDetailEffect
+import com.droidknights.app.feature.session.detail.model.SessionDetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

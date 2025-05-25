@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.list
 
 import app.cash.turbine.test
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
@@ -6,7 +6,7 @@ import com.droidknights.app.core.domain.session.usecase.api.GetSessionsUseCase
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
-import com.droidknights.app.feature.session.model.SessionUiState
+import com.droidknights.app.feature.session.list.model.SessionUiState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
@@ -16,14 +16,14 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
-internal class SessionViewModelTest {
+internal class SessionListViewModelTest {
 
     @get:Rule
     val dispatcherRule = MainDispatcherRule()
 
     private val getSessionsUseCase: GetSessionsUseCase = mockk()
     private val getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase = mockk()
-    private lateinit var viewModel: SessionViewModel
+    private lateinit var viewModel: SessionListViewModel
 
     private val fakeSession = Session(
         id = "1",
@@ -42,7 +42,7 @@ internal class SessionViewModelTest {
         // given
         coEvery { getSessionsUseCase() } returns flowOf(listOf(fakeSession))
         coEvery { getBookmarkedSessionIdsUseCase() } returns flowOf(emptySet())
-        viewModel = SessionViewModel(getSessionsUseCase, getBookmarkedSessionIdsUseCase)
+        viewModel = SessionListViewModel(getSessionsUseCase, getBookmarkedSessionIdsUseCase)
 
         // when & then
         viewModel.uiState.test {

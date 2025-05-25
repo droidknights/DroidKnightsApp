@@ -1,4 +1,4 @@
-package com.droidknights.app.feature.session
+package com.droidknights.app.feature.session.detail
 
 import app.cash.turbine.test
 import com.droidknights.app.core.domain.session.usecase.api.BookmarkSessionUseCase
@@ -7,7 +7,7 @@ import com.droidknights.app.core.domain.session.usecase.api.GetSessionUseCase
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
-import com.droidknights.app.feature.session.model.SessionDetailUiState
+import com.droidknights.app.feature.session.detail.model.SessionDetailUiState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -27,10 +27,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
-import com.droidknights.app.core.designsystem.theme.Graphite
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LocalDarkTheme
-import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.feature.setting.R
 
 @Composable
@@ -65,7 +64,7 @@ internal fun LightDarkThemeCard(
                 ThemeCard(
                     selected = darkTheme.not(),
                     titleRes = R.string.light_mode,
-                    themeCardColor = White,
+                    themeCardColor = KnightsColor.White,
                     onClick = { onChangeDarkTheme(false) },
                     modifier = Modifier
                         .weight(1f)
@@ -73,7 +72,7 @@ internal fun LightDarkThemeCard(
                 ThemeCard(
                     selected = darkTheme,
                     titleRes = R.string.dark_mode,
-                    themeCardColor = Graphite,
+                    themeCardColor = KnightsColor.Graphite,
                     onClick = { onChangeDarkTheme(true) },
                     modifier = Modifier
                         .weight(1f)
@@ -159,7 +158,7 @@ private fun LightModeThemeCardPreview() {
         ThemeCard(
             selected = true,
             titleRes = R.string.light_mode,
-            themeCardColor = White,
+            themeCardColor = KnightsColor.White,
             onClick = { },
         )
     }
@@ -172,7 +171,7 @@ private fun DarkModeThemeCardPreview() {
         ThemeCard(
             selected = true,
             titleRes = R.string.dark_mode,
-            themeCardColor = Graphite,
+            themeCardColor = KnightsColor.Graphite,
             onClick = { },
         )
     }

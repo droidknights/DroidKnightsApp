@@ -15,9 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.theme.Gray
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.feature.bookmark.R
 
 @Composable
@@ -29,9 +28,9 @@ internal fun BookmarkTopAppBar(
     val editButtonColor by animateColorAsState(
         label = "Edit Button Color Animation",
         targetValue = if (isEditMode) {
-            Purple01
+            KnightsColor.Purple01
         } else {
-            Gray
+            KnightsColor.Gray
         }
     )
 
