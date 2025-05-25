@@ -3,7 +3,7 @@ package com.droidknights.app.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
-import com.droidknights.app.core.router.api.Navigation
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.feature.contributor.api.RouteContributor
 import com.droidknights.app.feature.home.model.SponsorsUiState
 import com.droidknights.app.feature.session.api.RouteSession
@@ -23,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     getSponsorsUseCase: GetSponsorsUseCase,
-    private val navigation: Navigation,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     private val _errorFlow = MutableSharedFlow<Throwable>()
@@ -48,10 +48,10 @@ class HomeViewModel @Inject constructor(
             )
 
     fun navigateSession() = viewModelScope.launch {
-        navigation.navigate(RouteSession)
+        navigator.navigate(RouteSession)
     }
 
     fun navigateContributor() = viewModelScope.launch {
-        navigation.navigate(RouteContributor)
+        navigator.navigate(RouteContributor)
     }
 }

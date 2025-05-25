@@ -3,7 +3,7 @@ package com.droidknights.app.feature.contributor
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.contributor.usecase.api.GetContributorsUseCase
-import com.droidknights.app.core.router.api.Navigation
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import com.droidknights.app.feature.contributor.model.convert.toContributorsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ContributorViewModel @Inject constructor(
     getContributorsUseCase: GetContributorsUseCase,
-    private val navigation: Navigation,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     private val _errorFlow = MutableSharedFlow<Throwable>()
@@ -42,6 +42,6 @@ class ContributorViewModel @Inject constructor(
     }
 
     fun navigateBack() = viewModelScope.launch {
-        navigation.navigateBack()
+        navigator.navigateBack()
     }
 }

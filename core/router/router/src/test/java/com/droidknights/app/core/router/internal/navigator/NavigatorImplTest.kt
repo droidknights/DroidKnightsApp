@@ -7,9 +7,9 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class NavigationImplTest {
+internal class NavigatorImplTest {
 
-    private val navigator = NavigationImpl()
+    private val navigator = NavigatorImpl()
 
     @Test
     fun `test navigate`() = runTest {

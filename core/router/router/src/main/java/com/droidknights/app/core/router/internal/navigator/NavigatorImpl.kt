@@ -1,13 +1,13 @@
 package com.droidknights.app.core.router.internal.navigator
 
-import com.droidknights.app.core.router.api.Navigation
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.router.api.model.Route
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.channels.Channel
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-internal class NavigationImpl @Inject constructor() : Navigation, InternalNavigator {
+internal class NavigatorImpl @Inject constructor() : Navigator, InternalNavigator {
 
     override val channel = Channel<InternalRoute>(Channel.BUFFERED)
 

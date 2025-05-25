@@ -1,8 +1,8 @@
 package com.droidknights.app.core.router.di
 
-import com.droidknights.app.core.router.api.Navigation
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.router.internal.navigator.InternalNavigator
-import com.droidknights.app.core.router.internal.navigator.NavigationImpl
+import com.droidknights.app.core.router.internal.navigator.NavigatorImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,12 +16,12 @@ internal abstract class RouterModel {
     @Binds
     @ActivityRetainedScoped
     abstract fun provideNavigator(
-        navigator: NavigationImpl
-    ): Navigation
+        navigator: NavigatorImpl
+    ): Navigator
 
     @Binds
     @ActivityRetainedScoped
     abstract fun provideInternalNavigator(
-        navigator: NavigationImpl
+        navigator: NavigatorImpl
     ): InternalNavigator
 }
