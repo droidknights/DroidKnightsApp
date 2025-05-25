@@ -17,11 +17,13 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 fun KnightsCard(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.surface,
+    contentColor: Color = MaterialTheme.colorScheme.onSurface,
     content: @Composable () -> Unit,
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
         color = color,
+        contentColor = contentColor,
         shape = RoundedCornerShape(32.dp),
         shadowElevation = 2.dp,
         content = content,
@@ -34,6 +36,7 @@ fun KnightsCard(
     enabled: Boolean = true,
     onClick: () -> Unit = {},
     color: Color = MaterialTheme.colorScheme.surface,
+    contentColor: Color = MaterialTheme.colorScheme.onSurface,
     content: @Composable () -> Unit,
 ) {
     Surface(
@@ -41,7 +44,8 @@ fun KnightsCard(
         enabled = enabled,
         modifier = modifier.fillMaxWidth(),
         color = color,
-        shape = RoundedCornerShape(32.dp),
+        contentColor = contentColor,
+        shape = RoundedCornerShape(12.dp),
         shadowElevation = 2.dp,
         content = content,
     )
