@@ -3,6 +3,7 @@ package com.droidknights.app.core.ui
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextLayoutResult
@@ -20,6 +21,7 @@ val Room.textRes: Int
 fun RoomText(
     room: Room,
     style: TextStyle,
+    modifier: Modifier = Modifier,
     color: Color = LocalContentColor.current,
     onTextLayout: (TextLayoutResult) -> Unit = {},
 ) {
@@ -28,5 +30,6 @@ fun RoomText(
         style = style,
         color = color,
         onTextLayout = onTextLayout,
+        modifier = modifier,
     )
 }

@@ -14,9 +14,12 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
 
 @Composable
-fun BottomLogo(color: Color = LightGray) {
+fun BottomLogo(
+    modifier: Modifier = Modifier,
+    color: Color = LightGray,
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(BottomLogoHeight),
         contentAlignment = Alignment.Center

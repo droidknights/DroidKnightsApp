@@ -32,16 +32,16 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.Neon01
 import com.droidknights.app.feature.main.MainTab
-import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 internal fun MainBottomBar(
-    modifier: Modifier = Modifier,
     visible: Boolean,
-    tabs: PersistentList<MainTab>,
+    tabs: ImmutableList<MainTab>,
     currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     AnimatedVisibility(
         visible = visible,
@@ -77,10 +77,10 @@ internal fun MainBottomBar(
 
 @Composable
 private fun RowScope.MainBottomBarItem(
-    modifier: Modifier = Modifier,
     tab: MainTab,
     selected: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier

@@ -17,11 +17,11 @@ import com.droidknights.app.feature.setting.navigation.settingNavGraph
 
 @Composable
 internal fun MainNavHost(
-    modifier: Modifier = Modifier,
     navigator: MainNavigator,
     padding: PaddingValues,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     onChangeDarkTheme: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier

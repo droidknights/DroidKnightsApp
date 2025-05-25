@@ -87,7 +87,7 @@ private fun TagChipPreview() {
 
 @Preview
 @Composable
-fun TrackChipPreview(
+private fun TrackChipPreview(
     @PreviewParameter(RoomPreviewParameterProvider::class) room: Room,
 ) {
     TrackChip(room)
@@ -95,6 +95,6 @@ fun TrackChipPreview(
 
 @Preview
 @Composable
-fun TimeChipPreview() {
+private fun TimeChipPreview() {
     TimeChip(LocalDateTime(2022, 1, 1, 10, 22))
 }

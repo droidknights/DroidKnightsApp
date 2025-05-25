@@ -99,6 +99,8 @@ robolectric = "4.14.1"
 kotest = "5.9.0"
 # https://github.com/detekt/detekt
 detekt = "1.23.8"
+# https://github.com/twitter/compose-rules
+detektTwitterComposeRule = "0.0.26"
 # https://mockk.io/
 mockk = "1.14.2"
 # https://github.com/mockito/mockito
@@ -194,6 +196,7 @@ oss-licenses = { group = "com.google.android.gms", name = "play-services-oss-lic
 
 # verify
 verify-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+verify-twitter-detektComposeRule = { module = "com.twitter.compose.rules:detekt", version.ref = "detektTwitterComposeRule" }
 
 # plugin
 verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }

@@ -44,6 +44,7 @@ import com.droidknights.app.feature.home.SponsorsUiStatePreviewParameterProvider
 import com.droidknights.app.feature.home.model.SponsorsUiState
 import com.valentinilk.shimmer.shimmer
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 internal fun SponsorCard(uiState: SponsorsUiState) {
@@ -89,18 +90,23 @@ private fun SponsorCardContents(
 @Composable
 private fun SponsorGroup(
     groupedSponsorsByGrade: ImmutableList<List<Sponsor>>,
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth().padding(24.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         groupedSponsorsByGrade.forEachIndexed { index, groupedSponsorsByGrade ->
             SponsorGroupRow(
-                modifier = Modifier.wrapContentWidth().padding(
-                    start = if (index % 2 == 0) 0.dp else 36.dp,
-                    end = if (index % 2 == 0) 36.dp else 0.dp,
-                ),
-                sponsors = groupedSponsorsByGrade,
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .padding(
+                        start = if (index % 2 == 0) 0.dp else 36.dp,
+                        end = if (index % 2 == 0) 36.dp else 0.dp,
+                    ),
+                sponsors = groupedSponsorsByGrade.toPersistentList(),
             )
         }
     }
@@ -108,8 +114,8 @@ private fun SponsorGroup(
 
 @Composable
 private fun SponsorGroupRow(
+    sponsors: ImmutableList<Sponsor>,
     modifier: Modifier = Modifier,
-    sponsors: List<Sponsor>,
 ) {
     val uriHandler = LocalUriHandler.current
 
@@ -167,7 +173,9 @@ private fun SponsorLogo(
         Image(
             painter = painterResource(id = gradeIcon),
             contentDescription = null,
-            modifier = Modifier.size(28.dp).align(Alignment.TopStart),
+            modifier = Modifier
+                .size(28.dp)
+                .align(Alignment.TopStart),
         )
     }
 }
@@ -180,7 +188,9 @@ private fun SponsorCardSkeleton(
         modifier = modifier,
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(24.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(24.dp),
         ) {
             TextSkeleton(width = 120.dp, height = 24.dp)
             Spacer(modifier = Modifier.padding(top = 8.dp))
@@ -214,7 +224,9 @@ private fun SponsorGroupSkeleton(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.padding(top = 24.dp).fillMaxWidth(),
+        modifier = modifier
+            .padding(top = 24.dp)
+            .fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier.wrapContentWidth(
@@ -246,10 +258,13 @@ private fun SponsorLogoSkeleton(
     modifier: Modifier = Modifier,
 ) {
     Spacer(
-        modifier = modifier.size(84.dp).shimmer().background(
-            color = LightGray,
-            shape = CircleShape,
-        ),
+        modifier = modifier
+            .size(84.dp)
+            .shimmer()
+            .background(
+                color = LightGray,
+                shape = CircleShape,
+            ),
     )
 }
 

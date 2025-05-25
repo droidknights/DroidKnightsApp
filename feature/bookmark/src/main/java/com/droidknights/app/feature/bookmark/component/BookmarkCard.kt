@@ -26,11 +26,11 @@ import com.droidknights.app.core.ui.RoomText
 
 @Composable
 internal fun BookmarkCard(
-    modifier: Modifier = Modifier,
     tagLabel: String,
     room: Room,
     title: String,
     speaker: String,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier

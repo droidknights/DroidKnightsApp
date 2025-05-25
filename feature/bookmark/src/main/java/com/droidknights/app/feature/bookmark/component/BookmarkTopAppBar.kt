@@ -22,9 +22,9 @@ import com.droidknights.app.feature.bookmark.R
 
 @Composable
 internal fun BookmarkTopAppBar(
-    modifier: Modifier = Modifier,
     isEditMode: Boolean,
     onClickEditButton: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val editButtonColor by animateColorAsState(
         label = "Edit Button Color Animation",
