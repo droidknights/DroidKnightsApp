@@ -22,6 +22,9 @@ dependencies {
     androidTestImplementation(projects.core.testing)
     debugImplementation(projects.core.uiTestHiltManifest)
 
+    implementation(projects.core.router.router)
+    implementation(projects.core.router.routerApi)
+
     implementation(projects.widget)
     implementation(projects.core.data.dataContributorApi)
     implementation(projects.core.data.dataSettingsApi)

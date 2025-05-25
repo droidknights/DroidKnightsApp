@@ -12,5 +12,9 @@ dependencies {
     implementation(libs.kotlinx.immutable)
     implementation(libs.compose.shimmer)
 
+    implementation(projects.core.router.routerApi)
+    implementation(projects.feature.sessionApi)
+    implementation(projects.feature.contributorApi)
+
     implementation(projects.core.domain.domainSponsorApi)
 }

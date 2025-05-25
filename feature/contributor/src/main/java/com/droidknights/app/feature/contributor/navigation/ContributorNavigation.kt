@@ -3,20 +3,18 @@ package com.droidknights.app.feature.contributor.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.contributor.ContributorRoute
+import com.droidknights.app.feature.contributor.api.RouteContributor
 
 fun NavController.navigateContributor() {
-    this.navigate(Route.Contributor)
+    this.navigate(RouteContributor)
 }
 
 fun NavGraphBuilder.contributorNavGraph(
-    onBackClick: () -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
-    composable<Route.Contributor> {
+    composable<RouteContributor> {
         ContributorRoute(
-            onBackClick = onBackClick,
             onShowErrorSnackBar = onShowErrorSnackBar
         )
     }

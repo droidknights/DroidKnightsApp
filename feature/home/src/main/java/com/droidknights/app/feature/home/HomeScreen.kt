@@ -24,8 +24,6 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 internal fun HomeRoute(
     padding: PaddingValues,
-    onSessionClick: () -> Unit,
-    onContributorClick: () -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
@@ -38,8 +36,8 @@ internal fun HomeRoute(
     HomeScreen(
         padding = padding,
         sponsorsUiState = sponsorsUiState,
-        onSessionClick = onSessionClick,
-        onContributorClick = onContributorClick,
+        onSessionClick = viewModel::navigateSession,
+        onContributorClick = viewModel::navigateContributor,
     )
 }
 

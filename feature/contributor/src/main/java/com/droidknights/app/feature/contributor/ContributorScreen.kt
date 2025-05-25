@@ -31,7 +31,6 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun ContributorRoute(
-    onBackClick: () -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ContributorViewModel = hiltViewModel(),
@@ -44,7 +43,7 @@ fun ContributorRoute(
 
     ContributorScreen(
         uiState = uiState,
-        onBackClick = onBackClick,
+        onBackClick = viewModel::navigateBack,
         modifier = modifier,
     )
 }
