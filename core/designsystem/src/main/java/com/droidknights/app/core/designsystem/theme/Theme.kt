@@ -37,6 +37,7 @@ private val DarkColorScheme = darkColorScheme(
     surface = Graphite,
     onSurface = White,
     onSurfaceVariant = White,
+    surfaceVariant = White,
     surfaceDim = Black,
     surfaceContainerHigh = DuskGray,
     inverseSurface = Neon05,
@@ -50,7 +51,7 @@ private val LightColorScheme = lightColorScheme(
     primary = Neon01,
     onPrimary = White,
     primaryContainer = White,
-    onPrimaryContainer = Black,
+    onPrimaryContainer = Graphite,
     inversePrimary = Neon01,
     secondary = Green04,
     onSecondary = White,
@@ -64,9 +65,10 @@ private val LightColorScheme = lightColorScheme(
     onError = White,
     errorContainer = Red01,
     onErrorContainer = Red06,
-    surface = PaperGray,
-    onSurface = DuskGray,
+    surface = White,
+    onSurface = Black,
     onSurfaceVariant = DarkGray,
+    surfaceVariant = Graphite,
     surfaceDim = PaleGray,
     surfaceContainerHigh = LightGray,
     inverseSurface = Yellow05,
@@ -97,7 +99,8 @@ fun KnightsTheme(
 
     CompositionLocalProvider(
         LocalDarkTheme provides darkTheme,
-        LocalTypography provides Typography
+        LocalTypography provides Typography,
+        LocalShape provides KnightsShape,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
@@ -110,6 +113,10 @@ object KnightsTheme {
     val typography: KnightsTypography
         @Composable
         get() = LocalTypography.current
+
+    val shape: KnightsShape
+        @Composable
+        get() = LocalShape.current
 }
 
 private val WidgetColorProviers = colorProviders(

@@ -352,7 +352,7 @@ style:
 TwitterCompose:
   CompositionLocalAllowlist:
     active: true
-    allowedCompositionLocals: LocalContentColor, LocalColorScheme, LocalDarkTheme, LocalTypography
+    allowedCompositionLocals: LocalContentColor, LocalColorScheme, LocalDarkTheme, LocalTypography, LocalShape
     # You can optionally define a list of CompositionLocals that are allowed here
     # allowedCompositionLocals: LocalSomething,LocalSomethingElse
   CompositionLocalNaming:
