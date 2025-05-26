@@ -105,7 +105,7 @@ compose.desktop {
                 packageName = "DroidKnights"
             }
             linux {
-                packageName = "DroidKnights"
+                packageName = "droidknights"
             }
         }
     }
