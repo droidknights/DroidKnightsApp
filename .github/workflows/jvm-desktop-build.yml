@@ -13,43 +13,86 @@ on:
       - 'iosApp/**'
       - 'kotlin-js-store/**'
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: true
-
 permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-
+  windows:
+    name: 🪟 Windows Build
+    runs-on: windows-latest
+    outputs:
+      artifact_url: ${{ steps.upload.outputs.artifact-upload-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-
       - name: Setup Java
         uses: ./.github/actions/setup-java
-
-      - name: Build Desktop Jar
-        run: ./gradlew :composeApp:desktopJar --stacktrace
-
-      - name: Upload artifact for PR
-        if: github.event_name == 'pull_request'
+      - name: Package MSI
+        run: ./gradlew :composeApp:packageMsi --stacktrace
+      - name: Upload Windows Installer
+        id: upload
         uses: actions/upload-artifact@v4
         with:
-          name: desktop-jar
-          path: composeApp/build/libs/*.jar
-          retention-days: 1
+          name: desktop-msi
+          path: composeApp/build/compose/binaries/main/msi/*.msi
 
-      - name: Upload artifact for 2025/compose-multiplatform
-        if: github.event_name == 'push'
+  macos:
+    name: 🍎 macOS Build
+    runs-on: macos-latest
+    outputs:
+      artifact_url: ${{ steps.upload.outputs.artifact-upload-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Java
+        uses: ./.github/actions/setup-java
+      - name: Package DMG
+        run: ./gradlew :composeApp:packageDmg --stacktrace
+      - name: Upload macOS Installer
+        id: upload
         uses: actions/upload-artifact@v4
         with:
-          name: desktop-jar
-          path: composeApp/build/libs/*.jar
-          retention-days: 3
+          name: desktop-dmg
+          path: composeApp/build/compose/binaries/main/dmg/*.dmg
+
+  linux:
+    name: 🐧 Linux Build
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_url: ${{ steps.upload.outputs.artifact-upload-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Java
+        uses: ./.github/actions/setup-java
+      - name: Package DEB
+        run: ./gradlew :composeApp:packageDeb --stacktrace
+      - name: Upload Linux Installer
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-deb
+          path: composeApp/build/compose/binaries/main/deb/*.deb
+
+  comment:
+    name: 💬 Comment Build Status
+    needs: [ windows, macos, linux ]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Post summary comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.pull_request.number }}
+          body: |
+            🚀 **빌드 결과 요약**
+            - 🪟 Windows: ${{ needs.windows.result == 'success' && needs.windows.outputs.artifact_url || '❌ 빌드가 실패하였습니다' }}
+            - 🍎 macOS: ${{ needs.macos.result  == 'success' && needs.macos.outputs.artifact_url  || '❌ 빌드가 실패하였습니다' }}
+            - 🐧 Linux:  ${{ needs.linux.result == 'success' && needs.linux.outputs.artifact_url || '❌ 빌드가 실패하였습니다' }}
