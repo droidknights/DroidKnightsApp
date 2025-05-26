@@ -1,5 +1,5 @@
 name: "Setup JDK"
-description: "setup JDK and gradle & konan caching"
+description: "Setup JDK and Gradle, Konan & WiX caching"
 
 runs:
   using: "composite"
@@ -36,6 +36,15 @@ runs:
           ${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties','gradle/libs.versions.toml') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
+
+    - name: Cache WiX Toolset
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches/modules-2/files-2.1/org.jetbrains.compose/native-wix
+        key: wix-${{ runner.os }}-v3.11.2
+        restore-keys: |
+          wix-${{ runner.os }}-
 
     - name: Set Konan Cache Key
       id: konan-cache-key
