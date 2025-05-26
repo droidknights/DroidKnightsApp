@@ -23,7 +23,7 @@ jobs:
     name: 🪟 Windows Build
     runs-on: windows-latest
     outputs:
-      artifact_url: ${{ steps.upload.outputs.artifact-upload-url }}
+      artifact_url: ${{ steps.upload.outputs.artifact-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,7 +44,7 @@ jobs:
     name: 🍎 macOS Build
     runs-on: macos-latest
     outputs:
-      artifact_url: ${{ steps.upload.outputs.artifact-upload-url }}
+      artifact_url: ${{ steps.upload.outputs.artifact-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
     name: 🐧 Linux Build
     runs-on: ubuntu-latest
     outputs:
-      artifact_url: ${{ steps.upload.outputs.artifact-upload-url }}
+      artifact_url: ${{ steps.upload.outputs.artifact-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
