@@ -18,11 +18,10 @@ internal fun ShaderBackground(
         modifier = modifier
             .drawWithCache {
                 val runtimeEffect = buildEffect(shader)
-                val brush = runtimeEffect.build()
 
                 onDrawBehind {
                     runtimeEffect.update(shader, size.width, size.height)
-                    drawRect(brush = brush)
+                    drawRect(brush = runtimeEffect.build())
                 }
             },
         content = content,
