@@ -1,5 +1,6 @@
 package com.droidknights.app.core.network
 
+import com.droidknights.app.core.network.api.create
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -14,6 +15,6 @@ internal class DroidknightsNetworkImplTest {
 
     @Test
     fun `test create`() = runTest {
-        Assertions.assertNotNull(network.create("https://droidknihghts.app/", MockDroidknightsService::class.java))
+        Assertions.assertNotNull(network.create<MockDroidknightsService>("https://droidknihghts.app/"))
     }
 }

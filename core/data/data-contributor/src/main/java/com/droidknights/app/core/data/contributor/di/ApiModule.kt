@@ -6,6 +6,7 @@ import com.droidknights.app.core.data.contributor.api.DroidnightsContributorsApi
 import com.droidknights.app.core.data.contributor.api.GithubContributorsApi
 import com.droidknights.app.core.data.contributor.api.fake.AssetsDroidnightsContributorsApi
 import com.droidknights.app.core.network.api.DroidknightsNetwork
+import com.droidknights.app.core.network.api.create
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,9 +26,8 @@ internal object ApiModule {
         droidknightsBuildConfig: DroidknightsBuildConfig,
     ): GithubContributorsApi =
         droidknightsNetwork
-            .create(
+            .create<GithubContributorsApi>(
                 baseUrl = droidknightsBuildConfig.gitHubUrl(),
-                service = GithubContributorsApi::class.java,
             )
 
     @Provides
@@ -37,9 +37,8 @@ internal object ApiModule {
         droidknightsBuildConfig: DroidknightsBuildConfig,
     ): DroidnightsContributorsApi =
         droidknightsNetwork
-            .create(
+            .create<DroidnightsContributorsApi>(
                 baseUrl = droidknightsBuildConfig.userDroidknightsUrl(),
-                service = DroidnightsContributorsApi::class.java,
             )
 
     @Provides
