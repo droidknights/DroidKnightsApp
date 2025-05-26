@@ -97,6 +97,16 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.droidknights.app"
             packageVersion = "1.0.0"
+
+            macOS {
+                dockName = "DroidKnights"
+            }
+            windows {
+                packageName = "DroidKnights"
+            }
+            linux {
+                packageName = "DroidKnights"
+            }
         }
     }
 }
