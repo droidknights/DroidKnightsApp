@@ -84,7 +84,7 @@ jobs:
     name: 💬 Comment Build Status
     needs: [ windows, macos, linux ]
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: ${{ always() && github.event_name == 'pull_request' }}
     steps:
       - name: Post summary comment
         uses: peter-evans/create-or-update-comment@v4
