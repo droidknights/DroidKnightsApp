@@ -74,9 +74,18 @@ jobs:
       - name: Install Debian packaging tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y fakeroot dpkg-dev
+          sudo apt-get install -y fakeroot dpkg-dev openjdk-17-jdk
+          sudo apt-get install -y jpackage || true
+      - name: Check jpackage version
+        run: |
+          which jpackage || (find /usr/lib/jvm/ -name jpackage)
+          java --version
       - name: Package DEB
         run: ./gradlew :composeApp:packageDeb --stacktrace
+      - name: Debug jpackage logs
+        if: failure()
+        run: |
+          find composeApp/build/compose/logs/packageDeb/ -type f -exec echo "=== {} ===" \; -exec cat {} \;
       - name: Upload Linux Installer
         id: upload
         uses: actions/upload-artifact@v4
