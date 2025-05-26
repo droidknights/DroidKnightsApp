@@ -1,13 +1,9 @@
 name: Comment Desktop CI Artifacts
 
 on:
-  workflow_run:
-    workflows: [ "Compose Desktop(JVM) CI" ]
-    types: [ completed ]
-
-concurrency:
-  group: comment-${{ github.event.workflow_run.id }}
-  cancel-in-progress: true
+  pull_request_target:
+    types: [ opened, synchronize, reopened ]
+    branches: [ 2025/compose-multiplatform ]
 
 permissions:
   contents: read
@@ -16,20 +12,46 @@ permissions:
 
 jobs:
   comment:
-    # 이전 빌드가 성공했고, 그 빌드가 pull_request 이벤트로 실행된 경우에만 동작
-    if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.event == 'pull_request'
     runs-on: ubuntu-latest
-
     steps:
-      - name: Post artifact link to PR
-        uses: peter-evans/create-or-update-comment@v4
+      - name: Fetch build run & artifacts and post comment
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.event.workflow_run.repository.full_name }}
-          issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
-          body: |
-            ✅ Compose Desktop(JVM) 빌드가 성공적으로 완료되었습니다!
-            아티팩트(1일 보관):  
-            ${{ github.server_url }}/${{ github.event.workflow_run.repository.full_name }}/actions/runs/${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            const sha = pr.head.sha;
+            
+            const { data: runs } = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: sha,
+              event: "pull_request",
+            });
+            const buildRun = runs.workflow_runs.find(r => r.name === "Compose Desktop(JVM) CI" && r.status === "completed");
+
+            const { data: art } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: buildRun.id,
+            });
+
+            const url = name => {
+              const a = art.artifacts.find(x => x.name === name);
+              return a ? a.archive_download_url : null;
+            };
+            const win = url("desktop-msi");
+            const mac = url("desktop-dmg");
+            const lin = url("desktop-deb");
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: `
+              🚀 **빌드 결과 요약**
+              - 🪟 Windows: ${win ? `[다운로드](${win})` : "❌ 빌드가 실패하였습니다"}
+              - 🍎 macOS:   ${mac ? `[다운로드](${mac})` : "❌ 빌드가 실패하였습니다"}
+              - 🐧 Linux:  ${lin ? `[다운로드](${lin})` : "❌ 빌드가 실패하였습니다"}
+              `.trim()
+            });
