@@ -14,7 +14,7 @@ on:
       - 'kotlin-js-store/**'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   windows:
