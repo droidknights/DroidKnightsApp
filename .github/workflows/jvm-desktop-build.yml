@@ -93,7 +93,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           body: |
             🚀 **빌드 결과 요약**
             - 🪟 Windows: ${{ needs.windows.result == 'success' && needs.windows.outputs.artifact_url || '❌ 빌드가 실패하였습니다' }}
