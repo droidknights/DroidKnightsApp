@@ -15,6 +15,8 @@ on:
 
 permissions:
   contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   windows:
@@ -83,7 +85,7 @@ jobs:
       - name: Package DEB
         run: ./gradlew :composeApp:packageDeb --stacktrace
       - name: Debug jpackage logs
-        if: failure()
+        if: ${{ failure() }}
         run: |
           find composeApp/build/compose/logs/packageDeb/ -type f -exec echo "=== {} ===" \; -exec cat {} \;
       - name: Upload Linux Installer
@@ -96,7 +98,7 @@ jobs:
     name: 💬 Comment Build Status
     needs: [ windows, macos, linux ]
     runs-on: ubuntu-latest
-    if: ${{ always() && github.event_name == 'pull_request' }}
+    if: ${{ always() && github.event.pull_request != null }}
     steps:
       - name: Post summary comment
         uses: peter-evans/create-or-update-comment@v4
