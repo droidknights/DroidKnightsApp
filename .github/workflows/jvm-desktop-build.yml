@@ -71,6 +71,10 @@ jobs:
           fetch-depth: 0
       - name: Setup Java
         uses: ./.github/actions/setup-java
+      - name: Install Debian packaging tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fakeroot dpkg-dev
       - name: Package DEB
         run: ./gradlew :composeApp:packageDeb --stacktrace
       - name: Upload Linux Installer
@@ -79,7 +83,6 @@ jobs:
         with:
           name: desktop-deb
           path: composeApp/build/compose/binaries/main/deb/*.deb
-
   comment:
     name: 💬 Comment Build Status
     needs: [ windows, macos, linux ]
