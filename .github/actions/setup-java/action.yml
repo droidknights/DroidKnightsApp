@@ -1,5 +1,5 @@
 name: "Setup JDK"
-description: "setup JDK and gradle caching"
+description: "setup JDK and gradle & konan caching"
 
 runs:
   using: "composite"
@@ -24,12 +24,25 @@ runs:
       with:
         gradle-version: wrapper
 
-    - name: set konan cache key
+    - name: Cache Gradle dependencies & build outputs
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+          .gradle
+        key: |
+          ${{ runner.os }}-gradle-\
+          ${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties','gradle/libs.versions.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Set Konan Cache Key
       id: konan-cache-key
       shell: bash
       run: echo "KOTLIN_VERSION=$(grep -oE 'kotlin\s*=\s*"[0-9.]*"' gradle/libs.versions.toml | grep -oE '[0-9.]+')" >> $GITHUB_OUTPUT
 
-    - name: cache Konan
+    - name: Cache Konan
       uses: actions/cache@v4
       with:
         path: |
