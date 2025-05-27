@@ -3,6 +3,7 @@ package com.droidknights.app.core.data.session.di
 import com.droidknights.app.config.api.DroidknightsBuildConfig
 import com.droidknights.app.core.data.session.api.SessionApi
 import com.droidknights.app.core.network.api.DroidknightsNetwork
+import com.droidknights.app.core.network.api.create
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +21,7 @@ internal object ApiModule {
         droidknightsBuildConfig: DroidknightsBuildConfig,
     ): SessionApi =
         droidknightsNetwork
-            .create(
-                baseUrl = droidknightsBuildConfig.userDroidknightsUrl(),
-                service = SessionApi::class.java,
+            .create<SessionApi>(
+                baseUrl = droidknightsBuildConfig.userDroidknightsUrl()
             )
 }
