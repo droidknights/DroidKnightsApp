@@ -9,7 +9,6 @@ import com.droidknights.app.core.data.session.di.coreDataSessionModule
 import com.droidknights.app.core.data.setting.di.coreDataSettingModule
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
-import com.droidknights.app.feature.license.di.featureLicensesModule
 import com.droidknights.app.feature.main.MainScreen
 import com.droidknights.app.feature.session.di.featureSessionModule
 import com.droidknights.app.feature.setting.di.featureSettingModule
@@ -60,7 +59,6 @@ internal val koinAppDeclaration: KoinAppDeclaration = {
     val featureModules = listOf(
         featureSessionModule,
         featureSettingModule,
-        featureLicensesModule,
     )
     modules(appModule)
     modules(coreDataModules)
