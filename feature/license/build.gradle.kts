@@ -44,4 +44,3 @@ tasks.register("copyExportedAboutLibraries") {
 tasks.named("build") {
     dependsOn("copyExportedAboutLibraries")
 }
-

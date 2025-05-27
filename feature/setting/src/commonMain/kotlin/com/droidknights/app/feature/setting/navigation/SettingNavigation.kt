@@ -11,7 +11,7 @@ fun NavController.navigateSetting(navOptions: NavOptions) {
     navigate(MainTabRoute.Setting, navOptions)
 }
 
-fun NavGraphBuilder.settingNavGraph(onLicenseClick:()-> Unit) {
+fun NavGraphBuilder.settingNavGraph(onLicenseClick: () -> Unit) {
     composable<MainTabRoute.Setting> {
         SettingScreen(onLicenseClick)
     }

@@ -23,7 +23,7 @@ internal fun MainNavHost(
         startDestination = navigator.startDestination,
     ) {
         settingNavGraph(
-            onLicenseClick = {navigator.navigateLicense()}
+            onLicenseClick = { navigator.navigateLicense() },
         )
         homeNavGraph(
             onSessionClick = { navigator.navigateSession() },
@@ -40,6 +40,5 @@ internal fun MainNavHost(
             },
         )
         licenseNavGraph()
-
     }
 }

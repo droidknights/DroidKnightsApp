@@ -17,8 +17,6 @@ import com.droidknights.app.feature.home.navigation.navigateHome
 import com.droidknights.app.feature.license.navigation.navigateLicense
 import com.droidknights.app.feature.session.navigation.navigateSession
 import com.droidknights.app.feature.session.navigation.navigateSessionDetail
-
-
 import com.droidknights.app.feature.setting.navigation.navigateSetting
 
 internal class MainNavigator(
@@ -62,7 +60,7 @@ internal class MainNavigator(
     fun navigateSessionDetail(sessionId: String) {
         navController.navigateSessionDetail(sessionId)
     }
-    fun navigateLicense(){
+    fun navigateLicense() {
         navController.navigateLicense()
     }
 

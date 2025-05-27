@@ -1,6 +1,5 @@
 package com.droidknights.app.feature.license
 
-
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
@@ -14,7 +13,6 @@ import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.m3.libraryColors
 import com.mikepenz.aboutlibraries.ui.compose.rememberLibraries
 import droidknights.feature.license.generated.resources.Res
-
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -23,31 +21,33 @@ internal fun LicenseScreen(
     viewModel: LicenseViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    LicenseScreen(uiState.isDarkTheme)
-
+    LicenseScreen(uiState.isDarkTheme, modifier)
 }
 
 @Composable
-fun LicenseScreen(isDarkTheme: Boolean) {
-
-
+fun LicenseScreen(
+    isDarkTheme: Boolean,
+    modifier: Modifier = Modifier,
+) {
     val libraries by rememberLibraries {
         Res.readBytes("files/aboutlibraries.json").decodeToString()
     }
     val colors = if (isDarkTheme) {
         LibraryDefaults.libraryColors(
             backgroundColor = Color.Black,
-            contentColor = Color.White
+            contentColor = Color.White,
         )
     } else {
         LibraryDefaults.libraryColors(
             backgroundColor = Color.White,
-            contentColor = Color.Black
+            contentColor = Color.Black,
         )
     }
-    Surface(modifier = Modifier.systemBarsPadding()) {
-        LibrariesContainer(libraries = libraries, modifier = Modifier.fillMaxSize(), colors =  colors)
-
+    Surface(modifier = modifier.systemBarsPadding()) {
+        LibrariesContainer(
+            libraries = libraries,
+            modifier = Modifier.fillMaxSize(),
+            colors = colors,
+        )
     }
-
 }

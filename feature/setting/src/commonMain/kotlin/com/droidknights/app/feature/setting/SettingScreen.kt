@@ -19,7 +19,7 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun SettingScreen(
-    onLicenseClick:()-> Unit,
+    onLicenseClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SettingViewModel = koinViewModel(),
 ) {
@@ -35,7 +35,7 @@ internal fun SettingScreen(
 
 @Composable
 private fun SettingScreen(
-    onLicenseClick:()-> Unit,
+    onLicenseClick: () -> Unit,
     isDarkTheme: Boolean,
     onDarkThemeChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
