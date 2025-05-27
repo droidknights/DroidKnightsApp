@@ -2,14 +2,10 @@
 
 package com.droidknights.app
 
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
+import androidx.compose.ui.window.singleWindowApplication
 
-fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "DroidKnights",
-    ) {
-        App()
-    }
+fun main() = singleWindowApplication(
+    title = "DroidKnights",
+) {
+    App()
 }
