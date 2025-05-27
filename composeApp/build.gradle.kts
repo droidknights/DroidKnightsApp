@@ -64,6 +64,8 @@ kotlin {
     }
 }
 
+// Enable Compose Hot Reload optimization
+// https://github.com/JetBrains/compose-hot-reload?tab=readme-ov-file#optimization-enable-optimizenonskippinggroups-not-required
 composeCompiler {
     featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
 }
