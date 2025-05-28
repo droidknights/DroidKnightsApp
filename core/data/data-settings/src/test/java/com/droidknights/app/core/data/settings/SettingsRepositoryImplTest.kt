@@ -32,4 +32,13 @@ class SettingsRepositoryImplTest {
             cancelAndIgnoreRemainingEvents()
         }
     }
+
+    @Test
+    fun `다크테마 여부를 업데이트할 수 있다`() = runTest {
+        val isDarkTheme = false
+
+        repository.updateIsDarkTheme(isDarkTheme)
+
+        verify(settingsPreferencesDataSource).updateIsDarkTheme(isDarkTheme)
+    }
 }
