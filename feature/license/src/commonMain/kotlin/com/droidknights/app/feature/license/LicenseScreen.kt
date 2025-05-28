@@ -15,6 +15,7 @@ import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.m3.libraryColors
 import com.mikepenz.aboutlibraries.ui.compose.rememberLibraries
+import droidknights.core.designsystem.generated.resources.Res.drawable
 import droidknights.core.designsystem.generated.resources.ic_arrow_back
 import droidknights.feature.license.generated.resources.Res
 import droidknights.feature.license.generated.resources.setting_open_source_card_title
@@ -44,7 +45,7 @@ internal fun LicenseScreen(
                         modifier = it,
                     ) {
                         Icon(
-                            painter = painterResource(droidknights.core.designsystem.generated.resources.Res.drawable.ic_arrow_back),
+                            painter = painterResource(drawable.ic_arrow_back),
                             contentDescription = null,
                         )
                     }
