@@ -26,7 +26,7 @@
   - (권장) Android Studio 설치 시 Embeded 된 JDK (Open JDK)
   - Java 21을 사용하는 JDK (Open JDK, AdoptOpenJDK, GraalVM)
 
-- Kotlin Language : 2.1.20
+- Kotlin Language : 2.1.21
 
 ### Language
 
