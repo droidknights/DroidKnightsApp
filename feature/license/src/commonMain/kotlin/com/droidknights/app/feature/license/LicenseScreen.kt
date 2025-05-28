@@ -18,7 +18,7 @@ import com.mikepenz.aboutlibraries.ui.compose.rememberLibraries
 import droidknights.core.designsystem.generated.resources.Res.drawable
 import droidknights.core.designsystem.generated.resources.ic_arrow_back
 import droidknights.feature.license.generated.resources.Res
-import droidknights.feature.license.generated.resources.setting_open_source_card_title
+import droidknights.feature.license.generated.resources.license_top_app_bar_title
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -34,11 +34,10 @@ internal fun LicenseScreen(
         backgroundColor = KnightsTheme.colorScheme.background,
         contentColor = KnightsTheme.colorScheme.onBackground,
     )
-
     Surface(modifier = modifier.systemBarsPadding()) {
         Column {
             TopAppBar(
-                title = stringResource(Res.string.setting_open_source_card_title),
+                title = stringResource(Res.string.license_top_app_bar_title),
                 navigation = {
                     IconButton(
                         onClick = { onBackClick() },
