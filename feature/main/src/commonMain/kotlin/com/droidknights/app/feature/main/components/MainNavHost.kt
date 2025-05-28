@@ -39,6 +39,6 @@ internal fun MainNavHost(
                 navigator.navigateSessionDetail(sessionId)
             },
         )
-        licenseNavGraph()
+        licenseNavGraph(onBackClick = navigator::popBackStackIfNotHome)
     }
 }

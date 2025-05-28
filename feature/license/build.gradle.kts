@@ -8,7 +8,6 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.core.data.dataSettingApi)
 
             // TODO feature plugin
             implementation(libs.koin.compose.viewmodel.navigation)

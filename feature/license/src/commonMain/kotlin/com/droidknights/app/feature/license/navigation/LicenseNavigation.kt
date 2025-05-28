@@ -10,8 +10,8 @@ fun NavController.navigateLicense() {
     navigate(Route.License)
 }
 
-fun NavGraphBuilder.licenseNavGraph() {
+fun NavGraphBuilder.licenseNavGraph(onBackClick: () -> Unit) {
     composable<Route.License> {
-        LicenseScreen()
+        LicenseScreen(onBackClick)
     }
 }
