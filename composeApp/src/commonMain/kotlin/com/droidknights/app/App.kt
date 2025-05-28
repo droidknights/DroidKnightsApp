@@ -7,6 +7,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.data.session.di.coreDataSessionModule
 import com.droidknights.app.core.data.setting.di.coreDataSettingModule
+import com.droidknights.app.core.datastore.core.di.coreDatastoreCoreModule
+import com.droidknights.app.core.datastore.session.di.coreDatastoreSessionModule
+import com.droidknights.app.core.datastore.settings.di.coreDatastoreSettingsModule
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
 import com.droidknights.app.feature.main.MainScreen
@@ -17,6 +20,7 @@ import droidknights.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
 import org.koin.compose.KoinApplication
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
@@ -24,10 +28,11 @@ import org.koin.dsl.module
 @Composable
 internal fun App(
     onDarkThemeChange: ((Boolean) -> Unit)? = null,
+    platformModule: Module? = null,
     fontFamily: FontFamily = FontFamily(Font(resource = Res.font.NotoSans)),
 ) {
     KoinApplication(
-        application = koinAppDeclaration,
+        application = koinAppDeclaration(platformModule),
     ) {
         val appViewModel = koinViewModel<AppViewModel>()
         val appUiState by appViewModel.uiState.collectAsStateWithLifecycle()
@@ -45,13 +50,18 @@ internal fun App(
     }
 }
 
-internal val koinAppDeclaration: KoinAppDeclaration = {
+internal fun koinAppDeclaration(platformModule: Module? = null): KoinAppDeclaration = {
     val appModule = module {
         viewModelOf(::AppViewModel)
     }
     val coreDataModules = listOf(
         coreDataSettingModule,
         coreDataSessionModule,
+    )
+    val coreDatastoreModules = listOf(
+        coreDatastoreCoreModule,
+        coreDatastoreSessionModule,
+        coreDatastoreSettingsModule,
     )
     val coreDomainModules = listOf(
         coreDomainSessionModule,
@@ -62,6 +72,8 @@ internal val koinAppDeclaration: KoinAppDeclaration = {
     )
     modules(appModule)
     modules(coreDataModules)
+    modules(coreDatastoreModules)
     modules(coreDomainModules)
     modules(featureModules)
+    platformModule?.let { modules(it) }
 }

@@ -5,15 +5,18 @@ import com.droidknights.app.core.data.session.mapper.toData
 import com.droidknights.app.core.data.session.model.RoomResponse
 import com.droidknights.app.core.data.session.model.SessionResponse
 import com.droidknights.app.core.data.session.model.SpeakerResponse
+import com.droidknights.app.core.datastore.session.api.SessionPreferencesDataSource
 import com.droidknights.app.core.model.session.Session
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.datetime.LocalDateTime
 
-// TODO data source와 연결하기
-internal class SessionRepositoryImpl : SessionRepository {
-    private val bookmarkIds = MutableStateFlow(emptySet<String>())
+internal class SessionRepositoryImpl(
+    private val sessionDataSource: SessionPreferencesDataSource,
+) : SessionRepository {
+
+    private val bookmarkIds: Flow<Set<String>> = sessionDataSource.bookmarkedSession
 
     private val sessionResponses = listOf(
         SessionResponse(
@@ -59,22 +62,24 @@ internal class SessionRepositoryImpl : SessionRepository {
     }
 
     override fun getBookmarkedSessionIds(): Flow<Set<String>> {
-        return bookmarkIds
+        return bookmarkIds.filterNotNull()
     }
 
     override suspend fun bookmarkSession(sessionId: String, bookmark: Boolean) {
-        bookmarkIds.update {
+        val currentBookmarkedSessionIds = bookmarkIds.first()
+        sessionDataSource.updateBookmarkedSession(
             if (bookmark) {
-                it + sessionId
+                currentBookmarkedSessionIds + sessionId
             } else {
-                it - sessionId
-            }
-        }
+                currentBookmarkedSessionIds - sessionId
+            },
+        )
     }
 
     override suspend fun deleteBookmarkedSessions(sessionIds: Set<String>) {
-        bookmarkIds.update {
-            it - sessionIds
-        }
+        val currentBookmarkedSessionIds = bookmarkIds.first()
+        sessionDataSource.updateBookmarkedSession(
+            currentBookmarkedSessionIds - sessionIds,
+        )
     }
 }
