@@ -1,61 +1,69 @@
 package com.droidknights.app.core.datastore.settings
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import io.kotest.core.spec.style.StringSpec
+import app.cash.turbine.test
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.rules.TemporaryFolder
-import kotlin.test.assertFalse
+import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import java.io.File
+import kotlin.io.path.createTempDirectory
 
-internal class DefaultSettingsPreferencesDataSourceTest : StringSpec() {
+internal class DefaultSettingsPreferencesDataSourceTest {
 
-    private lateinit var testDispatcher: TestDispatcher
-    private lateinit var tempFolder: TemporaryFolder
+    private val testDispatcher: TestDispatcher = StandardTestDispatcher()
+    private lateinit var tempFile: File
     private lateinit var dataSource: DefaultSettingsPreferencesDataSource
 
-    init {
-        beforeSpec {
-            testDispatcher = StandardTestDispatcher()
-            tempFolder = TemporaryFolder.builder().assureDeletion().build()
-            dataSource = DefaultSettingsPreferencesDataSource(
-                PreferenceDataStoreFactory.create(
-                    scope = CoroutineScope(testDispatcher),
-                    produceFile = { tempFolder.newFile("SETTINGS_PREFERENCES_TEST") }
-                )
+    @BeforeEach
+    fun setUp() {
+        val tempFolder = createTempDirectory().toFile()
+        tempFile = File(tempFolder, "settings_prefs.preferences_pb")
+        dataSource = DefaultSettingsPreferencesDataSource(
+            PreferenceDataStoreFactory.create(
+                scope = CoroutineScope(testDispatcher),
+                produceFile = { tempFile }
             )
+        )
+    }
+
+    @AfterEach
+    fun tearDown() {
+        tempFile.delete()
+    }
+
+    @Test
+    fun `isDarkTheme의 초기 상태는 false이다`() = runTest(testDispatcher) {
+        // given & when
+        dataSource.isDarkThemeFlow.test {
+            val initial: Boolean = awaitItem()
+
+            // then
+            Assertions.assertFalse(initial)
+
+            cancelAndIgnoreRemainingEvents()
         }
+    }
 
-        afterSpec {
-            tempFolder.delete()
-        }
+    @Test
+    fun `true로 업데이트 하면 isDarkTheme는 true다`() = runTest(testDispatcher) {
+        // given
+        dataSource.isDarkThemeFlow.test {
+            val initial: Boolean = awaitItem()
 
-        "isDarkTheme 초기상태 테스트".config(true) {
-            CoroutineScope(testDispatcher).launch {
-                // Given - 초기상태
+            // when
+            dataSource.updateIsDarkTheme(true)
+            val updated: Boolean = awaitItem()
 
-                // When - dataSource 의 초기 isDarkTheme 값 조회
-                val isDarkTheme = dataSource.isDarkThemeFlow.first()
+            // then
+            Assertions.assertFalse(initial)
+            Assertions.assertTrue(updated)
 
-                // Then - isDarkTheme 값이 false 이어야 한다
-                assertFalse(isDarkTheme)
-            }
-        }
-
-        "isDarkTheme 저장 및 조회 테스트" {
-            CoroutineScope(testDispatcher).launch {
-                // Given - isDarkTheme is true
-                dataSource.updateIsDarkTheme(true)
-
-                // When - isDarkTheme 을 true 로 업데이트 후 isDarkTheme 값 조회
-                val isDarkTheme = dataSource.isDarkThemeFlow.first()
-
-                // Then - isDarkTheme 값이 true 이어야 한다
-                assertTrue(isDarkTheme)
-            }
+            cancelAndIgnoreRemainingEvents()
         }
     }
 }

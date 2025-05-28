@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.io.path.createTempDirectory
 
-
 internal class DefaultSessionPreferencesDataSourceTest {
     private val testDispatcher: TestDispatcher = StandardTestDispatcher()
     private lateinit var tempFile: File
