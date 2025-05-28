@@ -50,6 +50,10 @@ include(
     ":core:data:data-setting",
     ":core:data:data-setting-api",
 )
+// core - datastore
+include(
+    ":core:datastore:datastore-core",
+)
 // core - domain
 include(
     ":core:domain:domain-session",
