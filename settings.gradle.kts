@@ -15,6 +15,12 @@ pluginManagement {
     }
 }
 
+// Gradle Toolchain configuration for automatic provisioning of JBR (JetBrains Runtime) required for Compose Hot Reload
+// https://github.com/JetBrains/compose-hot-reload?tab=readme-ov-file#set-up-automatic-provisioning-of-the-jetbrains-runtime-jbr-via-gradle
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
 dependencyResolutionManagement {
     repositories {
         google {

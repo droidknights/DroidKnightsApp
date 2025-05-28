@@ -1,9 +1,11 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.androidApplication)
+    alias(libs.plugins.composeHotReload)
     id("droidknights.kotlin.multiplatform")
     id("droidknights.compose.multiplatform")
 }
@@ -63,6 +65,12 @@ kotlin {
     }
 }
 
+// Enable Compose Hot Reload optimization
+// https://github.com/JetBrains/compose-hot-reload?tab=readme-ov-file#optimization-enable-optimizenonskippinggroups-not-required
+composeCompiler {
+    featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
+}
+
 android {
     namespace = "com.droidknights.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -98,6 +106,16 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.droidknights.app"
             packageVersion = "1.0.0"
+
+            macOS {
+                dockName = "DroidKnights"
+            }
+            windows {
+                packageName = "DroidKnights"
+            }
+            linux {
+                packageName = "droidknights"
+            }
         }
     }
 }
