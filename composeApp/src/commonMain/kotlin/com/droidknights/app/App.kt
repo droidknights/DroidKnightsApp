@@ -20,7 +20,7 @@ import droidknights.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
 import org.koin.compose.KoinApplication
 import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.module.Module
+import org.koin.core.KoinApplication
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
@@ -28,29 +28,26 @@ import org.koin.dsl.module
 @Composable
 internal fun App(
     onDarkThemeChange: ((Boolean) -> Unit)? = null,
-    platformModule: Module? = null,
     fontFamily: FontFamily = FontFamily(Font(resource = Res.font.NotoSans)),
 ) {
-    KoinApplication(
-        application = koinAppDeclaration(platformModule),
+    val appViewModel = koinViewModel<AppViewModel>()
+    val appUiState by appViewModel.uiState.collectAsStateWithLifecycle()
+
+    if (onDarkThemeChange != null) {
+        LaunchedEffect(appUiState.isDarkTheme) { onDarkThemeChange(appUiState.isDarkTheme) }
+    }
+
+    KnightsTheme(
+        darkTheme = appUiState.isDarkTheme,
+        fontFamily = fontFamily,
     ) {
-        val appViewModel = koinViewModel<AppViewModel>()
-        val appUiState by appViewModel.uiState.collectAsStateWithLifecycle()
-
-        if (onDarkThemeChange != null) {
-            LaunchedEffect(appUiState.isDarkTheme) { onDarkThemeChange(appUiState.isDarkTheme) }
-        }
-
-        KnightsTheme(
-            darkTheme = appUiState.isDarkTheme,
-            fontFamily = fontFamily,
-        ) {
-            MainScreen()
-        }
+        MainScreen()
     }
 }
 
-internal fun koinAppDeclaration(platformModule: Module? = null): KoinAppDeclaration = {
+internal fun koinAppDeclaration(
+    additionalDeclaration: KoinApplication.() -> Unit = {},
+): KoinAppDeclaration = {
     val appModule = module {
         viewModelOf(::AppViewModel)
     }
@@ -74,5 +71,5 @@ internal fun koinAppDeclaration(platformModule: Module? = null): KoinAppDeclarat
     modules(coreDatastoreModules)
     modules(coreDomainModules)
     modules(featureModules)
-    platformModule?.let { modules(it) }
+    additionalDeclaration()
 }

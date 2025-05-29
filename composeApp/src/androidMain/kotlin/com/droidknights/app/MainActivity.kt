@@ -9,6 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import org.koin.compose.KoinApplication
 import org.koin.dsl.module
 
 class MainActivity : ComponentActivity() {
@@ -28,15 +29,20 @@ class MainActivity : ComponentActivity() {
                 single<Context> { this@MainActivity }
             }
 
-            App(
-                onDarkThemeChange = { darkTheme ->
-                    with(WindowCompat.getInsetsController(window, view)) {
-                        isAppearanceLightStatusBars = !darkTheme
-                        isAppearanceLightNavigationBars = !darkTheme
-                    }
+            KoinApplication(
+                application = koinAppDeclaration {
+                    modules(platformModule)
                 },
-                platformModule = platformModule,
-            )
+            ) {
+                App(
+                    onDarkThemeChange = { darkTheme ->
+                        with(WindowCompat.getInsetsController(window, view)) {
+                            isAppearanceLightStatusBars = !darkTheme
+                            isAppearanceLightNavigationBars = !darkTheme
+                        }
+                    },
+                )
+            }
         }
     }
 }

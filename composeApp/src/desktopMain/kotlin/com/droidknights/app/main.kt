@@ -3,9 +3,14 @@
 package com.droidknights.app
 
 import androidx.compose.ui.window.singleWindowApplication
+import org.koin.compose.KoinApplication
 
 fun main() = singleWindowApplication(
     title = "DroidKnights",
 ) {
-    App()
+    KoinApplication(
+        application = koinAppDeclaration(),
+    ) {
+        App()
+    }
 }
