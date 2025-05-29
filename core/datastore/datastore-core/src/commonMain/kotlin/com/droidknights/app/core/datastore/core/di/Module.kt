@@ -1,9 +1,5 @@
 package com.droidknights.app.core.datastore.core.di
 
-import com.droidknights.app.core.datastore.core.LocalPreferences
-import com.droidknights.app.core.datastore.core.LocalPreferencesFactory
-import org.koin.dsl.module
+import org.koin.core.module.Module
 
-val coreDatastoreCoreModule = module {
-    factory<LocalPreferences> { (fileName: String) -> LocalPreferencesFactory(fileName).create() }
-}
+expect val coreDatastoreCoreModules: List<Module>
