@@ -14,7 +14,7 @@ internal class SettingViewModel(
 ) : ViewModel() {
 
     val uiState = settingRepository
-        .flowIsDarkTheme()
+        .isDarkTheme()
         .map { SettingUiState(isDarkTheme = it) }
         .stateIn(
             viewModelScope,

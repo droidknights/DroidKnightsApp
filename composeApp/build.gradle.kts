@@ -47,6 +47,12 @@ kotlin {
             implementation(projects.core.data.dataSetting)
             implementation(projects.core.data.dataSettingApi)
 
+            implementation(projects.core.datastore.datastoreCore)
+            implementation(projects.core.datastore.datastoreSession)
+            implementation(projects.core.datastore.datastoreSessionApi)
+            implementation(projects.core.datastore.datastoreSettings)
+            implementation(projects.core.datastore.datastoreSettingsApi)
+
             implementation(projects.core.domain.domainSession)
 
             implementation(projects.feature.main)
