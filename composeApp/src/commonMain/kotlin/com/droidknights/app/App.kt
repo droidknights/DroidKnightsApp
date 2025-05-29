@@ -18,7 +18,6 @@ import com.droidknights.app.feature.setting.di.featureSettingModule
 import droidknights.composeapp.generated.resources.NotoSans
 import droidknights.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
-import org.koin.compose.KoinApplication
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.KoinApplication
 import org.koin.core.module.dsl.viewModelOf
@@ -27,10 +26,10 @@ import org.koin.dsl.module
 
 @Composable
 internal fun App(
+    appViewModel: AppViewModel = koinViewModel(),
     onDarkThemeChange: ((Boolean) -> Unit)? = null,
     fontFamily: FontFamily = FontFamily(Font(resource = Res.font.NotoSans)),
 ) {
-    val appViewModel = koinViewModel<AppViewModel>()
     val appUiState by appViewModel.uiState.collectAsStateWithLifecycle()
 
     if (onDarkThemeChange != null) {
@@ -45,7 +44,7 @@ internal fun App(
     }
 }
 
-internal fun koinAppDeclaration(
+internal fun knightsAppDeclaration(
     additionalDeclaration: KoinApplication.() -> Unit = {},
 ): KoinAppDeclaration = {
     val appModule = module {

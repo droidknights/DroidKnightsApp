@@ -12,13 +12,12 @@ import kotlinx.browser.document
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.preloadFont
 import org.koin.compose.KoinApplication
-import org.koin.core.KoinApplication
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalResourceApi::class)
 fun main() {
     ComposeViewport(document.body!!) {
         KoinApplication(
-            application = koinAppDeclaration(),
+            application = knightsAppDeclaration(),
         ) {
             val font by preloadFont(Res.font.NotoSans)
             font?.let { App(fontFamily = FontFamily(it)) }

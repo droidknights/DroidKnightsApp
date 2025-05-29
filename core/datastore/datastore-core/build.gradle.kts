@@ -13,7 +13,9 @@ kotlin {
         val nonWasmJsMain by creating {
             dependsOn(commonMain.get())
             dependencies {
-                implementation(libs.bundles.datastore)
+                implementation(libs.androidx.datastore.core)
+                implementation(libs.androidx.datastore.core.okio)
+                implementation(libs.okio)
             }
         }
 

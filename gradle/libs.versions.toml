@@ -97,12 +97,6 @@ detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gr
 aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutlibrariesCore" }
 aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutlibrariesCore" }
 
-[bundles]
-datastore = [
-    "androidx-datastore-core",
-    "androidx-datastore-core-okio",
-    "okio"
-]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

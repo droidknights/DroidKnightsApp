@@ -9,7 +9,7 @@ fun main() = singleWindowApplication(
     title = "DroidKnights",
 ) {
     KoinApplication(
-        application = koinAppDeclaration(),
+        application = knightsAppDeclaration(),
     ) {
         App()
     }

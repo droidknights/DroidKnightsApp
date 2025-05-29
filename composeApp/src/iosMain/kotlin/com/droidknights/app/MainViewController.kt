@@ -5,7 +5,7 @@ import org.koin.compose.KoinApplication
 
 fun MainViewController() = ComposeUIViewController {
     KoinApplication(
-        application = koinAppDeclaration(),
+        application = knightsAppDeclaration(),
     ) {
         App()
     }
