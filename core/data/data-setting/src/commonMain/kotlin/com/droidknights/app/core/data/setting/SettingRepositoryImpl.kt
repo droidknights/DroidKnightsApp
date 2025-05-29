@@ -8,7 +8,7 @@ internal class SettingRepositoryImpl(
     private val preferenceDataSource: SettingsPreferenceDataSource,
 ) : SettingRepository {
 
-    override fun flowIsDarkTheme(): Flow<Boolean> = preferenceDataSource.isDarkThemeFlow
+    override fun isDarkTheme(): Flow<Boolean> = preferenceDataSource.isDarkTheme
 
     override suspend fun updateIsDarkTheme(isDarkTheme: Boolean) {
         preferenceDataSource.updateIsDarkTheme(isDarkTheme)

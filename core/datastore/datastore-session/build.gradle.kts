@@ -11,15 +11,6 @@ kotlin {
             implementation(projects.core.datastore.datastoreSessionApi)
             implementation(projects.core.datastore.datastoreCore)
         }
-        androidMain.dependencies {
-            implementation(libs.bundles.datastore)
-        }
-        iosMain.dependencies {
-            implementation(libs.bundles.datastore)
-        }
-        desktopMain.dependencies {
-            implementation(libs.bundles.datastore)
-        }
     }
 }
 

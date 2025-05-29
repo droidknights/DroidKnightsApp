@@ -9,7 +9,7 @@ internal class DefaultSettingsPreferencesDataSource(
     private val localPreferences: LocalPreferences,
 ) : SettingsPreferenceDataSource {
 
-    override val isDarkThemeFlow: Flow<Boolean> = localPreferences
+    override val isDarkTheme: Flow<Boolean> = localPreferences
         .getBoolean(KEY_IS_DARK_THEME)
         .map { it ?: false }
 

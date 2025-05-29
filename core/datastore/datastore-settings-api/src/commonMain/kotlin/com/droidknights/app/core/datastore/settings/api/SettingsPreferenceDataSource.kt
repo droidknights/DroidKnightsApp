@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface SettingsPreferenceDataSource {
 
-    val isDarkThemeFlow: Flow<Boolean>
+    val isDarkTheme: Flow<Boolean>
 
     suspend fun updateIsDarkTheme(isDarkTheme: Boolean)
 }

@@ -5,25 +5,20 @@ plugins {
 
 kotlin {
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.koin.core)
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.koin.core)
         }
 
         val nonWasmJsMain by creating {
-            dependsOn(commonMain)
+            dependsOn(commonMain.get())
             dependencies {
                 implementation(libs.bundles.datastore)
             }
         }
 
-        val androidMain by getting
-        val iosMain by getting
-        val desktopMain by getting
         listOf(androidMain, iosMain, desktopMain).forEach { sourceSet ->
-            sourceSet.dependsOn(nonWasmJsMain)
+            sourceSet.get().dependsOn(nonWasmJsMain)
         }
     }
 }
