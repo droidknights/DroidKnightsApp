@@ -1,7 +1,5 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
-    id("droidknights.kotlin.multiplatform")
-    id("droidknights.compose.multiplatform")
+    id("droidknights.feature")
 }
 
 kotlin {
@@ -11,13 +9,6 @@ kotlin {
             implementation(projects.core.model.modelSession)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.immutable)
-
-            // TODO feature plugin
-            implementation(libs.koin.compose.viewmodel.navigation)
-            implementation(libs.androidx.navigation.compose)
-            implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(projects.core.designsystem)
-            implementation(projects.core.navigation)
         }
     }
 }
