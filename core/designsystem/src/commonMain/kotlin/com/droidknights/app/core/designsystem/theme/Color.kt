@@ -19,6 +19,7 @@ val White = Color(0xFFFFFFFF)
 val PaleGray = Color(0xFFF9F9F9)
 val LightGray = Color(0xFFDCDCDC)
 val DarkGray = Color(0xFF5E5E5E)
+val NeutralGray = Color(0xFFF1F1F1)
 val Black = Color(0xFF000000)
 val Graphite = Color(0xFF292929)
 
@@ -45,6 +46,7 @@ data class KnightsColorScheme(
     val onDarkSurface: Color = Color.White,
     val lightSurface: Color = White,
     val onLightSurface: Color = Color.Black,
+    val avatarBackground: Color,
 ) {
     companion object {
         val lightColorScheme = KnightsColorScheme(
@@ -65,6 +67,7 @@ data class KnightsColorScheme(
             borderColor = LightGray,
             selectedIconColor = Blue02,
             unselectedIconColor = LightGray,
+            avatarBackground = NeutralGray,
         )
 
         val darkColorScheme = KnightsColorScheme(
@@ -85,6 +88,7 @@ data class KnightsColorScheme(
             borderColor = DarkGray,
             selectedIconColor = Blue01,
             unselectedIconColor = DarkGray,
+            avatarBackground = Graphite,
         )
     }
 }
