@@ -38,5 +38,10 @@ gradlePlugin {
             implementationClass =
                 "com.droidknights.app.convention.ComposeMultiPlatformConventionPlugin"
         }
+        register("droidknightsFeature") {
+            id = "droidknights.feature"
+            implementationClass =
+                "com.droidknights.app.convention.DroidKnightsFeaturePlugin"
+        }
     }
 }
