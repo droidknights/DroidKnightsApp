@@ -62,7 +62,7 @@ internal fun ContributorTopBanner(modifier: Modifier = Modifier) {
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .padding(top = 18.5.dp, end = 24.dp, bottom = 41.5.dp)
-                .background(color = KnightsTheme.colorScheme.avatarBackground, shape = CircleShape)
+                .background(color = KnightsTheme.colorScheme.iconBackground, shape = CircleShape)
                 .size(88.dp),
         ) {
             Image(
