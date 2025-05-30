@@ -20,7 +20,6 @@ internal class GetSessionUseCaseImplTest {
 
     @Test
     fun `세션의 ID로 세션을 가져올 수 있다`() = runTest {
-        // given
         val sessionId = "1"
         val session = Session(
             id = sessionId,
