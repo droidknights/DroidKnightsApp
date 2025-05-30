@@ -21,7 +21,7 @@ fun BottomLogo(
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "Droid Knights 2023",
+            text = "Droid Knights 2025",
             style = KnightsTheme.typography.labelMediumR,
             color = color,
         )
