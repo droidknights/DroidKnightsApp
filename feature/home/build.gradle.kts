@@ -1,23 +1,5 @@
-@file:OptIn(ExperimentalComposeLibrary::class)
-
-import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     id("droidknights.feature")
-}
-
-roborazzi {
-    @OptIn(ExperimentalRoborazziApi::class)
-    generateComposePreviewRobolectricTests {
-        enable = true
-        packages = listOf("com.droidknights.app.feature.home")
-        testerQualifiedClassName = "com.droidknights.app.feature.home.DroidKnightKmpPreviewTester"
-    }
-}
-
-compose.resources {
-    publicResClass = true
 }
 
 kotlin {

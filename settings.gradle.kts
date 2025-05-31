@@ -42,7 +42,8 @@ include(":composeApp", ":backend", ":shared")
 include(
     ":core:designsystem",
     ":core:navigation",
-    ":core:ui:shader"
+    ":core:ui:shader",
+    ":core:testing"
 )
 // core - data
 include(
@@ -78,4 +79,3 @@ include(
     ":feature:bookmark",
     ":feature:license"
 )
-include(":core:testing")

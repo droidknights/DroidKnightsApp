@@ -23,6 +23,10 @@ internal fun Project.composeMultiplatformDependencies() {
         }
     }
 
+    compose.resources {
+        publicResClass = true
+    }
+
     dependencies {
         "debugImplementation"(composeDependencies.uiTooling)
         "debugImplementation"(composeDependencies.preview)

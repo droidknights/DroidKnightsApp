@@ -1,3 +1,5 @@
+import com.droidknights.app.primitive.resources
+
 plugins {
     id("droidknights.feature")
 }

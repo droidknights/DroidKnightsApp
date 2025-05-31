@@ -36,7 +36,7 @@ androidx-compose-ui-test-manifest = "1.7.6"
 androidx-test-ext-junit = "1.2.1"
 androidx-test-espresso-core = "3.5.1"
 roborazzi = "1.43.1"
-composablePreviewScanner = "0.6.0"
+composablePreviewScanner = "0.6.1"
 
 
 [libraries]

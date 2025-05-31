@@ -68,8 +68,8 @@ class KmpRoborazziPlugin : Plugin<Project> {
             }
 
             // Add dependencies for Roborazzi testing
-            if (plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
-                extensions.configure<KotlinMultiplatformExtension> {
+            kotlin {
+                if (plugins.hasPlugin("com.android.library")) {
                     sourceSets.apply {
                         getByName("androidUnitTest") {
                             dependencies {
@@ -91,4 +91,9 @@ class KmpRoborazziPlugin : Plugin<Project> {
             }
         }
     }
+}
+
+
+fun Project.kotlin(action: KotlinMultiplatformExtension.() -> Unit) {
+    extensions.configure(action)
 }
