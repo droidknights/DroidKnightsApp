@@ -19,19 +19,45 @@ internal class GetSponsorsUseCaseImplTest {
     )
 
     @Test
-    fun `test invoke`() = runTest {
-        val mockItem = listOf(
-            Sponsor.Default.copy(
-                name = "name",
-            ),
-            Sponsor.Default.copy(
-                name = "name two",
-            ),
+    fun `스폰서들을 priority를 기준 오름차순으로 가져올 수 있다`() = runTest {
+        val sponsors = listOf(
+            goldSponsorA,
+            silverSponsorB,
+            platinumSponsorC,
         )
-        whenever(sponsorRepository.getSponsors()).thenReturn(mockItem)
 
-        Assertions.assertEquals(mockItem, useCase.invoke())
+        // priority 값 0(PLATINUM) ~ priority 값 2(SILVER)
+        val sortedByPrioritySponsors = listOf(
+            platinumSponsorC,
+            goldSponsorA,
+            silverSponsorB,
+        )
+
+        whenever(sponsorRepository.getSponsors()).thenReturn(sponsors)
+
+        Assertions.assertEquals(sortedByPrioritySponsors, useCase.invoke())
 
         verify(sponsorRepository).getSponsors()
+    }
+
+    companion object {
+        private val goldSponsorA = Sponsor(
+            name = "A",
+            imageUrl = "",
+            homepage = "",
+            grade = Sponsor.Grade.GOLD
+        )
+        private val silverSponsorB = Sponsor(
+            name = "B",
+            imageUrl = "",
+            homepage = "",
+            grade = Sponsor.Grade.SILVER
+        )
+        private val platinumSponsorC = Sponsor(
+            name = "C",
+            imageUrl = "",
+            homepage = "",
+            grade = Sponsor.Grade.PLATINUM
+        )
     }
 }

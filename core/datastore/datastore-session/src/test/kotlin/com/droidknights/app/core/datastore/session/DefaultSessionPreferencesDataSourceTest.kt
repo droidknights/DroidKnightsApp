@@ -1,4 +1,4 @@
-package com.droidknights.app.core.datastore.settings
+package com.droidknights.app.core.datastore.session
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import app.cash.turbine.test
@@ -13,17 +13,16 @@ import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.io.path.createTempDirectory
 
-internal class DefaultSettingsPreferencesDataSourceTest {
-
+internal class DefaultSessionPreferencesDataSourceTest {
     private val testDispatcher: TestDispatcher = StandardTestDispatcher()
     private lateinit var tempFile: File
-    private lateinit var dataSource: DefaultSettingsPreferencesDataSource
+    private lateinit var dataSource: DefaultSessionPreferencesDataSource
 
     @BeforeEach
     fun setUp() {
         val tempFolder = createTempDirectory().toFile()
-        tempFile = File(tempFolder, "settings_prefs.preferences_pb")
-        dataSource = DefaultSettingsPreferencesDataSource(
+        tempFile = File(tempFolder, "session_prefs.preferences_pb")
+        dataSource = DefaultSessionPreferencesDataSource(
             PreferenceDataStoreFactory.create(
                 scope = CoroutineScope(testDispatcher),
                 produceFile = { tempFile }
@@ -37,31 +36,31 @@ internal class DefaultSettingsPreferencesDataSourceTest {
     }
 
     @Test
-    fun `isDarkTheme의 초기 상태는 false이다`() = runTest(testDispatcher) {
+    fun `초기 bookmarkedSession 값은 emptySet이어야 한다`() = runTest(testDispatcher) {
         // given & when
-        dataSource.isDarkThemeFlow.test {
-            val initial: Boolean = awaitItem()
+        dataSource.bookmarkedSession.test {
+            val initial: Set<String> = awaitItem()
 
             // then
-            Assertions.assertFalse(initial)
+            Assertions.assertEquals(emptySet<String>(), initial)
 
             cancelAndIgnoreRemainingEvents()
         }
     }
 
     @Test
-    fun `true로 업데이트 하면 isDarkTheme는 true다`() = runTest(testDispatcher) {
+    fun `bookmarkedSession 업데이트 시 Flow에서 새로운 값이 emit되어야 한다`() = runTest(testDispatcher) {
         // given
-        dataSource.isDarkThemeFlow.test {
-            val initial: Boolean = awaitItem()
+        dataSource.bookmarkedSession.test {
+            val initial: Set<String> = awaitItem()
 
             // when
-            dataSource.updateIsDarkTheme(true)
-            val updated: Boolean = awaitItem()
+            dataSource.updateBookmarkedSession(setOf("1", "2"))
+            val updated: Set<String> = awaitItem()
 
             // then
-            Assertions.assertFalse(initial)
-            Assertions.assertTrue(updated)
+            Assertions.assertEquals(emptySet<String>(), initial)
+            Assertions.assertEquals(setOf("1", "2"), updated)
 
             cancelAndIgnoreRemainingEvents()
         }
