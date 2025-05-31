@@ -1,6 +1,5 @@
-package com.droidknights.app.feature.home
+package com.droidknights.app.core.testing
 
-import ProvideAndroidContextToComposeResource
 import android.graphics.drawable.ColorDrawable
 import androidx.test.core.app.ApplicationProvider
 import coil3.ImageLoader

@@ -78,3 +78,4 @@ include(
     ":feature:bookmark",
     ":feature:license"
 )
+include(":core:testing")

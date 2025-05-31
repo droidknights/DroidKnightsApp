@@ -62,7 +62,8 @@ class KmpRoborazziPlugin : Plugin<Project> {
                 generateComposePreviewRobolectricTests {
                     packages.set(listOf(packageName))
                     enable.set(true)
-                    testerQualifiedClassName.set("testing.DroidKnightKmpPreviewTester")
+                    testerQualifiedClassName.set("com.droidknights.app.core.testing.DroidKnightKmpPreviewTester")
+                    includePrivatePreviews.set(true)
                 }
             }
 
@@ -72,6 +73,7 @@ class KmpRoborazziPlugin : Plugin<Project> {
                     sourceSets.apply {
                         getByName("androidUnitTest") {
                             dependencies {
+                                implementation(project(":core:testing"))
                                 implementation(libs.library("junit"))
                                 implementation(libs.library("robolectric"))
                                 implementation(libs.library("androidx-compose-ui-test-junit4"))
