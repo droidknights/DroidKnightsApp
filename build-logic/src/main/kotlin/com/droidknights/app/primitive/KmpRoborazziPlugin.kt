@@ -64,6 +64,7 @@ class KmpRoborazziPlugin : Plugin<Project> {
                     enable.set(true)
                     testerQualifiedClassName.set("com.droidknights.app.core.testing.DroidKnightKmpPreviewTester")
                     includePrivatePreviews.set(true)
+                    outputDir.set(file("screenshot"))
                 }
             }
 

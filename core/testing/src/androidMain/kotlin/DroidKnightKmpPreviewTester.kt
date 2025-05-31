@@ -41,8 +41,11 @@ class DroidKnightKmpPreviewTester : ComposePreviewTester<JvmAnnotationInfo> {
     }
 
     override fun test(preview: ComposablePreview<JvmAnnotationInfo>) {
-        captureRoboImage("${preview.methodName}.png") {
-            println(preview.methodName)
+        val fileName = "${preview.methodName}.png"
+        val filePath = "screenshot/$fileName"
+
+        captureRoboImage(filePath) {
+            println("Capturing preview: ${preview.methodName}")
             ProvideAndroidContextToComposeResource()
             preview()
         }
