@@ -29,6 +29,14 @@ coil = "3.2.0"
 okio = "3.11.0"
 aboutlibrariesCore = "12.1.2"
 composeHotReload = "1.0.0-alpha10"
+robolectric = "4.14.1"
+androidx-compose-ui-test = "1.7.6"
+androidx-compose-ui-test-junit4 = "1.7.6"
+androidx-compose-ui-test-manifest = "1.7.6"
+androidx-test-ext-junit = "1.2.1"
+androidx-test-espresso-core = "3.5.1"
+roborazzi = "1.43.1"
+composablePreviewScanner = "0.6.0"
 
 
 [libraries]
@@ -62,6 +70,7 @@ okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 # Coil
 coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil-network = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil" }
+coil-test = { module = "io.coil-kt.coil3:coil-test", version.ref = "coil" }
 
 # JetBrains
 androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation" }
@@ -93,10 +102,28 @@ compose-compiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compile
 compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-multiplatform" }
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 
+# Test
+androidx-compose-ui-test = { module = "androidx.compose.ui:ui-test", version.ref = "androidx-compose-ui-test" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose-ui-test-junit4" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-compose-ui-test-manifest" }
+androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
+androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext-junit" }
+androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso-core" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+
+# Compose Preview Scanner
+composablepreviewscanner = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "android", version.ref = "composablePreviewScanner" }
+composablePreviewScannerJvm = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "jvm", version.ref = "composablePreviewScanner" }
+
+# Roborazzi
+roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi" }
+roborazziCompose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
+roborazzi-compose-preview-scanner-support = { module = "io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support", version.ref = "roborazzi" }
+roborazziPreviewScannerSupport = { module = "io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support", version.ref = "roborazzi" }
+
 # AboutLibraries
 aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutlibrariesCore" }
 aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutlibrariesCore" }
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -110,3 +137,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibrariesCore" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
