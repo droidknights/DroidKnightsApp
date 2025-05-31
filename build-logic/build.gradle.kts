@@ -5,6 +5,7 @@ plugins {
 dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.roborazzi.gradle.plugin)
     compileOnly(libs.compose.compiler.gradlePlugin)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.detekt.gradlePlugin)
@@ -42,6 +43,10 @@ gradlePlugin {
             id = "droidknights.feature"
             implementationClass =
                 "com.droidknights.app.convention.DroidKnightsFeaturePlugin"
+        }
+        register("kmpRoborazzi") {
+            id = "droidknights.kmp.roborazzi"
+            implementationClass = "com.droidknights.app.primitive.KmpRoborazziPlugin"
         }
     }
 }
