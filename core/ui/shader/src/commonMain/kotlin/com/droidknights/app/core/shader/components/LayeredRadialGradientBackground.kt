@@ -67,5 +67,5 @@ half4 main(float2 fragCoord) {
 @Preview
 @Composable
 fun LayeredRadialGradientBackgroundPreview() {
-    LayeredShaderBackground(modifier = Modifier.fillMaxSize()){}
+    LayeredShaderBackground(modifier = Modifier.fillMaxSize()) {}
 }

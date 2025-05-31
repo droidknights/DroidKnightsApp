@@ -51,12 +51,12 @@ fun HomeMapCard(
                 Text(
                     text = stringResource(Res.string.home_map_card_title),
                     style = KnightsTheme.typography.headlineSmallBL,
-                    color = White
+                    color = White,
                 )
                 Text(
                     text = stringResource(Res.string.home_map_card_desc),
                     style = KnightsTheme.typography.titleSmallM140,
-                    color = White
+                    color = White,
                 )
             }
         }
