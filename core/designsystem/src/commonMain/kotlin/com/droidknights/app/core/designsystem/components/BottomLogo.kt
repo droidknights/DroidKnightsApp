@@ -6,16 +6,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LightGray
 
 @Composable
-fun BottomLogo(
-    modifier: Modifier = Modifier,
-    color: Color = LightGray,
-) {
+fun BottomLogo(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.fillMaxWidth().height(BottomLogoHeight),
         contentAlignment = Alignment.Center,
@@ -23,7 +19,7 @@ fun BottomLogo(
         Text(
             text = "Droid Knights 2025",
             style = KnightsTheme.typography.labelMediumR,
-            color = color,
+            color = LightGray,
         )
     }
 }
