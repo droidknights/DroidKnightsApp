@@ -19,6 +19,7 @@ internal class ContributorViewModel : ViewModel() {
     }
 
     private fun loadContributor() {
+        // TODO: core:network가 아직 구현되지 않아 임시 데이터를 사용했습니다. 구현 후 실제 데이터로 교체해야 합니다.
         _uiState.value = ContributorsUiState.Contributors.DummyData
     }
 }
