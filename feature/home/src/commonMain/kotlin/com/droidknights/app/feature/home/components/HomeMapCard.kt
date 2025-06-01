@@ -32,6 +32,7 @@ fun HomeMapCard(
     Surface(
         modifier = modifier,
         color = Blue01,
+        contentColor = White,
         shape = RoundedCornerShape(16.dp),
     ) {
         LayeredShaderBackground {
@@ -45,18 +46,15 @@ fun HomeMapCard(
                 Icon(
                     modifier = Modifier.size(36.dp),
                     painter = painterResource(Res.drawable.ic_location),
-                    tint = White,
                     contentDescription = null,
                 )
                 Text(
                     text = stringResource(Res.string.home_map_card_title),
                     style = KnightsTheme.typography.headlineSmallBL,
-                    color = White,
                 )
                 Text(
                     text = stringResource(Res.string.home_map_card_desc),
                     style = KnightsTheme.typography.titleSmallM140,
-                    color = White,
                 )
             }
         }
