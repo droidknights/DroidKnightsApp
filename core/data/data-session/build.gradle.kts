@@ -11,6 +11,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
 
             implementation(projects.core.data.dataSessionApi)
+            implementation(projects.core.datastore.datastoreSessionApi)
         }
     }
 }

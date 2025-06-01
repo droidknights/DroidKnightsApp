@@ -1,7 +1,5 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
-    id("droidknights.kotlin.multiplatform")
-    id("droidknights.compose.multiplatform")
+    id("droidknights.feature")
 }
 
 kotlin {
@@ -12,11 +10,7 @@ kotlin {
             implementation(projects.feature.home)
             implementation(projects.feature.session)
             implementation(projects.feature.setting)
-
-            // TODO feature plugin
-            implementation(projects.core.designsystem)
-            implementation(libs.androidx.navigation.compose)
-            implementation(projects.core.navigation)
+            implementation(projects.feature.license)
         }
 
         wasmJsMain {

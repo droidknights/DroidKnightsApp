@@ -2,13 +2,14 @@
 
 package com.droidknights.app
 
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
+import androidx.compose.ui.window.singleWindowApplication
+import org.koin.compose.KoinApplication
 
-fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "DroidKnights",
+fun main() = singleWindowApplication(
+    title = "DroidKnights",
+) {
+    KoinApplication(
+        application = knightsAppDeclaration(),
     ) {
         App()
     }

@@ -19,12 +19,14 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun SettingScreen(
+    onLicenseClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SettingViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     SettingScreen(
+        onLicenseClick = onLicenseClick,
         isDarkTheme = uiState.isDarkTheme,
         onDarkThemeChange = viewModel::updateDarkTheme,
         modifier = modifier,
@@ -33,6 +35,7 @@ internal fun SettingScreen(
 
 @Composable
 private fun SettingScreen(
+    onLicenseClick: () -> Unit,
     isDarkTheme: Boolean,
     onDarkThemeChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
@@ -48,7 +51,7 @@ private fun SettingScreen(
     ) {
         SettingOpenSourceCard(
             onClick = {
-                // TODO 오픈소스 라이브러리 목록 보여주기
+                onLicenseClick()
             },
             modifier = Modifier.fillMaxWidth(),
         )

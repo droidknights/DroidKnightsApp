@@ -1,15 +1,11 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
-    id("droidknights.kotlin.multiplatform")
-    id("droidknights.compose.multiplatform")
+    id("droidknights.feature")
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.immutable)
-
-            // TODO feature plugin
             implementation(libs.koin.compose.viewmodel.navigation)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.androidx.lifecycle.runtime.compose)
