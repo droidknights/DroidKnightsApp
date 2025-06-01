@@ -40,7 +40,6 @@ internal fun MainNavHost(
             settingNavGraph(
                 selectedTabRoute = navigator.selectedTabRoute,
                 padding = padding,
-                onChangeDarkTheme = onChangeDarkTheme,
             )
 
             bookmarkNavGraph(
