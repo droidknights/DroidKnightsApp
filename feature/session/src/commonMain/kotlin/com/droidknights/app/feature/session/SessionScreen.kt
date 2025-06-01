@@ -116,6 +116,7 @@ private fun RoomTitle(
             text = when (room) {
                 Room.TRACK1 -> stringResource(resource = Res.string.session_room_track_01)
                 Room.TRACK2 -> stringResource(resource = Res.string.session_room_track_02)
+                Room.TRACK3 -> stringResource(resource = Res.string.session_room_track_02) // todo: 바꾸기
                 Room.ETC -> stringResource(resource = Res.string.session_room_etc)
             },
             style = KnightsTheme.typography.titleLargeB,

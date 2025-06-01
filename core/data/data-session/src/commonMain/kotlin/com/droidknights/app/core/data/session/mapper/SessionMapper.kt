@@ -26,6 +26,7 @@ internal fun RoomResponse.toData(): Room =
         RoomResponse.ETC -> Room.ETC
         RoomResponse.TRACK1 -> Room.TRACK1
         RoomResponse.TRACK2 -> Room.TRACK2
+        RoomResponse.TRACK3 -> Room.TRACK3
     }
 
 internal fun SpeakerResponse.toData(): Speaker =
