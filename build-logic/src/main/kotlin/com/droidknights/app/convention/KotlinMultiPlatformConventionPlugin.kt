@@ -18,7 +18,12 @@ class KotlinMultiPlatformConventionPlugin : Plugin<Project> {
         }
 
         apply<KotlinMultiPlatformPlugin>()
-        apply<KotlinMultiPlatformAndroidPlugin>()
+        plugins.withId("com.android.library") {
+            apply<KotlinMultiPlatformAndroidPlugin>()
+        }
+        plugins.withId("com.android.application") {
+            apply<KotlinMultiPlatformAndroidPlugin>()
+        }
         apply<KotlinMultiPlatformiOSPlugin>()
         apply<KotlinMultiPlatformJvmPlugin>()
         apply<KotlinMultiPlatformWasmPlugin>()
