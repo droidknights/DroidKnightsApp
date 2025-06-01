@@ -92,4 +92,4 @@ private fun ContributorList(
     }
 }
 
-const val SHIMMERING_ITEM_COUNT = 4
+private const val SHIMMERING_ITEM_COUNT = 4
