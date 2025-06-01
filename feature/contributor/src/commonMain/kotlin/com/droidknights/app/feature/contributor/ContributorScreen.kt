@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
@@ -30,7 +29,6 @@ internal fun ContributorScreen(
     viewModel: ContributorViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val lazyListState = rememberLazyListState()
 
     Column(
         modifier = modifier
@@ -42,7 +40,6 @@ internal fun ContributorScreen(
         ContributorTopAppBar(onBackClick = onBackClick)
         ContributorList(
             uiState = uiState,
-            lazyListState = lazyListState,
         )
     }
 }
@@ -50,9 +47,10 @@ internal fun ContributorScreen(
 @Composable
 private fun ContributorList(
     uiState: ContributorsUiState,
-    lazyListState: LazyListState,
     modifier: Modifier = Modifier,
 ) {
+    val lazyListState = rememberLazyListState()
+
     LazyColumn(
         modifier = modifier,
         state = lazyListState,
