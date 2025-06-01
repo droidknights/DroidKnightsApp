@@ -102,17 +102,17 @@
   },
   {
     "id": "7",
-    "title": "나도 edgeToEdge 적용하기 싫어. 근데 누군가는 해야 하잖아?",
-    "content": "이번 발표에서는 SDK35 이상을 타겟팅하는 앱에 Edge-to-Edge 디자인을 적용하는 방법에 대해 이야기하려 합니다. SOOP 앱에서 직접 구현하면서 겪었던 고민과 문제점을 공유할 예정입니다. 실제 적용 경험을 바탕으로 여러분들이 자신의 앱에 Edge-to-Edge를 더 쉽고 효과적으로 구현하는 데 도움이 되었으면 합니다.",
+    "title": "다양한 스크롤 뷰에서의 영상 재생",
+    "content": "HorizontalPager, RecyclerView, 디바이스 화면을 넘어가는\nColumn 등 다양한 스크롤 상황이 존재합니다. 이렇게 다양한 UI\n환경 속에서 어떻게 영상 로직을 대응할 수 있을까요? 각 상황별로 발생하는 문제를 그룹화하고, 영상 재생 과정에서 마주쳤던 이슈들을 어떻게 해결했는지 논의하고자 합니다.",
     "speakers": [
       {
-        "name": "이지훈",
-        "introduction": "작년 GDG super.init v5에서 Custom Lint 개발일지를 발표했던 이지훈입니다. 현재 SOOP 이라는 스트리밍 회사에서 Android 개발자로 일하고 있으며, 이번에는 Edge-to-Edge 적용 경험을 공유하고자 합니다.",
-        "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnightsApp/main/storage/speaker/이지훈.jpg"
+        "name": "이가은",
+        "introduction": "라텔앤드파트너즈에서 신규 사업을 담당하는 안드로이드 신입 개발자입니다. 문제 해결 과정을 즐기며, 그 과정을 통해 얻은 경험을 여러분과 나누고자 합니다.",
+        "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnightsApp/main/storage/speaker/이가은.jpg"
       }
     ],
     "tags": [
-      "EdgeToEdge"
+      "성능"
     ],
     "room": "Track1",
     "startTime": "2025-06-17T16:40:00.000",
@@ -229,17 +229,17 @@
   },
   {
     "id": "14",
-    "title": "다양한 스크롤 뷰에서의 영상 재생",
-    "content": "HorizontalPager, RecyclerView, 디바이스 화면을 넘어가는\nColumn 등 다양한 스크롤 상황이 존재합니다. 이렇게 다양한 UI\n환경 속에서 어떻게 영상 로직을 대응할 수 있을까요? 각 상황별로 발생하는 문제를 그룹화하고, 영상 재생 과정에서 마주쳤던 이슈들을 어떻게 해결했는지 논의하고자 합니다.",
+    "title": "나도 edgeToEdge 적용하기 싫어. 근데 누군가는 해야 하잖아?",
+    "content": "이번 발표에서는 SDK35 이상을 타겟팅하는 앱에 Edge-to-Edge 디자인을 적용하는 방법에 대해 이야기하려 합니다. SOOP 앱에서 직접 구현하면서 겪었던 고민과 문제점을 공유할 예정입니다. 실제 적용 경험을 바탕으로 여러분들이 자신의 앱에 Edge-to-Edge를 더 쉽고 효과적으로 구현하는 데 도움이 되었으면 합니다.",
     "speakers": [
       {
-        "name": "이가은",
-        "introduction": "라텔앤드파트너즈에서 신규 사업을 담당하는 안드로이드 신입 개발자입니다. 문제 해결 과정을 즐기며, 그 과정을 통해 얻은 경험을 여러분과 나누고자 합니다.",
-        "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnightsApp/main/storage/speaker/이가은.jpg"
+        "name": "이지훈",
+        "introduction": "작년 GDG super.init v5에서 Custom Lint 개발일지를 발표했던 이지훈입니다. 현재 SOOP 이라는 스트리밍 회사에서 Android 개발자로 일하고 있으며, 이번에는 Edge-to-Edge 적용 경험을 공유하고자 합니다.",
+        "imageUrl": "https://raw.githubusercontent.com/droidknights/DroidKnightsApp/main/storage/speaker/이지훈.jpg"
       }
     ],
     "tags": [
-      "성능"
+      "EdgeToEdge"
     ],
     "room": "Track2",
     "startTime": "2025-06-17T16:40:00.000",
