@@ -13,4 +13,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.immutable)
     implementation(projects.core.domain.domainSessionApi)
+    implementation(projects.core.router.routerApi)
+    implementation(projects.feature.sessionApi)
 }

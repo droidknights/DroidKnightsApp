@@ -43,6 +43,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 internal fun SessionScreen(
+    scrollToSessionId: String? = null,
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,

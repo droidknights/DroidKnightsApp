@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.usecase.api.DeleteBookmarkedSessionUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionsUseCase
 import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import com.droidknights.app.feature.bookmark.model.BookmarkUiState
+import com.droidknights.app.feature.session.api.SessionListScrollTo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toPersistentList
@@ -28,6 +30,7 @@ import javax.inject.Inject
 class BookmarkViewModel @Inject constructor(
     private val getBookmarkedSessionsUseCase: GetBookmarkedSessionsUseCase,
     private val deleteBookmarkedSessionUseCase: DeleteBookmarkedSessionUseCase,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     private val _errorFlow = MutableSharedFlow<Throwable>()
@@ -105,6 +108,19 @@ class BookmarkViewModel @Inject constructor(
         _bookmarkUiState.value = state.copy(
             selectedSessionIds = newSelectedIds.toPersistentSet()
         )
+    }
+
+    fun redirectToSessionScreen(session: Session) {
+        val state = _bookmarkUiState.value
+        if (state !is BookmarkUiState.Success || state.isEditMode) {
+            return
+        }
+        viewModelScope.launch {
+            navigator.navigateBack()
+            navigator.navigate(
+                SessionListScrollTo(sessionId = session.id)
+            )
+        }
     }
 
     fun deleteSessions() {

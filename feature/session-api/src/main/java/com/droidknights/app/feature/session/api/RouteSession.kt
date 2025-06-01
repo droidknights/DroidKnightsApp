@@ -5,3 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data object RouteSession : Route
+
+@Serializable
+data class SessionListScrollTo(val sessionId: String) : Route
