@@ -35,8 +35,10 @@ import com.droidknights.app.core.ui.RoomText
 import com.droidknights.app.feature.session.R
 import com.droidknights.app.feature.session.list.component.SessionCard
 import com.droidknights.app.feature.session.list.component.SessionListTopAppBar
+import com.droidknights.app.feature.session.list.model.HighlightState
 import com.droidknights.app.feature.session.list.model.SessionState
 import com.droidknights.app.feature.session.list.model.SessionUiState
+import com.droidknights.app.feature.session.list.model.rememberHighlightState
 import com.droidknights.app.feature.session.list.model.rememberSessionState
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
@@ -57,6 +59,10 @@ internal fun SessionScreen(
     LaunchedEffect(Unit) {
         sessionListViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
+    var highlightState = rememberHighlightState(
+        sessionState = sessionState,
+        scrollToSessionId = scrollToSessionId
+    )
 
     Box(
         modifier = Modifier
@@ -68,8 +74,12 @@ internal fun SessionScreen(
         )
         SessionList(
             sessionState = sessionState,
+            highlightSessionId = (highlightState as? HighlightState.Highlighted)?.sessionId,
             onSessionClick = {
                 Log.w("TEMP", "onClick session $it")
+                if (highlightState is HighlightState.Highlighted) {
+                    highlightState = HighlightState.End
+                }
                 onSessionClick(it)
             },
             modifier = Modifier
@@ -83,8 +93,9 @@ internal fun SessionScreen(
 @Composable
 private fun SessionList(
     sessionState: SessionState,
-    onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier,
+    highlightSessionId: String? = null,
+    onSessionClick: (Session) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -105,7 +116,11 @@ private fun SessionList(
                             topPadding = if (groupIndex == 0) SessionTopSpace else SessionGroupSpace,
                         )
                     }
-                    SessionCard(session = session, onSessionClick = onSessionClick)
+                    SessionCard(
+                        session = session,
+                        isHighlighted = session.id == highlightSessionId,
+                        onSessionClick = onSessionClick,
+                    )
                 }
 
                 if (isLastGroup && isLastSession) {
@@ -145,9 +160,6 @@ private fun RoomTitle(
     }
 }
 
-private val SessionTopSpace = 16.dp
-private val SessionGroupSpace = 100.dp
-
 @Composable
 private fun DroidKnightsFooter() {
     Text(
@@ -161,3 +173,6 @@ private fun DroidKnightsFooter() {
         textAlign = TextAlign.Center
     )
 }
+
+private val SessionTopSpace = 16.dp
+private val SessionGroupSpace = 100.dp

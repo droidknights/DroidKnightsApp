@@ -2,6 +2,10 @@ package com.droidknights.app.feature.session.list.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,13 +21,18 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.IconTextChip
 import com.droidknights.app.core.designsystem.component.KnightsCard
@@ -44,10 +53,15 @@ import kotlinx.collections.immutable.toPersistentList
 internal fun SessionCard(
     session: Session,
     modifier: Modifier = Modifier,
+    isHighlighted: Boolean = false,
     onSessionClick: (Session) -> Unit = {},
 ) {
+    val cardState: SessionCardAnimations =
+        rememberSessionCardAnimations(isHighlighted = isHighlighted)
     KnightsCard(
         modifier = modifier,
+        elevation = cardState.elevation,
+        color = cardState.highlightColor,
         onClick = { onSessionClick(session) }
     ) {
         SessionCardContent(session = session)
@@ -213,6 +227,32 @@ private fun BookmarkImage(
 
 private val CardContentPadding =
     PaddingValues(start = 24.dp, top = 16.dp, end = 24.dp, bottom = 24.dp)
+
+@Immutable
+data class SessionCardAnimations(
+    val highlightColor: Color,
+    val elevation: Dp
+)
+
+@Composable
+internal fun rememberSessionCardAnimations(
+    isHighlighted: Boolean,
+): SessionCardAnimations {
+    val highlightColor = remember { KnightsColor.Blue03.copy(alpha = 180f) }
+    val surfaceColor = MaterialTheme.colorScheme.surface
+    val animatedBackgroundColor by animateColorAsState(
+        targetValue = if (isHighlighted) highlightColor else surfaceColor,
+        animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing),
+    )
+    val animatedElevation by animateDpAsState(
+        targetValue = if (isHighlighted) 4.dp else 2.dp,
+        animationSpec = tween(durationMillis = 300),
+    )
+    return SessionCardAnimations(
+        highlightColor = animatedBackgroundColor,
+        elevation = animatedElevation
+    )
+}
 
 @Preview(uiMode = UI_MODE_NIGHT_NO)
 @Preview(uiMode = UI_MODE_NIGHT_YES)
