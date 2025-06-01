@@ -14,4 +14,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
 
     implementation(libs.oss.licenses)
+
+    implementation(projects.core.action)
+    implementation(projects.core.data.dataSettingsApi)
 }

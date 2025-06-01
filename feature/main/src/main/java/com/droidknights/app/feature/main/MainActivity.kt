@@ -17,8 +17,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     private val viewModel: MainViewModel by viewModels()
-    private val sessionIdFromWidget: MutableStateFlow<String?> = MutableStateFlow(null)
+    private val sessionIdFromWidget = MutableStateFlow<String?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +51,6 @@ class MainActivity : ComponentActivity() {
             KnightsTheme(darkTheme = isDarkTheme) {
                 MainScreen(
                     navigator = navigator,
-                    onChangeDarkTheme = { isDarkTheme -> viewModel.updateIsDarkTheme(isDarkTheme) }
                 )
             }
         }

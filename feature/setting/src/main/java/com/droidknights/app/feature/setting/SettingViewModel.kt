@@ -1,5 +1,56 @@
 package com.droidknights.app.feature.setting
 
+import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.droidknights.app.core.action.FlowActionStream
+import com.droidknights.app.core.data.settings.api.SettingsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
+
+@HiltViewModel
+internal class SettingViewModel @Inject constructor(
+    private val flowActionStream: FlowActionStream,
+    private val settingsRepository: SettingsRepository,
+) : ViewModel() {
+
+    @VisibleForTesting
+    var actionJob: Job? = null
+
+    @VisibleForTesting
+    val flowAction by lazy {
+        flowActionStream.flowAction()
+            .filterIsInstance(SettingAction::class)
+            .onEach {
+                handleAction(action = it)
+            }
+    }
+
+    fun loadAction() {
+        actionJob?.cancel()
+
+        actionJob = flowAction.launchIn(viewModelScope)
+    }
+
+    private suspend fun handleAction(action: SettingAction) {
+        when (action) {
+            is SettingAction.ChangeDarkTheme -> {
+                settingsRepository.updateIsDarkTheme(action.isDarkTheme)
+            }
+        }
+    }
+
+    fun send(action: SettingAction) {
+        flowActionStream.nextAction(action)
+    }
+}
+
+package com.droidknights.app.feature.setting
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.navigation.MainTabRoute.Bookmark

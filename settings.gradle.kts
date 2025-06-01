@@ -47,6 +47,7 @@ include(
     ":core:network:network-api",
     ":core:router:router",
     ":core:router:router-api",
+    ":core:action",
     ":core:designsystem",
     ":core:navigation",
     ":core:ui",

@@ -11,13 +11,11 @@ import com.droidknights.app.feature.setting.SettingScreen
 fun NavGraphBuilder.settingNavGraph(
     selectedTabRoute: State<Route>,
     padding: PaddingValues,
-    onChangeDarkTheme: (Boolean) -> Unit,
 ) {
     composable<Setting> {
         SettingScreen(
             selectedTabRoute = selectedTabRoute,
             padding = padding,
-            onChangeDarkTheme = onChangeDarkTheme,
         )
     }
 }

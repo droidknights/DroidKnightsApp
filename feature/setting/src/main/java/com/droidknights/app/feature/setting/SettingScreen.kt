@@ -26,6 +26,25 @@ import com.droidknights.app.feature.setting.component.OpenSourceCard
 @Composable
 internal fun SettingScreen(
     padding: PaddingValues,
+    settingViewModel: SettingViewModel = hiltViewModel(),
+) {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    LaunchedEffect(settingViewModel) {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            settingViewModel.loadAction()
+        }
+    }
+    SettingScreen(
+        padding = padding,
+        onChangeDarkTheme = {
+            settingViewModel.send(SettingAction.ChangeDarkTheme(it))
+        },
+    )
+}
+
+@Composable
+private fun SettingScreen(
+    padding: PaddingValues,
     onChangeDarkTheme: (Boolean) -> Unit,
     viewModel: SettingViewModel = hiltViewModel(),
     selectedTabRoute: State<Route> = remember { mutableStateOf(Setting) },
