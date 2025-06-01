@@ -2,7 +2,6 @@ package com.droidknights.app.core.data.session
 
 import com.droidknights.app.core.data.session.api.SessionRepository
 import com.droidknights.app.core.data.session.mapper.toData
-import com.droidknights.app.core.data.session.model.RoomResponse
 import com.droidknights.app.core.data.session.model.SessionResponse
 import com.droidknights.app.core.data.session.model.SpeakerResponse
 import com.droidknights.app.core.datastore.session.api.SessionPreferencesDataSource
@@ -10,12 +9,13 @@ import com.droidknights.app.core.model.session.Session
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.datetime.LocalDateTime
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 
 internal class SessionRepositoryImpl(
     private val sessionDataSource: SessionPreferencesDataSource,
 ) : SessionRepository {
-
-    private val bookmarkIds: Flow<Set<String>> = sessionDataSource.bookmarkedSession
+    private val sessionApi: SessionApi
 
     private val sessionResponses = listOf(
         SessionResponse(
@@ -53,7 +53,8 @@ internal class SessionRepositoryImpl(
     )
 
     override suspend fun getSessions(): List<Session> {
-        return sessionResponses.map { it.toData() }
+        val responses: List<SessionResponse> = sessionApi.getSessions()
+        return responses.map { it.toData() }
     }
 
     override suspend fun getSession(sessionId: String): Session {

@@ -12,6 +12,11 @@ kotlin {
 
             implementation(projects.core.data.dataSessionApi)
             implementation(projects.core.datastore.datastoreSessionApi)
+
+            // ktor
+            implementation(libs.ktor.client.content.negotiation )
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
     }
 }
