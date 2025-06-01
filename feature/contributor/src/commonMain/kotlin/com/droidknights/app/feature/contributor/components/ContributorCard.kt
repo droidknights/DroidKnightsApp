@@ -1,6 +1,7 @@
 package com.droidknights.app.feature.contributor.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -48,7 +49,7 @@ internal fun ContributorCard(
         modifier = modifier.fillMaxWidth(),
         onClick = { uriHandler.openUri(contributor.githubUrl) },
     ) {
-        Row {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Column(
                 modifier = Modifier
                     .weight(1f)
