@@ -37,7 +37,7 @@ internal fun ContributorCard(
         if (showPlaceholder) {
             Modifier
                 .clip(RoundedCornerShape(10.dp))
-                .background(color = KnightsTheme.colorScheme.unselectedIconColor)
+                .background(color = KnightsTheme.colorScheme.placeholderColor)
         } else {
             Modifier
         }
