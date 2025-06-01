@@ -11,7 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Chip
@@ -41,10 +40,12 @@ internal fun ContributorCard(
             Modifier
         }
 
-    KnightsCard(
+    Surface(
         enabled = contributor.githubUrl.isNotEmpty(),
+        shape = RoundedCornerShape(12.dp),
+        shadowElevation = 2.dp,
+        modifier = modifier.fillMaxWidth(),
         onClick = { uriHandler.openUri(contributor.githubUrl) },
-        modifier = modifier,
     ) {
         Row {
             Column(
@@ -86,25 +87,4 @@ internal fun ContributorCard(
             )
         }
     }
-}
-
-@Composable
-fun KnightsCard(
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    onClick: () -> Unit = {},
-    color: Color = KnightsTheme.colorScheme.surface,
-    contentColor: Color = KnightsTheme.colorScheme.onSurface,
-    content: @Composable () -> Unit,
-) {
-    Surface(
-        onClick = onClick,
-        enabled = enabled,
-        modifier = modifier.fillMaxWidth(),
-        color = color,
-        contentColor = contentColor,
-        shape = RoundedCornerShape(12.dp),
-        shadowElevation = 2.dp,
-        content = content,
-    )
 }
