@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 val coreDataSessionModule = module {
     single { SessionApi(get()) }
-    single<SessionRepository> { SessionRepositoryImpl(get()) }
+    single<SessionRepository> { SessionRepositoryImpl(get(), get()) }
 }
