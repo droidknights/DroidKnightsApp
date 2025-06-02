@@ -1,5 +1,7 @@
 package com.droidknights.app.core.network.di
 
+import com.droidknights.app.core.network.DroidknightsNetwork
+import com.droidknights.app.core.network.DroidknightsNetworkImpl
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -44,5 +46,7 @@ val networkModule = module {
             }
         }
     }
+
+    single<DroidknightsNetwork> { DroidknightsNetworkImpl(get()) }
 
 }
