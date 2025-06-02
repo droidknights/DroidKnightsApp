@@ -1,6 +1,6 @@
 [versions]
 ## Android gradle plugin
-androidGradlePlugin = "8.10.0"
+androidGradlePlugin = "8.10.1"
 
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
 androidDesugarJdkLibs = "2.1.5"
