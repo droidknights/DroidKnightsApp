@@ -1,6 +1,7 @@
 package com.droidknights.app.feature.session.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.droidknights.app.core.designsystem.components.Icon
 import com.droidknights.app.core.designsystem.components.IconButton
@@ -17,8 +18,10 @@ internal fun SessionDetailTopAppBar(
     bookmarked: Boolean,
     onClickBookmark: (Boolean) -> Unit,
     onBackClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     TopAppBar(
+        modifier = modifier,
         title = "세션 상세 정보",
         navigation = {
             IconButton(
