@@ -1,8 +1,11 @@
 package com.droidknights.app.feature.session
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -15,9 +18,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app.core.designsystem.components.Button
+import com.droidknights.app.core.designsystem.components.CircularProgressIndicator
+import com.droidknights.app.core.designsystem.components.HorizontalDivider
 import com.droidknights.app.core.designsystem.components.Text
+import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.feature.session.components.SessionDetailBookmarkStatePopup
+import com.droidknights.app.feature.session.components.SessionDetailChips
+import com.droidknights.app.feature.session.components.SessionDetailSpeaker
 import com.droidknights.app.feature.session.components.SessionDetailTopAppBar
+import com.droidknights.app.feature.session.components.SessionOverview
+import com.droidknights.app.feature.session.model.SessionDetailUiState
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -40,7 +51,6 @@ internal fun SessionDetailScreen(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SessionDetailTopAppBar(
@@ -48,9 +58,68 @@ internal fun SessionDetailScreen(
             onClickBookmark = { isBookmarked = !isBookmarked },
             onBackClick = onBackClick,
         )
-        Text("SessionDetailScreen - $sessionId")
-        // TODO session detail 화면
-        Text("$uiState")
-        Button(text = "Back", onClick = onBackClick)
+
+        Box {
+            when (val uiState = uiState) {
+                is SessionDetailUiState.Loading -> SessionDetailLoading()
+                is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
+            }
+
+            if (isBookmarked == true) {
+                SessionDetailBookmarkStatePopup(
+                    bookmarked = !isBookmarked,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun SessionDetailLoading() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        CircularProgressIndicator()
+    }
+}
+
+@Composable
+private fun SessionDetailContent(session: Session) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
+    ) {
+        Text(
+            modifier = Modifier
+                .padding(top = 8.dp)
+                .padding(end = 58.dp),
+            text = session.title,
+            style = KnightsTheme.typography.headlineMediumB,
+            color = KnightsTheme.colorScheme.onSurface,
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        SessionDetailChips(session = session)
+
+        if (session.content.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(16.dp))
+            SessionOverview(content = session.content)
+        }
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        HorizontalDivider(thickness = 1.dp, color = KnightsTheme.colorScheme.borderColor)
+
+        Spacer(modifier = Modifier.height(40.dp))
+
+        session.speakers.forEach { speaker ->
+            SessionDetailSpeaker(speaker)
+            if (speaker != session.speakers.last()) {
+                Spacer(modifier = Modifier.height(40.dp))
+            }
+        }
     }
 }
