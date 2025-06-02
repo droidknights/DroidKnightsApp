@@ -17,7 +17,9 @@ internal fun SessionDetailChips(session: Session) {
         val sessionTags = session.tags.toPersistentList()
 
         TrackChip(room = session.room)
+
         TimeChip(dateTime = session.startTime)
+
         sessionTags.forEach { tag ->
             CategoryChip(text = tag.name)
         }
