@@ -45,6 +45,14 @@ internal fun TimeChip(dateTime: LocalDateTime) {
     )
 }
 
+@Composable
+internal fun CategoryChip(text: String) {
+    Chip(
+        text = text,
+        style = ChipStyle.Border,
+    )
+}
+
 @Preview
 @Composable
 private fun TagChipPreview() {
