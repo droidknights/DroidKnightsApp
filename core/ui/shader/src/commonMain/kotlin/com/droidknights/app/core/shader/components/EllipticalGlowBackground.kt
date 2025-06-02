@@ -37,7 +37,7 @@ vec4 main(vec2 fragCoord) {
     
     // 타원 규격
     float ellipseWidth = uResolution.x;
-    float ellipseHeight = uResolution.y / 1.2;
+    float ellipseHeight = uResolution.y;
     vec2 canvasCenter = vec2((uResolution.x / 2.0) * 1.3, uResolution.y * 1.2);
     
     float scaleX = ellipseWidth / ellipseHeight;
@@ -69,10 +69,9 @@ vec4 main(vec2 fragCoord) {
         float normalizedDist = dist / radius2;
         
         // 매우 부드러운 색상 전환을 위한 여러 단계의 smoothstep
-        float colorMix1 = 1.0 - smoothstep(0.0, 0.7, normalizedDist);
-        float colorMix2 = smoothstep(0.3, 0.9, normalizedDist);
+        float colorMix1 = 1.0 - smoothstep(0.0, 0.8, normalizedDist);
+        float colorMix2 = smoothstep(0.2, 0.8, normalizedDist);
         
-        // 색상을 부드럽게 블렌딩
         vec3 centerColor = blue02;
         vec3 midColor = mix(blue02, blue01, 0.6);
         vec3 edgeColor = mix(blue01, blue02, 0.3);
@@ -80,11 +79,11 @@ vec4 main(vec2 fragCoord) {
         vec3 finalColor = mix(
             mix(centerColor, midColor, colorMix2),
             edgeColor,
-            smoothstep(0.5, 1.0, normalizedDist)
+            smoothstep(0.3, 1.0, normalizedDist)
         );
         
         // 매우 부드러운 알파 전환
-        float finalAlpha = 1.0 - smoothstep(0.6, 1.0, normalizedDist);
+        float finalAlpha = 1.0 - smoothstep(0.4, 1.0, normalizedDist);
         finalAlpha = smoothstep(0.0, 1.0, finalAlpha); // 추가 부드러움
         
         color = vec4(finalColor * finalAlpha, finalAlpha);
