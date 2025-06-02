@@ -1,7 +1,7 @@
 package com.droidknights.app.core.network.di
 
-import com.droidknights.app.core.network.DroidknightsNetwork
 import com.droidknights.app.core.network.DroidknightsNetworkImpl
+import com.droidknights.app.core.network.api.DroidknightsNetwork
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -16,14 +16,11 @@ import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 val networkModule = module {
-
     single {
-
         val json = Json {
             ignoreUnknownKeys = true
             encodeDefaults = true
         }
-
         HttpClient {
             install(ContentNegotiation) {
                 register(ContentType.Application.Json, KotlinxSerializationConverter(json))
@@ -46,7 +43,5 @@ val networkModule = module {
             }
         }
     }
-
     single<DroidknightsNetwork> { DroidknightsNetworkImpl(get()) }
-
 }

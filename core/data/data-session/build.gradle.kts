@@ -12,7 +12,7 @@ kotlin {
 
             implementation(projects.core.data.dataSessionApi)
             implementation(projects.core.datastore.datastoreSessionApi)
-            implementation(projects.core.network)
+            implementation(projects.core.network.networkApi)
         }
     }
 }

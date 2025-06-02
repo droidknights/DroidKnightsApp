@@ -1,5 +1,6 @@
 package com.droidknights.app.core.network
 
+import com.droidknights.app.core.network.api.DroidknightsNetwork
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get

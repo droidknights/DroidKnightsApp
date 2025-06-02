@@ -1,4 +1,4 @@
-package com.droidknights.app.core.network
+package com.droidknights.app.core.network.api
 
 import io.ktor.util.reflect.TypeInfo
 import io.ktor.util.reflect.typeInfo

@@ -57,7 +57,7 @@ kotlin {
             implementation(projects.core.datastore.datastoreSettings)
             implementation(projects.core.datastore.datastoreSettingsApi)
 
-            implementation(projects.core.network)
+            implementation(projects.core.network.network)
 
             implementation(projects.core.domain.domainSession)
 
