@@ -23,8 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.components.CircularProgressIndicator
@@ -55,7 +53,6 @@ internal fun SessionDetailScreen(
     val scrollState = rememberScrollState()
     var showPopup by remember { mutableStateOf(false) }
     var lastBookmarkState by remember { mutableStateOf(false) }
-    var topAppBarHeight by remember { mutableStateOf(0) }
 
     LaunchedEffect(sessionId) {
         viewModel.fetchSession(sessionId)
@@ -71,20 +68,16 @@ internal fun SessionDetailScreen(
         }
     }
 
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(modifier = modifier.fillMaxSize().systemBarsPadding()) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .systemBarsPadding()
                 .verticalScroll(scrollState),
         ) {
             SessionDetailTopAppBar(
                 bookmarked = (uiState as? SessionDetailUiState.Success)?.bookmarked == true,
                 onClickBookmark = { viewModel.toggleBookmark() },
                 onBackClick = onBackClick,
-                modifier = Modifier.onGloballyPositioned { coordinates ->
-                    topAppBarHeight = coordinates.size.height
-                },
             )
 
             when (val state = uiState) {
@@ -99,12 +92,7 @@ internal fun SessionDetailScreen(
             exit = slideOutVertically(targetOffsetY = { -it }) + fadeOut(),
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .offset {
-                    IntOffset(
-                        x = 0,
-                        y = topAppBarHeight,
-                    )
-                },
+                .offset(y = 48.dp),
         ) {
             SessionDetailBookmarkStatePopup(bookmarked = lastBookmarkState)
         }
