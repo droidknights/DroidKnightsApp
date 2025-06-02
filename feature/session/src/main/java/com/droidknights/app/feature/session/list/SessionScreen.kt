@@ -42,7 +42,7 @@ import com.droidknights.app.feature.session.list.model.rememberHighlightState
 import com.droidknights.app.feature.session.list.model.rememberSessionState
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
-// params without defaults, modifiers, params with defaults and optionally, a trailing function that might not have a default param.
+
 @Composable
 internal fun SessionScreen(
     onBackClick: () -> Unit,
