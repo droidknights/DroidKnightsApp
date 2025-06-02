@@ -7,7 +7,6 @@ import com.droidknights.app.core.domain.session.api.usecase.GetBookmarkedSession
 import com.droidknights.app.core.domain.session.api.usecase.GetSessionUseCase
 import com.droidknights.app.feature.session.model.SessionDetailEffect
 import com.droidknights.app.feature.session.model.SessionDetailUiState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
@@ -46,7 +45,6 @@ internal class SessionDetailViewModel(
     fun fetchSession(sessionId: String) {
         viewModelScope.launch {
             _uiState.value = SessionDetailUiState.Loading
-            delay(1000L)
             val session = getSessionUseCase(sessionId)
             _uiState.value = SessionDetailUiState.Success(session)
         }
@@ -61,12 +59,6 @@ internal class SessionDetailViewModel(
             val bookmark = uiState.bookmarked
             bookmarkSessionUseCase(uiState.session.id, !bookmark)
             _sessionUiEffect.value = SessionDetailEffect.ShowToastForBookmarkState(!bookmark)
-        }
-    }
-
-    fun hidePopup() {
-        viewModelScope.launch {
-            _sessionUiEffect.value = SessionDetailEffect.Idle
         }
     }
 }
