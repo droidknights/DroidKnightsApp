@@ -20,9 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -45,13 +42,13 @@ import com.droidknights.app.feature.session.list.model.rememberHighlightState
 import com.droidknights.app.feature.session.list.model.rememberSessionState
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
-
+// params without defaults, modifiers, params with defaults and optionally, a trailing function that might not have a default param.
 @Composable
 internal fun SessionScreen(
-    scrollToSessionId: String? = null,
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
+    scrollToSessionId: String? = null,
     sessionListViewModel: SessionListViewModel = hiltViewModel(),
 ) {
     val sessionUiState by sessionListViewModel.uiState.collectAsStateWithLifecycle()
