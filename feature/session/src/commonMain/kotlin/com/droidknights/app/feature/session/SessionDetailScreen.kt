@@ -1,5 +1,10 @@
 package com.droidknights.app.feature.session
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,7 +33,9 @@ import com.droidknights.app.feature.session.components.SessionDetailChips
 import com.droidknights.app.feature.session.components.SessionDetailSpeaker
 import com.droidknights.app.feature.session.components.SessionDetailTopAppBar
 import com.droidknights.app.feature.session.components.SessionOverview
+import com.droidknights.app.feature.session.model.SessionDetailEffect
 import com.droidknights.app.feature.session.model.SessionDetailUiState
+import kotlinx.coroutines.delay
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -39,37 +46,54 @@ internal fun SessionDetailScreen(
     viewModel: SessionDetailViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle()
 
-    var isBookmarked by remember { mutableStateOf(true) }
     val scrollState = rememberScrollState()
+    var showPopup by remember { mutableStateOf(false) }
+    var lastBookmarkState by remember { mutableStateOf(false) }
 
     LaunchedEffect(sessionId) {
         viewModel.fetchSession(sessionId)
     }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        SessionDetailTopAppBar(
-            bookmarked = isBookmarked,
-            onClickBookmark = { isBookmarked = !isBookmarked },
-            onBackClick = onBackClick,
-        )
+    LaunchedEffect(effect) {
+        val currentEffect = effect
+        if (currentEffect is SessionDetailEffect.ShowToastForBookmarkState) {
+            lastBookmarkState = currentEffect.bookmarked
+            showPopup = true
+            delay(1000L)
+            showPopup = false
+        }
+    }
 
-        Box {
-            when (val uiState = uiState) {
+    Box(modifier = modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            SessionDetailTopAppBar(
+                bookmarked = (uiState as? SessionDetailUiState.Success)?.bookmarked == true,
+                onClickBookmark = { viewModel.toggleBookmark() },
+                onBackClick = onBackClick,
+            )
+
+            when (val state = uiState) {
                 is SessionDetailUiState.Loading -> SessionDetailLoading()
-                is SessionDetailUiState.Success -> SessionDetailContent(uiState.session)
+                is SessionDetailUiState.Success -> SessionDetailContent(state.session)
             }
+        }
 
-            if (isBookmarked == true) {
-                SessionDetailBookmarkStatePopup(
-                    bookmarked = !isBookmarked,
-                )
-            }
+        AnimatedVisibility(
+            visible = showPopup,
+            enter = slideInVertically(initialOffsetY = { -it }) + fadeIn(),
+            exit = slideOutVertically(targetOffsetY = { -it }) + fadeOut(),
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 48.dp),
+        ) {
+            SessionDetailBookmarkStatePopup(bookmarked = lastBookmarkState)
         }
     }
 }
