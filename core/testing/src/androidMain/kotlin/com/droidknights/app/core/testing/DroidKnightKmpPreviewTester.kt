@@ -1,9 +1,6 @@
 package com.droidknights.app.core.testing
 
 import android.graphics.Color.BLUE
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.core.graphics.drawable.toDrawable
 import androidx.test.core.app.ApplicationProvider
 import coil3.ImageLoader
@@ -16,7 +13,6 @@ import com.github.takahirom.roborazzi.ComposePreviewTester.Options
 import com.github.takahirom.roborazzi.ComposePreviewTester.Options.JUnit4TestLifecycleOptions
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.captureRoboImage
-import org.jetbrains.compose.resources.PreviewContextConfigurationEffect
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
@@ -24,6 +20,7 @@ import sergio.sastre.composable.preview.scanner.jvm.JvmAnnotationInfo
 import sergio.sastre.composable.preview.scanner.jvm.JvmAnnotationScanner
 
 @OptIn(ExperimentalRoborazziApi::class)
+@Suppress("Unused")
 class DroidKnightKmpPreviewTester : ComposePreviewTester<JvmAnnotationInfo> {
     override fun options(): Options {
         return super.options().copy(
@@ -33,6 +30,7 @@ class DroidKnightKmpPreviewTester : ComposePreviewTester<JvmAnnotationInfo> {
         )
     }
 
+    @Suppress("SpreadOperator")
     override fun previews(): List<ComposablePreview<JvmAnnotationInfo>> {
         return JvmAnnotationScanner("org.jetbrains.compose.ui.tooling.preview.Preview")
             .scanPackageTrees(*options().scanOptions.packages.toTypedArray())
@@ -64,13 +62,5 @@ class CoilRule : TestWatcher() {
                 .build()
         @OptIn(DelicateCoilApi::class)
         SingletonImageLoader.setUnsafe(imageLoader)
-    }
-}
-
-@Composable
-private fun ProvideAndroidContextToComposeResource(content: @Composable () -> Unit) {
-    CompositionLocalProvider(LocalInspectionMode provides true) {
-        PreviewContextConfigurationEffect()
-        content()
     }
 }

@@ -3,10 +3,10 @@ package com.droidknights.app.convention
 import com.droidknights.app.library
 import com.droidknights.app.libs
 import com.droidknights.app.primitive.DetektPlugin
-import com.droidknights.app.primitive.KmpRoborazziPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformAndroidPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformJvmPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformPlugin
+import com.droidknights.app.primitive.KotlinMultiPlatformRoborazziPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformWasmPlugin
 import com.droidknights.app.primitive.KotlinMultiPlatformiOSPlugin
 import com.droidknights.app.primitive.composeMultiplatformDependencies
@@ -31,7 +31,7 @@ class DroidKnightsFeaturePlugin : Plugin<Project> {
         apply<KotlinMultiPlatformJvmPlugin>()
         apply<KotlinMultiPlatformWasmPlugin>()
         apply<DetektPlugin>()
-        apply<KmpRoborazziPlugin>()
+        apply<KotlinMultiPlatformRoborazziPlugin>()
 
         composeMultiplatformDependencies()
 
@@ -46,7 +46,7 @@ class DroidKnightsFeaturePlugin : Plugin<Project> {
                         implementation(libs.library("koin-compose-viewmodel-navigation"))
                     }
                 }
-                
+
             }
         }
     }
