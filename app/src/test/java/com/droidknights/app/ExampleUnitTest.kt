@@ -9,7 +9,7 @@ import io.kotest.matchers.shouldBe
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest : StringSpec({
-    "addition is correct" {
+    "2 + 2는 4다" {
         4 shouldBe 2 + 2
     }
 })

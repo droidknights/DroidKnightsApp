@@ -19,7 +19,7 @@ class SettingsRepositoryImplTest {
     )
 
     @Test
-    fun `test flowIsDarkTheme`() = runTest {
+    fun `다크테마 여부를 Flow로 반환한다`() = runTest {
         whenever(settingsPreferencesDataSource.isDarkThemeFlow).thenReturn(flowOf(true))
 
         repository.flowIsDarkTheme().test {

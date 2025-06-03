@@ -14,7 +14,7 @@ internal class DroidknightsNetworkImplTest {
     )
 
     @Test
-    fun `test create`() = runTest {
+    fun `서비스 객체를 만들 수 있다`() = runTest {
         Assertions.assertNotNull(network.create<MockDroidknightsService>("https://droidknihghts.app/"))
     }
 }

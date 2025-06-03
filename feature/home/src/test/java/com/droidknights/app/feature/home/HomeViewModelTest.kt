@@ -53,7 +53,7 @@ internal class HomeViewModelTest {
     }
 
     @Test
-    fun `navigate RouteSession`() = runTest {
+    fun `navigate(RouteSession)가 호출될 때 navigator에게 위임한다`() = runTest {
         // suspend 함수 호출에 대한 stub
         coEvery { navigator.navigate(RouteSession) } just Runs
         viewModel = HomeViewModel(getSponsorsUseCase, navigator)
@@ -66,7 +66,7 @@ internal class HomeViewModelTest {
     }
 
     @Test
-    fun `navigate Contributor`() = runTest {
+    fun `navigate(RouteContributor)가 호출될 때 navigator에게 위임한다`() = runTest {
         // suspend 함수 호출에 대한 stub
         coEvery { navigator.navigate(RouteContributor) } just Runs
         viewModel = HomeViewModel(getSponsorsUseCase, navigator)

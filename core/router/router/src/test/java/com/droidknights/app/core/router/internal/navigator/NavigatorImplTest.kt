@@ -12,13 +12,13 @@ internal class NavigatorImplTest {
     private val navigator = NavigatorImpl()
 
     @Test
-    fun `test navigate`() = runTest {
+    fun `navigate와 navigateBack 테스트`() = runTest {
         navigator.channel.consumeAsFlow().test {
-            // fake route test
+            // fake route 테스트
             navigator.navigate(FakeRoute)
             Assertions.assertEquals(InternalRoute.Navigate(FakeRoute, false), awaitItem())
 
-            // Back test
+            // Back 테스트
             navigator.navigateBack()
             Assertions.assertEquals(InternalRoute.NavigateBack, awaitItem())
 

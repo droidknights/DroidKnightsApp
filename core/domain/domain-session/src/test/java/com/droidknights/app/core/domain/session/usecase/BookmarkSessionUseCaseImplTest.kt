@@ -15,7 +15,7 @@ internal class BookmarkSessionUseCaseImplTest {
     )
 
     @Test
-    fun `test invoke`() = runTest {
+    fun `세션을 북마크하거나 해제할 수 있다`() = runTest {
         val sessionId = "id"
         val bookmark = true
         domain.invoke(sessionId, bookmark)
