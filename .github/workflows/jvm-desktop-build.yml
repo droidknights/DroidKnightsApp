@@ -99,16 +99,15 @@ jobs:
     name: 💬 Comment Build Status
     needs: [ windows, macos, linux ]
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: ${{ always() && github.event_name == 'pull_request' }}
     steps:
       - name: Post summary comment
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           body: |
             🚀 **빌드 결과 요약**
             - 🪟 Windows: ${{ needs.windows.result == 'success' && needs.windows.outputs.artifact_url || '❌ 빌드가 실패하였습니다' }}
             - 🍎 macOS: ${{ needs.macos.result  == 'success' && needs.macos.outputs.artifact_url  || '❌ 빌드가 실패하였습니다' }}
             - 🐧 Linux:  ${{ needs.linux.result == 'success' && needs.linux.outputs.artifact_url || '❌ 빌드가 실패하였습니다' }}
-
