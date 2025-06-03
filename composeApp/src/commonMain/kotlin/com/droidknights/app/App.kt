@@ -12,6 +12,7 @@ import com.droidknights.app.core.datastore.session.di.coreDatastoreSessionModule
 import com.droidknights.app.core.datastore.settings.di.coreDatastoreSettingsModule
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
+import com.droidknights.app.feature.contributor.di.featureContributorModule
 import com.droidknights.app.feature.main.MainScreen
 import com.droidknights.app.feature.session.di.featureSessionModule
 import com.droidknights.app.feature.setting.di.featureSettingModule
@@ -64,6 +65,7 @@ internal fun knightsAppDeclaration(
     val featureModules = listOf(
         featureSessionModule,
         featureSettingModule,
+        featureContributorModule,
     )
     modules(appModule)
     modules(coreDataModules)
