@@ -18,7 +18,7 @@ fun NetworkImage(
     modifier: Modifier = Modifier,
     placeholder: Painter? = null,
     contentScale: ContentScale = ContentScale.Crop,
-    contentDescription: String? = null,
+    contentDescription: String? = null
 ) {
     val painter = placeholder ?: painterResource(Res.drawable.playstore_m)
 
@@ -31,6 +31,6 @@ fun NetworkImage(
         placeholder = placeholder,
         contentScale = contentScale,
         contentDescription = contentDescription,
-        error = painter
+        error = painter,
     )
 }
