@@ -11,7 +11,6 @@ class KnightsAppModuleTest {
     @OptIn(KoinExperimentalAPI::class)
     @Test
     fun allModulesShouldBeVerifiedWithoutMissingDependencies() {
-
         val allModules = koinApplication(knightsAppDeclaration()).koin.getAll<Module>()
 
         allModules.verifyAll()
