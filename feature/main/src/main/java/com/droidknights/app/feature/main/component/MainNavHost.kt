@@ -42,7 +42,8 @@ internal fun MainNavHost(
             )
 
             bookmarkNavGraph(
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
+                onSessionClick = { navigator.navigateSession(it.id) },
             )
 
             contributorNavGraph(

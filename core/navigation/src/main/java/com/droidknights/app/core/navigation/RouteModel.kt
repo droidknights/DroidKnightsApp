@@ -8,7 +8,7 @@ sealed interface Route {
     data class SessionDetail(val sessionId: String) : Route
 
     @Serializable
-    data class SessionListScrollTo(val sessionId: String) : Route
+    data class SessionList(val sessionId: String? = null) : Route
 }
 
 sealed interface MainTabRoute : Route {

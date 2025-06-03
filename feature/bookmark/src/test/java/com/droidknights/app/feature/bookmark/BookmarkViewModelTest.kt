@@ -7,11 +7,9 @@ import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.model.session.Tag
-import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import com.droidknights.app.feature.bookmark.model.BookmarkUiState
-import com.droidknights.app.feature.session.api.SessionListScrollTo
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -35,7 +33,6 @@ class BookmarkViewModelTest {
 
     private val getBookmarkedSessionsUseCase: GetBookmarkedSessionsUseCase = mockk()
     private val deleteBookmarkedSessionUseCase: DeleteBookmarkedSessionUseCase = mockk()
-    private val navigator = mockk<Navigator>()
     private lateinit var viewModel: BookmarkViewModel
 
     @Before
@@ -46,7 +43,7 @@ class BookmarkViewModelTest {
     @Test
     fun `북마크한 세션들을 가져올 수 있다`() = runTest {
         // given & when
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase)
 
         // then
         viewModel.bookmarkUiState.test {
@@ -70,7 +67,7 @@ class BookmarkViewModelTest {
     @Test
     fun `에딧모드를 토글할 수 있다`() = runTest {
         // given
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase)
 
         viewModel.bookmarkUiState.test {
             val initialIsEditMode = (awaitItem() as BookmarkUiState.Success).isEditMode
@@ -88,7 +85,7 @@ class BookmarkViewModelTest {
     @Test
     fun `세션을 선택할 수 있다`() = runTest {
         // given
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase)
 
         // when
         viewModel.selectSession(mockSession1)
@@ -106,7 +103,7 @@ class BookmarkViewModelTest {
     @Test
     fun `이미 선택된 세션을 선택하면 선택이 해제된다`() = runTest {
         // given
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase)
         viewModel.selectSession(mockSession1)
 
         // when
@@ -126,7 +123,7 @@ class BookmarkViewModelTest {
     fun `선택된 세션들을 북마크에서 삭제할 수 있다`() = runTest {
         // given
         coEvery { deleteBookmarkedSessionUseCase(persistentSetOf("1")) } just Runs
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase)
         viewModel.selectSession(mockSession1)
 
         // when
@@ -138,20 +135,6 @@ class BookmarkViewModelTest {
             assertEquals(persistentSetOf(), actual)
             coVerify { deleteBookmarkedSessionUseCase(persistentSetOf("1")) }
         }
-    }
-
-    @Test
-    fun `북마크 목록의 아이템을 클릭하면 세션 목록 화면으로 이동한다`() = runTest {
-        // given
-        coEvery { navigator.navigateBack() } just Runs
-        coEvery { navigator.navigate(SessionListScrollTo(sessionId = mockSession2.id)) } just Runs
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
-
-        // when
-        viewModel.redirectToSessionScreen(mockSession2)
-
-        // then
-        coVerify(exactly = 1) { navigator.navigate(SessionListScrollTo(sessionId = mockSession2.id)) }
     }
 
     companion object {
