@@ -8,6 +8,9 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import droidknights.core.designsystem.generated.resources.Res
+import droidknights.core.designsystem.generated.resources.playstore_m
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun NetworkImage(
@@ -17,6 +20,8 @@ fun NetworkImage(
     contentScale: ContentScale = ContentScale.Crop,
     contentDescription: String? = null,
 ) {
+    val painter = placeholder ?: painterResource(Res.drawable.playstore_m)
+
     AsyncImage(
         model = ImageRequest.Builder(LocalPlatformContext.current)
             .data(imageUrl)
@@ -26,5 +31,6 @@ fun NetworkImage(
         placeholder = placeholder,
         contentScale = contentScale,
         contentDescription = contentDescription,
+        error = painter,
     )
 }
