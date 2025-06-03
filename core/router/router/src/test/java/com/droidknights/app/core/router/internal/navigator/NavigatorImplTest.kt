@@ -12,7 +12,7 @@ internal class NavigatorImplTest {
     private val navigator = NavigatorImpl()
 
     @Test
-    fun `navigate와 navigateBack 테스트`() = runTest {
+    fun `navigate와 navigateBack 호출 시 각각의 라우트 이벤트가 channel로 전달된다`() = runTest {
         navigator.channel.consumeAsFlow().test {
             // fake route 테스트
             navigator.navigate(FakeRoute)
