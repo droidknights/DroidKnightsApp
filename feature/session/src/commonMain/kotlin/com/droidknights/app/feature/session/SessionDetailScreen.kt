@@ -5,6 +5,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -140,10 +141,9 @@ private fun SessionDetailContent(session: Session) {
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        session.speakers.forEach { speaker ->
-            SessionDetailSpeaker(speaker)
-            if (speaker != session.speakers.last()) {
-                Spacer(modifier = Modifier.height(40.dp))
+        Column(verticalArrangement = Arrangement.spacedBy(40.dp)) {
+            session.speakers.forEach { speaker ->
+                SessionDetailSpeaker(speaker)
             }
         }
     }

@@ -55,10 +55,21 @@ internal class SessionDetailViewModel(
         if (uiState !is SessionDetailUiState.Success) {
             return
         }
+
+        val newBookmarkState = !uiState.bookmarked
+
+        _uiState.value = uiState.copy(bookmarked = newBookmarkState)
+
         viewModelScope.launch {
-            val bookmark = uiState.bookmarked
-            bookmarkSessionUseCase(uiState.session.id, !bookmark)
-            _sessionUiEffect.value = SessionDetailEffect.ShowToastForBookmarkState(!bookmark)
+            runCatching {
+                bookmarkSessionUseCase(uiState.session.id, newBookmarkState)
+            }.onSuccess {
+                _sessionUiEffect.value =
+                    SessionDetailEffect.ShowToastForBookmarkState(newBookmarkState)
+            }.onFailure { throwable ->
+                _uiState.value = uiState.copy(bookmarked = !newBookmarkState)
+                // TODO: 로깅 혹은 에러 표시
+            }
         }
     }
 }
