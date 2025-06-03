@@ -1,7 +1,6 @@
 package com.droidknights.app.primitive
 
 import com.android.build.gradle.LibraryExtension
-import com.droidknights.app.kotlin
 import com.droidknights.app.library
 import com.droidknights.app.libs
 import io.github.takahirom.roborazzi.RoborazziExtension
@@ -11,6 +10,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class KotlinMultiPlatformRoborazziPlugin : Plugin<Project> {
     override fun apply(project: Project) {
@@ -54,9 +54,18 @@ class KotlinMultiPlatformRoborazziPlugin : Plugin<Project> {
                 }
             }
 
-            // Configure Roborazzi extension
             project.extensions.getByType<RoborazziExtension>().apply {
-                val packageName = "com.droidknights.app.feature.$name"
+                val packageName = when {
+                    path.startsWith(":feature:") -> {
+                        "com.droidknights.app.feature.${path.removePrefix(":feature:")}"
+                    }
+
+                    path.startsWith(":core:") -> {
+                        "com.droidknights.app.core.${path.removePrefix(":core:")}"
+                    }
+
+                    else -> "com.droidknights.app.$name"
+                }
 
                 @Suppress("unused", "OPT_IN_USAGE")
                 generateComposePreviewRobolectricTests {
@@ -74,24 +83,20 @@ class KotlinMultiPlatformRoborazziPlugin : Plugin<Project> {
                 }
             }
 
-            // Add dependencies for Roborazzi testing
-            kotlin {
-                if (plugins.hasPlugin("com.android.library")) {
-                    sourceSets.apply {
-                        getByName("androidUnitTest") {
-                            dependencies {
-                                implementation(project(":core:testing"))
-                                implementation(libs.library("junit"))
-                                implementation(libs.library("robolectric"))
-                                implementation(libs.library("androidx-compose-ui-test-junit4"))
-                                implementation(libs.library("roborazzi"))
-                                implementation(libs.library("roborazziCompose"))
-                                implementation(libs.library("composablepreviewscanner"))
-                                implementation(libs.library("composablePreviewScannerJvm"))
-                                implementation(libs.library("roborazzi-compose-preview-scanner-support"))
-                                implementation(libs.library("coil"))
-                                implementation(libs.library("coil-test"))
-                            }
+            if (plugins.hasPlugin("com.android.library") && plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+                extensions.configure<KotlinMultiplatformExtension> {
+                    sourceSets.androidUnitTest {
+                        dependencies {
+                            implementation(project(":core:testing"))
+                            implementation(libs.library("junit"))
+                            implementation(libs.library("robolectric"))
+                            implementation(libs.library("roborazzi"))
+                            implementation(libs.library("roborazzi-compose"))
+                            implementation(libs.library("composable-preview-scanner"))
+                            implementation(libs.library("composable-preview-scanner-jvm"))
+                            implementation(libs.library("roborazzi-compose-preview-scanner-support"))
+                            implementation(libs.library("coil"))
+                            implementation(libs.library("coil-test"))
                         }
                     }
                 }

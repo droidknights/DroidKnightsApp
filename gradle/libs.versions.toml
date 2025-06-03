@@ -30,11 +30,6 @@ okio = "3.11.0"
 aboutlibrariesCore = "12.1.2"
 composeHotReload = "1.0.0-alpha10"
 robolectric = "4.14.1"
-androidx-compose-ui-test = "1.7.6"
-androidx-compose-ui-test-junit4 = "1.7.6"
-androidx-compose-ui-test-manifest = "1.7.6"
-androidx-test-ext-junit = "1.2.1"
-androidx-test-espresso-core = "3.5.1"
 roborazzi = "1.43.1"
 composablePreviewScanner = "0.6.1"
 
@@ -103,24 +98,17 @@ compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin",
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 
 # Test
-androidx-compose-ui-test = { module = "androidx.compose.ui:ui-test", version.ref = "androidx-compose-ui-test" }
-androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose-ui-test-junit4" }
-androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-compose-ui-test-manifest" }
-androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
-androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext-junit" }
-androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso-core" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 
 # Compose Preview Scanner
-composablepreviewscanner = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "android", version.ref = "composablePreviewScanner" }
-composablePreviewScannerJvm = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "jvm", version.ref = "composablePreviewScanner" }
+composable-preview-scanner = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "android", version.ref = "composablePreviewScanner" }
+composable-preview-scanner-jvm = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "jvm", version.ref = "composablePreviewScanner" }
 
 # Roborazzi
 roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "roborazzi" }
-roborazziCompose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
+roborazzi-compose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
 roborazzi-compose-preview-scanner-support = { module = "io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support", version.ref = "roborazzi" }
-roborazziPreviewScannerSupport = { module = "io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support", version.ref = "roborazzi" }
-roborazzi-gradle-plugin = { group = "io.github.takahirom.roborazzi", name = "roborazzi-gradle-plugin", version.ref="roborazzi" }
+roborazzi-gradle-plugin = { group = "io.github.takahirom.roborazzi", name = "roborazzi-gradle-plugin", version.ref = "roborazzi" }
 
 # AboutLibraries
 aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutlibrariesCore" }

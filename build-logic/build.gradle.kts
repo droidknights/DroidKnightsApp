@@ -46,7 +46,7 @@ gradlePlugin {
         }
         register("kmpRoborazzi") {
             id = "droidknights.kmp.roborazzi"
-            implementationClass = "com.droidknights.app.primitive.KmpRoborazziPlugin"
+            implementationClass = "com.droidknights.app.primitive.KotlinMultiPlatformRoborazziPlugin"
         }
     }
 }
