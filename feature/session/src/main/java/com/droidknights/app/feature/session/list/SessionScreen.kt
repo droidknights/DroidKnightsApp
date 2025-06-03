@@ -1,6 +1,5 @@
 package com.droidknights.app.feature.session.list
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -74,18 +73,12 @@ internal fun SessionScreen(
         )
         SessionList(
             sessionState = sessionState,
-            highlightSessionId = (highlightState as? HighlightState.Highlighted)?.sessionId,
-            onSessionClick = {
-                Log.w("TEMP", "onClick session $it")
-                if (highlightState is HighlightState.Highlighted) {
-                    highlightState = HighlightState.End
-                }
-                onSessionClick(it)
-            },
+            onSessionClick = onSessionClick,
             modifier = Modifier
                 .systemBarsPadding()
                 .padding(top = 48.dp)
                 .fillMaxSize(),
+            highlightSessionId = (highlightState as? HighlightState.Highlighted)?.sessionId,
         )
     }
 }
@@ -93,9 +86,9 @@ internal fun SessionScreen(
 @Composable
 private fun SessionList(
     sessionState: SessionState,
+    onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier,
     highlightSessionId: String? = null,
-    onSessionClick: (Session) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier,

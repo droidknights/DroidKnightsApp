@@ -24,7 +24,6 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.mapNotNull
 
 @Immutable
@@ -146,35 +145,25 @@ internal fun rememberHighlightState(
     sessionState: SessionState,
     scrollToSessionId: String? = null,
     scrollOffset: Dp = 6.dp,
+    durationMillis: Long = 400,
 ): HighlightState {
     if (scrollToSessionId == null) return HighlightState.End
     val density = LocalDensity.current
     var state by remember { mutableStateOf<HighlightState>(HighlightState.None) }
-    var scrolling by remember { mutableStateOf(false) }
     LaunchedEffect(state, sessionState.groups) {
         if (state !is HighlightState.End) {
-            scrolling = true
-            delay(300)
+            delay(200)
             val targetIndex = sessionState.findSessionIndex(scrollToSessionId)
             if (targetIndex >= 0) {
                 val offset = with(density) { (-scrollOffset).toPx().toInt() }
                 sessionState.scrollToSession(scrollToSessionId, offset)
-                delay(300)
+                delay(200)
                 state = HighlightState.Highlighted(scrollToSessionId)
-                scrolling = false
+                delay(durationMillis)
+                if (state is HighlightState.Highlighted) {
+                    state = HighlightState.End
+                }
             } else {
-                state = HighlightState.End
-            }
-        }
-    }
-    LaunchedEffect(sessionState.listState) {
-        snapshotFlow {
-            sessionState.listState.isScrollInProgress
-        }.filter { isScrolling ->
-            isScrolling && state is HighlightState.Highlighted
-        }.collect {
-            delay(200)
-            if (scrolling.not() && state is HighlightState.Highlighted) {
                 state = HighlightState.End
             }
         }
