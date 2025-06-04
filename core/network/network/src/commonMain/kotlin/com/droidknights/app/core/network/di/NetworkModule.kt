@@ -30,9 +30,9 @@ val coreNetworkModule = module {
                 level = LogLevel.ALL
             }
             install(HttpTimeout) {
-                connectTimeoutMillis =  6_000
-                requestTimeoutMillis =  6_000
-                socketTimeoutMillis =  6_000
+                connectTimeoutMillis = 6_000
+                requestTimeoutMillis = 6_000
+                socketTimeoutMillis = 6_000
             }
             defaultRequest {
                 contentType(ContentType.Application.Json)
