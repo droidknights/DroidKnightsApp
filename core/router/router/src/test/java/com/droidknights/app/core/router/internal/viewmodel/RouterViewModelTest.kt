@@ -18,7 +18,7 @@ internal class RouterViewModelTest {
     private val viewModel = RouterViewModel(navigator = navigator)
 
     @Test
-    fun `test sideEffect`() = runTest {
+    fun `Channel로 들어온 네비게이션 이벤트를 sideEffect로 방출한다`() = runTest {
         val mockChannel = Channel<InternalRoute>(Channel.BUFFERED)
         whenever(navigator.channel).thenReturn(mockChannel)
 
@@ -27,7 +27,7 @@ internal class RouterViewModelTest {
             mockChannel.send(InternalRoute.Navigate(route = FakeRoute, saveState = true))
             Assertions.assertEquals(RouteSideEffect.Navigate(route = FakeRoute, saveState = true), awaitItem())
 
-            // Back test
+            // Back 테스트
             mockChannel.send(InternalRoute.NavigateBack)
             Assertions.assertEquals(RouteSideEffect.NavigateBack, awaitItem())
 

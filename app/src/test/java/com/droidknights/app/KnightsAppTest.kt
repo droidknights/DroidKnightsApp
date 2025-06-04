@@ -32,7 +32,7 @@ class KnightsAppTest {
     lateinit var knightsAppRobot: KnightsAppRobot
 
     @Test
-    fun checkStartupShot() {
+    fun `기본 환경에서의 앱 실행 스크린샷 테스트`() {
         knightsAppRobot {
             capture()
         }
@@ -40,7 +40,7 @@ class KnightsAppTest {
 
     @Test
     @Config(qualifiers = RobolectricDeviceQualifiers.MediumTablet)
-    fun checkMediumTabletLaunchShot() {
+    fun `중간 크기의 태블릿 앱 실행 스크린샷 테스트`() {
         knightsAppRobot {
             capture()
         }
