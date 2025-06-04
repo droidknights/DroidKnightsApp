@@ -15,7 +15,7 @@ import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
-val networkModule = module {
+val coreNetworkModule = module {
     single {
         val json = Json {
             ignoreUnknownKeys = true
