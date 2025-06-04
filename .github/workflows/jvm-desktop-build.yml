@@ -103,7 +103,7 @@ jobs:
     steps:
       - name: Post summary comment via GitHub API
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_JOB_TOKEN: ${{ secrets.COMMENT_JOB_TOKEN }}
           PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
           OWNER: ${{ github.repository_owner }}
           REPO: ${{ github.event.repository.name }}
@@ -141,7 +141,7 @@ jobs:
           )
   
           curl -s -X POST \
-          -H "Authorization: Bearer $GH_TOKEN" \
+          -H "Authorization: Bearer $COMMENT_JOB_TOKEN" \
           -H "Accept: application/vnd.github+json" \
           https://api.github.com/repos/$OWNER/$REPO/pulls/$PULL_REQUEST_NUMBER/reviews \
           -d "$(jq -n \
