@@ -101,13 +101,50 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ always() && github.event_name == 'pull_request' }}
     steps:
-      - name: Post summary comment
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            🚀 **빌드 결과 요약**
-            - 🪟 Windows: ${{ needs.windows.result == 'success' && needs.windows.outputs.artifact_url || '❌ 빌드가 실패하였습니다' }}
-            - 🍎 macOS: ${{ needs.macos.result  == 'success' && needs.macos.outputs.artifact_url  || '❌ 빌드가 실패하였습니다' }}
-            - 🐧 Linux:  ${{ needs.linux.result == 'success' && needs.linux.outputs.artifact_url || '❌ 빌드가 실패하였습니다' }}
+      - name: Post summary comment via GitHub API
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+          WINDOWS_RESULT: ${{ needs.windows.result }}
+          WINDOWS_ARTIFACT: ${{ needs.windows.outputs.artifact_url }}
+          MACOS_RESULT: ${{ needs.macos.result }}
+          MACOS_ARTIFACT: ${{ needs.macos.outputs.artifact_url }}
+          LINUX_RESULT: ${{ needs.linux.result }}
+          LINUX_ARTIFACT: ${{ needs.linux.outputs.artifact_url }}
+        run: |
+          if [ "$WINDOWS_RESULT" = "success" ]; then
+            WINDOWS_LINE="- 🪟 Windows: $WINDOWS_ARTIFACT"
+          else
+            WINDOWS_LINE="- 🪟 Windows: ❌ 빌드가 실패하였습니다"
+          fi
+
+          if [ "$MACOS_RESULT" = "success" ]; then
+            MACOS_LINE="- 🍎 macOS: $MACOS_ARTIFACT"
+          else
+            MACOS_LINE="- 🍎 macOS: ❌ 빌드가 실패하였습니다"
+          fi
+
+          if [ "$LINUX_RESULT" = "success" ]; then
+            LINUX_LINE="- 🐧 Linux: $LINUX_ARTIFACT"
+          else
+            LINUX_LINE="- 🐧 Linux: ❌ 빌드가 실패하였습니다"
+          fi
+
+          COMMENT_BODY=$(cat <<EOF
+          🚀 **빌드 결과 요약**
+          $WINDOWS_LINE
+          $MACOS_LINE
+          $LINUX_LINE
+          EOF
+          )
+  
+          curl -s -X POST \
+          -H "Authorization: Bearer $GH_TOKEN" \
+          -H "Accept: application/vnd.github+json" \
+          https://api.github.com/repos/$OWNER/$REPO/pulls/$PULL_REQUEST_NUMBER/reviews \
+          -d "$(jq -n \
+                --arg body "$COMMENT_BODY" \
+                --arg event "COMMENT" \
+                '{body: $body, event: $event}')"
