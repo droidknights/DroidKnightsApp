@@ -13,7 +13,6 @@ import com.droidknights.app.core.datastore.settings.di.coreDatastoreSettingsModu
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
 import com.droidknights.app.core.network.di.coreNetworkModule
-import com.droidknights.app.core.network.di.networkModule
 import com.droidknights.app.feature.contributor.di.featureContributorModule
 import com.droidknights.app.feature.main.MainScreen
 import com.droidknights.app.feature.session.di.featureSessionModule
