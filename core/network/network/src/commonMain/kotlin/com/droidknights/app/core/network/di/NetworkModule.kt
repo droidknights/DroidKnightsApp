@@ -2,6 +2,8 @@ package com.droidknights.app.core.network.di
 
 import com.droidknights.app.core.network.DroidKnightsNetworkImpl
 import com.droidknights.app.core.network.api.DroidKnightsNetwork
+import com.droidknights.app.core.network.di.NetworkDefaults.BASE_HOST
+import com.droidknights.app.core.network.di.NetworkDefaults.TIMEOUT_MILLIS
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -30,18 +32,23 @@ val coreNetworkModule = module {
                 level = LogLevel.ALL
             }
             install(HttpTimeout) {
-                connectTimeoutMillis = 6_000
-                requestTimeoutMillis = 6_000
-                socketTimeoutMillis = 6_000
+                connectTimeoutMillis = TIMEOUT_MILLIS
+                requestTimeoutMillis = TIMEOUT_MILLIS
+                socketTimeoutMillis = TIMEOUT_MILLIS
             }
             defaultRequest {
                 contentType(ContentType.Application.Json)
                 url {
                     protocol = URLProtocol.HTTPS
-                    host = "raw.githubusercontent.com"
+                    host = BASE_HOST
                 }
             }
         }
     }
     single<DroidKnightsNetwork> { DroidKnightsNetworkImpl(get()) }
+}
+
+internal object NetworkDefaults {
+    const val TIMEOUT_MILLIS = 6_000L
+    const val BASE_HOST = "raw.githubusercontent.com"
 }
