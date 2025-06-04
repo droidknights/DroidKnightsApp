@@ -16,8 +16,8 @@ internal class SessionRepositoryImpl(
     private val bookmarkIds: Flow<Set<String>> = sessionDataSource.bookmarkedSession
 
     override suspend fun getSessions(): List<Session> {
-        val responses: List<SessionResponse> = sessionApi.getSessions()
-        return responses.map { it.toData() }
+        val sessionResponses: List<SessionResponse> = sessionApi.getSessions()
+        return sessionResponses.map { it.toData() }
     }
 
     override suspend fun getSession(sessionId: String): Session {
