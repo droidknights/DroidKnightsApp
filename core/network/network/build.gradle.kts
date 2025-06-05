@@ -5,6 +5,9 @@ plugins {
 
 kotlin {
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
         commonMain.dependencies {
             implementation(projects.core.network.networkApi)
 
@@ -14,6 +17,15 @@ kotlin {
             implementation(libs.ktor.logging)
 
             implementation(libs.koin.core)
+        }
+        desktopMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
         }
     }
 }

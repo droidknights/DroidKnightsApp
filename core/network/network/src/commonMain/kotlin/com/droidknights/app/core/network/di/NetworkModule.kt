@@ -4,7 +4,9 @@ import com.droidknights.app.core.network.DroidKnightsNetworkImpl
 import com.droidknights.app.core.network.api.DroidKnightsNetwork
 import com.droidknights.app.core.network.di.NetworkDefaults.BASE_HOST
 import com.droidknights.app.core.network.di.NetworkDefaults.TIMEOUT_MILLIS
+import com.droidknights.app.core.network.engine.provideHttpClientEngine
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
@@ -18,6 +20,7 @@ import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 val coreNetworkModule = module {
+    single<HttpClientEngine> { provideHttpClientEngine() }
     single {
         val json = Json {
             ignoreUnknownKeys = true
