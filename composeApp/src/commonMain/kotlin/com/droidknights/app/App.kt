@@ -44,31 +44,34 @@ internal fun App(
     }
 }
 
-internal fun knightsAppDeclaration(
-    additionalDeclaration: KoinApplication.() -> Unit = {},
-): KoinAppDeclaration = {
-    val appModule = module {
-        viewModelOf(::AppViewModel)
-    }
-    val coreDataModules = listOf(
+internal val appModule = module {
+    // :core:data
+    includes(
         coreDataSettingModule,
         coreDataSessionModule,
     )
-    val coreDatastoreModules = listOf(
+    // :core:datastore
+    includes(coreDatastoreCoreModules)
+    includes(
         coreDatastoreSessionModule,
         coreDatastoreSettingsModule,
-    ) + coreDatastoreCoreModules
-    val coreDomainModules = listOf(
+    )
+    // :core:domain
+    includes(
         coreDomainSessionModule,
     )
-    val featureModules = listOf(
+    // :feature
+    includes(
         featureSessionModule,
         featureSettingModule,
     )
+
+    viewModelOf(::AppViewModel)
+}
+
+internal fun knightsAppDeclaration(
+    additionalDeclaration: KoinApplication.() -> Unit = {},
+): KoinAppDeclaration = {
     modules(appModule)
-    modules(coreDataModules)
-    modules(coreDatastoreModules)
-    modules(coreDomainModules)
-    modules(featureModules)
     additionalDeclaration()
 }
