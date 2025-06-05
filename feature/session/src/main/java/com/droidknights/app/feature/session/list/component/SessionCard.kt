@@ -51,7 +51,7 @@ internal fun SessionCard(
     isHighlighted: Boolean = false,
     onSessionClick: (Session) -> Unit = {},
 ) {
-    val highlightState by animateColorAsState(
+    val backgroundColor by animateColorAsState(
         targetValue = if (isHighlighted) {
             KnightsColor.Blue03.copy(alpha = 180f)
         } else {
@@ -61,10 +61,11 @@ internal fun SessionCard(
             durationMillis = 300,
             easing = FastOutSlowInEasing,
         ),
+        label = "itemBackgroundColor",
     )
     KnightsCard(
         modifier = modifier,
-        color = highlightState,
+        color = backgroundColor,
         onClick = { onSessionClick(session) }
     ) {
         SessionCardContent(session = session)

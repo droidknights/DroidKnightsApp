@@ -9,20 +9,15 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapNotNull
 
@@ -79,21 +74,14 @@ class SessionState(
     }
 
     fun findSessionIndex(sessionId: String): Int {
-        var lazyColumnIndex = 0
-        groups.forEachIndexed { groupIndex, group ->
-            group.sessions.forEachIndexed { sessionIndex, session ->
-                if (session.id == sessionId) {
-                    return lazyColumnIndex
-                }
-                lazyColumnIndex++
-            }
-        }
-        return -1
+        return groups.asSequence()
+            .flatMap { it.sessions }
+            .indexOfFirst { it.id == sessionId }
     }
 
     suspend fun scrollToSession(sessionId: String, offsetPx: Int = 0) {
         val index = findSessionIndex(sessionId)
-        if (index >= 0) {
+        if (index != SESSION_NOT_FOUND) {
             listState.animateScrollToItem(
                 index = index,
                 scrollOffset = offsetPx
@@ -102,6 +90,8 @@ class SessionState(
     }
 
     companion object {
+
+        private const val SESSION_NOT_FOUND = -1
 
         fun Saver(
             sessions: ImmutableList<Session>,
@@ -138,41 +128,4 @@ internal fun rememberSessionState(
             .collect { room -> state.select(room) }
     }
     return state
-}
-
-@Composable
-internal fun rememberHighlightState(
-    sessionState: SessionState,
-    scrollToSessionId: String? = null,
-    scrollOffset: Dp = 6.dp,
-    durationMillis: Long = 400,
-): HighlightState {
-    if (scrollToSessionId == null) return HighlightState.End
-    val density = LocalDensity.current
-    var state by remember { mutableStateOf<HighlightState>(HighlightState.None) }
-    LaunchedEffect(state, sessionState.groups) {
-        if (state !is HighlightState.End) {
-            delay(200)
-            val targetIndex = sessionState.findSessionIndex(scrollToSessionId)
-            if (targetIndex >= 0) {
-                val offset = with(density) { (-scrollOffset).toPx().toInt() }
-                sessionState.scrollToSession(scrollToSessionId, offset)
-                delay(200)
-                state = HighlightState.Highlighted(scrollToSessionId)
-                delay(durationMillis)
-                if (state is HighlightState.Highlighted) {
-                    state = HighlightState.End
-                }
-            } else {
-                state = HighlightState.End
-            }
-        }
-    }
-    return state
-}
-
-internal sealed class HighlightState {
-    data object None : HighlightState()
-    data class Highlighted(val sessionId: String) : HighlightState()
-    data object End : HighlightState()
 }

@@ -19,8 +19,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -34,12 +38,11 @@ import com.droidknights.app.core.ui.RoomText
 import com.droidknights.app.feature.session.R
 import com.droidknights.app.feature.session.list.component.SessionCard
 import com.droidknights.app.feature.session.list.component.SessionListTopAppBar
-import com.droidknights.app.feature.session.list.model.HighlightState
 import com.droidknights.app.feature.session.list.model.SessionState
 import com.droidknights.app.feature.session.list.model.SessionUiState
-import com.droidknights.app.feature.session.list.model.rememberHighlightState
 import com.droidknights.app.feature.session.list.model.rememberSessionState
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -50,6 +53,7 @@ internal fun SessionScreen(
     scrollToSessionId: String? = null,
     sessionListViewModel: SessionListViewModel = hiltViewModel(),
 ) {
+    val density = LocalDensity.current
     val sessionUiState by sessionListViewModel.uiState.collectAsStateWithLifecycle()
     val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions?.let { sessions ->
         rememberSessionState(sessions = sessions) // SessionUiState.Sessions
@@ -58,10 +62,20 @@ internal fun SessionScreen(
     LaunchedEffect(Unit) {
         sessionListViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
-    var highlightState = rememberHighlightState(
-        sessionState = sessionState,
-        scrollToSessionId = scrollToSessionId
-    )
+
+    var highlighted by remember { mutableStateOf(false) }
+
+    LaunchedEffect(scrollToSessionId, sessionState.groups) {
+        scrollToSessionId?.let { sessionId ->
+            delay(300)
+            val offset = with(density) { ((-6).dp).toPx().toInt() }
+            sessionState.scrollToSession(sessionId, offset)
+            delay(300)
+            highlighted = true
+            delay(500)
+            highlighted = false
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -78,7 +92,7 @@ internal fun SessionScreen(
                 .systemBarsPadding()
                 .padding(top = 48.dp)
                 .fillMaxSize(),
-            highlightSessionId = (highlightState as? HighlightState.Highlighted)?.sessionId,
+            highlightSessionId = if (highlighted) scrollToSessionId else null,
         )
     }
 }
