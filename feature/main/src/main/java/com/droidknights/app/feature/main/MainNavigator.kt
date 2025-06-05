@@ -4,17 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navOptions
-import com.droidknights.app.feature.bookmark.navigation.navigateBookmark
-import com.droidknights.app.feature.home.navigation.navigateHome
-import com.droidknights.app.feature.setting.navigation.navigateSetting
 
 internal class MainNavigator(
     val navController: NavHostController,
+    private val onTabClick: (MainTab) -> Unit,
 ) {
     private val currentDestination: NavDestination?
         @Composable get() = navController
@@ -27,21 +23,7 @@ internal class MainNavigator(
             currentDestination?.hasRoute(tab::class) == true
         }
 
-    fun navigate(tab: MainTab) {
-        val navOptions = navOptions {
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
-            launchSingleTop = true
-            restoreState = true
-        }
-
-        when (tab) {
-            MainTab.SETTING -> navController.navigateSetting(navOptions)
-            MainTab.HOME -> navController.navigateHome(navOptions)
-            MainTab.BOOKMARK -> navController.navigateBookmark(navOptions)
-        }
-    }
+    fun navigate(tab: MainTab) = onTabClick(tab)
 
     @Composable
     fun shouldShowBottomBar() = MainTab.contains {
@@ -51,7 +33,8 @@ internal class MainNavigator(
 
 @Composable
 internal fun rememberMainNavigator(
+    onTabClick: (MainTab) -> Unit = {},
     navController: NavHostController = rememberNavController(),
 ): MainNavigator = remember(navController) {
-    MainNavigator(navController)
+    MainNavigator(navController, onTabClick)
 }

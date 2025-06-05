@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+internal class MainViewModel @Inject constructor(
     private val settingsRepository: SettingsRepository,
     private val navigator: Navigator,
 ) : ViewModel() {
@@ -24,5 +24,9 @@ class MainViewModel @Inject constructor(
 
     fun navigateSessionDetail(sessionId: String) = viewModelScope.launch {
         navigator.navigate(RouteSessionDetail(sessionId))
+    }
+
+    fun navigateTab(tab: MainTab) = viewModelScope.launch {
+        navigator.navigate(route = tab.route, saveState = true, launchSingleTop = true)
     }
 }
