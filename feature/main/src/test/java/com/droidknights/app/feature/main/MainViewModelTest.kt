@@ -1,6 +1,7 @@
 package com.droidknights.app.feature.main
 
 import com.droidknights.app.core.data.settings.api.SettingsRepository
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -22,13 +23,14 @@ class MainViewModelTest {
     val dispatcherRule = MainDispatcherRule()
 
     private val settingsRepository = mockk<SettingsRepository>()
+    private val navigator = mockk<Navigator>()
     private lateinit var viewModel: MainViewModel
 
     @Test
     fun `현재 다크테마 여부를 가져올 수 있다`() = runTest {
         // given
         every { settingsRepository.flowIsDarkTheme() } returns flowOf(false)
-        viewModel = MainViewModel(settingsRepository)
+        viewModel = MainViewModel(settingsRepository, navigator)
 
         // when & then
         assertFalse(viewModel.isDarkTheme.single())
@@ -40,7 +42,7 @@ class MainViewModelTest {
         // given
         every { settingsRepository.flowIsDarkTheme() } returns flowOf(false)
         coEvery { settingsRepository.updateIsDarkTheme(true) } just Runs
-        viewModel = MainViewModel(settingsRepository)
+        viewModel = MainViewModel(settingsRepository, navigator)
 
         // when
         viewModel.updateIsDarkTheme(true)

@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
             LaunchedEffect(sessionId) {
                 sessionId?.let {
-                    navigator.navigateSessionDetail(it)
+                    viewModel.navigateSessionDetail(it)
                 }
             }
 
