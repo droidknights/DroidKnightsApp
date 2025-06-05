@@ -11,5 +11,6 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.router.routerApi)
     implementation(libs.kotlinx.serialization.json)
 }

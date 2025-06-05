@@ -35,8 +35,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val isDarkTheme by viewModel.isDarkTheme.collectAsStateWithLifecycle(false, this)
-
-            val navigator: MainNavigator = rememberMainNavigator()
+            val navigator: MainNavigator = rememberMainNavigator(onTabClick = viewModel::navigateTab)
             val sessionId = sessionIdFromWidget.collectAsStateWithLifecycle().value
 
             // 시작지점
