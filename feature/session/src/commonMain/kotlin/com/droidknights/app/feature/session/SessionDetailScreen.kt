@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -49,7 +50,6 @@ internal fun SessionDetailScreen(
     viewModel: SessionDetailViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val effect by viewModel.sessionUiEffect.collectAsStateWithLifecycle()
 
     val scrollState = rememberScrollState()
     var showPopup by remember { mutableStateOf(false) }
@@ -59,13 +59,14 @@ internal fun SessionDetailScreen(
         viewModel.fetchSession(sessionId)
     }
 
-    LaunchedEffect(effect) {
-        val currentEffect = effect
-        if (currentEffect is SessionDetailEffect.ShowToastForBookmarkState) {
-            lastBookmarkState = currentEffect.bookmarked
-            showPopup = true
-            delay(1000L)
-            showPopup = false
+    LaunchedEffect(viewModel) {
+        viewModel.sessionUiEffect.collect { effect ->
+            if (effect is SessionDetailEffect.ShowToastForBookmarkState) {
+                lastBookmarkState = effect.bookmarked
+                showPopup = true
+                delay(1000L)
+                showPopup = false
+            }
         }
     }
 
@@ -106,7 +107,9 @@ private fun SessionDetailLoading() {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(
+            modifier = Modifier.size(40.dp),
+        )
     }
 }
 

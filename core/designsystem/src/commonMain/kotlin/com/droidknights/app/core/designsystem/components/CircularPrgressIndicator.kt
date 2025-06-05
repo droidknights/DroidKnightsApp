@@ -7,7 +7,6 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -21,7 +20,7 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 
 @Composable
 fun CircularProgressIndicator(
-    modifier: Modifier = Modifier.size(40.dp),
+    modifier: Modifier = Modifier,
     strokeWidth: Dp = 4.dp,
 ) {
     val color = KnightsTheme.colorScheme

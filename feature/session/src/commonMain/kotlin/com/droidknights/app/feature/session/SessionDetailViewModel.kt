@@ -7,11 +7,13 @@ import com.droidknights.app.core.domain.session.api.usecase.GetBookmarkedSession
 import com.droidknights.app.core.domain.session.api.usecase.GetSessionUseCase
 import com.droidknights.app.feature.session.model.SessionDetailEffect
 import com.droidknights.app.feature.session.model.SessionDetailUiState
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 internal class SessionDetailViewModel(
@@ -23,51 +25,62 @@ internal class SessionDetailViewModel(
     private val _uiState = MutableStateFlow<SessionDetailUiState>(SessionDetailUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
-    private val _sessionUiEffect = MutableStateFlow<SessionDetailEffect>(SessionDetailEffect.Idle)
-    val sessionUiEffect = _sessionUiEffect.asStateFlow()
+    private val _sessionUiEffect = MutableSharedFlow<SessionDetailEffect>()
+    val sessionUiEffect = _sessionUiEffect.asSharedFlow()
 
     init {
-        combine(
-            uiState,
-            getBookmarkedSessionIdsUseCase(),
-        ) { uiState, bookmarkIds ->
-            when (uiState) {
-                is SessionDetailUiState.Loading -> uiState
-                is SessionDetailUiState.Success -> {
-                    uiState.copy(bookmarked = bookmarkIds.contains(uiState.session.id))
+        getBookmarkedSessionIdsUseCase()
+            .onEach { bookmarkIds ->
+                _uiState.update { currentState ->
+                    if (currentState is SessionDetailUiState.Success) {
+                        currentState.copy(bookmarked = bookmarkIds.contains(currentState.session.id))
+                    } else {
+                        currentState
+                    }
                 }
             }
-        }
-            .onEach { _uiState.value = it }
             .launchIn(viewModelScope)
     }
 
     fun fetchSession(sessionId: String) {
         viewModelScope.launch {
-            _uiState.value = SessionDetailUiState.Loading
+            _uiState.update { SessionDetailUiState.Loading }
             val session = getSessionUseCase(sessionId)
-            _uiState.value = SessionDetailUiState.Success(session)
+            _uiState.update { SessionDetailUiState.Success(session) }
         }
     }
 
     fun toggleBookmark() {
-        val uiState = uiState.value
-        if (uiState !is SessionDetailUiState.Success) {
+        val currentUiState = uiState.value
+        if (currentUiState !is SessionDetailUiState.Success) {
             return
         }
 
-        val newBookmarkState = !uiState.bookmarked
+        val newBookmarkState = !currentUiState.bookmarked
 
-        _uiState.value = uiState.copy(bookmarked = newBookmarkState)
+        _uiState.update { state ->
+            if (state is SessionDetailUiState.Success) {
+                state.copy(bookmarked = newBookmarkState)
+            } else {
+                state
+            }
+        }
 
         viewModelScope.launch {
             runCatching {
-                bookmarkSessionUseCase(uiState.session.id, newBookmarkState)
+                bookmarkSessionUseCase(currentUiState.session.id, newBookmarkState)
             }.onSuccess {
-                _sessionUiEffect.value =
-                    SessionDetailEffect.ShowToastForBookmarkState(newBookmarkState)
+                _sessionUiEffect.emit(
+                    SessionDetailEffect.ShowToastForBookmarkState(newBookmarkState),
+                )
             }.onFailure { throwable ->
-                _uiState.value = uiState.copy(bookmarked = !newBookmarkState)
+                _uiState.update { state ->
+                    if (state is SessionDetailUiState.Success) {
+                        state.copy(bookmarked = !newBookmarkState)
+                    } else {
+                        state
+                    }
+                }
                 // TODO: 로깅 혹은 에러 표시
             }
         }
