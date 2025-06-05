@@ -43,8 +43,6 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 internal fun SessionScreen(
-    onBackClick: () -> Unit,
-    onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     sessionListViewModel: SessionListViewModel = hiltViewModel(),
 ) {
@@ -63,13 +61,13 @@ internal fun SessionScreen(
     ) {
         SessionListTopAppBar(
             sessionState = sessionState,
-            onBackClick = onBackClick,
+            onBackClick = sessionListViewModel::navigateBack,
         )
         SessionList(
             sessionState = sessionState,
-            onSessionClick = {
-                Log.w("TEMP", "onClick session $it")
-                onSessionClick(it)
+            onSessionClick = { session ->
+                Log.w("TEMP", "onClick session $session")
+                sessionListViewModel.navigateSessionDetail(session.id)
             },
             modifier = Modifier
                 .systemBarsPadding()

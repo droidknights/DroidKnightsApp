@@ -4,7 +4,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.feature.session.api.RouteSession
 import com.droidknights.app.feature.session.api.RouteSessionDetail
 import com.droidknights.app.feature.session.detail.SessionDetailScreen
@@ -16,15 +15,10 @@ fun NavController.navigateSessionDetail(sessionId: String) {
 
 fun NavGraphBuilder.sessionNavGraph(
     onBackClick: () -> Unit,
-    onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable<RouteSession> {
-        SessionScreen(
-            onBackClick = onBackClick,
-            onSessionClick = onSessionClick,
-            onShowErrorSnackBar = onShowErrorSnackBar
-        )
+        SessionScreen(onShowErrorSnackBar = onShowErrorSnackBar)
     }
 
     composable<RouteSessionDetail> { navBackStackEntry ->
