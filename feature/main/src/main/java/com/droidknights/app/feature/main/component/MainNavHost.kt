@@ -43,7 +43,6 @@ internal fun MainNavHost(
 
             bookmarkNavGraph(
                 onShowErrorSnackBar = onShowErrorSnackBar,
-                onSessionClick = { navigator.navigateSession(it.id) },
             )
 
             contributorNavGraph(

@@ -50,7 +50,6 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 internal fun BookmarkRoute(
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
-    onSessionClick: (Session) -> Unit,
     viewModel: BookmarkViewModel = hiltViewModel(),
 ) {
     val bookmarkUiState by viewModel.bookmarkUiState.collectAsStateWithLifecycle()
@@ -67,7 +66,7 @@ internal fun BookmarkRoute(
     ) {
         BookmarkContent(
             uiState = bookmarkUiState,
-            onClickedRedirectItem = onSessionClick,
+            onClickedRedirectItem = viewModel::redirectToSessionScreen,
             toggleEditMode = viewModel::toggleEditMode,
             onSelectedItem = viewModel::selectSession,
             onDeletedSessions = viewModel::deleteSessions,
