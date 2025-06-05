@@ -68,7 +68,7 @@ internal class SessionListViewModelTest {
     }
 
     @Test
-    fun `navigate RouteSessionDetail`() = runTest {
+    fun `navigate(RouteSessionDetail)가 호출될 때 navigator에게 위임한다`() = runTest {
         // suspend 함수 호출에 대한 stub
         coEvery { navigator.navigate(RouteSessionDetail(fakeSession.id)) } just Runs
 
@@ -80,7 +80,7 @@ internal class SessionListViewModelTest {
     }
 
     @Test
-    fun `navigate back`() = runTest {
+    fun `navigateBack이 호출될 때 navigator에게 위임한다`() = runTest {
         // suspend 함수 호출에 대한 stub
         coEvery { navigator.navigateBack() } just Runs
 
