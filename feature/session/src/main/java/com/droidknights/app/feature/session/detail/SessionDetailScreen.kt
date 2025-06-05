@@ -1,5 +1,6 @@
 package com.droidknights.app.feature.session.detail
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,7 +50,6 @@ import kotlinx.datetime.LocalDateTime
 @Composable
 internal fun SessionDetailScreen(
     sessionId: String,
-    onBackClick: () -> Unit,
     viewModel: SessionDetailViewModel = hiltViewModel(),
 ) {
     val scrollState = rememberScrollState()
@@ -73,7 +73,7 @@ internal fun SessionDetailScreen(
         SessionDetailTopAppBar(
             bookmarked = (sessionUiState as? SessionDetailUiState.Success)?.bookmarked ?: false,
             onClickBookmark = { viewModel.toggleBookmark() },
-            onBackClick = onBackClick
+            onBackClick = viewModel::navigateBack,
         )
         Box {
             when (val uiState = sessionUiState) {

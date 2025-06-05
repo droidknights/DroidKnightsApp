@@ -14,7 +14,6 @@ fun NavController.navigateSessionDetail(sessionId: String) {
 }
 
 fun NavGraphBuilder.sessionNavGraph(
-    onBackClick: () -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable<RouteSession> {
@@ -23,9 +22,6 @@ fun NavGraphBuilder.sessionNavGraph(
 
     composable<RouteSessionDetail> { navBackStackEntry ->
         val sessionId = navBackStackEntry.toRoute<RouteSessionDetail>().sessionId
-        SessionDetailScreen(
-            sessionId = sessionId,
-            onBackClick = onBackClick,
-        )
+        SessionDetailScreen(sessionId = sessionId)
     }
 }

@@ -50,7 +50,6 @@ internal fun MainNavHost(
             )
 
             sessionNavGraph(
-                onBackClick = navigator::popBackStackIfNotHome,
                 onShowErrorSnackBar = onShowErrorSnackBar
             )
         }
