@@ -7,7 +7,7 @@ import io.ktor.client.request.get
 import io.ktor.util.reflect.TypeInfo
 
 class DroidKnightsNetworkImpl(
-    private val client: HttpClient
+    private val client: HttpClient,
 ) : DroidKnightsNetwork {
     override suspend fun <T : Any> get(path: String, typeInfo: TypeInfo): T =
         client.get(path).body(typeInfo)
