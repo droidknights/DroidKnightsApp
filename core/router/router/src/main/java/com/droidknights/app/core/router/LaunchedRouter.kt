@@ -43,6 +43,7 @@ private fun InternalLaunchedRouter(
                                 }
                             }
                             restoreState = sideEffect.saveState
+                            launchSingleTop = sideEffect.launchSingleTop
                         }
                     }
                 }
