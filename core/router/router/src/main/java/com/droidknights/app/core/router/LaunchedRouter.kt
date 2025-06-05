@@ -37,12 +37,14 @@ private fun InternalLaunchedRouter(
 
                     is RouteSideEffect.Navigate -> {
                         navHostController.navigate(sideEffect.route) {
-                            navHostController.graph.findStartDestination().route?.let {
-                                popUpTo(it) {
-                                    saveState = sideEffect.saveState
+                            if (sideEffect.saveState) {
+                                navHostController.graph.findStartDestination().route?.let {
+                                    popUpTo(it) {
+                                        saveState = true
+                                    }
                                 }
+                                restoreState = true
                             }
-                            restoreState = sideEffect.saveState
                             launchSingleTop = sideEffect.launchSingleTop
                         }
                     }
