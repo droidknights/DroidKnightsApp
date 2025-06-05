@@ -9,7 +9,10 @@ import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.session.detail.model.SessionDetailUiState
+import io.mockk.Runs
 import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
@@ -29,7 +32,6 @@ class SessionDetailViewModelTest {
     private val getSessionUseCase: GetSessionUseCase = mockk()
     private val getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase = mockk()
     private val bookmarkSessionUseCase: BookmarkSessionUseCase = mockk()
-
     private val navigator = mockk<Navigator>()
     private lateinit var viewModel: SessionDetailViewModel
 
@@ -123,5 +125,23 @@ class SessionDetailViewModelTest {
             val actual = awaitItem() as SessionDetailUiState.Success
             assertTrue(actual.bookmarked)
         }
+    }
+
+    @Test
+    fun `navigate back`() = runTest {
+        // suspend 함수 호출에 대한 stub
+        coEvery { navigator.navigateBack() } just Runs
+        viewModel = SessionDetailViewModel(
+            getSessionUseCase,
+            getBookmarkedSessionIdsUseCase,
+            bookmarkSessionUseCase,
+            navigator,
+        )
+
+        // when
+        viewModel.navigateBack()
+
+        // then
+        coVerify(exactly = 1) { navigator.navigateBack() }
     }
 }
