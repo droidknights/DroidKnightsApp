@@ -28,4 +28,4 @@ jobs:
         uses: ./.github/actions/setup-java
 
       - name: Run Koin module verify test
-        run: ./gradlew :composeApp:desktopTest --stacktrace
+        run: ./gradlew :composeApp:desktopTest --tests "com.droidknights.app.KnightsAppModuleTest" --stacktrace
