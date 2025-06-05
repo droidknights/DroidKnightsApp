@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.first
 
 internal class SessionRepositoryImpl(
     private val sessionDataSource: SessionPreferencesDataSource,
-    private val sessionApi: SessionApi
+    private val sessionApi: SessionApi,
 ) : SessionRepository {
 
     private val bookmarkIds: Flow<Set<String>> = sessionDataSource.bookmarkedSession
