@@ -19,7 +19,7 @@ import java.net.UnknownHostException
 
 @Composable
 internal fun MainScreen(
-    navigator: MainNavigator = rememberMainNavigator(),
+    navigator: MainNavigator,
     onChangeDarkTheme: (Boolean) -> Unit,
 ) {
     val snackBarHostState = remember { SnackbarHostState() }

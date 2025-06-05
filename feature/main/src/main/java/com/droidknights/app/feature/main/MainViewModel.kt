@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.data.settings.api.SettingsRepository
 import com.droidknights.app.core.router.api.Navigator
+import com.droidknights.app.core.router.api.model.Route
 import com.droidknights.app.feature.session.api.RouteSessionDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -26,7 +27,12 @@ internal class MainViewModel @Inject constructor(
         navigator.navigate(RouteSessionDetail(sessionId))
     }
 
-    fun navigateTab(tab: MainTab) = viewModelScope.launch {
-        navigator.navigate(route = tab.route, saveState = true, launchSingleTop = true)
-    }
+    fun navigateTab(route: Route, saveState: Boolean, launchSingleTop: Boolean) =
+        viewModelScope.launch {
+            navigator.navigate(
+                route = route,
+                saveState = saveState,
+                launchSingleTop = launchSingleTop,
+            )
+        }
 }

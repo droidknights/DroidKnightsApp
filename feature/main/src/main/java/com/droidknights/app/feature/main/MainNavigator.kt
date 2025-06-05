@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 
 internal class MainNavigator(
     val navController: NavHostController,
-    private val onTabClick: (MainTab) -> Unit,
+    private val onTabClick: (tab: MainTab, saveState: Boolean, launchSingleTop: Boolean) -> Unit,
 ) {
     private val currentDestination: NavDestination?
         @Composable get() = navController
@@ -23,17 +23,22 @@ internal class MainNavigator(
             currentDestination?.hasRoute(tab::class) == true
         }
 
-    fun navigate(tab: MainTab) = onTabClick(tab)
+    fun navigate(tab: MainTab) = onTabClick(tab, SAVE_STATE, LAUNCH_SINGLE_TOP)
 
     @Composable
     fun shouldShowBottomBar() = MainTab.contains {
         currentDestination?.hasRoute(it::class) == true
     }
+
+    companion object {
+        private const val SAVE_STATE = true
+        private const val LAUNCH_SINGLE_TOP = true
+    }
 }
 
 @Composable
 internal fun rememberMainNavigator(
-    onTabClick: (MainTab) -> Unit = {},
+    onTabClick: (tab: MainTab, saveState: Boolean, launchSingleTop: Boolean) -> Unit,
     navController: NavHostController = rememberNavController(),
 ): MainNavigator = remember(navController) {
     MainNavigator(navController, onTabClick)
