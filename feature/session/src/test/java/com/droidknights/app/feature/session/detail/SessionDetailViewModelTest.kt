@@ -128,7 +128,7 @@ class SessionDetailViewModelTest {
     }
 
     @Test
-    fun `navigate back`() = runTest {
+    fun `navigateBack이 호출될 때 navigator에게 위임한다`() = runTest {
         // suspend 함수 호출에 대한 stub
         coEvery { navigator.navigateBack() } just Runs
         viewModel = SessionDetailViewModel(
