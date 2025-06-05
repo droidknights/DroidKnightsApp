@@ -62,12 +62,12 @@ internal val appModule = module {
     includes(
         coreDomainSessionModule,
     )
-    // :feature
-    includes(
-    val coreNetworkModules = listOf(
+    // :core:network
+    includes (
         coreNetworkModule,
     )
-    val featureModules = listOf(
+    // :feature
+    includes(
         featureSessionModule,
         featureSettingModule,
         featureContributorModule,
