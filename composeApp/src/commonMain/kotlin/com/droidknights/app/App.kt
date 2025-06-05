@@ -63,7 +63,7 @@ internal val appModule = module {
         coreDomainSessionModule,
     )
     // :core:network
-    includes (
+    includes(
         coreNetworkModule,
     )
     // :feature

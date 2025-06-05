@@ -14,5 +14,5 @@ enum class RoomResponse {
     TRACK2,
 
     @SerialName("Track3")
-    TRACK3;
+    TRACK3,
 }
