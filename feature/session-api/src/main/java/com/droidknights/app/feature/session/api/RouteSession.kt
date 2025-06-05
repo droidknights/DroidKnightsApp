@@ -5,3 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data object RouteSession : Route
+
+@Serializable
+data class RouteSessionDetail(val sessionId: String) : Route

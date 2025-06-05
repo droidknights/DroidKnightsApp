@@ -5,13 +5,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.droidknights.app.core.model.session.Session
-import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.session.api.RouteSession
+import com.droidknights.app.feature.session.api.RouteSessionDetail
 import com.droidknights.app.feature.session.detail.SessionDetailScreen
 import com.droidknights.app.feature.session.list.SessionScreen
 
 fun NavController.navigateSessionDetail(sessionId: String) {
-    navigate(Route.SessionDetail(sessionId))
+    navigate(RouteSessionDetail(sessionId))
 }
 
 fun NavGraphBuilder.sessionNavGraph(
@@ -27,8 +27,8 @@ fun NavGraphBuilder.sessionNavGraph(
         )
     }
 
-    composable<Route.SessionDetail> { navBackStackEntry ->
-        val sessionId = navBackStackEntry.toRoute<Route.SessionDetail>().sessionId
+    composable<RouteSessionDetail> { navBackStackEntry ->
+        val sessionId = navBackStackEntry.toRoute<RouteSessionDetail>().sessionId
         SessionDetailScreen(
             sessionId = sessionId,
             onBackClick = onBackClick,
