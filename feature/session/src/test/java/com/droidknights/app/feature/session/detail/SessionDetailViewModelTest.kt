@@ -6,6 +6,7 @@ import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSession
 import com.droidknights.app.core.domain.session.usecase.api.GetSessionUseCase
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.session.detail.model.SessionDetailUiState
 import io.mockk.coEvery
@@ -28,6 +29,8 @@ class SessionDetailViewModelTest {
     private val getSessionUseCase: GetSessionUseCase = mockk()
     private val getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase = mockk()
     private val bookmarkSessionUseCase: BookmarkSessionUseCase = mockk()
+
+    private val navigator = mockk<Navigator>()
     private lateinit var viewModel: SessionDetailViewModel
 
     private val fakeSession = Session(
@@ -55,7 +58,8 @@ class SessionDetailViewModelTest {
         viewModel = SessionDetailViewModel(
             getSessionUseCase,
             getBookmarkedSessionIdsUseCase,
-            bookmarkSessionUseCase
+            bookmarkSessionUseCase,
+            navigator,
         )
 
         // when
@@ -77,7 +81,8 @@ class SessionDetailViewModelTest {
         viewModel = SessionDetailViewModel(
             getSessionUseCase,
             getBookmarkedSessionIdsUseCase,
-            bookmarkSessionUseCase
+            bookmarkSessionUseCase,
+            navigator,
         )
 
         // when
@@ -105,7 +110,8 @@ class SessionDetailViewModelTest {
         viewModel = SessionDetailViewModel(
             getSessionUseCase,
             getBookmarkedSessionIdsUseCase,
-            bookmarkSessionUseCase
+            bookmarkSessionUseCase,
+            navigator,
         )
         viewModel.fetchSession(sessionId)
 
