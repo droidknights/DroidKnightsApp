@@ -1,8 +1,8 @@
 package com.droidknights.app.core.navigation
 
+import com.droidknights.app.core.router.api.model.Route
 import kotlinx.serialization.Serializable
 
-sealed interface Route
 sealed interface MainTabRoute : Route {
 
     @Serializable
