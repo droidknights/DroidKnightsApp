@@ -17,8 +17,9 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.setting)
     implementation(projects.feature.contributor)
-    implementation(projects.feature.session)
     implementation(projects.feature.bookmark)
+    implementation(projects.feature.session)
+    implementation(projects.feature.sessionApi)
     androidTestImplementation(projects.core.testing)
     debugImplementation(projects.core.uiTestHiltManifest)
 
