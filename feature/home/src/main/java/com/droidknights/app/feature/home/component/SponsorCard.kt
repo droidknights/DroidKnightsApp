@@ -23,11 +23,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,11 +57,44 @@ internal fun SponsorCard(
     }
 }
 
-// TODO remote에서 불러오기?
+// TODO remote에서 불러오기
 @Composable
 private fun SponsorCardContents(
     onOrganizationSponsorClick: (String) -> Unit,
 ) {
+    val resources = LocalContext.current.resources
+    val description = remember {
+        val organizationDescriptions = organizationSponsors
+            .groupBy { it.tier }
+            .mapValues { (_, sponsors) -> sponsors.size }
+            .mapNotNull { (tier, count) ->
+                when (tier) {
+                    Sponsor.Organization.Tier.Platinum -> resources.getString(
+                        R.string.sponsor_card_desc_platinum_template,
+                        count
+                    )
+                    Sponsor.Organization.Tier.Gold -> resources.getString(
+                        R.string.sponsor_card_desc_gold_template,
+                        count
+                    )
+                }
+            }
+
+        val individualDescription = listOfNotNull(
+            individualSponsors
+            .takeIf { it.isNotEmpty() }
+            ?.let {
+                resources.getString(
+                    R.string.sponsor_card_desc_individual_template,
+                    it.size
+                )
+            }
+        )
+
+        (organizationDescriptions + individualDescription)
+            .joinToString(separator = ", ")
+    }
+
     KnightsCard {
         Box {
             Image(
@@ -80,7 +115,7 @@ private fun SponsorCardContents(
                 )
 
                 Text(
-                    text = stringResource(R.string.sponsor_card_description),
+                    text = description,
                     style = KnightsTheme.typography.titleSmallM140,
                     color = KnightsColor.Blue01,
                     modifier = Modifier
