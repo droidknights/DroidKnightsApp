@@ -35,7 +35,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "DroidKnights"
-include(":composeApp", ":backend", ":shared")
+include(":composeApp")
 
 // core
 include(
