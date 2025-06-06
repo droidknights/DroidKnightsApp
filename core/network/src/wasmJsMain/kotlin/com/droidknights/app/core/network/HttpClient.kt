@@ -1,4 +1,4 @@
-package com.droidknights.app.core.network.engine
+package com.droidknights.app.core.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
