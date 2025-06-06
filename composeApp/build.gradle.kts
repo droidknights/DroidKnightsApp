@@ -35,6 +35,10 @@ kotlin {
 
     sourceSets {
         val desktopMain by getting
+        desktopTest.dependencies {
+            implementation(libs.koin.test)
+            implementation(libs.kotlin.test)
+        }
 
         androidMain.dependencies {
             implementation(compose.preview)
