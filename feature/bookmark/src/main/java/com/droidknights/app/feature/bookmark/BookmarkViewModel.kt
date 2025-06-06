@@ -134,7 +134,7 @@ class BookmarkViewModel @Inject constructor(
         }
         viewModelScope.launch {
             navigator.navigate(
-                RouteSession(sessionId = session.id)
+                route = RouteSession(sessionId = session.id),
             )
         }
     }
