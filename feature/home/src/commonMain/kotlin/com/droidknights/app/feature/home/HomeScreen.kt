@@ -22,6 +22,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 internal fun HomeScreen(
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
+    onOrganizationSponsorClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -43,6 +44,7 @@ internal fun HomeScreen(
         )
         HomeSponsorCard(
             modifier = Modifier.fillMaxWidth(),
+            onOrganizationSponsorClick = onOrganizationSponsorClick,
         )
         HomeMapCard(
             modifier = Modifier.fillMaxWidth(),
@@ -57,6 +59,7 @@ fun HomeScreenPreview() {
         HomeScreen(
             onSessionClick = {},
             onContributorClick = {},
+            onOrganizationSponsorClick = {},
             modifier = Modifier.fillMaxSize(),
         )
     }

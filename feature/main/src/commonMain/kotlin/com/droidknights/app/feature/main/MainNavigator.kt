@@ -2,6 +2,8 @@ package com.droidknights.app.feature.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -21,6 +23,7 @@ import com.droidknights.app.feature.setting.navigation.navigateSetting
 
 internal class MainNavigator(
     val navController: NavHostController,
+    val uriHandler: UriHandler,
 ) {
     private val currentDestination: NavDestination?
         @Composable get() = navController
@@ -60,8 +63,13 @@ internal class MainNavigator(
     fun navigateSessionDetail(sessionId: String) {
         navController.navigateSessionDetail(sessionId)
     }
+
     fun navigateLicense() {
         navController.navigateLicense()
+    }
+
+    fun navigateWeb(url: String) {
+        uriHandler.openUri(url)
     }
 
     private fun popBackStack() {
@@ -86,6 +94,7 @@ internal class MainNavigator(
 @Composable
 internal fun rememberMainNavigator(
     navController: NavHostController = rememberNavController(),
+    uriHandler: UriHandler = LocalUriHandler.current,
 ): MainNavigator = remember(navController) {
-    MainNavigator(navController)
+    MainNavigator(navController, uriHandler)
 }

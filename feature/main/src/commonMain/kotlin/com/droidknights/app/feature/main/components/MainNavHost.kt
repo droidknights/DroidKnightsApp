@@ -23,11 +23,12 @@ internal fun MainNavHost(
         startDestination = navigator.startDestination,
     ) {
         settingNavGraph(
-            onLicenseClick = { navigator.navigateLicense() },
+            onLicenseClick = navigator::navigateLicense,
         )
         homeNavGraph(
-            onSessionClick = { navigator.navigateSession() },
-            onContributorClick = { navigator.navigateContributor() },
+            onSessionClick = navigator::navigateSession,
+            onContributorClick = navigator::navigateContributor,
+            onOrganizationSponsorClick = navigator::navigateWeb,
         )
         bookmarkNavGraph()
         contributorNavGraph(
