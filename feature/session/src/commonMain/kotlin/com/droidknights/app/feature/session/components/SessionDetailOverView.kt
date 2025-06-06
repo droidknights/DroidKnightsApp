@@ -18,7 +18,6 @@ fun SessionOverview(content: String, modifier: Modifier = Modifier) {
         Text(
             text = stringResource(resource = Res.string.session_overview_title),
             style = KnightsTheme.typography.titleSmallB,
-            color = KnightsTheme.colorScheme.onSurface,
         )
 
         Spacer(Modifier.height(4.dp))
@@ -26,7 +25,6 @@ fun SessionOverview(content: String, modifier: Modifier = Modifier) {
         Text(
             text = content,
             style = KnightsTheme.typography.titleSmallR140,
-            color = KnightsTheme.colorScheme.onSurface,
         )
     }
 }

@@ -1,18 +1,17 @@
 package com.droidknights.app.feature.session.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.model.session.Session
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 internal fun SessionDetailChips(session: Session) {
-    Row(
+    FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         val sessionTags = session.tags.toPersistentList()
 

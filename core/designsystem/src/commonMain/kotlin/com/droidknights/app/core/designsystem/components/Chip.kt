@@ -64,6 +64,7 @@ fun Chip(
             Text(
                 text = text,
                 style = KnightsTheme.typography.labelSmallM,
+                maxLines = 1,
                 color = when (style) {
                     ChipStyle.Default,
                     ChipStyle.Primary,

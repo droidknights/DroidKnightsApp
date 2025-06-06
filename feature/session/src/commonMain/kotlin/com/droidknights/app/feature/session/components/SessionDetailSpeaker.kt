@@ -27,25 +27,22 @@ internal fun SessionDetailSpeaker(speaker: Speaker, modifier: Modifier = Modifie
                 .clip(CircleShape),
         )
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(12.dp))
 
         Text(
             text = stringResource(resource = Res.string.session_detail_speaker),
             style = KnightsTheme.typography.labelSmallM,
-            color = KnightsTheme.colorScheme.onSurface,
         )
         Text(
             text = speaker.name,
             style = KnightsTheme.typography.titleMediumB,
-            color = KnightsTheme.colorScheme.onSurface,
         )
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(12.dp))
 
         Text(
             text = speaker.introduction,
             style = KnightsTheme.typography.titleSmallR140,
-            color = KnightsTheme.colorScheme.onSurface,
         )
     }
 }
