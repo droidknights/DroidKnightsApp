@@ -9,5 +9,7 @@ internal sealed interface RouteSideEffect {
         val saveState: Boolean,
     ) : RouteSideEffect
 
+    data class NavigateWeb(val url: String) : RouteSideEffect
+
     data object NavigateBack : RouteSideEffect
 }

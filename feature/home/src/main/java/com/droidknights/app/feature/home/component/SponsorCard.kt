@@ -1,11 +1,13 @@
 package com.droidknights.app.feature.home.component
 
+import android.R.attr.onClick
 import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -39,17 +42,24 @@ import com.droidknights.app.feature.home.model.SponsorsUiState
 import com.valentinilk.shimmer.shimmer
 
 @Composable
-internal fun SponsorCard(uiState: SponsorsUiState) {
+internal fun SponsorCard(
+    uiState: SponsorsUiState,
+    onOrganizationSponsorClick: (String) -> Unit
+) {
     when (uiState) {
         SponsorsUiState.Empty -> Unit
         SponsorsUiState.Loading -> SponsorCardSkeleton()
-        is SponsorsUiState.Sponsors -> SponsorCardContents()
+        is SponsorsUiState.Sponsors -> SponsorCardContents(
+            onOrganizationSponsorClick = onOrganizationSponsorClick
+        )
     }
 }
 
 // TODO remote에서 불러오기?
 @Composable
-private fun SponsorCardContents() {
+private fun SponsorCardContents(
+    onOrganizationSponsorClick: (String) -> Unit,
+) {
     KnightsCard {
         Box {
             Image(
@@ -84,6 +94,9 @@ private fun SponsorCardContents() {
                     organizationSponsors.forEach {
                         OrganizationSponsor(
                             sponsor = it,
+                            onClick = {
+                                onOrganizationSponsorClick(it.url)
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(72.dp)
@@ -101,10 +114,13 @@ private fun SponsorCardContents() {
 @Composable
 private fun OrganizationSponsor(
     sponsor: Sponsor.Organization,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
+            .clip(RoundedCornerShape(6.dp))
+            .clickable(onClick = onClick)
             .background(
                 color = KnightsColor.White,
                 shape = RoundedCornerShape(6.dp),
@@ -183,7 +199,8 @@ private sealed class Sponsor {
         val tier: Tier,
         val name: String,
         @DrawableRes
-        val logoRes: Int
+        val logoRes: Int,
+        val url: String,
     ) : Sponsor() {
         enum class Tier {
             Platinum, Gold
@@ -198,12 +215,14 @@ private val organizationSponsors = listOf(
     Sponsor.Organization(
         tier = Sponsor.Organization.Tier.Platinum,
         name = "RevenueCat",
-        logoRes = R.drawable.sponsor_logo_revenue_cat
+        logoRes = R.drawable.sponsor_logo_revenue_cat,
+        url = "https://www.revenuecat.com"
     ),
     Sponsor.Organization(
         tier = Sponsor.Organization.Tier.Gold,
         name = "JetBrains",
-        logoRes = R.drawable.sponsor_logo_jetbrains
+        logoRes = R.drawable.sponsor_logo_jetbrains,
+        url = "https://www.jetbrains.com/"
     )
 )
 
@@ -286,6 +305,7 @@ private fun SponsorCardPreview(@PreviewParameter(SponsorsUiStatePreviewParameter
     KnightsTheme {
         SponsorCard(
             uiState = sponsorsUiState,
+            onOrganizationSponsorClick = {}
         )
     }
 }
