@@ -3,21 +3,27 @@ package com.droidknights.app.feature.home.component
 import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -83,6 +89,9 @@ private fun SponsorCardContents() {
                                 .height(72.dp)
                         )
                     }
+                    IndividualSponsors(
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         }
@@ -98,7 +107,7 @@ private fun OrganizationSponsor(
         modifier = modifier
             .background(
                 color = KnightsColor.White,
-                shape = RoundedCornerShape(12.dp),
+                shape = RoundedCornerShape(6.dp),
             )
             .padding(8.dp)
     ) {
@@ -139,6 +148,36 @@ private fun OrganizationSponsorTier(
     }
 }
 
+@Composable
+private fun IndividualSponsors(
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier
+            .background(
+                color = KnightsColor.White,
+                shape = RoundedCornerShape(6.dp),
+            ),
+    ) {
+        Row(
+            modifier = Modifier
+                .basicMarquee()
+                .padding(8.dp, 11.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            individualSponsors.forEach {
+                Text(
+                    text = it.name,
+                    style = KnightsTheme.typography.labelSmallM,
+                    color = KnightsColor.Blue01,
+                    modifier = Modifier
+                )
+            }
+        }
+    }
+}
+
+
 private sealed class Sponsor {
     data class Organization(
         val tier: Tier,
@@ -150,6 +189,9 @@ private sealed class Sponsor {
             Platinum, Gold
         }
     }
+    data class Individual(
+        val name: String
+    ) : Sponsor()
 }
 
 private val organizationSponsors = listOf(
@@ -163,6 +205,21 @@ private val organizationSponsors = listOf(
         name = "JetBrains",
         logoRes = R.drawable.sponsor_logo_jetbrains
     )
+)
+
+private val individualSponsors = listOf(
+    Sponsor.Individual(name = "경창현"),
+    Sponsor.Individual(name = "김태우"),
+    Sponsor.Individual(name = "박덕성"),
+    Sponsor.Individual(name = "성희영"),
+    Sponsor.Individual(name = "이재일"),
+    Sponsor.Individual(name = "이현민"),
+    Sponsor.Individual(name = "임태우"),
+    Sponsor.Individual(name = "장보미"),
+    Sponsor.Individual(name = "정태훈"),
+    Sponsor.Individual(name = "정현아"),
+    Sponsor.Individual(name = "최익환"),
+    Sponsor.Individual(name = "황창훈"),
 )
 
 @Composable
