@@ -1,11 +1,11 @@
-package com.droidknights.app.core.network.engine
+package com.droidknights.app.core.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.okhttp.OkHttp
 import java.util.concurrent.TimeUnit
 
-actual fun httpClient(config: HttpClientConfig<*>.() -> Unit) = HttpClient(OkHttp) {
+internal actual fun httpClient(config: HttpClientConfig<*>.() -> Unit) = HttpClient(OkHttp) {
     config(this)
 
     engine {
