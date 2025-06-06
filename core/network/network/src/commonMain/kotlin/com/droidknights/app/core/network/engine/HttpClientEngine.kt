@@ -1,5 +1,6 @@
 package com.droidknights.app.core.network.engine
 
-import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
 
-expect fun provideHttpClientEngine(): HttpClientEngine
+expect fun httpClient(config: HttpClientConfig<*>.() -> Unit = {}): HttpClient

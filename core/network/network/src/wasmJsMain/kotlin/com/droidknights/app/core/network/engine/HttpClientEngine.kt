@@ -1,6 +1,9 @@
 package com.droidknights.app.core.network.engine
 
-import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.js.Js
 
-actual fun provideHttpClientEngine(): HttpClientEngine = Js.create()
+actual fun httpClient(config: HttpClientConfig<*>.() -> Unit) = HttpClient(Js) {
+    config(this)
+}
