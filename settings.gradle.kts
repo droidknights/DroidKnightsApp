@@ -67,6 +67,10 @@ include(
 include(
     ":core:model:model-session",
 )
+// core - network
+include(
+    ":core:network",
+)
 // feature
 include(
     ":feature:main",
