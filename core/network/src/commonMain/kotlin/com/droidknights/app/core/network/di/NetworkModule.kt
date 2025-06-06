@@ -1,7 +1,7 @@
 package com.droidknights.app.core.network.di
 
 import com.droidknights.app.core.network.DroidKnightsNetworkImpl
-import com.droidknights.app.core.network.api.DroidKnightsNetwork
+import com.droidknights.app.core.network.DroidKnightsNetwork
 import com.droidknights.app.core.network.di.NetworkDefaults.BASE_HOST
 import com.droidknights.app.core.network.di.NetworkDefaults.TIMEOUT_MILLIS
 import com.droidknights.app.core.network.engine.httpClient
