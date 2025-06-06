@@ -51,7 +51,6 @@ internal fun SessionDetailScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    val scrollState = rememberScrollState()
     var showPopup by remember { mutableStateOf(false) }
     var lastBookmarkState by remember { mutableStateOf(false) }
 
@@ -70,12 +69,12 @@ internal fun SessionDetailScreen(
         }
     }
 
-    Box(modifier = modifier.fillMaxSize().systemBarsPadding()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState),
-        ) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .systemBarsPadding(),
+    ) {
+        Column(modifier = Modifier.fillMaxSize()) {
             SessionDetailTopAppBar(
                 bookmarked = (uiState as? SessionDetailUiState.Success)?.bookmarked == true,
                 onClickBookmark = { viewModel.toggleBookmark() },
@@ -115,15 +114,16 @@ private fun SessionDetailLoading() {
 
 @Composable
 private fun SessionDetailContent(session: Session) {
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(scrollState)
             .padding(horizontal = 16.dp),
     ) {
         Text(
-            modifier = Modifier
-                .padding(top = 8.dp)
-                .padding(end = 58.dp),
+            modifier = Modifier.padding(top = 8.dp),
             text = session.title,
             style = KnightsTheme.typography.headlineMediumB,
             color = KnightsTheme.colorScheme.onSurface,
