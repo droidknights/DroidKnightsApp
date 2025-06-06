@@ -12,7 +12,4 @@ internal enum class RoomResponse {
 
     @SerialName("Track2")
     TRACK2,
-
-    @SerialName("Track3")
-    TRACK3,
 }
