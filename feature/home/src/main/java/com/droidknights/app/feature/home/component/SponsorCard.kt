@@ -1,8 +1,10 @@
 package com.droidknights.app.feature.home.component
 
 import android.content.res.Configuration
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,9 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -37,6 +41,7 @@ internal fun SponsorCard(uiState: SponsorsUiState) {
     }
 }
 
+// TODO remote에서 불러오기?
 @Composable
 private fun SponsorCardContents() {
     KnightsCard {
@@ -45,7 +50,7 @@ private fun SponsorCardContents() {
                 modifier = Modifier.matchParentSize(),
                 painter = painterResource(R.drawable.background_home_sponsor_card),
                 contentDescription = null,
-                contentScale = ContentScale.FillWidth,
+                contentScale = ContentScale.Crop,
             )
 
             Column(
@@ -67,21 +72,98 @@ private fun SponsorCardContents() {
                 )
                 Spacer(modifier = Modifier.height(24.dp))
 
-                Image(
-                    painter = painterResource(R.drawable.sponsor_logo_jetbrains),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            color = KnightsColor.White.copy(alpha = 0.5F),
-                            shape = RoundedCornerShape(12.dp),
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    organizationSponsors.forEach {
+                        OrganizationSponsor(
+                            sponsor = it,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(72.dp)
                         )
-                        .padding(60.dp),
-                )
+                    }
+                }
             }
         }
     }
 }
+
+@Composable
+private fun OrganizationSponsor(
+    sponsor: Sponsor.Organization,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier
+            .background(
+                color = KnightsColor.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(8.dp)
+    ) {
+        Image(
+            painter = painterResource(sponsor.logoRes),
+            contentDescription = null,
+            modifier = Modifier
+                .width(100.dp)
+                .align(Alignment.Center)
+        )
+        OrganizationSponsorTier(
+            tier = sponsor.tier,
+            modifier = Modifier.align(Alignment.TopStart)
+        )
+    }
+}
+
+@Composable
+private fun OrganizationSponsorTier(
+    tier: Sponsor.Organization.Tier,
+    modifier: Modifier = Modifier,
+) {
+    when (tier) {
+        Sponsor.Organization.Tier.Platinum -> {
+            Image(
+                painterResource(R.drawable.svg_sponsor_tier_platinum),
+                contentDescription = null,
+                modifier = modifier,
+            )
+        }
+        Sponsor.Organization.Tier.Gold -> {
+            Image(
+                painterResource(R.drawable.svg_sponsor_tier_gold),
+                contentDescription = null,
+                modifier = modifier,
+            )
+        }
+    }
+}
+
+private sealed class Sponsor {
+    data class Organization(
+        val tier: Tier,
+        val name: String,
+        @DrawableRes
+        val logoRes: Int
+    ) : Sponsor() {
+        enum class Tier {
+            Platinum, Gold
+        }
+    }
+}
+
+private val organizationSponsors = listOf(
+    Sponsor.Organization(
+        tier = Sponsor.Organization.Tier.Platinum,
+        name = "RevenueCat",
+        logoRes = R.drawable.sponsor_logo_revenue_cat
+    ),
+    Sponsor.Organization(
+        tier = Sponsor.Organization.Tier.Gold,
+        name = "JetBrains",
+        logoRes = R.drawable.sponsor_logo_jetbrains
+    )
+)
 
 @Composable
 private fun SponsorCardSkeleton(
