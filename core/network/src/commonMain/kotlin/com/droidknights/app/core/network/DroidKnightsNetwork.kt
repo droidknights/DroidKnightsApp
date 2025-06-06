@@ -1,11 +1,11 @@
 package com.droidknights.app.core.network
 
-import io.ktor.util.reflect.TypeInfo
-import io.ktor.util.reflect.typeInfo
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.get
 
-interface DroidKnightsNetwork {
-    suspend fun <T : Any> get(path: String, typeInfo: TypeInfo): T
+class DroidKnightsNetwork(
+    val client: HttpClient
+) {
+    suspend inline fun <reified T : Any> get(path: String): T = client.get(path).body()
 }
-
-suspend inline fun <reified T : Any> DroidKnightsNetwork.get(path: String): T =
-    this.get(path, typeInfo<T>())
