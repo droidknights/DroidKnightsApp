@@ -18,7 +18,7 @@ import com.droidknights.app.core.designsystem.theme.Graphite
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LocalContentColor
 import com.droidknights.app.core.designsystem.theme.White
-import droidknights.core.designsystem.generated.resources.Res
+import droidknights.core.designsystem.generated.resources.DesignRes
 import droidknights.core.designsystem.generated.resources.ic_flagbookmark
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -107,7 +107,7 @@ private fun ChipPreview() {
                     )
                     Chip(
                         text = "북마크",
-                        icon = painterResource(Res.drawable.ic_flagbookmark),
+                        icon = painterResource(DesignRes.drawable.ic_flagbookmark),
                         style = ChipStyle.Accent,
                     )
                     Chip(
@@ -132,7 +132,7 @@ private fun ChipPreview() {
                     )
                     Chip(
                         text = "북마크",
-                        icon = painterResource(Res.drawable.ic_flagbookmark),
+                        icon = painterResource(DesignRes.drawable.ic_flagbookmark),
                         style = ChipStyle.Accent,
                     )
                     Chip(

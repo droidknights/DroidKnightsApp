@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -23,8 +22,9 @@ import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.Blue01
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import droidknights.core.designsystem.generated.resources.DesignRes
+import droidknights.core.designsystem.generated.resources.ic_flagbookmark
 import droidknights.feature.session.generated.resources.Res
-import droidknights.feature.session.generated.resources.ic_flagbookmark
 import droidknights.feature.session.generated.resources.session_detail_bookmark_popup_message
 import droidknights.feature.session.generated.resources.session_detail_unbookmark_popup_message
 import org.jetbrains.compose.resources.painterResource
@@ -58,7 +58,7 @@ internal fun BoxScope.SessionDetailBookmarkStatePopup(
                     .padding(horizontal = 16.dp, vertical = 13.dp),
             ) {
                 Icon(
-                    painter = painterResource(Res.drawable.ic_flagbookmark),
+                    painter = painterResource(DesignRes.drawable.ic_flagbookmark),
                     contentDescription = null,
                     modifier = Modifier
                         .size(10.dp, 14.dp),

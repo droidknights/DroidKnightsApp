@@ -30,9 +30,10 @@ import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.model.session.Tag
+import droidknights.core.designsystem.generated.resources.DesignRes
+import droidknights.core.designsystem.generated.resources.ic_flagbookmark
 import droidknights.feature.session.generated.resources.Res
 import droidknights.feature.session.generated.resources.bookmark
-import droidknights.feature.session.generated.resources.ic_flagbookmark
 import droidknights.feature.session.generated.resources.session_category
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.painterResource
@@ -144,7 +145,7 @@ private fun SessionTrackInfo(
         if (session.isBookmarked) {
             Chip(
                 text = stringResource(resource = Res.string.bookmark),
-                icon = painterResource(resource = Res.drawable.ic_flagbookmark),
+                icon = painterResource(resource = DesignRes.drawable.ic_flagbookmark),
                 style = ChipStyle.Accent,
             )
         }
@@ -191,7 +192,7 @@ private fun BookmarkImage(
     modifier: Modifier = Modifier,
 ) {
     Image(
-        painter = painterResource(resource = Res.drawable.ic_flagbookmark),
+        painter = painterResource(resource = DesignRes.drawable.ic_flagbookmark),
         contentDescription = null,
         modifier = modifier
             .size(

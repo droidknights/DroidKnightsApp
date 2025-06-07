@@ -7,14 +7,14 @@ import com.droidknights.app.core.designsystem.components.Icon
 import com.droidknights.app.core.designsystem.components.IconButton
 import com.droidknights.app.core.designsystem.components.TopAppBar
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import droidknights.core.designsystem.generated.resources.DesignRes
 import droidknights.core.designsystem.generated.resources.ic_arrow_back
 import droidknights.core.designsystem.generated.resources.ic_session_bookmark
 import droidknights.core.designsystem.generated.resources.ic_session_bookmark_filled
+import droidknights.feature.session.generated.resources.Res
 import droidknights.feature.session.generated.resources.session_detail_title
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import droidknights.core.designsystem.generated.resources.Res as DesignSystemRes
-import droidknights.feature.session.generated.resources.Res as SessionRes
 
 @Composable
 internal fun SessionDetailTopAppBar(
@@ -25,14 +25,14 @@ internal fun SessionDetailTopAppBar(
 ) {
     TopAppBar(
         modifier = modifier,
-        title = stringResource(SessionRes.string.session_detail_title),
+        title = stringResource(Res.string.session_detail_title),
         navigation = {
             IconButton(
                 onClick = onBackClick,
                 modifier = it,
             ) {
                 Icon(
-                    painter = painterResource(DesignSystemRes.drawable.ic_arrow_back),
+                    painter = painterResource(DesignRes.drawable.ic_arrow_back),
                     contentDescription = null,
                 )
             }
@@ -44,9 +44,9 @@ internal fun SessionDetailTopAppBar(
             ) {
                 Icon(
                     painter = if (bookmarked) {
-                        painterResource(DesignSystemRes.drawable.ic_session_bookmark_filled)
+                        painterResource(DesignRes.drawable.ic_session_bookmark_filled)
                     } else {
-                        painterResource(DesignSystemRes.drawable.ic_session_bookmark)
+                        painterResource(DesignRes.drawable.ic_session_bookmark)
                     },
                     contentDescription = null,
                     tint = if (bookmarked) KnightsTheme.colorScheme.primary else Color.Unspecified,
