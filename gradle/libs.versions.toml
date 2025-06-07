@@ -130,4 +130,3 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlibrariesCore" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -23,9 +23,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Clean project
-        run: ./gradlew clean
-
       - name: Run Roborazzi Compare
         run: ./gradlew compareRoborazziDebug
 
@@ -70,7 +67,7 @@ jobs:
           echo "" >> comment.md
           echo "⚠️ **기준 이미지가 변경되었습니다. 아래 명령어로 기준 이미지를 직접 갱신하세요.**" >> comment.md
           echo '```sh' >> comment.md
-          echo "./gradlew verifyAndRecordRoborazziDebug" >> comment.md
+          echo "./gradlew recordRoborazzi" >> comment.md
           echo "git add ." >> comment.md
           echo "git commit -m 'chore: update Roborazzi screenshots'" >> comment.md
           echo "git push origin \${GITHUB_HEAD_REF}" >> comment.md
