@@ -130,6 +130,7 @@ compose.desktop {
             }
             linux {
                 packageName = "droidknights"
+                iconFile.set(rootProject.file("images/droidknights.png"))
             }
         }
     }
