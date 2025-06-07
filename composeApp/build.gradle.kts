@@ -126,6 +126,7 @@ compose.desktop {
             }
             windows {
                 packageName = "DroidKnights"
+                iconFile.set(rootProject.file("images/droidknights.ico"))
             }
             linux {
                 packageName = "droidknights"
