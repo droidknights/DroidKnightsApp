@@ -12,6 +12,7 @@ import com.droidknights.app.core.datastore.session.di.coreDatastoreSessionModule
 import com.droidknights.app.core.datastore.settings.di.coreDatastoreSettingsModule
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
+import com.droidknights.app.core.network.di.coreNetworkModule
 import com.droidknights.app.feature.contributor.di.featureContributorModule
 import com.droidknights.app.feature.main.MainScreen
 import com.droidknights.app.feature.session.di.featureSessionModule
@@ -45,32 +46,39 @@ internal fun App(
     }
 }
 
-internal fun knightsAppDeclaration(
-    additionalDeclaration: KoinApplication.() -> Unit = {},
-): KoinAppDeclaration = {
-    val appModule = module {
-        viewModelOf(::AppViewModel)
-    }
-    val coreDataModules = listOf(
+internal val appModule = module {
+    // :core:data
+    includes(
         coreDataSettingModule,
         coreDataSessionModule,
     )
-    val coreDatastoreModules = listOf(
+    // :core:datastore
+    includes(coreDatastoreCoreModules)
+    includes(
         coreDatastoreSessionModule,
         coreDatastoreSettingsModule,
-    ) + coreDatastoreCoreModules
-    val coreDomainModules = listOf(
+    )
+    // :core:domain
+    includes(
         coreDomainSessionModule,
     )
-    val featureModules = listOf(
+    // :core:network
+    includes(
+        coreNetworkModule,
+    )
+    // :feature
+    includes(
         featureSessionModule,
         featureSettingModule,
         featureContributorModule,
     )
+
+    viewModelOf(::AppViewModel)
+}
+
+internal fun knightsAppDeclaration(
+    additionalDeclaration: KoinApplication.() -> Unit = {},
+): KoinAppDeclaration = {
     modules(appModule)
-    modules(coreDataModules)
-    modules(coreDatastoreModules)
-    modules(coreDomainModules)
-    modules(featureModules)
     additionalDeclaration()
 }

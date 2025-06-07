@@ -7,10 +7,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontFamily
+import coil3.ColorImage
+import coil3.annotation.ExperimentalCoilApi
+import coil3.compose.AsyncImagePreviewHandler
+import coil3.compose.LocalAsyncImagePreviewHandler
 
 val LocalDarkTheme = compositionLocalOf { true }
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun KnightsTheme(
     fontFamily: FontFamily = FontFamily.Default,
@@ -26,6 +33,9 @@ fun KnightsTheme(
         },
         LocalIndication provides ripple(),
         LocalTypography provides KnightsTypography.with(fontFamily),
+        LocalAsyncImagePreviewHandler provides AsyncImagePreviewHandler {
+            ColorImage(Color.Red.toArgb())
+        },
         content = content,
     )
 }
