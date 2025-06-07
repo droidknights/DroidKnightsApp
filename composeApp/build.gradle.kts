@@ -122,12 +122,15 @@ compose.desktop {
 
             macOS {
                 dockName = "DroidKnights"
+                iconFile.set(rootProject.file("images/droidknights.icns"))
             }
             windows {
                 packageName = "DroidKnights"
+                iconFile.set(rootProject.file("images/droidknights.ico"))
             }
             linux {
                 packageName = "droidknights"
+                iconFile.set(rootProject.file("images/droidknights.png"))
             }
         }
     }
