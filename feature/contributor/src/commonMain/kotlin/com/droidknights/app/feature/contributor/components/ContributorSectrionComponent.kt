@@ -16,6 +16,6 @@ internal fun ContributorSection(
         text = section.title,
         style = KnightsTheme.typography.headlineLargeEB,
         modifier = Modifier
-            .padding(start = 24.dp, end = 24.dp, top = 20.dp, bottom = 10.dp)
+            .padding(start = 24.dp, end = 24.dp, top = 20.dp, bottom = 10.dp),
     )
 }

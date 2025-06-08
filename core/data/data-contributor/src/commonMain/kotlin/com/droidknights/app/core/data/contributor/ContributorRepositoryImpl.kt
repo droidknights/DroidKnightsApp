@@ -35,7 +35,7 @@ internal class ContributorRepositoryImpl(
             yearGroups.map { (year, contributorIds) ->
                 ContributorGroup(
                     year = year,
-                    contributors = contributorIds.mapNotNull { id -> contributorMap[id] }
+                    contributors = contributorIds.mapNotNull { id -> contributorMap[id] },
                 )
             }
         }

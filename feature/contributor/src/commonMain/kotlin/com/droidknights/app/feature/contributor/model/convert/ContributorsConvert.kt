@@ -8,13 +8,13 @@ internal fun List<ContributorGroup>.toContributorsUiState(): ContributorsUiState
     ContributorsUiState.Contributors(
         contributors = flatMap { (year, contributors) ->
             sequenceOf(
-                ContributorsUiState.Contributors.Item.Section(title = year.toString())
+                ContributorsUiState.Contributors.Item.Section(title = year.toString()),
             ) + contributors.map { item ->
                 ContributorsUiState.Contributors.Item.Contributor(
                     id = item.id,
                     imageUrl = item.imageUrl,
                     githubUrl = item.githubUrl,
-                    name = item.name
+                    name = item.name,
                 )
             }
         }.toPersistentList(),
