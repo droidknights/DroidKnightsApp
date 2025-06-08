@@ -29,7 +29,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun ContributorCard(
     showPlaceholder: Boolean,
-    contributor: ContributorsUiState.Contributors.Contributor,
+    contributor: ContributorsUiState.Contributors.Item.Contributor,
     modifier: Modifier = Modifier,
 ) {
     val uriHandler = LocalUriHandler.current
