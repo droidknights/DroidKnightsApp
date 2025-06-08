@@ -27,7 +27,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-internal fun BookmarkRemovedSnackBar(
+internal fun RemoveBookmarkSnackBar(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -59,6 +59,6 @@ internal fun BookmarkRemovedSnackBar(
 @Composable
 private fun BookmarkStatePopupPreview() {
     KnightsTheme {
-        BookmarkRemovedSnackBar(onClick = {})
+        RemoveBookmarkSnackBar(onClick = {})
     }
 }
