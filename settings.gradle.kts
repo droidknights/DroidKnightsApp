@@ -64,6 +64,8 @@ include(
 include(
     ":core:domain:domain-session",
     ":core:domain:domain-session-api",
+    ":core:domain:domain-contributor",
+    ":core:domain:domain-contributor-api"
 )
 // core - model
 include(
