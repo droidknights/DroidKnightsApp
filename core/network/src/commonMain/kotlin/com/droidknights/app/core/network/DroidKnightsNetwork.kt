@@ -15,6 +15,10 @@ import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
 import kotlinx.serialization.json.Json
 
 class DroidKnightsNetwork {
+
+    val httpClient = createHttpClient(BASE_HOST)
+    val githubHttpClient = createHttpClient(GITHUB_API_HOST)
+
     private fun createHttpClient(hostName: String): HttpClient = httpClient {
         install(ContentNegotiation) {
             val json = Json {
@@ -40,9 +44,6 @@ class DroidKnightsNetwork {
             }
         }
     }
-
-    val httpClient = createHttpClient(BASE_HOST)
-    val githubHttpClient = createHttpClient(GITHUB_API_HOST)
 
     suspend inline fun <reified T : Any> get(path: String): T = httpClient.get(path).body()
     suspend inline fun <reified T : Any> getFromGithub(path: String): T =
