@@ -20,7 +20,6 @@ import com.droidknights.app.core.designsystem.components.NetworkImage
 import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LocalContentColor
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import droidknights.feature.contributor.generated.resources.Res
 import droidknights.feature.contributor.generated.resources.contributor_chip
@@ -66,15 +65,6 @@ internal fun ContributorCard(
                     color = KnightsTheme.colorScheme.primary,
                     modifier = Modifier
                         .padding(top = 8.dp)
-                        .then(shimmerModifier),
-                )
-
-                Text(
-                    text = "Lorem ipsum(id)",
-                    style = KnightsTheme.typography.titleSmallM,
-                    color = LocalContentColor.current.copy(alpha = 0.5F),
-                    modifier = Modifier
-                        .padding(top = 5.dp)
                         .then(shimmerModifier),
                 )
             }
