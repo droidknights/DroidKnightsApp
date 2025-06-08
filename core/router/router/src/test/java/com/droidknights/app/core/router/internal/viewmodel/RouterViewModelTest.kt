@@ -24,8 +24,21 @@ internal class RouterViewModelTest {
 
         viewModel.sideEffect.test {
             // move 테스트
-            mockChannel.send(InternalRoute.Navigate(route = FakeRoute))
-            Assertions.assertEquals(RouteSideEffect.Navigate(route = FakeRoute), awaitItem())
+            mockChannel.send(
+                InternalRoute.Navigate(
+                    route = FakeRoute,
+                    saveState = true,
+                    launchSingleTop = false,
+                ),
+            )
+            Assertions.assertEquals(
+                RouteSideEffect.Navigate(
+                    route = FakeRoute,
+                    saveState = true,
+                    launchSingleTop = false,
+                ),
+                awaitItem(),
+            )
 
             // Back 테스트
             mockChannel.send(InternalRoute.NavigateBack)
