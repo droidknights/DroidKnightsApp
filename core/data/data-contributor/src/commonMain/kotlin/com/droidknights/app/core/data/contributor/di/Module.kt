@@ -6,7 +6,7 @@ import com.droidknights.app.core.data.contributor.api.GithubContributorsApi
 import com.droidkniths.app.core.data.contributor.api.ContributorRepository
 import org.koin.dsl.module
 
-val coreDataSessionModule = module {
+val coreDataContributorModule = module {
     single { GithubContributorsApi(get()) }
     single { DroidknightsContributorsApi(get()) }
     single<ContributorRepository> { ContributorRepositoryImpl(get(), get()) }

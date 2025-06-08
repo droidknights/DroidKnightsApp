@@ -50,6 +50,7 @@ kotlin {
             implementation(projects.core.data.dataSession)
             implementation(projects.core.data.dataSetting)
             implementation(projects.core.data.dataSettingApi)
+            implementation(projects.core.data.dataContributor)
 
             implementation(projects.core.datastore.datastoreCore)
             implementation(projects.core.datastore.datastoreSession)
@@ -60,6 +61,7 @@ kotlin {
             implementation(projects.core.network)
 
             implementation(projects.core.domain.domainSession)
+            implementation(projects.core.domain.domainContributor)
 
             implementation(projects.feature.main)
             implementation(projects.feature.contributor)
