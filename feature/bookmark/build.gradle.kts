@@ -10,6 +10,22 @@ kotlin {
             implementation(projects.core.model.modelSession)
             implementation(libs.kotlinx.immutable)
         }
+
+        val nonAndroidMain by creating {
+            dependsOn(commonMain.get())
+        }
+
+        appleMain {
+            dependsOn(nonAndroidMain)
+        }
+
+        desktopMain {
+            dependsOn(nonAndroidMain)
+        }
+
+        wasmJsMain {
+            dependsOn(nonAndroidMain)
+        }
     }
 }
 
