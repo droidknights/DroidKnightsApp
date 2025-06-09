@@ -14,11 +14,13 @@ fun NavController.navigateHome(navOptions: NavOptions) {
 fun NavGraphBuilder.homeNavGraph(
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
+    onMapClick: () -> Unit,
 ) {
     composable<MainTabRoute.Home> {
         HomeScreen(
             onSessionClick = onSessionClick,
             onContributorClick = onContributorClick,
+            onMapClick = onMapClick,
         )
     }
 }

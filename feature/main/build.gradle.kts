@@ -12,6 +12,7 @@ kotlin {
             implementation(projects.feature.home)
             implementation(projects.feature.session)
             implementation(projects.feature.setting)
+            implementation(projects.feature.map)
 
             // TODO feature plugin
             implementation(projects.core.designsystem)

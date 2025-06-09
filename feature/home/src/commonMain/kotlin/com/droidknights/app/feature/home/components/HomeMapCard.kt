@@ -28,9 +28,11 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun HomeMapCard(
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Surface(
+        onClick = onClick,
         modifier = modifier,
         color = KnightsTheme.colorScheme.primary,
         shape = RoundedCornerShape(16.dp),
@@ -72,6 +74,7 @@ fun HomeMapCard(
 fun HomeMapCardPreview() {
     KnightsTheme {
         HomeMapCard(
+            onClick = {},
             modifier = Modifier.fillMaxWidth(),
         )
     }
