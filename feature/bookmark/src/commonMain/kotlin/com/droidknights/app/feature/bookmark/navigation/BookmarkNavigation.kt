@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.droidknights.app.core.navigation.MainTabRoute
-import com.droidknights.app.feature.bookmark.BookmarkScreen
+import com.droidknights.app.feature.bookmark.BookmarkRoute
 
 fun NavController.navigateBookmark(navOptions: NavOptions) {
     navigate(MainTabRoute.Bookmark, navOptions)
@@ -13,6 +13,6 @@ fun NavController.navigateBookmark(navOptions: NavOptions) {
 
 fun NavGraphBuilder.bookmarkNavGraph() {
     composable<MainTabRoute.Bookmark> {
-        BookmarkScreen()
+        BookmarkRoute(onShowErrorSnackBar = { /* TODO : 스낵바 연결 필요 */ })
     }
 }

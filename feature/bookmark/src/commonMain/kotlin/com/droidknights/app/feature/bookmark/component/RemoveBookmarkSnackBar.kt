@@ -26,6 +26,8 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+internal val bookmarkSnackBarHeight = 50.dp
+
 @Composable
 internal fun RemoveBookmarkSnackBar(
     onClick: () -> Unit,
@@ -33,7 +35,7 @@ internal fun RemoveBookmarkSnackBar(
 ) {
     Row(
         modifier = modifier
-            .height(50.dp)
+            .height(bookmarkSnackBarHeight)
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(4.dp))
             .clickable(onClick = onClick)
