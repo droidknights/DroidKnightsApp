@@ -6,9 +6,6 @@ sealed interface Route {
 
     @Serializable
     data class SessionDetail(val sessionId: String) : Route
-
-    @Serializable
-    data class SessionList(val sessionId: String? = null) : Route
 }
 
 sealed interface MainTabRoute : Route {

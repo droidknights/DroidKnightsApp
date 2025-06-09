@@ -24,7 +24,7 @@ fun NavGraphBuilder.sessionNavGraph(
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable<RouteSession> {
-        val sessionId: String? = it.toRoute<Route.SessionList>().sessionId
+        val sessionId: String? = it.toRoute<RouteSession>().sessionId
         var scrollToEventConsumed by rememberSaveable { mutableStateOf(false) }
         SessionScreen(
             scrollToSessionId = if (scrollToEventConsumed) null else sessionId,
