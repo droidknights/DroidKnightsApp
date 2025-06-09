@@ -21,7 +21,8 @@ internal class NavigatorImplTest {
                     route = FakeRoute,
                     saveState = false,
                     launchSingleTop = false,
-                ), awaitItem()
+                ),
+                awaitItem(),
             )
 
             // Back 테스트

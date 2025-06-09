@@ -36,7 +36,8 @@ internal class RouterViewModelTest {
                     route = FakeRoute,
                     saveState = true,
                     launchSingleTop = false,
-                ), awaitItem()
+                ),
+                awaitItem(),
             )
 
             // Back 테스트
