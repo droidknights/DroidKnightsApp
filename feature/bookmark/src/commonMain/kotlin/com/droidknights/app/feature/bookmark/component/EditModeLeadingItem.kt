@@ -14,7 +14,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Icon
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Purple01
 import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
@@ -41,7 +40,7 @@ internal fun EditModeLeadingItem(
         .clickable { onSelectedItem(itemState.session) }
     if (isSelectedItem) {
         Box(
-            modifier = baseModifier.background(Purple01),
+            modifier = baseModifier.background(KnightsTheme.colorScheme.primary),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
