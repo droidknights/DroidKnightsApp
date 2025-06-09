@@ -16,7 +16,13 @@ internal class NavigatorImplTest {
         navigator.channel.consumeAsFlow().test {
             // fake route 테스트
             navigator.navigate(FakeRoute)
-            Assertions.assertEquals(InternalRoute.Navigate(FakeRoute, false), awaitItem())
+            Assertions.assertEquals(
+                InternalRoute.Navigate(
+                    route = FakeRoute,
+                    saveState = false,
+                    launchSingleTop = false,
+                ), awaitItem()
+            )
 
             // Back 테스트
             navigator.navigateBack()
