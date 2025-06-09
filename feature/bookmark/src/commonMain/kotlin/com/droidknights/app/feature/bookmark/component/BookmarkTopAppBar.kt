@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Text
-import com.droidknights.app.core.designsystem.theme.DarkGray
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import droidknights.feature.bookmark.generated.resources.Res
 import droidknights.feature.bookmark.generated.resources.book_mark_top_bar_title
@@ -33,7 +32,7 @@ internal fun BookmarkTopAppBar(
         targetValue = if (isEditMode) {
             KnightsTheme.colorScheme.primary
         } else {
-            DarkGray // TODO: colorScheme 필요 - DustGray(#86) / White
+            KnightsTheme.colorScheme.editButtonColor
         },
     )
 
