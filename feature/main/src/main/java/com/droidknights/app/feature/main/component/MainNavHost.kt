@@ -49,11 +49,11 @@ internal fun MainNavHost(
             )
 
             contributorNavGraph(
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
             )
 
             sessionNavGraph(
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
             )
         }
     }
