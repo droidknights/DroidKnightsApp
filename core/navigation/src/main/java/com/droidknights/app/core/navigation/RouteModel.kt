@@ -2,12 +2,7 @@ package com.droidknights.app.core.navigation
 
 import kotlinx.serialization.Serializable
 
-sealed interface Route {
-
-    @Serializable
-    data class SessionDetail(val sessionId: String) : Route
-}
-
+sealed interface Route
 sealed interface MainTabRoute : Route {
 
     @Serializable
