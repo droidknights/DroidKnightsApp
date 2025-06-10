@@ -49,6 +49,8 @@ include(
     ":core:data:data-session-api",
     ":core:data:data-setting",
     ":core:data:data-setting-api",
+    ":core:data:data-contributor",
+    ":core:data:data-contributor-api"
 )
 // core - datastore
 include(
@@ -62,10 +64,13 @@ include(
 include(
     ":core:domain:domain-session",
     ":core:domain:domain-session-api",
+    ":core:domain:domain-contributor",
+    ":core:domain:domain-contributor-api"
 )
 // core - model
 include(
     ":core:model:model-session",
+    ":core:model:model-contributor"
 )
 // core - network
 include(

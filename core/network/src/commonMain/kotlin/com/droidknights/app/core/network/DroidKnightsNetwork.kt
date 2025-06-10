@@ -1,5 +1,6 @@
 package com.droidknights.app.core.network
 
+import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -14,7 +15,11 @@ import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
 import kotlinx.serialization.json.Json
 
 class DroidKnightsNetwork {
-    val httpClient = httpClient {
+
+    val httpClient = createHttpClient(BASE_HOST)
+    val githubHttpClient = createHttpClient(GITHUB_API_HOST)
+
+    private fun createHttpClient(hostName: String): HttpClient = httpClient {
         install(ContentNegotiation) {
             val json = Json {
                 ignoreUnknownKeys = true
@@ -35,15 +40,18 @@ class DroidKnightsNetwork {
             contentType(ContentType.Application.Json)
             url {
                 protocol = URLProtocol.HTTPS
-                host = BASE_HOST
+                host = hostName
             }
         }
     }
 
     suspend inline fun <reified T : Any> get(path: String): T = httpClient.get(path).body()
+    suspend inline fun <reified T : Any> getFromGithub(path: String): T =
+        githubHttpClient.get(path).body()
 
     companion object {
         private const val TIMEOUT_MILLIS = 6_000L
         private const val BASE_HOST = "raw.githubusercontent.com"
+        private const val GITHUB_API_HOST = "api.github.com"
     }
 }

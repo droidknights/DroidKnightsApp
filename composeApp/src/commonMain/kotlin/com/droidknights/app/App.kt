@@ -5,12 +5,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.text.font.FontFamily
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.droidknights.app.core.data.contributor.di.coreDataContributorModule
 import com.droidknights.app.core.data.session.di.coreDataSessionModule
 import com.droidknights.app.core.data.setting.di.coreDataSettingModule
 import com.droidknights.app.core.datastore.core.di.coreDatastoreCoreModules
 import com.droidknights.app.core.datastore.session.di.coreDatastoreSessionModule
 import com.droidknights.app.core.datastore.settings.di.coreDatastoreSettingsModule
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.core.domain.contributor.di.coreDomainContributorModule
 import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
 import com.droidknights.app.core.network.di.coreNetworkModule
 import com.droidknights.app.feature.contributor.di.featureContributorModule
@@ -51,7 +53,9 @@ internal val appModule = module {
     includes(
         coreDataSettingModule,
         coreDataSessionModule,
+        coreDataContributorModule,
     )
+
     // :core:datastore
     includes(coreDatastoreCoreModules)
     includes(
@@ -61,6 +65,7 @@ internal val appModule = module {
     // :core:domain
     includes(
         coreDomainSessionModule,
+        coreDomainContributorModule,
     )
     // :core:network
     includes(
