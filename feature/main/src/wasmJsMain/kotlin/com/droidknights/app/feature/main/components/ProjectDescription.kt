@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.HorizontalDivider
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
@@ -36,7 +37,7 @@ internal fun ProjectDescription(
         )
         Spacer(modifier = Modifier.height(58.dp))
 
-        HorizontalDivider(color = KnightsTheme.colorScheme.borderColor, thickness = 1.dp)
+        HorizontalDivider(color = Color.White, thickness = 1.dp)
         Spacer(modifier = Modifier.height(90.dp))
         Contributors(
             title = "2024",

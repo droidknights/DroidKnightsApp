@@ -2,6 +2,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
@@ -31,7 +32,7 @@ internal fun Sponsors(
             Text(
                 text = "후원 감사합니다",
                 style = KnightsTheme.typography.headlineSmallBL,
-                color = KnightsTheme.colorScheme.borderColor,
+                color = Color.White.copy(alpha = 0.6f),
             )
         }
     }
