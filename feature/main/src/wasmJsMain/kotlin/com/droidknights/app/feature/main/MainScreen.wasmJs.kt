@@ -100,17 +100,18 @@ private fun MainDesktopScreen(
                     .fillMaxHeight()
                     .padding(16.dp, 20.dp),
             )
-
-            DeviceFrame(
-                modifier = Modifier
-                    .padding(16.dp, 20.dp)
-                    .width(360.dp)
-                    .heightIn(max = 780.dp)
-                    .fillMaxHeight(),
-                content = {
-                    MainContent(navigator = navigator)
-                },
-            )
+            Box(modifier = Modifier.padding(vertical = 36.dp)) {
+                DeviceFrame(
+                    modifier = Modifier
+                        .padding(16.dp, 20.dp)
+                        .width(360.dp)
+                        .heightIn(min = 400.dp, max = 800.dp)
+                        .fillMaxHeight(),
+                    content = {
+                        MainContent(navigator = navigator)
+                    },
+                )
+            }
         }
     }
 }
@@ -203,10 +204,10 @@ private fun MainMobileScreen(
                             initialValue = 0F,
                             targetValue = -4F,
                             animationSpec =
-                            infiniteRepeatable(
-                                animation = tween(500),
-                                repeatMode = RepeatMode.Reverse,
-                            ),
+                                infiniteRepeatable(
+                                    animation = tween(500),
+                                    repeatMode = RepeatMode.Reverse,
+                                ),
                         )
                         Button(
                             text = "멀티플랫폼 웹 체험하기",
@@ -220,6 +221,7 @@ private fun MainMobileScreen(
                     }
                 }
             }
+
             MainMobileMode.Demo -> {
                 MainContent(navigator = navigator)
             }
@@ -232,4 +234,5 @@ private enum class MainMobileMode {
 }
 
 private val WideWidth = 1280.dp
-private const val ProjectUrl = "https://github.com/droidknights/DroidKnightsApp/tree/2025/compose-multiplatform"
+private const val ProjectUrl =
+    "https://github.com/droidknights/DroidKnightsApp/tree/2025/compose-multiplatform"
