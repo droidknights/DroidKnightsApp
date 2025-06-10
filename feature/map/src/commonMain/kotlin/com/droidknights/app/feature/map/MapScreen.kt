@@ -44,33 +44,39 @@ internal fun MapScreen(
         Column(
             modifier = Modifier
                 .safeDrawingPadding()
-                .verticalScroll(rememberScrollState())
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(28.dp),
         ) {
             MapTopAppBar(
                 onBackClick = onBackClick,
             )
-            Text(
-                text = stringResource(Res.string.map_title),
-                style = KnightsTheme.typography.headlineMediumB,
-                modifier = Modifier.padding(
-                    top = 8.dp,
-                    start = 16.dp,
-                ),
-            )
-            Image(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(
-                        top = 64.dp,
-                        bottom = 64.dp,
-                        start = 20.dp,
-                        end = 14.dp,
+            Column(
+                modifier = Modifier
+                    .safeDrawingPadding()
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(28.dp),
+            ) {
+                Text(
+                    text = stringResource(Res.string.map_title),
+                    style = KnightsTheme.typography.headlineMediumB,
+                    modifier = Modifier.padding(
+                        top = 8.dp,
+                        start = 16.dp,
                     ),
-                painter = painterResource(mapImage),
-                contentDescription = null,
-                contentScale = ContentScale.FillWidth,
-            )
+                )
+                Image(
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(
+                            top = 64.dp,
+                            bottom = 64.dp,
+                            start = 20.dp,
+                            end = 14.dp,
+                        ),
+                    painter = painterResource(mapImage),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillWidth,
+                )
+            }
         }
     }
 }
