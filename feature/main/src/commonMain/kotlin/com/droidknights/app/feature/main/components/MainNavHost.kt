@@ -9,6 +9,7 @@ import com.droidknights.app.feature.contributor.navigation.contributorNavGraph
 import com.droidknights.app.feature.home.navigation.homeNavGraph
 import com.droidknights.app.feature.license.navigation.licenseNavGraph
 import com.droidknights.app.feature.main.MainNavigator
+import com.droidknights.app.feature.map.navigation.mapNavGraph
 import com.droidknights.app.feature.session.navigation.sessionNavGraph
 import com.droidknights.app.feature.setting.navigation.settingNavGraph
 
@@ -29,6 +30,7 @@ internal fun MainNavHost(
             onSessionClick = navigator::navigateSession,
             onContributorClick = navigator::navigateContributor,
             onOrganizationSponsorClick = navigator::navigateWeb,
+            onMapClick = navigator::navigateMap,
         )
         bookmarkNavGraph()
         contributorNavGraph(
@@ -41,5 +43,8 @@ internal fun MainNavHost(
             },
         )
         licenseNavGraph(onBackClick = navigator::popBackStackIfNotHome)
+        mapNavGraph(
+            onBackClick = navigator::popBackStackIfNotHome,
+        )
     }
 }

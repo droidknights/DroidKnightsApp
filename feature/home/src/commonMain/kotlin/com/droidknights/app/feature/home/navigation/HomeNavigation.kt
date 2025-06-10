@@ -15,12 +15,14 @@ fun NavGraphBuilder.homeNavGraph(
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
     onOrganizationSponsorClick: (String) -> Unit,
+    onMapClick: () -> Unit,
 ) {
     composable<MainTabRoute.Home> {
         HomeScreen(
             onSessionClick = onSessionClick,
             onContributorClick = onContributorClick,
             onOrganizationSponsorClick = onOrganizationSponsorClick,
+            onMapClick = onMapClick,
         )
     }
 }

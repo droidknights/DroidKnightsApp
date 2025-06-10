@@ -23,6 +23,7 @@ internal fun HomeScreen(
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
     onOrganizationSponsorClick: (String) -> Unit,
+    onMapClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -47,6 +48,7 @@ internal fun HomeScreen(
             onOrganizationSponsorClick = onOrganizationSponsorClick,
         )
         HomeMapCard(
+            onClick = onMapClick,
             modifier = Modifier.fillMaxWidth(),
         )
     }
@@ -60,6 +62,7 @@ fun HomeScreenPreview() {
             onSessionClick = {},
             onContributorClick = {},
             onOrganizationSponsorClick = {},
+            onMapClick = {},
             modifier = Modifier.fillMaxSize(),
         )
     }

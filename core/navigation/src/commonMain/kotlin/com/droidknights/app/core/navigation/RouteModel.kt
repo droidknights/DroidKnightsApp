@@ -14,6 +14,9 @@ sealed interface Route {
 
     @Serializable
     data object License : Route
+
+    @Serializable
+    data object Map : Route
 }
 
 sealed interface MainTabRoute : Route {

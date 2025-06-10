@@ -79,5 +79,6 @@ include(
     ":feature:setting",
     ":feature:contributor",
     ":feature:bookmark",
-    ":feature:license"
+    ":feature:license",
+    ":feature:map"
 )

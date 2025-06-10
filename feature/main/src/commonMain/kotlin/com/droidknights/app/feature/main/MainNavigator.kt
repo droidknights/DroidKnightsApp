@@ -17,10 +17,12 @@ import com.droidknights.app.feature.bookmark.navigation.navigateBookmark
 import com.droidknights.app.feature.contributor.navigation.navigateContributor
 import com.droidknights.app.feature.home.navigation.navigateHome
 import com.droidknights.app.feature.license.navigation.navigateLicense
+import com.droidknights.app.feature.map.navigation.navigateMap
 import com.droidknights.app.feature.session.navigation.navigateSession
 import com.droidknights.app.feature.session.navigation.navigateSessionDetail
 import com.droidknights.app.feature.setting.navigation.navigateSetting
 
+@Suppress("TooManyFunctions")
 internal class MainNavigator(
     val navController: NavHostController,
     val uriHandler: UriHandler,
@@ -70,6 +72,10 @@ internal class MainNavigator(
 
     fun navigateWeb(url: String) {
         uriHandler.openUri(url)
+    }
+
+    fun navigateMap() {
+        navController.navigateMap()
     }
 
     private fun popBackStack() {
