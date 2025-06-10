@@ -9,6 +9,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.router.routerApi)
+
     implementation(libs.androidx.appcompat)
 
     implementation(libs.oss.licenses)
