@@ -12,7 +12,7 @@ internal data class Contributor(
 internal val contributors2023 = persistentListOf(
     Contributor("28249981", "laco-dev", "https://avatars.githubusercontent.com/u/28249981?v=4", "https://github.com/laco-dev"),
     Contributor("32327475", "wisemuji", "https://avatars.githubusercontent.com/u/32327475?v=4", "https://github.com/wisemuji"),
-    Contributor("93872496", "KwakEuiJin", "https://avatars.githubusercontent.com/u/93872496?v=4", "https://github.com/KwakEuiJin"),
+    Contributor("93872496", "kez-lab", "https://avatars.githubusercontent.com/u/93872496?v=4", "https://github.com/kez-lab"),
     Contributor("54518925", "l2hyunwoo", "https://avatars.githubusercontent.com/u/54518925?v=4", "https://github.com/l2hyunwoo"),
     Contributor("56534241", "tmdgh1592", "https://avatars.githubusercontent.com/u/56534241?v=4", "https://github.com/tmdgh1592"),
     Contributor("18674395", "JeonK1", "https://avatars.githubusercontent.com/u/18674395?v=4", "https://github.com/JeonK1"),
@@ -26,7 +26,6 @@ internal val contributors2023 = persistentListOf(
     Contributor("37904970", "sodp5", "https://avatars.githubusercontent.com/u/37904970?v=4", "https://github.com/sodp5"),
     Contributor("51078673", "JaesungLeee", "https://avatars.githubusercontent.com/u/51078673?v=4", "https://github.com/JaesungLeee"),
     Contributor("44341119", "malibinYun", "https://avatars.githubusercontent.com/u/44341119?v=4", "https://github.com/malibinYun"),
-    Contributor("98825364", "taeheeL", "https://avatars.githubusercontent.com/u/98825364?v=4", "https://github.com/taeheeL"),
     Contributor("1534926", "Pluu", "https://avatars.githubusercontent.com/u/1534926?v=4", "https://github.com/Pluu"),
     Contributor("4679634", "kisa002", "https://avatars.githubusercontent.com/u/4679634?v=4", "https://github.com/kisa002"),
     Contributor("52663419", "jeongth9446", "https://avatars.githubusercontent.com/u/52663419?v=4", "https://github.com/jeongth9446"),
@@ -38,7 +37,7 @@ internal val contributors2023 = persistentListOf(
 
 internal val contributors2024 = persistentListOf(
     Contributor("32327475", "wisemuji", "https://avatars.githubusercontent.com/u/32327475?v=4", "https://github.com/wisemuji"),
-    Contributor("93872496", "KwakEuiJin", "https://avatars.githubusercontent.com/u/93872496?v=4", "https://github.com/KwakEuiJin"),
+    Contributor("93872496", "kez-lab", "https://avatars.githubusercontent.com/u/93872496?v=4", "https://github.com/kez-lab"),
     Contributor("54518925", "l2hyunwoo", "https://avatars.githubusercontent.com/u/54518925?v=4", "https://github.com/l2hyunwoo"),
     Contributor("56534241", "tmdgh1592", "https://avatars.githubusercontent.com/u/56534241?v=4", "https://github.com/tmdgh1592"),
     Contributor("18674395", "JeonK1", "https://avatars.githubusercontent.com/u/18674395?v=4", "https://github.com/JeonK1"),
@@ -50,4 +49,5 @@ internal val contributors2024 = persistentListOf(
     Contributor("81838716", "ParkJong-Hun", "https://avatars.githubusercontent.com/u/81838716?v=4", "https://github.com/ParkJong-Hun"),
     Contributor("92064758", "theo-taehwan", "https://avatars.githubusercontent.com/u/92064758?v=4", "https://github.com/theo-taehwan"),
     Contributor("51016231", "easyhooon", "https://avatars.githubusercontent.com/u/51016231?v=4", "https://github.com/easyhooon"),
+    Contributor("98825364", "haeti-dev", "https://avatars.githubusercontent.com/u/98825364?v=4", "https://github.com/haeti-dev"),
 )

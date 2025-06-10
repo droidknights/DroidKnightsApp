@@ -7,61 +7,78 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.data.session.di.coreDataSessionModule
 import com.droidknights.app.core.data.setting.di.coreDataSettingModule
+import com.droidknights.app.core.datastore.core.di.coreDatastoreCoreModules
+import com.droidknights.app.core.datastore.session.di.coreDatastoreSessionModule
+import com.droidknights.app.core.datastore.settings.di.coreDatastoreSettingsModule
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.domain.session.di.coreDomainSessionModule
+import com.droidknights.app.core.network.di.coreNetworkModule
+import com.droidknights.app.feature.contributor.di.featureContributorModule
 import com.droidknights.app.feature.main.MainScreen
 import com.droidknights.app.feature.session.di.featureSessionModule
 import com.droidknights.app.feature.setting.di.featureSettingModule
 import droidknights.composeapp.generated.resources.NotoSans
 import droidknights.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
-import org.koin.compose.KoinApplication
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.KoinApplication
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
 @Composable
 internal fun App(
+    appViewModel: AppViewModel = koinViewModel(),
     onDarkThemeChange: ((Boolean) -> Unit)? = null,
     fontFamily: FontFamily = FontFamily(Font(resource = Res.font.NotoSans)),
 ) {
-    KoinApplication(
-        application = koinAppDeclaration,
+    val appUiState by appViewModel.uiState.collectAsStateWithLifecycle()
+
+    if (onDarkThemeChange != null) {
+        LaunchedEffect(appUiState.isDarkTheme) { onDarkThemeChange(appUiState.isDarkTheme) }
+    }
+
+    KnightsTheme(
+        darkTheme = appUiState.isDarkTheme,
+        fontFamily = fontFamily,
     ) {
-        val appViewModel = koinViewModel<AppViewModel>()
-        val appUiState by appViewModel.uiState.collectAsStateWithLifecycle()
-
-        if (onDarkThemeChange != null) {
-            LaunchedEffect(appUiState.isDarkTheme) { onDarkThemeChange(appUiState.isDarkTheme) }
-        }
-
-        KnightsTheme(
-            darkTheme = appUiState.isDarkTheme,
-            fontFamily = fontFamily,
-        ) {
-            MainScreen()
-        }
+        MainScreen()
     }
 }
 
-internal val koinAppDeclaration: KoinAppDeclaration = {
-    val appModule = module {
-        viewModelOf(::AppViewModel)
-    }
-    val coreDataModules = listOf(
+internal val appModule = module {
+    // :core:data
+    includes(
         coreDataSettingModule,
         coreDataSessionModule,
     )
-    val coreDomainModules = listOf(
+    // :core:datastore
+    includes(coreDatastoreCoreModules)
+    includes(
+        coreDatastoreSessionModule,
+        coreDatastoreSettingsModule,
+    )
+    // :core:domain
+    includes(
         coreDomainSessionModule,
     )
-    val featureModules = listOf(
+    // :core:network
+    includes(
+        coreNetworkModule,
+    )
+    // :feature
+    includes(
         featureSessionModule,
         featureSettingModule,
+        featureContributorModule,
     )
+
+    viewModelOf(::AppViewModel)
+}
+
+internal fun knightsAppDeclaration(
+    additionalDeclaration: KoinApplication.() -> Unit = {},
+): KoinAppDeclaration = {
     modules(appModule)
-    modules(coreDataModules)
-    modules(coreDomainModules)
-    modules(featureModules)
+    additionalDeclaration()
 }

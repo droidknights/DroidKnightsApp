@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import com.droidknights.app.core.designsystem.components.Icon
 import com.droidknights.app.core.designsystem.components.IconButton
 import com.droidknights.app.core.designsystem.components.TopAppBar
-import droidknights.core.designsystem.generated.resources.Res
+import droidknights.core.designsystem.generated.resources.DesignRes
 import droidknights.core.designsystem.generated.resources.ic_close
 import org.jetbrains.compose.resources.painterResource
 
@@ -23,7 +23,7 @@ fun SessionTopAppBar(
                 modifier = it,
             ) {
                 Icon(
-                    painter = painterResource(Res.drawable.ic_close),
+                    painter = painterResource(DesignRes.drawable.ic_close),
                     contentDescription = null,
                 )
             }

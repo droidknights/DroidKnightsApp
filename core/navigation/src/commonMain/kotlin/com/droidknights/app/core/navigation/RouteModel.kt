@@ -13,6 +13,9 @@ sealed interface Route {
     data class SessionDetail(val sessionId: String) : Route
 
     @Serializable
+    data object License : Route
+
+    @Serializable
     data object Map : Route
 }
 

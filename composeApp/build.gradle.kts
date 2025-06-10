@@ -1,9 +1,11 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     alias(libs.plugins.androidApplication)
+    alias(libs.plugins.composeHotReload)
     id("droidknights.kotlin.multiplatform")
     id("droidknights.compose.multiplatform")
 }
@@ -33,6 +35,10 @@ kotlin {
 
     sourceSets {
         val desktopMain by getting
+        desktopTest.dependencies {
+            implementation(libs.koin.test)
+            implementation(libs.kotlin.test)
+        }
 
         androidMain.dependencies {
             implementation(compose.preview)
@@ -45,11 +51,21 @@ kotlin {
             implementation(projects.core.data.dataSetting)
             implementation(projects.core.data.dataSettingApi)
 
+            implementation(projects.core.datastore.datastoreCore)
+            implementation(projects.core.datastore.datastoreSession)
+            implementation(projects.core.datastore.datastoreSessionApi)
+            implementation(projects.core.datastore.datastoreSettings)
+            implementation(projects.core.datastore.datastoreSettingsApi)
+
+            implementation(projects.core.network)
+
             implementation(projects.core.domain.domainSession)
 
             implementation(projects.feature.main)
+            implementation(projects.feature.contributor)
             implementation(projects.feature.session)
             implementation(projects.feature.setting)
+            implementation(projects.feature.license)
 
             implementation(libs.androidx.lifecycle.runtime.compose)
 
@@ -60,6 +76,12 @@ kotlin {
             implementation(libs.kotlinx.coroutines.swing)
         }
     }
+}
+
+// Enable Compose Hot Reload optimization
+// https://github.com/JetBrains/compose-hot-reload?tab=readme-ov-file#optimization-enable-optimizenonskippinggroups-not-required
+composeCompiler {
+    featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
 }
 
 android {
@@ -97,6 +119,19 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.droidknights.app"
             packageVersion = "1.0.0"
+
+            macOS {
+                dockName = "DroidKnights"
+                iconFile.set(rootProject.file("images/droidknights.icns"))
+            }
+            windows {
+                packageName = "DroidKnights"
+                iconFile.set(rootProject.file("images/droidknights.ico"))
+            }
+            linux {
+                packageName = "droidknights"
+                iconFile.set(rootProject.file("images/droidknights.png"))
+            }
         }
     }
 }

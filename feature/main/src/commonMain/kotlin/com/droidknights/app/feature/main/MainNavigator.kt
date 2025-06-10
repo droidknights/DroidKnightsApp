@@ -2,6 +2,8 @@ package com.droidknights.app.feature.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -14,13 +16,16 @@ import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.bookmark.navigation.navigateBookmark
 import com.droidknights.app.feature.contributor.navigation.navigateContributor
 import com.droidknights.app.feature.home.navigation.navigateHome
+import com.droidknights.app.feature.license.navigation.navigateLicense
 import com.droidknights.app.feature.map.navigation.navigateMap
 import com.droidknights.app.feature.session.navigation.navigateSession
 import com.droidknights.app.feature.session.navigation.navigateSessionDetail
 import com.droidknights.app.feature.setting.navigation.navigateSetting
 
+@Suppress("TooManyFunctions")
 internal class MainNavigator(
     val navController: NavHostController,
+    val uriHandler: UriHandler,
 ) {
     private val currentDestination: NavDestination?
         @Composable get() = navController
@@ -61,6 +66,14 @@ internal class MainNavigator(
         navController.navigateSessionDetail(sessionId)
     }
 
+    fun navigateLicense() {
+        navController.navigateLicense()
+    }
+
+    fun navigateWeb(url: String) {
+        uriHandler.openUri(url)
+    }
+
     fun navigateMap() {
         navController.navigateMap()
     }
@@ -74,7 +87,6 @@ internal class MainNavigator(
             popBackStack()
         }
     }
-
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean {
         return navController.currentDestination?.hasRoute<T>() == true
     }
@@ -88,6 +100,7 @@ internal class MainNavigator(
 @Composable
 internal fun rememberMainNavigator(
     navController: NavHostController = rememberNavController(),
+    uriHandler: UriHandler = LocalUriHandler.current,
 ): MainNavigator = remember(navController) {
-    MainNavigator(navController)
+    MainNavigator(navController, uriHandler)
 }
