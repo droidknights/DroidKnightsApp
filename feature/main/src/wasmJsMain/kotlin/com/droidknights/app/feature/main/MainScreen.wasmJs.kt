@@ -67,8 +67,8 @@ actual fun MainScreen(modifier: Modifier) {
             MainDesktopScreen(
                 navigator = navigator,
                 modifier = Modifier
-                    .requiredWidthIn(max = 1280.dp)
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .padding(horizontal = 80.dp),
             )
         } else {
             MainMobileScreen(navigator = navigator)
@@ -92,7 +92,9 @@ private fun MainDesktopScreen(
             },
             modifier = Modifier.padding(16.dp, 20.dp),
         )
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(165.dp)
+        ) {
             ProjectDescription(
                 onContributorClick = {
                     uriHandler.openUri(it.profileUrl)
