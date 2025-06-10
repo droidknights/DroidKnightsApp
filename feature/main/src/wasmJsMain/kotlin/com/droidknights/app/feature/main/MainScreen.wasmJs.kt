@@ -13,9 +13,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -45,6 +47,9 @@ import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.main.components.AppBar
 import com.droidknights.app.feature.main.components.DeviceFrame
+import com.droidknights.app.feature.main.components.MobileAppBar
+import com.droidknights.app.feature.main.components.MobileProjectDescription
+import com.droidknights.app.feature.main.components.MultiPlatformButton
 import com.droidknights.app.feature.main.components.ProjectDescription
 
 @Composable
@@ -82,17 +87,15 @@ private fun MainDesktopScreen(
         modifier = modifier,
     ) {
         AppBar(
-            onGithubClick = {
-                uriHandler.openUri(ProjectUrl)
+            onProjectBranchClick = {
+                uriHandler.openUri(it.url)
             },
+            modifier = Modifier.padding(16.dp, 20.dp),
         )
         Row {
             ProjectDescription(
                 onContributorClick = {
                     uriHandler.openUri(it.profileUrl)
-                },
-                onProjectBranchClick = {
-                    uriHandler.openUri(it.url)
                 },
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
@@ -100,18 +103,16 @@ private fun MainDesktopScreen(
                     .fillMaxHeight()
                     .padding(16.dp, 20.dp),
             )
-            Box(modifier = Modifier.padding(vertical = 36.dp)) {
-                DeviceFrame(
-                    modifier = Modifier
-                        .padding(16.dp, 20.dp)
-                        .width(360.dp)
-                        .heightIn(min = 400.dp, max = 800.dp)
-                        .fillMaxHeight(),
-                    content = {
-                        MainContent(navigator = navigator)
-                    },
-                )
-            }
+            DeviceFrame(
+                modifier = Modifier
+                    .padding(16.dp, 20.dp)
+                    .width(360.dp)
+                    .heightIn(min = 400.dp, max = 800.dp)
+                    .fillMaxHeight(),
+                content = {
+                    MainContent(navigator = navigator)
+                },
+            )
         }
     }
 }
@@ -175,23 +176,25 @@ private fun MainMobileScreen(
                 Column(
                     modifier = modifier,
                 ) {
-                    AppBar(
-                        onGithubClick = {
-                            uriHandler.openUri(ProjectUrl)
-                        },
+                    MobileAppBar(
+                        modifier = Modifier.padding(
+                            top = 56.dp,
+                            bottom = 8.dp,
+                            start = 24.dp,
+                            end = 24.dp
+                        )
                     )
-                    ProjectDescription(
+                    Spacer(modifier = Modifier.height(12.dp))
+                    MobileProjectDescription(
+                        onBranchButtonsClick = { uriHandler.openUri(it.url) },
                         onContributorClick = {
                             uriHandler.openUri(it.profileUrl)
-                        },
-                        onProjectBranchClick = {
-                            uriHandler.openUri(it.url)
                         },
                         modifier = Modifier
                             .verticalScroll(rememberScrollState())
                             .weight(1F)
                             .fillMaxHeight()
-                            .padding(16.dp, 20.dp),
+                            .padding(horizontal = 24.dp),
                     )
                     Box(
                         modifier = Modifier.fillMaxWidth()
@@ -209,8 +212,8 @@ private fun MainMobileScreen(
                                     repeatMode = RepeatMode.Reverse,
                                 ),
                         )
-                        Button(
-                            text = "멀티플랫폼 웹 체험하기",
+                        MultiPlatformButton(
+                            text = "멀티플랫폼 앱 체험하기",
                             onClick = {
                                 showExitGuidePopup = true
                             },
