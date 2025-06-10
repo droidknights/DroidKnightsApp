@@ -1,6 +1,6 @@
 package com.droidknights.app.core.action.internal.di
 
-import com.droidknights.app.core.action.FlowActionStream
+import com.droidknights.app.core.action.api.FlowActionStream
 import com.droidknights.app.core.action.internal.InternalActionImpl
 import dagger.Binds
 import dagger.Module

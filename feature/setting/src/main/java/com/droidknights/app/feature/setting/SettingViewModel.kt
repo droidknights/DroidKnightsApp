@@ -3,7 +3,7 @@ package com.droidknights.app.feature.setting
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app.core.action.FlowActionStream
+import com.droidknights.app.core.action.api.FlowActionStream
 import com.droidknights.app.core.data.settings.api.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job

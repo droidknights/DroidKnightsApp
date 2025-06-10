@@ -29,7 +29,7 @@ internal fun SettingScreen(
     settingViewModel: SettingViewModel = hiltViewModel(),
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
-    LaunchedEffect(settingViewModel) {
+    LaunchedEffect(settingViewModel, lifecycleOwner) {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             settingViewModel.loadAction()
         }

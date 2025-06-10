@@ -1,7 +1,7 @@
 package com.droidknights.app.core.action.internal
 
-import com.droidknights.app.core.action.Action
-import com.droidknights.app.core.action.FlowActionStream
+import com.droidknights.app.core.action.api.Action
+import com.droidknights.app.core.action.api.FlowActionStream
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow

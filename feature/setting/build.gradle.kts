@@ -15,6 +15,6 @@ dependencies {
 
     implementation(libs.oss.licenses)
 
-    implementation(projects.core.action)
+    implementation(projects.core.action.actionApi)
     implementation(projects.core.data.dataSettingsApi)
 }

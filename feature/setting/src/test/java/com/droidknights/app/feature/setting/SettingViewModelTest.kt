@@ -70,7 +70,7 @@ internal class SettingViewModelTest {
             )
 =======
 import app.cash.turbine.test
-import com.droidknights.app.core.action.FlowActionStream
+import com.droidknights.app.core.action.api.FlowActionStream
 import com.droidknights.app.core.data.settings.api.SettingsRepository
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import io.mockk.Runs

@@ -1,7 +1,7 @@
 package com.droidknights.app.core.action.internal
 
 import app.cash.turbine.test
-import com.droidknights.app.core.action.Action
+import com.droidknights.app.core.action.api.Action
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

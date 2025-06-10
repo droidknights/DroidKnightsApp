@@ -12,4 +12,6 @@ configureComposeFeature()
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.hilt.navigation.compose)
+
+    implementation(projects.core.action.actionApi)
 }
