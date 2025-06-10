@@ -60,6 +60,9 @@ object KnightsColor {
     val Blue02A30 = Color(0x4D5180FF)
 
     @Stable
+    val Blue03 = Color(0xFFD4DFFD)
+
+    @Stable
     val Blue04 = Color(0xFF386524)
 
     @Stable

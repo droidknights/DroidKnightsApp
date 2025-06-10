@@ -11,8 +11,8 @@ internal class NavigatorImpl @Inject constructor() : Navigator, InternalNavigato
 
     override val channel = Channel<InternalRoute>(Channel.BUFFERED)
 
-    override suspend fun navigate(route: Route, saveState: Boolean) {
-        channel.send(InternalRoute.Navigate(route = route, saveState = saveState))
+    override suspend fun navigate(route: Route) {
+        channel.send(InternalRoute.Navigate(route = route))
     }
 
     override suspend fun navigateBack() {

@@ -1,5 +1,9 @@
 package com.droidknights.app.feature.session.navigation
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -20,9 +24,15 @@ fun NavGraphBuilder.sessionNavGraph(
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable<RouteSession> {
+        val sessionId: String? = it.toRoute<RouteSession>().sessionId
+        var scrollToEventConsumed by rememberSaveable { mutableStateOf(false) }
         SessionScreen(
+            scrollToSessionId = if (scrollToEventConsumed) null else sessionId,
             onBackClick = onBackClick,
-            onSessionClick = onSessionClick,
+            onSessionClick = { session ->
+                scrollToEventConsumed = true
+                onSessionClick(session)
+            },
             onShowErrorSnackBar = onShowErrorSnackBar
         )
     }

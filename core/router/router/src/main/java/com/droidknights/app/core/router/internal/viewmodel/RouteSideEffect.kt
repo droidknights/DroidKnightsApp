@@ -6,7 +6,6 @@ internal sealed interface RouteSideEffect {
 
     data class Navigate(
         val route: Route,
-        val saveState: Boolean,
     ) : RouteSideEffect
 
     data object NavigateBack : RouteSideEffect

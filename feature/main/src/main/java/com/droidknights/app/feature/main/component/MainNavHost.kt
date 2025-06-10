@@ -42,7 +42,7 @@ internal fun MainNavHost(
             )
 
             bookmarkNavGraph(
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
             )
 
             contributorNavGraph(

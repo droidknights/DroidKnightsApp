@@ -15,6 +15,8 @@ fun NavGraphBuilder.bookmarkNavGraph(
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
 ) {
     composable<MainTabRoute.Bookmark> {
-        BookmarkRoute(onShowErrorSnackBar)
+        BookmarkRoute(
+            onShowErrorSnackBar = onShowErrorSnackBar,
+        )
     }
 }

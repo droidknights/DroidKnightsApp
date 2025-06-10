@@ -6,7 +6,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.droidknights.app.core.router.internal.viewmodel.RouteSideEffect
 import com.droidknights.app.core.router.internal.viewmodel.RouterViewModel
@@ -36,14 +35,7 @@ private fun InternalLaunchedRouter(
                     }
 
                     is RouteSideEffect.Navigate -> {
-                        navHostController.navigate(sideEffect.route) {
-                            navHostController.graph.findStartDestination().route?.let {
-                                popUpTo(it) {
-                                    saveState = sideEffect.saveState
-                                }
-                            }
-                            restoreState = sideEffect.saveState
-                        }
+                        navHostController.navigate(sideEffect.route)
                     }
                 }
             }
