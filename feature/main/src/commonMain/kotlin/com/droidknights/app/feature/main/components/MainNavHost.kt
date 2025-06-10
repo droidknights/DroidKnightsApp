@@ -43,6 +43,8 @@ internal fun MainNavHost(
             },
         )
         licenseNavGraph(onBackClick = navigator::popBackStackIfNotHome)
-        mapNavGraph()
+        mapNavGraph(
+            onBackClick = navigator::popBackStackIfNotHome,
+        )
     }
 }

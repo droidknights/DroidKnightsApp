@@ -10,8 +10,12 @@ fun NavController.navigateMap() {
     navigate(MapRoute)
 }
 
-fun NavGraphBuilder.mapNavGraph() {
+fun NavGraphBuilder.mapNavGraph(
+    onBackClick: () -> Unit,
+) {
     composable<MapRoute> {
-        MapScreen()
+        MapScreen(
+            onBackClick = onBackClick,
+        )
     }
 }
