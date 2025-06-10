@@ -19,7 +19,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TopAppBar(
-    title: String,
+    title: String?,
     modifier: Modifier = Modifier,
     backgroundColor: Color = KnightsTheme.colorScheme.background,
     navigation: (@Composable (Modifier) -> Unit)? = null,
@@ -35,7 +35,7 @@ fun TopAppBar(
         Box(modifier = Modifier.fillMaxWidth()) {
             navigation?.invoke(Modifier.align(Alignment.CenterStart))
             Text(
-                text = title,
+                text = title.orEmpty(),
                 style = KnightsTheme.typography.titleSmallM,
                 modifier = Modifier.align(Alignment.Center),
             )
