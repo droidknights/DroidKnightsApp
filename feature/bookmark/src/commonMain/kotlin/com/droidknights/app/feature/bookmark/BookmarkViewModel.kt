@@ -15,9 +15,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -109,14 +106,15 @@ class BookmarkViewModel(
             return
         }
 
-        flow {
-            emit(deleteBookmarkedSessionUseCase(state.selectedSessionIds))
-        }.onEach {
-            _bookmarkUiState.update {
-                state.copy(selectedSessionIds = persistentSetOf())
-            }
-        }.catch { throwable ->
-            _errorFlow.emit(throwable)
-        }.launchIn(viewModelScope)
+        viewModelScope.launch {
+            runCatching { deleteBookmarkedSessionUseCase(state.selectedSessionIds) }
+                .onSuccess {
+                    _bookmarkUiState.update {
+                        state.copy(selectedSessionIds = persistentSetOf())
+                    }
+                }.onFailure { throwable ->
+                    _errorFlow.emit(throwable)
+                }
+        }
     }
 }
