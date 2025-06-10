@@ -1,6 +1,7 @@
 package com.droidknights.app.feature.setting
 
-import com.droidknights.app.core.navigation.MainTabRoute
+import com.droidknights.app.core.navigation.MainTabRoute.Bookmark
+import com.droidknights.app.core.navigation.MainTabRoute.Home
 import com.droidknights.app.core.router.api.Navigator
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -24,24 +25,48 @@ internal class SettingViewModelTest {
     @Test
     fun `navigate(Home)가 호출될 때 navigator에게 위임한다`() = runTest {
         // given
-        coEvery { navigator.navigate(MainTabRoute.Home, true, true) } just Runs
+        coEvery {
+            navigator.navigate(
+                route = Home,
+                saveState = Home.saveState,
+                launchSingleTop = Home.launchSingleTop,
+            )
+        } just Runs
 
         // when
         viewModel.navigateHome()
 
         // then
-        coVerify(exactly = 1) { navigator.navigate(MainTabRoute.Home, true, true) }
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = Home,
+                saveState = Home.saveState,
+                launchSingleTop = Home.launchSingleTop,
+            )
+        }
     }
 
     @Test
     fun `navigate(Bookmark)가 호출될 때 navigator에게 위임한다`() = runTest {
         // given
-        coEvery { navigator.navigate(MainTabRoute.Bookmark, true, true) } just Runs
+        coEvery {
+            navigator.navigate(
+                route = Bookmark,
+                saveState = Bookmark.saveState,
+                launchSingleTop = Bookmark.launchSingleTop,
+            )
+        } just Runs
 
         // when
         viewModel.navigateBookmark()
 
         // then
-        coVerify(exactly = 1) { navigator.navigate(MainTabRoute.Bookmark, true, true) }
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = Bookmark,
+                saveState = Bookmark.saveState,
+                launchSingleTop = Bookmark.launchSingleTop,
+            )
+        }
     }
 }

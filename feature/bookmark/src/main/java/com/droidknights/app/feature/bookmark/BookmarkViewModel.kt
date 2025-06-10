@@ -130,11 +130,19 @@ class BookmarkViewModel @Inject constructor(
     }
 
     fun navigateSetting() = viewModelScope.launch {
-        navigator.navigate(route = Setting, saveState = true, launchSingleTop = true)
+        navigator.navigate(
+            route = Setting,
+            saveState = Setting.saveState,
+            launchSingleTop = Setting.launchSingleTop,
+        )
     }
 
     fun navigateHome() = viewModelScope.launch {
-        navigator.navigate(route = Home, saveState = true, launchSingleTop = true)
+        navigator.navigate(
+            route = Home,
+            saveState = Home.saveState,
+            launchSingleTop = Home.launchSingleTop,
+        )
     }
 
     fun redirectToSessionScreen(session: Session) {

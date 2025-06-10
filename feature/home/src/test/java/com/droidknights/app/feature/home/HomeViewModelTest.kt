@@ -83,27 +83,51 @@ internal class HomeViewModelTest {
     @Test
     fun `navigate(Setting)가 호출될 때 navigator에게 위임한다`() = runTest {
         // given
-        coEvery { navigator.navigate(Setting, true, true) } just Runs
+        coEvery {
+            navigator.navigate(
+                route = Setting,
+                saveState = Setting.saveState,
+                launchSingleTop = Setting.launchSingleTop,
+            )
+        } just Runs
         viewModel = HomeViewModel(getSponsorsUseCase, navigator)
 
         // when
         viewModel.navigateSetting()
 
         // then
-        coVerify(exactly = 1) { navigator.navigate(Setting, true, true) }
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = Setting,
+                saveState = Setting.saveState,
+                launchSingleTop = Setting.launchSingleTop,
+            )
+        }
     }
 
     @Test
     fun `navigate(Bookmark)가 호출될 때 navigator에게 위임한다`() = runTest {
         // given
-        coEvery { navigator.navigate(Bookmark, true, true) } just Runs
+        coEvery {
+            navigator.navigate(
+                route = Bookmark,
+                saveState = Bookmark.saveState,
+                launchSingleTop = Bookmark.launchSingleTop,
+            )
+        } just Runs
         viewModel = HomeViewModel(getSponsorsUseCase, navigator)
 
         // when
         viewModel.navigateBookmark()
 
         // then
-        coVerify(exactly = 1) { navigator.navigate(Bookmark, true, true) }
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = Bookmark,
+                saveState = Bookmark.saveState,
+                launchSingleTop = Bookmark.launchSingleTop,
+            )
+        }
     }
 
     companion object {

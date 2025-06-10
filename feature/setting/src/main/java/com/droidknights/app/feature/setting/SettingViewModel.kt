@@ -15,10 +15,18 @@ class SettingViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun navigateHome() = viewModelScope.launch {
-        navigator.navigate(Home, true, true)
+        navigator.navigate(
+            route = Home,
+            saveState = Home.saveState,
+            launchSingleTop = Home.launchSingleTop,
+        )
     }
 
     fun navigateBookmark() = viewModelScope.launch {
-        navigator.navigate(Bookmark, true, true)
+        navigator.navigate(
+            route = Bookmark,
+            saveState = Bookmark.saveState,
+            launchSingleTop = Bookmark.launchSingleTop,
+        )
     }
 }

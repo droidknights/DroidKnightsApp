@@ -7,7 +7,8 @@ import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.model.session.Tag
-import com.droidknights.app.core.navigation.MainTabRoute
+import com.droidknights.app.core.navigation.MainTabRoute.Home
+import com.droidknights.app.core.navigation.MainTabRoute.Setting
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
@@ -189,9 +190,9 @@ class BookmarkViewModelTest {
         )
         coEvery {
             navigator.navigate(
-                route = MainTabRoute.Home,
-                saveState = true,
-                launchSingleTop = true,
+                route = Home,
+                saveState = Home.saveState,
+                launchSingleTop = Home.launchSingleTop,
             )
         } just Runs
 
@@ -201,9 +202,9 @@ class BookmarkViewModelTest {
         // then
         coVerify(exactly = 1) {
             navigator.navigate(
-                route = MainTabRoute.Home,
-                saveState = true,
-                launchSingleTop = true,
+                route = Home,
+                saveState = Home.saveState,
+                launchSingleTop = Home.launchSingleTop,
             )
         }
     }
@@ -218,9 +219,9 @@ class BookmarkViewModelTest {
         )
         coEvery {
             navigator.navigate(
-                route = MainTabRoute.Setting,
-                saveState = true,
-                launchSingleTop = true,
+                route = Setting,
+                saveState = Setting.saveState,
+                launchSingleTop = Setting.launchSingleTop,
             )
         } just Runs
 
@@ -230,9 +231,9 @@ class BookmarkViewModelTest {
         // then
         coVerify(exactly = 1) {
             navigator.navigate(
-                route = MainTabRoute.Setting,
-                saveState = true,
-                launchSingleTop = true,
+                route = Setting,
+                saveState = Setting.saveState,
+                launchSingleTop = Setting.launchSingleTop,
             )
         }
     }
