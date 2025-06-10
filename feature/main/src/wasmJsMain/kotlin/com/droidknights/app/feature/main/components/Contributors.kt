@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.NetworkImage
 import com.droidknights.app.core.designsystem.components.Text
@@ -40,7 +41,7 @@ internal fun Contributors(
                         .size(80.dp)
                         .border(
                             width = 1.6295.dp,
-                            color = KnightsTheme.colorScheme.onBackground,
+                            color = Color.White,
                             shape = RoundedCornerShape(80.dp),
                         )
                         .clickable {
