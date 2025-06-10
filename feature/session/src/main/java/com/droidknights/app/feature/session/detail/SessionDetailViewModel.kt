@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.usecase.api.BookmarkSessionUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetSessionUseCase
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.feature.session.detail.model.SessionDetailEffect
 import com.droidknights.app.feature.session.detail.model.SessionDetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +22,7 @@ class SessionDetailViewModel @Inject constructor(
     private val getSessionUseCase: GetSessionUseCase,
     getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase,
     private val bookmarkSessionUseCase: BookmarkSessionUseCase,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     private val _sessionUiState =
@@ -69,5 +71,9 @@ class SessionDetailViewModel @Inject constructor(
         viewModelScope.launch {
             _sessionUiEffect.value = SessionDetailEffect.Idle
         }
+    }
+
+    fun navigateBack() = viewModelScope.launch {
+        navigator.navigateBack()
     }
 }
