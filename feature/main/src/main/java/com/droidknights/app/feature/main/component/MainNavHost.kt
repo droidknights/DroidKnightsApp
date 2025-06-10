@@ -37,6 +37,7 @@ internal fun MainNavHost(
                 padding = padding,
                 onShowErrorSnackBar = onShowErrorSnackBar,
             )
+
             settingNavGraph(
                 selectedTabRoute = navigator.selectedTabRoute,
                 padding = padding,
