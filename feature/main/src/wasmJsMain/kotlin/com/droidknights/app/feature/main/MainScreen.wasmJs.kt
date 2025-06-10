@@ -91,10 +91,10 @@ private fun MainDesktopScreen(
             onProjectBranchClick = {
                 uriHandler.openUri(it.url)
             },
-            modifier = Modifier.padding(16.dp, 20.dp),
+            modifier = Modifier.padding(top = 40.dp, bottom = 20.dp),
         )
         Row(
-            horizontalArrangement = Arrangement.spacedBy(165.dp)
+            horizontalArrangement = Arrangement.spacedBy(144.dp)
         ) {
             ProjectDescription(
                 onContributorClick = {
@@ -104,11 +104,11 @@ private fun MainDesktopScreen(
                     .verticalScroll(rememberScrollState())
                     .weight(1F)
                     .fillMaxHeight()
-                    .padding(16.dp, 20.dp),
+                    .padding(start = 58.dp),
             )
             DeviceFrame(
                 modifier = Modifier
-                    .padding(16.dp, 20.dp)
+                    .padding(vertical = 36.dp)
                     .width(360.dp)
                     .heightIn(min = 400.dp, max = 800.dp)
                     .fillMaxHeight(),

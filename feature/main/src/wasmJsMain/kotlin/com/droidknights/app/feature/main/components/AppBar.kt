@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.main.model.ProjectBranch
@@ -28,7 +31,11 @@ internal fun AppBar(
         Column {
             Text(
                 text = "2025 Conference APP",
-                style = KnightsTheme.typography.displayMediumEB,
+                style = TextStyle(
+                    fontSize = 48.sp,
+                    lineHeight = 58.sp,
+                    fontWeight = FontWeight.Bold,
+                ),
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(

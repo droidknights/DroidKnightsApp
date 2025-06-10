@@ -22,7 +22,7 @@ internal fun ProjectDescription(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.padding(vertical = 100.dp),
+        modifier = modifier.padding(vertical = 119.dp),
     ) {
         Contributors(
             title = "2025",

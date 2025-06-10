@@ -10,7 +10,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.droidknights.app.core.designsystem.components.Icon
 import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
@@ -28,9 +31,8 @@ internal fun ProjectBranchButtons(
     branches: PersistentList<ProjectBranch>,
     modifier: Modifier = Modifier,
 ) {
-    FlowRow(
+    Row(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         branches.forEach { branch ->
@@ -53,7 +55,7 @@ private fun ProjectBranchButton(
             onClick(branch)
         },
         modifier = modifier,
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(8.dp),
         color = KnightsTheme.colorScheme.primarySurface,
     ) {
         Row(
@@ -69,12 +71,18 @@ private fun ProjectBranchButton(
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Text(
                     text = branch.name,
-                    style = KnightsTheme.typography.titleLargeBL,
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    ),
                     maxLines = 1,
                 )
                 Text(
                     text = "#${branch.tag}",
-                    style = KnightsTheme.typography.titleMediumR,
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Normal
+                    ),
                     color = LocalContentColor.current.copy(alpha = 0.5F),
                     maxLines = 1,
                 )
