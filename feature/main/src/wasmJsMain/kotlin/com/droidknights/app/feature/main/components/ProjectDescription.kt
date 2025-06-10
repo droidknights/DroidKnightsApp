@@ -32,7 +32,7 @@ internal fun ProjectDescription(
 
         Sponsors(
             title = "후원자",
-            sponsors = sponsors2025
+            sponsors = sponsors2025,
         )
         Spacer(modifier = Modifier.height(58.dp))
 

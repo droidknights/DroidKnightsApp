@@ -2,16 +2,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 internal fun Sponsors(
     title: String,
-    sponsors: List<String>,
-    modifier: Modifier = Modifier,
+    sponsors: ImmutableList<String>,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(28.dp),
@@ -21,7 +20,7 @@ internal fun Sponsors(
             style = KnightsTheme.typography.headlineSmallBL,
         )
         FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(20.dp)
+            horizontalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             sponsors.forEach { sponsor ->
                 Text(

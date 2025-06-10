@@ -23,7 +23,6 @@ internal fun MobileContributors(
     title: String,
     contributors: PersistentList<Contributor>,
     onClick: (Contributor) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -42,7 +41,7 @@ internal fun MobileContributors(
                         .border(
                             width = 1.dp,
                             color = KnightsTheme.colorScheme.onBackground,
-                            shape = RoundedCornerShape(32.dp)
+                            shape = RoundedCornerShape(32.dp),
                         )
                         .clickable {
                             onClick(contributor)

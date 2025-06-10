@@ -1,6 +1,7 @@
 package com.droidknights.app.feature.main.model
+import kotlinx.collections.immutable.persistentListOf
 
-internal val sponsors2025 = listOf(
+internal val sponsors2025 = persistentListOf(
     "김지후",
     "이서연",
     "박도현",
@@ -15,5 +16,5 @@ internal val sponsors2025 = listOf(
     "조현우",
     "서지후",
     "문가은",
-    "노태양"
+    "노태양",
 )

@@ -181,8 +181,8 @@ private fun MainMobileScreen(
                             top = 56.dp,
                             bottom = 8.dp,
                             start = 24.dp,
-                            end = 24.dp
-                        )
+                            end = 24.dp,
+                        ),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     MobileProjectDescription(
@@ -206,11 +206,10 @@ private fun MainMobileScreen(
                         val offsetY by infiniteTransition.animateFloat(
                             initialValue = 0F,
                             targetValue = -4F,
-                            animationSpec =
-                                infiniteRepeatable(
-                                    animation = tween(500),
-                                    repeatMode = RepeatMode.Reverse,
-                                ),
+                            animationSpec = infiniteRepeatable(
+                                animation = tween(500),
+                                repeatMode = RepeatMode.Reverse,
+                            ),
                         )
                         MultiPlatformButton(
                             text = "멀티플랫폼 앱 체험하기",
@@ -237,5 +236,3 @@ private enum class MainMobileMode {
 }
 
 private val WideWidth = 1280.dp
-private const val ProjectUrl =
-    "https://github.com/droidknights/DroidKnightsApp/tree/2025/compose-multiplatform"

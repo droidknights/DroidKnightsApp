@@ -28,7 +28,7 @@ internal fun MobileProjectDescription(
         MobileProjectBranchButtons(
             onClick = onBranchButtonsClick,
             branches = branches2025,
-            modifier = Modifier.padding(vertical = 16.dp)
+            modifier = Modifier.padding(vertical = 16.dp),
         )
         MobileContributors(
             title = "2025",
@@ -39,7 +39,7 @@ internal fun MobileProjectDescription(
 
         MobileSponsors(
             title = "후원자",
-            sponsors = sponsors2025
+            sponsors = sponsors2025,
         )
         Spacer(modifier = Modifier.height(32.dp))
 

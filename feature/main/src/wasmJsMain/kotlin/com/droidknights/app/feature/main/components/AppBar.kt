@@ -23,7 +23,7 @@ internal fun AppBar(
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Column {
             Text(
@@ -36,7 +36,6 @@ internal fun AppBar(
                 style = KnightsTheme.typography.headlineLargeSB,
             )
         }
-
 
         ProjectBranchButtons(
             onClick = onProjectBranchClick,

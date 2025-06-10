@@ -23,7 +23,6 @@ internal fun Contributors(
     title: String,
     contributors: PersistentList<Contributor>,
     onClick: (Contributor) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(28.dp),
@@ -42,7 +41,7 @@ internal fun Contributors(
                         .border(
                             width = 1.6295.dp,
                             color = KnightsTheme.colorScheme.onBackground,
-                            shape = RoundedCornerShape(80.dp)
+                            shape = RoundedCornerShape(80.dp),
                         )
                         .clickable {
                             onClick(contributor)
