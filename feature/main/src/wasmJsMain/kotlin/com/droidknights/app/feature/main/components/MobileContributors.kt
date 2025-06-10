@@ -3,8 +3,8 @@ package com.droidknights.app.feature.main.components
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,18 +19,18 @@ import com.droidknights.app.feature.main.model.Contributor
 import kotlinx.collections.immutable.PersistentList
 
 @Composable
-internal fun Contributors(
+internal fun MobileContributors(
     title: String,
     contributors: PersistentList<Contributor>,
     onClick: (Contributor) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(28.dp),
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
             text = title,
-            style = KnightsTheme.typography.headlineSmallBL,
+            style = KnightsTheme.typography.titleSmallB,
         )
         FlowRow {
             contributors.forEach { contributor ->
@@ -38,11 +38,11 @@ internal fun Contributors(
                     imageUrl = contributor.imageUrl,
                     modifier = Modifier
                         .clip(CircleShape)
-                        .size(80.dp)
+                        .size(32.dp)
                         .border(
-                            width = 1.6295.dp,
+                            width = 1.dp,
                             color = KnightsTheme.colorScheme.onBackground,
-                            shape = RoundedCornerShape(80.dp)
+                            shape = RoundedCornerShape(32.dp)
                         )
                         .clickable {
                             onClick(contributor)
