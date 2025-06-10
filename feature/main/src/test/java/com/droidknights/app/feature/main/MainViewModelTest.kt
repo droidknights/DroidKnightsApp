@@ -1,7 +1,6 @@
 package com.droidknights.app.feature.main
 
 import com.droidknights.app.core.data.settings.api.SettingsRepository
-import com.droidknights.app.core.navigation.MainTabRoute
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.session.api.RouteSessionDetail
@@ -57,7 +56,7 @@ class MainViewModelTest {
 
     @Test
     fun `navigate(RouteSessionDetail)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given: suspend 함수 호출에 대한 stub
+        // given
         val fakeSessionId = "1"
         coEvery { navigator.navigate(RouteSessionDetail(fakeSessionId)) } just Runs
 
@@ -66,49 +65,5 @@ class MainViewModelTest {
 
         // then
         coVerify(exactly = 1) { navigator.navigate(RouteSessionDetail(fakeSessionId)) }
-    }
-
-    @Test
-    fun `navigate(Home)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given: suspend 함수 호출에 대한 stub
-        val route = MainTabRoute.Home
-        coEvery { navigator.navigate(route, LAUNCH_SINGLE_TOP, SAVE_STATE) } just Runs
-
-        // when
-        viewModel.navigateTab(route, LAUNCH_SINGLE_TOP, SAVE_STATE)
-
-        // then
-        coVerify(exactly = 1) { navigator.navigate(route, LAUNCH_SINGLE_TOP, SAVE_STATE) }
-    }
-
-    @Test
-    fun `navigate(Setting)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given: suspend 함수 호출에 대한 stub
-        val route = MainTabRoute.Setting
-        coEvery { navigator.navigate(route, LAUNCH_SINGLE_TOP, SAVE_STATE) } just Runs
-
-        // when
-        viewModel.navigateTab(route, LAUNCH_SINGLE_TOP, SAVE_STATE)
-
-        // then
-        coVerify(exactly = 1) { navigator.navigate(route, LAUNCH_SINGLE_TOP, SAVE_STATE) }
-    }
-
-    @Test
-    fun `navigate(Bookmark)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given: suspend 함수 호출에 대한 stub
-        val route = MainTabRoute.Bookmark
-        coEvery { navigator.navigate(route, LAUNCH_SINGLE_TOP, SAVE_STATE) } just Runs
-
-        // when
-        viewModel.navigateTab(route, LAUNCH_SINGLE_TOP, SAVE_STATE)
-
-        // then
-        coVerify(exactly = 1) { navigator.navigate(route, LAUNCH_SINGLE_TOP, SAVE_STATE) }
-    }
-
-    companion object {
-        private const val SAVE_STATE = true
-        private const val LAUNCH_SINGLE_TOP = true
     }
 }
