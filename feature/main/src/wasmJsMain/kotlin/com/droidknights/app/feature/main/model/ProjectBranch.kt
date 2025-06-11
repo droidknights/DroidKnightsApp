@@ -16,7 +16,7 @@ internal val branches2025 = persistentListOf(
     ),
     ProjectBranch(
         name = "2025/compose-multiplatform",
-        tag = "Multiplatform",
+        tag = "Architecture",
         url = "https://github.com/droidknights/DroidKnightsApp/tree/2025/compose-multiplatform",
     ),
 )

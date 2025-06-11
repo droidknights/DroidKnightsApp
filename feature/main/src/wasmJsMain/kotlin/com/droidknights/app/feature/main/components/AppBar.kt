@@ -1,47 +1,95 @@
 package com.droidknights.app.feature.main.components
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.components.Icon
-import droidknights.feature.main.generated.resources.Res
-import droidknights.feature.main.generated.resources.ic_github
-import droidknights.feature.main.generated.resources.web_logo
-import org.jetbrains.compose.resources.painterResource
+import androidx.compose.ui.unit.sp
+import com.droidknights.app.core.designsystem.components.Text
+import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.feature.main.model.ProjectBranch
+import com.droidknights.app.feature.main.model.branches2025
 
 @Composable
 internal fun AppBar(
+    isMobile: Boolean,
     modifier: Modifier = Modifier,
-    onGithubClick: () -> Unit,
+    onProjectBranchClick: (ProjectBranch) -> Unit = {},
 ) {
-    Box(modifier.fillMaxWidth()) {
-        Icon(
-            modifier = Modifier
-                .padding(16.dp, 20.dp)
-                .height(40.dp)
-                .align(Alignment.CenterStart),
-            painter = painterResource(Res.drawable.web_logo),
-            contentDescription = null,
+    if (isMobile) {
+        MobileAppBar(
+            modifier,
         )
+    } else {
+        DesktopAppBar(
+            modifier,
+            onProjectBranchClick,
+        )
+    }
+}
 
-        Icon(
-            painter = painterResource(Res.drawable.ic_github),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(16.dp, 20.dp)
-                .clip(CircleShape)
-                .size(40.dp)
-                .clickable(onClick = onGithubClick)
-                .align(Alignment.CenterEnd),
+@Composable
+private fun DesktopAppBar(
+    modifier: Modifier = Modifier,
+    onProjectBranchClick: (ProjectBranch) -> Unit,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column {
+            Text(
+                text = "2025 Conference APP",
+                style = TextStyle(
+                    fontSize = 48.sp,
+                    lineHeight = 58.sp,
+                    fontWeight = FontWeight.Bold,
+                ),
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "드로이드나이츠 앱의 컨트리뷰터가 되어주세요!",
+                style = KnightsTheme.typography.headlineLargeSB,
+            )
+        }
+
+        ProjectBranchButtons(
+            isMobile = false,
+            onClick = onProjectBranchClick,
+            branches = branches2025,
         )
+    }
+}
+
+@Composable
+private fun MobileAppBar(
+    modifier: Modifier = Modifier,
+) {
+    FlowRow(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Column {
+            Text(
+                text = "2025 Conference APP",
+                style = KnightsTheme.typography.headlineMediumB,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "드로이드나이츠 앱의 컨트리뷰터가 되어주세요!",
+                style = KnightsTheme.typography.titleMediumB,
+            )
+        }
     }
 }
