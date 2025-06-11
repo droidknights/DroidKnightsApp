@@ -47,7 +47,6 @@ import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.main.components.AppBar
 import com.droidknights.app.feature.main.components.DeviceFrame
-import com.droidknights.app.feature.main.components.MobileAppBar
 import com.droidknights.app.feature.main.components.MobileProjectDescription
 import com.droidknights.app.feature.main.components.MultiPlatformButton
 import com.droidknights.app.feature.main.components.ProjectDescription
@@ -83,15 +82,17 @@ private fun MainDesktopScreen(
     modifier: Modifier = Modifier,
 ) {
     val uriHandler = LocalUriHandler.current
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = modifier,
     ) {
         AppBar(
+            isMobile = false,
+            modifier = Modifier.padding(top = 40.dp, bottom = 20.dp),
             onProjectBranchClick = {
                 uriHandler.openUri(it.url)
             },
-            modifier = Modifier.padding(top = 40.dp, bottom = 20.dp),
         )
         Row(
             horizontalArrangement = Arrangement.spacedBy(144.dp)
@@ -101,10 +102,10 @@ private fun MainDesktopScreen(
                     uriHandler.openUri(it.profileUrl)
                 },
                 modifier = Modifier
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(scrollState)
                     .weight(1F)
                     .fillMaxHeight()
-                    .padding(start = 58.dp),
+                    .padding(start = 58.dp)
             )
             DeviceFrame(
                 modifier = Modifier
@@ -179,7 +180,8 @@ private fun MainMobileScreen(
                 Column(
                     modifier = modifier,
                 ) {
-                    MobileAppBar(
+                    AppBar(
+                        isMobile = true,
                         modifier = Modifier.padding(
                             top = 56.dp,
                             bottom = 8.dp,

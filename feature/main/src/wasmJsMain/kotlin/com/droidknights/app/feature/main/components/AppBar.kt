@@ -2,6 +2,7 @@ package com.droidknights.app.feature.main.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,8 +21,26 @@ import com.droidknights.app.feature.main.model.branches2025
 
 @Composable
 internal fun AppBar(
-    onProjectBranchClick: (ProjectBranch) -> Unit,
+    isMobile: Boolean,
     modifier: Modifier = Modifier,
+    onProjectBranchClick: (ProjectBranch) -> Unit = {},
+) {
+    if (isMobile) {
+        MobileAppBar(
+            modifier
+        )
+    } else {
+        DesktopAppBar(
+            modifier,
+            onProjectBranchClick,
+        )
+    }
+}
+
+@Composable
+private fun DesktopAppBar(
+    modifier: Modifier = Modifier,
+    onProjectBranchClick: (ProjectBranch) -> Unit,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -48,5 +67,28 @@ internal fun AppBar(
             onClick = onProjectBranchClick,
             branches = branches2025,
         )
+    }
+}
+
+@Composable
+private fun MobileAppBar(
+    modifier: Modifier = Modifier,
+) {
+    FlowRow(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Column {
+            Text(
+                text = "2025 Conference APP",
+                style = KnightsTheme.typography.headlineMediumB,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "드로이드나이츠 앱의 컨트리뷰터가 되어주세요!",
+                style = KnightsTheme.typography.titleMediumB,
+            )
+        }
     }
 }
