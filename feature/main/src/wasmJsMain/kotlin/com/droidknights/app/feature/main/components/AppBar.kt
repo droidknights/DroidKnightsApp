@@ -64,6 +64,7 @@ private fun DesktopAppBar(
         }
 
         ProjectBranchButtons(
+            isMobile = false,
             onClick = onProjectBranchClick,
             branches = branches2025,
         )

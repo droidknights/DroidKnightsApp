@@ -29,7 +29,8 @@ internal fun ProjectDescription(
         modifier = if (isMobile) modifier.padding(bottom = 28.dp) else modifier.padding(vertical = 119.dp)
     ) {
         if (isMobile) {
-            MobileProjectBranchButtons(
+            ProjectBranchButtons(
+                isMobile = isMobile,
                 onClick = onBranchButtonsClick,
                 branches = branches2025,
                 modifier = Modifier.padding(vertical = 16.dp),
@@ -43,6 +44,7 @@ internal fun ProjectDescription(
         )
         Spacer(modifier = if (isMobile) Modifier.height(24.dp) else Modifier.height(55.dp))
         Sponsors(
+            isMobile = isMobile,
             title = "후원자",
             sponsors = sponsors2025,
         )

@@ -47,7 +47,6 @@ import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.main.components.AppBar
 import com.droidknights.app.feature.main.components.DeviceFrame
-import com.droidknights.app.feature.main.components.MobileProjectDescription
 import com.droidknights.app.feature.main.components.MultiPlatformButton
 import com.droidknights.app.feature.main.components.ProjectDescription
 

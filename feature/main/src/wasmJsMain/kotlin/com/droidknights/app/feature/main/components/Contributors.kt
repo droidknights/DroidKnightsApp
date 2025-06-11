@@ -3,6 +3,7 @@ package com.droidknights.app.feature.main.components
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
@@ -26,11 +27,13 @@ internal fun Contributors(
     contributors: PersistentList<Contributor>,
     onClick: (Contributor) -> Unit,
 ) {
-    Row(
-        horizontalArrangement = if (isMobile) Arrangement.spacedBy(16.dp) else Arrangement.spacedBy(
-            28.dp
-        ),
-    ) {
+    val layout: @Composable (@Composable () -> Unit) -> Unit =
+        if (isMobile) {
+            { content -> Column(verticalArrangement = Arrangement.spacedBy(16.dp)) { content() } }
+        } else {
+            { content -> Row(horizontalArrangement = Arrangement.spacedBy(28.dp)) { content() } }
+        }
+    layout {
         Text(
             text = title,
             style = if (isMobile) KnightsTheme.typography.titleSmallB else KnightsTheme.typography.headlineSmallBL,
