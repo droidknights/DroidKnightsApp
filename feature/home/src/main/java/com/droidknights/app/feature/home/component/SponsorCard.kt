@@ -59,7 +59,7 @@ private fun SponsorCardContents(
 ) {
     val resources = LocalContext.current.resources
     val description = remember {
-        val organizationDescriptions = organizationSponsors
+        val organizationDescriptions = Sponsor.organizations
             .groupBy { it.tier }
             .mapValues { (_, sponsors) -> sponsors.size }
             .mapNotNull { (tier, count) ->
@@ -76,7 +76,7 @@ private fun SponsorCardContents(
             }
 
         val individualDescription = listOfNotNull(
-            individualSponsors
+            Sponsor.individuals
             .takeIf { it.isNotEmpty() }
             ?.let {
                 resources.getString(
@@ -121,7 +121,7 @@ private fun SponsorCardContents(
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    organizationSponsors.forEach {
+                    Sponsor.organizations.forEach {
                         OrganizationSponsor(
                             sponsor = it,
                             onClick = {
@@ -211,7 +211,7 @@ private fun IndividualSponsors(
                 .padding(8.dp, 11.dp),
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
-            individualSponsors.forEach {
+            Sponsor.individuals.forEach {
                 Text(
                     text = it.name,
                     style = KnightsTheme.typography.labelSmallM,
@@ -222,39 +222,6 @@ private fun IndividualSponsors(
         }
     }
 }
-
-private val organizationSponsors = listOf(
-    Sponsor.Organization(
-        tier = Sponsor.Organization.Tier.Platinum,
-        name = "RevenueCat",
-        logoRes = R.drawable.sponsor_logo_revenue_cat,
-        url = "https://www.revenuecat.com"
-    ),
-    Sponsor.Organization(
-        tier = Sponsor.Organization.Tier.Gold,
-        name = "JetBrains",
-        logoRes = R.drawable.sponsor_logo_jetbrains,
-        url = "https://www.jetbrains.com/"
-    )
-)
-
-private val individualSponsors = listOf(
-    Sponsor.Individual(name = "경창현"),
-    Sponsor.Individual(name = "김태우"),
-    Sponsor.Individual(name = "남궁혜인"),
-    Sponsor.Individual(name = "박덕성"),
-    Sponsor.Individual(name = "심석보"),
-    Sponsor.Individual(name = "오홍태"),
-    Sponsor.Individual(name = "이재일"),
-    Sponsor.Individual(name = "이현민"),
-    Sponsor.Individual(name = "임태우"),
-    Sponsor.Individual(name = "장보미"),
-    Sponsor.Individual(name = "정태훈"),
-    Sponsor.Individual(name = "정현아"),
-    Sponsor.Individual(name = "최익환"),
-    Sponsor.Individual(name = "황은미"),
-    Sponsor.Individual(name = "황창훈"),
-)
 
 @Composable
 private fun SponsorCardSkeleton(
