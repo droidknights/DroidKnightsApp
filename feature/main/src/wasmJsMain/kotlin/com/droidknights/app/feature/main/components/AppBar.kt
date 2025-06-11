@@ -27,7 +27,7 @@ internal fun AppBar(
 ) {
     if (isMobile) {
         MobileAppBar(
-            modifier
+            modifier,
         )
     } else {
         DesktopAppBar(

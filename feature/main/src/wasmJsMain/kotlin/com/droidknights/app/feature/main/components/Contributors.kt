@@ -42,17 +42,19 @@ internal fun Contributors(
             contributors.forEach { contributor ->
                 NetworkImage(
                     imageUrl = contributor.imageUrl,
-                    modifier = if (isMobile) Modifier
-                        .clip(CircleShape)
-                        .size(32.dp)
-                        .border(
-                            width = 1.dp,
-                            color = Color.White,
-                            shape = RoundedCornerShape(32.dp),
-                        )
-                        .clickable {
-                            onClick(contributor)
-                        } else
+                    modifier = if (isMobile) {
+                        Modifier
+                            .clip(CircleShape)
+                            .size(32.dp)
+                            .border(
+                                width = 1.dp,
+                                color = Color.White,
+                                shape = RoundedCornerShape(32.dp),
+                            )
+                            .clickable {
+                                onClick(contributor)
+                            }
+                    } else {
                         Modifier
                             .clip(CircleShape)
                             .size(80.dp)
@@ -63,7 +65,8 @@ internal fun Contributors(
                             )
                             .clickable {
                                 onClick(contributor)
-                            },
+                            }
+                    },
                 )
             }
         }

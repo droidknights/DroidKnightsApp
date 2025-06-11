@@ -38,13 +38,12 @@ internal fun ProjectBranchButtons(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         branches.forEach { branch ->
-            if(isMobile) {
+            if (isMobile) {
                 MobileProjectBranchButton(
                     onClick = onClick,
                     branch = branch,
                 )
-            }
-            else {
+            } else {
                 DesktopProjectBranchButton(
                     onClick = onClick,
                     branch = branch,
@@ -83,7 +82,7 @@ private fun DesktopProjectBranchButton(
                     text = branch.name,
                     style = TextStyle(
                         fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     ),
                     maxLines = 1,
                 )
@@ -91,7 +90,7 @@ private fun DesktopProjectBranchButton(
                     text = "#${branch.tag}",
                     style = TextStyle(
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Normal
+                        fontWeight = FontWeight.Normal,
                     ),
                     color = LocalContentColor.current.copy(alpha = 0.5F),
                     maxLines = 1,

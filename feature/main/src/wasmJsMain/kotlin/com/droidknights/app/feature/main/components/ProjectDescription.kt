@@ -10,11 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.HorizontalDivider
-import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.main.model.Contributor
 import com.droidknights.app.feature.main.model.ProjectBranch
 import com.droidknights.app.feature.main.model.branches2025
-import com.droidknights.app.feature.main.model.contributors2023
 import com.droidknights.app.feature.main.model.contributors2024
 import com.droidknights.app.feature.main.model.sponsors2025
 
@@ -26,7 +24,7 @@ internal fun ProjectDescription(
     onBranchButtonsClick: (ProjectBranch) -> Unit = {},
 ) {
     Column(
-        modifier = if (isMobile) modifier.padding(bottom = 28.dp) else modifier.padding(vertical = 119.dp)
+        modifier = if (isMobile) modifier.padding(bottom = 28.dp) else modifier.padding(vertical = 119.dp),
     ) {
         if (isMobile) {
             ProjectBranchButtons(
@@ -64,6 +62,5 @@ internal fun ProjectDescription(
             contributors = contributors2024,
             onClick = onContributorClick,
         )
-
     }
 }

@@ -94,7 +94,7 @@ private fun MainDesktopScreen(
             },
         )
         Row(
-            horizontalArrangement = Arrangement.spacedBy(144.dp)
+            horizontalArrangement = Arrangement.spacedBy(144.dp),
         ) {
             ProjectDescription(
                 onContributorClick = {
@@ -105,7 +105,7 @@ private fun MainDesktopScreen(
                     .verticalScroll(scrollState)
                     .weight(1F)
                     .fillMaxHeight()
-                    .padding(start = 58.dp)
+                    .padding(start = 58.dp),
             )
             DeviceFrame(
                 modifier = Modifier
@@ -201,8 +201,7 @@ private fun MainMobileScreen(
                             .fillMaxHeight()
                             .padding(horizontal = 24.dp),
                         onBranchButtonsClick = { uriHandler.openUri(it.url) },
-
-                        )
+                    )
                     Box(
                         modifier = Modifier.fillMaxWidth()
                             .padding(16.dp),
