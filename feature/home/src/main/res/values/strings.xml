@@ -6,7 +6,5 @@
     <string name="session_card_title_two">올해 세션을 소개합니다</string>
     <string name="session_card_caption">스피커 라인업 &amp; 세션 목록</string>
     <string name="sponsor_card_title">후원 감사합니다</string>
-    <string name="sponsor_card_desc_platinum_template">플래티넘 %d곳</string>
-    <string name="sponsor_card_desc_gold_template">골드 %d곳</string>
-    <string name="sponsor_card_desc_individual_template">개인 후원 %d명</string>
+    <string name="sponsor_card_desc_template">플래티넘 1곳, 골드 1곳, 실버 1곳, 개인 후원 %d명</string>
 </resources>

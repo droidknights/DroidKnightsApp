@@ -12,7 +12,28 @@ internal sealed class Sponsor {
         val url: String,
     ) : Sponsor() {
         enum class Tier {
-            Platinum, Gold
+            Platinum, Gold, Silver
+        }
+
+        companion object {
+            val revenueCat = Organization(
+                tier = Tier.Platinum,
+                name = "RevenueCat",
+                logoRes = R.drawable.sponsor_logo_revenue_cat,
+                url = "https://www.revenuecat.com"
+            )
+            val jetBrains = Organization(
+                tier = Tier.Gold,
+                name = "JetBrains",
+                logoRes = R.drawable.sponsor_logo_jetbrains,
+                url = "https://www.jetbrains.com/"
+            )
+            val koin = Organization(
+                tier = Tier.Silver,
+                name = "Koin",
+                logoRes = R.drawable.sponsor_logo_koin,
+                url = "https://insert-koin.io/"
+            )
         }
     }
     data class Individual(
@@ -20,21 +41,6 @@ internal sealed class Sponsor {
     ) : Sponsor()
 
     companion object {
-        val organizations = listOf(
-            Organization(
-                tier = Organization.Tier.Platinum,
-                name = "RevenueCat",
-                logoRes = R.drawable.sponsor_logo_revenue_cat,
-                url = "https://www.revenuecat.com"
-            ),
-            Organization(
-                tier = Organization.Tier.Gold,
-                name = "JetBrains",
-                logoRes = R.drawable.sponsor_logo_jetbrains,
-                url = "https://www.jetbrains.com/"
-            )
-        )
-
         val individuals = listOf(
             Individual(name = "경창현"),
             Individual(name = "김태우"),
