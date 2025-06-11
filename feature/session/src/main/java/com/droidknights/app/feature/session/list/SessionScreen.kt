@@ -1,6 +1,5 @@
 package com.droidknights.app.feature.session.list
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,8 +19,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -39,6 +42,7 @@ import com.droidknights.app.feature.session.list.model.SessionState
 import com.droidknights.app.feature.session.list.model.SessionUiState
 import com.droidknights.app.feature.session.list.model.rememberSessionState
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -46,8 +50,10 @@ internal fun SessionScreen(
     onBackClick: () -> Unit,
     onSessionClick: (Session) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
+    scrollToSessionId: String? = null,
     sessionListViewModel: SessionListViewModel = hiltViewModel(),
 ) {
+    val density = LocalDensity.current
     val sessionUiState by sessionListViewModel.uiState.collectAsStateWithLifecycle()
     val sessionState = (sessionUiState as? SessionUiState.Sessions)?.sessions?.let { sessions ->
         rememberSessionState(sessions = sessions) // SessionUiState.Sessions
@@ -55,6 +61,20 @@ internal fun SessionScreen(
 
     LaunchedEffect(Unit) {
         sessionListViewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
+    }
+
+    var highlighted by remember { mutableStateOf(false) }
+
+    LaunchedEffect(scrollToSessionId, sessionState.groups) {
+        scrollToSessionId?.let { sessionId ->
+            delay(300)
+            val offset = with(density) { ((-6).dp).toPx().toInt() }
+            sessionState.scrollToSession(sessionId, offset)
+            delay(300)
+            highlighted = true
+            delay(500)
+            highlighted = false
+        }
     }
 
     Box(
@@ -67,14 +87,12 @@ internal fun SessionScreen(
         )
         SessionList(
             sessionState = sessionState,
-            onSessionClick = {
-                Log.w("TEMP", "onClick session $it")
-                onSessionClick(it)
-            },
+            onSessionClick = onSessionClick,
             modifier = Modifier
                 .systemBarsPadding()
                 .padding(top = 48.dp)
                 .fillMaxSize(),
+            highlightSessionId = if (highlighted) scrollToSessionId else null,
         )
     }
 }
@@ -84,6 +102,7 @@ private fun SessionList(
     sessionState: SessionState,
     onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier,
+    highlightSessionId: String? = null,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -104,7 +123,11 @@ private fun SessionList(
                             topPadding = if (groupIndex == 0) SessionTopSpace else SessionGroupSpace,
                         )
                     }
-                    SessionCard(session = session, onSessionClick = onSessionClick)
+                    SessionCard(
+                        session = session,
+                        isHighlighted = session.id == highlightSessionId,
+                        onSessionClick = onSessionClick,
+                    )
                 }
 
                 if (isLastGroup && isLastSession) {
@@ -144,9 +167,6 @@ private fun RoomTitle(
     }
 }
 
-private val SessionTopSpace = 16.dp
-private val SessionGroupSpace = 100.dp
-
 @Composable
 private fun DroidKnightsFooter() {
     Text(
@@ -160,3 +180,6 @@ private fun DroidKnightsFooter() {
         textAlign = TextAlign.Center
     )
 }
+
+private val SessionTopSpace = 16.dp
+private val SessionGroupSpace = 100.dp

@@ -4,7 +4,7 @@ import com.droidknights.app.core.router.api.model.Route
 
 interface Navigator {
 
-    suspend fun navigate(route: Route, saveState: Boolean = false)
+    suspend fun navigate(route: Route)
 
     suspend fun navigateWeb(url: String)
 

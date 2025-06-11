@@ -2,6 +2,9 @@ package com.droidknights.app.feature.session.list.component
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +20,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,10 +48,24 @@ import kotlinx.collections.immutable.toPersistentList
 internal fun SessionCard(
     session: Session,
     modifier: Modifier = Modifier,
+    isHighlighted: Boolean = false,
     onSessionClick: (Session) -> Unit = {},
 ) {
+    val backgroundColor by animateColorAsState(
+        targetValue = if (isHighlighted) {
+            KnightsColor.Blue03.copy(alpha = 180f)
+        } else {
+            MaterialTheme.colorScheme.surface
+        },
+        animationSpec = tween(
+            durationMillis = 300,
+            easing = FastOutSlowInEasing,
+        ),
+        label = "itemBackgroundColor",
+    )
     KnightsCard(
         modifier = modifier,
+        color = backgroundColor,
         onClick = { onSessionClick(session) }
     ) {
         SessionCardContent(session = session)

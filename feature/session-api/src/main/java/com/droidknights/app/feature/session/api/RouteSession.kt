@@ -4,4 +4,4 @@ import com.droidknights.app.core.router.api.model.Route
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object RouteSession : Route
+data class RouteSession(val sessionId: String? = null) : Route

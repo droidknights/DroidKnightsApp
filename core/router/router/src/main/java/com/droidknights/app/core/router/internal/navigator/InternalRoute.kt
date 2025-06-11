@@ -4,7 +4,7 @@ import com.droidknights.app.core.router.api.model.Route
 
 internal sealed interface InternalRoute {
 
-    data class Navigate(val route: Route, val saveState: Boolean) : InternalRoute
+    data class Navigate(val route: Route) : InternalRoute
 
     data class NavigateWeb(val url: String) : InternalRoute
 

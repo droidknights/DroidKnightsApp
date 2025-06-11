@@ -73,7 +73,25 @@ class SessionState(
         listState.animateScrollToItem(index)
     }
 
+    fun findSessionIndex(sessionId: String): Int {
+        return groups.asSequence()
+            .flatMap { it.sessions }
+            .indexOfFirst { it.id == sessionId }
+    }
+
+    suspend fun scrollToSession(sessionId: String, offsetPx: Int = 0) {
+        val index = findSessionIndex(sessionId)
+        if (index != SESSION_NOT_FOUND) {
+            listState.animateScrollToItem(
+                index = index,
+                scrollOffset = offsetPx
+            )
+        }
+    }
+
     companion object {
+
+        private const val SESSION_NOT_FOUND = -1
 
         fun Saver(
             sessions: ImmutableList<Session>,

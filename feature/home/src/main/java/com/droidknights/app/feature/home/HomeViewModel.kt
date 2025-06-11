@@ -48,7 +48,7 @@ class HomeViewModel @Inject constructor(
             )
 
     fun navigateSession() = viewModelScope.launch {
-        navigator.navigate(RouteSession)
+        navigator.navigate(RouteSession())
     }
 
     fun navigateContributor() = viewModelScope.launch {
