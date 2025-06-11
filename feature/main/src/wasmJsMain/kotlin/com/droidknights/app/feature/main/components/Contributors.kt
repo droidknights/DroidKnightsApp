@@ -22,31 +22,45 @@ import kotlinx.collections.immutable.PersistentList
 @Composable
 internal fun Contributors(
     title: String,
+    isMobile: Boolean,
     contributors: PersistentList<Contributor>,
     onClick: (Contributor) -> Unit,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(28.dp),
+        horizontalArrangement = if (isMobile) Arrangement.spacedBy(16.dp) else Arrangement.spacedBy(
+            28.dp
+        ),
     ) {
         Text(
             text = title,
-            style = KnightsTheme.typography.headlineSmallBL,
+            style = if (isMobile) KnightsTheme.typography.titleSmallB else KnightsTheme.typography.headlineSmallBL,
         )
         FlowRow {
             contributors.forEach { contributor ->
                 NetworkImage(
                     imageUrl = contributor.imageUrl,
-                    modifier = Modifier
+                    modifier = if (isMobile) Modifier
                         .clip(CircleShape)
-                        .size(80.dp)
+                        .size(32.dp)
                         .border(
-                            width = 1.6295.dp,
+                            width = 1.dp,
                             color = Color.White,
-                            shape = RoundedCornerShape(80.dp),
+                            shape = RoundedCornerShape(32.dp),
                         )
                         .clickable {
                             onClick(contributor)
-                        },
+                        } else
+                        Modifier
+                            .clip(CircleShape)
+                            .size(80.dp)
+                            .border(
+                                width = 1.6295.dp,
+                                color = Color.White,
+                                shape = RoundedCornerShape(80.dp),
+                            )
+                            .clickable {
+                                onClick(contributor)
+                            },
                 )
             }
         }

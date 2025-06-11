@@ -101,6 +101,7 @@ private fun MainDesktopScreen(
                 onContributorClick = {
                     uriHandler.openUri(it.profileUrl)
                 },
+                isMobile = false,
                 modifier = Modifier
                     .verticalScroll(scrollState)
                     .weight(1F)
@@ -190,17 +191,19 @@ private fun MainMobileScreen(
                         ),
                     )
                     Spacer(modifier = Modifier.height(12.dp))
-                    MobileProjectDescription(
-                        onBranchButtonsClick = { uriHandler.openUri(it.url) },
+                    ProjectDescription(
                         onContributorClick = {
                             uriHandler.openUri(it.profileUrl)
                         },
+                        isMobile = true,
                         modifier = Modifier
                             .verticalScroll(rememberScrollState())
                             .weight(1F)
                             .fillMaxHeight()
                             .padding(horizontal = 24.dp),
-                    )
+                        onBranchButtonsClick = { uriHandler.openUri(it.url) },
+
+                        )
                     Box(
                         modifier = Modifier.fillMaxWidth()
                             .padding(16.dp),

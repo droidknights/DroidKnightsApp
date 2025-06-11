@@ -12,43 +12,56 @@ import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.HorizontalDivider
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.main.model.Contributor
+import com.droidknights.app.feature.main.model.ProjectBranch
+import com.droidknights.app.feature.main.model.branches2025
 import com.droidknights.app.feature.main.model.contributors2023
 import com.droidknights.app.feature.main.model.contributors2024
 import com.droidknights.app.feature.main.model.sponsors2025
 
 @Composable
 internal fun ProjectDescription(
+    isMobile: Boolean,
     onContributorClick: (Contributor) -> Unit,
     modifier: Modifier = Modifier,
+    onBranchButtonsClick: (ProjectBranch) -> Unit = {},
 ) {
     Column(
-        modifier = modifier.padding(vertical = 119.dp),
+        modifier = if (isMobile) modifier.padding(bottom = 28.dp) else modifier.padding(vertical = 119.dp)
     ) {
+        if (isMobile) {
+            MobileProjectBranchButtons(
+                onClick = onBranchButtonsClick,
+                branches = branches2025,
+                modifier = Modifier.padding(vertical = 16.dp),
+            )
+        }
         Contributors(
             title = "2025",
+            isMobile = isMobile,
             contributors = contributors2024,
             onClick = onContributorClick,
         )
-        Spacer(modifier = Modifier.height(55.dp))
-
+        Spacer(modifier = if (isMobile) Modifier.height(24.dp) else Modifier.height(55.dp))
         Sponsors(
             title = "후원자",
             sponsors = sponsors2025,
         )
-        Spacer(modifier = Modifier.height(58.dp))
-
+        Spacer(modifier = if (isMobile) Modifier.height(32.dp) else Modifier.height(58.dp))
         HorizontalDivider(color = Color.White, thickness = 1.dp)
-        Spacer(modifier = Modifier.height(90.dp))
+        Spacer(modifier = if (isMobile) Modifier.height(40.dp) else Modifier.height(90.dp))
         Contributors(
             title = "2024",
+            isMobile = isMobile,
             contributors = contributors2024,
             onClick = onContributorClick,
         )
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = if (isMobile) Modifier.height(24.dp) else Modifier.height(40.dp))
         Contributors(
             title = "2023",
-            contributors = contributors2023,
+            isMobile = isMobile,
+            contributors = contributors2024,
             onClick = onContributorClick,
         )
+
     }
 }
