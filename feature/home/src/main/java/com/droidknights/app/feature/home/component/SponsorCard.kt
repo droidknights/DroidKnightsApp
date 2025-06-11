@@ -1,8 +1,6 @@
 package com.droidknights.app.feature.home.component
 
-import android.R.attr.onClick
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
@@ -36,6 +34,7 @@ import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.home.R
 import com.droidknights.app.feature.home.SponsorsUiStatePreviewParameterProvider
+import com.droidknights.app.feature.home.model.Sponsor
 import com.droidknights.app.feature.home.model.SponsorsUiState
 import com.valentinilk.shimmer.shimmer
 
@@ -224,23 +223,6 @@ private fun IndividualSponsors(
     }
 }
 
-private sealed class Sponsor {
-    data class Organization(
-        val tier: Tier,
-        val name: String,
-        @DrawableRes
-        val logoRes: Int,
-        val url: String,
-    ) : Sponsor() {
-        enum class Tier {
-            Platinum, Gold
-        }
-    }
-    data class Individual(
-        val name: String
-    ) : Sponsor()
-}
-
 private val organizationSponsors = listOf(
     Sponsor.Organization(
         tier = Sponsor.Organization.Tier.Platinum,
@@ -259,8 +241,10 @@ private val organizationSponsors = listOf(
 private val individualSponsors = listOf(
     Sponsor.Individual(name = "경창현"),
     Sponsor.Individual(name = "김태우"),
+    Sponsor.Individual(name = "남궁혜인"),
     Sponsor.Individual(name = "박덕성"),
-    Sponsor.Individual(name = "성희영"),
+    Sponsor.Individual(name = "심석보"),
+    Sponsor.Individual(name = "오홍태"),
     Sponsor.Individual(name = "이재일"),
     Sponsor.Individual(name = "이현민"),
     Sponsor.Individual(name = "임태우"),
@@ -268,6 +252,7 @@ private val individualSponsors = listOf(
     Sponsor.Individual(name = "정태훈"),
     Sponsor.Individual(name = "정현아"),
     Sponsor.Individual(name = "최익환"),
+    Sponsor.Individual(name = "황은미"),
     Sponsor.Individual(name = "황창훈"),
 )
 
