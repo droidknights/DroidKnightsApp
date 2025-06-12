@@ -23,6 +23,8 @@ internal class RouterViewModel @Inject constructor(
                         router.launchSingleTop,
                     )
 
+                    is InternalRoute.NavigateWeb -> RouteSideEffect.NavigateWeb(router.url)
+
                     is InternalRoute.NavigateBack -> RouteSideEffect.NavigateBack
                 }
             }

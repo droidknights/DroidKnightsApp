@@ -10,5 +10,7 @@ internal sealed interface RouteSideEffect {
         val launchSingleTop: Boolean,
     ) : RouteSideEffect
 
+    data class NavigateWeb(val url: String) : RouteSideEffect
+
     data object NavigateBack : RouteSideEffect
 }

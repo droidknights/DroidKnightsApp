@@ -54,6 +54,7 @@ internal fun HomeRoute(
         sponsorsUiState = sponsorsUiState,
         onSessionClick = viewModel::navigateSession,
         onContributorClick = viewModel::navigateContributor,
+        onOrganizationSponsorClick = viewModel::navigateOrganizationSponsor,
     )
 }
 
@@ -63,6 +64,7 @@ private fun HomeScreen(
     sponsorsUiState: SponsorsUiState,
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
+    onOrganizationSponsorClick: (String) -> Unit,
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -75,7 +77,10 @@ private fun HomeScreen(
     ) {
         SessionCard(onClick = onSessionClick)
         ContributorCard(onClick = onContributorClick)
-        SponsorCard(uiState = sponsorsUiState)
+        SponsorCard(
+            uiState = sponsorsUiState,
+            onOrganizationSponsorClick = onOrganizationSponsorClick
+        )
     }
 }
 
@@ -87,5 +92,6 @@ private fun PreviewHomeScreen(@PreviewParameter(SponsorsUiStatePreviewParameterP
         sponsorsUiState = sponsorsUiState,
         onSessionClick = {},
         onContributorClick = {},
+        onOrganizationSponsorClick = {}
     )
 }

@@ -71,5 +71,8 @@ class HomeViewModel @Inject constructor(
             saveState = Bookmark.saveState,
             launchSingleTop = Bookmark.launchSingleTop,
         )
+
+    fun navigateOrganizationSponsor(url: String) = viewModelScope.launch {
+        navigator.navigateWeb(url)
     }
 }
