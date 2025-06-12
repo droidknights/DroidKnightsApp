@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.contentColorFor
-import droidknights.core.designsystem.generated.resources.Res
+import droidknights.core.designsystem.generated.resources.DesignRes
 import droidknights.core.designsystem.generated.resources.ic_arrow_back
 import droidknights.core.designsystem.generated.resources.ic_close
 import droidknights.core.designsystem.generated.resources.ic_session_bookmark_filled
@@ -19,7 +19,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TopAppBar(
-    title: String,
+    title: String?,
     modifier: Modifier = Modifier,
     backgroundColor: Color = KnightsTheme.colorScheme.background,
     navigation: (@Composable (Modifier) -> Unit)? = null,
@@ -35,7 +35,7 @@ fun TopAppBar(
         Box(modifier = Modifier.fillMaxWidth()) {
             navigation?.invoke(Modifier.align(Alignment.CenterStart))
             Text(
-                text = title,
+                text = title.orEmpty(),
                 style = KnightsTheme.typography.titleSmallM,
                 modifier = Modifier.align(Alignment.Center),
             )
@@ -56,7 +56,7 @@ private fun KnightsTopAppBarPreviewClose() {
                     modifier = modifier,
                 ) {
                     Icon(
-                        painter = painterResource(Res.drawable.ic_close),
+                        painter = painterResource(DesignRes.drawable.ic_close),
                         contentDescription = null,
                     )
                 }
@@ -77,7 +77,7 @@ private fun KnightsTopAppBarPreviewBack() {
                     modifier = it,
                 ) {
                     Icon(
-                        painter = painterResource(Res.drawable.ic_arrow_back),
+                        painter = painterResource(DesignRes.drawable.ic_arrow_back),
                         contentDescription = null,
                     )
                 }
@@ -88,7 +88,7 @@ private fun KnightsTopAppBarPreviewBack() {
                     modifier = modifier,
                 ) {
                     Icon(
-                        painter = painterResource(Res.drawable.ic_session_bookmark_filled),
+                        painter = painterResource(DesignRes.drawable.ic_session_bookmark_filled),
                         contentDescription = null,
                         tint = KnightsTheme.colorScheme.primary,
                     )

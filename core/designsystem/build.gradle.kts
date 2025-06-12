@@ -40,6 +40,8 @@ kotlin {
 
 compose.resources {
     publicResClass = true
+    // ref. https://www.jetbrains.com/help/kotlin-multiplatform-dev/whats-new-compose-180.html#option-to-change-the-generated-res-class-name
+    nameOfResClass = "DesignRes"
 }
 
 android.namespace = "com.droidknights.app.core.designsystem"

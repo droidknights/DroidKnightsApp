@@ -5,6 +5,8 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.core.domain.domainContributorApi)
+            implementation(projects.core.model.modelContributor)
             implementation(libs.kotlinx.immutable)
         }
     }

@@ -11,6 +11,7 @@ kotlin {
             implementation(projects.feature.session)
             implementation(projects.feature.setting)
             implementation(projects.feature.license)
+            implementation(projects.feature.map)
         }
 
         wasmJsMain {

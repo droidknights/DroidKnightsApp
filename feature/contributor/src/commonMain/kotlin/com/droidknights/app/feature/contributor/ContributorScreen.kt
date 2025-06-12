@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.components.BottomLogo
 import com.droidknights.app.feature.contributor.components.ContributorCard
+import com.droidknights.app.feature.contributor.components.ContributorSection
 import com.droidknights.app.feature.contributor.components.ContributorTopAppBar
 import com.droidknights.app.feature.contributor.components.ContributorTopBanner
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
@@ -64,7 +65,7 @@ private fun ContributorList(
             is ContributorsUiState.Loading -> {
                 items(SHIMMERING_ITEM_COUNT) {
                     ContributorCard(
-                        contributor = ContributorsUiState.Contributors.Contributor.Default,
+                        contributor = ContributorsUiState.Contributors.Item.Contributor.Default,
                         showPlaceholder = true,
                         modifier = Modifier.padding(horizontal = 8.dp),
                     )
@@ -73,11 +74,21 @@ private fun ContributorList(
 
             is ContributorsUiState.Contributors -> {
                 items(uiState.contributors) { item ->
-                    ContributorCard(
-                        contributor = item,
-                        showPlaceholder = false,
-                        modifier = Modifier.padding(horizontal = 8.dp),
-                    )
+                    when (item) {
+                        is ContributorsUiState.Contributors.Item.Section -> {
+                            ContributorSection(
+                                section = item,
+                            )
+                        }
+
+                        is ContributorsUiState.Contributors.Item.Contributor -> {
+                            ContributorCard(
+                                contributor = item,
+                                showPlaceholder = false,
+                                modifier = Modifier.padding(horizontal = 8.dp),
+                            )
+                        }
+                    }
                 }
             }
         }

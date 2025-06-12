@@ -13,13 +13,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.LocalWindowInfo
@@ -45,6 +47,7 @@ import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.main.components.AppBar
 import com.droidknights.app.feature.main.components.DeviceFrame
+import com.droidknights.app.feature.main.components.MultiPlatformButton
 import com.droidknights.app.feature.main.components.ProjectDescription
 
 @Composable
@@ -56,14 +59,15 @@ actual fun MainScreen(modifier: Modifier) {
 
     Surface(
         modifier = modifier.fillMaxSize(),
-        color = KnightsTheme.colorScheme.background,
+        color = Color.Black,
+        contentColor = Color.White,
     ) {
         if (size.width > WideWidth) {
             MainDesktopScreen(
                 navigator = navigator,
                 modifier = Modifier
-                    .requiredWidthIn(max = 1280.dp)
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .padding(horizontal = 80.dp),
             )
         } else {
             MainMobileScreen(navigator = navigator)
@@ -77,35 +81,37 @@ private fun MainDesktopScreen(
     modifier: Modifier = Modifier,
 ) {
     val uriHandler = LocalUriHandler.current
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = modifier,
     ) {
         AppBar(
-            onGithubClick = {
-                uriHandler.openUri(ProjectUrl)
+            isMobile = false,
+            modifier = Modifier.padding(top = 40.dp, bottom = 20.dp),
+            onProjectBranchClick = {
+                uriHandler.openUri(it.url)
             },
         )
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(144.dp),
+        ) {
             ProjectDescription(
                 onContributorClick = {
                     uriHandler.openUri(it.profileUrl)
                 },
-                onProjectBranchClick = {
-                    uriHandler.openUri(it.url)
-                },
+                isMobile = false,
                 modifier = Modifier
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(scrollState)
                     .weight(1F)
                     .fillMaxHeight()
-                    .padding(16.dp, 20.dp),
+                    .padding(start = 58.dp),
             )
-
             DeviceFrame(
                 modifier = Modifier
-                    .padding(16.dp, 20.dp)
+                    .padding(vertical = 36.dp)
                     .width(360.dp)
-                    .heightIn(max = 780.dp)
+                    .heightIn(min = 400.dp, max = 800.dp)
                     .fillMaxHeight(),
                 content = {
                     MainContent(navigator = navigator)
@@ -175,22 +181,26 @@ private fun MainMobileScreen(
                     modifier = modifier,
                 ) {
                     AppBar(
-                        onGithubClick = {
-                            uriHandler.openUri(ProjectUrl)
-                        },
+                        isMobile = true,
+                        modifier = Modifier.padding(
+                            top = 56.dp,
+                            bottom = 8.dp,
+                            start = 24.dp,
+                            end = 24.dp,
+                        ),
                     )
+                    Spacer(modifier = Modifier.height(12.dp))
                     ProjectDescription(
                         onContributorClick = {
                             uriHandler.openUri(it.profileUrl)
                         },
-                        onProjectBranchClick = {
-                            uriHandler.openUri(it.url)
-                        },
+                        isMobile = true,
                         modifier = Modifier
                             .verticalScroll(rememberScrollState())
                             .weight(1F)
                             .fillMaxHeight()
-                            .padding(16.dp, 20.dp),
+                            .padding(horizontal = 24.dp),
+                        onBranchButtonsClick = { uriHandler.openUri(it.url) },
                     )
                     Box(
                         modifier = Modifier.fillMaxWidth()
@@ -202,14 +212,13 @@ private fun MainMobileScreen(
                         val offsetY by infiniteTransition.animateFloat(
                             initialValue = 0F,
                             targetValue = -4F,
-                            animationSpec =
-                            infiniteRepeatable(
+                            animationSpec = infiniteRepeatable(
                                 animation = tween(500),
                                 repeatMode = RepeatMode.Reverse,
                             ),
                         )
-                        Button(
-                            text = "멀티플랫폼 웹 체험하기",
+                        MultiPlatformButton(
+                            text = "멀티플랫폼 앱 체험하기",
                             onClick = {
                                 showExitGuidePopup = true
                             },
@@ -220,6 +229,7 @@ private fun MainMobileScreen(
                     }
                 }
             }
+
             MainMobileMode.Demo -> {
                 MainContent(navigator = navigator)
             }
@@ -232,4 +242,3 @@ private enum class MainMobileMode {
 }
 
 private val WideWidth = 1280.dp
-private const val ProjectUrl = "https://github.com/droidknights/DroidKnightsApp/tree/2025/compose-multiplatform"
