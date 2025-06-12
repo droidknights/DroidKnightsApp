@@ -2,6 +2,8 @@ package com.droidknights.app.core.router
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -14,15 +16,18 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun LaunchedRouter(
     navHostController: NavHostController,
+    uriHandler: UriHandler = LocalUriHandler.current,
 ) {
     InternalLaunchedRouter(
         navHostController = navHostController,
+        uriHandler = uriHandler,
     )
 }
 
 @Composable
 private fun InternalLaunchedRouter(
     navHostController: NavHostController,
+    uriHandler: UriHandler,
     routerViewModel: RouterViewModel = hiltViewModel(),
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -32,6 +37,10 @@ private fun InternalLaunchedRouter(
                 when (sideEffect) {
                     is RouteSideEffect.NavigateBack -> {
                         navHostController.popBackStack()
+                    }
+
+                    is RouteSideEffect.NavigateWeb -> {
+                        uriHandler.openUri(sideEffect.url)
                     }
 
                     is RouteSideEffect.Navigate -> {

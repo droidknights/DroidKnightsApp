@@ -54,4 +54,8 @@ class HomeViewModel @Inject constructor(
     fun navigateContributor() = viewModelScope.launch {
         navigator.navigate(RouteContributor)
     }
+
+    fun navigateOrganizationSponsor(url: String) = viewModelScope.launch {
+        navigator.navigateWeb(url)
+    }
 }

@@ -15,6 +15,10 @@ internal class NavigatorImpl @Inject constructor() : Navigator, InternalNavigato
         channel.send(InternalRoute.Navigate(route = route))
     }
 
+    override suspend fun navigateWeb(url: String) {
+        channel.send(InternalRoute.NavigateWeb(url = url))
+    }
+
     override suspend fun navigateBack() {
         channel.send(InternalRoute.NavigateBack)
     }

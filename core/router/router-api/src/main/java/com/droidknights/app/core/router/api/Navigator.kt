@@ -6,5 +6,7 @@ interface Navigator {
 
     suspend fun navigate(route: Route)
 
+    suspend fun navigateWeb(url: String)
+
     suspend fun navigateBack()
 }

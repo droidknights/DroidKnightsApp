@@ -6,5 +6,7 @@ internal sealed interface InternalRoute {
 
     data class Navigate(val route: Route) : InternalRoute
 
+    data class NavigateWeb(val url: String) : InternalRoute
+
     data object NavigateBack : InternalRoute
 }

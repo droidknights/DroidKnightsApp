@@ -8,5 +8,7 @@ internal sealed interface RouteSideEffect {
         val route: Route,
     ) : RouteSideEffect
 
+    data class NavigateWeb(val url: String) : RouteSideEffect
+
     data object NavigateBack : RouteSideEffect
 }
