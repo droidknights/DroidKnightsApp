@@ -6,6 +6,8 @@ internal sealed interface RouteSideEffect {
 
     data class Navigate(
         val route: Route,
+        val saveState: Boolean,
+        val launchSingleTop: Boolean,
     ) : RouteSideEffect
 
     data class NavigateWeb(val url: String) : RouteSideEffect

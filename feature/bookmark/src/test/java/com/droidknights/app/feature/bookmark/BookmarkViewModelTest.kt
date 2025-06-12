@@ -7,6 +7,8 @@ import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.model.session.Tag
+import com.droidknights.app.core.navigation.MainTabRoute.Home
+import com.droidknights.app.core.navigation.MainTabRoute.Setting
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
@@ -46,7 +48,11 @@ class BookmarkViewModelTest {
     @Test
     fun `북마크한 세션들을 가져올 수 있다`() = runTest {
         // given & when
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
 
         // then
         viewModel.bookmarkUiState.test {
@@ -70,7 +76,11 @@ class BookmarkViewModelTest {
     @Test
     fun `에딧모드를 토글할 수 있다`() = runTest {
         // given
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
 
         viewModel.bookmarkUiState.test {
             val initialIsEditMode = (awaitItem() as BookmarkUiState.Success).isEditMode
@@ -88,7 +98,11 @@ class BookmarkViewModelTest {
     @Test
     fun `세션을 선택할 수 있다`() = runTest {
         // given
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
 
         // when
         viewModel.selectSession(mockSession1)
@@ -106,7 +120,11 @@ class BookmarkViewModelTest {
     @Test
     fun `이미 선택된 세션을 선택하면 선택이 해제된다`() = runTest {
         // given
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
         viewModel.selectSession(mockSession1)
 
         // when
@@ -126,7 +144,11 @@ class BookmarkViewModelTest {
     fun `선택된 세션들을 북마크에서 삭제할 수 있다`() = runTest {
         // given
         coEvery { deleteBookmarkedSessionUseCase(persistentSetOf("1")) } just Runs
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
         viewModel.selectSession(mockSession1)
 
         // when
@@ -145,13 +167,75 @@ class BookmarkViewModelTest {
         // given
         coEvery { navigator.navigateBack() } just Runs
         coEvery { navigator.navigate(RouteSession(sessionId = mockSession2.id)) } just Runs
-        viewModel = BookmarkViewModel(getBookmarkedSessionsUseCase, deleteBookmarkedSessionUseCase, navigator)
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
 
         // when
         viewModel.redirectToSessionScreen(mockSession2)
 
         // then
         coVerify(exactly = 1) { navigator.navigate(RouteSession(sessionId = mockSession2.id)) }
+    }
+
+    @Test
+    fun `navigate(Home)가 호출될 때 navigator에게 위임한다`() = runTest {
+        // given
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
+        coEvery {
+            navigator.navigate(
+                route = Home,
+                saveState = Home.saveState,
+                launchSingleTop = Home.launchSingleTop,
+            )
+        } just Runs
+
+        // when
+        viewModel.navigateHome()
+
+        // then
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = Home,
+                saveState = Home.saveState,
+                launchSingleTop = Home.launchSingleTop,
+            )
+        }
+    }
+
+    @Test
+    fun `navigate(Setting)가 호출될 때 navigator에게 위임한다`() = runTest {
+        // given
+        viewModel = BookmarkViewModel(
+            getBookmarkedSessionsUseCase,
+            deleteBookmarkedSessionUseCase,
+            navigator
+        )
+        coEvery {
+            navigator.navigate(
+                route = Setting,
+                saveState = Setting.saveState,
+                launchSingleTop = Setting.launchSingleTop,
+            )
+        } just Runs
+
+        // when
+        viewModel.navigateSetting()
+
+        // then
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = Setting,
+                saveState = Setting.saveState,
+                launchSingleTop = Setting.launchSingleTop,
+            )
+        }
     }
 
     companion object {

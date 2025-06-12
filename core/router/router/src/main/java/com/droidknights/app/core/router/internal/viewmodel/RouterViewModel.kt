@@ -17,8 +17,14 @@ internal class RouterViewModel @Inject constructor(
         navigator.channel.receiveAsFlow()
             .map { router ->
                 when (router) {
-                    is InternalRoute.Navigate -> RouteSideEffect.Navigate(router.route)
+                    is InternalRoute.Navigate -> RouteSideEffect.Navigate(
+                        router.route,
+                        router.saveState,
+                        router.launchSingleTop,
+                    )
+
                     is InternalRoute.NavigateWeb -> RouteSideEffect.NavigateWeb(router.url)
+
                     is InternalRoute.NavigateBack -> RouteSideEffect.NavigateBack
                 }
             }

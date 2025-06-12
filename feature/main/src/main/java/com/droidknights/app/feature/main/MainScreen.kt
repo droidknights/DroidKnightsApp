@@ -71,7 +71,7 @@ private fun MainScreenContent(
                 visible = navigator.shouldShowBottomBar(),
                 tabs = MainTab.entries.toPersistentList(),
                 currentTab = navigator.currentTab,
-                onTabSelected = { navigator.navigate(it) }
+                onTabSelected = navigator::onTabSelected,
             )
         },
         snackbarHost = { SnackbarHost(snackBarHostState) }

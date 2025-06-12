@@ -1,14 +1,9 @@
 package com.droidknights.app.feature.contributor.navigation
 
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.droidknights.app.feature.contributor.ContributorRoute
 import com.droidknights.app.feature.contributor.api.RouteContributor
-
-fun NavController.navigateContributor() {
-    this.navigate(RouteContributor)
-}
 
 fun NavGraphBuilder.contributorNavGraph(
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,

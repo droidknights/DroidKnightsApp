@@ -22,7 +22,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -34,6 +37,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.model.session.Session
+import com.droidknights.app.core.navigation.MainTabRoute.Bookmark
+import com.droidknights.app.core.navigation.MainTabRoute.Home
+import com.droidknights.app.core.navigation.MainTabRoute.Setting
+import com.droidknights.app.core.router.api.model.Route
 import com.droidknights.app.feature.bookmark.component.BookmarkCard
 import com.droidknights.app.feature.bookmark.component.BookmarkItem
 import com.droidknights.app.feature.bookmark.component.BookmarkTimelineItem
@@ -51,11 +58,20 @@ import kotlinx.coroutines.flow.collectLatest
 internal fun BookmarkRoute(
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     viewModel: BookmarkViewModel = hiltViewModel(),
+    selectedTabRoute: State<Route> = remember { mutableStateOf(Bookmark) },
 ) {
     val bookmarkUiState by viewModel.bookmarkUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
         viewModel.errorFlow.collectLatest { onShowErrorSnackBar(it) }
+    }
+
+    LaunchedEffect(selectedTabRoute.value) {
+        when (selectedTabRoute.value) {
+            Home -> viewModel.navigateHome()
+            Setting -> viewModel.navigateSetting()
+            Bookmark -> Unit
+        }
     }
 
     Box(

@@ -35,16 +35,15 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val isDarkTheme by viewModel.isDarkTheme.collectAsStateWithLifecycle(false, this)
-
-            val navigator: MainNavigator = rememberMainNavigator()
             val sessionId = sessionIdFromWidget.collectAsStateWithLifecycle().value
+            val navigator: MainNavigator = rememberMainNavigator()
 
             // 시작지점
             LaunchedRouter(navigator.navController)
 
             LaunchedEffect(sessionId) {
                 sessionId?.let {
-                    navigator.navigateSessionDetail(it)
+                    viewModel.navigateSessionDetail(it)
                 }
             }
 

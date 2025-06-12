@@ -1,20 +1,15 @@
 package com.droidknights.app.feature.main
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navOptions
-import com.droidknights.app.core.navigation.MainTabRoute
-import com.droidknights.app.core.navigation.Route
-import com.droidknights.app.feature.bookmark.navigation.navigateBookmark
-import com.droidknights.app.feature.home.navigation.navigateHome
-import com.droidknights.app.feature.session.navigation.navigateSessionDetail
-import com.droidknights.app.feature.setting.navigation.navigateSetting
+import com.droidknights.app.core.router.api.model.Route
 
 internal class MainNavigator(
     val navController: NavHostController,
@@ -30,38 +25,11 @@ internal class MainNavigator(
             currentDestination?.hasRoute(tab::class) == true
         }
 
-    fun navigate(tab: MainTab) {
-        val navOptions = navOptions {
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
-            launchSingleTop = true
-            restoreState = true
-        }
+    private val _selectedTabRoute = mutableStateOf(startDestination)
+    val selectedTabRoute: State<Route> get() = _selectedTabRoute
 
-        when (tab) {
-            MainTab.SETTING -> navController.navigateSetting(navOptions)
-            MainTab.HOME -> navController.navigateHome(navOptions)
-            MainTab.BOOKMARK -> navController.navigateBookmark(navOptions)
-        }
-    }
-
-    fun navigateSessionDetail(sessionId: String) {
-        navController.navigateSessionDetail(sessionId)
-    }
-
-    private fun popBackStack() {
-        navController.popBackStack()
-    }
-
-    fun popBackStackIfNotHome() {
-        if (!isSameCurrentDestination<MainTabRoute.Home>()) {
-            popBackStack()
-        }
-    }
-
-    private inline fun <reified T : Route> isSameCurrentDestination(): Boolean {
-        return navController.currentDestination?.hasRoute<T>() == true
+    fun onTabSelected(tab: MainTab) {
+        _selectedTabRoute.value = tab.route
     }
 
     @Composable

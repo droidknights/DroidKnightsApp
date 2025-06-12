@@ -2,7 +2,7 @@ package com.droidknights.app.feature.main
 
 import androidx.compose.runtime.Composable
 import com.droidknights.app.core.navigation.MainTabRoute
-import com.droidknights.app.core.navigation.Route
+import com.droidknights.app.core.router.api.model.Route
 
 internal enum class MainTab(
     val iconResId: Int,

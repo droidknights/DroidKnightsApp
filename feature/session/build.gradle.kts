@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(projects.feature.sessionApi)
+    implementation(projects.core.router.routerApi)
 
     implementation(libs.kotlinx.immutable)
     implementation(projects.widget)

@@ -3,6 +3,8 @@ package com.droidknights.app.feature.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
+import com.droidknights.app.core.navigation.MainTabRoute.Bookmark
+import com.droidknights.app.core.navigation.MainTabRoute.Setting
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.feature.contributor.api.RouteContributor
 import com.droidknights.app.feature.home.model.SponsorsUiState
@@ -54,6 +56,21 @@ class HomeViewModel @Inject constructor(
     fun navigateContributor() = viewModelScope.launch {
         navigator.navigate(RouteContributor)
     }
+
+    fun navigateSetting() = viewModelScope.launch {
+        navigator.navigate(
+            route = Setting,
+            saveState = Setting.saveState,
+            launchSingleTop = Setting.launchSingleTop,
+        )
+    }
+
+    fun navigateBookmark() = viewModelScope.launch {
+        navigator.navigate(
+            route = Bookmark,
+            saveState = Bookmark.saveState,
+            launchSingleTop = Bookmark.launchSingleTop,
+        )
 
     fun navigateOrganizationSponsor(url: String) = viewModelScope.launch {
         navigator.navigateWeb(url)
