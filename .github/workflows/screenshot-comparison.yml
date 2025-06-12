@@ -5,6 +5,9 @@ on:
     branches:
       - 2025/compose-multiplatform
 
+permissions:
+  contents: write
+
 concurrency:
   group: screenshot-${{ github.head_ref }}
   cancel-in-progress: true

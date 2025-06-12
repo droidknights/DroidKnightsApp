@@ -42,7 +42,7 @@ class DroidKnightKmpPreviewTester : ComposePreviewTester<JvmAnnotationInfo> {
         val fileName = "${preview.methodName}.png"
         val filePath = "screenshot/$fileName"
 
-        captureRoboImage(filePath) {
+        captureRoboImage(filePath = filePath) {
             println("Capturing preview: ${preview.methodName}")
             ProvideAndroidContextToComposeResource()
             preview()
@@ -50,7 +50,7 @@ class DroidKnightKmpPreviewTester : ComposePreviewTester<JvmAnnotationInfo> {
     }
 }
 
-class CoilRule : TestWatcher() {
+private class CoilRule : TestWatcher() {
     override fun starting(description: Description?) {
         super.starting(description)
         val engine = FakeImageLoaderEngine.Builder()

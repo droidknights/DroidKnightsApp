@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import org.jetbrains.compose.resources.PreviewContextConfigurationEffect
 
 @Composable
-fun ProvideAndroidContextToComposeResource() {
+internal fun ProvideAndroidContextToComposeResource() {
     CompositionLocalProvider(LocalInspectionMode provides true) {
         PreviewContextConfigurationEffect()
     }
