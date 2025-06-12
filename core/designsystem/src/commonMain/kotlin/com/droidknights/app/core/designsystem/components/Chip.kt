@@ -117,11 +117,11 @@ private fun ChipPreview() {
                 }
             }
             Surface(color = White) {
-                Chip("Android")
                 Column(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier.padding(16.dp),
                 ) {
+                    Chip("Android")
                     Chip(
                         text = "Track 02",
                         style = ChipStyle.Primary,
