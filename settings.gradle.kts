@@ -31,6 +31,7 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
@@ -41,7 +42,8 @@ include(":composeApp")
 include(
     ":core:designsystem",
     ":core:navigation",
-    ":core:ui:shader"
+    ":core:ui:shader",
+    ":core:testing"
 )
 // core - data
 include(

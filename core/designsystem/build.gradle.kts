@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     id("droidknights.kotlin.multiplatform")
     id("droidknights.compose.multiplatform")
+    id("droidknights.kmp.roborazzi")
 }
 
 kotlin {

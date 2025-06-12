@@ -9,8 +9,10 @@ import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.ExtensionContainer
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.use.PluginDependency
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal val ExtensionContainer.libs: VersionCatalog
     get() = getByType<VersionCatalogsExtension>().named("libs")
@@ -44,4 +46,8 @@ internal fun VersionCatalog.plugin(name: String): PluginDependency {
 
 internal fun VersionCatalog.bundle(name: String): ExternalModuleDependencyBundle {
     return findBundle(name).get().get()
+}
+
+internal fun Project.kotlin(action: KotlinMultiplatformExtension.() -> Unit) {
+    extensions.configure(action)
 }
