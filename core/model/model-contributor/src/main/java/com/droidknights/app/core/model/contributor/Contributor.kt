@@ -3,6 +3,11 @@ package com.droidknights.app.core.model.contributor
 data class Contributor(
     val id: Long,
     val name: String,
-    val imageUrl: String,
-    val githubUrl: String,
-)
+) {
+
+    val imageUrl: String =
+        "https://avatars.githubusercontent.com/u/$id?v=4"
+
+    val githubUrl: String =
+        "https://api.github.com/users/$name"
+}
