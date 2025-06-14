@@ -100,6 +100,7 @@ include(
     ":feature:session",
     ":feature:session-api",
     ":feature:setting",
+    ":feature:setting-api",
     ":feature:contributor",
     ":feature:contributor-api",
     ":feature:bookmark",

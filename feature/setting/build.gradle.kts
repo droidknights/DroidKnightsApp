@@ -9,7 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.router.routerApi)
+    implementation(projects.feature.settingApi)
 
     implementation(libs.androidx.appcompat)
 
