@@ -50,7 +50,6 @@ include(
     ":core:action:action",
     ":core:action:action-api",
     ":core:designsystem",
-    ":core:navigation",
     ":core:ui",
     ":core:ui-test-hilt-manifest",
     ":core:testing",
@@ -97,6 +96,7 @@ include(
 include(
     ":feature:main",
     ":feature:home",
+    ":feature:home-api",
     ":feature:session",
     ":feature:session-api",
     ":feature:setting",
@@ -104,6 +104,7 @@ include(
     ":feature:contributor",
     ":feature:contributor-api",
     ":feature:bookmark",
+    ":feature:bookmark-api",
 )
 
 include(

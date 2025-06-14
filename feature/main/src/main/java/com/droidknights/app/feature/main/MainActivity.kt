@@ -10,6 +10,9 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.router.LaunchedRouter
+import com.droidknights.app.feature.bookmark.api.RouteBookmark
+import com.droidknights.app.feature.home.api.RouteHome
+import com.droidknights.app.feature.setting.api.RouteSetting
 import com.droidknights.app.widget.DroidKnightsWidget.Companion.KEY_SESSION_ID
 import com.droidknights.app.widget.sendWidgetUpdateCommand
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,6 +54,13 @@ class MainActivity : ComponentActivity() {
             KnightsTheme(darkTheme = isDarkTheme) {
                 MainScreen(
                     navigator = navigator,
+                    onTabSelected = {
+                        when (it.route) {
+                            is RouteSetting -> viewModel.navigateSetting()
+                            is RouteBookmark -> viewModel.navigateBookmark()
+                            is RouteHome -> viewModel.navigateHome()
+                        }
+                    },
                 )
             }
         }

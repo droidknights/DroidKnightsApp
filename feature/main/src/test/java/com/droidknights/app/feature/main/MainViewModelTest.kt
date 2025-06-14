@@ -3,11 +3,15 @@ package com.droidknights.app.feature.main
 import com.droidknights.app.core.data.settings.api.SettingsRepository
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
+import com.droidknights.app.feature.bookmark.api.RouteBookmark
+import com.droidknights.app.feature.home.api.RouteHome
 import com.droidknights.app.feature.session.api.RouteSessionDetail
+import com.droidknights.app.feature.setting.api.RouteSetting
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
+import io.mockk.just
 import io.mockk.mockk
 import io.mockk.verify
 import junit.framework.TestCase.assertFalse
@@ -42,18 +46,6 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `다크테마 여부를 업데이트 할 수 있다`() = runTest {
-        // given
-        coEvery { settingsRepository.updateIsDarkTheme(true) } just Runs
-
-        // when
-        viewModel.updateIsDarkTheme(true)
-
-        // then
-        coVerify(exactly = 1) { settingsRepository.updateIsDarkTheme(true) }
-    }
-
-    @Test
     fun `navigate(RouteSessionDetail)가 호출될 때 navigator에게 위임한다`() = runTest {
         // given
         val fakeSessionId = "1"
@@ -64,5 +56,77 @@ class MainViewModelTest {
 
         // then
         coVerify(exactly = 1) { navigator.navigate(RouteSessionDetail(fakeSessionId)) }
+    }
+
+    @Test
+    fun `navigate(RouteSetting)가 호출될 때 navigator에게 위임한다`() = runTest {
+        // given
+        coEvery {
+            navigator.navigate(
+                route = RouteSetting,
+                saveState = true,
+                launchSingleTop = true,
+            )
+        } just Runs
+
+        // when
+        viewModel.navigateSetting()
+
+        // then
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = RouteSetting,
+                saveState = true,
+                launchSingleTop = true,
+            )
+        }
+    }
+
+    @Test
+    fun `navigate(RouteBookmark)가 호출될 때 navigator에게 위임한다`() = runTest {
+        // given
+        coEvery {
+            navigator.navigate(
+                route = RouteBookmark,
+                saveState = true,
+                launchSingleTop = true,
+            )
+        } just Runs
+
+        // when
+        viewModel.navigateBookmark()
+
+        // then
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = RouteBookmark,
+                saveState = true,
+                launchSingleTop = true,
+            )
+        }
+    }
+
+    @Test
+    fun `navigate(RouteHome)가 호출될 때 navigator에게 위임한다`() = runTest {
+        // given
+        coEvery {
+            navigator.navigate(
+                route = RouteHome,
+                saveState = true,
+                launchSingleTop = true,
+            )
+        } just Runs
+
+        // when
+        viewModel.navigateHome()
+
+        // then
+        coVerify(exactly = 1) {
+            navigator.navigate(
+                route = RouteHome,
+                saveState = true,
+                launchSingleTop = true,
+            )
+        }
     }
 }

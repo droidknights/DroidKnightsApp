@@ -32,18 +32,15 @@ internal fun MainNavHost(
             startDestination = navigator.startDestination,
         ) {
             homeNavGraph(
-                selectedTabRoute = navigator.selectedTabRoute,
                 padding = padding,
                 onShowErrorSnackBar = onShowErrorSnackBar,
             )
 
             settingNavGraph(
-                selectedTabRoute = navigator.selectedTabRoute,
                 padding = padding,
             )
 
             bookmarkNavGraph(
-                selectedTabRoute = navigator.selectedTabRoute,
                 onShowErrorSnackBar = onShowErrorSnackBar,
             )
 

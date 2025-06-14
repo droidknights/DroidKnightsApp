@@ -3,8 +3,6 @@ package com.droidknights.app.feature.home
 import app.cash.turbine.test
 import com.droidknights.app.core.domain.sponsor.usecase.api.GetSponsorsUseCase
 import com.droidknights.app.core.model.sponsor.Sponsor
-import com.droidknights.app.core.navigation.MainTabRoute.Bookmark
-import com.droidknights.app.core.navigation.MainTabRoute.Setting
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.contributor.api.RouteContributor
@@ -78,56 +76,6 @@ internal class HomeViewModelTest {
 
         // then
         coVerify(exactly = 1) { navigator.navigate(RouteContributor) }
-    }
-
-    @Test
-    fun `navigate(Setting)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given
-        coEvery {
-            navigator.navigate(
-                route = Setting,
-                saveState = Setting.saveState,
-                launchSingleTop = Setting.launchSingleTop,
-            )
-        } just Runs
-        viewModel = HomeViewModel(getSponsorsUseCase, navigator)
-
-        // when
-        viewModel.navigateSetting()
-
-        // then
-        coVerify(exactly = 1) {
-            navigator.navigate(
-                route = Setting,
-                saveState = Setting.saveState,
-                launchSingleTop = Setting.launchSingleTop,
-            )
-        }
-    }
-
-    @Test
-    fun `navigate(Bookmark)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given
-        coEvery {
-            navigator.navigate(
-                route = Bookmark,
-                saveState = Bookmark.saveState,
-                launchSingleTop = Bookmark.launchSingleTop,
-            )
-        } just Runs
-        viewModel = HomeViewModel(getSponsorsUseCase, navigator)
-
-        // when
-        viewModel.navigateBookmark()
-
-        // then
-        coVerify(exactly = 1) {
-            navigator.navigate(
-                route = Bookmark,
-                saveState = Bookmark.saveState,
-                launchSingleTop = Bookmark.launchSingleTop,
-            )
-        }
     }
 
     companion object {
