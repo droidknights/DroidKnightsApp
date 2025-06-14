@@ -7,5 +7,5 @@ internal class DroidknightsContributorsApi(
     private val network: DroidKnightsNetwork,
 ) {
     suspend fun getContributorWithYears(): List<ContributionYearResponse> =
-        network.get("/droidknights/DroidKnightsApp/refs/heads/2025/app/assets/contributors.json")
+        network.get("/droidknights/DroidKnightsApp/refs/heads/main/assets/contributors.json")
 }

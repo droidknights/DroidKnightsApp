@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class ContributionYearResponse(
     @SerialName("id") val id: Long,
+    @SerialName("login") val login: String,
     @SerialName("years") val years: List<Int>,
 )
