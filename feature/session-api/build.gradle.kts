@@ -1,5 +1,6 @@
 plugins {
-    id("droidknights.feature")
+    alias(libs.plugins.androidLibrary)
+    id("droidknights.kotlin.multiplatform")
     alias(libs.plugins.kotlinxSerialization)
 }
 
