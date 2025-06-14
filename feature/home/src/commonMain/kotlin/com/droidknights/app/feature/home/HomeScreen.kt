@@ -25,7 +25,7 @@ internal fun HomeScreen(
     onOrganizationSponsorClick: (String) -> Unit,
     onMapClick: () -> Unit,
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel = koinViewModel()
+    homeViewModel: HomeViewModel = koinViewModel(),
 ) {
     Column(
         modifier = modifier

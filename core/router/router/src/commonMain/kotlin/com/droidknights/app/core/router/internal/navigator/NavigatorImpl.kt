@@ -9,11 +9,7 @@ internal class NavigatorImpl : Navigator, InternalNavigator {
     override val channel = Channel<InternalRoute>(Channel.BUFFERED)
 
     override suspend fun navigate(route: Route) {
-        channel.send(
-            InternalRoute.Navigate(
-                route = route,
-            )
-        )
+        channel.send(InternalRoute.Navigate(route = route))
     }
 
     override suspend fun navigateBack() {
