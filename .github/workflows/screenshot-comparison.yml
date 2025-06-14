@@ -5,9 +5,6 @@ on:
     branches:
       - 2025/compose-multiplatform
 
-permissions:
-  contents: write
-
 concurrency:
   group: screenshot-${{ github.head_ref }}
   cancel-in-progress: true
@@ -16,6 +13,9 @@ jobs:
   compare-screenshots:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
