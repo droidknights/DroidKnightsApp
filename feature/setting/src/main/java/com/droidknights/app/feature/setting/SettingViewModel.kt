@@ -1,32 +1,45 @@
 package com.droidknights.app.feature.setting
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.droidknights.app.core.navigation.MainTabRoute.Bookmark
-import com.droidknights.app.core.navigation.MainTabRoute.Home
-import com.droidknights.app.core.router.api.Navigator
+import com.droidknights.app.core.action.api.FlowActionStream
+import com.droidknights.app.core.action.api.onAction
+import com.droidknights.app.core.data.settings.api.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.shareIn
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingViewModel @Inject constructor(
-    private val navigator: Navigator,
+internal class SettingViewModel @Inject constructor(
+    private val flowActionStream: FlowActionStream,
+    private val settingsRepository: SettingsRepository,
 ) : ViewModel() {
 
-    fun navigateHome() = viewModelScope.launch {
-        navigator.navigate(
-            route = Home,
-            saveState = Home.saveState,
-            launchSingleTop = Home.launchSingleTop,
-        )
+    @VisibleForTesting
+    val flowAction by lazy {
+        flowActionStream.onAction<SettingAction>()
+            .onEach {
+                handleAction(action = it)
+            }
     }
 
-    fun navigateBookmark() = viewModelScope.launch {
-        navigator.navigate(
-            route = Bookmark,
-            saveState = Bookmark.saveState,
-            launchSingleTop = Bookmark.launchSingleTop,
-        )
+    fun loadAction(): SharedFlow<SettingAction> =
+        flowAction
+            .shareIn(viewModelScope, started = SharingStarted.WhileSubscribed())
+
+    private suspend fun handleAction(action: SettingAction) {
+        when (action) {
+            is SettingAction.ChangeDarkTheme -> {
+                settingsRepository.updateIsDarkTheme(action.isDarkTheme)
+            }
+        }
+    }
+
+    fun send(action: SettingAction) {
+        flowActionStream.nextAction(action)
     }
 }

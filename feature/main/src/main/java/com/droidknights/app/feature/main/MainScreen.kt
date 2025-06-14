@@ -19,8 +19,8 @@ import java.net.UnknownHostException
 
 @Composable
 internal fun MainScreen(
+    onTabSelected: (MainTab) -> Unit,
     navigator: MainNavigator = rememberMainNavigator(),
-    onChangeDarkTheme: (Boolean) -> Unit,
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
 
@@ -38,9 +38,9 @@ internal fun MainScreen(
     }
 
     MainScreenContent(
+        onTabSelected = onTabSelected,
         navigator = navigator,
         onShowErrorSnackBar = onShowErrorSnackBar,
-        onChangeDarkTheme = onChangeDarkTheme,
         snackBarHostState = snackBarHostState
     )
 }
@@ -48,8 +48,8 @@ internal fun MainScreen(
 @Composable
 private fun MainScreenContent(
     navigator: MainNavigator,
+    onTabSelected: (MainTab) -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
-    onChangeDarkTheme: (Boolean) -> Unit,
     snackBarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
 ) {
@@ -60,7 +60,6 @@ private fun MainScreenContent(
                 navigator = navigator,
                 padding = padding,
                 onShowErrorSnackBar = onShowErrorSnackBar,
-                onChangeDarkTheme = onChangeDarkTheme,
             )
         },
         bottomBar = {
@@ -71,7 +70,7 @@ private fun MainScreenContent(
                 visible = navigator.shouldShowBottomBar(),
                 tabs = MainTab.entries.toPersistentList(),
                 currentTab = navigator.currentTab,
-                onTabSelected = navigator::onTabSelected,
+                onTabSelected = onTabSelected,
             )
         },
         snackbarHost = { SnackbarHost(snackBarHostState) }

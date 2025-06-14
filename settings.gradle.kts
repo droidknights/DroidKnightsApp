@@ -47,8 +47,9 @@ include(
     ":core:network:network-api",
     ":core:router:router",
     ":core:router:router-api",
+    ":core:action:action",
+    ":core:action:action-api",
     ":core:designsystem",
-    ":core:navigation",
     ":core:ui",
     ":core:ui-test-hilt-manifest",
     ":core:testing",
@@ -95,12 +96,15 @@ include(
 include(
     ":feature:main",
     ":feature:home",
+    ":feature:home-api",
     ":feature:session",
     ":feature:session-api",
     ":feature:setting",
+    ":feature:setting-api",
     ":feature:contributor",
     ":feature:contributor-api",
     ":feature:bookmark",
+    ":feature:bookmark-api",
 )
 
 include(

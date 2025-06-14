@@ -15,9 +15,12 @@ android {
 
 dependencies {
     implementation(projects.feature.home)
+    implementation(projects.feature.homeApi)
     implementation(projects.feature.setting)
+    implementation(projects.feature.settingApi)
     implementation(projects.feature.contributor)
     implementation(projects.feature.bookmark)
+    implementation(projects.feature.bookmarkApi)
     implementation(projects.feature.session)
     implementation(projects.feature.sessionApi)
     androidTestImplementation(projects.core.testing)

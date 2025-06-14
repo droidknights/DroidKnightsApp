@@ -5,8 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.usecase.api.DeleteBookmarkedSessionUseCase
 import com.droidknights.app.core.domain.session.usecase.api.GetBookmarkedSessionsUseCase
 import com.droidknights.app.core.model.session.Session
-import com.droidknights.app.core.navigation.MainTabRoute.Home
-import com.droidknights.app.core.navigation.MainTabRoute.Setting
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import com.droidknights.app.feature.bookmark.model.BookmarkUiState
@@ -127,22 +125,6 @@ class BookmarkViewModel @Inject constructor(
         }.catch { throwable ->
             _errorFlow.emit(throwable)
         }.launchIn(viewModelScope)
-    }
-
-    fun navigateSetting() = viewModelScope.launch {
-        navigator.navigate(
-            route = Setting,
-            saveState = Setting.saveState,
-            launchSingleTop = Setting.launchSingleTop,
-        )
-    }
-
-    fun navigateHome() = viewModelScope.launch {
-        navigator.navigate(
-            route = Home,
-            saveState = Home.saveState,
-            launchSingleTop = Home.launchSingleTop,
-        )
     }
 
     fun redirectToSessionScreen(session: Session) {

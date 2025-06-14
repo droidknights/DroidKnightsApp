@@ -20,7 +20,6 @@ internal fun MainNavHost(
     navigator: MainNavigator,
     padding: PaddingValues,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
-    onChangeDarkTheme: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -33,19 +32,15 @@ internal fun MainNavHost(
             startDestination = navigator.startDestination,
         ) {
             homeNavGraph(
-                selectedTabRoute = navigator.selectedTabRoute,
                 padding = padding,
                 onShowErrorSnackBar = onShowErrorSnackBar,
             )
 
             settingNavGraph(
-                selectedTabRoute = navigator.selectedTabRoute,
                 padding = padding,
-                onChangeDarkTheme = onChangeDarkTheme,
             )
 
             bookmarkNavGraph(
-                selectedTabRoute = navigator.selectedTabRoute,
                 onShowErrorSnackBar = onShowErrorSnackBar,
             )
 

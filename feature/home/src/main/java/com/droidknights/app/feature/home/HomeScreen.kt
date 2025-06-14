@@ -8,20 +8,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.droidknights.app.core.navigation.MainTabRoute.Bookmark
-import com.droidknights.app.core.navigation.MainTabRoute.Home
-import com.droidknights.app.core.navigation.MainTabRoute.Setting
-import com.droidknights.app.core.router.api.model.Route
 import com.droidknights.app.feature.home.component.ContributorCard
 import com.droidknights.app.feature.home.component.SessionCard
 import com.droidknights.app.feature.home.component.SponsorCard
@@ -33,22 +26,12 @@ internal fun HomeRoute(
     padding: PaddingValues,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
-    selectedTabRoute: State<Route> = remember { mutableStateOf(Home) },
 ) {
     val sponsorsUiState by viewModel.sponsorsUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
         viewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
-
-    LaunchedEffect(selectedTabRoute.value) {
-        when (selectedTabRoute.value) {
-            Home -> Unit
-            Setting -> viewModel.navigateSetting()
-            Bookmark -> viewModel.navigateBookmark()
-        }
-    }
-
     HomeScreen(
         padding = padding,
         sponsorsUiState = sponsorsUiState,

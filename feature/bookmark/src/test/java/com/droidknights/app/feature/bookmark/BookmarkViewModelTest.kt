@@ -7,8 +7,6 @@ import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.core.model.session.Speaker
 import com.droidknights.app.core.model.session.Tag
-import com.droidknights.app.core.navigation.MainTabRoute.Home
-import com.droidknights.app.core.navigation.MainTabRoute.Setting
 import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.core.testing.rule.MainDispatcherRule
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
@@ -178,64 +176,6 @@ class BookmarkViewModelTest {
 
         // then
         coVerify(exactly = 1) { navigator.navigate(RouteSession(sessionId = mockSession2.id)) }
-    }
-
-    @Test
-    fun `navigate(Home)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given
-        viewModel = BookmarkViewModel(
-            getBookmarkedSessionsUseCase,
-            deleteBookmarkedSessionUseCase,
-            navigator
-        )
-        coEvery {
-            navigator.navigate(
-                route = Home,
-                saveState = Home.saveState,
-                launchSingleTop = Home.launchSingleTop,
-            )
-        } just Runs
-
-        // when
-        viewModel.navigateHome()
-
-        // then
-        coVerify(exactly = 1) {
-            navigator.navigate(
-                route = Home,
-                saveState = Home.saveState,
-                launchSingleTop = Home.launchSingleTop,
-            )
-        }
-    }
-
-    @Test
-    fun `navigate(Setting)가 호출될 때 navigator에게 위임한다`() = runTest {
-        // given
-        viewModel = BookmarkViewModel(
-            getBookmarkedSessionsUseCase,
-            deleteBookmarkedSessionUseCase,
-            navigator
-        )
-        coEvery {
-            navigator.navigate(
-                route = Setting,
-                saveState = Setting.saveState,
-                launchSingleTop = Setting.launchSingleTop,
-            )
-        } just Runs
-
-        // when
-        viewModel.navigateSetting()
-
-        // then
-        coVerify(exactly = 1) {
-            navigator.navigate(
-                route = Setting,
-                saveState = Setting.saveState,
-                launchSingleTop = Setting.launchSingleTop,
-            )
-        }
     }
 
     companion object {
