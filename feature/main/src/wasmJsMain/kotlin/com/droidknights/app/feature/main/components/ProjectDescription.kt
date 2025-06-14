@@ -13,7 +13,9 @@ import com.droidknights.app.core.designsystem.components.HorizontalDivider
 import com.droidknights.app.feature.main.model.Contributor
 import com.droidknights.app.feature.main.model.ProjectBranch
 import com.droidknights.app.feature.main.model.branches2025
+import com.droidknights.app.feature.main.model.contributors2023
 import com.droidknights.app.feature.main.model.contributors2024
+import com.droidknights.app.feature.main.model.contributors2025
 import com.droidknights.app.feature.main.model.sponsors2025
 
 @Composable
@@ -37,7 +39,7 @@ internal fun ProjectDescription(
         Contributors(
             title = "2025",
             isMobile = isMobile,
-            contributors = contributors2024,
+            contributors = contributors2025,
             onClick = onContributorClick,
         )
         Spacer(modifier = if (isMobile) Modifier.height(24.dp) else Modifier.height(55.dp))
@@ -59,7 +61,7 @@ internal fun ProjectDescription(
         Contributors(
             title = "2023",
             isMobile = isMobile,
-            contributors = contributors2024,
+            contributors = contributors2023,
             onClick = onContributorClick,
         )
     }

@@ -1,8 +1,8 @@
 package com.droidknights.app.feature.main.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Icon
+import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.designsystem.theme.LocalContentColor
 import droidknights.feature.main.generated.resources.Res
@@ -31,63 +32,66 @@ internal fun DeviceFrame(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    Box(
-        modifier = modifier
-            .border(4.dp, KnightsTheme.colorScheme.borderColor, RoundedCornerShape(24.dp)),
+    Surface(
+        modifier = modifier,
+        color = KnightsTheme.colorScheme.background,
+        border = BorderStroke(width = 4.dp, color = KnightsTheme.colorScheme.borderColor),
+        shape = RoundedCornerShape(24.dp),
     ) {
-        val systemContentColor = LocalContentColor.current.copy(alpha = 0.6F)
-        // 상태바
-        Box(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .fillMaxWidth()
-                .height(40.dp),
-        ) {
-            // 전면 카메라
-            Image(
-                painter = painterResource(Res.drawable.img_front_camera),
-                contentDescription = null,
+        Box {
+            val systemContentColor = LocalContentColor.current.copy(alpha = 0.6F)
+            // 상태바
+            Box(
                 modifier = Modifier
-                    .size(32.dp)
-                    .align(Alignment.Center),
-            )
-            // 상태 아이콘
-            Row(
-                modifier = Modifier.padding(end = 16.dp)
-                    .align(Alignment.CenterEnd),
+                    .fillMaxWidth()
+                    .height(40.dp),
             ) {
-                Icon(
-                    painter = painterResource(Res.drawable.ic_wifi),
+                // 전면 카메라
+                Image(
+                    painter = painterResource(Res.drawable.img_front_camera),
                     contentDescription = null,
-                    tint = systemContentColor,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .align(Alignment.Center),
                 )
-                Icon(
-                    painter = painterResource(Res.drawable.ic_signal),
-                    contentDescription = null,
-                    tint = systemContentColor,
-                )
-                Icon(
-                    painter = painterResource(Res.drawable.ic_battery),
-                    contentDescription = null,
-                    tint = systemContentColor,
-                )
+                // 상태 아이콘
+                Row(
+                    modifier = Modifier.padding(end = 16.dp)
+                        .align(Alignment.CenterEnd),
+                ) {
+                    Icon(
+                        painter = painterResource(Res.drawable.ic_wifi),
+                        contentDescription = null,
+                        tint = systemContentColor,
+                    )
+                    Icon(
+                        painter = painterResource(Res.drawable.ic_signal),
+                        contentDescription = null,
+                        tint = systemContentColor,
+                    )
+                    Icon(
+                        painter = painterResource(Res.drawable.ic_battery),
+                        contentDescription = null,
+                        tint = systemContentColor,
+                    )
+                }
             }
+            // 앱 슬롯
+            Box(
+                modifier = Modifier
+                    .padding(top = 40.dp, bottom = 20.dp)
+                    .fillMaxSize(),
+            ) {
+                content()
+            }
+            // 제스처 네비게이션
+            Box(
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .size(72.dp, 2.dp)
+                    .background(systemContentColor, CircleShape)
+                    .align(Alignment.BottomCenter),
+            )
         }
-        // 앱 슬롯
-        Box(
-            modifier = Modifier
-                .padding(top = 40.dp, bottom = 20.dp)
-                .fillMaxSize(),
-        ) {
-            content()
-        }
-        // 제스처 네비게이션
-        Box(
-            modifier = Modifier
-                .padding(bottom = 8.dp)
-                .size(72.dp, 2.dp)
-                .background(systemContentColor, CircleShape)
-                .align(Alignment.BottomCenter),
-        )
     }
 }
