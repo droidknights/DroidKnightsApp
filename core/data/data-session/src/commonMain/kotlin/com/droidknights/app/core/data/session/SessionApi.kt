@@ -7,5 +7,5 @@ internal class SessionApi(
     private val network: DroidKnightsNetwork,
 ) {
     suspend fun getSessions(): List<SessionResponse> =
-        network.get("/droidknights/DroidKnightsApp/refs/heads/2025/app/assets/sessions/sessions.json")
+        network.get("/droidknights/DroidKnightsApp/refs/heads/main/assets/sessions/sessions.json")
 }

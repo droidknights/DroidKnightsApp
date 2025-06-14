@@ -1,6 +1,6 @@
 package com.droidknights.app.core.network.mock
 
-internal const val SESSIONS_PATH = "/droidknights/DroidKnightsApp/refs/heads/2025/app/assets/sessions/sessions.json"
+internal const val SESSIONS_PATH = "/droidknights/DroidKnightsApp/refs/heads/main/assets/sessions/sessions.json"
 
 internal val SESSIONS_JSON = """
     [
