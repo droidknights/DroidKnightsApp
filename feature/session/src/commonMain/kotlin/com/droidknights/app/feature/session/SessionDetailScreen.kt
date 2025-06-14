@@ -45,7 +45,6 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 internal fun SessionDetailScreen(
     sessionId: String,
-    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SessionDetailViewModel = koinViewModel(),
 ) {
@@ -81,7 +80,7 @@ internal fun SessionDetailScreen(
                 SessionDetailTopAppBar(
                     bookmarked = (uiState as? SessionDetailUiState.Success)?.bookmarked == true,
                     onClickBookmark = { viewModel.toggleBookmark() },
-                    onBackClick = onBackClick,
+                    onBackClick = viewModel::navigateBack,
                 )
 
                 when (val state = uiState) {

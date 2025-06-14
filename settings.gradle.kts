@@ -42,6 +42,8 @@ include(":composeApp")
 include(
     ":core:designsystem",
     ":core:navigation",
+    ":core:router:router",
+    ":core:router:router-api",
     ":core:ui:shader",
     ":core:testing"
 )
@@ -83,6 +85,7 @@ include(
     ":feature:main",
     ":feature:home",
     ":feature:session",
+    ":feature:session-api",
     ":feature:setting",
     ":feature:contributor",
     ":feature:bookmark",

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.droidknights.app.core.domain.session.api.usecase.BookmarkSessionUseCase
 import com.droidknights.app.core.domain.session.api.usecase.GetBookmarkedSessionIdsUseCase
 import com.droidknights.app.core.domain.session.api.usecase.GetSessionUseCase
+import com.droidknights.app.core.router.api.Navigator
 import com.droidknights.app.feature.session.model.SessionDetailEffect
 import com.droidknights.app.feature.session.model.SessionDetailUiState
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,6 +21,7 @@ internal class SessionDetailViewModel(
     private val getSessionUseCase: GetSessionUseCase,
     getBookmarkedSessionIdsUseCase: GetBookmarkedSessionIdsUseCase,
     private val bookmarkSessionUseCase: BookmarkSessionUseCase,
+    private val navigator: Navigator,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<SessionDetailUiState>(SessionDetailUiState.Loading)
@@ -84,5 +86,9 @@ internal class SessionDetailViewModel(
                 // TODO: 로깅 혹은 에러 표시
             }
         }
+    }
+
+    fun navigateBack() = viewModelScope.launch {
+        navigator.navigateBack()
     }
 }

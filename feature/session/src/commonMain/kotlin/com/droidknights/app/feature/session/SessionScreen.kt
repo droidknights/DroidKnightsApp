@@ -40,8 +40,6 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun SessionScreen(
-    onBackClick: () -> Unit,
-    onSessionClick: (Session) -> Unit,
     sessionViewModel: SessionViewModel = koinViewModel(),
 ) {
     val sessionUiState by sessionViewModel.uiState.collectAsStateWithLifecycle()
@@ -58,12 +56,12 @@ internal fun SessionScreen(
                 .fillMaxSize(),
         ) {
             SessionTopAppBar(
-                onBackClick = onBackClick,
+                onBackClick = sessionViewModel::navigateBack,
             )
             SessionList(
                 sessionState = sessionState,
                 modifier = Modifier.weight(1F),
-                onSessionClick = onSessionClick,
+                onSessionClick = sessionViewModel::navigateSessionDetail,
             )
         }
     }
