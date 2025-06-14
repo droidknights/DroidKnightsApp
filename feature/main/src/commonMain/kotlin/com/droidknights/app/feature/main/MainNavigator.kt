@@ -18,8 +18,6 @@ import com.droidknights.app.feature.contributor.navigation.navigateContributor
 import com.droidknights.app.feature.home.navigation.navigateHome
 import com.droidknights.app.feature.license.navigation.navigateLicense
 import com.droidknights.app.feature.map.navigation.navigateMap
-import com.droidknights.app.feature.session.navigation.navigateSession
-import com.droidknights.app.feature.session.navigation.navigateSessionDetail
 import com.droidknights.app.feature.setting.navigation.navigateSetting
 
 @Suppress("TooManyFunctions")
@@ -58,14 +56,6 @@ internal class MainNavigator(
         navController.navigateContributor()
     }
 
-    fun navigateSession() {
-        navController.navigateSession()
-    }
-
-    fun navigateSessionDetail(sessionId: String) {
-        navController.navigateSessionDetail(sessionId)
-    }
-
     fun navigateLicense() {
         navController.navigateLicense()
     }
@@ -87,6 +77,7 @@ internal class MainNavigator(
             popBackStack()
         }
     }
+
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean {
         return navController.currentDestination?.hasRoute<T>() == true
     }

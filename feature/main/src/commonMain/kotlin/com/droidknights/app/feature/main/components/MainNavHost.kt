@@ -27,7 +27,6 @@ internal fun MainNavHost(
             onLicenseClick = navigator::navigateLicense,
         )
         homeNavGraph(
-            onSessionClick = navigator::navigateSession,
             onContributorClick = navigator::navigateContributor,
             onOrganizationSponsorClick = navigator::navigateWeb,
             onMapClick = navigator::navigateMap,
@@ -36,12 +35,7 @@ internal fun MainNavHost(
         contributorNavGraph(
             onBackClick = navigator::popBackStackIfNotHome,
         )
-        sessionNavGraph(
-            onBackClick = navigator::popBackStackIfNotHome,
-            onSessionClick = { sessionId ->
-                navigator.navigateSessionDetail(sessionId)
-            },
-        )
+        sessionNavGraph()
         licenseNavGraph(onBackClick = navigator::popBackStackIfNotHome)
         mapNavGraph(
             onBackClick = navigator::popBackStackIfNotHome,

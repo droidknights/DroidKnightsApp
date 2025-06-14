@@ -45,6 +45,7 @@ import com.droidknights.app.core.designsystem.components.Button
 import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.core.router.LaunchedRouter
 import com.droidknights.app.feature.main.components.AppBar
 import com.droidknights.app.feature.main.components.DeviceFrame
 import com.droidknights.app.feature.main.components.MultiPlatformButton
@@ -56,6 +57,10 @@ actual fun MainScreen(modifier: Modifier) {
     val windowInfo = LocalWindowInfo.current
     val size = with(density) { windowInfo.containerSize.toSize().toDpSize() }
     val navigator = rememberMainNavigator()
+
+    LaunchedRouter(
+        navHostController = navigator.navController,
+    )
 
     Surface(
         modifier = modifier.fillMaxSize(),

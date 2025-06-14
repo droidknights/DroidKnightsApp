@@ -46,6 +46,8 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.core.designsystem)
+            implementation(projects.core.router.router)
+            implementation(projects.core.router.routerApi)
 
             implementation(projects.core.data.dataSession)
             implementation(projects.core.data.dataSetting)
@@ -63,9 +65,11 @@ kotlin {
             implementation(projects.core.domain.domainSession)
             implementation(projects.core.domain.domainContributor)
 
+            implementation(projects.feature.home)
             implementation(projects.feature.main)
             implementation(projects.feature.contributor)
             implementation(projects.feature.session)
+            implementation(projects.feature.sessionApi)
             implementation(projects.feature.setting)
             implementation(projects.feature.license)
             implementation(projects.feature.bookmark)

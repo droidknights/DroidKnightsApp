@@ -1,40 +1,22 @@
 package com.droidknights.app.feature.session.navigation
 
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import com.droidknights.app.core.navigation.Route
 import com.droidknights.app.feature.session.SessionDetailScreen
 import com.droidknights.app.feature.session.SessionScreen
-import com.droidknights.app.core.navigation.Route.Session as SessionRoute
+import com.droidknights.app.feature.session.api.RouteSession
+import com.droidknights.app.feature.session.api.RouteSessionDetail
 
-fun NavController.navigateSession() {
-    navigate(SessionRoute)
-}
-
-fun NavController.navigateSessionDetail(sessionId: String) {
-    navigate(Route.SessionDetail(sessionId))
-}
-
-fun NavGraphBuilder.sessionNavGraph(
-    onBackClick: () -> Unit,
-    onSessionClick: (String) -> Unit,
-) {
-    composable<SessionRoute> {
-        SessionScreen(
-            onBackClick = onBackClick,
-            onSessionClick = {
-                onSessionClick(it.id)
-            },
-        )
+fun NavGraphBuilder.sessionNavGraph() {
+    composable<RouteSession> {
+        SessionScreen()
     }
 
-    composable<Route.SessionDetail> { navBackStackEntry ->
-        val sessionId = navBackStackEntry.toRoute<Route.SessionDetail>().sessionId
+    composable<RouteSessionDetail> { navBackStackEntry ->
+        val sessionId = navBackStackEntry.toRoute<RouteSessionDetail>().sessionId
         SessionDetailScreen(
             sessionId = sessionId,
-            onBackClick = onBackClick,
         )
     }
 }

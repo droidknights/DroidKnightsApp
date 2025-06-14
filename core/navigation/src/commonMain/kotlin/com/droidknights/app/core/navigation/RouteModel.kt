@@ -7,12 +7,6 @@ sealed interface Route {
     data object Contributor : Route
 
     @Serializable
-    data object Session : Route
-
-    @Serializable
-    data class SessionDetail(val sessionId: String) : Route
-
-    @Serializable
     data object License : Route
 
     @Serializable

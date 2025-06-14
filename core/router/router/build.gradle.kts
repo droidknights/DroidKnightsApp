@@ -5,11 +5,11 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.core.ui.shader)
+            implementation(libs.kotlinx.serialization.json)
+
             implementation(projects.core.router.routerApi)
-            implementation(projects.feature.sessionApi)
         }
     }
 }
 
-android.namespace = "com.droidknights.app.feature.home"
+android.namespace = "com.droidknights.app.core.router"

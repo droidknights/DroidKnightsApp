@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
+import com.droidknights.app.core.router.LaunchedRouter
 import com.droidknights.app.feature.main.components.MainBottomBar
 import com.droidknights.app.feature.main.components.MainNavHost
 
@@ -17,6 +18,10 @@ internal fun MainContent(
     modifier: Modifier = Modifier,
     navigator: MainNavigator = rememberMainNavigator(),
 ) {
+    LaunchedRouter(
+        navHostController = navigator.navController,
+    )
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = KnightsTheme.colorScheme.background,
