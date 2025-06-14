@@ -9,5 +9,5 @@ data class Contributor(
         "https://avatars.githubusercontent.com/u/$id?v=4"
 
     val githubUrl: String =
-        "https://api.github.com/users/$name"
+        "https://github.com/$name"
 }
