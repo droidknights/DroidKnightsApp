@@ -1,7 +1,7 @@
 import com.droidknights.app.setNamespace
 
 plugins {
-    id("droidknights.android.feature")
+    alias(libs.plugins.droidknights.android.feature)
 }
 
 android {
@@ -9,7 +9,12 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.settingApi)
+
     implementation(libs.androidx.appcompat)
 
     implementation(libs.oss.licenses)
+
+    implementation(projects.core.action.actionApi)
+    implementation(projects.core.data.dataSettingsApi)
 }

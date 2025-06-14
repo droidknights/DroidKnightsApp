@@ -19,18 +19,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Purple01
-import com.droidknights.app.core.model.Room
+import com.droidknights.app.core.model.session.Room
 import com.droidknights.app.core.ui.RoomText
 
 @Composable
 internal fun BookmarkCard(
-    modifier: Modifier = Modifier,
     tagLabel: String,
     room: Room,
     title: String,
     speaker: String,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
@@ -49,7 +49,7 @@ internal fun BookmarkCard(
         ) {
             Box(
                 modifier = Modifier
-                    .background(color = Purple01, shape = CircleShape)
+                    .background(color = KnightsColor.Purple01, shape = CircleShape)
                     .size(12.dp)
             )
             Text(
@@ -83,7 +83,6 @@ internal class RoomPreviewParameterProvider : PreviewParameterProvider<Room> {
     override val values = sequenceOf(
         Room.TRACK1,
         Room.TRACK2,
-        Room.TRACK3,
         Room.ETC
     )
 }

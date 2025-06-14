@@ -18,18 +18,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Purple01
-import com.droidknights.app.core.designsystem.theme.White
 import com.droidknights.app.feature.bookmark.R
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 @Composable
 internal fun BookmarkTimelineItem(
-    modifier: Modifier = Modifier,
     sequence: Int,
     time: LocalTime,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.padding(vertical = 8.dp),
@@ -43,19 +42,19 @@ internal fun BookmarkTimelineItem(
 
 @Composable
 private fun SequenceBadge(
-    modifier: Modifier = Modifier,
     sequence: Int,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
             .size(24.dp)
-            .background(color = Purple01.copy(alpha = 0.3F), shape = CircleShape)
+            .background(color = KnightsColor.Purple01.copy(alpha = 0.3F), shape = CircleShape)
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
             text = sequence.toString(),
             style = KnightsTheme.typography.labelLargeM,
-            color = White,
+            color = KnightsColor.White,
             textAlign = TextAlign.Center
         )
     }
@@ -63,22 +62,22 @@ private fun SequenceBadge(
 
 @Composable
 private fun SessionTimeBadge(
-    modifier: Modifier = Modifier,
     time: LocalTime,
+    modifier: Modifier = Modifier,
 ) {
     val pattern = stringResource(id = R.string.session_time_format)
     val formatter = remember { DateTimeFormatter.ofPattern(pattern) }
 
     Box(
         modifier = modifier
-            .background(color = Purple01, shape = RoundedCornerShape(percent = 50))
+            .background(color = KnightsColor.Purple01, shape = RoundedCornerShape(percent = 50))
             .padding(vertical = 2.dp, horizontal = 8.dp)
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
             text = formatter.format(time),
             style = KnightsTheme.typography.labelSmallM,
-            color = White,
+            color = KnightsColor.White,
             textAlign = TextAlign.Center
         )
     }

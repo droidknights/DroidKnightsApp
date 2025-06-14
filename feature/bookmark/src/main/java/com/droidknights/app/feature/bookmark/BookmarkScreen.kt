@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.feature.bookmark.component.BookmarkCard
 import com.droidknights.app.feature.bookmark.component.BookmarkItem
 import com.droidknights.app.feature.bookmark.component.BookmarkTimelineItem
@@ -65,9 +66,10 @@ internal fun BookmarkRoute(
     ) {
         BookmarkContent(
             uiState = bookmarkUiState,
+            onClickedRedirectItem = viewModel::redirectToSessionScreen,
             toggleEditMode = viewModel::toggleEditMode,
             onSelectedItem = viewModel::selectSession,
-            onDeletedSessions = viewModel::deleteSessions
+            onDeletedSessions = viewModel::deleteSessions,
         )
     }
 }
@@ -77,6 +79,7 @@ private fun BookmarkContent(
     uiState: BookmarkUiState,
     toggleEditMode: () -> Unit,
     onSelectedItem: (Session) -> Unit,
+    onClickedRedirectItem: (Session) -> Unit,
     onDeletedSessions: () -> Unit,
 ) {
     when (uiState) {
@@ -87,6 +90,7 @@ private fun BookmarkContent(
             toggleEditMode = toggleEditMode,
             selectedSessionIds = uiState.selectedSessionIds,
             onSelectedItem = onSelectedItem,
+            onClickedRedirectItem = onClickedRedirectItem,
             onDeletedSessions = onDeletedSessions,
         )
     }
@@ -106,6 +110,7 @@ private fun BookmarkScreen(
     toggleEditMode: () -> Unit,
     selectedSessionIds: ImmutableSet<String>,
     onSelectedItem: (Session) -> Unit,
+    onClickedRedirectItem: (Session) -> Unit,
     onDeletedSessions: () -> Unit,
     listContentBottomPadding: Dp = 72.dp,
 ) {
@@ -136,7 +141,8 @@ private fun BookmarkScreen(
                 bookmarkItems = bookmarkItems,
                 selectedSessionIds = selectedSessionIds,
                 isEditMode = isEditMode,
-                onSelectedItem = onSelectedItem
+                onSelectedItem = onSelectedItem,
+                onClickedRedirectItem = onClickedRedirectItem,
             )
         }
 
@@ -161,7 +167,8 @@ private fun BookmarkList(
     bookmarkItems: ImmutableList<BookmarkItemUiState>,
     selectedSessionIds: ImmutableSet<String>,
     isEditMode: Boolean,
-    onSelectedItem: (Session) -> Unit
+    onSelectedItem: (Session) -> Unit,
+    onClickedRedirectItem: (Session) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -183,7 +190,10 @@ private fun BookmarkList(
                     )
                     .padding(
                         end = if (isEditMode) 0.dp else 16.dp
-                    ),
+                    )
+                    .clickable(enabled = isEditMode.not()) {
+                        onClickedRedirectItem(itemState.session)
+                    },
                 leadingContent = @Composable {
                     if (isEditMode) {
                         EditModeLeadingItem(

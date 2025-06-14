@@ -1,8 +1,8 @@
 import com.droidknights.app.setNamespace
 
 plugins {
-    id("droidknights.android.library")
-    id("droidknights.android.compose")
+    alias(libs.plugins.droidknights.android.library)
+    alias(libs.plugins.droidknights.android.compose)
 }
 
 android {
@@ -10,6 +10,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
     implementation(projects.core.designsystem)
+    implementation(projects.core.domain.domainSessionApi)
 }

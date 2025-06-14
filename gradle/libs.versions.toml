@@ -1,49 +1,49 @@
 [versions]
 ## Android gradle plugin
-androidGradlePlugin = "8.8.0"
+androidGradlePlugin = "8.10.1"
 
 # https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md
-androidDesugarJdkLibs = "2.1.4"
+androidDesugarJdkLibs = "2.1.5"
 
 ## AndroidX
 # https://developer.android.com/jetpack/androidx/releases/core
-androidxCore = "1.15.0"
+androidxCore = "1.16.0"
 # https://developer.android.com/jetpack/androidx/releases/appcompat
 androidxAppCompat = "1.7.0"
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
-androidxLifecycle = "2.8.7"
+androidxLifecycle = "2.9.0"
 # https://developer.android.com/jetpack/androidx/releases/activity
-androidxActivity = "1.10.0"
+androidxActivity = "1.10.1"
 # https://developer.android.com/jetpack/androidx/releases/datastore
-androidxDatastore = "1.1.2"
+androidxDatastore = "1.1.7"
 # https://developer.android.com/jetpack/androidx/releases/glance
 androidxGlance = "1.1.1"
 glanceExperimentalTools = "0.2.2"
 # https://developer.android.com/jetpack/androidx/releases/profileinstaller
 profileinstaller = "1.4.1"
-# https://androidx.tech/artifacts/benchmark/benchmark-baseline-profile-gradle-plugin/index.html
-baselineprofile = "1.3.3"
+# https://developer.android.com/jetpack/androidx/releases/benchmark
+baselineprofile = "1.3.4"
 
 ## Compose
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-androidxComposeBom = "2025.01.01"
+androidxComposeBom = "2025.05.01"
 # https://developer.android.com/jetpack/androidx/releases/navigation
-androidxComposeNavigation = "2.8.6"
+androidxComposeNavigation = "2.9.0"
 # https://developer.android.com/jetpack/androidx/releases/compose-material3
-androidxComposeMaterial3 = "1.3.1"
+androidxComposeMaterial3 = "1.3.2"
 
 # https://github.com/skydoves/landscapist
-landscapist = "2.4.6"
+landscapist = "2.4.7"
 # https://github.com/valentinilk/compose-shimmer
 composeShimmer = "1.3.2"
 
 ## Kotlin Symbol Processing
 # https://github.com/google/ksp/
-ksp = "2.1.0-1.0.29"
+ksp = "2.1.21-2.0.1"
 
 ## Hilt
 # https://github.com/google/dagger/releases
-hilt = "2.55"
+hilt = "2.56.2"
 # https://developer.android.com/jetpack/androidx/releases/hilt
 hiltNavigationCompose = "1.2.0"
 
@@ -57,19 +57,19 @@ retrofit = "2.11.0"
 
 ## Kotlin
 # https://github.com/JetBrains/kotlin
-kotlin = "2.1.0"
+kotlin = "2.1.21"
 # https://github.com/Kotlin/kotlinx.serialization
-kotlinxSerializationJson = "1.8.0"
+kotlinxSerializationJson = "1.8.1"
 # https://github.com/Kotlin/kotlinx-datetime/releases
-kotlinxDatetime = "0.6.1"
+kotlinxDatetime = "0.6.2"
 # https://github.com/Kotlin/kotlinx.collections.immutable
-kotlinxImmutable = "0.3.8"
+kotlinxImmutable = "0.4.0"
 
 ## Coroutine
 # https://github.com/cashapp/turbine
 turbine = "1.2.0"
 # https://github.com/Kotlin/kotlinx.coroutines
-coroutine = "1.10.1"
+coroutine = "1.10.2"
 
 ## license
 # https://developers.google.com/android/guides/opensource
@@ -80,13 +80,12 @@ ossLicensesPlugin = "0.10.6"
 # https://github.com/junit-team/junit4
 junit4 = "4.13.2"
 # https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine
-junitVintageEngine = "5.10.2"
-ui-test-junit4 = "1.7.7"
+junitVintageEngine = "5.12.2"
 # https://developer.android.com/jetpack/androidx/releases/test-uiautomator
 uiAutomator = "2.3.0"
 androidxTestRunner = "1.6.2"
 # https://developer.android.com/jetpack/androidx/releases/benchmark
-benchmarkMacroJunit4 = "1.3.3"
+benchmarkMacroJunit4 = "1.3.4"
 
 # # https://developer.android.com/jetpack/androidx/releases/test
 androidxTestExt = "1.2.1"
@@ -98,9 +97,19 @@ robolectric = "4.14.1"
 # https://kotest.io/
 kotest = "5.9.0"
 # https://github.com/detekt/detekt
-detekt = "1.23.7"
+detekt = "1.23.8"
+# https://github.com/twitter/compose-rules
+detektTwitterComposeRule = "0.0.26"
 # https://mockk.io/
-mockk = "1.13.16"
+mockk = "1.14.2"
+# https://github.com/mockito/mockito
+test-mockito = "5.17.0"
+# https://github.com/mockito/mockito-kotlin
+test-mockito-kotlin = "5.4.0"
+# https://github.com/mannodermaus/android-junit5
+test-junit5-plugin = "1.12.0.0"
+# https://github.com/junit-team/junit5
+test-junit5 = "5.12.2"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -121,10 +130,11 @@ androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profi
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "ui-test-junit4" }
+androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxComposeNavigation" }
 androidx-compose-navigation-test = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxComposeNavigation" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
@@ -168,6 +178,15 @@ kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.re
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
+## Test mockito
+test-mockito = { group = "org.mockito", name = "mockito-core", version.ref = "test-mockito" }
+test-mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "test-mockito-kotlin" }
+
+## Test junit 5
+test-junit5 = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "test-junit5" }
+test-junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "test-junit5" }
+test-junit5-vintage = { group = "org.junit.jupiter", name = "junit-vintage-engin", version.ref = "test-junit5" }
+
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutine" }
@@ -176,11 +195,14 @@ oss-licenses = { group = "com.google.android.gms", name = "play-services-oss-lic
 
 # verify
 verify-detektFormatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+verify-twitter-detektComposeRule = { module = "com.twitter.compose.rules:detekt", version.ref = "detektTwitterComposeRule" }
 
 # plugin
 verify-detektPlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 oss-licenses-plugin = { group = "com.google.android.gms", name = "oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
+plugin-kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+plugin-android-junit5 = { group = "de.mannodermaus.gradle.plugins", name = "android-junit5", version.ref = "test-junit5-plugin" }
 
 androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidxGlance" }
 androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "androidxGlance" }
@@ -201,3 +223,14 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 roborazzi-plugin = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+
+# Plugins defined by this project
+droidknights-android-application = { id = "droidknights.android.application", version = "unspecified" }
+
+droidknights-android-library = { id = "droidknights.android.library", version = "unspecified" }
+droidknights-android-feature = { id = "droidknights.android.feature", version = "unspecified" }
+droidknights-android-compose = { id = "droidknights.android.compose", version = "unspecified" }
+droidknights-android-hilt = { id = "droidknights.android.hilt", version = "unspecified" }
+
+droidknights-kotlin-library = { id = "droidknights.kotlin.library", version = "unspecified" }
+droidknights-kotlin-library-serialization = { id = "droidknights.kotlin.library.serialization", version = "unspecified" }

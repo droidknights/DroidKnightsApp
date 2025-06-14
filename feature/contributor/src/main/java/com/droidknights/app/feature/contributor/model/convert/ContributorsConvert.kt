@@ -1,6 +1,6 @@
 package com.droidknights.app.feature.contributor.model.convert
 
-import com.droidknights.app.core.model.ContributorGroup
+import com.droidknights.app.core.model.contributor.ContributorGroup
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import kotlinx.collections.immutable.toPersistentList
 

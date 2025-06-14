@@ -2,7 +2,9 @@ name: Android Pull Request CI
 
 on:
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - 2025/app # TODO 개발기간 중 임시로 추가. 나중에 제거 필요
 
 jobs:
   verify:

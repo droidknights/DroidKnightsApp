@@ -24,8 +24,6 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 internal fun HomeRoute(
     padding: PaddingValues,
-    onSessionClick: () -> Unit,
-    onContributorClick: () -> Unit,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
@@ -34,12 +32,12 @@ internal fun HomeRoute(
     LaunchedEffect(true) {
         viewModel.errorFlow.collectLatest { throwable -> onShowErrorSnackBar(throwable) }
     }
-
     HomeScreen(
         padding = padding,
         sponsorsUiState = sponsorsUiState,
-        onSessionClick = onSessionClick,
-        onContributorClick = onContributorClick,
+        onSessionClick = viewModel::navigateSession,
+        onContributorClick = viewModel::navigateContributor,
+        onOrganizationSponsorClick = viewModel::navigateOrganizationSponsor,
     )
 }
 
@@ -49,6 +47,7 @@ private fun HomeScreen(
     sponsorsUiState: SponsorsUiState,
     onSessionClick: () -> Unit,
     onContributorClick: () -> Unit,
+    onOrganizationSponsorClick: (String) -> Unit,
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -61,20 +60,21 @@ private fun HomeScreen(
     ) {
         SessionCard(onClick = onSessionClick)
         ContributorCard(onClick = onContributorClick)
-        SponsorCard(uiState = sponsorsUiState)
+        SponsorCard(
+            uiState = sponsorsUiState,
+            onOrganizationSponsorClick = onOrganizationSponsorClick
+        )
     }
 }
 
 @Preview
 @Composable
-private fun PreviewHomeScreen(
-    @PreviewParameter(SponsorsUiStatePreviewParameterProvider::class)
-    sponsorsUiState: SponsorsUiState,
-) {
+private fun PreviewHomeScreen(@PreviewParameter(SponsorsUiStatePreviewParameterProvider::class) sponsorsUiState: SponsorsUiState) {
     HomeScreen(
         padding = PaddingValues(),
         sponsorsUiState = sponsorsUiState,
         onSessionClick = {},
         onContributorClick = {},
+        onOrganizationSponsorClick = {}
     )
 }

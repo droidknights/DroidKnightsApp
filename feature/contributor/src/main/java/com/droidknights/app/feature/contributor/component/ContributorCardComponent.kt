@@ -19,8 +19,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.component.KnightsCard
 import com.droidknights.app.core.designsystem.component.NetworkImage
-import com.droidknights.app.core.designsystem.component.TextChip
+import com.droidknights.app.core.designsystem.component.OutlineChip
 import com.droidknights.app.core.designsystem.res.rememberPainterResource
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.feature.contributor.R
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
@@ -28,9 +29,9 @@ import com.valentinilk.shimmer.shimmer
 
 @Composable
 internal fun ContributorCard(
+    showPlaceholder: Boolean,
     contributor: ContributorsUiState.Contributors.Item.User,
     modifier: Modifier = Modifier,
-    showPlaceholder: Boolean,
 ) {
     val uriHandler = LocalUriHandler.current
     val shimmerModifier = if (showPlaceholder) {
@@ -63,16 +64,12 @@ internal fun ContributorCard(
                         end = 16.dp
                     )
             ) {
-                TextChip(
-                    stringResource(id = R.string.contributor_chip),
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                    labelColor = MaterialTheme.colorScheme.onTertiaryContainer,
-                    modifier = shimmerModifier
-                )
+                OutlineChip(text = stringResource(id = R.string.contributor_chip))
+
                 Text(
                     text = contributor.name,
                     style = KnightsTheme.typography.headlineSmallBL,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = KnightsColor.Blue01,
                     modifier = Modifier
                         .padding(top = 12.dp)
                         .then(shimmerModifier)

@@ -1,5 +1,7 @@
+import com.droidknights.app.filterProject
+
 plugins {
-    id("droidknights.android.application")
+    alias(libs.plugins.droidknights.android.application)
     id("com.google.android.gms.oss-licenses-plugin")
     alias(libs.plugins.baselineprofile)
     alias(libs.plugins.roborazzi.plugin)
@@ -34,16 +36,14 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.navigation)
-    implementation(projects.feature.main)
-    implementation(projects.feature.home)
-
-    implementation(projects.core.designsystem)
-
-    implementation(projects.widget)
-
-    baselineProfile(projects.baselineprofile)
+    rootProject.subprojects.filterProject {
+        if (it.name.contains("baselineprofile")) {
+            baselineProfile(it)
+        } else if (it.name.contains("testing")) {
+            testImplementation(it)
+        } else {
+            implementation(it)
+        }
+    }
     implementation(libs.androidx.profileinstaller)
-
-    testImplementation(projects.core.testing)
 }

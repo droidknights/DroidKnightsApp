@@ -1,9 +1,9 @@
 package com.droidknights.app.feature.bookmark.model
 
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Session
+import kotlinx.datetime.toJavaLocalDateTime
 import java.time.LocalTime
 import javax.annotation.concurrent.Immutable
-import kotlinx.datetime.toJavaLocalDateTime
 
 @Immutable
 data class BookmarkItemUiState(

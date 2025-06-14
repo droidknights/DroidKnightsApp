@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="contributor_card_title">여러분 덕분입니다!</string>
-    <string name="contributor_card_description">드로이드 나이츠 앱을 개발한\n개발자 분들을 소개합니다.</string>
-    <string name="session_card_title">자리를 빛내주신 스피커와\n올해 세션을 소개합니다</string>
+    <string name="contributor_card_title">드로이드 나이츠앱\n누가 개발했을까?</string>
+    <string name="contributor_card_description">메이커를 소개합니다</string>
+    <string name="session_card_title_one">자리를 빛내주신 스피커와</string>
+    <string name="session_card_title_two">올해 세션을 소개합니다</string>
     <string name="session_card_caption">스피커 라인업 &amp; 세션 목록</string>
-    <string name="sponsor_card_title">이 기업들이 후원해요</string>
-    <string name="sponsor_card_description">플래티넘 %d곳, 골드 %d곳, 실버 %d곳이\n후원해주셨습니다.</string>
+    <string name="sponsor_card_title">후원 감사합니다</string>
+    <string name="sponsor_card_desc_template">플래티넘 1곳, 골드 1곳, 실버 1곳, 개인 후원 %d명</string>
 </resources>

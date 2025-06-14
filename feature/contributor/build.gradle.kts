@@ -1,7 +1,7 @@
 import com.droidknights.app.setNamespace
 
 plugins {
-    id("droidknights.android.feature")
+    alias(libs.plugins.droidknights.android.feature)
 }
 
 android {
@@ -13,4 +13,9 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.compose.shimmer)
     implementation(libs.kotlinx.immutable)
+
+    implementation(projects.feature.contributorApi)
+    implementation(projects.core.router.routerApi)
+
+    implementation(projects.core.domain.domainContributorApi)
 }

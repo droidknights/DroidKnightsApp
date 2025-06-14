@@ -1,0 +1,264 @@
+[
+  {
+    "id": "1",
+    "title": "키노트",
+    "content": "",
+    "speakers": [],
+    "tags": [],
+    "room": null,
+    "startTime": "2025-06-17T10:40:00.000",
+    "endTime": "2025-06-17T11:00:00.000"
+  },
+  {
+    "id": "2",
+    "title": "N가지 상황의 스크롤 뷰에서 영상 로직 대응하기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "이가은",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track1",
+    "startTime": "2024-06-17T11:00:00.000",
+    "endTime": "2024-06-16T11:30:00.000"
+  },
+  {
+    "id": "3",
+    "title": "Benchmark와 BaselineProfile을 사용해 LazyColumn 스크롤 성능을 75% 개선하기까지의 여정",
+    "content": "",
+    "speakers": [
+      {
+        "name": "송상윤",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track2",
+    "startTime": "2025-06-17T11:00:00.000",
+    "endTime": "2025-06-17T11:30:00.000"
+  },
+  {
+    "id": "4",
+    "title": "제미나이와 함께 안드로이드 공부하기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "양찬석",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "AI"
+    ],
+    "room": "Track1",
+    "startTime": "2025-06-17T11:50:00.000",
+    "endTime": "2025-06-17T12:35:00.000"
+  },
+  {
+    "id": "5",
+    "title": "Android에서 가능한 모든 AI",
+    "content": "",
+    "speakers": [
+      {
+        "name": "강사룡",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "AI"
+    ],
+    "room": "Track2",
+    "startTime": "2025-06-17T11:50:00.000",
+    "endTime": "2025-06-17T12:35:00.000"
+  },
+  {
+    "id": "6",
+    "title": "Bytecode Manipulation 을 통해 생산성 높이기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "강대규",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track1",
+    "startTime": "2025-06-17T11:50:00.000",
+    "endTime": "2025-06-17T12:35:00.000"
+  },
+  {
+    "id": "7",
+    "title": "전방위 자동화 시대, CI/CD를 넘어 PM과 QA까지 확장하기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "김호중",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track2",
+    "startTime": "2025-06-17T13:55:00.000",
+    "endTime": "2025-06-17T14:25:00.000"
+  },
+  {
+    "id": "8",
+    "title": "enabledEdgeToEdge 우당탕탕 적용기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "이지훈",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track1",
+    "startTime": "2025-06-17T13:55:00.000",
+    "endTime": "2025-06-17T14:25:00.000"
+  },
+  {
+    "id": "9",
+    "title": "KMP로 Figma 아이콘 동기화, 클릭 한 번이면 끝!",
+    "content": "",
+    "speakers": [
+      {
+        "name": "옥수환",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track2",
+    "startTime": "2025-06-17T13:55:00.000",
+    "endTime": "2025-06-17T14:25:00.000"
+  },
+  {
+    "id": "10",
+    "title": "ReadMoreText: 긴 텍스트 효과적으로 다루기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "안성용",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track1",
+    "startTime": "2025-06-17T14:45:00.000",
+    "endTime": "2025-06-17T15:15:00.000"
+  },
+  {
+    "id": "11",
+    "title": "여러분의 클린 아키텍처는 틀렸습니다.",
+    "content": "",
+    "speakers": [
+      {
+        "name": "박상권",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track2",
+    "startTime": "2025-06-17T14:45:00.000",
+    "endTime": "2025-06-17T15:15:00.000"
+  },
+  {
+    "id": "12",
+    "title": "컴포즈 스냅샷 내부원리 찍먹하기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "강다현",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track1",
+    "startTime": "2025-06-17T14:45:00.000",
+    "endTime": "2025-06-17T15:15:00.000"
+  },
+  {
+    "id": "13",
+    "title": "카카오뱅크 Compose 적용기",
+    "content": "",
+    "speakers": [
+      {
+        "name": "이수호",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track2",
+    "startTime": "2025-06-17T15:45:00.000",
+    "endTime": "2025-06-17T16:30:00.000"
+  },
+  {
+    "id": "14",
+    "title": "Jetpack XR 살펴보기: XR 개발은 어떻게 이루어지는가?",
+    "content": "",
+    "speakers": [
+      {
+        "name": "윤희성",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track1",
+    "startTime": "2025-06-17T15:45:00.000",
+    "endTime": "2025-06-17T16:30:00.000"
+  },
+  {
+    "id": "15",
+    "title": "레드팀 화이트해커의 Offensive 관점 안드로이드 앱 보안(feat. CVE-2025-**)",
+    "content": "",
+    "speakers": [
+      {
+        "name": "김주원",
+        "introduction": "",
+        "imageUrl": ""
+      }
+    ],
+    "tags": [
+      "Android"
+    ],
+    "room": "Track2",
+    "startTime": "2025-06-17T16:50:00.000",
+    "endTime": "2025-06-17T17:20:00.000"
+  }
+]

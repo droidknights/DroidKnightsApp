@@ -14,7 +14,7 @@ assignees: ''
 
 1. Go to '...'
 2. Click on '....'
-4. See error
+3. See error
 
 **Expected behavior**
 If it's clear

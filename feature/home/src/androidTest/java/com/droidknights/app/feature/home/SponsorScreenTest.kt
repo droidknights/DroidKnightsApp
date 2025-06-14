@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.droidknights.app.core.model.Sponsor
+import com.droidknights.app.core.model.sponsor.Sponsor
 import com.droidknights.app.feature.home.component.SponsorCard
 import com.droidknights.app.feature.home.model.SponsorsUiState
 import kotlinx.collections.immutable.persistentListOf

@@ -1,26 +1,23 @@
 package com.droidknights.app.core.designsystem.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.droidknights.app.core.designsystem.theme.DarkGray
-import com.droidknights.app.core.designsystem.theme.Green01
-import com.droidknights.app.core.designsystem.theme.Green04
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.LightGray
-import com.droidknights.app.core.designsystem.theme.Yellow03A40
-import com.droidknights.app.core.designsystem.theme.Yellow04
 
 @Composable
 fun TextChip(
@@ -28,19 +25,29 @@ fun TextChip(
     containerColor: Color,
     labelColor: Color,
     modifier: Modifier = Modifier,
+    border: BorderStroke? = null,
 ) {
     Surface(
-        modifier = modifier,
-        shape = RoundedCornerShape(10.dp),
+        shape = KnightsTheme.shape.chip,
         color = containerColor,
+        contentColor = labelColor,
+        border = border,
+        modifier = modifier
     ) {
-        ProvideTextStyle(KnightsTheme.typography.labelSmallM) {
-            Text(text = text, color = labelColor, modifier = Modifier.padding(TextChipPadding))
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .defaultMinSize(minHeight = 20.dp)
+                .padding(horizontal = 12.dp, vertical = 2.dp)
+        ) {
+            Text(
+                text = text,
+                style = KnightsTheme.typography.labelSmallM,
+                textAlign = TextAlign.Center,
+            )
         }
     }
 }
-
-private val TextChipPadding = PaddingValues(12.dp, 2.dp, 12.dp, 2.dp)
 
 @Preview
 @Composable
@@ -49,18 +56,19 @@ private fun TextChipPreview() {
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             TextChip(
                 "카테고리",
-                containerColor = DarkGray,
-                labelColor = LightGray,
+                containerColor = Color.Transparent,
+                labelColor = KnightsColor.LightGray,
+                border = BorderStroke(1.dp, KnightsColor.LightGray),
             )
             TextChip(
-                "Track 02",
-                containerColor = Green01,
-                labelColor = Green04,
+                "Track 01",
+                containerColor = KnightsColor.Blue01,
+                labelColor = KnightsColor.White,
             )
             TextChip(
                 "16:45 발표",
-                containerColor = Yellow03A40,
-                labelColor = Yellow04,
+                containerColor = KnightsColor.Blue02A30,
+                labelColor = KnightsColor.Blue01,
             )
         }
     }

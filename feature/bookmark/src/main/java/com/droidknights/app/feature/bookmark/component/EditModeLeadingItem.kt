@@ -17,11 +17,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Purple01
-import com.droidknights.app.core.designsystem.theme.White
-import com.droidknights.app.core.model.Room
-import com.droidknights.app.core.model.Session
+import com.droidknights.app.core.model.session.Room
+import com.droidknights.app.core.model.session.Session
 import com.droidknights.app.feature.bookmark.R
 import com.droidknights.app.feature.bookmark.model.BookmarkItemUiState
 import kotlinx.collections.immutable.ImmutableSet
@@ -42,14 +41,14 @@ internal fun EditModeLeadingItem(
         .clickable { onSelectedItem(itemState.session) }
     if (isSelectedItem) {
         Box(
-            modifier = baseModifier.background(Purple01),
+            modifier = baseModifier.background(KnightsColor.Purple01),
             contentAlignment = Alignment.Center
         ) {
             Icon(
                 modifier = Modifier.size(16.dp),
                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_check),
                 contentDescription = null,
-                tint = White
+                tint = KnightsColor.White
             )
         }
     } else {

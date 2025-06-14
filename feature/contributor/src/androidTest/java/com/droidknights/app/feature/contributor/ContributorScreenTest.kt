@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.droidknights.app.core.model.Contributor
+import com.droidknights.app.core.model.contributor.Contributor
 import com.droidknights.app.feature.contributor.model.ContributorsUiState
 import kotlinx.collections.immutable.persistentListOf
 import org.junit.Before
@@ -41,7 +41,8 @@ class ContributorScreenTest {
         // when
         fakeUiState.value = ContributorsUiState.Contributors(
             persistentListOf(
-                Contributor(
+                ContributorsUiState.Contributors.Item.User(
+                    id = 1L,
                     name = "test name",
                     imageUrl = "test image url",
                     githubUrl = "test github url"

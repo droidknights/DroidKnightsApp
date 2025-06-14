@@ -1,7 +1,7 @@
 import com.droidknights.app.setNamespace
 
 plugins {
-    id("droidknights.android.feature")
+    alias(libs.plugins.droidknights.android.feature)
 }
 
 android {
@@ -9,6 +9,11 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.sessionApi)
+    implementation(projects.core.router.routerApi)
+
     implementation(libs.kotlinx.immutable)
     implementation(projects.widget)
+    implementation(projects.core.domain.domainSessionApi)
+    implementation(projects.core.router.routerApi)
 }

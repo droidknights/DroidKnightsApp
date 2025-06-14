@@ -17,11 +17,10 @@ import com.droidknights.app.feature.setting.navigation.settingNavGraph
 
 @Composable
 internal fun MainNavHost(
-    modifier: Modifier = Modifier,
     navigator: MainNavigator,
     padding: PaddingValues,
     onShowErrorSnackBar: (throwable: Throwable?) -> Unit,
-    onChangeDarkTheme: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -34,28 +33,23 @@ internal fun MainNavHost(
         ) {
             homeNavGraph(
                 padding = padding,
-                onSessionClick = { navigator.navigateSession() },
-                onContributorClick = { navigator.navigateContributor() },
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
             )
+
             settingNavGraph(
                 padding = padding,
-                onChangeDarkTheme = onChangeDarkTheme
             )
 
             bookmarkNavGraph(
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
             )
 
             contributorNavGraph(
-                onBackClick = navigator::popBackStackIfNotHome,
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
             )
 
             sessionNavGraph(
-                onBackClick = navigator::popBackStackIfNotHome,
-                onSessionClick = { navigator.navigateSessionDetail(it.id) },
-                onShowErrorSnackBar = onShowErrorSnackBar
+                onShowErrorSnackBar = onShowErrorSnackBar,
             )
         }
     }

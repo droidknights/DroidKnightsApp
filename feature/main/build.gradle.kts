@@ -1,7 +1,7 @@
 import com.droidknights.app.setNamespace
 
 plugins {
-    id("droidknights.android.feature")
+    alias(libs.plugins.droidknights.android.feature)
 }
 
 android {
@@ -15,15 +15,24 @@ android {
 
 dependencies {
     implementation(projects.feature.home)
+    implementation(projects.feature.homeApi)
     implementation(projects.feature.setting)
+    implementation(projects.feature.settingApi)
     implementation(projects.feature.contributor)
-    implementation(projects.feature.session)
     implementation(projects.feature.bookmark)
+    implementation(projects.feature.bookmarkApi)
+    implementation(projects.feature.session)
+    implementation(projects.feature.sessionApi)
     androidTestImplementation(projects.core.testing)
     debugImplementation(projects.core.uiTestHiltManifest)
 
+    implementation(projects.core.router.router)
+    implementation(projects.core.router.routerApi)
+
     implementation(projects.widget)
-    implementation(projects.core.dataApi)
+    implementation(projects.core.data.dataContributorApi)
+    implementation(projects.core.data.dataSettingsApi)
+    implementation(projects.core.model.modelSession)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

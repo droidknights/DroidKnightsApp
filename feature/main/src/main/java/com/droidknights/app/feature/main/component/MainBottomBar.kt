@@ -1,5 +1,6 @@
 package com.droidknights.app.feature.main.component
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -29,19 +30,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.droidknights.app.core.designsystem.theme.KnightsColor
 import com.droidknights.app.core.designsystem.theme.KnightsTheme
-import com.droidknights.app.core.designsystem.theme.Neon01
 import com.droidknights.app.feature.main.MainTab
-import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 internal fun MainBottomBar(
-    modifier: Modifier = Modifier,
     visible: Boolean,
-    tabs: PersistentList<MainTab>,
+    tabs: ImmutableList<MainTab>,
     currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     AnimatedVisibility(
         visible = visible,
@@ -77,10 +78,10 @@ internal fun MainBottomBar(
 
 @Composable
 private fun RowScope.MainBottomBarItem(
-    modifier: Modifier = Modifier,
     tab: MainTab,
     selected: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -99,7 +100,7 @@ private fun RowScope.MainBottomBarItem(
             painter = painterResource(tab.iconResId),
             contentDescription = tab.contentDescription,
             tint = if (selected) {
-                Neon01
+                KnightsColor.Blue01
             } else {
                 MaterialTheme.colorScheme.outline
             },
@@ -108,7 +109,8 @@ private fun RowScope.MainBottomBarItem(
     }
 }
 
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun MainBottomBarPreview() {
     KnightsTheme {
