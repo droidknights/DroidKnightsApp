@@ -35,8 +35,6 @@ class GetContributorsUseCaseImplTest : BehaviorSpec() {
                 contributors = listOf(
                     Contributor(
                         name = "2024 - name",
-                        imageUrl = "test image url",
-                        githubUrl = "test github url",
                         id = 32327475
                     ),
                 ),
@@ -46,14 +44,10 @@ class GetContributorsUseCaseImplTest : BehaviorSpec() {
                 contributors = listOf(
                     Contributor(
                         name = "test name",
-                        imageUrl = "test image url",
-                        githubUrl = "test github url",
                         id = 28249981
                     ),
                     Contributor(
                         name = "2024 - name",
-                        imageUrl = "test image url",
-                        githubUrl = "test github url",
                         id = 32327475
                     ),
                 ),

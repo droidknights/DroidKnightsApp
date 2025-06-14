@@ -61,8 +61,6 @@ internal class ContributorViewModelTest {
                     Contributor(
                         id = 0L,
                         name = "test name",
-                        imageUrl = "test image url",
-                        githubUrl = "test github url",
                     ),
                 ),
             )

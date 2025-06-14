@@ -15,11 +15,12 @@
     ]
   },
   {
-    "login": "KwakEuiJin",
+    "login": "kez-lab",
     "id": 93872496,
     "years":[
       2023,
-      2024
+      2024,
+      2025
     ]
   },
   {
@@ -27,7 +28,17 @@
     "id": 54518925,
     "years":[
       2023,
-      2024
+      2024,
+      2025
+    ]
+  },
+  {
+    "login": "taehwandev",
+    "id": 2144231,
+    "years":[
+      2023,
+      2024,
+      2025
     ]
   },
   {
@@ -47,18 +58,9 @@
     ]
   },
   {
-    "login": "taehwandev",
-    "id": 2144231,
-    "years":[
-      2023,
-      2024
-    ]
-  },
-  {
     "login": "rhkrwngud445",
     "id": 33768873,
     "years":[
-      2023,
       2024
     ]
   },
@@ -87,7 +89,8 @@
     "login": "yjyoon-dev",
     "id": 72238126,
     "years":[
-      2023
+      2023,
+      2025
     ]
   },
   {
@@ -150,14 +153,24 @@
     "login": "haeti-dev",
     "id": 98825364,
     "years":[
-      2024
+      2024,
+      2025
     ]
   },
   {
     "login": "Pluu",
     "id": 1534926,
     "years":[
-      2023
+      2023,
+      2025
+    ]
+  },
+  {
+    "login": "workspace",
+    "id": 7759511,
+    "years":[
+      2023,
+      2025
     ]
   },
   {
@@ -175,13 +188,6 @@
     ]
   },
   {
-    "login": "theo-taehwan",
-    "id": 92064758,
-    "years":[
-      2024
-    ]
-  },
-  {
     "login": "gowoon-choi",
     "id": 40175383,
     "years":[
@@ -196,13 +202,6 @@
     ]
   },
   {
-    "login": "workspace",
-    "id": 7759511,
-    "years":[
-      2023
-    ]
-  },
-  {
     "login": "KwonDae",
     "id": 33443660,
     "years":[
@@ -214,6 +213,119 @@
     "id": 76798309,
     "years":[
       2023
+    ]
+  },
+  {
+    "login": "m6z1",
+    "id": 114990782,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "SeongUgJung",
+    "id": 4973428,
+    "years":[
+      2023,
+      2025
+    ]
+  },
+  {
+    "login": "winter-kim",
+    "id": 152842249,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "no1msh",
+    "id": 22425650,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "s9hn",
+    "id": 81347125,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "sayyyho",
+    "id": 34148750,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "serioushyeon",
+    "id": 108039053,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "easternkite",
+    "id": 83625797,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "jm991014",
+    "id": 52846796,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "mygomii",
+    "id": 25946475,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "angryPodo",
+    "id": 160750136,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "leeeyubin",
+    "id": 128459613,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "sonms",
+    "id": 71806591,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "junjange",
+    "id": 69571848,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "polaris428",
+    "id": 61411085,
+    "years":[
+      2025
+    ]
+  },
+  {
+    "login": "DongChyeon",
+    "id": 64844115,
+    "years":[
+      2025
     ]
   }
 ]
