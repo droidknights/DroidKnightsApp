@@ -19,6 +19,8 @@ val White = Color(0xFFFFFFFF)
 val PaleGray = Color(0xFFF9F9F9)
 val LightGray = Color(0xFFDCDCDC)
 val DarkGray = Color(0xFF5E5E5E)
+val DustGray = Color(0xFF868686)
+val Gray_4D = Color(0xFF4D4D4D)
 val NeutralGray = Color(0xFFF1F1F1)
 val Black = Color(0xFF000000)
 val Graphite = Color(0xFF292929)
@@ -48,6 +50,9 @@ data class KnightsColorScheme(
     val onLightSurface: Color = Color.Black,
     val iconBackground: Color,
     val placeholderColor: Color,
+    val trailingIconColor: Color,
+    val editButtonColor: Color,
+    val selectedCardColor: Color,
 ) {
     companion object {
         val lightColorScheme = KnightsColorScheme(
@@ -70,6 +75,9 @@ data class KnightsColorScheme(
             unselectedIconColor = LightGray,
             iconBackground = NeutralGray,
             placeholderColor = LightGray,
+            trailingIconColor = DarkGray,
+            editButtonColor = DustGray,
+            selectedCardColor = LightGray,
         )
 
         val darkColorScheme = KnightsColorScheme(
@@ -92,6 +100,9 @@ data class KnightsColorScheme(
             unselectedIconColor = DarkGray,
             iconBackground = Graphite,
             placeholderColor = DarkGray,
+            trailingIconColor = White,
+            editButtonColor = White,
+            selectedCardColor = Gray_4D,
         )
     }
 }
