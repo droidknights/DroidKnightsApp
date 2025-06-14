@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.droidknights.app.core.designsystem.components.Surface
 import com.droidknights.app.core.designsystem.components.Text
@@ -23,14 +24,11 @@ import com.droidknights.app.core.designsystem.theme.KnightsTheme
 import com.droidknights.app.core.shader.components.EllipticalGlowBackground
 import com.droidknights.app.feature.home.model.Sponsor
 import droidknights.feature.home.generated.resources.Res
-import droidknights.feature.home.generated.resources.home_sponsor_card_desc_gold_template
-import droidknights.feature.home.generated.resources.home_sponsor_card_desc_individual_template
-import droidknights.feature.home.generated.resources.home_sponsor_card_desc_platinum_template
+import droidknights.feature.home.generated.resources.home_sponsor_card_desc_template
 import droidknights.feature.home.generated.resources.home_sponsor_card_title
-import droidknights.feature.home.generated.resources.sponsor_logo_jetbrains
-import droidknights.feature.home.generated.resources.sponsor_logo_revenue_cat
 import droidknights.feature.home.generated.resources.svg_sponsor_tier_gold
 import droidknights.feature.home.generated.resources.svg_sponsor_tier_platinum
+import droidknights.feature.home.generated.resources.svg_sponsor_tier_silver
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -41,38 +39,6 @@ fun HomeSponsorCard(
     onOrganizationSponsorClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val description = run {
-        val organizationDescriptions = organizationSponsors
-            .groupBy { it.tier }
-            .mapValues { (_, sponsors) -> sponsors.size }
-            .mapNotNull { (tier, count) ->
-                when (tier) {
-                    Sponsor.Organization.Tier.Platinum -> stringResource(
-                        Res.string.home_sponsor_card_desc_platinum_template,
-                        count,
-                    )
-                    Sponsor.Organization.Tier.Gold -> stringResource(
-                        Res.string.home_sponsor_card_desc_gold_template,
-                        count,
-                    )
-                }
-            }
-
-        val individualDescription = listOfNotNull(
-            individualSponsors
-                .takeIf { it.isNotEmpty() }
-                ?.let {
-                    stringResource(
-                        Res.string.home_sponsor_card_desc_individual_template,
-                        it.size,
-                    )
-                },
-        )
-
-        (organizationDescriptions + individualDescription)
-            .joinToString(separator = ", ")
-    }
-
     Surface(
         modifier = modifier,
         contentColor = KnightsTheme.colorScheme.primary,
@@ -88,7 +54,10 @@ fun HomeSponsorCard(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = description,
+                    text = stringResource(
+                        Res.string.home_sponsor_card_desc_template,
+                        Sponsor.individuals.size,
+                    ),
                     style = KnightsTheme.typography.titleSmallM140,
                 )
 
@@ -97,15 +66,32 @@ fun HomeSponsorCard(
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    organizationSponsors.forEach {
+                    OrganizationSponsor(
+                        sponsor = Sponsor.Organization.revenueCat,
+                        onClick = onOrganizationSponsorClick,
+                        logoWidth = 101.dp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(72.dp),
+                    )
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
                         OrganizationSponsor(
-                            sponsor = it,
-                            onClick = {
-                                onOrganizationSponsorClick(it.url)
-                            },
+                            sponsor = Sponsor.Organization.jetBrains,
+                            onClick = onOrganizationSponsorClick,
+                            logoWidth = 83.dp,
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .height(72.dp),
+                                .weight(1F)
+                                .height(88.dp),
+                        )
+                        OrganizationSponsor(
+                            sponsor = Sponsor.Organization.koin,
+                            onClick = onOrganizationSponsorClick,
+                            logoWidth = 70.dp,
+                            modifier = Modifier
+                                .weight(1F)
+                                .height(88.dp),
                         )
                     }
                     IndividualSponsors(
@@ -120,11 +106,14 @@ fun HomeSponsorCard(
 @Composable
 private fun OrganizationSponsor(
     sponsor: Sponsor.Organization,
-    onClick: () -> Unit,
+    onClick: (String) -> Unit,
     modifier: Modifier = Modifier,
+    logoWidth: Dp = Dp.Unspecified,
 ) {
     Surface(
-        onClick = onClick,
+        onClick = {
+            onClick(sponsor.url)
+        },
         shape = RoundedCornerShape(6.dp),
         color = KnightsTheme.colorScheme.lightSurface,
         modifier = modifier,
@@ -138,7 +127,7 @@ private fun OrganizationSponsor(
                 painter = painterResource(sponsor.logoRes),
                 contentDescription = null,
                 modifier = Modifier
-                    .width(100.dp)
+                    .width(logoWidth)
                     .align(Alignment.Center),
             )
             OrganizationSponsorTier(
@@ -169,6 +158,13 @@ private fun OrganizationSponsorTier(
                 modifier = modifier,
             )
         }
+        Sponsor.Organization.Tier.Silver -> {
+            Image(
+                painterResource(Res.drawable.svg_sponsor_tier_silver),
+                contentDescription = null,
+                modifier = modifier,
+            )
+        }
     }
 }
 
@@ -187,7 +183,7 @@ private fun IndividualSponsors(
                 .padding(8.dp, 11.dp),
             horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
-            individualSponsors.forEach {
+            Sponsor.individuals.forEach {
                 Text(
                     text = it.name,
                     style = KnightsTheme.typography.labelSmallM,
@@ -198,36 +194,6 @@ private fun IndividualSponsors(
         }
     }
 }
-
-private val organizationSponsors = listOf(
-    Sponsor.Organization(
-        tier = Sponsor.Organization.Tier.Platinum,
-        name = "RevenueCat",
-        logoRes = Res.drawable.sponsor_logo_revenue_cat,
-        url = "https://www.revenuecat.com",
-    ),
-    Sponsor.Organization(
-        tier = Sponsor.Organization.Tier.Gold,
-        name = "JetBrains",
-        logoRes = Res.drawable.sponsor_logo_jetbrains,
-        url = "https://www.jetbrains.com/",
-    ),
-)
-
-private val individualSponsors = listOf(
-    Sponsor.Individual(name = "경창현"),
-    Sponsor.Individual(name = "김태우"),
-    Sponsor.Individual(name = "박덕성"),
-    Sponsor.Individual(name = "성희영"),
-    Sponsor.Individual(name = "이재일"),
-    Sponsor.Individual(name = "이현민"),
-    Sponsor.Individual(name = "임태우"),
-    Sponsor.Individual(name = "장보미"),
-    Sponsor.Individual(name = "정태훈"),
-    Sponsor.Individual(name = "정현아"),
-    Sponsor.Individual(name = "최익환"),
-    Sponsor.Individual(name = "황창훈"),
-)
 
 @Preview
 @Composable
