@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml:2:13-83
+INJECTED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml:2:13-83
+	package
+		INJECTED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml
+	xmlns:android
+		ADDED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml:2:23-81
+uses-sdk
+INJECTED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml reason: use-sdk injection requested
+INJECTED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml
+INJECTED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml
+	android:targetSdkVersion
+		INJECTED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml
+	android:minSdkVersion
+		INJECTED from /home/runner/work/DroidKnightsApp/DroidKnightsApp/core/domain/domain-session-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest14764859825391582239.xml

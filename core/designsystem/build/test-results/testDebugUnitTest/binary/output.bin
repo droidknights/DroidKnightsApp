@@ -1,0 +1,6 @@
+Capturing preview: ChipPreview
+ãRoborazzi: ChipPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=237456, width=291, height=816) changed:false
+0Capturing preview: KnightsTopAppBarPreviewClose
+ùRoborazzi: KnightsTopAppBarPreviewClose.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=142560, width=1080, height=132) changed:false
+/Capturing preview: KnightsTopAppBarPreviewBack
+úRoborazzi: KnightsTopAppBarPreviewBack.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=142560, width=1080, height=132) changed:false

@@ -1,0 +1,30 @@
+.Capturing preview: BookmarkScreenLightPreview
+¢Roborazzi: BookmarkScreenLightPreview.png The differ result :ComparisonResult(pixelDifferences=2527200, pixelCount=2527200, width=1080, height=2340) changed:true
+-Capturing preview: BookmarkScreenDarkPreview
+°Roborazzi: BookmarkScreenDarkPreview.png The differ result :ComparisonResult(pixelDifferences=2527200, pixelCount=2527200, width=1080, height=2340) changed:true
+,Capturing preview: BookmarkCardLightPreview
+ùRoborazzi: BookmarkCardLightPreview.png The differ result :ComparisonResult(pixelDifferences=299874, pixelCount=300240, width=1080, height=278) changed:true
++Capturing preview: BookmarkCardDarkPreview
+úRoborazzi: BookmarkCardDarkPreview.png The differ result :ComparisonResult(pixelDifferences=299873, pixelCount=300240, width=1080, height=278) changed:true
+'Capturing preview: BookmarkItemPreview
+òRoborazzi: BookmarkItemPreview.png The differ result :ComparisonResult(pixelDifferences=695520, pixelCount=695520, width=1080, height=644) changed:true
+4Capturing preview: BookmarkTimelineItemLightPreview
+¢Roborazzi: BookmarkTimelineItemLightPreview.png The differ result :ComparisonResult(pixelDifferences=21301, pixelCount=21301, width=119, height=179) changed:true
+3Capturing preview: BookmarkTimelineItemDarkPreview
+°Roborazzi: BookmarkTimelineItemDarkPreview.png The differ result :ComparisonResult(pixelDifferences=21301, pixelCount=21301, width=119, height=179) changed:true
+	1Capturing preview: BookmarkTopAppBarLightPreview
+	¢Roborazzi: BookmarkTopAppBarLightPreview.png The differ result :ComparisonResult(pixelDifferences=142560, pixelCount=142560, width=1080, height=132) changed:true
+
+0Capturing preview: BookmarkTopAppBarDarkPreview
+
+°Roborazzi: BookmarkTopAppBarDarkPreview.png The differ result :ComparisonResult(pixelDifferences=142560, pixelCount=142560, width=1080, height=132) changed:true
+9Capturing preview: BookmarkTopAppBarEditModeLightPreview
+™Roborazzi: BookmarkTopAppBarEditModeLightPreview.png The differ result :ComparisonResult(pixelDifferences=142560, pixelCount=142560, width=1080, height=132) changed:true
+8Capturing preview: BookmarkTopAppBarEditModeDarkPreview
+©Roborazzi: BookmarkTopAppBarEditModeDarkPreview.png The differ result :ComparisonResult(pixelDifferences=142560, pixelCount=142560, width=1080, height=132) changed:true
+5Capturing preview: CheckedEditModeLeadingItemPreview
+°Roborazzi: CheckedEditModeLeadingItemPreview.png The differ result :ComparisonResult(pixelDifferences=3512, pixelCount=10956, width=166, height=66) changed:true
+7Capturing preview: UncheckedEditModeLeadingItemPreview
+¢Roborazzi: UncheckedEditModeLeadingItemPreview.png The differ result :ComparisonResult(pixelDifferences=753, pixelCount=10956, width=166, height=66) changed:true
+-Capturing preview: BookmarkStatePopupPreview
+ûRoborazzi: BookmarkStatePopupPreview.png The differ result :ComparisonResult(pixelDifferences=148972, pixelCount=149040, width=1080, height=138) changed:true

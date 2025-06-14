@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-06-14T15:48:00.081Z" hostname="pkrvmxyh4eaekms" time="20.141">
+  <properties/>
+  <testcase name="test[com.droidknights.app.feature.main.components.MainBottomBarKt_MainBottomBarPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="20.141"/>
+  <system-out><![CDATA[Capturing preview: MainBottomBarPreview
+Roborazzi: MainBottomBarPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=2527200, width=1080, height=2340) changed:false
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

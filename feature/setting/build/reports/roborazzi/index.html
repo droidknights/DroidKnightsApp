@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roborazzi report</title>
+  <!-- Compiled and minified CSS -->
+  <link href="assets/materialize.min.css" rel="stylesheet" />
+  <link href="assets/material-icons.css" rel="stylesheet" />
+
+  <link href="assets/report-style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav role="navigation" class="light-blue lighten-1">
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">Roborazzi report</a>
+    <a href="#" data-target="nav-mobile" class="sidenav-trigger">
+      <i class="material-icons menu">menu</i>
+    </a>
+  </div>
+</nav>
+<div class="section">
+  <div class="container">
+    <p><div class="row">
+<div class="col s12">
+<ul class="tabs"><li class="tab"><a class="active"  href="#results">Results</a></li></ul>
+</div><div id="results" class="col s12" style="display: none;"><h3>Summary</h3>
+<table class="highlight">
+    <thead>
+    <tr>
+        <th>Total</th>
+        <th><a href="#recorded">Recorded</a></th>
+        <th><a href="#added">Added</a></th>
+        <th><a href="#changed">Changed</a></th>
+        <th><a href="#unchanged">Unchanged</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>2</td>
+        <td><a href="#recorded">0</a></td>
+        <td><a href="#added">0</a></td>
+        <td><a href="#changed">0</a></td>
+        <td><a href="#unchanged">2</a></td>
+    </tr>
+    </tbody>
+</table><h3>Unchanged images (2)</h3><table class="highlight" id="unchanged"><thead><tr class="row"><th class="flow-text col s4" style="word-wrap: break-word; word-break: break-all;">File Name</th><th class="col s6 flow-text ">Image</th></tr></thead><tbody><tr class="row"><td class="flow-text col s4" style="word-wrap: break-word; word-break: break-all;"><div><h6 class="grey-text darken-3">screenshot/</h6>SettingDarkThemeCardPreview.png</div></td><td class="col s6"><img style="max-width: 100%; height: 100%; object-fit: cover;" class="modal-trigger" src="../../../screenshot/SettingDarkThemeCardPreview.png" data-alt="SettingDarkThemeCardPreview.png" /></td></tr><tr class="row"><td class="flow-text col s4" style="word-wrap: break-word; word-break: break-all;"><div><h6 class="grey-text darken-3">screenshot/</h6>SettingOpenSourceCardPreview.png</div></td><td class="col s6"><img style="max-width: 100%; height: 100%; object-fit: cover;" class="modal-trigger" src="../../../screenshot/SettingOpenSourceCardPreview.png" data-alt="SettingOpenSourceCardPreview.png" /></td></tr></tbody></table></div></div></p>
+  </div>
+</div>
+
+<div id="imageBottomSheet" class="modal bottom-sheet max-height">
+  <div class="modal-content center-align">
+    <img id="modalImage" src="" alt="">
+  </div>
+</div>
+
+<footer class="page-footer orange">
+  <div class="container">
+    <a class="us" href="https://github.com/takahirom/roborazzi" target="_blank"
+       rel="noopener noreferrer">Roborazzi</a>
+    <br>
+    <br>
+  </div>
+</footer>
+<!-- Compiled and minified JavaScript -->
+<script src="assets/materialize.min.js"></script>
+<script>
+  M.AutoInit();
+  document.addEventListener('DOMContentLoaded', function() {
+      M.Tabs.getInstance(document.getElementsByClassName("tabs")[0]).select('results');
+      var modalInstance = M.Modal.init(document.getElementById('imageBottomSheet'), {});
+      var modal = document.getElementById('imageBottomSheet');
+      var modalImage = document.getElementById('modalImage');
+      var modalTriggers = document.querySelectorAll('.modal-trigger');
+      modalTriggers.forEach(function(trigger) {
+          trigger.addEventListener('click', function() {
+              var src = this.getAttribute('src');
+              var alt = this.getAttribute('data-alt');
+              modalImage.setAttribute('src', src);
+              modalImage.setAttribute('alt', alt);
+              var instance = M.Modal.getInstance(modal);
+              instance.open();
+          });
+      });
+  });
+</script>
+</body>
+</html>

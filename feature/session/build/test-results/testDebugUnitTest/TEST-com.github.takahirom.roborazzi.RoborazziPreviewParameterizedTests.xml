@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-06-14T15:48:01.914Z" hostname="pkrvmxyh4eaekms" time="20.595">
+  <properties/>
+  <testcase name="test[com.droidknights.app.feature.session.SessionDetailScreenKt_SessionDetailScreenPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="19.399"/>
+  <testcase name="test[com.droidknights.app.feature.session.components.SessionCardKt_SessionCardPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="0.528"/>
+  <testcase name="test[com.droidknights.app.feature.session.components.SessionChipKt_TagChipPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="0.223"/>
+  <testcase name="test[com.droidknights.app.feature.session.components.SessionChipKt_TrackChipPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="0.212"/>
+  <testcase name="test[com.droidknights.app.feature.session.components.SessionChipKt_TimeChipPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="0.22"/>
+  <system-out><![CDATA[Capturing preview: SessionDetailScreenPreview
+Roborazzi: SessionDetailScreenPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=2527200, width=1080, height=2340) changed:false
+Capturing preview: SessionCardPreview
+Roborazzi: SessionCardPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=670680, width=1080, height=621) changed:false
+Capturing preview: TagChipPreview
+Roborazzi: TagChipPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=7990, width=170, height=47) changed:false
+Capturing preview: TrackChipPreview
+Roborazzi: TrackChipPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=8460, width=180, height=47) changed:false
+Capturing preview: TimeChipPreview
+Roborazzi: TimeChipPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=11571, width=203, height=57) changed:false
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

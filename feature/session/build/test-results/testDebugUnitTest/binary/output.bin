@@ -1,0 +1,10 @@
+.Capturing preview: SessionDetailScreenPreview
+ùRoborazzi: SessionDetailScreenPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=2527200, width=1080, height=2340) changed:false
+&Capturing preview: SessionCardPreview
+ìRoborazzi: SessionCardPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=670680, width=1080, height=621) changed:false
+"Capturing preview: TagChipPreview
+ãRoborazzi: TagChipPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=7990, width=170, height=47) changed:false
+$Capturing preview: TrackChipPreview
+çRoborazzi: TrackChipPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=8460, width=180, height=47) changed:false
+#Capturing preview: TimeChipPreview
+çRoborazzi: TimeChipPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=11571, width=203, height=57) changed:false

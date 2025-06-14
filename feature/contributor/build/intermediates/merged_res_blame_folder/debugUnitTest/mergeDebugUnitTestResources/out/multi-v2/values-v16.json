@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.droidknights.app.feature.contributor.test.contributor-mergeDebugUnitTestResources-66:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/home/runner/.gradle/caches/8.14/transforms/38a40f843e8f0ed534967fc35f81d071/transformed/appcompat-1.7.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    }
+                }
+            ]
+        }
+    ]
+}

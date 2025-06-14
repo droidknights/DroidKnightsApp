@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.droidknights.app.feature.license.test.license-mergeDebugUnitTestResources-64:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "/home/runner/.gradle/caches/8.14/transforms/38a40f843e8f0ed534967fc35f81d071/transformed/appcompat-1.7.1/res/values-v18/values-v18.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                },
+                {
+                    "source": "/home/runner/.gradle/caches/8.14/transforms/df908bed02b89f55d18be2dd4978b022/transformed/core-1.5.0/res/values-v18/values.xml",
+                    "from": {
+                        "startLines": "4,12",
+                        "startColumns": "0,0",
+                        "startOffsets": "180,596",
+                        "endLines": "11,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "595,1009"
+                    },
+                    "to": {
+                        "startLines": "3,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "104,524",
+                        "endLines": "10,18",
+                        "endColumns": "8,8",
+                        "endOffsets": "519,937"
+                    }
+                }
+            ]
+        }
+    ]
+}

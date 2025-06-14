@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-06-14T15:48:09.241Z" hostname="pkrvmxyh4eaekms" time="15.065">
+  <properties/>
+  <testcase name="test[com.droidknights.app.feature.setting.components.SettingDarkThemeCardKt_SettingDarkThemeCardPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="14.856"/>
+  <testcase name="test[com.droidknights.app.feature.setting.components.SettingOpenSourceCardKt_SettingOpenSourceCardPreview]" classname="com.github.takahirom.roborazzi.RoborazziPreviewParameterizedTests" time="0.207"/>
+  <system-out><![CDATA[Capturing preview: SettingDarkThemeCardPreview
+Roborazzi: SettingDarkThemeCardPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=1189080, width=1080, height=1101) changed:false
+Capturing preview: SettingOpenSourceCardPreview
+Roborazzi: SettingOpenSourceCardPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=557280, width=1080, height=516) changed:false
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

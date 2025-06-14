@@ -1,0 +1,12 @@
+%Capturing preview: HomeScreenPreview
+˜Roborazzi: HomeScreenPreview.png The differ result :ComparisonResult(pixelDifferences=705873, pixelCount=2527200, width=1080, height=2340) changed:true
+.Capturing preview: HomeContributorCardPreview
+›Roborazzi: HomeContributorCardPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=415800, width=1080, height=385) changed:false
+&Capturing preview: HomeMapCardPreview
+“Roborazzi: HomeMapCardPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=612360, width=1080, height=567) changed:false
+*Capturing preview: HomeSessionCardPreview
+—Roborazzi: HomeSessionCardPreview.png The differ result :ComparisonResult(pixelDifferences=0, pixelCount=452520, width=1080, height=419) changed:false
+/Capturing preview: HomeSponsorCardLightPreview
+qRoborazzi: HomeSponsorCardLightPreview.png The image size is changed. actual = (1080, 919), golden = (1080, 963)
+.Capturing preview: HomeSponsorCardDarkPreview
+pRoborazzi: HomeSponsorCardDarkPreview.png The image size is changed. actual = (1080, 919), golden = (1080, 963)
