@@ -1,4 +1,4 @@
-name: Compare and Comment on Screenshots
+name: Screenshot Comparison
 
 on:
   pull_request:
@@ -15,8 +15,9 @@ jobs:
     timeout-minutes: 20
 
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
+      actions: write
+      checks: read
 
     steps:
       - uses: actions/checkout@v4
@@ -37,63 +38,20 @@ jobs:
           echo "count=$count" >> $GITHUB_OUTPUT
           echo "비교 이미지 개수: $count"
 
-      - name: Push comparison images to companion branch
+      - uses: actions/upload-artifact@v4
         if: steps.comparison-check.outputs.count != '0'
-        run: |
-          BRANCH_NAME=companion_${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout --orphan "$BRANCH_NAME"
-          git rm -rf .
-          find . -type f -path "*/build/outputs/roborazzi/*_compare.png" -exec cp --parents {} . \;
-          git add .
-          git commit -m "Add screenshot compare images"
-          git push origin HEAD:"$BRANCH_NAME" -f
+        with:
+          name: screenshot-diff-reports
+          path: |
+            **/build/outputs/roborazzi
+          retention-days: 30
 
-      - name: Comment with comparison images
-        if: steps.comparison-check.outputs.count != '0'
-        env:
-          BRANCH_NAME: companion_${{ github.head_ref }}
-          REPO: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Save PR number for comment
+        if: ${{ github.event_name == 'pull_request' }}
         run: |
-          FILES=$(find . -type f -path "*/build/outputs/roborazzi/*_compare.png")
-          echo '### 🖼️ Screenshot Comparison Results' > comment.md
-          echo "" >> comment.md
-          for file in $FILES; do
-            file_path=${file#./}
-            file_url="https://github.com/$REPO/blob/$BRANCH_NAME/$file_path?raw=true"
-            echo "![]($file_url)" >> comment.md
-            echo "" >> comment.md
-          done
-          echo "---" >> comment.md
-          echo "" >> comment.md
-          echo "⚠️ **기준 이미지가 변경되었습니다. 아래 명령어로 기준 이미지를 직접 갱신하세요.**" >> comment.md
-          echo '```sh' >> comment.md
-          echo "./gradlew recordRoborazzi" >> comment.md
-          echo "git add ." >> comment.md
-          echo "git commit -m 'chore: update Roborazzi screenshots'" >> comment.md
-          echo "git push origin \${GITHUB_HEAD_REF}" >> comment.md
-          echo '```' >> comment.md
-          
-          # 기존 댓글이 있으면 업데이트, 없으면 새로 작성
-          if gh pr comment $PR_NUMBER --list | grep -q "Screenshot Comparison Results"; then
-            COMMENT_ID=$(gh pr comment $PR_NUMBER --list --json id,body | jq -r '.[] | select(.body | contains("Screenshot Comparison Results")) | .id')
-            gh pr comment $PR_NUMBER --edit $COMMENT_ID --body-file comment.md
-          else
-            gh pr comment $PR_NUMBER --body-file comment.md
-          fi
-
-      - name: Clean old companion branches
-        run: |
-          git fetch origin
-          for branch in $(git branch -r | grep "origin/companion_" | sed 's/origin\///'); do
-            original_branch=${branch#companion_}
-            if ! git branch -r | grep -q "origin/$original_branch"; then
-              echo "Cleaning up orphaned companion branch: $branch"
-              git push origin --delete "$branch" || true
-            fi
-          done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mkdir -p ./pr
+          echo ${{ github.event.number }} > ./pr/NR
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr
+          path: pr/
