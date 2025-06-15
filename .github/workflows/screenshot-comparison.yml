@@ -1,0 +1,57 @@
+name: Screenshot Comparison
+
+on:
+  pull_request:
+    branches:
+      - 2025/compose-multiplatform
+
+concurrency:
+  group: screenshot-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  compare-screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    permissions:
+      contents: read
+      actions: write
+      checks: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Roborazzi Compare
+        run: ./gradlew compareRoborazziDebug
+
+      - name: Check for comparison images
+        id: comparison-check
+        run: |
+          count=$(find . -type f -path "*/build/outputs/roborazzi/*_compare.png" | wc -l)
+          echo "count=$count" >> $GITHUB_OUTPUT
+          echo "비교 이미지 개수: $count"
+
+      - uses: actions/upload-artifact@v4
+        if: steps.comparison-check.outputs.count != '0'
+        with:
+          name: screenshot-diff-reports
+          path: |
+            **/build/outputs/roborazzi
+          retention-days: 30
+
+      - name: Save PR number for comment
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          mkdir -p ./pr
+          echo ${{ github.event.number }} > ./pr/NR
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr
+          path: pr/
