@@ -152,15 +152,39 @@ jobs:
           body: ${{ steps.generate-diff-reports.outputs.reports }}
           edit-mode: replace
 
+      - id: open-pr-companions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open"
+            });
+            // companion 브랜치명 리스트 생성
+            const openCompanions = prs.data.map(pr => `companion_${pr.head.ref}`);
+            core.setOutput("openCompanions", openCompanions.join(" "));
+
       - name: Clean old companion branches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPEN_COMPANIONS: ${{ steps.open-pr-companions.outputs.openCompanions }}
         run: |
           git fetch origin
           for branch in $(git branch -r | grep "origin/companion_" | sed 's/origin\///'); do
             original_branch=${branch#companion_}
+            skip_delete="false"
+            for open in $OPEN_COMPANIONS; do
+              if [ "$branch" = "$open" ]; then
+                skip_delete="true"
+              fi
+            done
+            if [ "$skip_delete" = "true" ]; then
+              echo "Skip deletion for open PR companion branch: $branch"
+              continue
+            fi
             if ! git branch -r | grep -q "origin/$original_branch"; then
               echo "Cleaning up orphaned companion branch: $branch"
               git push origin --delete "$branch" || true
             fi
           done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
