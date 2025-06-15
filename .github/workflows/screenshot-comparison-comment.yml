@@ -1,0 +1,190 @@
+name: Screenshot Comparison Comment
+
+on:
+  workflow_run:
+    workflows:
+      - Screenshot Comparison
+    types:
+      - completed
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}-${{ github.event.workflow_run.id }}
+  cancel-in-progress: true
+
+permissions: { }
+
+jobs:
+  screenshot-comparison-comment:
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+
+    timeout-minutes: 2
+
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: pr
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - id: get-pull-request-number
+        name: Get pull request number
+        shell: bash
+        run: |
+          echo "pull_request_number=$(cat NR)" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+      - run: |
+          git checkout --orphan companion_branch
+          git rm -rf .
+      - id: switch-companion-branch
+        env:
+          BRANCH_NAME: companion_${{ github.event.workflow_run.head_branch }}
+        run: |
+          git branch -D "$BRANCH_NAME" || true
+          git checkout --orphan "$BRANCH_NAME"
+          git rm -rf . || true
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ github.event.workflow_run.id }}
+          name: screenshot-diff-reports
+          path: screenshot-diff-reports
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - id: check-if-there-are-valid-files
+        name: Check if there are valid files
+        shell: bash
+        run: |
+          # Find all the files ending with _compare.png
+          mapfile -d '' -t files_to_add < <(find . -type f -name "*_compare.png" -print0)
+          
+          # Check for invalid file names and add only valid ones
+          exist_valid_files="false"
+          for file in "${files_to_add[@]}"; do
+            if [[ $file =~ ^([-0-9A-Z_a-z.\ \/]|\[|\])+$ ]]; then
+              exist_valid_files="true"
+              break
+            fi
+          done
+          echo "exist_valid_files=$exist_valid_files" >> "$GITHUB_OUTPUT"
+      - id: push-screenshot-diff
+        shell: bash
+        if: steps.check-if-there-are-valid-files.outputs.exist_valid_files == 'true'
+        env:
+          BRANCH_NAME: companion_${{ github.event.workflow_run.head_branch }}
+        run: |
+          # Find all the files ending with _compare.png
+          mapfile -d '' -t files_to_add < <(find . -type f -name "*_compare.png" -print0)
+          
+          # Check for invalid file names and add only valid ones
+          for file in "${files_to_add[@]}"; do
+            if [[ "$file" =~ ^([-0-9A-Z_a-z.\ \/]|\[|\])+$ ]]; then
+              git add "$file"
+            fi
+          done
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -m "Add screenshot comparison images"
+          git push origin HEAD:"$BRANCH_NAME" -f
+      - id: generate-diff-reports
+        name: Generate diff reports
+        if: steps.check-if-there-are-valid-files.outputs.exist_valid_files == 'true'
+        env:
+          BRANCH_NAME: companion_${{ github.event.workflow_run.head_branch }}
+        shell: bash
+        run: |
+          # Find all the files ending with _compare.png in roborazzi folder
+          mapfile -d '' -t files < <(find . -type f -name "*_compare.png" -print0)
+          delimiter="$(openssl rand -hex 8)"
+          {
+            echo "reports<<${delimiter}"
+          
+            # Create markdown table header
+            echo "### 🖼️ Screenshot Comparison Results"
+            echo ""
+            echo "| File name | Image |"
+            echo "|-------|-------|"
+          } >> "$GITHUB_OUTPUT"
+          
+          # Iterate over the files and create table rows
+          for file in "${files[@]}"; do
+            # Get the file name and insert newlines every 20 characters
+            fileName=$(basename "$file" | sed -r 's/(.{20})/\1<br>/g')
+            urlPart="${BRANCH_NAME//#/%23}/${file//#/%23}"
+            urlPart="${urlPart//[/%5B}"
+            urlPart="${urlPart//]/%5D}"
+            urlPart="${urlPart// /%20}"
+            echo "| [$fileName](https://github.com/${{ github.repository }}/blob/$urlPart) | ![](https://github.com/${{ github.repository }}/blob/$urlPart?raw=true) |" >> "$GITHUB_OUTPUT"
+          done
+          
+          echo "" >> "$GITHUB_OUTPUT"
+          echo "---" >> "$GITHUB_OUTPUT"
+          echo "" >> "$GITHUB_OUTPUT"
+          echo "⚠️ **기준 이미지가 변경되었습니다. 아래 명령어로 기준 이미지를 직접 갱신하세요.**" >> "$GITHUB_OUTPUT"
+          echo '```sh' >> "$GITHUB_OUTPUT"
+          echo "./gradlew recordRoborazzi" >> "$GITHUB_OUTPUT"
+          echo "git add ." >> "$GITHUB_OUTPUT"
+          echo "git commit -m 'chore: update Roborazzi screenshots'" >> "$GITHUB_OUTPUT"
+          echo "git push origin \${{ github.event.workflow_run.head_branch }}" >> "$GITHUB_OUTPUT"
+          echo '```' >> "$GITHUB_OUTPUT"
+          
+          echo "${delimiter}" >> "$GITHUB_OUTPUT"
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        if: steps.generate-diff-reports.outputs.reports != ''
+        with:
+          issue-number: ${{ steps.get-pull-request-number.outputs.pull_request_number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Screenshot Comparison Results
+
+      - name: Add or update comment on PR
+        uses: peter-evans/create-or-update-comment@v3
+        if: steps.generate-diff-reports.outputs.reports != ''
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ steps.get-pull-request-number.outputs.pull_request_number }}
+          body: ${{ steps.generate-diff-reports.outputs.reports }}
+          edit-mode: replace
+
+      - id: open-pr-companions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open"
+            });
+            // companion 브랜치명 리스트 생성
+            const openCompanions = prs.data.map(pr => `companion_${pr.head.ref}`);
+            core.setOutput("openCompanions", openCompanions.join(" "));
+
+      - name: Clean old companion branches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPEN_COMPANIONS: ${{ steps.open-pr-companions.outputs.openCompanions }}
+        run: |
+          git fetch origin
+          for branch in $(git branch -r | grep "origin/companion_" | sed 's/origin\///'); do
+            original_branch=${branch#companion_}
+            skip_delete="false"
+            for open in $OPEN_COMPANIONS; do
+              if [ "$branch" = "$open" ]; then
+                skip_delete="true"
+              fi
+            done
+            if [ "$skip_delete" = "true" ]; then
+              echo "Skip deletion for open PR companion branch: $branch"
+              continue
+            fi
+            if ! git branch -r | grep -q "origin/$original_branch"; then
+              echo "Cleaning up orphaned companion branch: $branch"
+              git push origin --delete "$branch" || true
+            fi
+          done
