@@ -17,15 +17,14 @@ import com.droidknights.app.feature.home.components.HomeMapCard
 import com.droidknights.app.feature.home.components.HomeSessionCard
 import com.droidknights.app.feature.home.components.HomeSponsorCard
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun HomeScreen(
     onContributorClick: () -> Unit,
     onOrganizationSponsorClick: (String) -> Unit,
     onMapClick: () -> Unit,
+    onSessionClick: () -> Unit,
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel = koinViewModel(),
 ) {
     Column(
         modifier = modifier
@@ -37,7 +36,7 @@ internal fun HomeScreen(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         HomeSessionCard(
-            onClick = homeViewModel::navigateSession,
+            onClick = onSessionClick,
             modifier = Modifier.fillMaxWidth(),
         )
         HomeContributorCard(
@@ -63,6 +62,7 @@ fun HomeScreenPreview() {
             onContributorClick = {},
             onOrganizationSponsorClick = {},
             onMapClick = {},
+            onSessionClick = {},
             modifier = Modifier.fillMaxSize(),
         )
     }
