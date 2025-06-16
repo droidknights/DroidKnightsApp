@@ -109,7 +109,13 @@ Action을 사용하지 않아도 동일한 구현이 가능하지만, `리액트
 
 ## ✈️ Compose Multiplatform
 
-Jetpack Compose는 대
+Jetpack Compose는 이제 Android만의 도구가 아닙니다.
+
+Compose Multiplatform은 Android, iOS, 데스크톱, 웹까지 하나의 코드베이스에서 앱을 구현할 수 있도록 생태계를 넓혀가고 있습니다.
+
+![alt text](images/cmp.png)
+
+얼마 전 iOS용 Compose 안정화 버전인 [Compose Multiplatform 1.8.0이 출시](https://blog.jetbrains.com/ko/kotlin/2025/05/compose-multiplatform-1-8-0-ios-compose-multiplatform/)되었습니다. [DroidKnights CMP 작업 브랜치](<(https://github.com/droidknights/DroidKnightsApp/tree/2025/compose-multiplatform)>)에서는 [Kotlin Multiplatform Wizard](https://kmp.jetbrains.com/?android=true&ios=true&iosui=compose&includeTests=true)를 사용해 새로운 KMP 빈 프로젝트를 만들고, 기존 Android Compose 코드를 단계적으로 이전하는 과정을 담고 있습니다. 이번 작업을 통해 Compose Multiplatform에 대한 호기심을 해소하고, 같은 코드를 보며 설계와 구현에 대해 자연스럽게 논의하는 장이 되고자 합니다.
 
 ## 아키텍처 Next...
 
