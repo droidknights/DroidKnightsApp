@@ -26,7 +26,7 @@
 
 ## 🎨 Design
 
-[Figma](https://www.figma.com/design/kYErZe64pzhcro6Unjvr50/%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EB%82%98%EC%9D%B4%EC%B8%A0-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98?node-id=120-9718&t=qAe9rM4bWP76rsfp-0)에서 디자인을 확인하실 수 있습니다.
+[Figma](https://www.figma.com/design/vyeqzTzAkrn22rCDxvs0I3/%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EB%82%98%EC%9D%B4%EC%B8%A0-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98?node-id=120-1657)에서 디자인을 확인하실 수 있습니다.
 
 
 ## 🛠️ Development
