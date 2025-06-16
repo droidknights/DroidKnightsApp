@@ -1,5 +1,7 @@
 package com.droidknights.app.core.network
 
+import com.droidknights.app.core.network.mock.CONTRIBUTORS_JSON
+import com.droidknights.app.core.network.mock.CONTRIBUTORS_PATH
 import com.droidknights.app.core.network.mock.SESSIONS_JSON
 import com.droidknights.app.core.network.mock.SESSIONS_PATH
 import io.ktor.client.HttpClient
@@ -45,5 +47,6 @@ private const val NOT_FOUND_ERROR_MESSAGE =
     "core:network wasmJsMain httpClient에 mock response를 추가하세요."
 
 private val GET_RESPONSE_MAP = mapOf(
+    CONTRIBUTORS_PATH to CONTRIBUTORS_JSON,
     SESSIONS_PATH to SESSIONS_JSON,
 )
