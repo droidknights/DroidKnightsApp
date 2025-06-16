@@ -132,9 +132,9 @@ api 모듈 분리와 Router/Action을 적용한 것처럼, 유사한 방식으�
 참여해주신 모든 분들 감사합니다!
 
 - KMP Web app : [2025 conference app에서 Contributors 확인](https://droidknights.github.io/DroidKnightsApp/)
-- Designer : 박수염
+- Designer 2025 : 박수염
 - Maintainer 2025 : [taehwandev](https://github.com/taehwandev), [workspace](https://github.com/workspace), Special Thanks: [HyunWoo Lee (Nunu Lee)](https://github.com/l2hyunwoo)
-- Designer : Eunbi Ko
+- Designer 2023 : Eunbi Ko
 - Maintainer 2023 : [laco-dev](https://github.com/laco-dev), [wisemuji](https://github.com/wisemuji)
 
 ## ✨ Contributors
