@@ -12,7 +12,7 @@
 
 ## 🌐 KMP로 바로 확인하기!
 
-- [KMP 덕에 웹에서도 바로 확인 가능해요!](https://droidknights.github.io/DroidKnightsApp/)
+- [KMP 덕분에 웹에서도 바로 확인 가능해요!](https://droidknights.github.io/DroidKnightsApp/)
 
 ![](images/kmp.png)
 
@@ -69,7 +69,7 @@
 
 `api 모듈`을 별도로 분리함으로써 필요한 구조만을 가져다 사용할 수 있는 이점과 리빌드 성능 개선에도 도움됩니다.
 
-Main을 기준으로 Flow를 간략하게 표현하면 아래와 같습니다.
+Session screen을 기준으로 Flow를 간략하게 표현하면 아래와 같습니다.
 
 ![](images/architecutre.png)
 
@@ -132,7 +132,7 @@ api 모듈 분리와 Router/Action을 적용한 것처럼, 유사한 방식으�
 참여해주신 모든 분들 감사합니다!
 
 - KMP Web app : [2025 conference app에서 Contributors 확인](https://droidknights.github.io/DroidKnightsApp/)
-- Designer 2025 : 박수염
+- Designer 2025 : 박수연
 - Maintainer 2025 : [taehwandev](https://github.com/taehwandev), [workspace](https://github.com/workspace), Special Thanks: [HyunWoo Lee (Nunu Lee)](https://github.com/l2hyunwoo)
 - Designer 2023 : Eunbi Ko
 - Maintainer 2023 : [laco-dev](https://github.com/laco-dev), [wisemuji](https://github.com/wisemuji)
