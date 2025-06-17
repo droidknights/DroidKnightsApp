@@ -236,7 +236,7 @@ internal val CONTRIBUTORS_JSON = """
         ]
       },
       {
-        "login": "winter-kim",
+        "login": "winter-love-dev",
         "id": 152842249,
         "years":[
           2025
